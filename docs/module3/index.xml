@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 3 - Les outils et les environnements on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/</link><description>Recent content in Module 3 - Les outils et les environnements on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module3/index.xml" rel="self" type="application/rss+xml"/><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Le logiciel a une particularité fondamentale : il change tout le temps. Même un
+programme simple est rapidement modifié - pour corriger un bug, ajouter une
+fonctionnalité, améliorer la performance ou simplement rendre le code plus
+lisible. Et très vite, une question apparaît : comment savoir ce qui a changé,
+quand, et pourquoi ?&lt;/p&gt;
+&lt;p&gt;Sans système de versioning, le développement logiciel devient fragile. On copie
+des fichiers, on renomme des dossiers (« version2 », « version_finale », «
+version_finale_bis »), on échange du code par courriel ou sur un disque partagé.
+Ces solutions fonctionnent… jusqu’au moment où elles ne fonctionnent plus : on
+perd une modification importante, on ne sait plus quelle version est la bonne,
+ou deux personnes écrasent mutuellement leur travail.&lt;/p&gt;</description></item><item><title>La gestion de packages et de librairies avec uv</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/package-managers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/package-managers/</guid><description>&lt;p&gt;Bla&lt;/p&gt;</description></item></channel></rss>
