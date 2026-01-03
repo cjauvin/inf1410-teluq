@@ -1,23 +1,32 @@
 {{- if .Page.Scratch.Get "needs_iresizer" -}}
   <script src="https://cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.min.js" defer></script>
   <script>
-    _document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
       const frames = document.querySelectorAll('iframe[data-iresize="true"]');
       if (!frames.length || typeof iFrameResize !== "function") return;
 
       const defaults = {
         license: "GPLv3",
         checkOrigin: false,
-        heightCalculationMethod: "max",
-        minHeight: 800,
         // waitForLoad: true, // uncomment if your applets draw after load
         // log: true,        // temporary debugging
+        onResized: function ({ iframe, height }) {
+          const wrapper = iframe?.parentElement;
+          if (!wrapper) return;
+
+          // read the scale from the data attribute
+          const scaleStr = iframe.getAttribute("data-transform-scale") || "1";
+          let scale = parseFloat(scaleStr);
+          if (!Number.isFinite(scale) || scale <= 0) scale = 1;
+
+          // height is the *unscaled* content height
+          // set wrapper height to the visible (scaled) height
+          wrapper.style.height = (height * scale) + "px";
+        },
       };
 
       frames.forEach((el) => {
         const opts = { ...defaults };
-        const hcm = el.getAttribute("data-hcm");
-        if (hcm) opts.heightCalculationMethod = hcm;
 
         const co = el.getAttribute("data-check-origin");
         if (co === "true")  opts.checkOrigin = true;
@@ -25,7 +34,11 @@
 
         if (el.getAttribute("data-log") === "true") opts.log = true;
 
-        if (!el.iFrameResizer) iFrameResize(opts, el);
+        // Apply the transform scale directly to the iframe
+        const scale = el.getAttribute("data-transform-scale") || "1";
+        el.style.transform = `scale(${scale})`;
+
+        if (!el.iFrameResizer) iframeResize(opts, el);
       });
     });
   </script>
