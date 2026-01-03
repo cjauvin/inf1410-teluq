@@ -8,7 +8,7 @@
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "/./favicon.svg",
+      "src": "https://cjauvin.github.io/inf1410-teluq/images/2gears.png",
       "sizes": "512x512"
     }
   ]
