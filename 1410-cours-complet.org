@@ -1,0 +1,149 @@
+* Module 1 Le génie logiciel
+** Qu'est-ce que le GL?
+** Histoire du GL
+*** Les années 40 à mi-60 : l'ère pré-GL
+**** ENIAC et les premiers ordinateurs
+**** Premiers assembleurs et compilateurs
+**** FORTRAN, LISP, ALGO et COBOL
+**** Premiers OS
+*** Les années 60 et 70 : la crise logicielle et la naissance du GL
+**** Conférence NATO (crise du logiciel)
+**** Programmation structurée
+**** Modèle en cascade (waterfall)
+**** Modèle relationnel (base de données)
+**** Modèle en spirale
+**** Mythical man-month
+**** Unix et C
+*** Les années 80 : l'ère des abstractions, du PC et du GUI
+**** OOP et C++
+**** GUI and event-driven programming
+**** Standardisation de la stack de networking, pré-internet
+*** Les années 90 : la naissance du web
+**** Web
+**** Open source, Linux
+**** Design patterns
+**** Extreme programming
+**** UML
+**** Java
+*** Les années 00 : l'ère de l'agilité
+**** Manifeste Agile
+**** Scrum, kanban
+**** AWS
+**** GitHub
+*** Les années 10 : l'ère du cloud et du DevOps
+**** CI/CD
+**** Microservices
+**** Docker
+**** Serverless
+*** Les années 20 : l'ère de l'IA
+**** LLM
+* Module 2 La programmation
+** Structures de données et algorithmique
+*** Types de bases
+*** Complexité algorithmique de base
+** Principes importants et fameux
+*** Principe DRY
+*** KISS
+*** YAGNI
+*** Principes SOLID
+*** Separation of concerns
+*** Law of Demeter
+*** Composition over inheritance
+*** Boy scout rule
+"Always leave the campground cleaner than you found it."
+*** Principle of Least Astonishment (POLA):
+A component of a system should behave in a way that the user (or
+another developer) expects it to behave. Don't make a function named
+calculateTotal() also send an email.
+** Paradigmes (OOP, etc)
+*** OOP
+*** Fonctionnel
+** Les design patterns
+*** Gang of 4
+** Principes architecturaux
+*** N-tier architecture
+*** Hexagonal
+*** Microservices vs monolith
+*** Serverless
+** Web & API
+*** HTTP
+*** JSON, REST, GraphQL, etc.
+*** Security and auth models (OAuth, JWT, etc)
+** Testing
+*** Pourquoi les tests?
+*** Types de tests, pyramide
+*** Qualités d'un bon test: rapide, déterministe, isolé, répétable
+*** Mocking
+*** Regression testing, TDD
+** Interfaces graphiques (UI)
+*** Event-driven programming
+*** DOM and view tree
+*** web vs desktop
+*** MVC
+*** HCI principles
+*** declarative vs imperative UI
+*** state management
+** Programmation parallèle et asynchrone
+*** Mental models, CPU-bound vs IO-bound
+*** Event loop
+*** Promises and futures
+*** Async/await
+*** Threads vs processes
+*** Common problems (deadlocks, etc)
+** Documentation
+*** Code doc
+*** API doc
+*** README, changelogs, etc.
+*** Data models
+* Module 3 Les outils et les environnements
+** git and version control
+*** Quel est le problème de la gestion des versions (versioning)?
+*** Historique
+*** Basic ops
+*** Branching and merging
+*** Remote collab
+*** Best practices
+** IDEs and editors
+*** IDE vs editors
+*** Static analysis, linting
+*** Nav
+*** Refactoring
+*** Debugging
+*** Extensions
+** package managers
+*** Deps hell
+*** Reproducible builds
+*** Artifacts vs sources
+*** System PMs vs lang PMs
+*** SemVer
+*** Manifests and lockfiles
+*** Security and licensing
+** DevOps
+*** CI/CD
+*** Containers
+*** infra as code
+*** observability and monitoring
+*** Shift Left
+** AI assistance
+*** Coding agents
+*** MCP
+* Module 4 La gestion de projet et la collaboration
+** Agile
+** Scrum
+** Kanban
+** DevOps
+** Code reviews (GitHub, etc).
+** Tech writing
+** Documentation
+** Requirements gathering
+* Module 5 Les données
+** SQL
+** SQL vs NoSQL
+** Intégrité et normalisation
+** ORM
+** Big data and ML
+** web sémantique?
+* Module 6 L'infonuagique
+** Modèles de service (IaaS, PaaS, SaaS, Serverless)
+** Les grands fournisseurs (AWS, Azure, GCP)
+** High availability and scalability

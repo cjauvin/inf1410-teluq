@@ -1,0 +1,27 @@
+{{- $destination := partial "docs/links/portable-image" (dict "Page" .Page "Destination" (.Get "src")) -}}
+{{- $attributes := partial "docs/text/mapper" (dict
+  "attributes" (cond .IsNamedParams .Params dict)
+  "keep" (slice "id" "class" "tabindex" "alt" "title" "loading")
+) -}}
+<label class="book-image" for="book-image-toggle-{{ .Ordinal }}">
+  <input class="hidden toggle" type="checkbox" id="book-image-toggle-{{ .Ordinal }}" />
+  <img src="{{ $destination | safeURL }}" {{ partial "docs/html-attrs" $attributes | safeHTMLAttr }} />
+</label>
+<script>
+(function() {
+  const checkbox = document.getElementById('book-image-toggle-{{ .Ordinal }}');
+  const escapeHandler = function(e) {
+    if (e.key === 'Escape' && checkbox.checked) {
+      checkbox.checked = false;
+    }
+  };
+  checkbox.addEventListener('change', function() {
+    if (this.checked) {
+      document.addEventListener('keydown', escapeHandler);
+    } else {
+      document.removeEventListener('keydown', escapeHandler);
+    }
+  });
+})();
+</script>
+{{- /* remove whitespaces */ -}}

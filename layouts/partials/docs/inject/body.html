@@ -1,0 +1,32 @@
+{{- if .Page.Scratch.Get "needs_iresizer" -}}
+  <script src="https://cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.min.js" defer></script>
+  <script>
+    _document.addEventListener("DOMContentLoaded", () => {
+      const frames = document.querySelectorAll('iframe[data-iresize="true"]');
+      if (!frames.length || typeof iFrameResize !== "function") return;
+
+      const defaults = {
+        license: "GPLv3",
+        checkOrigin: false,
+        heightCalculationMethod: "max",
+        minHeight: 800,
+        // waitForLoad: true, // uncomment if your applets draw after load
+        // log: true,        // temporary debugging
+      };
+
+      frames.forEach((el) => {
+        const opts = { ...defaults };
+        const hcm = el.getAttribute("data-hcm");
+        if (hcm) opts.heightCalculationMethod = hcm;
+
+        const co = el.getAttribute("data-check-origin");
+        if (co === "true")  opts.checkOrigin = true;
+        if (co === "false") opts.checkOrigin = false;
+
+        if (el.getAttribute("data-log") === "true") opts.log = true;
+
+        if (!el.iFrameResizer) iFrameResize(opts, el);
+      });
+    });
+  </script>
+{{- end -}}

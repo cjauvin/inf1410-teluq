@@ -1,0 +1,14 @@
+p {
+  text-align: justify;
+}
+
+// Ceci est une modif que j'ai faite avec claude code
+// Ensure consistent content width whether TOC is present or not
+// When there's no TOC, add a flex spacer to maintain consistent layout
+// Only apply this on non-mobile screens to avoid unwanted space in responsive mode
+@media screen and (min-width: $mobile-breakpoint) {
+  .container.flex:not(:has(.book-toc))::after {
+    content: "";
+    flex: 0 0 $toc-width;
+  }
+}

@@ -1,0 +1,35 @@
+{{/* Ceci est un override que j'ai ajouté pour faire en sorte que la page d'accueil ait un lien "next page", et qu'il soit à droite, même s'il y a aucun lien "prev" */}}
+
+{{ $bookSection := default "docs" .Site.Params.BookSection  }}
+{{ if eq $bookSection "*" }}
+  {{ $bookSection = "/" }}{{/* Backward compatibility */}}
+{{ end }}
+
+{{ with .Site.GetPage $bookSection }}
+  {{ $pages := partialCached "docs/prev-next-cache" .Pages }}
+  {{ $homepage := .Site.Home }}
+  {{ $allPages := slice $homepage | append $pages }}
+  {{ $prev := $allPages.Next $ }}
+  {{ $next := $allPages.Prev $ }}
+
+  {{- if or $prev $next }}
+  <div class="flex flex-wrap justify-between">
+    <span>
+    {{ with $prev }}
+      <a href="{{ .RelPermalink }}" class="flex align-center">
+        <img src="{{ partial "docs/icon" "backward" }}" class="book-icon" alt="{{ partial "docs/text/i18n" "Backward" }}" />
+        <span>{{ partial "docs/title" . }}</span>
+      </a>
+    {{ end }}
+    </span>
+    <span>
+    {{ with $next }}
+      <a href="{{ .RelPermalink }}" class="flex align-center">
+        <span>{{ partial "docs/title" . }}</span>
+        <img src="{{ partial "docs/icon" "forward" }}" class="book-icon" alt="{{ partial "docs/text/i18n" "Forward" }}" />
+      </a>
+    {{ end }}
+    </span>
+  </div>
+  {{ end -}}
+{{ end }}

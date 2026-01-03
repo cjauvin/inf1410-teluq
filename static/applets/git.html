@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Pointer Playground</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        canvas {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+            cursor: grab;
+        }
+        canvas:active {
+            cursor: grabbing;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbar for textareas */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Modal Animation */
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 200ms, transform 200ms;
+        }
+
+        /* Diff Styles */
+        .diff-add {
+            background-color: #dcfce7; /* green-100 */
+            color: #15803d; /* green-700 */
+            display: block;
+            width: 100%;
+        }
+        .diff-remove {
+            background-color: #fee2e2; /* red-100 */
+            color: #b91c1c; /* red-700 */
+            display: block;
+            width: 100%;
+        }
+        .diff-same {
+            color: #94a3b8; /* slate-400 */
+            display: block;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 px-6 py-3 flex justify-between items-center shadow-sm z-20 shrink-0">
+        <div>
+            <h1 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+                Git Pointer Playground
+            </h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <span id="statusBar" class="code-font text-xs bg-gray-100 px-3 py-1 rounded text-blue-700 font-bold border border-gray-200"></span>
+            <button onclick="resetRepo()" class="text-xs text-red-600 hover:text-red-800 hover:bg-red-50 px-3 py-1 rounded transition-colors font-medium border border-transparent hover:border-red-100">
+                Reset
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+
+        <!-- LEFT PANEL: Visual Graph (60%) -->
+        <div class="flex-1 bg-gray-100 relative overflow-hidden flex flex-col border-r border-gray-200" id="canvasContainer">
+            <div class="absolute top-4 left-4 z-10 bg-white/80 backdrop-blur px-3 py-1 rounded text-xs font-bold text-gray-500 uppercase tracking-wider shadow-sm border border-gray-200 pointer-events-none">
+                Repository History (The Graph)
+            </div>
+
+            <canvas id="gitCanvas" class="w-full h-full"></canvas>
+
+            <!-- Floating Legend -->
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur p-3 rounded-lg shadow border border-gray-200 text-xs space-y-2 pointer-events-none select-none">
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-green-500 border border-green-700"></div>
+                    <span>Commit</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 bg-blue-500 rounded-sm"></div>
+                    <span>Branch</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 border-2 border-red-500 rounded-sm"></div>
+                    <span>HEAD</span>
+                </div>
+                <div class="flex items-center gap-2 pt-2 border-t border-gray-100">
+                    <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                    <span class="text-gray-500 italic">Click nodes to inspect</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: Work Area & Staging (40%) -->
+        <div class="w-full md:w-[450px] bg-white flex flex-col shrink-0 shadow-xl z-10 overflow-hidden">
+
+            <!-- Section 1: Working Directory (Files) -->
+            <div class="flex-1 flex flex-col overflow-hidden bg-gray-50">
+                <div class="px-4 py-2 border-b border-gray-200 bg-white flex justify-between items-center">
+                    <h2 class="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-2">
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                        Working Directory
+                    </h2>
+
+                    <!-- New File Input -->
+                    <div class="flex gap-1">
+                        <input type="text" id="newFileName" placeholder="newfile.txt" class="text-xs border border-gray-200 rounded px-2 py-1 w-24 focus:ring-1 focus:ring-blue-500 outline-none code-font">
+                        <button onclick="addNewFile()" class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded hover:bg-blue-100 font-bold" title="Create new file">+</button>
+                    </div>
+                </div>
+
+                <div id="fileListContainer" class="flex-1 overflow-y-auto p-4 space-y-4">
+                    <!-- Files will be injected here via JS -->
+                </div>
+            </div>
+
+            <!-- Section 2: Staging Area & Controls -->
+            <div class="bg-white border-t border-gray-200 flex flex-col shadow-[0_-4px_10px_rgba(0,0,0,0.05)] h-1/2 md:h-auto">
+
+                <!-- Staging View -->
+                <div class="bg-green-50/50 p-4 border-b border-gray-200 min-h-[100px]">
+                    <h2 class="text-xs font-bold text-green-800 uppercase tracking-wider mb-2 flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                        Staging Area (Index)
+                    </h2>
+                    <div id="stagingArea" class="space-y-1">
+                        <p class="text-xs text-gray-400 italic pl-4">No changes staged for commit.</p>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="p-4 bg-gray-50 grid grid-cols-2 gap-3">
+
+                    <!-- Commit Message Input -->
+                    <div class="col-span-2">
+                        <input type="text" id="commitMessageInput" placeholder="Commit message (optional)" class="w-full text-xs border border-gray-300 rounded px-3 py-2 focus:ring-1 focus:ring-green-500 outline-none code-font disabled:bg-gray-100 disabled:text-gray-400 transition-colors" disabled>
+                    </div>
+
+                    <!-- Commit Button -->
+                    <button id="commitBtn" onclick="gitCommit()" class="col-span-2 w-full flex items-center justify-center gap-2 bg-gray-300 text-gray-500 cursor-not-allowed px-4 py-3 rounded-md font-bold text-sm transition-all shadow-sm">
+                        git commit
+                    </button>
+
+                    <!-- Branch Controls -->
+                    <div class="col-span-2 border-t border-gray-200 pt-3 mt-1">
+                        <div class="flex gap-2 mb-3">
+                            <input type="text" id="branchNameInput" placeholder="New branch name" class="flex-1 code-font text-xs border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-500 outline-none">
+                            <button onclick="gitBranch()" class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-3 py-1.5 rounded text-xs font-medium whitespace-nowrap">
+                                git branch
+                            </button>
+                        </div>
+
+                        <div class="text-[10px] text-gray-400 uppercase font-bold mb-1">Checkouts (Switch Branch):</div>
+                        <div id="checkoutButtons" class="flex flex-wrap gap-2 max-h-20 overflow-y-auto">
+                            <!-- Buttons injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- COMMIT INSPECTOR MODAL -->
+    <div id="commitModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200" onclick="closeModal(event)">
+        <div class="bg-white rounded-lg shadow-2xl w-[600px] max-w-[90%] flex flex-col max-h-[85vh] transform scale-95 transition-transform duration-200" id="modalContent" onclick="event.stopPropagation()">
+
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50 rounded-t-lg">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-900" id="modalTitle">Commit Details</h3>
+                    <p class="text-xs text-gray-500 font-mono" id="modalId">ID: C1</p>
+                </div>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-200 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 overflow-y-auto space-y-6">
+
+                <!-- Changes List -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Changes in this snapshot</h4>
+                    <div id="modalChangesList" class="space-y-2">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+
+                <!-- File Viewer (Diff) -->
+                <div>
+                     <div class="flex justify-between items-end mb-2">
+                        <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider" id="diffViewerTitle">File Diff</h4>
+                        <div class="flex gap-2 text-[10px]">
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-green-200 border border-green-500"></span> Added</span>
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-red-200 border border-red-500"></span> Removed</span>
+                        </div>
+                     </div>
+                     <div class="bg-slate-50 rounded-md p-4 overflow-x-auto border border-gray-200 min-h-[100px]">
+                         <pre class="text-xs code-font" id="modalFileContent">// Select a file to view diff...</pre>
+                     </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-gray-100 bg-gray-50 flex justify-end rounded-b-lg">
+                <button onclick="closeModal()" class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const canvas = document.getElementById('gitCanvas');
+    const ctx = canvas.getContext('2d');
+    const statusBar = document.getElementById('statusBar');
+    const checkoutBtnContainer = document.getElementById('checkoutButtons');
+    const container = document.getElementById('canvasContainer');
+    const fileListContainer = document.getElementById('fileListContainer');
+
+    // Modal Elements
+    const modal = document.getElementById('commitModal');
+    const modalContent = document.getElementById('modalContent');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalId = document.getElementById('modalId');
+    const modalChangesList = document.getElementById('modalChangesList');
+    const modalFileContent = document.getElementById('modalFileContent');
+
+
+    // --- State Management ---
+    let commitCounter = 1;
+    let commits = {};
+    let branches = {};
+    let HEAD = 'main';
+    let selectedCommitId = null; // For click selection
+
+    // File State
+    let currentFiles = {};
+    let stagedFiles = {};
+
+    // Viewport State
+    let offsetX = 0;
+    let offsetY = 0;
+    let scale = 1;
+
+    // --- Configuration ---
+    const CONFIG = {
+        nodeRadius: 18,
+        xSpacing: 100,
+        ySpacing: 80,
+        colors: {
+            commit: '#10B981', // green-500
+            commitBorder: '#047857', // green-700
+            commitSelected: '#F59E0B', // amber-500
+            branch: '#3B82F6', // blue-500
+            head: '#EF4444', // red-500
+            arrow: '#9CA3AF' // gray-400
+        }
+    };
+
+    function initRepo() {
+        commitCounter = 1;
+        selectedCommitId = null;
+
+        // Initial files
+        const initialFiles = {
+            'README.md': '# My Project\nInitial start.',
+            'logic.js': '// TODO: Add logic'
+        };
+
+        // Create initial commit C0
+        commits = {
+            'C0': {
+                id: 'C0',
+                parent: null,
+                msg: 'Init',
+                x: 50,
+                y: 0,
+                branchDepth: 0,
+                files: JSON.parse(JSON.stringify(initialFiles))
+            }
+        };
+        branches = { 'main': 'C0' };
+        HEAD = 'main';
+
+        // Reset editors
+        currentFiles = JSON.parse(JSON.stringify(initialFiles));
+        stagedFiles = {}; // Empty
+
+        // Clear message input
+        const msgInput = document.getElementById('commitMessageInput');
+        if(msgInput) msgInput.value = "";
+
+        offsetX = 100;
+        offsetY = canvas.height / 2;
+
+        renderFileEditors(); // Initial render
+        updateStagingUI();
+        updateUI();
+        draw();
+    }
+
+    function resetRepo() {
+        if(confirm("Reset repository and lose all changes?")) {
+            initRepo();
+        }
+    }
+
+    function resizeCanvas() {
+        canvas.width = container.clientWidth;
+        canvas.height = container.clientHeight;
+        offsetY = canvas.height / 2;
+        draw();
+    }
+    window.addEventListener('resize', resizeCanvas);
+
+
+    // --- FILE SYSTEM LOGIC ---
+
+    function addNewFile() {
+        const input = document.getElementById('newFileName');
+        const filename = input.value.trim();
+
+        if (!filename) {
+            alert("Enter a filename");
+            return;
+        }
+        if (currentFiles[filename] !== undefined) {
+            alert("File already exists");
+            return;
+        }
+
+        // Add file to current workspace
+        currentFiles[filename] = "";
+        input.value = "";
+
+        renderFileEditors();
+
+        // Manually trigger visual status since it's new
+        const statusEl = document.getElementById(`status-${filename}`);
+        if(statusEl) {
+             statusEl.innerText = "UNTRACKED";
+             statusEl.className = "text-[10px] font-bold px-1.5 py-0.5 rounded bg-orange-100 text-orange-600 transition-colors";
+        }
+    }
+
+    function deleteFile(filename) {
+        // Remove from current working directory
+        delete currentFiles[filename];
+        renderFileEditors();
+    }
+
+    function restoreFile(filename) {
+        // Restore from Index (Staged) or HEAD
+        let contentToRestore = null;
+
+        if (stagedFiles[filename] !== undefined && stagedFiles[filename] !== null) {
+            contentToRestore = stagedFiles[filename];
+        } else {
+            // Check HEAD
+            const headCommit = commits[branches[HEAD]];
+            if (headCommit && headCommit.files[filename] !== undefined) {
+                contentToRestore = headCommit.files[filename];
+            }
+        }
+
+        if (contentToRestore !== null) {
+            currentFiles[filename] = contentToRestore;
+            renderFileEditors();
+        }
+    }
+
+    function renderFileEditors() {
+        fileListContainer.innerHTML = '';
+
+        // Determine union of all files (Working + Staged + HEAD)
+        const headCommit = commits[branches[HEAD]];
+        const headFiles = headCommit ? headCommit.files : {};
+
+        const allFiles = new Set([
+            ...Object.keys(currentFiles),
+            ...Object.keys(stagedFiles),
+            ...Object.keys(headFiles)
+        ]);
+
+        const filenames = Array.from(allFiles).sort();
+
+        if (filenames.length === 0) {
+            fileListContainer.innerHTML = '<div class="text-xs text-gray-400 italic text-center mt-10">Directory is empty.</div>';
+            return;
+        }
+
+        filenames.forEach(filename => {
+            const content = currentFiles[filename];
+            const isStaged = stagedFiles[filename] !== undefined;
+            const isDeleted = content === undefined; // Not in working dir
+
+            // Generate HTML for file editor
+            const fileDiv = document.createElement('div');
+            fileDiv.className = `bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden group focus-within:ring-2 focus-within:ring-blue-100 transition-all ${isDeleted ? 'opacity-75' : ''}`;
+
+            let statusBadge = '';
+            let textareaDisabled = false;
+            let textareaValue = content || "";
+            let textareaPlaceholder = "Type content here...";
+
+            // Determine Status for Badge
+            if (isDeleted) {
+                statusBadge = '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-600">DELETED</span>';
+                textareaDisabled = true;
+                textareaValue = "(File deleted from working directory)";
+            } else {
+                 if (headFiles[filename] === undefined && stagedFiles[filename] === undefined) {
+                     statusBadge = '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-orange-100 text-orange-600">UNTRACKED</span>';
+                 } else {
+                     statusBadge = `<span id="status-${filename}" class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-gray-100 text-gray-400 transition-colors">CLEAN</span>`;
+                 }
+            }
+
+            if (isStaged) {
+                if (stagedFiles[filename] === null) {
+                    statusBadge = '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-800 border border-red-200">STAGED DELETE</span>';
+                } else {
+                    statusBadge = '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-green-100 text-green-600">STAGED</span>';
+                }
+            }
+
+            // Restore Button Logic
+            let extraActionBtn = '';
+            if (isDeleted) {
+                extraActionBtn = `<button onclick="restoreFile('${filename}')" class="text-xs text-blue-600 hover:text-blue-800 px-2 py-1 mr-2" title="Discard changes (Restore file)">Restore</button>`;
+            } else {
+                // Delete button
+                 extraActionBtn = `<button onclick="deleteFile('${filename}')" class="text-gray-400 hover:text-red-500 px-2 py-1 mr-2 transition-colors" title="Delete file">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                 </button>`;
+            }
+
+            fileDiv.innerHTML = `
+                <div class="px-3 py-2 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-mono font-semibold text-gray-600">${filename}</span>
+                        ${extraActionBtn}
+                    </div>
+                    ${statusBadge}
+                </div>
+                <textarea id="file-${filename}" ${textareaDisabled ? 'disabled' : ''} class="w-full h-20 p-3 text-xs code-font resize-none focus:outline-none text-gray-600 ${textareaDisabled ? 'bg-gray-100 italic text-gray-400 select-none' : ''}" placeholder="${textareaPlaceholder}"></textarea>
+                <div class="px-2 py-2 bg-gray-50 border-t border-gray-100 flex justify-end">
+                    <button onclick="gitAdd('${filename}')" class="text-xs bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded font-medium transition-colors flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        git add
+                    </button>
+                </div>
+            `;
+
+            fileListContainer.appendChild(fileDiv);
+
+            // Set content value
+            const textarea = document.getElementById(`file-${filename}`);
+            if(textarea && !textareaDisabled) {
+                textarea.value = textareaValue;
+                textarea.oninput = () => markModified(filename);
+            } else if (textarea) {
+                textarea.value = textareaValue;
+            }
+        });
+    }
+
+    function markModified(filename) {
+        const el = document.getElementById(`file-${filename}`);
+        const statusEl = document.getElementById(`status-${filename}`);
+        if(el) {
+            currentFiles[filename] = el.value;
+            if(statusEl) {
+                statusEl.innerText = "MODIFIED";
+                statusEl.className = "text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-600 transition-colors";
+            }
+        }
+    }
+
+    function gitAdd(filename) {
+        if (currentFiles[filename] !== undefined) {
+            stagedFiles[filename] = currentFiles[filename];
+        } else {
+            stagedFiles[filename] = null; // Marker for deletion
+        }
+        updateStagingUI();
+        renderFileEditors();
+    }
+
+    function updateStagingUI() {
+        const container = document.getElementById('stagingArea');
+        const commitBtn = document.getElementById('commitBtn');
+        const msgInput = document.getElementById('commitMessageInput'); // New input
+        const keys = Object.keys(stagedFiles);
+
+        if (keys.length === 0) {
+            container.innerHTML = '<p class="text-xs text-gray-400 italic pl-4">No changes staged for commit.</p>';
+            commitBtn.className = "col-span-2 w-full flex items-center justify-center gap-2 bg-gray-300 text-gray-500 cursor-not-allowed px-4 py-3 rounded-md font-bold text-sm transition-all shadow-sm";
+            commitBtn.onclick = null;
+            if(msgInput) msgInput.disabled = true;
+        } else {
+            let html = '';
+            keys.forEach(file => {
+                const isDelete = stagedFiles[file] === null;
+                const icon = isDelete ? '-' : '+';
+                const colorClass = isDelete ? 'text-red-700 bg-red-50 border-red-200' : 'text-green-700 bg-white border-green-200';
+
+                html += `
+                <div class="flex items-center gap-2 text-xs border rounded px-2 py-1 ml-2 w-max ${colorClass}">
+                    <span class="font-bold">${icon}</span>
+                    <span class="font-mono text-gray-700">${file}</span>
+                </div>`;
+            });
+            container.innerHTML = html;
+
+            commitBtn.className = "col-span-2 w-full flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white cursor-pointer px-4 py-3 rounded-md font-bold text-sm transition-all shadow-sm active:scale-95";
+            commitBtn.onclick = gitCommit;
+            if(msgInput) msgInput.disabled = false;
+        }
+    }
+
+    // --- GIT COMMANDS ---
+
+    function gitCommit() {
+        if (Object.keys(stagedFiles).length === 0) return;
+
+        // Get Commit Message
+        const msgInput = document.getElementById('commitMessageInput');
+        const userMsg = msgInput ? msgInput.value.trim() : "";
+
+        const parentCommitId = branches[HEAD];
+        const parentCommitObj = commits[parentCommitId];
+        const newCommitId = 'C' + commitCounter++;
+        const finalMsg = userMsg || `Commit ${commitCounter-1}`;
+
+        // Merge parent files with staged files
+        const newFilesSnapshot = { ...parentCommitObj.files };
+
+        // Apply changes
+        Object.keys(stagedFiles).forEach(file => {
+            if (stagedFiles[file] === null) {
+                delete newFilesSnapshot[file];
+            } else {
+                newFilesSnapshot[file] = stagedFiles[file];
+            }
+        });
+
+        let newY = parentCommitObj.y;
+        let newBranchDepth = parentCommitObj.branchDepth;
+
+        const existingChildren = Object.values(commits).filter(c => c.parent === parentCommitId);
+        if (existingChildren.length > 0) {
+             const maxSiblingDepth = existingChildren.reduce((max, child) => Math.max(max, child.branchDepth), parentCommitObj.branchDepth);
+             newBranchDepth = maxSiblingDepth + 1;
+             newY = parentCommitObj.y + (newBranchDepth - parentCommitObj.branchDepth) * CONFIG.ySpacing;
+        }
+
+        commits[newCommitId] = {
+            id: newCommitId,
+            parent: parentCommitId,
+            msg: finalMsg,
+            x: parentCommitObj.x + CONFIG.xSpacing,
+            y: newY,
+            branchDepth: newBranchDepth,
+            files: newFilesSnapshot
+        };
+
+        branches[HEAD] = newCommitId;
+        stagedFiles = {};
+
+        currentFiles = { ...newFilesSnapshot };
+
+        // Clear message
+        if(msgInput) msgInput.value = "";
+
+        if (commits[newCommitId].x + offsetX > canvas.width - 100) {
+            offsetX -= CONFIG.xSpacing;
+        }
+
+        renderFileEditors();
+        updateStagingUI();
+        updateUI();
+        draw();
+    }
+
+    function gitBranch() {
+        const nameInput = document.getElementById('branchNameInput');
+        const newBranchName = nameInput.value.trim();
+
+        if (!newBranchName) {
+            alert("Please enter a branch name");
+            return;
+        }
+        if (branches[newBranchName]) {
+            alert("A branch with that name already exists");
+            return;
+        }
+
+        const currentCommitId = branches[HEAD];
+        branches[newBranchName] = currentCommitId;
+
+        nameInput.value = '';
+        updateUI();
+        draw();
+    }
+
+    function gitCheckout(branchName) {
+        const targetCommitId = branches[branchName];
+        const targetCommit = commits[targetCommitId];
+        HEAD = branchName;
+
+        // Restore files from that commit
+        currentFiles = JSON.parse(JSON.stringify(targetCommit.files));
+        stagedFiles = {};
+
+        // Clear message input
+        const msgInput = document.getElementById('commitMessageInput');
+        if(msgInput) msgInput.value = "";
+
+        renderFileEditors();
+        updateStagingUI();
+        updateUI();
+        draw();
+    }
+
+    // --- MODAL LOGIC (Diff Engine) ---
+
+    // Simple Line-based LCS diff
+    function computeLineDiff(oldText, newText) {
+        const oldLines = oldText ? oldText.split('\n') : [];
+        const newLines = newText ? newText.split('\n') : [];
+
+        // DP Table
+        const dp = Array(oldLines.length + 1).fill(null).map(() => Array(newLines.length + 1).fill(0));
+
+        for (let i = 1; i <= oldLines.length; i++) {
+            for (let j = 1; j <= newLines.length; j++) {
+                if (oldLines[i - 1] === newLines[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        // Backtrack
+        let i = oldLines.length;
+        let j = newLines.length;
+        const diff = [];
+
+        while (i > 0 || j > 0) {
+            if (i > 0 && j > 0 && oldLines[i - 1] === newLines[j - 1]) {
+                diff.unshift({ type: 'same', content: '  ' + oldLines[i - 1] });
+                i--;
+                j--;
+            } else if (j > 0 && (i === 0 || dp[i][j - 1] >= dp[i - 1][j])) {
+                diff.unshift({ type: 'add', content: '+ ' + newLines[j - 1] });
+                j--;
+            } else {
+                diff.unshift({ type: 'remove', content: '- ' + oldLines[i - 1] });
+                i--;
+            }
+        }
+        return diff;
+    }
+
+    function openModal(commitId) {
+        const commit = commits[commitId];
+        const parent = commit.parent ? commits[commit.parent] : null;
+
+        modalTitle.innerText = `Commit Details: ${commit.msg}`;
+        modalId.innerText = `Hash: ${commit.id} | Parent: ${commit.parent || 'None'}`;
+
+        // Generate Diff/Changes List
+        let html = '';
+        const allFiles = new Set([...Object.keys(commit.files), ...(parent ? Object.keys(parent.files) : [])]);
+        let firstFile = null;
+
+        allFiles.forEach(filename => {
+            const inCurrent = commit.files[filename];
+            const inParent = parent ? parent.files[filename] : undefined;
+
+            let status = '';
+            let colorClass = '';
+
+            if (inCurrent && !inParent) {
+                status = 'ADDED';
+                colorClass = 'bg-green-100 text-green-700';
+            } else if (!inCurrent && inParent) {
+                status = 'DELETED';
+                colorClass = 'bg-red-100 text-red-700';
+            } else if (inCurrent !== inParent) {
+                status = 'MODIFIED';
+                colorClass = 'bg-yellow-100 text-yellow-700';
+            } else {
+                return; // Unchanged
+            }
+
+            if (!firstFile) firstFile = { name: filename, old: inParent, new: inCurrent };
+
+            html += `
+            <div onclick="viewFileDiff('${encodeURIComponent(inParent||'')}', '${encodeURIComponent(inCurrent||'')}', '${filename}')"
+                 class="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer border border-transparent hover:border-gray-200 transition-colors group">
+                <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <span class="text-sm font-mono text-gray-700">${filename}</span>
+                </div>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded ${colorClass}">${status}</span>
+            </div>`;
+        });
+
+        if (html === '') {
+            html = '<div class="text-sm text-gray-400 italic p-2">No files changed in this snapshot.</div>';
+        }
+
+        // Add "Browse all files" section for context
+        html += `<div class="mt-4 pt-2 border-t border-dashed border-gray-200"><h5 class="text-[10px] font-bold text-gray-400 uppercase mb-2">Full File Tree</h5></div>`;
+        Object.keys(commit.files).forEach(filename => {
+             const content = commit.files[filename];
+             // If not already selected as a diff
+             if (!firstFile) firstFile = { name: filename, old: content, new: content }; // Show same content
+
+             html += `
+            <div onclick="viewFileDiff('${encodeURIComponent(content)}', '${encodeURIComponent(content)}', '${filename}')"
+                 class="flex items-center gap-2 p-1.5 hover:bg-blue-50 rounded cursor-pointer group">
+                <svg class="w-3 h-3 text-gray-300 group-hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 2H7a2 2 0 00-2 2v15a2 2 0 002 2z"></path></svg>
+                <span class="text-xs font-mono text-gray-500 group-hover:text-gray-900">${filename}</span>
+            </div>`;
+        });
+
+        modalChangesList.innerHTML = html;
+
+        if (firstFile) {
+            viewFileDiff(encodeURIComponent(firstFile.old||''), encodeURIComponent(firstFile.new||''), firstFile.name);
+        } else {
+            modalFileContent.innerHTML = "// No files available";
+        }
+
+        modal.classList.remove('hidden');
+        requestAnimationFrame(() => {
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95');
+        });
+    }
+
+    window.viewFileDiff = function(encodedOld, encodedNew, filename) {
+        const oldText = decodeURIComponent(encodedOld);
+        const newText = decodeURIComponent(encodedNew);
+
+        document.getElementById('diffViewerTitle').innerText = `Diff: ${filename}`;
+
+        const diff = computeLineDiff(oldText, newText);
+
+        // Render diff HTML
+        let html = '';
+        diff.forEach(line => {
+            const escapedContent = line.content.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            if (line.type === 'add') {
+                html += `<span class="diff-add">${escapedContent}</span>`;
+            } else if (line.type === 'remove') {
+                html += `<span class="diff-remove">${escapedContent}</span>`;
+            } else {
+                html += `<span class="diff-same">${escapedContent}</span>`;
+            }
+        });
+
+        modalFileContent.innerHTML = html;
+    }
+
+    window.closeModal = function(e) {
+        if (e && e.target !== modal && !e.target.closest('[onclick="closeModal()"]')) return;
+
+        modal.classList.add('opacity-0');
+        modalContent.classList.add('scale-95');
+
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 200);
+    }
+
+    // --- CLICK DETECTION ---
+
+    canvas.addEventListener('mousedown', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        let hitFound = false;
+        const commitKeys = Object.keys(commits).reverse();
+
+        for (let key of commitKeys) {
+            const c = commits[key];
+            const screenX = (c.x * scale) + offsetX;
+            const screenY = (c.y * scale) + offsetY;
+
+            const dist = Math.sqrt( Math.pow(mouseX - screenX, 2) + Math.pow(mouseY - screenY, 2) );
+
+            if (dist < CONFIG.nodeRadius + 5) {
+                selectedCommitId = c.id;
+                openModal(c.id);
+                hitFound = true;
+                draw();
+                break;
+            }
+        }
+
+        if (!hitFound) {
+            isDragging = true;
+            lastX = e.clientX;
+            lastY = e.clientY;
+            canvas.style.cursor = 'grabbing';
+        }
+    });
+
+
+    // --- UI Drawing & Updates ---
+
+    function updateUI() {
+        const currentCommit = branches[HEAD];
+        statusBar.innerHTML = `${HEAD} -> ${currentCommit}`;
+
+        checkoutBtnContainer.innerHTML = '';
+        Object.keys(branches).forEach(branchName => {
+            const btn = document.createElement('button');
+            const isActive = branchName === HEAD;
+
+            btn.className = `px-3 py-1.5 rounded text-xs font-bold font-mono border transition-all ${
+                isActive
+                ? 'bg-blue-100 text-blue-700 border-blue-300 cursor-default ring-2 ring-blue-500 ring-offset-1'
+                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400'
+            }`;
+
+            btn.innerText = branchName;
+            if (!isActive) {
+                btn.onclick = () => gitCheckout(branchName);
+                btn.innerHTML = `<span class="opacity-50 mr-1">↳</span>${branchName}`;
+            } else {
+                btn.innerHTML = `<span class="text-blue-500 mr-1">✓</span>${branchName}`;
+            }
+
+            checkoutBtnContainer.appendChild(btn);
+        });
+    }
+
+    function draw() {
+        ctx.fillStyle = '#f9fafb';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        drawGrid();
+
+        ctx.save();
+        ctx.translate(offsetX, offsetY);
+        ctx.scale(scale, scale);
+
+        // Arrows
+        Object.values(commits).forEach(commit => {
+            if (commit.parent) {
+                const parent = commits[commit.parent];
+                drawCurve(parent.x, parent.y, commit.x, commit.y);
+            }
+        });
+
+        // Nodes
+        Object.values(commits).forEach(commit => {
+            drawNode(commit.x, commit.y, commit.id, commit.id === selectedCommitId);
+        });
+
+        // Labels
+        drawLabels();
+
+        ctx.restore();
+    }
+
+    function drawGrid() {
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        const step = 40;
+        for(let x=0; x<canvas.width; x+=step) {
+            ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height);
+        }
+        for(let y=0; y<canvas.height; y+=step) {
+            ctx.moveTo(0, y); ctx.lineTo(canvas.width, y);
+        }
+        ctx.stroke();
+    }
+
+    function drawCurve(x1, y1, x2, y2) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        const midX = x1 + (x2 - x1) / 2;
+        ctx.bezierCurveTo(midX, y1, midX, y2, x2, y2);
+        ctx.strokeStyle = CONFIG.colors.arrow;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+    }
+
+    function drawNode(x, y, label, isSelected) {
+        // Shadow
+        ctx.beginPath();
+        ctx.arc(x, y + 3, CONFIG.nodeRadius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0,0,0,0.1)';
+        ctx.fill();
+
+        // Selection Ring
+        if (isSelected) {
+            ctx.beginPath();
+            ctx.arc(x, y, CONFIG.nodeRadius + 4, 0, Math.PI * 2);
+            ctx.strokeStyle = CONFIG.colors.commitSelected;
+            ctx.lineWidth = 3;
+            ctx.stroke();
+        }
+
+        // Main Circle
+        ctx.beginPath();
+        ctx.arc(x, y, CONFIG.nodeRadius, 0, Math.PI * 2);
+        ctx.fillStyle = CONFIG.colors.commit;
+        ctx.fill();
+        ctx.strokeStyle = CONFIG.colors.commitBorder;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 12px "JetBrains Mono"';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(label, x, y);
+    }
+
+    function drawLabels() {
+        const map = {};
+        Object.entries(branches).forEach(([branchName, commitId]) => {
+            if (!map[commitId]) map[commitId] = [];
+            map[commitId].push(branchName);
+        });
+
+        Object.entries(map).forEach(([commitId, branchNames]) => {
+            const commit = commits[commitId];
+            let currentY = commit.y - 35;
+
+            branchNames.forEach(name => {
+                const isHead = (HEAD === name);
+                drawLabelBox(commit.x, currentY, name, isHead);
+                currentY -= 32;
+            });
+        });
+    }
+
+    function drawLabelBox(x, y, text, isHead) {
+        ctx.font = '12px "Inter"';
+        const paddingX = 8;
+        const textMetrics = ctx.measureText(text);
+        const boxWidth = textMetrics.width + (paddingX * 2);
+        const boxHeight = 22;
+
+        ctx.beginPath();
+        ctx.moveTo(x, y + boxHeight/2);
+        ctx.lineTo(x, y + boxHeight/2 + 10);
+        ctx.strokeStyle = isHead ? CONFIG.colors.head : CONFIG.colors.branch;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        const boxX = x - boxWidth / 2;
+        const boxY = y - boxHeight / 2;
+
+        if (isHead) {
+            ctx.strokeStyle = CONFIG.colors.head;
+            ctx.lineWidth = 2;
+            ctx.strokeRect(boxX - 3, boxY - 3, boxWidth + 6, boxHeight + 6);
+            ctx.fillStyle = CONFIG.colors.head;
+            ctx.font = 'bold 10px sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText("HEAD", boxX + boxWidth + 6, boxY + 4);
+        }
+
+        ctx.fillStyle = CONFIG.colors.branch;
+        ctx.beginPath();
+        ctx.roundRect(boxX, boxY, boxWidth, boxHeight, 4);
+        ctx.fill();
+
+        ctx.fillStyle = 'white';
+        ctx.font = '12px "Inter"';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, x, y);
+    }
+
+    // --- Pan/Zoom Interaction ---
+    let isDragging = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    window.addEventListener('mouseup', () => {
+        isDragging = false;
+        canvas.style.cursor = 'grab';
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        offsetX += dx;
+        offsetY += dy;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        draw();
+    });
+
+    // Init
+    resizeCanvas();
+    initRepo();
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.contentWindow.min.js"></script>
+</body>
+</html>

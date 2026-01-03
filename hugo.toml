@@ -1,0 +1,31 @@
+baseURL = 'https://cjauvin.github.io/inf1410-teluq/'
+languageCode = 'fr'
+defaultContentLanguage = 'fr'
+canonifyURLs = true
+
+title = "INF1410 - Initiation au génie logiciel"
+theme = 'hugo-book'
+
+# --- Paramètres du thème hugo-book ---
+[params]
+BookMenuBundle = "book"
+BookTheme = "auto"
+BookToC = true
+BookSearch = false
+BookNav = true
+BookLogo = "images/2gears.png"
+BookFavicon = "images/2gears.png"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4

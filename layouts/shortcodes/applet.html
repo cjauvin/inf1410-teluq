@@ -1,0 +1,26 @@
+{{/* layouts/shortcodes/applet.html */}}
+{{- $src     := .Get "src" -}}
+{{- $id      := .Get "id" | default (printf "applet-%d" now.UnixNano) -}}
+{{- $style   := .Get "style" | default "border:none;" -}}
+{{- $width   := .Get "width" | default "100%" -}}
+{{- $height  := .Get "height" | default "" -}}
+{{- $hcm     := .Get "heightCalculationMethod" | default "" -}}  {{/* e.g., max | lowestElement */}}
+{{- $check   := .Get "checkOrigin" | default "" -}}              {{/* true|false */}}
+{{- $log     := .Get "log" | default "" -}}
+
+{{/* Flag the page so we load the library once */}}
+{{- .Page.Scratch.Add "needs_iresizer" 1 -}}
+
+<iframe
+  src="{{ $src }}"
+  id="{{ $id }}"
+  class="applet-iframe"
+  width="{{ $width }}"
+  {{- if $height }} height="{{ $height }}"{{ end -}}
+  style="{{ $style }}"
+  loading="lazy"
+  data-iresize="true"
+  {{- if $hcm  }} data-hcm="{{ $hcm }}"{{ end -}}
+  {{- if $check}} data-check-origin="{{ $check }}"{{ end -}}
+  {{- if $log  }} data-log="{{ $log }}"{{ end -}}
+></iframe>
