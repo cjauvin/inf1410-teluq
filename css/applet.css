@@ -1,0 +1,14 @@
+.applet-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%; /* default, can be overridden by inline style */
+}
+
+.applet-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform-origin: top left;
+  border: 0;
+}
