@@ -12,3 +12,8 @@ p {
     flex: 0 0 $toc-width;
   }
 }
+
+// Ensure zoomed images appear above applets
+.book-image input:checked + img {
+  z-index: 100 !important;
+}

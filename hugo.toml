@@ -12,7 +12,7 @@ BookMenuBundle = "book"
 BookTheme = "auto"
 BookToC = true
 BookSearch = false
-BookNav = true
+BookPortableLinks = "warning"
 BookLogo = "images/2gears.png"
 BookFavicon = "images/2gears.png"
 

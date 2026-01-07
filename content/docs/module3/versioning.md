@@ -7,11 +7,11 @@ weight: 100
 
 ## Quel est le problème qu'on cherche à résoudre
 
-Le logiciel a une particularité fondamentale : il change tout le temps. Même un
-programme simple est rapidement modifié - pour corriger un bug, ajouter une
-fonctionnalité, améliorer la performance ou simplement rendre le code plus
-lisible. Et très vite, une question apparaît : comment savoir ce qui a changé,
-quand, et pourquoi ?
+Le logiciel (et le code source dont il est constitué) a une particularité
+fondamentale : il change tout le temps. Même un programme simple est rapidement
+modifié - pour corriger un bug, ajouter une fonctionnalité, améliorer la
+performance ou simplement rendre le code plus lisible. Et très vite, une
+question apparaît : comment savoir ce qui a changé, quand, et pourquoi ?
 
 Sans système de versioning, le développement logiciel devient fragile. On copie
 des fichiers, on renomme des dossiers (« version2 », « version_finale », «
@@ -361,4 +361,34 @@ choses :
 Étant donné la présence du pointeur vers un parent, le fait d'ajouter un commit crée
 une chaîne de commits :
 
+{{< image src="/images/module3/git-chain.png" alt="" title="" loading="lazy" >}}
+
+Chaque commit a donc un pointeur qui pointe vers son commit prédécesseur (nous
+verrons plus loin qu'il est possible pour un commit d'avoir plus d'un parents,
+et en quoi c'est utile).
+
+Jusqu'ici, git ne nous permet que d'évoluer de manière linéaire, étant donné que
+n'avons qu'une chaîne de commits. Pourtant, le développement logiciel, surtout s'il est
+effectué par une équipe, est tout sauf linéaire. Des embranchements peuvent être nécessaires
+dans le processus d'évolution du code source. Pour illustrer cela, représentez-vous
+la situation suivante :
+
+1. Une équipe de développement a complété la première version (1.0) d'un logiciel de prise de rendez-vous
+2. La première version est maintenant en ligne, et est utilisée par le grand public
+3. L'équipe doit commencer à travailler sur la nouvelle version (1.5)
+
+Si on voulait modéliser le développement à l'aide d'une séquence linéaire, voici ce que ça
+pourrait donner :
+
+{{< image src="/images/module3/git-linear-versions.png" alt="" title="" loading="lazy" >}}
+
+Maintenant que se passe-t-il si un bogue est découvert dans la version 1.0, présentement en ligne?
+
+Comment peut-on gérer une telle situation avec un outil comme git? En utilisant des branches :
+
+La vraie puissance de git réside dans la possibilité
+de créer des _branches_. Une branche est un mécanisme extrêmement simple : il s'agit
+d'un fichier
+
+{{< applet src="/html/applets/git.html" width="140%" scale="1.0" >}}
 
