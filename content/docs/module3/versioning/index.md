@@ -1,6 +1,6 @@
 ---
 title: "Le versioning avec git"
-weight: 100
+weight: 10
 ---
 
 # Le versioning
@@ -327,14 +327,14 @@ suivants :
    (seulement les données, aucune autre métadonnées associées aux fichiers,
    comme les noms de fichier, les permissions, etc).
 
-{{< image src="/images/module3/git-blob.png" alt="Un blob git" title="A placeholder" loading="lazy" >}}
+{{< image src="git-blob.png" alt="Un blob git" title="A placeholder" loading="lazy" >}}
 
 2. Les _arbres_, (trees en anglais) qui représentent l'arborescence des fichiers
    du dépôt; cette représentation est _récursive_ : un fichier est représenté à
    l'aide d'un hash qui "pointe" vers le blob correspondant, et un répertoire
    est représenté avec un hash qui pointe vers un arbre.
 
-{{< image src="/images/module3/git-tree.png" alt="Un blob git" title="A placeholder" loading="lazy" >}}
+{{< image src="git-tree.png" alt="Un blob git" title="A placeholder" loading="lazy" >}}
 
 3. Les _commits_, qui représentent des "instantanés" (en anglais snapshots) de
    l'état total du dépôt, au moment du commit.
@@ -361,7 +361,7 @@ choses :
 Étant donné la présence du pointeur vers un parent, le fait d'ajouter un commit crée
 une chaîne de commits :
 
-{{< image src="/images/module3/git-chain.png" alt="" title="" loading="lazy" >}}
+{{< image src="git-chain.png" alt="" title="" loading="lazy" >}}
 
 Chaque commit a donc un pointeur qui pointe vers son commit prédécesseur (nous
 verrons plus loin qu'il est possible pour un commit d'avoir plus d'un parents,
@@ -371,24 +371,34 @@ Jusqu'ici, git ne nous permet que d'évoluer de manière linéaire, étant donn�
 n'avons qu'une chaîne de commits. Pourtant, le développement logiciel, surtout s'il est
 effectué par une équipe, est tout sauf linéaire. Des embranchements peuvent être nécessaires
 dans le processus d'évolution du code source. Pour illustrer cela, représentez-vous
-la situation suivante :
+la scénario suivant :
 
-1. Une équipe de développement a complété la première version (1.0) d'un logiciel de prise de rendez-vous
+1. Une équipe de développement a complété la première version (v1) d'un logiciel de prise de rendez-vous
 2. La première version est maintenant en ligne, et est utilisée par le grand public
-3. L'équipe doit commencer à travailler sur la nouvelle version (1.5)
+3. L'équipe doit commencer à travailler sur la nouvelle version (v2)
 
 Si on voulait modéliser le développement à l'aide d'une séquence linéaire, voici ce que ça
 pourrait donner :
 
-{{< image src="/images/module3/git-linear-versions.png" alt="" title="" loading="lazy" >}}
+{{< image src="git-linear-versions.png" alt="" title="" loading="lazy" >}}
 
-Maintenant que se passe-t-il si un bogue est découvert dans la version 1.0, présentement en ligne?
+Maintenant que se passe-t-il si un bogue est découvert dans la version 1,
+présentement en ligne (et qui correspond au commit `C4` dans cet exemple)?
 
-Comment peut-on gérer une telle situation avec un outil comme git? En utilisant des branches :
+{{< image src="git-linear-versions-bug.png" alt="" title="" loading="lazy" >}}
 
-La vraie puissance de git réside dans la possibilité
-de créer des _branches_. Une branche est un mécanisme extrêmement simple : il s'agit
-d'un fichier
+Le problème est donc que la chaîne de commits est déjà rendue plus loin, au deuxième
+commit de la version 2, soit le commit `C6` ! Comment peut-on gérer une telle situation
+avec un outil comme git? En utilisant une _branche_ :
+
+{{< image src="git-with-branch-bugfix.png" alt="" title="" loading="lazy" >}}
+
+Donc au moment exact où le travail sur la version 1 a été complété (au commit
+`C4` donc), il fallait créer une nouvelle branche (nommée `v2`), pour le
+travail qui allait être effectué sur la nouvelle version 2. De cette manière,
+quand un problème survient avec la version 1, il est possible de le résoudre
+en ajoutant simplement un commit (`C7`) à la branche `main`, correspondant à la
+version 1.
 
 {{< applet src="/html/applets/git.html" width="140%" scale="1.0" >}}
 
