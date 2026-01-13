@@ -5,7 +5,7 @@ weight: 10
 
 # Le versioning
 
-## Quel est le problème qu'on cherche à résoudre
+## Quel est le problème qu'on cherche à résoudre?
 
 Le logiciel (et le code source dont il est constitué) a une particularité
 fondamentale : il change tout le temps. Même un programme simple est rapidement
@@ -319,8 +319,167 @@ se représenter un hash en tant que _pointeur_ vers quelque chose.
 
 ### Les fondements de git
 
-Git est une base de données qui représente le contenu et l'évolution historique
-d'un dépôt de fichiers (repository en anglais) à l'aide des objets fondamentaux
+Git est un outil pour la ligne de commande qui utilise une base de données
+particulière pour représenter le contenu et l'évolution historique de l'ensemble
+de fichiers d'un projet de développement logiciel. Nous allons l'étudier tout en
+l'utilisant concrètement. Je vous recommande d'entrer les commandes dans votre
+propre ligne de commande au moment de la lecture, afin de rendre plus concrète
+les notions que nous verrons.
+
+La première notion importante de git est celle de _dépôt_ (repository en anglais), qui
+correspond à un répertoire particulier, et qui constitue un projet git. Ce répertoire
+peut déjà exister (et contenir des fichiers) ou être créé pour l'occasion et donc être vide.
+Nous allons donc tout d'abord créer un nouveau répertoire :
+
+```shell
+$ mkdir mon_premier_depot
+$ cd mon_premier_depot
+$ ls -al
+total 0
+drwxr-xr-x@  2 cjauvin  staff    64 Jan 13 16:54 ./
+drwxr-x---+ 75 cjauvin  staff  2400 Jan 13 16:54 ../
+```
+
+Notre répertoire n'est pas encore un dépôt git, mais avec cette commande il le devient :
+
+```shell
+$ git init
+Initialized empty Git repository in /Users/cjauvin/mon_premier_depot/.git/
+```
+
+On peut constater que git a ajouté un répertoire spécial dans notre répertoire :
+
+```shell
+$ ls -al
+total 0
+drwxr-xr-x@  3 cjauvin  staff    96 Jan 13 16:58 ./
+drwxr-x---+ 75 cjauvin  staff  2400 Jan 13 16:54 ../
+drwxr-xr-x@  9 cjauvin  staff   288 Jan 13 17:10 .git/
+```
+
+Ce répertoire contient toutes les données dont git aura besoin pour gérer notre dépôt :
+
+```shell
+$ ls -al .git
+total 24
+drwxr-xr-x@  9 cjauvin  staff  288 Jan 13 17:10 ./
+drwxr-xr-x@  3 cjauvin  staff   96 Jan 13 16:58 ../
+-rw-r--r--@  1 cjauvin  staff  137 Jan 13 16:58 config
+-rw-r--r--@  1 cjauvin  staff   73 Jan 13 16:58 description
+-rw-r--r--@  1 cjauvin  staff   21 Jan 13 16:58 HEAD
+drwxr-xr-x@ 16 cjauvin  staff  512 Jan 13 16:58 hooks/
+drwxr-xr-x@  3 cjauvin  staff   96 Jan 13 16:58 info/
+drwxr-xr-x@  4 cjauvin  staff  128 Jan 13 16:58 objects/
+drwxr-xr-x@  4 cjauvin  staff  128 Jan 13 16:58 refs/
+```
+
+Créons tout d'abord un premier fichier :
+
+```
+$ echo "hello!" >> toto.txt
+```
+
+À ce stade, l'état du fichier est "untracked", c'est-à-dire qu'il ne fait pas partie
+du dépôt (même si git a tout de même remarqué sa présence) :
+
+```shell
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        toto.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+On peut ajouter le fichier dans le "staging area" de git, qui constitue une sorte d'espace de travail
+temporaire, qui sert à accumuler les changement que nous voudrons "commiter" plus tard :
+
+```shell
+git add toto.txt
+```
+
+Une fois le fichier ajouté, la même commande permet de constater le changement d'état :
+
+```shell
+$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   toto.txt
+```
+
+On est maintenant prêt à faire notre premier commit, qui est simplement l'ajout de ce fichier :
+
+```shell
+$ git commit -m "Premier commit"
+[main (root-commit) 1359fb1] Premier commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 toto.txt
+```
+
+Une fois ce premier commit effectué, notre dépôt git est démarré en bonne et due
+forme, et on peut commencer à l'inspecter en profondeur pour en comprendre le
+fonctionner. Il est important de comprendre que les commandes qui vont suivre
+sont très rarement utilisées dans l'usage quotidien de git. On s'en sert ici en
+tant qu'outils pédagogiques.
+
+Git fonctionne en manipulant quatre types fondamentaux d'objets. Le premier type
+est le _blob_, qui correspond aux données données binaires compressées d'un
+fichier donné (ici `toto.txt`) :
+
+```shell
+$ git ls-tree -r HEAD
+100644 blob 4effa19f4f75f846c3229b9dbdbad14eff362f32    toto.txt
+```
+
+Notre premier blob a donc comme identifiant le hash `4effa19f4f75f846c3229b9dbdbad14eff362f32`.
+Voici comment git calcule le hash :
+
+```shell
+ git hash-object toto.txt
+4effa19f4f75f846c3229b9dbdbad14eff362f32
+```
+
+Ce blob est en fait un fichier, qui est sauvegardé dans la base de données
+spéciale de git (dans le répertoire caché `.git`). Le chemin vers ce fichier (de
+blob) est créé à partir du hash, qui est séparé en deux parties (la première
+correspondant à son suffixe de deux lettres) :
+
+```shell
+ll .git/objects/
+total 0
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 13 17:28 13/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 13 17:25 4e/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 13 17:28 c4/
+drwxr-xr-x@ 2 cjauvin  staff    64B Jan 13 16:58 info/
+drwxr-xr-x@ 2 cjauvin  staff    64B Jan 13 16:58 pack/
+$
+$ ll .git/objects/4e/
+total 8
+-r--r--r--@ 1 cjauvin  staff    22B Jan 13 17:25 ffa19f4f75f846c3229b9dbdbad14eff362f32
+```
+
+Contrairement à `toto.txt`, qui est un fichier texte, le blob n'est pas facile à
+lire, car il est constitué de données binaires compressées :
+
+```shell
+cat .git/objects/4e/ffa19f4f75f846
+c3229b9dbdbad14eff362f32
+xK��OR0g�H���W�"6⏎
+```
+
+
+
+
+
+ à l'aide des objets fondamentaux
 suivants :
 
 1. Les _blobs_, qui contiennent les données binaires brutes des fichiers
