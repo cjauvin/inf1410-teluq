@@ -514,7 +514,7 @@ allo!
 bonjour
 ```
 
-Et vérifions l'effet avec la commande `git status` :
+Et vérifions l'effet sur git avec la commande `git status` :
 
 ```shell
 $ git status
@@ -526,7 +526,7 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-Pour voir le changement précisément on peut utiliser `git diff` :
+Pour voir le changement précis que git détecte on peut utiliser `git diff` :
 
 ```shell
 $ git diff
@@ -539,8 +539,107 @@ index 4c7d057..48bed0c 100644
 +bonjour
 ```
 
+Que se passerait-il si on tentait de committer notre changement à ce point?
 
----
+```shell
+$ git commit -m "Dexuième commit"
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   toto.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+Il n'y a rien (encore) à committer, car le changement n'a pas été ajouté
+dans le staging area avec la commande `git add`, dont on peut tout de suite
+voir l'effet avec `git status` :
+
+```shell
+$ git add toto.txt
+$
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   toto.txt
+```
+
+Voici le modèle mental qu'il faut préférablement avoir des trois "endroits"
+importants qui sont impliqués dans le pipeline de création d'un commit :
+
+{{< image src="git-3-places.png" alt="Un blob git" title="" loading="lazy" >}}
+
+Nous sommes maintenant prêt pour le deuxième commit :
+
+```shell
+$ git commit -m "Deuxième commit"
+[main 34c85ab] Deuxième commit
+ 1 file changed, 1 insertion(+)
+$
+$ git status
+On branch main
+nothing to commit, working tree clean
+```
+
+Examinons ce qui s'est passé au niveau des objets git :
+
+```shell
+git ls-tree -r HEAD
+100644 blob 48bed0c35d92c60539832929142859e3f5ae6eda    toto.txt
+```
+
+On remarque que `toto.txt` est maintenant associé à ce qui semble être un blob
+différent, car le hash est différent (`48bed0c35d92c60539832929142859e3f5ae6eda`
+alors qu'on avait `4c7d057645ac149446d1289aaa6f9fd74e91ce13` avant). Que
+s'est-il passé? Un nouveau blob a été créé, correspondant à la nouvelle version
+du fichier. Si on regarde la liste des objets, on peut voir notre nouveau blob
+et son contenu :
+
+```shell
+$ ll .git/objects/
+total 0
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 14:57 34/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 14:53 38/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 14:39 48/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 12:16 4c/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 14:53 88/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 12:16 9e/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 12:16 cf/
+drwxr-xr-x@ 2 cjauvin  staff    64B Jan 15 12:16 info/
+drwxr-xr-x@ 2 cjauvin  staff    64B Jan 15 12:16 pack/
+$
+$ cat .git/objects/48/bed0c35d92c60539832929142859e3f5ae6eda
+xK��OR04aH���W�J����/-�O⏎
+```
+
+{{< image src="git-2-blobs.png" alt="Un blob git" title="" loading="lazy" >}}
+
+Mais ce qu'il est fondamental de remarquer et de comprendre, c'est que notre
+blob précédent (`4c7d057645ac149446d1289aaa6f9fd74e91ce13`) est toujours là, il
+n'a pas disparu ! Ceci veut donc dire que tous les stages de transformation d'un
+fichier sont sauvegardés **en tant que fichiers complets et indépendants**. Git
+ne gère donc pas les "différences" entre les fichiers, mais conserve plutôt
+l'état complet de chaque version (en anglais on parle souvent de "snapshot",
+soit l'état précis d'un fichier à un certain point dans une chaîne de
+changements), de manière à pouvoir "calculer" la différence, au moment où c'est
+nécessaire. Est-ce que ceci n’entraîne pas un coût supplémentaire par contre, en
+terme d'espace disque? Si on a un fichier de 100 lignes et qu'on fait 10 commits
+qui ajoutent chacun 1 ligne, nous aurons au final 10 blobs de plus de 100 lignes
+(un de 100, un de 101, etc). Il serait plus compact de ne sauvegarder que les
+différences successives. Pourtant, git choisit de fonctionner avec des
+snapshots, parce que ça lui permet d'opérer de manière plus rapide et efficace,
+il s'agit d'un compromis. Les comparaisons et la navigation entre les versions
+d'un fichier est donc, avec git, particulièrement efficace, ce qui a
+certainement joué un rôle dans son adoption généralisée spectaculaire. Il faut
+mentionner également qu'il y a un niveau plus "bas" que les blobs, les
+_packfiles_, où le contenu des blobs est compressé efficacement (et donc la
+redondance éliminée), mais comme ce niveau est plus complexe et moins facile
+d'accès, il ne fera donc pas partie de notre analyse.
+
+
+------------------------------------------------------
 
 
  à l'aide des objets fondamentaux
