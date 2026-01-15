@@ -113,7 +113,7 @@ décentraliser pour la résilience et la flexibilité.
 
 ### Fonction de hachage
 
-Pour se faire un bon modèle mental du fonctionnement de git, il est essentiel de
+Pour se construire un bon modèle mental du fonctionnement de git, il est essentiel de
 bien comprendre tout d'abord la notion de **fonction de hachage**.
 
 Une fonction de hachage est une fonction mathématique qui prend en entrée un
@@ -134,12 +134,14 @@ elle doit avoir certaines caractéristiques :
 * Résistance aux collisions : Il est extrêmement improbable que deux entrées
   différentes produisent le même hash.
 
-Le dernier critère implique que l'_image_ de la fonction (l'ensemble de ses
-valeurs possibles) soit extrêmement grand. La fonction de hachage
-[SHA-1](https://fr.wikipedia.org/wiki/SHA-1), utilisée couramment par git,
-produit par exemple des valeurs de 160 bits, ce qui correspond à $2^{160}$
-valeurs possibles, ce qui est un nombre vraiment très grand, mais tout de même
-plus petit que ceux produits par la fonction
+Le premier critère implique qu'en dépit des apparences, un hash n'est **pas** un
+nombre aléatoire, il est important de le réaliser. Le dernier critère implique
+que l'_image_ de la fonction (l'ensemble de ses valeurs possibles) doit être
+extrêmement grand (car s'il ne l'était pas, les collisions seraient fréquentes).
+La fonction de hachage [SHA-1](https://fr.wikipedia.org/wiki/SHA-1), utilisée
+couramment par git, produit par exemple des valeurs de 160 bits, ce qui
+correspond à $2^{160}$ valeurs possibles, ce qui est un nombre vraiment très
+grand, mais tout de même plus petit que ceux produits par la fonction
 [SHA-256](https://fr.wikipedia.org/wiki/SHA-2), aussi utilisée par les versions
 plus modernes de git, et dont la taille de l'image se rapproche du nombre estimé
 d'atomes dans l'univers (environ $2^{266}$, ou $10^{80}$).
@@ -312,22 +314,28 @@ les dix chiffres 0 à 10, ainsi que les 6 premières lettres de l'alphabet, de `
 équivalent à 4 bits, nous avons donc un nombre de $40 \times 4 = 160$ bits, qui
 permet d'exprimer donc $2^{160}$ valeurs possibles.
 
-Une manière de comprendre le rôle que peut jouer une fonction de hachage est
-en tant que _signature_ : une signature _représente_ une personne ou un document
-de manière unique, sans aucune ambiguïté possible. Il est également possible de
-se représenter un hash en tant que _pointeur_ vers quelque chose.
+Faites-vous une idée concrète du fonctionnement d'une fonction de hachage à
+l'aide de cette applet interactive :
+
+{{< applet src="/html/applets/hashing.html" width="100%" scale="1.0" >}}
+
+Finalement, une manière de comprendre le rôle que peut jouer une fonction de
+hachage est en tant qu'une sorte de "signature" : une signature _représente_ une
+personne ou un document de manière unique, sans aucune ambiguïté possible. Il
+est également possible de se représenter un hash en tant que _pointeur_ vers
+quelque chose, ce qui est la métaphore utilisée par git.
 
 ### Les fondements de git
 
-Git est un outil pour la ligne de commande qui utilise une base de données
-particulière pour représenter le contenu et l'évolution historique de l'ensemble
-de fichiers d'un projet de développement logiciel. Nous allons l'étudier tout en
-l'utilisant concrètement. Je vous recommande d'entrer les commandes dans votre
-propre ligne de commande au moment de la lecture, afin de rendre plus concrète
-les notions que nous verrons.
+Git est un outil pour la ligne de commande qui utilise un modèle de données
+particulier pour représenter et manipuler le contenu et l'évolution historique
+de l'ensemble de fichiers d'un projet de développement logiciel. Nous allons
+l'étudier tout en l'utilisant concrètement. Je vous recommande d'entrer les
+commandes qui vont suivre dans votre propre ligne de commande au moment de la
+lecture, afin de rendre plus concrète les notions que nous verrons.
 
 La première notion importante de git est celle de _dépôt_ (repository en anglais), qui
-correspond à un répertoire particulier, et qui constitue un projet git. Ce répertoire
+correspond à un répertoire particulier, et qui constitue un projet au sens de git. Ce répertoire
 peut déjà exister (et contenir des fichiers) ou être créé pour l'occasion et donc être vide.
 Nous allons donc tout d'abord créer un nouveau répertoire :
 
@@ -347,7 +355,7 @@ $ git init
 Initialized empty Git repository in /Users/cjauvin/mon_premier_depot/.git/
 ```
 
-On peut constater que git a ajouté un répertoire spécial dans notre répertoire :
+On peut constater que git a ajouté un sous-répertoire spécial dans notre répertoire :
 
 ```shell
 $ ls -al
@@ -357,7 +365,9 @@ drwxr-x---+ 75 cjauvin  staff  2400 Jan 13 16:54 ../
 drwxr-xr-x@  9 cjauvin  staff   288 Jan 13 17:10 .git/
 ```
 
-Ce répertoire contient toutes les données dont git aura besoin pour gérer notre dépôt :
+Ce répertoire contient toutes les données dont git aura besoin pour gérer notre
+dépôt. On peut le voir comme une sorte de base de données aussi, qui est pour le
+moment vide :
 
 ```shell
 $ ls -al .git
@@ -373,10 +383,10 @@ drwxr-xr-x@  4 cjauvin  staff  128 Jan 13 16:58 objects/
 drwxr-xr-x@  4 cjauvin  staff  128 Jan 13 16:58 refs/
 ```
 
-Créons tout d'abord un premier fichier :
+Commençons notre exploration en créant tout d'abord un premier fichier :
 
-```
-$ echo "hello!" >> toto.txt
+```shell
+$ echo "allo!" >> toto.txt
 ```
 
 À ce stade, l'état du fichier est "untracked", c'est-à-dire qu'il ne fait pas partie
@@ -396,13 +406,14 @@ nothing added to commit but untracked files present (use "git add" to track)
 ```
 
 On peut ajouter le fichier dans le "staging area" de git, qui constitue une sorte d'espace de travail
-temporaire, qui sert à accumuler les changement que nous voudrons "commiter" plus tard :
+temporaire, qui sert à accumuler les changement que nous voudrons "committer" plus tard :
 
 ```shell
-git add toto.txt
+$ git add toto.txt
 ```
 
-Une fois le fichier ajouté, la même commande permet de constater le changement d'état :
+Une fois le fichier ajouté, la même commande permet de constater le changement d'état. Pour
+le moment, le nouveau fichier est dans le staging area, prêt à être committé :
 
 ```shell
 $ git status
@@ -415,7 +426,8 @@ Changes to be committed:
         new file:   toto.txt
 ```
 
-On est maintenant prêt à faire notre premier commit, qui est simplement l'ajout de ce fichier :
+On est maintenant prêt à faire notre premier commit, qui est simplement l'ajout
+officiel de ce fichier dans la base de données git :
 
 ```shell
 $ git commit -m "Premier commit"
@@ -426,26 +438,43 @@ $ git commit -m "Premier commit"
 
 Une fois ce premier commit effectué, notre dépôt git est démarré en bonne et due
 forme, et on peut commencer à l'inspecter en profondeur pour en comprendre le
-fonctionner. Il est important de comprendre que les commandes qui vont suivre
-sont très rarement utilisées dans l'usage quotidien de git. On s'en sert ici en
-tant qu'outils pédagogiques.
+fonctionnement et le modèle de données. Il est important de savoir que les
+commandes qui vont suivre sont très rarement utilisées dans l'usage quotidien de
+git (pratiquement jamais en fait). On s'en sert ici simplement en tant qu'outils
+pédagogiques.
 
-Git fonctionne en manipulant quatre types fondamentaux d'objets. Le premier type
-est le _blob_, qui correspond aux données données binaires compressées d'un
-fichier donné (ici `toto.txt`) :
+Le modèle de données de Git est consistué de quatre types fondamentaux d'objets.
+Le premier type est le _blob_, qui correspond aux données données binaires
+compressées d'un fichier donné (ici `toto.txt`) :
 
 ```shell
 $ git ls-tree -r HEAD
-100644 blob 4effa19f4f75f846c3229b9dbdbad14eff362f32    toto.txt
+100644 blob 4c7d057645ac149446d1289aaa6f9fd74e91ce13    toto.txt
 ```
 
-Notre premier blob a donc comme identifiant le hash `4effa19f4f75f846c3229b9dbdbad14eff362f32`.
-Voici comment git calcule le hash :
+Notre premier blob a donc comme identifiant le hash
+`4c7d057645ac149446d1289aaa6f9fd74e91ce13`. Voici comment git calcule le hash du
+blob, à partir du fichier original qu'on a ajouté :
 
 ```shell
- git hash-object toto.txt
-4effa19f4f75f846c3229b9dbdbad14eff362f32
+$ git hash-object toto.txt
+4c7d057645ac149446d1289aaa6f9fd74e91ce13
 ```
+
+Cette valeur particulière devrait être la même pour vous, dans votre
+environnement, car elle n'est pas une valeur aléatoire, elle est entièrement
+déterministe. La seule chose qui pourrait changer la donne serait que votre git
+soit configuré pour utiliser une autre fonction de hachage que `SHA1`, ce qui
+est possible.
+
+Si on entre la valeur `allo!` dans l'applet interactif ci-haut, on n'obtient pas
+cette valeur particulière de hash pourtant (essayez-le, avec la fonction
+`SHA1`).. pourquoi donc? Parce que git hache en fait un peu plus que simplement
+le contenu du fichier : il hache la valeur `blob <taille>\0<contenu>`, où
+`<contenu>` correspond dans notre cas à `allo!\n` (le `\n` est un caractère
+spécial pour le retour de chariat, newline en anglais) et la `<taille>`, en
+nombre de caractères, est donc 6. Donc si on entre la valeur `blob 6\0allo!\n`
+dans l'applet, le même hash que celui calculé par git devrait apparaître.
 
 Ce blob est en fait un fichier, qui est sauvegardé dans la base de données
 spéciale de git (dans le répertoire caché `.git`). Le chemin vers ce fichier (de
@@ -453,30 +482,65 @@ blob) est créé à partir du hash, qui est séparé en deux parties (la premiè
 correspondant à son suffixe de deux lettres) :
 
 ```shell
-ll .git/objects/
+$ ll .git/objects/
 total 0
-drwxr-xr-x@ 3 cjauvin  staff    96B Jan 13 17:28 13/
-drwxr-xr-x@ 3 cjauvin  staff    96B Jan 13 17:25 4e/
-drwxr-xr-x@ 3 cjauvin  staff    96B Jan 13 17:28 c4/
-drwxr-xr-x@ 2 cjauvin  staff    64B Jan 13 16:58 info/
-drwxr-xr-x@ 2 cjauvin  staff    64B Jan 13 16:58 pack/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 12:16 4c/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 12:16 9e/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 12:16 cf/
+drwxr-xr-x@ 2 cjauvin  staff    64B Jan 15 12:16 info/
+drwxr-xr-x@ 2 cjauvin  staff    64B Jan 15 12:16 pack/
 $
-$ ll .git/objects/4e/
+$ ll .git/objects/4c
 total 8
--r--r--r--@ 1 cjauvin  staff    22B Jan 13 17:25 ffa19f4f75f846c3229b9dbdbad14eff362f32
+-r--r--r--@ 1 cjauvin  staff    21B Jan 15 12:16 7d057645ac149446d1289aaa6f9fd74e91ce13
 ```
 
-Contrairement à `toto.txt`, qui est un fichier texte, le blob n'est pas facile à
-lire, car il est constitué de données binaires compressées :
+Contrairement à `toto.txt`, qui contient du texte, le blob n'est pas lisible,
+car il est constitué de données binaires compressées :
 
 ```shell
-cat .git/objects/4e/ffa19f4f75f846
-c3229b9dbdbad14eff362f32
-xK��OR0g�H���W�"6⏎
+cat .git/objects/4c/7d057645ac149446d1289aaa6f9fd74e91ce13
+xK��OR0cH���W�+�⏎
+```
+
+{{< image src="git-blob.png" alt="Un blob git" title="" loading="lazy" >}}
+
+Essayons maintenant de modifier notre fichier texte en y ajoutant une ligne :
+
+```shell
+$ echo "bonjour" >> toto.txt
+$ cat toto.txt
+allo!
+bonjour
+```
+
+Et vérifions l'effet avec la commande `git status` :
+
+```shell
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   toto.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+Pour voir le changement précisément on peut utiliser `git diff` :
+
+```shell
+$ git diff
+diff --git a/toto.txt b/toto.txt
+index 4c7d057..48bed0c 100644
+--- a/toto.txt
++++ b/toto.txt
+@@ -1 +1,2 @@
+ allo!
++bonjour
 ```
 
 
-
+---
 
 
  à l'aide des objets fondamentaux
@@ -486,7 +550,6 @@ suivants :
    (seulement les données, aucune autre métadonnées associées aux fichiers,
    comme les noms de fichier, les permissions, etc).
 
-{{< image src="git-blob.png" alt="Un blob git" title="A placeholder" loading="lazy" >}}
 
 2. Les _arbres_, (trees en anglais) qui représentent l'arborescence des fichiers
    du dépôt; cette représentation est _récursive_ : un fichier est représenté à
