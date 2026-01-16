@@ -734,7 +734,7 @@ $ git commit -m "Troisième commit"
  create mode 100644 src/components/menu.js
 ```
 
-On peut récupérer le hash de notre troisième et dernier commit en faisait :
+On peut récupérer le hash de notre troisième et dernier commit en faisant :
 
 ```shell
 $ git log -1
@@ -745,7 +745,7 @@ Date:   Thu Jan 15 19:05:29 2026 -0500
     Troisième commit
 ```
 
-Inspectons ce commit :
+Inspectons tout d'abord ce commit :
 
 ```shell
 $ git cat-file -p 2e6fdee379fbe0d258b2d5f04e7cdd0b4d5cbccb
@@ -757,7 +757,7 @@ committer Christian Jauvin <cjauvin@gmail.com> 1768521929 -0500
 Troisième commit
 ```
 
-Inspectons son tree :
+Inspectons ensuite son tree (dont le hash est spécifié à la première ligne) :
 
 ```shell
 $ git ls-tree -r -t fb1722eff4b73668ddec99b3452d692b1e4aa9ba
@@ -770,6 +770,39 @@ $ git ls-tree -r -t fb1722eff4b73668ddec99b3452d692b1e4aa9ba
 
 On constate la nature récursive du tree, qui est lui-même composé de blobs et de
 sous-trees.
+
+Il faut comprendre que les trees sont des "objets" git au même sens que les blobs
+(seulement d'un type différent), et qu'ils sont stockés sous la forme de fichiers
+binaires, au même endroit que les blobs :
+
+```shell
+$ ll .git/objects/
+total 0
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 19:05 2e/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 14:57 34/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 14:53 38/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 16 15:40 3d/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 14:39 48/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 12:16 4c/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 16 15:40 4d/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 16 15:40 69/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 19:05 6e/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 16 15:37 76/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 16 15:37 82/
+drwxr-xr-x@ 4 cjauvin  staff   128B Jan 16 15:37 88/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 12:16 9e/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 16 15:37 c7/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 12:16 cf/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 19:05 e0/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 19:02 e6/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 16 15:37 e7/
+drwxr-xr-x@ 3 cjauvin  staff    96B Jan 15 19:05 fb/
+drwxr-xr-x@ 2 cjauvin  staff    64B Jan 15 12:16 info/
+drwxr-xr-x@ 2 cjauvin  staff    64B Jan 15 12:16 pack/
+```
+
+Les objets git sont organisés sur le disque en fonction du préfixe de deux
+chiffres de leur hash.
 
 > [!NOTE]
 Le diagramme qui suit introduit une idée importante à comprendre avec git : si
@@ -786,34 +819,65 @@ contexte. Il est à noter que ce système de préfixe simplifié fonctionne
 
 {{< image src="git-tree.png" alt="Une arborescence git" title="" loading="lazy" >}}
 
-La notion d'arbre git permet d'introduire une notion importante
+La notion d'arbre git permet d'introduire une notion importante, fondamentale à git :
+[l'arbre de Merkle](https://fr.wikipedia.org/wiki/Arbre_de_Merkle). Un arbre de Merkle
+est un arbre où chaque noeud a un hash qui est fonction de (qui inclut, donc) tout ce qui est dessous. Si on change un élément de l'arbre (un blob par exemple) alors l'effet est que les
+hash de tous les éléments "au-dessus" (les ancêtres) vont devoir changer (car leur valeur
+dépend de tout ce qu'ils ont sous eux). Examinons un exemple concret pour s'en convaincre,
+modifions tout d'abord un fichier au milieu de notre arborescence. Profitons-en pour
+apprendre que l'ajout de `-a` à la commande `git commit` (en plus de `-m` qu'on avait déjà,
+pour faire donc `-am`) permet de sauter l'étape d'ajouter le changement au staging area (`git add`)
+quand on veut aller un peu plus rapidement :
+
+```shell
+$ echo "alert('allo!')" >> src/app.js
+$
+$ git commit -am "Quatrième commit"
+[main 3dd71fb] Quatrième commit
+ 1 file changed, 1 insertion(+)
+```
+
+Notons tout d'abord le hash du commit qu'on vient de produire :
+
+```shell
+$ git log -1
+commit 3dd71fb4950c1be35ec335cd0ac40f3b5807303b (HEAD -> main)
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Fri Jan 16 15:40:53 2026 -0500
+
+    Quatrième commit
+```
+
+Examinons ensuite le commit et son tree, et notons qu'on peut utiliser son préfixe court de 4 chiffres (`3dd7`) car il n'est pas ambigu :
+
+
+```shell
+$ git cat-file -p 3dd7
+tree 6954fc566d4abe842409c9265ca5bb94044af1c4
+parent 2e6fdee379fbe0d258b2d5f04e7cdd0b4d5cbccb
+author Christian Jauvin <cjauvin@gmail.com> 1768596053 -0500
+committer Christian Jauvin <cjauvin@gmail.com> 1768596053 -0500
+
+Quatrième commit
+$
+$ git ls-tree -r -t 6954
+040000 tree 4d74086f34491859490bd4a3695876e23798b8f0    src
+100644 blob 76aa73d7349a507efaf3206cd21428d4452eae9e    src/app.js
+040000 tree e0408d67c1864db2c5bfae47d89933d6c714b810    src/components
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    src/components/menu.js
+100644 blob 48bed0c35d92c60539832929142859e3f5ae6eda    toto.txt
+```
+
+On peut constater le fait intéressant que seuls les arbres `6954fc` et `4d74086` ont changés,
+parce qu'ils sont les ancêtres du blob `76aa73`, que notre commit a changé. On constate
+donc clairement qu'un arbre git est un arbre de Merkle au sens classique.
+
+{{< image src="git-tree2.png" alt="Une arborescence git" title="" loading="lazy" >}}
 
 #### Troisième type d'objet git fondamental : le commit
 
-------------------------------------------------------
-
-
- à l'aide des objets fondamentaux
-suivants :
-
-1. Les _blobs_, qui contiennent les données binaires brutes des fichiers
-   (seulement les données, aucune autre métadonnées associées aux fichiers,
-   comme les noms de fichier, les permissions, etc).
-
-
-2. Les _arbres_, (trees en anglais) qui représentent l'arborescence des fichiers
-   du dépôt; cette représentation est _récursive_ : un fichier est représenté à
-   l'aide d'un hash qui "pointe" vers le blob correspondant, et un répertoire
-   est représenté avec un hash qui pointe vers un arbre.
-
-3. Les _commits_, qui représentent des "instantanés" (en anglais snapshots) de
-   l'état total du dépôt, au moment du commit.
-
-4. Les _tags_, qui sont des étiquettes particulières, associés à des commits particuliers.
-
-Chaque fois qu'un fichier est ajouté au dépôt (avec la commande `git add`), son
-contenu est sauvegardé dans un blob binaire, qui se trouve dans le répertoire
-spécial `.git`, à la base du depot.
+Tournons maintenant notre attention vers les commits, qui sont le troisième type
+d'objet git fondamental.
 
 Chaque fois qu'un commit est créé (avec la commande `git commit`), un nouvel
 objet (de type commit) est ajouté à la base de données, qui contient trois
