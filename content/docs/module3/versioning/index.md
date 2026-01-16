@@ -771,10 +771,11 @@ $ git ls-tree -r -t fb1722eff4b73668ddec99b3452d692b1e4aa9ba
 On constate la nature récursive du tree, qui est lui-même composé de blobs et de
 sous-trees.
 
-> [!NOTE] Le diagramme qui suit introduit une idée importante à comprendre avec
-git : si cela n'introduit pas d’ambiguïté, on peut référer à un hash (qui est
-une valeur très longue et difficile à lire ou manipuler) avec seulement son
-préfixe, soit une valeur plus courte. On peut ainsi faire référence à
+> [!NOTE]
+Le diagramme qui suit introduit une idée importante à comprendre avec git : si
+cela n'introduit pas d’ambiguïté, on peut référer à un hash (qui est une valeur
+très longue et difficile à lire ou manipuler) avec seulement son préfixe, soit
+une valeur plus courte. On peut ainsi faire référence à
 `fb1722eff4b73668ddec99b3452d692b1e4aa9ba` avec son préfixe plus court des 6
 premiers chiffres, soit `fb1722`, car il n'y a aucun autre objet, dans notre
 dépôt git, qui a ce même préfixe (si c'était le cas, git produirait un message
@@ -784,6 +785,8 @@ contexte. Il est à noter que ce système de préfixe simplifié fonctionne
 également avec tous les outils git de la ligne de commande.
 
 {{< image src="git-tree.png" alt="Une arborescence git" title="" loading="lazy" >}}
+
+La notion d'arbre git permet d'introduire une notion importante
 
 #### Troisième type d'objet git fondamental : le commit
 
