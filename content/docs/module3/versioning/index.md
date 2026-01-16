@@ -640,6 +640,21 @@ _packfiles_, où le contenu des blobs est compressé efficacement (et donc la
 redondance éliminée), mais comme ce niveau est plus complexe et moins facile
 d'accès, il ne fera donc pas partie de notre analyse.
 
+Le fait d'avoir un mécanisme comme la fonction de hachage permet à git de
+rapidement répondre à la question : est-ce qu'un fichier a changé ou non? Si le
+hash d'un fichier est identique aujourd'hui à ce qu'il était hier, nous avons la
+certitude, par définition, que le fichier n'a pas changé. Car le moindre
+changement (ne serait-ce que l'ajout dune virgule) produit une valeur de hash
+complètement différente. Par contre, cette différence, au niveau des valeurs du
+hash, ne disent rien au sujet de ce qui a changé ! Elle dit SEULEMENT que
+quelque chose a changé. Si git veut savoir exactement ce qui a changé (pour par
+exemple le fournir à l'utilisateur de la commande `git diff`), il doit le
+calculer en temps réel, au moment du besoin. On pourrait penser que ceci est
+coûteux et inefficaces, mais dans les faits ça ne l'est pas, car un algorithme
+pour déterminer la différence entre deux fichiers textes peut être exécuté très
+rapidement. Le modèle de donnés de git est entièrement conçu de manière à
+optimiser les cas s'usage les plus courants.
+
 Poursuivons notre analyse du modèle de données de git en nous demandant ensuite :
 qu'est-ce qu'un commit, au juste? Jusqu'à maintenant, nous avons créé deux commits,
 en séquence :
@@ -753,9 +768,22 @@ $ git ls-tree -r -t fb1722eff4b73668ddec99b3452d692b1e4aa9ba
 100644 blob 48bed0c35d92c60539832929142859e3f5ae6eda    toto.txt
 ```
 
-On constate la nature récursive du tree, qui est lui-même de blobs et de
+On constate la nature récursive du tree, qui est lui-même composé de blobs et de
 sous-trees.
 
+> [!NOTE] Le diagramme qui suit introduit une idée importante à comprendre avec
+git : si cela n'introduit pas d’ambiguïté, on peut référer à un hash (qui est
+une valeur très longue et difficile à lire ou manipuler) avec seulement son
+préfixe, soit une valeur plus courte. On peut ainsi faire référence à
+`fb1722eff4b73668ddec99b3452d692b1e4aa9ba` avec son préfixe plus court des 6
+premiers chiffres, soit `fb1722`, car il n'y a aucun autre objet, dans notre
+dépôt git, qui a ce même préfixe (si c'était le cas, git produirait un message
+d'erreur pour s'en plaindre). Ce préfixe peut être d'une longueur autre que 6,
+mais on préfère en général une longueur qui maximise la lisibilité, selon le
+contexte. Il est à noter que ce système de préfixe simplifié fonctionne
+également avec tous les outils git de la ligne de commande.
+
+{{< image src="git-tree.png" alt="Une arborescence git" title="" loading="lazy" >}}
 
 #### Troisième type d'objet git fondamental : le commit
 
@@ -774,8 +802,6 @@ suivants :
    du dépôt; cette représentation est _récursive_ : un fichier est représenté à
    l'aide d'un hash qui "pointe" vers le blob correspondant, et un répertoire
    est représenté avec un hash qui pointe vers un arbre.
-
-{{< image src="git-tree.png" alt="Un blob git" title="A placeholder" loading="lazy" >}}
 
 3. Les _commits_, qui représentent des "instantanés" (en anglais snapshots) de
    l'état total du dépôt, au moment du commit.
