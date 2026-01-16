@@ -443,7 +443,9 @@ commandes qui vont suivre sont très rarement utilisées dans l'usage quotidien 
 git (pratiquement jamais en fait). On s'en sert ici simplement en tant qu'outils
 pédagogiques.
 
-Le modèle de données de Git est consistué de quatre types fondamentaux d'objets.
+#### Premier type d'objet fondamental git : le blob
+
+Le modèle de données de Git est constitué de quatre types fondamentaux d'objets.
 Le premier type est le _blob_, qui correspond aux données données binaires
 compressées d'un fichier donné (ici `toto.txt`) :
 
@@ -631,13 +633,131 @@ qui ajoutent chacun 1 ligne, nous aurons au final 10 blobs de plus de 100 lignes
 différences successives. Pourtant, git choisit de fonctionner avec des
 snapshots, parce que ça lui permet d'opérer de manière plus rapide et efficace,
 il s'agit d'un compromis. Les comparaisons et la navigation entre les versions
-d'un fichier est donc, avec git, particulièrement efficace, ce qui a
+d'un fichier sont donc, avec git, particulièrement efficaces, ce qui a
 certainement joué un rôle dans son adoption généralisée spectaculaire. Il faut
 mentionner également qu'il y a un niveau plus "bas" que les blobs, les
 _packfiles_, où le contenu des blobs est compressé efficacement (et donc la
 redondance éliminée), mais comme ce niveau est plus complexe et moins facile
 d'accès, il ne fera donc pas partie de notre analyse.
 
+Poursuivons notre analyse du modèle de données de git en nous demandant ensuite :
+qu'est-ce qu'un commit, au juste? Jusqu'à maintenant, nous avons créé deux commits,
+en séquence :
+
+```shell
+$ git log
+commit 34c85abbbbee1c21c34da2b5ed126cb888fcb498 (HEAD -> main)
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Thu Jan 15 14:57:15 2026 -0500
+
+    Deuxième commit
+
+commit 9e6072c8df904f021474a6173cc1b17b2908c0f1
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Thu Jan 15 12:16:21 2026 -0500
+
+    Premier commit
+```
+
+Le premier commit est associé au hash `9e6072c8df904f021474a6173cc1b17b2908c0f1`.
+On peut utiliser `git cat-file` pour décrire le contenu de ce commit :
+
+```shell
+$ git cat-file -p 9e6072c8df904f021474a6173cc1b17b2908c0f1
+tree cff192ac57ced2fea4977bcf9dcc6c3590af9cbd
+author Christian Jauvin <cjauvin@gmail.com> 1768497381 -0500
+committer Christian Jauvin <cjauvin@gmail.com> 1768497381 -0500
+
+Premier commit
+```
+
+#### Deuxième type d'objet git fondamental : le tree
+
+On voit que le commit contient un "tree" (un arbre), qui est le deuxième type
+fondamental d'objet dans le modèle de données de git que nous voyons, après le
+blob. Si un blob est un fichier, alors le tree est un répertoire (une
+arborescence récursive de fichiers). Si on inspecte notre tree avec `git cat-file`,
+on constate qu'il ne contient qu'un seul blob, celui qui correspond à notre fichier `toto.txt` :
+
+```shell
+$ git cat-file -p cff192ac57ced2fea4977bcf9dcc6c3590af9cbd
+100644 blob 4c7d057645ac149446d1289aaa6f9fd74e91ce13    toto.txt
+```
+
+Pour se faire une meilleure idée du fonctionnement des trees, complexifions un peu
+la structure de notre projet en ajoutant des fichiers et des répertoires :
+
+```shell
+$ mkdir src
+$ touch src/app.js
+$ mkdir src/components
+$ touch src/components/menu.js
+```
+
+La commande `git add` effectuée sur un répertoire ajoute récursivement au
+staging area tous les fichiers se trouvant à n'importe quel niveau sous le
+répertoire, d'un coup :
+
+```shell
+$ git add src
+$
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   src/app.js
+        new file:   src/components/menu.js
+```
+
+On peut maintenant faire notre troisième commit :
+
+```shell
+$ git commit -m "Troisième commit"
+[main 2e6fdee] Troisième commit
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 src/app.js
+ create mode 100644 src/components/menu.js
+```
+
+On peut récupérer le hash de notre troisième et dernier commit en faisait :
+
+```shell
+$ git log -1
+commit 2e6fdee379fbe0d258b2d5f04e7cdd0b4d5cbccb (HEAD -> main)
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Thu Jan 15 19:05:29 2026 -0500
+
+    Troisième commit
+```
+
+Inspectons ce commit :
+
+```shell
+$ git cat-file -p 2e6fdee379fbe0d258b2d5f04e7cdd0b4d5cbccb
+tree fb1722eff4b73668ddec99b3452d692b1e4aa9ba
+parent 34c85abbbbee1c21c34da2b5ed126cb888fcb498
+author Christian Jauvin <cjauvin@gmail.com> 1768521929 -0500
+committer Christian Jauvin <cjauvin@gmail.com> 1768521929 -0500
+
+Troisième commit
+```
+
+Inspectons son tree :
+
+```shell
+$ git ls-tree -r -t fb1722eff4b73668ddec99b3452d692b1e4aa9ba
+040000 tree 6edfc5b49bc2a7de3402cd734abfee5c4a0c42bd    src
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    src/app.js
+040000 tree e0408d67c1864db2c5bfae47d89933d6c714b810    src/components
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    src/components/menu.js
+100644 blob 48bed0c35d92c60539832929142859e3f5ae6eda    toto.txt
+```
+
+On constate la nature récursive du tree, qui est lui-même de blobs et de
+sous-trees.
+
+
+#### Troisième type d'objet git fondamental : le commit
 
 ------------------------------------------------------
 
