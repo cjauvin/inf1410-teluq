@@ -1106,8 +1106,9 @@ fameux bogue :
 
 {{< image src="git-move-head-back-to-main.png" alt="" title="" loading="lazy" >}}
 
-Nous sommes donc maintenant en position de fournir la solution, et de faire en sorte qu'elle
-se retrouve à l'endroit logique là où elle devrait être :
+Nous sommes donc maintenant en position de fournir la solution à notre bogue, et
+de faire en sorte qu'elle se retrouve à l'endroit logique là où elle devrait
+être :
 
 ```shell
 $ echo "solution" >> toto.txt
