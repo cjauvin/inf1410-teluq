@@ -19,14 +19,18 @@
     },
     "auto-correct.dictionary": [
         {
-        "languages": ["*"],
-        "words": {
-            "plutot": "plutôt",
-            "entrainement": "entraînement",
-            "depot": "dépôt",
-            "dépot": "dépôt",
-        },
-        "useLargeList": false
+            "languages": [
+                "*"
+            ],
+            "words": {
+                "plutot": "plutôt",
+                "entrainement": "entraînement",
+                "depot": "dépôt",
+                "chaine": "chaîne",
+                "couteuses": "coûteuses",
+                "couteuse": "coûteuse"
+            },
+            "useLargeList": false
         }
     ]
 }

@@ -323,7 +323,16 @@ Finalement, une manière de comprendre le rôle que peut jouer une fonction de
 hachage est en tant qu'une sorte de "signature" : une signature _représente_ une
 personne ou un document de manière unique, sans aucune ambiguïté possible. Il
 est également possible de se représenter un hash en tant que _pointeur_ vers
-quelque chose, ce qui est la métaphore utilisée par git.
+quelque chose, ce qui est la métaphore utilisée par git, comme nous le verrons
+concrètement.
+
+> [!NOTE]
+La notion de hachage est utilisée de manière centrale par git, mais il s'agit d'une
+notion fondamentale en informatique. Elle est particulièrement importante dans le monde
+de la cryptographie, qui est la science de l'échange et de la manipulation de "secrets".
+Elle joue également un rôle fondateur dans des domaines plus récents et émergents,
+comme les cryptomonnaies (Bitcoin est l'exemple le plus fameux) et de manière plus
+générale, la notion de chaîne de blocs (blockchain en anglais).
 
 ### Les fondements de git
 
@@ -819,15 +828,18 @@ contexte. Il est à noter que ce système de préfixe simplifié fonctionne
 
 {{< image src="git-tree.png" alt="Une arborescence git" title="" loading="lazy" >}}
 
-La notion d'arbre git permet d'introduire une notion importante, fondamentale à git :
-[l'arbre de Merkle](https://fr.wikipedia.org/wiki/Arbre_de_Merkle). Un arbre de Merkle
-est un arbre où chaque noeud a un hash qui est fonction de (qui inclut, donc) tout ce qui est dessous. Si on change un élément de l'arbre (un blob par exemple) alors l'effet est que les
-hash de tous les éléments "au-dessus" (les ancêtres) vont devoir changer (car leur valeur
-dépend de tout ce qu'ils ont sous eux). Examinons un exemple concret pour s'en convaincre,
-modifions tout d'abord un fichier au milieu de notre arborescence. Profitons-en pour
-apprendre que l'ajout de `-a` à la commande `git commit` (en plus de `-m` qu'on avait déjà,
-pour faire donc `-am`) permet de sauter l'étape d'ajouter le changement au staging area (`git add`)
-quand on veut aller un peu plus rapidement :
+La notion d'arbre git permet d'introduire une notion importante, fondamentale à
+git : [l'arbre de Merkle](https://fr.wikipedia.org/wiki/Arbre_de_Merkle). Un
+arbre de Merkle est un type d'arbre particulier où chaque noeud a un hash qui
+est _fonction de_ (qui inclut, ou prend en considération, donc) tout ce qui est
+"dessous". Si on change un élément de l'arbre (un blob par exemple) alors
+l'effet est que les hash de tous les éléments "au-dessus" (les ancêtres) vont
+devoir changer aussi (car leur valeur dépend de tout ce qu'ils ont sous eux).
+Examinons un exemple concret pour s'en convaincre, modifions tout d'abord un
+fichier au milieu de notre arborescence. Profitons-en pour apprendre que l'ajout
+de `-a` à la commande `git commit` (en plus de `-m` qu'on avait déjà, pour faire
+donc `-am`) permet de sauter l'étape d'ajouter le changement au staging area
+(`git add`) quand on veut aller un peu plus rapidement :
 
 ```shell
 $ echo "alert('allo!')" >> src/app.js
@@ -836,6 +848,12 @@ $ git commit -am "Quatrième commit"
 [main 3dd71fb] Quatrième commit
  1 file changed, 1 insertion(+)
 ```
+
+> [!NOTE]
+Il est intéressant de noter en passant que l'arbre de Merkle est la
+structure de données qui est au coeur de la cryptomonnaie (comme Bitcoin) et de
+la chaîne de blocs (blockchain). Git et les cryptomonnaies constituent donc deux
+exemples fameux et extrêmement influents de cette technologie particulière.
 
 Notons tout d'abord le hash du commit qu'on vient de produire :
 
@@ -849,7 +867,6 @@ Date:   Fri Jan 16 15:40:53 2026 -0500
 ```
 
 Examinons ensuite le commit et son tree, et notons qu'on peut utiliser son préfixe court de 4 chiffres (`3dd7`) car il n'est pas ambigu :
-
 
 ```shell
 $ git cat-file -p 3dd7
@@ -880,59 +897,234 @@ Tournons maintenant notre attention vers les commits, qui sont le troisième typ
 d'objet git fondamental.
 
 Chaque fois qu'un commit est créé (avec la commande `git commit`), un nouvel
-objet (de type commit) est ajouté à la base de données, qui contient trois
-choses :
+objet (de type commit) est ajouté à la base de données de git.
 
-1. Un pointeur (identifiant, sous la forme d'un hash) vers un arbre qui
-   représente (de manière récursive) l'état du dépôt.
+Examinons encore une fois notre commit le plus récent :
 
-2. Un ou plusieurs pointeurs (hash) vers les commits _parents_ (le ou les commits qui
-   ont précédé ce commit particulier)
+```shell
+$ git cat-file -p 3dd7
+tree 6954fc566d4abe842409c9265ca5bb94044af1c4
+parent 2e6fdee379fbe0d258b2d5f04e7cdd0b4d5cbccb
+author Christian Jauvin <cjauvin@gmail.com> 1768596053 -0500
+committer Christian Jauvin <cjauvin@gmail.com> 1768596053 -0500
+
+Quatrième commit
+```
+
+Un commit a tout d'abord un hash (comme tous les objets git) : `3dd71fb4950c1be35ec335cd0ac40f3b5807303b`,
+ou encore `3dd7`, son préfixe équivalent, plus facile à manipuler. On constate ensuite que
+le commit contient trois choses :
+
+1. Un pointeur (identifiant, sous la forme d'un hash), `6954`, vers un arbre qui
+   représente (de manière récursive) les fichiers du dépôt dans un état
+   particulier, un moment dans le temps.
+
+2. Un pointeur (c-à-d un hash) vers le commit _parent_ (le commit qui a précédé
+   ce commit particulier, soit `2e6f`). Nous verrons qu'il est possible pour un commit
+   d'avoir plusieurs parents, dans certaines circonstances.
 
 3. Des métadonnées diverses, comme la date et l'heure de création du commit,
-   l'adresse de courriel du commiteur, etc.
+   l'adresse de courriel du committeur, etc.
 
-Étant donné la présence du pointeur vers un parent, le fait d'ajouter un commit crée
-une chaîne de commits :
+La présence du pointeur vers un commit parent suggère un concept fondamental
+avec git : les commits forment une chaîne :
 
 {{< image src="git-chain.png" alt="" title="" loading="lazy" >}}
 
-Chaque commit a donc un pointeur qui pointe vers son commit prédécesseur (nous
+Chaque commit a donc un hash qui "pointe" vers son commit prédécesseur (nous
 verrons plus loin qu'il est possible pour un commit d'avoir plus d'un parents,
-et en quoi c'est utile).
+et en quoi c'est utile), pour former une chaîne.
 
 Jusqu'ici, git ne nous permet que d'évoluer de manière linéaire, étant donné que
-n'avons qu'une chaîne de commits. Pourtant, le développement logiciel, surtout s'il est
-effectué par une équipe, est tout sauf linéaire. Des embranchements peuvent être nécessaires
-dans le processus d'évolution du code source. Pour illustrer cela, représentez-vous
-la scénario suivant :
-
-1. Une équipe de développement a complété la première version (v1) d'un logiciel de prise de rendez-vous
-2. La première version est maintenant en ligne, et est utilisée par le grand public
-3. L'équipe doit commencer à travailler sur la nouvelle version (v2)
-
-Si on voulait modéliser le développement à l'aide d'une séquence linéaire, voici ce que ça
-pourrait donner :
+n'avons qu'une chaîne de commits. Pourtant, le développement logiciel, surtout
+s'il est effectué par une équipe, est tout sauf linéaire. Des embranchements
+peuvent être nécessaires dans le processus d'évolution du code source. Pour
+illustrer cela, imaginons que les 4 commits que nous avons jusqu'à maintenant
+correspondent à la version 1 (v1) d'une application qu'on a mise en ligne, et
+qui est utilisée par le grand public. Mais étant donné qu'on perd rarement
+rarement du temps en développement logiciel, le travail a déjà commencé pour
+concevoir la version 2 du même logiciel (qu'on prévoit mettre en ligne plus
+tard). Deux commits ont donc été ajoutés à notre chaîne, qui constituent le
+début du travail sur la version 2. Notez qu'à partir d'ici, nous allons utiliser
+des noms de commit plus simples pour les diagrammes, donc le commit `C1` va
+correspondre `9e60`, `C2` à `34c8`, et ainsi de suite. Nos deux nouveaux commits
+pour la version 2 de l'application seraient donc `C5` et `C6`
 
 {{< image src="git-linear-versions.png" alt="" title="" loading="lazy" >}}
 
-Maintenant que se passe-t-il si un bogue est découvert dans la version 1,
-présentement en ligne (et qui correspond au commit `C4` dans cet exemple)?
+Maintenant imaginons ce qui se passerait si un bogue était découvert dans la
+version 1, présentement en ligne (et qui correspond au commit `C4` (`3dd7`) dans
+notre exemple) :
 
 {{< image src="git-linear-versions-bug.png" alt="" title="" loading="lazy" >}}
 
-Le problème est donc que la chaîne de commits est déjà rendue plus loin, au deuxième
-commit de la version 2, soit le commit `C6` ! Comment peut-on gérer une telle situation
-avec un outil comme git? En utilisant une _branche_ :
+Le problème est donc que la chaîne de commits est déjà rendue plus loin, au
+deuxième commit de la version 2, soit le commit `C6` ! Il faudrait produire un
+commit `C7`, qui serait une correction de `C4`, mais qui n’inclurait pas les
+changements introduits par la version 2 (`C5` et `C6`). Comment serait-il
+possible de résoudre un tel problème. Arrêtez-vous un instant pour y réfléchir
+si vous le désirez, avant de prendre connaissance de la réponse, car il s'agit
+d'un problème fondamental et intéressant !
+
+#### La branche
+
+La façon dont git permet de résoudre ce problème est à l'aide d'une _branche_ :
 
 {{< image src="git-with-branch-bugfix.png" alt="" title="" loading="lazy" >}}
 
-Donc au moment exact où le travail sur la version 1 a été complété (au commit
-`C4` donc), il fallait créer une nouvelle branche (nommée `v2`), pour le
-travail qui allait être effectué sur la nouvelle version 2. De cette manière,
-quand un problème survient avec la version 1, il est possible de le résoudre
-en ajoutant simplement un commit (`C7`) à la branche `main`, correspondant à la
+Donc au moment où le travail sur la version 1 est complété (au commit `C4`
+donc), on doit créer une nouvelle branche (nommée `v2`), pour le travail qui
+doit être effectué sur la nouvelle version 2. De cette manière, quand un
+problème survient avec la version 1, il sera toujours possible de le résoudre en
+ajoutant simplement un commit (`C7`) à la branche `main`, correspondant à la
 version 1.
 
+Il est souvent dit que créer une branche est sans contredit une des opérations
+les plus simples et les moins coûteuses de git :
+
+```shell
+$ git branch v2
+```
+
+En comparaison, les systèmes de versioning plus anciens que git faisaient en
+sorte que cette opération était beaucoup plus coûteuse et complexe. La raison
+qui fait en sorte que la branche est si simple, avec git, est le fait qu'elle
+est techniquement extrêmement simple : ce n'est même pas un "objet fondamental"
+au sens où le blob, le tree et le commit le sont.. il s'agit plutôt simplement
+d'un fichier qui "pointe" vers le hash d'un commit particulier :
+
+```shell
+$ cat .git/refs/heads/v2
+3dd71fb4950c1be35ec335cd0ac40f3b5807303b
+```
+
+On voit ici que le fichier `.git/refs/heads/v2`, dont le nom correspond à notre
+nouvelle branche `v2`, contient simplement le commit `3dd7` (ou encore, `C4`,
+dans nos diagrammes, pour simplifier), qui est l'endroit de départ (ou
+l'embranchement) pour notre nouvelle branche.
+
+Mais si une branche est si simple, qu'elle n'est qu'une étiquette qui pointe
+vers un commit, comment peut-elle fonctionner? Nous sommes présentement dans
+l'état suivant :
+
+{{< image src="git-just-2-branches.png" alt="" title="" loading="lazy" >}}
+
+Si nous ajoutons un nouveau commit dans cet état, comment git fera pour savoir dans
+quelle branche l'ajouter? Nous devons donc introduire un nouveau concept : `HEAD`, qui
+est un fichier qui "pointe" vers la branche active, celle dont nous voulous nous servir :
+
+```shell
+$ cat .git/HEAD
+ref: refs/heads/main
+```
+
+Voici donc la représentation réelle de notre état actuel :
+
+{{< image src="git-just-2-branches-with-head.png" alt="" title="" loading="lazy" >}}
+
+Git manipule donc deux types de pointeur :
+
+1. Un pointeur vers un commit (soit une branche)
+2. Un pointeur vers une branche (soit `HEAD`)
+
+Si on utilise cette commande :
+
+```shell
+$ git branch
+* main
+  v2
+```
+
+git nous dit que la branche courante est toujours `main` (qui est la branche par
+défaut, créée au moment de la création du dépôt), avec la petite étoile (`*`).
+Si nous ajoutions un commit à ce moment-ci, il serait donc dans la branche
+`main`. Mais comme nous voulons maintenant travailler dans la branche `v2`, nous
+devons utiliser cette nouvelle commande :
+
+```shell
+$ git switch v2
+Switched to branch 'v2'
+$
+$ git branch
+  main
+* v2
+```
+
+pour nous retrouver maintenant dans cet état (avec lequel le pointeur `HEAD` pointe simplement
+vers la nouvelle branche `v2`) :
+
+{{< image src="git-just-2-branches-with-head-to-v2.png" alt="" title="" loading="lazy" >}}
+
+Continuons donc notre expérience de pensée, et imaginons que nous sommes en train de travailler
+dans le contexte de la version 2, et que nous ajoutons deux nouveaux commits (`C5` et `C6` dans notre
+notation simplifiée pour les diagrammes) :
+
+```shell
+$ echo "aa" >> toto.txt
+$ git commit -am "Cinquième commit (premier de v2)"
+[v2 b1d097c] Cinquième commit (premier de v2)
+ 1 file changed, 1 insertion(+)
+$
+$ echo "bb" >> toto.txt
+$
+$ git commit -am "Sixième commit (deuxième de v2)"
+[v2 daa06a6] Sixième commit (deuxième de v2)
+ 1 file changed, 1 insertion(+)
+ ```
+
+Notre dépôt est maintenant comme ceci :
+
+{{< image src="git-two-new-commits.png" alt="" title="" loading="lazy" >}}
+
+Notez que la structure du diagramme pourrait aisément suggérer que nous sommes
+toujours dans une structure linéaire (une chaîne), et on pourrait se demander :
+en quoi est-ce différent du modèle précédent, à une seule branche? La clé est
+d'avoir le bon modèle mental : une branche n'est qu'un pointeur ! Et notre
+diagramme montre que nous avons deux pointeurs, donc deux branches : `main` et
+`v2`. Les commits `C1` à `C4` sont communs aux deux branches, et les commits
+`C5` et `C6` appartiennent seulement à la branche `v2`. Et comme `HEAD` montre
+(pointe) que nous nous trouvons sur la branche `v2`, tout nouveau commit s'y
+retrouverait également.
+
+Si on reprend le cours de notre expérience de pensée, on arrive au moment où un
+bogue serait découvert avec la version 1 ! Que peut-on faire, avec la solution? Si
+on ne fait qu'ajouter un commit (pour la solution), elle se retrouvera à suivre `C6` dans la
+branche `v2`, ce qui n'est pas ce que l'on veut (car la version 1 n'inclut pas encore les nouveautés
+de la version 2). La solution est donc de changer tout d'abord de branche :
+
+```shell
+$ git switch main
+Switched to branch 'main'
+$
+$ git branch
+* main
+  v2
+```
+
+ce qui ne fait que déplacer le pointeur `HEAD` vers la branche `main`, là où se trouve notre
+fameux bogue :
+
+{{< image src="git-move-head-back-to-main.png" alt="" title="" loading="lazy" >}}
+
+Nous sommes donc maintenant en position de fournir la solution, et de faire en sorte qu'elle
+se retrouve à l'endroit logique là où elle devrait être :
+
+```shell
+$ echo "solution" >> toto.txt
+$
+$ git commit -am "Septième commit (bugfix v1)"
+[main f229f82] Septième commit (bugfix v1)
+ 1 file changed, 1 insertion(+)
+```
+
+Et avec ceci, nous nous retrouvons donc dans la situation suivante :
+
+{{< image src="git-c7-bugfix.png" alt="" title="" loading="lazy" >}}
+
+qui correspond exactement à la configuration souhaitée que nous avons décrite
+plus haut (prenez le temps de vous en convaincre, car c'est important).
+
+<!--
 {{< applet src="/html/applets/git.html" width="140%" scale="1.0" >}}
+-->
 
