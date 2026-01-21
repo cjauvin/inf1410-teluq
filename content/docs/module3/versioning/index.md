@@ -1125,6 +1125,171 @@ Et avec ceci, nous nous retrouvons donc dans la situation suivante :
 qui correspond exactement à la configuration souhaitée que nous avons décrite
 plus haut (prenez le temps de vous en convaincre, car c'est important).
 
+#### Le merge (de deux branches)
+
+Poursuivons notre scénario imaginé : une fois le bogue dans la version 1
+corrigé, il se trouve que la version 2 est maintenant prête, et nous aimerions
+la mettre en ligne, pour que les utilisateurs puissent l'utiliser. Ceci veut
+donc dire que nous aimerions que le travail effectué dans les commits `C5` et
+`C6`, de la branche `v2`, soit intégré à la version 1, dont l'état le plus
+récent se trouve dans notre commit actuel, `C7`. La commande pour faire cela
+est `git merge` :
+
+```shell
+$ git merge v2
+Auto-merging toto.txt
+CONFLICT (content): Merge conflict in toto.txt
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+Que s'est-il passé? Il semble y avoir un problème ! Le merge a causé un
+"conflit", une incohérence entre la version du fichier `toto.txt` de la branche
+`v2`, et celle de la branche `main`. Git nous informe qu'il n'a pas pu résoudre
+lui-même ce conflit (très souvent il est en mesure de le faire, mais pas cette
+fois) et que nous devons donc intervenir manuellement, avant de pouvoir
+poursuivre. La commande `git diff` permet de mieux comprendre le problème :
+
+```$ git diff
+diff --cc toto.txt
+index 650d061,d521aa0..0000000
+--- a/toto.txt
++++ b/toto.txt
+@@@ -1,3 -1,4 +1,8 @@@
+  allo!
+  bonjour
+++<<<<<<< HEAD
+ +solution
+++=======
++ aa
++ bb
+++>>>>>>> v2
+```
+
+La syntaxe de cette sortie n'est pas si évidente, mais en gros, ce qui se trouve
+entre `<<<<<<< HEAD` et `=======` correspond à une version (de la branche
+`main`), et ce qui se trouve entre `=======` et `>>>>>>>` à l'autre version (de
+la branche `v2`). Ces deux parties sont en contradiction, dans le sens qu'elles
+occupent le même endroit dans le fichier, et git ne sait pas comment choisir. Il
+faut donc éditer le fichier nous-même, et décider ce qu'on veut garder. Dans ce
+cas particulier, éditez le fichier (vous pouvez par exemple utiliser les éditeurs `vim` ou `nano`, sur la ligne de commande) pour qu'il ait l'air de ceci :
+
+```shell
+$ cat toto.txt
+allo!
+bonjour
+solution
+aa
+bb
+```
+
+Une fois le fichier modifié, git nous informe très clairement de la situation :
+
+```shell
+$ git status
+On branch main
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+        modified:   toto.txt
+```
+
+Il faut donc ajouter le fichier dont on a résolu les conflits, et ensuite on peut
+faire notre commit, ce qui complétera le merge :
+
+```shell
+$ git add toto.txt
+$
+$ git commit -m "Huitième commit (merge)"
+[main 55f1243] Huitième commit (merge)
+```
+
+{{< image src="git-merge.png" alt="" title="" loading="lazy" >}}
+
+Si on utilise maintenant la commande `git log`, la totalité de l'évolution de la
+branche `main` (incluant son passage temporaire dans la branche `v2`) devient
+claire :
+
+```shell
+$ git log
+commit 55f1243bb2bd319d2bfefc8e9040dba986456285 (HEAD -> main)
+Merge: f229f82 daa06a6
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Wed Jan 21 09:40:53 2026 -0500
+
+    Huitième commit (merge)
+
+commit f229f82b53ca118d69daa1cccbbe7a296da87758
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Tue Jan 20 11:15:54 2026 -0500
+
+    Septième commit (bugfix v1)
+
+commit daa06a6ceb25c2d008b491b1faba20ce4f5b16d5 (v2)
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Tue Jan 20 10:45:38 2026 -0500
+
+    Sixième commit (deuxième de v2)
+
+commit b1d097c40b6b69dc342cdac2bb09c11bbe853fc0
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Tue Jan 20 10:45:19 2026 -0500
+
+    Cinquième commit (premier de v2)
+
+commit 3dd71fb4950c1be35ec335cd0ac40f3b5807303b
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Fri Jan 16 15:40:53 2026 -0500
+
+    Quatrième commit
+
+commit 2e6fdee379fbe0d258b2d5f04e7cdd0b4d5cbccb
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Thu Jan 15 19:05:29 2026 -0500
+
+    Troisième commit
+
+commit 34c85abbbbee1c21c34da2b5ed126cb888fcb498
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Thu Jan 15 14:57:15 2026 -0500
+
+    Deuxième commit
+
+commit 9e6072c8df904f021474a6173cc1b17b2908c0f1
+Author: Christian Jauvin <cjauvin@gmail.com>
+Date:   Thu Jan 15 12:16:21 2026 -0500
+
+    Premier commit
+```
+
+Si on examine plus attentivement notre dernier commit (`C8` dans le diagramme), on
+constate un détail intéressant :
+
+```shell
+$ git cat-file -p 55f1
+tree d9b5afa4d6f37608b115b489fbca9ac5eaa4b67b
+parent f229f82b53ca118d69daa1cccbbe7a296da87758
+parent daa06a6ceb25c2d008b491b1faba20ce4f5b16d5
+author Christian Jauvin <cjauvin@gmail.com> 1769006453 -0500
+committer Christian Jauvin <cjauvin@gmail.com> 1769006453 -0500
+
+Huitième commit (merge)
+```
+
+Ce commit a donc deux pointeurs parents (`C6` et `C7`) ! Ceci est dû au fait
+qu'il est un commit de merge. Sur le diagramme, ceci correspond au fait que deux
+flèches partent de `C8`, au lieu d'une seule, comme les autres commits.
+
+> [!NOTE]
+Il est utile de savoir que cet aspect structural de l'évolution des commits d'un
+dépôt git forme un [graphe orienté
+acyclique](https://fr.wikipedia.org/wiki/Graphe_orient%C3%A9_acyclique) (ou plus
+communément un DAG, en anglais). Ceci est une structure intermédiaire entre un
+arbre (dont les noeuds ne peuvent avoir qu'un seul parent) et une graphe
+général, où les noeuds peuvent avoir plusieurs parents et plusieurs enfants). Un
+DAG ne permet donc pas les "circuits".
+
+
 <!--
 {{< applet src="/html/applets/git.html" width="140%" scale="1.0" >}}
 -->
