@@ -1331,12 +1331,16 @@ GitHub nous offre ensuite deux scénarios :
 
 {{< image src="git-gh-create-repo-2-options.png" alt="" title="" loading="lazy" >}}
 
-1. Nous avons créé ce dépôt entièrement en ligne, et il est donc nouveau
-2. Nous avons déjà un dépôt existant, et nous aimerions que ce dépôt en ligne que nous venons de créer (sur GitHub) y soit associé
+1. Nous avons créé ce dépôt entièrement en ligne, et il est donc nouveau (nous en voudrions donc une copie locale, pour pouvoir y travailler)
+2. Nous avons déjà un dépôt local existant, et nous aimerions que ce dépôt en ligne que nous venons de créer (sur GitHub) y soit associé
 
-Dans notre scénario d'apprentissage, nous sommes dans l'option 2.
+Dans notre scénario d'apprentissage, nous sommes dans l'option 2 (assurez-vous
+de vous arrêter un moment pour y penser, et vous en convaincre, car les nuances
+topologiques des dépôts git distribués peuvent devenir difficile à se
+représenter).
 
-Effectuons donc les commandes mentionnées, dans la ligne de commande de notre dépôt local :
+Effectuons donc les commandes recommandées par GitHub, dans la ligne de commande
+de notre dépôt local :
 
 ```shell
 $ git remote add origin git@github.com:cjauvin/mon-premier-depot.git
