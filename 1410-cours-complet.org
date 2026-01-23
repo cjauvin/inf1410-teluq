@@ -83,6 +83,7 @@ calculateTotal() also send an email.
 *** HCI principles
 *** declarative vs imperative UI
 *** state management
+*** notions de flow et de least friction (bonne UI)
 ** Programmation parallèle et asynchrone
 *** Mental models, CPU-bound vs IO-bound
 *** Event loop
@@ -95,6 +96,7 @@ calculateTotal() also send an email.
 *** API doc
 *** README, changelogs, etc.
 *** Data models
+** Design by contract
 * Module 3 Les outils et les environnements
 ** git and version control
 *** Quel est le problème de la gestion des versions (versioning)?
