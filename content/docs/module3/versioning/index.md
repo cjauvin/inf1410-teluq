@@ -1170,8 +1170,13 @@ entre `<<<<<<< HEAD` et `=======` correspond à une version (de la branche
 `main`), et ce qui se trouve entre `=======` et `>>>>>>>` à l'autre version (de
 la branche `v2`). Ces deux parties sont en contradiction, dans le sens qu'elles
 occupent le même endroit dans le fichier, et git ne sait pas comment choisir. Il
-faut donc éditer le fichier nous-même, et décider ce qu'on veut garder. Dans ce
-cas particulier, éditez le fichier (vous pouvez par exemple utiliser les éditeurs `vim` ou `nano`, sur la ligne de commande) pour qu'il ait l'air de ceci :
+faut donc éditer le fichier nous-même, et décider ce qu'on veut garder.
+
+{{< image src="git-conflict.png" alt="" title="" loading="lazy" >}}
+
+Dans ce cas particulier, éditez le fichier (vous pouvez par exemple utiliser les
+éditeurs `vim` ou `nano`, sur la ligne de commande) pour qu'il ait l'air de ceci
+:
 
 ```shell
 $ cat toto.txt
@@ -1288,6 +1293,55 @@ communément un DAG, en anglais). Ceci est une structure intermédiaire entre un
 arbre (dont les noeuds ne peuvent avoir qu'un seul parent) et une graphe
 général, où les noeuds peuvent avoir plusieurs parents et plusieurs enfants). Un
 DAG ne permet donc pas les "circuits".
+
+### Au-delà du git local : git distribué
+
+Jusqu'ici nous avons utilisé git en mode local, c'est-à-dire que la totalité des
+opérations que nous avons effectuées sont confinées dans le contexte particulier
+de notre dépôt local, dans un endroit particulier de notre disque, sur un
+ordinateur particulier. Mais le modèle de git est beaucoup plus puissant et
+général, car il permet de synchroniser des versions différentes du même depot, à
+travers le réseau internet. On dit que le modèle est _distribué_. Ce mode est
+évidemment optionnel, et il est tout à fait possible d'utiliser git de manière
+exclusivement locale, si ça correspond à notre besoin. Mais dans un contexte de
+collaboration pour le développement logiciel, le mode distribué de git est
+quasiment essentiel. Une bonne manière de commencer notre exploration de cette
+nouvelle idée est en étendant notre modèle mental des trois "endroits" du git
+local avec un quatrième "endroit", qui correspond à une autre version du même
+depot, qui se trouve "ailleurs" :
+
+{{< image src="git-4-places.png" alt="" title="" loading="lazy" >}}
+
+Il est important de comprendre que cet "ailleurs" peut être en fait plusieurs types d'endroit :
+
+1. Un autre répertoire sur le même ordinateur
+2. Un autre ordinateur (par exemple un serveur en ligne)
+3. Un service d'hébergement en ligne pour git, par exemple GitHub, qui est de loin le plus populaire.
+
+Fondamentalement tous ces endroits fonctionnent de la même manière, mais nous
+allons nous concentrer sur l'usage avec GitHub, qui est le plus courant et
+utile. Jusqu'ici nous avons travaillé dans notre dépôt local, mais imaginons
+que nous aimerions collaborer avec d'autres programmeurs. Pour cela, il est
+très courant d'utiliser GitHub. Créons tout d'abord un nouveau dépôt dans notre
+compte GitHub :
+
+{{< image src="git-gh-create-repo.png" alt="" title="" loading="lazy" >}}
+
+GitHub nous offre ensuite deux scénarios :
+
+{{< image src="git-gh-create-repo-2-options.png" alt="" title="" loading="lazy" >}}
+
+1. Nous avons créé ce dépôt entièrement en ligne, et il est donc nouveau
+2. Nous avons déjà un dépôt existant, et nous aimerions que ce dépôt en ligne que nous venons de créer (sur GitHub) y soit associé
+
+Dans notre scénario d'apprentissage, nous sommes dans l'option 2.
+
+Effectuons donc les commandes mentionnées, dans la ligne de commande de notre dépôt local :
+
+```shell
+$ git remote add origin git@github.com:cjauvin/mon-premier-depot.git
+```
+
 
 
 <!--
