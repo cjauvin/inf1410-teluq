@@ -1,1 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/</link><description>Recent content in Docs on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/</link><description>Recent content in Docs on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
+faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc
+choisi un modèle de développement d&amp;rsquo;application qui comportera différents volets
+reliés aux grands sujets du cours.&lt;/p&gt;
+&lt;p&gt;Nous allons vous demander de développer une application (web) d&amp;rsquo;affaire
+commerciale et transactionnelle (possiblement style SaaS).&lt;/p&gt;
+&lt;p&gt;Dans un premier temps, il vous faudra imaginer la nature exacte de cette
+application, pour ensuite simuler une rencontre du client imaginaire, afin d&amp;rsquo;en
+extraire les spécifications et le fonctionnement exacts. Vous devrez ensuite
+produire un document de conception, en utilisant une technique de modélisation
+de votre choix, afin de tenter de penser d&amp;rsquo;avance au fonctionnement de votre
+application, avant de vous lancer dans le développement à proprement parler.&lt;/p&gt;</description></item></channel></rss>

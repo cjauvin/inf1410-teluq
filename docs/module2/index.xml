@@ -8,4 +8,19 @@ aucune expérience explicite.&lt;/p&gt;
 (entiers, réels, etc) et les chaines de caractères (strings), nous avons les
 structures de données, qui sont des constructions logiques plus complexe
 (non-atomique) qui impliquent, en général, les types de base, d&amp;rsquo;une manière ou
-d&amp;rsquo;une autre.&lt;/p&gt;</description></item></channel></rss>
+d&amp;rsquo;une autre.&lt;/p&gt;</description></item><item><title>Principes généraux fameux</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</guid><description>&lt;h1 id="quelques-principes-généraux-fameux-en-développement-logiciel"&gt;Quelques principes généraux fameux en développement logiciel&lt;a class="anchor" href="#quelques-principes-g%c3%a9n%c3%a9raux-fameux-en-d%c3%a9veloppement-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="dry-dont-repeat-yourself-ne-vous-répétez-pas-"&gt;DRY (Don&amp;rsquo;t Repeat Yourself), ne vous répétez pas !&lt;a class="anchor" href="#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Le fameux principe
+&lt;a href="https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas"&gt;DRY&lt;/a&gt; est
+assurément l&amp;rsquo;un des plus profonds de l&amp;rsquo;informatique, qui consiste à simplement
+reconnaître que c&amp;rsquo;est préférable de modifier quelque chose à un seul endroit,
+plutôt que plusieurs, à la fois pour l&amp;rsquo;économie d&amp;rsquo;effort, et la minimisation des
+risques d&amp;rsquo;erreur.&lt;/p&gt;
+&lt;h2 id="kiss-keep-it-simple-stupid"&gt;KISS: Keep It Simple Stupid&lt;a class="anchor" href="#kiss-keep-it-simple-stupid"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="yagni"&gt;YAGNI&lt;a class="anchor" href="#yagni"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="solid"&gt;SOLID&lt;a class="anchor" href="#solid"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="separation-of-concerns"&gt;Separation of concerns&lt;a class="anchor" href="#separation-of-concerns"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="law-of-demeter"&gt;Law of Demeter&lt;a class="anchor" href="#law-of-demeter"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="composition-over-inheritance"&gt;Composition over inheritance&lt;a class="anchor" href="#composition-over-inheritance"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="boy-scout-rule"&gt;Boy scout rule&lt;a class="anchor" href="#boy-scout-rule"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&amp;ldquo;Always leave the campground cleaner than you found it.&amp;rdquo;&lt;/p&gt;</description></item></channel></rss>

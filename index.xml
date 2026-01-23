@@ -14,7 +14,34 @@ aucune expérience explicite.&lt;/p&gt;
 (entiers, réels, etc) et les chaines de caractères (strings), nous avons les
 structures de données, qui sont des constructions logiques plus complexe
 (non-atomique) qui impliquent, en général, les types de base, d&amp;rsquo;une manière ou
-d&amp;rsquo;une autre.&lt;/p&gt;</description></item><item><title>Qu'est-ce que le génie logiciel?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</guid><description>&lt;h1 id="quest-ce-que-le-génie-logiciel"&gt;Qu&amp;rsquo;est-ce que le génie logiciel?&lt;a class="anchor" href="#quest-ce-que-le-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;</description></item><item><title>Les idées historiques importantes</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</guid><description>&lt;h1 id="historique"&gt;Historique&lt;a class="anchor" href="#historique"&gt;#&lt;/a&gt;&lt;/h1&gt;
+d&amp;rsquo;une autre.&lt;/p&gt;</description></item><item><title>Principes généraux fameux</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</guid><description>&lt;h1 id="quelques-principes-généraux-fameux-en-développement-logiciel"&gt;Quelques principes généraux fameux en développement logiciel&lt;a class="anchor" href="#quelques-principes-g%c3%a9n%c3%a9raux-fameux-en-d%c3%a9veloppement-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="dry-dont-repeat-yourself-ne-vous-répétez-pas-"&gt;DRY (Don&amp;rsquo;t Repeat Yourself), ne vous répétez pas !&lt;a class="anchor" href="#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Le fameux principe
+&lt;a href="https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas"&gt;DRY&lt;/a&gt; est
+assurément l&amp;rsquo;un des plus profonds de l&amp;rsquo;informatique, qui consiste à simplement
+reconnaître que c&amp;rsquo;est préférable de modifier quelque chose à un seul endroit,
+plutôt que plusieurs, à la fois pour l&amp;rsquo;économie d&amp;rsquo;effort, et la minimisation des
+risques d&amp;rsquo;erreur.&lt;/p&gt;
+&lt;h2 id="kiss-keep-it-simple-stupid"&gt;KISS: Keep It Simple Stupid&lt;a class="anchor" href="#kiss-keep-it-simple-stupid"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="yagni"&gt;YAGNI&lt;a class="anchor" href="#yagni"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="solid"&gt;SOLID&lt;a class="anchor" href="#solid"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="separation-of-concerns"&gt;Separation of concerns&lt;a class="anchor" href="#separation-of-concerns"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="law-of-demeter"&gt;Law of Demeter&lt;a class="anchor" href="#law-of-demeter"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="composition-over-inheritance"&gt;Composition over inheritance&lt;a class="anchor" href="#composition-over-inheritance"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="boy-scout-rule"&gt;Boy scout rule&lt;a class="anchor" href="#boy-scout-rule"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&amp;ldquo;Always leave the campground cleaner than you found it.&amp;rdquo;&lt;/p&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
+faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc
+choisi un modèle de développement d&amp;rsquo;application qui comportera différents volets
+reliés aux grands sujets du cours.&lt;/p&gt;
+&lt;p&gt;Nous allons vous demander de développer une application (web) d&amp;rsquo;affaire
+commerciale et transactionnelle (possiblement style SaaS).&lt;/p&gt;
+&lt;p&gt;Dans un premier temps, il vous faudra imaginer la nature exacte de cette
+application, pour ensuite simuler une rencontre du client imaginaire, afin d&amp;rsquo;en
+extraire les spécifications et le fonctionnement exacts. Vous devrez ensuite
+produire un document de conception, en utilisant une technique de modélisation
+de votre choix, afin de tenter de penser d&amp;rsquo;avance au fonctionnement de votre
+application, avant de vous lancer dans le développement à proprement parler.&lt;/p&gt;</description></item><item><title>Qu'est-ce que le génie logiciel?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</guid><description>&lt;h1 id="quest-ce-que-le-génie-logiciel"&gt;Qu&amp;rsquo;est-ce que le génie logiciel?&lt;a class="anchor" href="#quest-ce-que-le-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;</description></item><item><title>Les idées historiques importantes</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</guid><description>&lt;h1 id="historique"&gt;Historique&lt;a class="anchor" href="#historique"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="une-conférence-en-temps-de-crise"&gt;Une conférence en temps de crise&lt;a class="anchor" href="#une-conf%c3%a9rence-en-temps-de-crise"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;D&amp;rsquo;une manière similaire à la conférence de Dartmouth qui a dans un sens inauguré
 le domaine de l&amp;rsquo;intelligence artificielle en 1956, on peut dire que c&amp;rsquo;est la
