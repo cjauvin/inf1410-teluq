@@ -4,7 +4,17 @@
 fondamentale : il change tout le temps. Même un programme simple est rapidement
 modifié - pour corriger un bug, ajouter une fonctionnalité, améliorer la
 performance ou simplement rendre le code plus lisible. Et très vite, une
-question apparaît : comment savoir ce qui a changé, quand, et pourquoi ?&lt;/p&gt;</description></item><item><title>Qu'est-ce que le génie logiciel?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</guid><description>&lt;h1 id="quest-ce-que-le-génie-logiciel"&gt;Qu&amp;rsquo;est-ce que le génie logiciel?&lt;a class="anchor" href="#quest-ce-que-le-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;</description></item><item><title>Les idées historiques importantes</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</guid><description>&lt;h1 id="historique"&gt;Historique&lt;a class="anchor" href="#historique"&gt;#&lt;/a&gt;&lt;/h1&gt;
+question apparaît : comment savoir ce qui a changé, quand, et pourquoi ?&lt;/p&gt;</description></item><item><title>Survol rapide de la programmation</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/</guid><description>&lt;h1 id="survol-rapide-de-la-programmation"&gt;Survol rapide de la programmation&lt;a class="anchor" href="#survol-rapide-de-la-programmation"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Nous allons faire un survol rapide des idées les plus importantes et
+fondamentales de la programmation logicielle. Pour aller droit au but, nous
+allons utiliser le langage Python, qui est très facile à comprendre, même sans
+aucune expérience explicite.&lt;/p&gt;
+&lt;h2 id="structures-de-données-fondamentales"&gt;Structures de données fondamentales&lt;a class="anchor" href="#structures-de-donn%c3%a9es-fondamentales"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Au-delà des types de base, qui sont généralement des nombres de différents types
+(entiers, réels, etc) et les chaines de caractères (strings), nous avons les
+structures de données, qui sont des constructions logiques plus complexe
+(non-atomique) qui impliquent, en général, les types de base, d&amp;rsquo;une manière ou
+d&amp;rsquo;une autre.&lt;/p&gt;</description></item><item><title>Qu'est-ce que le génie logiciel?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</guid><description>&lt;h1 id="quest-ce-que-le-génie-logiciel"&gt;Qu&amp;rsquo;est-ce que le génie logiciel?&lt;a class="anchor" href="#quest-ce-que-le-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;</description></item><item><title>Les idées historiques importantes</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</guid><description>&lt;h1 id="historique"&gt;Historique&lt;a class="anchor" href="#historique"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="une-conférence-en-temps-de-crise"&gt;Une conférence en temps de crise&lt;a class="anchor" href="#une-conf%c3%a9rence-en-temps-de-crise"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;D&amp;rsquo;une manière similaire à la conférence de Dartmouth qui a dans un sens inauguré
 le domaine de l&amp;rsquo;intelligence artificielle en 1956, on peut dire que c&amp;rsquo;est la
