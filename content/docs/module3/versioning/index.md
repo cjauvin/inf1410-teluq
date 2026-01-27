@@ -1300,7 +1300,7 @@ Jusqu'ici nous avons utilisé git en mode local, c'est-à-dire que la totalité 
 opérations que nous avons effectuées sont confinées dans le contexte particulier
 de notre dépôt local, dans un endroit particulier de notre disque, sur un
 ordinateur particulier. Mais le modèle de git est beaucoup plus puissant et
-général, car il permet de synchroniser des versions différentes du même depot, à
+général, car il permet de synchroniser des versions différentes du même dépôt, à
 travers le réseau internet. On dit que le modèle est _distribué_. Ce mode est
 évidemment optionnel, et il est tout à fait possible d'utiliser git de manière
 exclusivement locale, si ça correspond à notre besoin. Mais dans un contexte de
@@ -1318,12 +1318,12 @@ Il est important de comprendre que cet "ailleurs" peut être en fait plusieurs t
 2. Un autre ordinateur (par exemple un serveur en ligne)
 3. Un service d'hébergement en ligne pour git, par exemple GitHub, qui est de loin le plus populaire.
 
-Fondamentalement tous ces endroits fonctionnent de la même manière, mais nous
-allons nous concentrer sur l'usage avec GitHub, qui est le plus courant et
-utile. Jusqu'ici nous avons travaillé dans notre dépôt local, mais imaginons
-que nous aimerions collaborer avec d'autres programmeurs. Pour cela, il est
-très courant d'utiliser GitHub. Créons tout d'abord un nouveau dépôt dans notre
-compte GitHub :
+Fondamentalement tous ces endroits fonctionnent de la même manière (pour
+communiquer entre eux), mais nous allons nous concentrer sur l'usage avec
+GitHub, qui est le plus courant et utile. Jusqu'ici nous avons travaillé dans
+notre dépôt local, mais imaginons que nous aimerions collaborer avec d'autres
+programmeurs. Pour cela, il est très courant d'utiliser GitHub. Créons tout
+d'abord un nouveau dépôt dans notre compte GitHub :
 
 {{< image src="git-gh-create-repo.png" alt="" title="" loading="lazy" >}}
 
@@ -1346,7 +1346,43 @@ de notre dépôt local :
 $ git remote add origin git@github.com:cjauvin/mon-premier-depot.git
 ```
 
+Avec cette commande, nous avons créé un "remote", nommé `origin` qui est
+simplement un lien (url), de notre dépôt local, vers un dépôt distant (remote
+veut dire distant, souvent en ligne).
 
+On peut constater l'ajout de ce lien dans le fichier `.git/config` de notre
+dépôt local :
+
+```shell
+$ cat .git/config
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        ignorecase = true
+        precomposeunicode = true
+[remote "origin"]
+        url = git@github.com:cjauvin/mon-premier-depot.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+```
+
+La deuxième commande proposée est :
+
+```shell
+$ git branch -M main
+```
+
+Ceci a pour but de changer le nom de la branche locale courante, historiquement
+par défaut nommée `master` par git, à `main`, qui est le nouveau nom par défaut
+de la branche principale d'un dépôt sur GitHub. Ceci est simplement pour éviter
+la confusion, et synchroniser le nom des deux branches à une valeur commune.
+
+La troisième commande est cruciale :
+
+```shell
+$ git push -u origin main
+```
 
 <!--
 {{< applet src="/html/applets/git.html" width="140%" scale="1.0" >}}

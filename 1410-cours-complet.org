@@ -145,6 +145,7 @@ calculateTotal() also send an email.
 ** ORM
 ** Big data and ML
 ** web sémantique?
+** Caching
 * Module 6 L'infonuagique
 ** Modèles de service (IaaS, PaaS, SaaS, Serverless)
 ** Les grands fournisseurs (AWS, Azure, GCP)
