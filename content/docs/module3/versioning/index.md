@@ -1382,7 +1382,27 @@ La troisième commande est cruciale :
 
 ```shell
 $ git push -u origin main
+Enumerating objects: 27, done.
+Counting objects: 100% (27/27), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (16/16), done.
+Writing objects: 100% (27/27), 2.23 KiB | 1.11 MiB/s, done.
+Total 27 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), done.
+To github.com:cjauvin/mon-premier-depot.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
 ```
+
+Si on rafraîchit maintenant la page du dépôt sur GitHub, on devrait voir ceci :
+
+{{< image src="git-gh-repo-ready.png" alt="" title="" loading="lazy" >}}
+
+Et si on visite la section des commits, on peut voir l'historique de notre dépôt
+local, qui se retrouve maintenant intégralement dans la version du dépôt en
+ligne sur GitHub :
+
+{{< image src="git-gh-commit-history.png" alt="" title="" loading="lazy" >}}
 
 <!--
 {{< applet src="/html/applets/git.html" width="140%" scale="1.0" >}}
