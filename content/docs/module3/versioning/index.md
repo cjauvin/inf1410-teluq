@@ -1587,8 +1587,8 @@ Notez qu'un nouveau commit correspondant au merge est parfois nécessaire dans
 certains contextes (quand git ne peut pas effecter un merge de type
 "fast-forward", qui est le type le plus simple).
 
-Finalement pour avoir la version la plus récente du travail effectué (sur la
-branche `main`), Leila doit faire un pull dans son dépôt local :
+Pour avoir la version la plus récente du travail effectué (sur la branche
+`main`), Leila doit faire un pull dans son dépôt local :
 
 ```shell
 $ git pull
@@ -1617,10 +1617,11 @@ Date:   Wed Jan 28 11:44:47 2026 -0500
     Proposition d'une nouvelle fonction
 ```
 
-Sara doit également rafraîchir son dépôt local, car sa branche `main` locale ne
-contient pas le commit final de merge, ajouté par git, dans le dépôt en ligne
-GitHub. Elle doit tout d'abord switcher à sa branche locale `main` (de sa
-branche `proposition`), et ensuite la rafraîchir :
+Et finalement, Sara doit également rafraîchir son dépôt local, même si c'est
+elle qui a fait le travail, car sa branche `main` locale ne contient pas encore
+le commit final de merge, ajouté par git, dans le dépôt en ligne GitHub. Elle
+doit tout d'abord switcher à sa branche locale `main` (de sa branche
+`proposition`), et ensuite la rafraîchir :
 
 ```shell
 $ git switch main
