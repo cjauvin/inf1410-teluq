@@ -14,7 +14,13 @@ aucune expérience explicite.&lt;/p&gt;
 (entiers, réels, etc) et les chaines de caractères (strings), nous avons les
 structures de données, qui sont des constructions logiques plus complexe
 (non-atomique) qui impliquent, en général, les types de base, d&amp;rsquo;une manière ou
-d&amp;rsquo;une autre.&lt;/p&gt;</description></item><item><title>Principes généraux fameux</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</guid><description>&lt;h1 id="quelques-principes-généraux-fameux-en-développement-logiciel"&gt;Quelques principes généraux fameux en développement logiciel&lt;a class="anchor" href="#quelques-principes-g%c3%a9n%c3%a9raux-fameux-en-d%c3%a9veloppement-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
+d&amp;rsquo;une autre.&lt;/p&gt;</description></item><item><title>La conteneurisation avec docker</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/docker/</guid><description>&lt;h1 id="la-conteneurisation-avec-docker"&gt;La conteneurisation avec docker&lt;a class="anchor" href="#la-conteneurisation-avec-docker"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la
+technologie Docker, ses concepts de base, et comment utiliser certains de ses
+outils principaux. Le but est de favoriser la création d’un modèle mental
+robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire,
+nous allons tout d’abord répondre à quelques questions courantes, et explorer
+ensuite une série d’exemples, de manière progressive et cohérente.&lt;/p&gt;</description></item><item><title>Principes généraux fameux</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</guid><description>&lt;h1 id="quelques-principes-généraux-fameux-en-développement-logiciel"&gt;Quelques principes généraux fameux en développement logiciel&lt;a class="anchor" href="#quelques-principes-g%c3%a9n%c3%a9raux-fameux-en-d%c3%a9veloppement-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="dry-dont-repeat-yourself-ne-vous-répétez-pas-"&gt;DRY (Don&amp;rsquo;t Repeat Yourself), ne vous répétez pas !&lt;a class="anchor" href="#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Le fameux principe
 &lt;a href="https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas"&gt;DRY&lt;/a&gt; est

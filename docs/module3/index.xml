@@ -4,4 +4,10 @@
 fondamentale : il change tout le temps. Même un programme simple est rapidement
 modifié - pour corriger un bug, ajouter une fonctionnalité, améliorer la
 performance ou simplement rendre le code plus lisible. Et très vite, une
-question apparaît : comment savoir ce qui a changé, quand, et pourquoi ?&lt;/p&gt;</description></item><item><title>La gestion de packages et de librairies avec uv</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/package-managers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/package-managers/</guid><description>&lt;p&gt;Bla&lt;/p&gt;</description></item></channel></rss>
+question apparaît : comment savoir ce qui a changé, quand, et pourquoi ?&lt;/p&gt;</description></item><item><title>La conteneurisation avec docker</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/docker/</guid><description>&lt;h1 id="la-conteneurisation-avec-docker"&gt;La conteneurisation avec docker&lt;a class="anchor" href="#la-conteneurisation-avec-docker"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la
+technologie Docker, ses concepts de base, et comment utiliser certains de ses
+outils principaux. Le but est de favoriser la création d’un modèle mental
+robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire,
+nous allons tout d’abord répondre à quelques questions courantes, et explorer
+ensuite une série d’exemples, de manière progressive et cohérente.&lt;/p&gt;</description></item><item><title>La gestion de packages et de librairies avec uv</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/package-managers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/package-managers/</guid><description>&lt;p&gt;Bla&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,325 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="La conteneurisation avec docker# Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la technologie Docker, ses concepts de base, et comment utiliser certains de ses outils principaux. Le but est de favoriser la création d’un modèle mental robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire, nous allons tout d’abord répondre à quelques questions courantes, et explorer ensuite une série d’exemples, de manière progressive et cohérente.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/docker/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="La conteneurisation avec docker"><meta property="og:description" content="La conteneurisation avec docker# Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la technologie Docker, ses concepts de base, et comment utiliser certains de ses outils principaux. Le but est de favoriser la création d’un modèle mental robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire, nous allons tout d’abord répondre à quelques questions courantes, et explorer ensuite une série d’exemples, de manière progressive et cohérente."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="La conteneurisation avec docker"><meta itemprop=description content="La conteneurisation avec docker# Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la technologie Docker, ses concepts de base, et comment utiliser certains de ses outils principaux. Le but est de favoriser la création d’un modèle mental robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire, nous allons tout d’abord répondre à quelques questions courantes, et explorer ensuite une série d’exemples, de manière progressive et cohérente."><meta itemprop=wordCount content="2620"><title>La conteneurisation avec docker | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/docker/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.427fd74effaa6729c02a67f5c2fcf3aacdee5c04af08e6536e0f6fc0b2d61589.css integrity="sha256-Qn/XTv+qZynAKmf1wvzzqs3uXASvCOZTbg9vwLLWFYk=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/>Qu'est-ce que le génie logiciel?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Les idées historiques importantes</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique2/>Survol historiquee des jalons du GL</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - La programmation</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/>Principes généraux fameux</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle checked>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Les outils et les environnements</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/docker/ class=active>La conteneurisation avec docker</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/package-managers/>La gestion de packages et de librairies avec uv</a></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - La gestion de projet et la collaboration</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a role=button>Module 6 - L'infonuagique</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>La conteneurisation avec docker</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#quest-ce-que-cest>Qu&rsquo;est-ce que c&rsquo;est?</a></li><li><a href=#en-quoi-ça-diffère-dune-vm>En quoi ça diffère d&rsquo;une VM?</a></li><li><a href=#quel-problème-ça-résout>Quel problème ça résout?</a></li><li><a href=#de-où-ça-vient>De où ça vient?</a></li><li><a href=#comment-lutiliser>Comment l&rsquo;utiliser</a><ul><li><a href=#définir-une-image--dockerfile>Définir une image : Dockerfile</a></li></ul></li><li><a href=#créer-une-image--docker-build>Créer une image : docker build</a></li><li><a href=#créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run</a></li><li><a href=#partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte</a></li><li><a href=#gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose</a></li><li><a href=#exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker-compose exec</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=la-conteneurisation-avec-docker>La conteneurisation avec docker<a class=anchor href=#la-conteneurisation-avec-docker>#</a></h1><p>Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la
+technologie Docker, ses concepts de base, et comment utiliser certains de ses
+outils principaux. Le but est de favoriser la création d’un modèle mental
+robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire,
+nous allons tout d’abord répondre à quelques questions courantes, et explorer
+ensuite une série d’exemples, de manière progressive et cohérente.</p><h2 id=quest-ce-que-cest>Qu&rsquo;est-ce que c&rsquo;est?<a class=anchor href=#quest-ce-que-cest>#</a></h2><p>Docker est un programme qui permet de &ldquo;packager&rdquo; une application ainsi que la
+totalité de son environnement dans un fichier spécial appelé une <em>image</em>. Une
+fois que cette image est disponible, Docker permet de créer et exécuter une
+instance dynamique à partir de celle-ci, sous la forme d&rsquo;un <em>container</em>. Un
+container constitue un environnement complètement isolé du système
+d&rsquo;exploitation &ldquo;hôte&rdquo;, qui exécute Docker, ainsi que des autres containers.
+Cette isolation s&rsquo;applique également au disque et au réseau, mais il est
+possible d&rsquo;introduire des exceptions à l&rsquo;aide de différents mécanismes, que nous
+allons explorer. Notons qu&rsquo;il peut être utile de se représenter le concept
+d&rsquo;image comme correspondant grosso modo à celui d&rsquo;une <em>classe</em> (au sens
+orienté-objet), et un container son <em>instance</em>.</p><h2 id=en-quoi-ça-diffère-dune-vm>En quoi ça diffère d&rsquo;une VM?<a class=anchor href=#en-quoi-%c3%a7a-diff%c3%a8re-dune-vm>#</a></h2><p>Bien que ce modèle ressemble en apparence à celui d&rsquo;une machine virtuelle (VM),
+il est assez différent : au lieu de faire l&rsquo;émulation complète d&rsquo;une machine
+physique, comme c&rsquo;est le cas avec les VMs du genre VMWare ou VirtualBox, Docker
+partage plutôt le système d&rsquo;exploitation hôte, en utilisant ses primitives de
+virtualisation. Cette différence fait en sorte que Docker est beaucoup moins
+gourmand en ressources qu&rsquo;une VM, et permet donc de meilleures performances.
+Bien que Docker soit disponible pour toutes les plateformes, il ne peut rouler
+nativement que sur Linux (originalement) et Windows (plus récemment, et moins
+typiquement), tandis que sous MacOS, une couche de virtualisation supplémentaire
+est nécessaire.</p><h2 id=quel-problème-ça-résout>Quel problème ça résout?<a class=anchor href=#quel-probl%c3%a8me-%c3%a7a-r%c3%a9sout>#</a></h2><p>Une application moderne repose sur un assemblage impressionnant de composantes
+logicielles qu&rsquo;il est pratiquement impossible de contrôler dans ses moindres
+détails : votre environnement Conda a beau contenir exactement les mêmes
+versions des librairies Python que celui de votre collègue, il est possible
+qu&rsquo;une différence subtile subsiste dans une des composantes se trouvant dans les
+profondeurs du système d&rsquo;exploitation, susceptible de causer des problèmes
+difficiles à diagnostiquer. Docker permet de résoudre ce problème d&rsquo;une manière
+assez radicale, en permettant de créer, reproduire et distribuer un
+environnement dans sa totalité, en sacrifiant un minimum de performance. La
+métaphore du container de transport maritime prend ainsi son sens, car il permet
+de résoudre un problème apparenté dans le monde physique : rendre plus robuste
+le transport des choses fragiles en les compartimentant.</p><p>En pratique, Docker est pratique et utile dans deux scénarios distincts : quand
+une application complexe doit être déployée et gérée en production, et quand un
+développeur veut reproduire un environnement complexe (celui de production par
+exemple) localement, sans avoir à gérer une multitude de composantes complexes
+sur le système hôte.</p><h2 id=de-où-ça-vient>De où ça vient?<a class=anchor href=#de-o%c3%b9-%c3%a7a-vient>#</a></h2><p>Bien que Docker soit un projet open source, il a été créé et est développé dans
+le contexte d&rsquo;une entreprise à but lucratif (Docker Inc), qui offre des services
+de type &ldquo;entreprise&rdquo;.</p><h2 id=comment-lutiliser>Comment l&rsquo;utiliser<a class=anchor href=#comment-lutiliser>#</a></h2><h3 id=définir-une-image--dockerfile>Définir une image : Dockerfile<a class=anchor href=#d%c3%a9finir-une-image--dockerfile>#</a></h3><p>Supposons que nous voulions créer un petit outil Python qui effectue une tâche
+très simple, avec la ligne de commande. Créons tout d&rsquo;abord un répertoire de
+travail :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ mkdir util
+</span></span><span style=display:flex><span>$ cd util</span></span></code></pre></div><p>Créons ensuite un petit programme simple en python, <code>say_hello.py</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> sys
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>name <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>argv[<span style=color:#ae81ff>1</span>] <span style=color:#66d9ef>if</span> len(sys<span style=color:#f92672>.</span>argv) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#39;TELUQ&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;Hello </span><span style=color:#e6db74>{</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74>!&#39;</span>)</span></span></code></pre></div><p>On peut tout d&rsquo;abord vérifier que notre programme fonctionne localement :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ python say_hello.py
+</span></span><span style=display:flex><span>Hello TELUQ!
+</span></span><span style=display:flex><span>$ python say_hello.py Leila
+</span></span><span style=display:flex><span>Hello Leila!</span></span></code></pre></div><p>On peut maintenant conteneuriser (&ldquo;dockeriser&rdquo;) notre programme en créant tout
+d&rsquo;abord une image, que l&rsquo;on pourra exécuter ensuite en tant que container. La
+composition de l&rsquo;image est définie par un fichier spécial nommé <code>Dockerfile</code>,
+qui contient les commandes pour sa création :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> say_hello.py /inside_container/<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/inside_container</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>ENTRYPOINT</span> [<span style=color:#e6db74>&#34;python&#34;</span>, <span style=color:#e6db74>&#34;say_hello.py&#34;</span>]</span></span></code></pre></div><p>La commande <code>FROM</code> spécifie le nom de l&rsquo;image (nommée <code>python</code>) de laquelle
+notre propre image hérite (ou dérive), publiée sur Docker Hub, un répertoire
+public d&rsquo;images Docker. Dans ce cas particulier il s&rsquo;agit d&rsquo;une image
+officielle, associée à un projet GitHub. Si on consulte ce projet, on peut y
+trouver un
+<a href=https://github.com/docker-library/python/blob/master/3.10/buster/Dockerfile>Dockerfile</a>
+(dans ce cas pour la version 3.10 de Python), qui contient lui-même une commande
+<a href=https://github.com/docker-library/python/blob/9242c448c7e50d5671e53a393fc2c464683f35dd/3.10/buster/Dockerfile#L7>FROM</a>
+pointant vers une autre image en amont (<code>buildpack-deps</code>). Ceci démontre
+l&rsquo;aspect modulaire et récursif de Docker.</p><p>La commande <code>COPY</code> crée une copie de notre programme, qui correspond à son état
+au moment de la création de l&rsquo;image, à l&rsquo;emplacement désigné (le répertoire
+<code>/inside_container</code> n&rsquo;existera que dans le container, quand il sera créé).
+<code>WORKDIR</code> spécifie le répertoire courant qui sera utilisé par la commande
+suivante <code>ENTRYPOINT</code>, qui détermine la ligne de commande qui sera utilisée par
+défaut quand le container sera exécuté.</p><h2 id=créer-une-image--docker-build>Créer une image : docker build<a class=anchor href=#cr%c3%a9er-une-image--docker-build>#</a></h2><p>Pour créer notre image, qu&rsquo;on nommera <code>hello</code>, la commande <code>build</code> prend en
+entrée notre <code>Dockerfile</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker build . -t hello
+</span></span><span style=display:flex><span>Sending build context to Docker daemon  3.072kB
+</span></span><span style=display:flex><span>Step 1/4 : FROM python
+</span></span><span style=display:flex><span> ---&gt; cba42c28d9b8
+</span></span><span style=display:flex><span>Step 2/4 : COPY say_hello.py /inside_container/
+</span></span><span style=display:flex><span> ---&gt; 1857eaae8006
+</span></span><span style=display:flex><span>Step 3/4 : WORKDIR /inside_container
+</span></span><span style=display:flex><span> ---&gt; Running in 82f776c710c1
+</span></span><span style=display:flex><span>Removing intermediate container 82f776c710c1
+</span></span><span style=display:flex><span> ---&gt; 1bb7d819208c
+</span></span><span style=display:flex><span>Step 4/4 : ENTRYPOINT <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;python&#34;</span>, <span style=color:#e6db74>&#34;say_hello.py&#34;</span><span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span> ---&gt; Running in 7721eec86a70
+</span></span><span style=display:flex><span>Removing intermediate container 7721eec86a70
+</span></span><span style=display:flex><span> ---&gt; 4f7eb5601e46
+</span></span><span style=display:flex><span>Successfully built 4f7eb5601e46
+</span></span><span style=display:flex><span>Successfully tagged hello:latest</span></span></code></pre></div><p>On peut vérifier la présence de la nouvelle image en utilisant la commande
+<code>docker images</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker images
+</span></span><span style=display:flex><span>REPOSITORY      TAG       IMAGE ID       CREATED        SIZE
+</span></span><span style=display:flex><span>hello           latest    3bfd9d7c3faf   <span style=color:#ae81ff>25</span> hours ago   886MB</span></span></code></pre></div><h2 id=créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run<a class=anchor href=#cr%c3%a9er-et-d%c3%a9marrer-un-container--docker-run>#</a></h2><p>Une fois qu&rsquo;une image existe, on peut en instancier un (ou plusieurs)
+container à volonté. Étant donné que notre premier exemple est celui
+d&rsquo;un programme en ligne de commande (CLI), le cycle de vie de notre
+container sera bref : il sera tout d&rsquo;abord créé, sa commande (définie
+par le <code>ENTRYPOINT</code> dans le <code>Dockerfile</code>) sera ensuite exécutée, pour
+être finalement stoppé. C&rsquo;est ce que fait la commande <code>docker run &lt;image> [args]</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker run hello
+</span></span><span style=display:flex><span>Hello TELUQ!
+</span></span><span style=display:flex><span>$ docker run hello Leila
+</span></span><span style=display:flex><span>Hello Leila!</span></span></code></pre></div><p>Comment ferait-on pour ajouter une dépendance Python à notre programme? Essayons
+avec une simple modification :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> sys
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> cowsay
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>name <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>argv[<span style=color:#ae81ff>1</span>] <span style=color:#66d9ef>if</span> len(sys<span style=color:#f92672>.</span>argv) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#39;TELUQ&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cowsay<span style=color:#f92672>.</span>cow(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;Hello </span><span style=color:#e6db74>{</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74>!&#39;</span>)</span></span></code></pre></div><p>Si on exécute la commande <code>docker run</code> de nouveau à ce point, rien n&rsquo;aura
+changé, parce que nous n&rsquo;avons modifié le fichier <code>say_hello.py</code> que localement,
+et non dans l&rsquo;image. Pour que le changement soit effectif, on doit reconstruire
+l&rsquo;image :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker build . -t hello</span></span></code></pre></div><p>On peut ensuite tenter d&rsquo;exécuter la nouvelle version :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker run hello Leila
+</span></span><span style=display:flex><span>Traceback <span style=color:#f92672>(</span>most recent call last<span style=color:#f92672>)</span>:
+</span></span><span style=display:flex><span>  File <span style=color:#e6db74>&#34;/inside_container/say_hello_cow.py&#34;</span>, line 2, in &lt;module&gt;
+</span></span><span style=display:flex><span>    import cowsay
+</span></span><span style=display:flex><span>ModuleNotFoundError: No module named <span style=color:#e6db74>&#39;cowsay&#39;</span></span></span></code></pre></div><p>Cette erreur démontre que le container est un environnement complètement isolé,
+dont l&rsquo;état dépend entièrement de l&rsquo;image dont il provient. Étant donné nous
+n&rsquo;avons pas installé de librairies supplémentaires au moment de la création de
+l&rsquo;image, la librairie <code>cowsay</code> est introuvable. Pour l&rsquo;ajouter nous devons donc
+modifier le <del>Dockerfile</del> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> pip install cowsay<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> say_hello.py /inside_container/<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/inside_container</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>ENTRYPOINT</span> [<span style=color:#e6db74>&#34;python&#34;</span>, <span style=color:#e6db74>&#34;say_hello.py&#34;</span>]</span></span></code></pre></div><p>La nouvelle version de notre <code>Dockerfile</code> ajoute une commande <code>RUN</code>, qui
+effectue l&rsquo;installation avec <code>pip</code> de la librairie <code>cowsay</code>. On peut ensuite
+créer une nouvelle image, que l&rsquo;on nommera <code>hello-cow</code> pour la distinguer de la
+précédente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker build . -t hello-cow
+</span></span><span style=display:flex><span>Sending build context to Docker daemon  3.072kB
+</span></span><span style=display:flex><span>Step 1/5 : FROM python
+</span></span><span style=display:flex><span> ---&gt; cba42c28d9b8
+</span></span><span style=display:flex><span>Step 2/5 : RUN pip install cowsay
+</span></span><span style=display:flex><span> ---&gt; Using cache
+</span></span><span style=display:flex><span> ---&gt; a3f8e71ae03c
+</span></span><span style=display:flex><span>Step 3/5 : COPY say_hello.py /inside_container/
+</span></span><span style=display:flex><span> ---&gt; Using cache
+</span></span><span style=display:flex><span> ---&gt; 5130c35145ab
+</span></span><span style=display:flex><span>Step 4/5 : WORKDIR /inside_container
+</span></span><span style=display:flex><span> ---&gt; Using cache
+</span></span><span style=display:flex><span> ---&gt; a0b2779bc537
+</span></span><span style=display:flex><span>Step 5/5 : ENTRYPOINT <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;python&#34;</span>, <span style=color:#e6db74>&#34;say_hello.py&#34;</span><span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span> ---&gt; Using cache
+</span></span><span style=display:flex><span> ---&gt; 0438117446f5
+</span></span><span style=display:flex><span>Successfully built 0438117446f5
+</span></span><span style=display:flex><span>Successfully tagged hello-cow:latest</span></span></code></pre></div><p>On peut tester que la nouvelle image fonctionne en créant un nouveau container :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker run hello-cow Leila
+</span></span><span style=display:flex><span> ______________
+</span></span><span style=display:flex><span>| Hello Leila! |
+</span></span><span style=display:flex><span> <span style=color:#f92672>==============</span>
+</span></span><span style=display:flex><span>              <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>               <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>                 ^__^
+</span></span><span style=display:flex><span>                 <span style=color:#f92672>(</span>oo<span style=color:#f92672>)</span><span style=color:#ae81ff>\_</span>______
+</span></span><span style=display:flex><span>                 <span style=color:#f92672>(</span>__<span style=color:#f92672>)</span><span style=color:#ae81ff>\ </span>      <span style=color:#f92672>)</span><span style=color:#ae81ff>\/\
+</span></span></span><span style=display:flex><span>                     <span style=color:#f92672>||</span>----w |
+</span></span><span style=display:flex><span>                     <span style=color:#f92672>||</span>     <span style=color:#f92672>||</span></span></span></code></pre></div><h2 id=partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte<a class=anchor href=#partager-un-r%c3%a9pertoire-volume-avec-lh%c3%b4te>#</a></h2><p>Dans l&rsquo;exemple précédent, comme la modification à notre programme impliquait
+l&rsquo;ajout d&rsquo;une librairie, la modification de l&rsquo;image était inévitable. Dans le
+processus de développement d&rsquo;une application par contre, la plupart des
+modifications impliquent seulement le code source, et il serait donc intéressant
+de ne pas avoir à payer le coût de la reconstruction de l&rsquo;image à chaque fois.
+Docker permet à un container de partager un répertoire (sous la forme d&rsquo;un
+<em>volume</em>) avec le système hôte avec le mécanisme de &ldquo;bind mount&rdquo;. Pour en faire
+l&rsquo;essai, modifions encore une fois notre programme, cette fois-ci d&rsquo;une manière
+qui ne demande pas l&rsquo;ajout d&rsquo;une nouvelle librairie :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> sys
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> datetime <span style=color:#66d9ef>as</span> dt
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> cowsay
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>name <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>argv[<span style=color:#ae81ff>1</span>] <span style=color:#66d9ef>if</span> len(sys<span style=color:#f92672>.</span>argv) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#39;TELUQ&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>wd <span style=color:#f92672>=</span> dt<span style=color:#f92672>.</span>datetime<span style=color:#f92672>.</span>today()<span style=color:#f92672>.</span>strftime(<span style=color:#e6db74>&#39;%A&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cowsay<span style=color:#f92672>.</span>cow(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;Hello </span><span style=color:#e6db74>{</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74>, today is </span><span style=color:#e6db74>{</span>wd<span style=color:#e6db74>}</span><span style=color:#e6db74>!&#39;</span>)</span></span></code></pre></div><p>Comme nous l&rsquo;avons vu dans la section précédente, cette modification ne pourrait
+pas avoir d&rsquo;effet immédiat, car le fichier <code>say_hello.py</code> a seulement été
+modifié localement, sur l&rsquo;hôte, et non dans l&rsquo;image. Avec l&rsquo;usage d&rsquo;un volume
+partagé, cette modification devient néanmoins visible immédiatement au
+container, sans avoir besoin de reconstruire l&rsquo;image :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker run -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>:/inside_container hello-cow
+</span></span><span style=display:flex><span>  ______________________________
+</span></span><span style=display:flex><span>| Hello TELUQ, today is Monday! |
+</span></span><span style=display:flex><span>  <span style=color:#f92672>==============================</span>
+</span></span><span style=display:flex><span>                                <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>                                 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>                                   ^__^
+</span></span><span style=display:flex><span>                                   <span style=color:#f92672>(</span>oo<span style=color:#f92672>)</span><span style=color:#ae81ff>\_</span>______
+</span></span><span style=display:flex><span>                                   <span style=color:#f92672>(</span>__<span style=color:#f92672>)</span><span style=color:#ae81ff>\ </span>      <span style=color:#f92672>)</span><span style=color:#ae81ff>\/\
+</span></span></span><span style=display:flex><span>                                       <span style=color:#f92672>||</span>----w |
+</span></span><span style=display:flex><span>                                       <span style=color:#f92672>||</span>     <span style=color:#f92672>||</span></span></span></code></pre></div><p>La syntaxe de l&rsquo;argument passé à <code>-v</code> est en deux parties (séparées par un <code>:</code>):
+à gauche le chemin complet (absolu) d&rsquo;un répertoire sur l&rsquo;hôte qu&rsquo;on veut
+partager (déterminé ici dynamiquement avec la commande Bash <code>pwd</code>), à droite
+l&rsquo;endroit correspondant, dans le container.</p><h2 id=gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose<a class=anchor href=#g%c3%a9rer-un-groupe-de-containers--docker-compose>#</a></h2><dl><dt>Nous allons maintenant décrire un scénario où nous voulons créer une application</dt><dt>qui nécessite plusieurs containers. L&rsquo;outil <code>docker compose</code> permet de créer et</dt><dt>orchestrer un groupe de containers de manière très conviviale, toujours avec la</dt><dt>ligne de commande, à l&rsquo;aide d&rsquo;un seul fichier de configuration. Docker-compose</dt><dt>ne remplace pas l&rsquo;outil Docker tout court, il en enrichit seulement l&rsquo;interface</dt><dd>tout ce que fait docker-compose pourrait être accompli avec Docker
+seulement.</dd></dl><p>Créons un nouveau répertoire de travail :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ mkdir app
+</span></span><span style=display:flex><span>$ cd app</span></span></code></pre></div><p>Notre application est constituée de deux serveurs : un serveur <em>applicatif</em>,
+écrit en Python avec Flask, un framework web. L&rsquo;autre est basé sur Redis, une
+base de données de type &ldquo;key/value&rdquo; (dont le rôle est simplement d&rsquo;associer une
+valeur quelconque à une clé). Étant donné qu&rsquo;il s&rsquo;agit ici d&rsquo;un <em>service</em>, censé
+fonctionner de manière continue, sans interruption, le comportement des
+containers sera différent de celui de l&rsquo;utilitaire que nous avons créé dans la
+section précédente, dont la durée de vie était très courte. Dans ce scénario on
+veut démarrer des containers qui vont rouler jusqu&rsquo;à nouvel ordre, quand on
+décidera de les terminer explicitement.</p><p>Voici tout d&rsquo;abord le <code>Dockerfile</code> pour l&rsquo;application Flask, encore
+une fois basée sur une image <code>python</code> officielle :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> pip install flask redis</span></span></code></pre></div><p>Cette application est entièrement contenue dans le fichier <code>main.py</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> redis
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> Flask(__name__)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>red <span style=color:#f92672>=</span> redis<span style=color:#f92672>.</span>Redis(<span style=color:#e6db74>&#34;db&#34;</span>)
+</span></span><span style=display:flex><span>KEY <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;some_key&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/set/&lt;val&gt;&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>set_value</span>(val):
+</span></span><span style=display:flex><span>    red<span style=color:#f92672>.</span>set(KEY, val)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Your value (</span><span style=color:#e6db74>{</span>val<span style=color:#e6db74>}</span><span style=color:#e6db74>) is now set in the database&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/get&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_value</span>():
+</span></span><span style=display:flex><span>    val <span style=color:#f92672>=</span> red<span style=color:#f92672>.</span>get(KEY)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> val <span style=color:#f92672>is</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;No value was stored, use /set&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Your stored value is </span><span style=color:#e6db74>{</span>val<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span></span></span></code></pre></div><p>Notre application web définit deux routes : <code>/set/&lt;val></code>, qui associe
+une valeur à une clé Redis (par exemple <code>/set/123</code>, qui associe <code>123</code>
+à la clé <code>some_key) et </code>/get`, qui la retourne.</p><p>Le dernier fichier nécessaire est la configuration YAML pour <code>docker compose</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>services</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>web</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>build</span>: <span style=color:#ae81ff>.</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>.:/app</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;5000:5000&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>FLASK_ENV</span>: <span style=color:#ae81ff>development</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>FLASK_APP</span>: <span style=color:#ae81ff>main</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>working_dir</span>: <span style=color:#ae81ff>/app</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>command</span>: <span style=color:#e6db74>&#34;flask run --host 0.0.0.0&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>db</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>redis</span></span></span></code></pre></div><p>Les clés <code>web</code> et <code>db</code> (de l&rsquo;objet parent <code>services</code>) correspondent aux deux
+containers qui composent notre application. Le container <code>web</code> est notre
+programme Python, donc défini par le <code>Dockerfile</code>, via la clé
+<code>services.web.build</code>.</p><p>La clé <code>db</code> correspond à un deuxième container qui ne nécessite aucune phase de
+build (donc de <code>Dockerfile</code>) car nous utilisons l&rsquo;image officielle, <code>redis</code>,
+telle quelle, sans modification particulière.</p><p>On peut maintenant démarrer notre application avec la commande <code>docker compose up</code>, qui est un amalgame des commandes <code>docker build</code> et <code>docker run</code>, opérant
+dans le contexte du groupe d&rsquo;images et de containers défini par le fichier YAML
+:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker-compose up -d
+</span></span><span style=display:flex><span>Creating network <span style=color:#e6db74>&#34;app_default&#34;</span> with the default driver
+</span></span><span style=display:flex><span>Building web
+</span></span><span style=display:flex><span>Sending build context to Docker daemon   7.68kB
+</span></span><span style=display:flex><span>Step 1/2 : FROM python
+</span></span><span style=display:flex><span> ---&gt; cba42c28d9b8
+</span></span><span style=display:flex><span>Step 2/2 : RUN pip install flask redis
+</span></span><span style=display:flex><span> ---&gt; Using cache
+</span></span><span style=display:flex><span> ---&gt; 8f66deffb444
+</span></span><span style=display:flex><span>Successfully built 8f66deffb444
+</span></span><span style=display:flex><span>Successfully tagged app_web:latest
+</span></span><span style=display:flex><span>Creating app_web_1 ... <span style=color:#66d9ef>done</span>
+</span></span><span style=display:flex><span>Creating app_db_1  ... <span style=color:#66d9ef>done</span></span></span></code></pre></div><p>Le fait d&rsquo;avoir utilisé l&rsquo;option <code>-d</code> fait en sorte que les deux containers de
+l&rsquo;application sont démarrés en &ldquo;background&rdquo;, comme on peut le constater en
+utilisant la commande <code>docker compose ps</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker-compose ps
+</span></span><span style=display:flex><span>  Name    Command               State  Ports
+</span></span><span style=display:flex><span>-------------------------------------------------------------
+</span></span><span style=display:flex><span>app_db_1  docker-entrypoint.sh  Up     6379/tcp
+</span></span><span style=display:flex><span>app_web_1 flask run --host ...  Up     0.0.0.0:8080-&gt;5000/tcp</span></span></code></pre></div><p>On remarque tout d&rsquo;abord que le container <code>web</code> exécute la commande <code>flask run</code>,
+spécifiée dans le fichier YAML (<code>services.web.command</code>), tandis que le container
+<code>db</code> exécute une commande par défaut définie dans l&rsquo;image <code>redis</code>. La
+comportement de la commande <del>flask run</del> est modulé par la valeur de certaines
+variables d&rsquo;environnement propres à Flask, également définies dans le fichier de
+configuration (<code>services.web.environment</code>). Un volume partagé
+(<code>services.web.volume</code>) permet de rendre le développement encore une fois plus
+convivial.</p><p>Docker-compose crée un réseau privé interne qui permet aux containers de
+communiquer entre eux, en utilisant simplement leur nom en tant que nom de
+domaine. Un exemple de ceci est utilisé dans <code>main.py</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>red <span style=color:#f92672>=</span> redis<span style=color:#f92672>.</span>Redis(<span style=color:#e6db74>&#34;db&#34;</span>)</span></span></code></pre></div><p>où <code>db</code> correspond au nom du container Redis (défini dans notre
+configuration YAML) qui est accessible au container Python (<code>web</code>).</p><p>Finalement, la configuration <code>8080:5000</code> pour <code>services.web.ports</code> est cruciale
+pour notre application car elle permet de diriger le traffic du container <code>web</code>,
+dont le serveur écoute sur le port interne 5000, vers le port 8080 de l&rsquo;hôte.
+Sans cette configuration, le URL <code>web:5000</code> serait <em>seulement</em> accessible au
+container <code>redis</code>, complètement isolé de l&rsquo;extérieur donc.</p><p>Il est facile de tester ce mécanisme avec un outil local (présent sur
+l&rsquo;hôte), comme un navigateur ou <code>curl</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ curl localhost:8080/set/hello
+</span></span><span style=display:flex><span>Your value <span style=color:#f92672>(</span>hello<span style=color:#f92672>)</span> is now set in the database
+</span></span><span style=display:flex><span>$ curl localhost:8080/get
+</span></span><span style=display:flex><span>Your stored value is b<span style=color:#e6db74>&#39;hello&#39;</span></span></span></code></pre></div><h2 id=exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker-compose exec<a class=anchor href=#ex%c3%a9cuter-un-programme-dans-un-container-en-marche--docker-compose-exec>#</a></h2><p>Comme les containers de notre service roulent de manière continue, en attente de
+servir des requêtes, il est possible d&rsquo;exécuter un programme dans un container
+en marche avec la commande <code>docker exec &lt;container> &lt;command></code>. Ceci démarrera
+un process <em>en plus</em> de celui qui roule déjà dans le container. La seule
+condition est que le programme désiré soit disponible dans le container, donc
+qu&rsquo;il fasse partie de son image. Docker compose rend l&rsquo;usage d&rsquo;<code>exec</code> légèrement
+plus convivial, avec sa commande correspondante. Voici par exemple comment
+utiliser <code>redis-cli</code>, un outil de ligne de commande qui permet d&rsquo;interagir avec
+Redis, et qui est disponible à même notre container <code>db</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker-compose exec db redis-cli
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt;
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt;
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; keys *
+</span></span><span style=display:flex><span>1<span style=color:#f92672>)</span> <span style=color:#e6db74>&#34;some_key&#34;</span>
+</span></span><span style=display:flex><span>127.0.0.1:6379&gt; get some_key
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;123&#34;</span></span></span></code></pre></div><p>Cet exemple montre qu&rsquo;il est facile et pratique d&rsquo;examiner ou monitorer l&rsquo;état
+de notre application de manière &ldquo;live&rdquo;, à l&rsquo;aide de nos outils habituels. Pour
+les images qui sont basées ultimement sur un système de type Linux (ce qu&rsquo;il est
+possible de déterminer en suivant la chaîne récursive de commandes <code>FROM</code>, de
+<code>Dockerfile</code> en <code>Dockerfile</code>), il est également souvent possible de démarrer un
+shell :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker-compose exec web bash
+</span></span><span style=display:flex><span>root@d84bfe7aef1f:/app# ls -al
+</span></span><span style=display:flex><span>total <span style=color:#ae81ff>24</span>
+</span></span><span style=display:flex><span>drwxrwxr-x <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>4096</span> Nov  <span style=color:#ae81ff>3</span> 17:14 .
+</span></span><span style=display:flex><span>drwxr-xr-x <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>4096</span> Nov  <span style=color:#ae81ff>3</span> 16:26 ..
+</span></span><span style=display:flex><span>-rw-rw-r-- <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>1000</span>   <span style=color:#ae81ff>41</span> Nov  <span style=color:#ae81ff>1</span> 19:48 Dockerfile
+</span></span><span style=display:flex><span>drwxr-xr-x <span style=color:#ae81ff>2</span> root root <span style=color:#ae81ff>4096</span> Nov  <span style=color:#ae81ff>3</span> 17:14 __pycache__
+</span></span><span style=display:flex><span>-rw-rw-r-- <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>1000</span>  <span style=color:#ae81ff>244</span> Nov  <span style=color:#ae81ff>3</span> 16:26 docker-compose.yml
+</span></span><span style=display:flex><span>-rw-rw-r-- <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>1000</span>  <span style=color:#ae81ff>398</span> Nov  <span style=color:#ae81ff>3</span> 17:14 main.py</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>Le versioning avec git</span>
+</a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/package-managers/ class="flex align-center"><span>La gestion de packages et de librairies avec uv</span>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#quest-ce-que-cest>Qu&rsquo;est-ce que c&rsquo;est?</a></li><li><a href=#en-quoi-ça-diffère-dune-vm>En quoi ça diffère d&rsquo;une VM?</a></li><li><a href=#quel-problème-ça-résout>Quel problème ça résout?</a></li><li><a href=#de-où-ça-vient>De où ça vient?</a></li><li><a href=#comment-lutiliser>Comment l&rsquo;utiliser</a><ul><li><a href=#définir-une-image--dockerfile>Définir une image : Dockerfile</a></li></ul></li><li><a href=#créer-une-image--docker-build>Créer une image : docker build</a></li><li><a href=#créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run</a></li><li><a href=#partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte</a></li><li><a href=#gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose</a></li><li><a href=#exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker-compose exec</a></li></ul></nav></div></aside></main></body></html>
