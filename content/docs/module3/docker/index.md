@@ -1,0 +1,526 @@
+---
+title: "La conteneurisation avec docker"
+weight: 20
+---
+
+# La conteneurisation avec docker
+
+Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la
+technologie Docker, ses concepts de base, et comment utiliser certains de ses
+outils principaux. Le but est de favoriser la création d’un modèle mental
+robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire,
+nous allons tout d’abord répondre à quelques questions courantes, et explorer
+ensuite une série d’exemples, de manière progressive et cohérente.
+
+## Qu'est-ce que c'est?
+
+Docker est un programme qui permet de "packager" une application ainsi que la
+totalité de son environnement dans un fichier spécial appelé une *image*. Une
+fois que cette image est disponible, Docker permet de créer et exécuter une
+instance dynamique à partir de celle-ci, sous la forme d'un *container*. Un
+container constitue un environnement complètement isolé du système
+d'exploitation "hôte", qui exécute Docker, ainsi que des autres containers.
+Cette isolation s'applique également au disque et au réseau, mais il est
+possible d'introduire des exceptions à l'aide de différents mécanismes, que nous
+allons explorer. Notons qu'il peut être utile de se représenter le concept
+d'image comme correspondant grosso modo à celui d'une _classe_ (au sens
+orienté-objet), et un container son _instance_.
+
+## En quoi ça diffère d'une VM?
+
+Bien que ce modèle ressemble en apparence à celui d'une machine virtuelle (VM),
+il est assez différent : au lieu de faire l'émulation complète d'une machine
+physique, comme c'est le cas avec les VMs du genre VMWare ou VirtualBox, Docker
+partage plutôt le système d'exploitation hôte, en utilisant ses primitives de
+virtualisation. Cette différence fait en sorte que Docker est beaucoup moins
+gourmand en ressources qu'une VM, et permet donc de meilleures performances.
+Bien que Docker soit disponible pour toutes les plateformes, il ne peut rouler
+nativement que sur Linux (originalement) et Windows (plus récemment, et moins
+typiquement), tandis que sous MacOS, une couche de virtualisation supplémentaire
+est nécessaire.
+
+## Quel problème ça résout?
+
+Une application moderne repose sur un assemblage impressionnant de composantes
+logicielles qu'il est pratiquement impossible de contrôler dans ses moindres
+détails : votre environnement Conda a beau contenir exactement les mêmes
+versions des librairies Python que celui de votre collègue, il est possible
+qu'une différence subtile subsiste dans une des composantes se trouvant dans les
+profondeurs du système d'exploitation, susceptible de causer des problèmes
+difficiles à diagnostiquer. Docker permet de résoudre ce problème d'une manière
+assez radicale, en permettant de créer, reproduire et distribuer un
+environnement dans sa totalité, en sacrifiant un minimum de performance. La
+métaphore du container de transport maritime prend ainsi son sens, car il permet
+de résoudre un problème apparenté dans le monde physique : rendre plus robuste
+le transport des choses fragiles en les compartimentant.
+
+En pratique, Docker est pratique et utile dans deux scénarios distincts : quand
+une application complexe doit être déployée et gérée en production, et quand un
+développeur veut reproduire un environnement complexe (celui de production par
+exemple) localement, sans avoir à gérer une multitude de composantes complexes
+sur le système hôte.
+
+## De où ça vient?
+
+Bien que Docker soit un projet open source, il a été créé et est développé dans
+le contexte d'une entreprise à but lucratif (Docker Inc), qui offre des services
+de type "entreprise".
+
+## Comment l'utiliser
+
+### Définir une image : Dockerfile
+
+Supposons que nous voulions créer un petit outil Python qui effectue une tâche
+très simple, avec la ligne de commande. Créons tout d'abord un répertoire de
+travail :
+
+```shell
+$ mkdir util
+$ cd util
+```
+
+Créons ensuite un petit programme simple en python, `say_hello.py` :
+
+```python
+import sys
+
+name = sys.argv[1] if len(sys.argv) > 1 else 'TELUQ'
+
+print(f'Hello {name}!')
+```
+
+On peut tout d'abord vérifier que notre programme fonctionne localement :
+
+```shell
+$ python say_hello.py
+Hello TELUQ!
+$ python say_hello.py Leila
+Hello Leila!
+```
+
+On peut maintenant conteneuriser ("dockeriser") notre programme en créant tout
+d'abord une image, que l'on pourra exécuter ensuite en tant que container. La
+composition de l'image est définie par un fichier spécial nommé `Dockerfile`,
+qui contient les commandes pour sa création :
+
+```dockerfile
+FROM python
+
+COPY say_hello.py /inside_container/
+
+WORKDIR /inside_container
+
+ENTRYPOINT ["python", "say_hello.py"]
+```
+
+La commande `FROM` spécifie le nom de l'image (nommée `python`) de laquelle
+notre propre image hérite (ou dérive), publiée sur Docker Hub, un répertoire
+public d'images Docker. Dans ce cas particulier il s'agit d'une image
+officielle, associée à un projet GitHub. Si on consulte ce projet, on peut y
+trouver un
+[Dockerfile](https://github.com/docker-library/python/blob/master/3.10/buster/Dockerfile)
+(dans ce cas pour la version 3.10 de Python), qui contient lui-même une commande
+[FROM](https://github.com/docker-library/python/blob/9242c448c7e50d5671e53a393fc2c464683f35dd/3.10/buster/Dockerfile#L7)
+pointant vers une autre image en amont (`buildpack-deps`). Ceci démontre
+l'aspect modulaire et récursif de Docker.
+
+La commande `COPY` crée une copie de notre programme, qui correspond à son état
+au moment de la création de l'image, à l'emplacement désigné (le répertoire
+`/inside_container` n'existera que dans le container, quand il sera créé).
+`WORKDIR` spécifie le répertoire courant qui sera utilisé par la commande
+suivante `ENTRYPOINT`, qui détermine la ligne de commande qui sera utilisée par
+défaut quand le container sera exécuté.
+
+## Créer une image : docker build
+
+Pour créer notre image, qu'on nommera `hello`, la commande `build` prend en
+entrée notre `Dockerfile` :
+
+```shell
+$ docker build . -t hello
+Sending build context to Docker daemon  3.072kB
+Step 1/4 : FROM python
+ ---> cba42c28d9b8
+Step 2/4 : COPY say_hello.py /inside_container/
+ ---> 1857eaae8006
+Step 3/4 : WORKDIR /inside_container
+ ---> Running in 82f776c710c1
+Removing intermediate container 82f776c710c1
+ ---> 1bb7d819208c
+Step 4/4 : ENTRYPOINT ["python", "say_hello.py"]
+ ---> Running in 7721eec86a70
+Removing intermediate container 7721eec86a70
+ ---> 4f7eb5601e46
+Successfully built 4f7eb5601e46
+Successfully tagged hello:latest
+```
+
+On peut vérifier la présence de la nouvelle image en utilisant la commande
+`docker images` :
+
+```shell
+$ docker images
+REPOSITORY      TAG       IMAGE ID       CREATED        SIZE
+hello           latest    3bfd9d7c3faf   25 hours ago   886MB
+```
+
+## Créer et démarrer un container : docker run
+
+Une fois qu'une image existe, on peut en instancier un (ou plusieurs)
+container à volonté. Étant donné que notre premier exemple est celui
+d'un programme en ligne de commande (CLI), le cycle de vie de notre
+container sera bref : il sera tout d'abord créé, sa commande (définie
+par le `ENTRYPOINT` dans le `Dockerfile`) sera ensuite exécutée, pour
+être finalement stoppé. C'est ce que fait la commande `docker run
+<image> [args]` :
+
+```shell
+$ docker run hello
+Hello TELUQ!
+$ docker run hello Leila
+Hello Leila!
+```
+
+Comment ferait-on pour ajouter une dépendance Python à notre programme? Essayons
+avec une simple modification :
+
+```python
+import sys
+import cowsay
+
+name = sys.argv[1] if len(sys.argv) > 1 else 'TELUQ'
+
+cowsay.cow(f'Hello {name}!')
+```
+
+Si on exécute la commande `docker run` de nouveau à ce point, rien n'aura
+changé, parce que nous n'avons modifié le fichier `say_hello.py` que localement,
+et non dans l'image. Pour que le changement soit effectif, on doit reconstruire
+l'image :
+
+```shell
+$ docker build . -t hello
+```
+
+On peut ensuite tenter d'exécuter la nouvelle version :
+
+```shell
+$ docker run hello Leila
+Traceback (most recent call last):
+  File "/inside_container/say_hello_cow.py", line 2, in <module>
+    import cowsay
+ModuleNotFoundError: No module named 'cowsay'
+```
+
+Cette erreur démontre que le container est un environnement complètement isolé,
+dont l'état dépend entièrement de l'image dont il provient. Étant donné nous
+n'avons pas installé de librairies supplémentaires au moment de la création de
+l'image, la librairie `cowsay` est introuvable. Pour l'ajouter nous devons donc
+modifier le ~Dockerfile~ :
+
+```dockerfile
+FROM python
+
+RUN pip install cowsay
+
+COPY say_hello.py /inside_container/
+
+WORKDIR /inside_container
+
+ENTRYPOINT ["python", "say_hello.py"]
+```
+
+La nouvelle version de notre `Dockerfile` ajoute une commande `RUN`, qui
+effectue l'installation avec `pip` de la librairie `cowsay`. On peut ensuite
+créer une nouvelle image, que l'on nommera `hello-cow` pour la distinguer de la
+précédente :
+
+```shell
+$ docker build . -t hello-cow
+Sending build context to Docker daemon  3.072kB
+Step 1/5 : FROM python
+ ---> cba42c28d9b8
+Step 2/5 : RUN pip install cowsay
+ ---> Using cache
+ ---> a3f8e71ae03c
+Step 3/5 : COPY say_hello.py /inside_container/
+ ---> Using cache
+ ---> 5130c35145ab
+Step 4/5 : WORKDIR /inside_container
+ ---> Using cache
+ ---> a0b2779bc537
+Step 5/5 : ENTRYPOINT ["python", "say_hello.py"]
+ ---> Using cache
+ ---> 0438117446f5
+Successfully built 0438117446f5
+Successfully tagged hello-cow:latest
+```
+
+On peut tester que la nouvelle image fonctionne en créant un nouveau container :
+
+```shell
+$ docker run hello-cow Leila
+ ______________
+| Hello Leila! |
+ ==============
+              \
+               \
+                 ^__^
+                 (oo)\_______
+                 (__)\       )\/\
+                     ||----w |
+                     ||     ||
+```
+
+## Partager un répertoire (volume) avec l'hôte
+
+Dans l'exemple précédent, comme la modification à notre programme impliquait
+l'ajout d'une librairie, la modification de l'image était inévitable. Dans le
+processus de développement d'une application par contre, la plupart des
+modifications impliquent seulement le code source, et il serait donc intéressant
+de ne pas avoir à payer le coût de la reconstruction de l'image à chaque fois.
+Docker permet à un container de partager un répertoire (sous la forme d'un
+*volume*) avec le système hôte avec le mécanisme de "bind mount". Pour en faire
+l'essai, modifions encore une fois notre programme, cette fois-ci d'une manière
+qui ne demande pas l'ajout d'une nouvelle librairie :
+
+```python
+import sys
+import datetime as dt
+import cowsay
+
+name = sys.argv[1] if len(sys.argv) > 1 else 'TELUQ'
+
+wd = dt.datetime.today().strftime('%A')
+
+cowsay.cow(f'Hello {name}, today is {wd}!')
+```
+
+Comme nous l'avons vu dans la section précédente, cette modification ne pourrait
+pas avoir d'effet immédiat, car le fichier `say_hello.py` a seulement été
+modifié localement, sur l'hôte, et non dans l'image. Avec l'usage d'un volume
+partagé, cette modification devient néanmoins visible immédiatement au
+container, sans avoir besoin de reconstruire l'image :
+
+```shell
+$ docker run -v $(pwd):/inside_container hello-cow
+  ______________________________
+| Hello TELUQ, today is Monday! |
+  ==============================
+                                \
+                                 \
+                                   ^__^
+                                   (oo)\_______
+                                   (__)\       )\/\
+                                       ||----w |
+                                       ||     ||
+```
+
+La syntaxe de l'argument passé à `-v` est en deux parties (séparées par un `:`):
+à gauche le chemin complet (absolu) d'un répertoire sur l'hôte qu'on veut
+partager (déterminé ici dynamiquement avec la commande Bash `pwd`), à droite
+l'endroit correspondant, dans le container.
+
+## Gérer un groupe de containers : docker compose
+
+Nous allons maintenant décrire un scénario où nous voulons créer une application
+qui nécessite plusieurs containers. L'outil `docker compose` permet de créer et
+orchestrer un groupe de containers de manière très conviviale, toujours avec la
+ligne de commande, à l'aide d'un seul fichier de configuration. Docker-compose
+ne remplace pas l'outil Docker tout court, il en enrichit seulement l'interface
+: tout ce que fait docker-compose pourrait être accompli avec Docker
+seulement.
+
+Créons un nouveau répertoire de travail :
+
+```shell
+$ mkdir app
+$ cd app
+```
+
+Notre application est constituée de deux serveurs : un serveur _applicatif_,
+écrit en Python avec Flask, un framework web. L'autre est basé sur Redis, une
+base de données de type "key/value" (dont le rôle est simplement d'associer une
+valeur quelconque à une clé). Étant donné qu'il s'agit ici d'un _service_, censé
+fonctionner de manière continue, sans interruption, le comportement des
+containers sera différent de celui de l'utilitaire que nous avons créé dans la
+section précédente, dont la durée de vie était très courte. Dans ce scénario on
+veut démarrer des containers qui vont rouler jusqu'à nouvel ordre, quand on
+décidera de les terminer explicitement.
+
+Voici tout d'abord le `Dockerfile` pour l'application Flask, encore
+une fois basée sur une image `python` officielle :
+
+```dockerfile
+FROM python
+
+RUN pip install flask redis
+```
+
+Cette application est entièrement contenue dans le fichier `main.py` :
+
+```python
+from flask import Flask
+import redis
+
+app = Flask(__name__)
+
+red = redis.Redis("db")
+KEY = "some_key"
+
+@app.route("/set/<val>")
+def set_value(val):
+    red.set(KEY, val)
+    return f"Your value ({val}) is now set in the database"
+
+@app.route("/get")
+def get_value():
+    val = red.get(KEY)
+    if val is None:
+        return "No value was stored, use /set"
+    return f"Your stored value is {val}"
+```
+
+Notre application web définit deux routes : `/set/<val>`, qui associe
+une valeur à une clé Redis (par exemple `/set/123`, qui associe `123`
+à la clé `some_key) et `/get`, qui la retourne.
+
+Le dernier fichier nécessaire est la configuration YAML pour `docker compose` :
+
+```yaml
+services:
+
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: development
+      FLASK_APP: main
+    working_dir: /app
+    command: "flask run --host 0.0.0.0"
+
+  db:
+    image: redis
+```
+
+Les clés `web` et `db` (de l'objet parent `services`) correspondent aux deux
+containers qui composent notre application. Le container `web` est notre
+programme Python, donc défini par le `Dockerfile`, via la clé
+`services.web.build`.
+
+La clé `db` correspond à un deuxième container qui ne nécessite aucune phase de
+build (donc de `Dockerfile`) car nous utilisons l'image officielle, `redis`,
+telle quelle, sans modification particulière.
+
+On peut maintenant démarrer notre application avec la commande `docker compose
+up`, qui est un amalgame des commandes `docker build` et `docker run`, opérant
+dans le contexte du groupe d'images et de containers défini par le fichier YAML
+:
+
+```shell
+$ docker-compose up -d
+Creating network "app_default" with the default driver
+Building web
+Sending build context to Docker daemon   7.68kB
+Step 1/2 : FROM python
+ ---> cba42c28d9b8
+Step 2/2 : RUN pip install flask redis
+ ---> Using cache
+ ---> 8f66deffb444
+Successfully built 8f66deffb444
+Successfully tagged app_web:latest
+Creating app_web_1 ... done
+Creating app_db_1  ... done
+```
+
+Le fait d'avoir utilisé l'option `-d` fait en sorte que les deux containers de
+l'application sont démarrés en "background", comme on peut le constater en
+utilisant la commande `docker compose ps` :
+
+```shell
+$ docker-compose ps
+  Name    Command               State  Ports
+-------------------------------------------------------------
+app_db_1  docker-entrypoint.sh  Up     6379/tcp
+app_web_1 flask run --host ...  Up     0.0.0.0:8080->5000/tcp
+```
+
+On remarque tout d'abord que le container `web` exécute la commande `flask run`,
+spécifiée dans le fichier YAML (`services.web.command`), tandis que le container
+`db` exécute une commande par défaut définie dans l'image `redis`. La
+comportement de la commande ~flask run~ est modulé par la valeur de certaines
+variables d'environnement propres à Flask, également définies dans le fichier de
+configuration (`services.web.environment`). Un volume partagé
+(`services.web.volume`) permet de rendre le développement encore une fois plus
+convivial.
+
+Docker-compose crée un réseau privé interne qui permet aux containers de
+communiquer entre eux, en utilisant simplement leur nom en tant que nom de
+domaine. Un exemple de ceci est utilisé dans `main.py` :
+
+```python
+red = redis.Redis("db")
+```
+
+où `db` correspond au nom du container Redis (défini dans notre
+configuration YAML) qui est accessible au container Python (`web`).
+
+Finalement, la configuration `8080:5000` pour `services.web.ports` est cruciale
+pour notre application car elle permet de diriger le traffic du container `web`,
+dont le serveur écoute sur le port interne 5000, vers le port 8080 de l'hôte.
+Sans cette configuration, le URL `web:5000` serait _seulement_ accessible au
+container `redis`, complètement isolé de l'extérieur donc.
+
+Il est facile de tester ce mécanisme avec un outil local (présent sur
+l'hôte), comme un navigateur ou `curl` :
+
+```shell
+$ curl localhost:8080/set/hello
+Your value (hello) is now set in the database
+$ curl localhost:8080/get
+Your stored value is b'hello'
+```
+
+## Exécuter un programme dans un container en marche : docker-compose exec
+
+Comme les containers de notre service roulent de manière continue, en attente de
+servir des requêtes, il est possible d'exécuter un programme dans un container
+en marche avec la commande `docker exec <container> <command>`. Ceci démarrera
+un process _en plus_ de celui qui roule déjà dans le container. La seule
+condition est que le programme désiré soit disponible dans le container, donc
+qu'il fasse partie de son image. Docker compose rend l'usage d'`exec` légèrement
+plus convivial, avec sa commande correspondante. Voici par exemple comment
+utiliser `redis-cli`, un outil de ligne de commande qui permet d'interagir avec
+Redis, et qui est disponible à même notre container `db` :
+
+```shell
+$ docker-compose exec db redis-cli
+127.0.0.1:6379>
+127.0.0.1:6379>
+127.0.0.1:6379> keys *
+1) "some_key"
+127.0.0.1:6379> get some_key
+"123"
+```
+
+Cet exemple montre qu'il est facile et pratique d'examiner ou monitorer l'état
+de notre application de manière "live", à l'aide de nos outils habituels. Pour
+les images qui sont basées ultimement sur un système de type Linux (ce qu'il est
+possible de déterminer en suivant la chaîne récursive de commandes `FROM`, de
+`Dockerfile` en `Dockerfile`), il est également souvent possible de démarrer un
+shell :
+
+```shell
+$ docker-compose exec web bash
+root@d84bfe7aef1f:/app# ls -al
+total 24
+drwxrwxr-x 3 1000 1000 4096 Nov  3 17:14 .
+drwxr-xr-x 1 root root 4096 Nov  3 16:26 ..
+-rw-rw-r-- 1 1000 1000   41 Nov  1 19:48 Dockerfile
+drwxr-xr-x 2 root root 4096 Nov  3 17:14 __pycache__
+-rw-rw-r-- 1 1000 1000  244 Nov  3 16:26 docker-compose.yml
+-rw-rw-r-- 1 1000 1000  398 Nov  3 17:14 main.py
+```
