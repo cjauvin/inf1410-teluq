@@ -51,8 +51,10 @@ Voici les livrables que vous devrez être en mesure de remettre à la fin du cou
 
 1. Un rapport de la rencontre (imaginaire ou non) avec le client afin d'extraire les spécifications de votre application
 2. Un document de conception, selon la technique de modélisation de votre choix
-3. Un lien vers la plateforme de gestion de projet que vous aurez utilisé
-4. Un dépôt Github avec le code source de votre application
-5. Un document qui explique votre modèle de données et les choix de conception qui y sont reliés
+3. Un lien vers la plateforme de gestion de projet que vous aurez utilisée
+4. Un dépôt Github avec le code source de votre application, ainsi qu'un
+   historique de commits et de branches non-trivial, qui démontrera clairement
+   l'évolution de votre travail et de vos efforts
+5. Un document qui expliquera votre modèle de données et les choix de conception qui y sont reliés
 6. Un lien vers votre application 100% fonctionnelle, disponible en ligne
 6. Un journal de bord qui détaillera l'historique complet de vos processus, sous la forme d'entrées datées
