@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Accueil on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/</link><description>Recent content in Accueil on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/index.xml" rel="self" type="application/rss+xml"/><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Accueil on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/</link><description>Recent content in Accueil on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/index.xml" rel="self" type="application/rss+xml"/><item><title>Environnements du cours</title><link>https://cjauvin.github.io/inf1410-teluq/docs/environnements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/environnements/</guid><description>&lt;h1 id="les-environnements-du-cours"&gt;Les environnements du cours&lt;a class="anchor" href="#les-environnements-du-cours"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;label class="book-image" for="book-image-toggle-0"&gt;
+ &lt;input class="hidden toggle" type="checkbox" id="book-image-toggle-0" /&gt;
+ &lt;img src="https://cjauvin.github.io/inf1410-teluq/docs/environnements/matrix.jpg" alt=""loading="lazy"title="" /&gt;
+&lt;/label&gt;
+&lt;script&gt;
+(function() {
+ const checkbox = document.getElementById('book-image-toggle-0');
+ const escapeHandler = function(e) {
+ if (e.key === 'Escape' &amp;&amp; checkbox.checked) {
+ checkbox.checked = false;
+ }
+ };
+ checkbox.addEventListener('change', function() {
+ if (this.checked) {
+ document.addEventListener('keydown', escapeHandler);
+ } else {
+ document.removeEventListener('keydown', escapeHandler);
+ }
+ });
+})();
+&lt;/script&gt;
+&lt;p&gt;Dans ce cours, nous allons beaucoup utiliser la &lt;a href="https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande"&gt;ligne de
+commande&lt;/a&gt;. La
+ligne de commande est un paradigme ancien, qui survit au passage du temps dans
+le monde du développement informatique en raison de sa versatilité, de sa
+souplesse et de son universalité. La ligne de commande (souvent appelée CLI en
+anglais, ou console) est un type d&amp;rsquo;interface usager textuelle (où on manipule du
+texte et des commandes, des mots, des symboles et des nombres) par opposition au
+type plus moderne de l&amp;rsquo;&lt;a href="https://fr.wikipedia.org/wiki/Interface_graphique"&gt;interface
+graphique&lt;/a&gt; (GUI en anglais,
+graphical user interface, ou souvent juste UI). Le CLI est plus &amp;ldquo;proche&amp;rdquo; de la
+programmation, qui est elle aussi un média essentiellement textuel (et logique,
+souvent mathématique).&lt;/p&gt;</description></item><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Le logiciel (et le code source dont il est constitué) a une particularité
 fondamentale : il change tout le temps. Même un programme simple est rapidement

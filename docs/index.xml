@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/</link><description>Recent content in Docs on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/</link><description>Recent content in Docs on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Environnements du cours</title><link>https://cjauvin.github.io/inf1410-teluq/docs/environnements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/environnements/</guid><description>&lt;h1 id="les-environnements-du-cours"&gt;Les environnements du cours&lt;a class="anchor" href="#les-environnements-du-cours"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;label class="book-image" for="book-image-toggle-0"&gt;
+ &lt;input class="hidden toggle" type="checkbox" id="book-image-toggle-0" /&gt;
+ &lt;img src="https://cjauvin.github.io/inf1410-teluq/docs/environnements/matrix.jpg" alt=""loading="lazy"title="" /&gt;
+&lt;/label&gt;
+&lt;script&gt;
+(function() {
+ const checkbox = document.getElementById('book-image-toggle-0');
+ const escapeHandler = function(e) {
+ if (e.key === 'Escape' &amp;&amp; checkbox.checked) {
+ checkbox.checked = false;
+ }
+ };
+ checkbox.addEventListener('change', function() {
+ if (this.checked) {
+ document.addEventListener('keydown', escapeHandler);
+ } else {
+ document.removeEventListener('keydown', escapeHandler);
+ }
+ });
+})();
+&lt;/script&gt;
+&lt;p&gt;Dans ce cours, nous allons beaucoup utiliser la &lt;a href="https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande"&gt;ligne de
+commande&lt;/a&gt;. La
+ligne de commande est un paradigme ancien, qui survit au passage du temps dans
+le monde du développement informatique en raison de sa versatilité, de sa
+souplesse et de son universalité. La ligne de commande (souvent appelée CLI en
+anglais, ou console) est un type d&amp;rsquo;interface usager textuelle (où on manipule du
+texte et des commandes, des mots, des symboles et des nombres) par opposition au
+type plus moderne de l&amp;rsquo;&lt;a href="https://fr.wikipedia.org/wiki/Interface_graphique"&gt;interface
+graphique&lt;/a&gt; (GUI en anglais,
+graphical user interface, ou souvent juste UI). Le CLI est plus &amp;ldquo;proche&amp;rdquo; de la
+programmation, qui est elle aussi un média essentiellement textuel (et logique,
+souvent mathématique).&lt;/p&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
 faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc
 choisi un modèle de développement d&amp;rsquo;application qui comportera différents volets
