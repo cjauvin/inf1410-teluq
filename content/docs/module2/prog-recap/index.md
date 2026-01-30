@@ -82,12 +82,23 @@ Préférez-vous que votre botte de foin soit :
 
 ### Le dictionnaire (table associative, etc)
 
-La notion de table associative est une autre famille de structures de données
-pour laquelle il est crucial d'avoir un modèle mental clair et limpide. Une
-manière de se représenter le fonctionnement d'une table associative est en tant
-qu'extension d'un `set` : imaginons qu'à chaque élément (ou valeur) d'un `set`,
-nous attachons une valeur.
+La notion de table associative (nommée `dict` en python, pour dictionnaire) est
+une autre famille de structures de données pour laquelle il est crucial d'avoir
+un modèle mental clair et limpide. Une manière de se représenter le
+fonctionnement d'une table associative est en tant qu'extension d'un `set` :
+imaginons qu'à chaque élément (ou valeur) d'un `set`, nous attachons une valeur.
 
 {{< image src="dict.png" alt="" title="" loading="lazy" >}}
+
+On considère le `dict` comme une structure de données plus versatile et générale
+que les autres parce qu'il est possible d'implémenter, par exemple, une liste
+avec un `dict` :
+
+{{< image src="dict-as-list.png" alt="" title="" loading="lazy" >}}
+
+Il est aussi possible d'implémenter un `set` avec un `dict` :
+
+{{< image src="dict-as-set.png" alt="" title="" loading="lazy" >}}
+
 
 ## Algorithmes importants
