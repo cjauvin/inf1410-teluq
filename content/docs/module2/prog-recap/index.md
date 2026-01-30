@@ -18,7 +18,7 @@ structures de données, qui sont des constructions logiques plus complexe
 (non-atomique) qui impliquent, en général, les types de base, d'une manière ou
 d'une autre.
 
-### La liste et le set
+### La liste et le `set`
 
 La liste est une structure de données qui est une collection de valeurs :
 
@@ -38,6 +38,8 @@ Il est possible d'y ajouter, ou d'enlever des éléments :
 >>> len(a)
 3
 ```
+
+{{< image src="list.png" alt="" title="" loading="lazy" >}}
 
 La liste a une taille et ses éléments ont un ordre. En contraste, le `set` a une taille, mais ses éléments
 n'ont aucun ordre (il s'agit d'un "sac" de valeurs). Il est également possible de lui ajouter ou enlever
@@ -67,6 +69,8 @@ True
 False
 ```
 
+{{< image src="set.png" alt="" title="" loading="lazy" >}}
+
 Imaginez que vous cherchiez une aiguille dans une botte de foin :
 
 {{< image src="haystack.png" alt="" title="" loading="lazy" >}}
@@ -76,6 +80,14 @@ Préférez-vous que votre botte de foin soit :
 1. Une liste
 2. Un `set`
 
+### Le dictionnaire (table associative, etc)
 
+La notion de table associative est une autre famille de structures de données
+pour laquelle il est crucial d'avoir un modèle mental clair et limpide. Une
+manière de se représenter le fonctionnement d'une table associative est en tant
+qu'extension d'un `set` : imaginons qu'à chaque élément (ou valeur) d'un `set`,
+nous attachons une valeur.
+
+{{< image src="dict.png" alt="" title="" loading="lazy" >}}
 
 ## Algorithmes importants
