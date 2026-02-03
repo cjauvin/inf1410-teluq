@@ -82,10 +82,20 @@ Préférez-vous que votre botte de foin soit :
 
 ### Le dictionnaire (table associative, etc)
 
-La notion de table associative (nommée `dict` en python, pour dictionnaire) est
-une autre famille de structures de données pour laquelle il est crucial d'avoir
-un modèle mental clair et limpide. Une manière de se représenter le
-fonctionnement d'une table associative est en tant qu'extension d'un `set` :
+La notion de "table associative" a plusieurs noms, selon les langages et les
+cultures de programmation :
+
+1. On parle d'un `dict` en Python (pour dictionnaire)
+2. D'un `Object` en JavaScript (ou `{}`, à ne pas confondre avec les "objets" de la programmation orientée-objet, bien que ces concepts sont reliés)
+3. Un `Hash` en Ruby
+4. Un `array` (associatif) en PHP
+5. Une `table` en Lua
+6. Une `map` en Go
+etc.
+
+Il s'agit d'une autre famille de structures de données pour laquelle il est
+crucial d'avoir un modèle mental clair et limpide. Une manière de se représenter
+le fonctionnement d'une table associative est en tant qu'extension d'un `set` :
 imaginons qu'à chaque élément (ou valeur) d'un `set`, nous attachons une valeur.
 
 {{< image src="dict.png" alt="" title="" loading="lazy" >}}
@@ -213,6 +223,24 @@ console.log("\nIMMUTABLE OBJECT:");
 console.log(personRecord.name);
 console.log(personRecord.age);
 ```
+
+### L'implémentation du dictionnaire
+
+Nous avons jusqu'ici parlé du dictionnaire du point de vue des langages de
+programmation d'assez haut niveau, comme Python et JS. Ceux-ci permettent
+d'utiliser un dictionnaire, mais en cache un aspect crucial : leur
+implémentation ! Étant donné que Python, le langage lui-même, est écrit dans le
+langage C, comment écrit-on un `dict` Python, en C? Il existe plusieurs manières
+de le faire, mais l'une d'elles est [table de
+hachage](https://fr.wikipedia.org/wiki/Table_de_hachage) (hash table en
+anglais). En gros, l'idée est d'appliquer une [fonction de
+hachage](docs/module3/versioning/#fonction-de-hachage) à un élément (la clé), ce
+qui permet de déterminer l'index dans un tableau, où on pourra mettre la valeur
+associée. Dans certaines implémentations, il est nécessaire de gérer les
+collisions possibles : si deux clés mènent au même index par exemple, il sera
+possible d'utiliser une liste, pour cette clé particulière.
+
+{{< image src="hashtable.png" alt="" title="" loading="lazy" >}}
 
 ### La correspondance avec JSON
 
