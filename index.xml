@@ -31,7 +31,21 @@ etc) par opposition au type plus moderne de l&amp;rsquo;&lt;a href="https://fr.w
 graphique&lt;/a&gt; (GUI en anglais,
 graphical user interface, ou souvent juste UI). Le CLI est plus &amp;ldquo;proche&amp;rdquo; de la
 programmation, qui est elle aussi un média essentiellement textuel (et logique,
-souvent mathématique).&lt;/p&gt;</description></item><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
+souvent mathématique).&lt;/p&gt;</description></item><item><title>Le manifeste Agile</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</guid><description>&lt;h1 id="la-manifeste-agile"&gt;La manifeste Agile&lt;a class="anchor" href="#la-manifeste-agile"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Voici les douze principes du &lt;a href="https://agilemanifesto.org/iso/fr/principles.html"&gt;manifeste Agile&lt;/a&gt; :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Notre plus haute priorité est de satisfaire le client par la livraison rapide
+et continue de fonctionnalités à forte valeur ajoutée.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Accueillez favorablement les changements, même tard dans le développement.
+Les processus agiles exploitent le changement pour donner un avantage compétitif
+au client.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Livrez fréquemment un logiciel opérationnel, avec des cycles de quelques
+semaines à quelques mois, en privilégiant les plus courts.&lt;/p&gt;</description></item><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Le logiciel (et le code source dont il est constitué) a une particularité
 fondamentale : il change tout le temps. Même un programme simple est rapidement
