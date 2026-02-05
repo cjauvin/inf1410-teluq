@@ -161,7 +161,6 @@
 - Coding agents
 - MCP
 
-
 # Module 4 — La gestion de projet et la collaboration
 - Agile
 - Scrum
@@ -171,7 +170,6 @@
 - Tech writing
 - Documentation
 - Recueil des besoins
-
 
 # Module 5 — Les données
 - SQL

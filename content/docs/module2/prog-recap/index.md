@@ -260,12 +260,12 @@ les applications distribuées.
 
 ```json
 {
-  "name": "Alice",
+  "nom": "Alice",
   "age": 30,
-  "skills": ["Python", "JavaScript", "SQL"],
-  "address": {
-    "city": "Montreal",
-    "country": "Canada"
+  "competences": ["Python", "JavaScript", "SQL"],
+  "adresse": {
+    "ville": "Montréal",
+    "pays": "Canada"
   }
 }
 ```
@@ -275,3 +275,7 @@ l'usage des `{}`), mais il existe toutefois d'autres formats (JSONL, NDJSON,
 etc). Ce dictionnaire contient la plupart du temps des champs (clés) dont les
 valeurs peuvent être, elles-mêmes, des dictionnaires, des listes ou des valeurs
 scalaires (nombres, chaines de caractères ou valeurs booléennes).
+
+## Complexité algorithmique
+
+TODO
