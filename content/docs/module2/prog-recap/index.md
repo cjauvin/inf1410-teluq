@@ -3,7 +3,7 @@ title: "Survol rapide de la programmation"
 weight: 10
 ---
 
-# Survol rapide de la programmation
+# Survol compact de la programmation
 
 Nous allons faire un survol rapide des idées les plus importantes et
 fondamentales de la programmation logicielle. Pour aller droit au but, nous
@@ -447,3 +447,58 @@ supplémentaire correspond à un facteur par lequel on multiplie le temps
 d'exécution de notre algorithme, en gros. On peut donc généraliser ce principe,
 et comprendre qu'un algorithme qui contiendrait trois boucles `for` imbriquées,
 par exemple, serait $O(N^3)$, ce qui serait évidemment encore plus coûteux.
+
+### Au-delà et en-deça de la complexité polynomiale
+
+Nous avons vu jusqu'ici des algorithmes et des structures de données qui ont
+suggéré un ordre dans la complexité : $O(1)$ (temps constant), qui est le plus
+rapide, à privilégier quand c'est possible évidemment, $O(N^2)$, le temps
+quadratique, qui est beaucoup moins efficace. Et nous avons vu qu'il est
+possible de généraliser au-delà : $O(N^3)$, temps cubique, etc. On appelle cette
+classe de performance _polynomiale_.
+
+Il existe cependant d'autres profils de performance dont il est utile de
+connaître l'existence. Supposons qu'on ait une liste triée de nombres, et qu'on
+cherche un nombre particulier dans cette liste :
+
+{{< image src="sorted-list.png" alt="" title="" loading="lazy" >}}
+
+Est-ce qu'il existe un algorithme plus performant que $O(N)$ pour ce problème?
+
+{{< image src="binary-search.png" alt="" title="" loading="lazy" >}}
+
+Cet algorithme très fameux s'appelle la "recherche binaire", et son temps
+d'exécution est $O(log N)$, car il s'agit essentiellement d'une série de
+"division par deux" (à chaque fois qu'on coupe la liste en deux), l'inverse donc
+d'une multiplication. Dans le contexte de ce que nous avons vu jusqu'à
+maintenant, il  s'agit donc d'une performance intermédiaire, entre $O(1)$ et
+$O(N)$. Dans la pratique, si un tel algorithme est possible, c'est souvent
+extrêmement avantageux, car la fonction $log(N)$ progresse beaucoup plus
+lentement qu'une fonction linéaire ($O(N)$).
+
+Dans le problème précédent, une difficulté était cachée : comment fait-on pour
+trier une liste, et quel coût ça a? Il s'avère que la méthode la plus rapide
+pour trier une liste est $O(N log N)$, ce qu'on appelle parfois une méthode
+supra-linéaire, et qui se trouve entre $O(N)$ et $O(N^2)$. Il est
+mathématiquement impossible de faire mieux qu'une performance supra-linéaire,
+pour trier une liste de nombres ou d'objets quelconques.
+
+Finalement, certains algorithmes ont des profils de performance encore plus
+coûteux que la classe polynomiale : ils nécessitent un temps exponentiel, par
+exemple $O(2^N)$. Voici certains exemples fameux de problèmes dont les algorithmes
+pour produire une solution optimale sont exponentiels :
+
+{{< image src="tsp.png" alt="" title="" loading="lazy" >}}
+
+Le [problème du voyageur de
+commerce](https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_voyageur_de_commerce),
+qui consister à déterminer le circuit le plus court passant par une série de
+villes, dans un graphe.
+
+Les échecs :
+
+{{< image src="chess.png" alt="" title="" loading="lazy" >}}
+
+Et finalement, le jeu de Sudoku :
+
+{{< image src="sudoku.png" alt="" title="" loading="lazy" >}}
