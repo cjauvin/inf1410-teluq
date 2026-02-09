@@ -163,13 +163,15 @@
 
 # Module 4 — La gestion de projet et la collaboration
 - Agile
-- Scrum
-- Kanban
+  - Scrum
+  - Kanban
+  - Extreme Programming
 - DevOps
 - Code reviews (GitHub, etc.)
 - Tech writing
 - Documentation
 - Recueil des besoins
+- Peter Naur: Programming as Theory Building
 
 # Module 5 — Les données
 - SQL

@@ -36,6 +36,10 @@
 	"hugo_colon": {
 		"prefix": "hugo_colon",
 		"body": "&nbsp;:"
-	}
-
+	},
+	"hugo_image": {
+        "prefix": "hugo_image",
+		"body": "{{< image src=\"$0\" alt=\"\" title=\"\" loading=\"lazy\" >}}",
+        "description": "hugo image"
+    },
 }

@@ -5,6 +5,13 @@ weight: 10
 
 # La manifeste Agile
 
+En quelque au début des années 2000, le mot "agile" est devenu omniprésent, dans
+la culture technologique et même au-delà. Il représente en fait un phénomène
+culturel dont la genèse est un petit groupe de professionnels, qui se sont
+rassemblés pour mettre en commun leurs idées par rapport au changement de
+paradigme dans la culture du développement logiciel, par rapport aux décennies
+qui précédaient.
+
 Voici les douze principes du [manifeste Agile](https://agilemanifesto.org/iso/fr/principles.html) :
 
 1. Notre plus haute priorité est de satisfaire le client par la livraison rapide
@@ -59,3 +66,10 @@ objet moins prévisible, plus organique et changeant, auquel on doit accorder un
 attention quotidienne et en constante évolution :
 
 {{< image src="gardening.png" alt="" title="" loading="lazy" >}}
+
+## La méthode Scrum
+
+## La méthode Kanban
+
+## La programmation extrême (XP)
+

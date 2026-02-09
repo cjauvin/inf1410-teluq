@@ -276,6 +276,174 @@ etc). Ce dictionnaire contient la plupart du temps des champs (clés) dont les
 valeurs peuvent être, elles-mêmes, des dictionnaires, des listes ou des valeurs
 scalaires (nombres, chaines de caractères ou valeurs booléennes).
 
-## Complexité algorithmique
+## Complexité algorithmique et performance
 
-TODO
+Le sujet de la [complexité
+algorithmique](https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_la_complexit%C3%A9_(informatique_th%C3%A9orique))
+est en général présenté et discuté de manière très mathématique (et même parfois
+carrément
+[philosophique](https://fr.wikipedia.org/wiki/Probl%C3%A8me_P_%E2%89%9F_NP)),
+mais la plupart des programmeurs d'expérience en ont un modèle mental assez
+simplifié.
+
+La préoccupation fondamentale à la base de sujet est la performance d'un
+algorithme, ou en termes encore plus simples le temps qu'il prend à exécuter.
+Bien qu'en pratique les détails d'implémentation (comment un programme est
+écrit) et les particularités matérielles de l'environnement où il est exécuté
+(l'ordinateur particulier qui est utilisé) sont très importants, en général
+quand on parle de complexité algorithmique on a en tête quelque chose de plus
+abstrait.
+
+Examinons certains exemples. Imaginons tout d'abord que nous avons une fonction
+qui construit une liste de `N` nombres entiers aléatoires (entre 1 et `N`) :
+
+```python
+import random
+
+def get_random_numbers(n):
+    return [random.randint(1, n) for _ in range(n)]
+```
+
+Imagions ensuite que nous aimerions savoir si une paire de nombres distincts,
+dans cette liste, résulte en une somme donnée `K`.
+
+{{< image src="two-sum.png" alt="" title="" loading="lazy" >}}
+
+Une méthode naive pour résoudre ce problème consiste à considérer toutes les
+paires :
+
+{{< image src="two-sum-quadratic.png" alt="" title="" loading="lazy" >}}
+
+```python
+def two_sum_quadratic_version(a, k):
+    for i, x in enumerate(a):
+        for j, y in enumerate(a):
+            if i == j: continue
+            if x + y == k:
+                return (x, y)
+
+    return None
+```
+
+Cette méthode est assez coûteuse parce que pour chaque item de la liste (qui
+contient `N` items), il faut considérer une sous-liste (en fait la même liste,
+implicitement), de `N` éléments. Il faut donc faire, au maximum, $N^2$ (`N` au
+carré) vérifications. On parle donc d'un algorithme de complexité
+[_quadratique_](https://fr.wikipedia.org/wiki/Fonction_quadratique). On utilise
+parfois la notation appelée ["Grand
+O"](https://fr.wikipedia.org/wiki/Comparaison_asymptotique#La_famille_de_notations_de_Landau_O,_o,_%CE%A9,_%CF%89,_%CE%98,_~)
+pour décrire la complexité algorithmique d'une fonction, dans ce cas $O(N^2)$.
+
+Si on y pense un peu, une méthode beaucoup plus efficace consisterait à utiliser
+un `set` pour conserver les valeurs qu'on a déjà rencontrées, et à chaque
+nouvelle valeur de la liste (à ne pas confondre avec le `set`!), tester si `K`
+moins la nouvelle valeur se trouve dans le `set` :
+
+{{< image src="two-sum-linear.png" alt="" title="" loading="lazy" >}}
+
+```python
+def two_sum_linear_version(a, k):
+    seen = set()
+    for x in a:
+        target = k - x
+        if target in seen:
+          return (x, target)
+        seen.add(x)
+
+    return None
+```
+
+La raison pour laquelle cet algorithme est beaucoup plus efficace est dû au fait
+que tester l'inclusion d'un item dans un `set` (ce qui se fait, dans le code
+ci-haut, à l'aide de l'opérateur `in`, dans la ligne `if target in seen`),
+contrairement au fait de le faire dans une liste, est extrêmement efficace : si
+on utilise la notation "grand O", on dit que chercher un item dans une liste est
+$O(1)$, c'est-à-dire que cela se fait en temps constant. Mais étant donné que
+nous devons tout de même passer à travers tous les items de la liste pour les
+tester, la complexité finale de l'algorithme reste tout de même $O(N)$, ce qu'on
+appelle une complexité linéaire.
+
+Pour comparer de manière empirique la performance de ces deux algorithmes, nous
+avons besoin de considérer plusieurs résultats (c-à-d plusieurs sommes
+possibles), car un seul appel pourrait être "chanceux" (la première paire
+considérée est tout de suite la bonne). On peut utiliser cette fonction, qui
+prend en entrée une variable `fn`, qui va contenir la fonction qui sera exécutée
+(`two_sum_linear_version` ou `two_sum_quadratic_version`) :
+
+```python
+def test_algo(fn, a):
+    for k in range(len(a)):
+        res = fn(a, k)
+        if res:
+          assert res[0] + res[1] == k
+```
+
+Quand la taille de la liste est raisonnable, la différence entre les deux
+algorithmes n'est pas si notable (ici on utilise la console
+[ipython](https://ipython.org/), qui possède des fonctionnalités pratiques pour
+mesurer le temps d'exécution)&nbsp;
+
+```python
+In [60]: a = get_random_numbers(1000)
+
+In [61]: %time test_algo(two_sum_quadratic_version, a)
+CPU times: user 486 ms, sys: 2.93 ms, total: 489 ms
+Wall time: 489 ms
+
+In [62]: %time test_algo(two_sum_linear_version, a)
+CPU times: user 10.4 ms, sys: 162 μs, total: 10.6 ms
+Wall time: 10.6 ms
+```
+
+Mais si on augmente `N`, la différence devient rapidement assez dramatique :
+
+```python
+In [63]: a = get_random_numbers(5000)
+
+In [64]: %time test_algo(two_sum_quadratic_version, a)
+CPU times: user 7.13 s, sys: 46.2 ms, total: 7.17 s
+Wall time: 7.17 s
+
+In [65]: %time test_algo(two_sum_linear_version, a)
+CPU times: user 52 ms, sys: 1.91 ms, total: 53.9 ms
+Wall time: 53.1 ms
+```
+
+Il est très important de comprendre à quel point l'utilisation de la bonne
+structure de données est cruciale, pour certains algorithmes. Si on remplace
+le `set` de la méthode linéaire par une liste, elle redevient quadratique :
+
+```python
+def two_sum_falsely_linear_version(a, k):
+    seen = []
+    for x in a:
+        target = k - x
+        if target in seen:
+            return (x, target)
+        seen.append(x)
+
+    return None
+```
+
+{{< image src="two-sum-falsely-linear.png" alt="" title="" loading="lazy" >}}
+
+```python
+In [67]: %time test_algo(two_sum_falsely_linear_version, a)
+CPU times: user 607 ms, sys: 5.68 ms, total: 613 ms
+Wall time: 612 ms
+```
+
+Nous avons dit que cet algorithme est "faussement linéaire", et qu'il est en
+fait quadratique, en raison de l'usage de la liste (plutôt qu'un `set`). Mais
+pourquoi la performance semble être "entre les deux", dans ce cas particulier,
+si on compare les temps d'exécution? La réponse est que l'opérateur `in` est
+fortement optimisé en Python (qui est lui-même écrit dans le langage C), et
+qu'il est beaucoup plus efficace que ce qu'on pourrait faire nous-même, avec
+notre propre boucle `for`. On peut donc en dégager une idée générale, un modèle
+mental simplifié avec lequel il est possible de faire beaucoup de chemin : la
+complexité algorithmique se réduit souvent à la question du nombre de boucles
+`for` imbriquées que notre code contient ! Chaque boucle imbriquée
+supplémentaire correspond à un facteur par lequel on multiplie le temps
+d'exécution de notre algorithme, en gros. On peut donc généraliser ce principe,
+et comprendre qu'un algorithme qui contiendrait trois boucles `for` imbriquées,
+par exemple, serait $O(N^3)$, ce qui serait évidemment encore plus coûteux.
