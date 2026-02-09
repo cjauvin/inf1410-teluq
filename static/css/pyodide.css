@@ -1,0 +1,86 @@
+/* ── Pyodide executable code block ── */
+
+.pyodide-block {
+  margin: 1rem 0;
+  border: 1px solid var(--gray-200, #e2e8f0);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Hide the raw textarea (CodeMirror replaces it) */
+.pyodide-block > textarea {
+  display: none;
+}
+
+/* CodeMirror overrides */
+.pyodide-block .CodeMirror {
+  height: auto;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border: none;
+  border-radius: 0;
+}
+
+/* ── Toolbar ── */
+
+.pyodide-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--gray-200, #e2e8f0);
+  border-top: 1px solid var(--gray-200, #e2e8f0);
+}
+
+.pyodide-toolbar button {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--gray-300, #ccc);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--body-font-color, #333);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.pyodide-toolbar button:hover {
+  background: var(--gray-100, #f0f0f3);
+}
+
+.pyodide-toolbar button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pyodide-toolbar .pyodide-status {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--gray-500, #888);
+  align-self: center;
+}
+
+/* ── Output ── */
+
+.pyodide-output {
+  margin: 0 !important;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--gray-200, #e2e8f0);
+  border-radius: 0 !important;
+  background: #1e1e2e !important;
+  color: #cdd6f4;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.825rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.pyodide-output.pyodide-output-hidden {
+  display: none;
+}
+
+.pyodide-output .pyodide-error {
+  color: #f38ba8;
+}

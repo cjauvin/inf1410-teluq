@@ -22,22 +22,20 @@ d'une autre.
 
 La liste est une structure de données qui est une collection de valeurs :
 
-```python
->>> a = [10, 20, 30]
-```
+{{< pyodide >}}
+a = [10, 20, 30]
+print(a)
+{{< /pyodide >}}
 
 Il est possible d'y ajouter, ou d'enlever des éléments :
 
-```python
->>> a.append(40)
->>> a
-[10, 20, 30, 40]
->>> a.remove(10)
->>> a
-[20, 30, 40]
->>> len(a)
-3
-```
+{{< pyodide >}}
+a.append(40)
+print(a)
+a.remove(10)
+print(a)
+print(len(a))
+{{< /pyodide >}}
 
 {{< image src="list.png" alt="" title="" loading="lazy" >}}
 
@@ -45,15 +43,13 @@ La liste a une taille et ses éléments ont un ordre. En contraste, le `set` a u
 n'ont aucun ordre (il s'agit d'un "sac" de valeurs). Il est également possible de lui ajouter ou enlever
 des éléments :
 
-```python
->>> s = {10, 20, 30, 40}
->>> len(s)
-4
->>> s.add(50)
->>> s.remove(20)
->>> s
-{40, 10, 50, 30}
-```
+{{< pyodide >}}
+s = {10, 20, 30, 40}
+print(len(s))
+s.add(50)
+s.remove(20)
+print(s)
+{{< /pyodide >}}
 
 Il est d'une importance **capitale** d'avoir un modèle mental **archi-clair** de
 la différence entre ces deux structures de données à l'apparence si semblable,
@@ -61,13 +57,10 @@ pour la raison fondamentale suivante : **chercher un item dans une liste a un co
 proportionnel à la taille de la liste, tandis que chercher un item dans un `set`
 a un coût fixe (et très faible)** :
 
-```python
->>> 20 in a  # coût proportionnel à la taille de `a`
-True
->>>
->>> 20 in s  # coût fixe, extrêmement faible !
-False
-```
+{{< pyodide >}}
+print(20 in a)  # coût proportionnel à la taille de `a`
+print(20 in s)  # coût fixe, extrêmement faible !
+{{< /pyodide >}}
 
 {{< image src="set.png" alt="" title="" loading="lazy" >}}
 
@@ -119,7 +112,7 @@ qu'[enregistrement](https://fr.wikipedia.org/wiki/Enregistrement_(structure_de_d
 contenir des valeurs diverses pour un "object". Ce type d'usage est très courant dans
 les langages de plus haut niveau. Par exemple en Python :
 
-```python
+{{< pyodide >}}
 # =========================
 # 1) dict
 # =========================
@@ -166,7 +159,7 @@ person_dataclass = PersonDataClass("Alice", 30)
 print("\nDATACLASS:")
 print(person_dataclass.name)
 print(person_dataclass.age)
-```
+{{< /pyodide >}}
 
 Ou encore en JavaScript, avec l'[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), qui ressemble au `dict` Python :
 
@@ -297,12 +290,14 @@ abstrait.
 Examinons certains exemples. Imaginons tout d'abord que nous avons une fonction
 qui construit une liste de `N` nombres entiers aléatoires (entre 1 et `N`) :
 
-```python
+{{< pyodide >}}
 import random
 
 def get_random_numbers(n):
     return [random.randint(1, n) for _ in range(n)]
-```
+
+print("Fonction 'get_random_numbers' définie.")
+{{< /pyodide >}}
 
 Imagions ensuite que nous aimerions savoir si une paire de nombres distincts,
 dans cette liste, résulte en une somme donnée `K`.
@@ -314,7 +309,7 @@ paires :
 
 {{< image src="two-sum-quadratic.png" alt="" title="" loading="lazy" >}}
 
-```python
+{{< pyodide >}}
 def two_sum_quadratic_version(a, k):
     for i, x in enumerate(a):
         for j, y in enumerate(a):
@@ -323,7 +318,9 @@ def two_sum_quadratic_version(a, k):
                 return (x, y)
 
     return None
-```
+
+print("Fonction 'two_sum_quadratic_version' définie.")
+{{< /pyodide >}}
 
 Cette méthode est assez coûteuse parce que pour chaque item de la liste (qui
 contient `N` items), il faut considérer une sous-liste (en fait la même liste,
@@ -341,17 +338,19 @@ moins la nouvelle valeur se trouve dans le `set` :
 
 {{< image src="two-sum-linear.png" alt="" title="" loading="lazy" >}}
 
-```python
+{{< pyodide >}}
 def two_sum_linear_version(a, k):
     seen = set()
     for x in a:
         target = k - x
         if target in seen:
-          return (x, target)
+            return (x, target)
         seen.add(x)
 
     return None
-```
+
+print("Fonction 'two_sum_linear_version' définie.")
+{{< /pyodide >}}
 
 La raison pour laquelle cet algorithme est beaucoup plus efficace est dû au fait
 que tester l'inclusion d'un item dans un `set` (ce qui se fait, dans le code
@@ -370,50 +369,54 @@ considérée est tout de suite la bonne). On peut utiliser cette fonction, qui
 prend en entrée une variable `fn`, qui va contenir la fonction qui sera exécutée
 (`two_sum_linear_version` ou `two_sum_quadratic_version`) :
 
-```python
+{{< pyodide >}}
 def test_algo(fn, a):
     for k in range(len(a)):
         res = fn(a, k)
         if res:
-          assert res[0] + res[1] == k
-```
+            assert res[0] + res[1] == k
+
+print("Fonction 'test_algo' définie.")
+{{< /pyodide >}}
 
 Quand la taille de la liste est raisonnable, la différence entre les deux
 algorithmes n'est pas si notable (ici on utilise la console
 [ipython](https://ipython.org/), qui possède des fonctionnalités pratiques pour
 mesurer le temps d'exécution)&nbsp;
 
-```python
-In [60]: a = get_random_numbers(1000)
+{{< pyodide >}}
+import time
 
-In [61]: %time test_algo(two_sum_quadratic_version, a)
-CPU times: user 486 ms, sys: 2.93 ms, total: 489 ms
-Wall time: 489 ms
+a = get_random_numbers(1000)
 
-In [62]: %time test_algo(two_sum_linear_version, a)
-CPU times: user 10.4 ms, sys: 162 μs, total: 10.6 ms
-Wall time: 10.6 ms
-```
+start = time.time()
+test_algo(two_sum_quadratic_version, a)
+print(f"Quadratique: {time.time() - start:.3f}s")
+
+start = time.time()
+test_algo(two_sum_linear_version, a)
+print(f"Linéaire: {time.time() - start:.3f}s")
+{{< /pyodide >}}
 
 Mais si on augmente `N`, la différence devient rapidement assez dramatique :
 
-```python
-In [63]: a = get_random_numbers(5000)
+{{< pyodide >}}
+a = get_random_numbers(5000)
 
-In [64]: %time test_algo(two_sum_quadratic_version, a)
-CPU times: user 7.13 s, sys: 46.2 ms, total: 7.17 s
-Wall time: 7.17 s
+start = time.time()
+test_algo(two_sum_quadratic_version, a)
+print(f"Quadratique: {time.time() - start:.3f}s")
 
-In [65]: %time test_algo(two_sum_linear_version, a)
-CPU times: user 52 ms, sys: 1.91 ms, total: 53.9 ms
-Wall time: 53.1 ms
-```
+start = time.time()
+test_algo(two_sum_linear_version, a)
+print(f"Linéaire: {time.time() - start:.3f}s")
+{{< /pyodide >}}
 
 Il est très important de comprendre à quel point l'utilisation de la bonne
 structure de données est cruciale, pour certains algorithmes. Si on remplace
 le `set` de la méthode linéaire par une liste, elle redevient quadratique :
 
-```python
+{{< pyodide >}}
 def two_sum_falsely_linear_version(a, k):
     seen = []
     for x in a:
@@ -423,15 +426,17 @@ def two_sum_falsely_linear_version(a, k):
         seen.append(x)
 
     return None
-```
+
+print("Fonction 'two_sum_falsely_linear_version' définie.")
+{{< /pyodide >}}
 
 {{< image src="two-sum-falsely-linear.png" alt="" title="" loading="lazy" >}}
 
-```python
-In [67]: %time test_algo(two_sum_falsely_linear_version, a)
-CPU times: user 607 ms, sys: 5.68 ms, total: 613 ms
-Wall time: 612 ms
-```
+{{< pyodide >}}
+start = time.time()
+test_algo(two_sum_falsely_linear_version, a)
+print(f"Faussement linéaire: {time.time() - start:.3f}s")
+{{< /pyodide >}}
 
 Nous avons dit que cet algorithme est "faussement linéaire", et qu'il est en
 fait quadratique, en raison de l'usage de la liste (plutôt qu'un `set`). Mais

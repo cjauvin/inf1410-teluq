@@ -1,0 +1,14 @@
+{{/* layouts/shortcodes/pyodide.html */}}
+{{- .Page.Scratch.Set "needs_pyodide" true -}}
+{{- $id := printf "pyodide-%d" .Ordinal -}}
+{{- $code := .Inner | strings.TrimPrefix "\n" | strings.TrimSuffix "\n" -}}
+
+<div class="pyodide-block" id="{{ $id }}">
+  <textarea id="{{ $id }}-code">{{ $code }}</textarea>
+  <div class="pyodide-toolbar">
+    <button id="{{ $id }}-run" onclick="pyodideRun('{{ $id }}')">&#9654; Exécuter</button>
+    <button id="{{ $id }}-reset" onclick="pyodideReset('{{ $id }}')">&#8634; Réinitialiser</button>
+    <span class="pyodide-status" id="{{ $id }}-status"></span>
+  </div>
+  <pre class="pyodide-output pyodide-output-hidden" id="{{ $id }}-output"></pre>
+</div>

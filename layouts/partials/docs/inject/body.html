@@ -43,3 +43,124 @@
     });
   </script>
 {{- end -}}
+
+{{- if .Page.Scratch.Get "needs_pyodide" -}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js"></script>
+  <script>
+    // ── CodeMirror editor initialization ──
+    const _pyodideEditors = {};
+
+    document.querySelectorAll('.pyodide-block').forEach(block => {
+      const textarea = block.querySelector('textarea');
+      if (!textarea) return;
+
+      const id = block.id;
+      const original = textarea.value;
+
+      const cm = CodeMirror.fromTextArea(textarea, {
+        mode: 'python',
+        theme: 'material-darker',
+        indentUnit: 4,
+        tabSize: 4,
+        indentWithTabs: false,
+        lineNumbers: false,
+        viewportMargin: Infinity,
+      });
+
+      cm._originalCode = original;
+      _pyodideEditors[id] = cm;
+    });
+
+    // ── Pyodide runtime (lazy-loaded on first run) ──
+    let _pyodideReady = null;
+
+    async function _getPyodide() {
+      if (!_pyodideReady) {
+        _pyodideReady = (async () => {
+          await new Promise((resolve, reject) => {
+            const s = document.createElement('script');
+            s.src = 'https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js';
+            s.onload = resolve;
+            s.onerror = reject;
+            document.head.appendChild(s);
+          });
+          return await loadPyodide();
+        })();
+      }
+      return _pyodideReady;
+    }
+
+    async function pyodideRun(id) {
+      const cm = _pyodideEditors[id];
+      const outEl = document.getElementById(id + '-output');
+      const runBtn = document.getElementById(id + '-run');
+      const statusEl = document.getElementById(id + '-status');
+      const code = cm.getValue();
+
+      runBtn.disabled = true;
+      outEl.textContent = '';
+      outEl.classList.remove('pyodide-output-hidden');
+      statusEl.textContent = 'Chargement de Pyodide…';
+
+      try {
+        const pyodide = await _getPyodide();
+        statusEl.textContent = 'Exécution…';
+
+        pyodide.runPython(`
+import sys, io
+sys.stdout = io.StringIO()
+sys.stderr = io.StringIO()
+`);
+        try {
+          pyodide.runPython(code);
+        } catch (pyErr) {
+          const stderr = pyodide.runPython('sys.stderr.getvalue()');
+          const stdout = pyodide.runPython('sys.stdout.getvalue()');
+          outEl.innerHTML = '';
+          if (stdout) {
+            outEl.appendChild(document.createTextNode(stdout));
+          }
+          const errSpan = document.createElement('span');
+          errSpan.className = 'pyodide-error';
+          errSpan.textContent = stderr || pyErr.message;
+          outEl.appendChild(errSpan);
+          return;
+        } finally {
+          const stdout = pyodide.runPython('sys.stdout.getvalue()');
+          const stderr = pyodide.runPython('sys.stderr.getvalue()');
+          pyodide.runPython(`
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+`);
+          if (!outEl.children.length) {
+            outEl.textContent = stdout;
+            if (stderr) {
+              const errSpan = document.createElement('span');
+              errSpan.className = 'pyodide-error';
+              errSpan.textContent = stderr;
+              outEl.appendChild(errSpan);
+            }
+          }
+        }
+        statusEl.textContent = '';
+      } catch (err) {
+        outEl.innerHTML = '';
+        const errSpan = document.createElement('span');
+        errSpan.className = 'pyodide-error';
+        errSpan.textContent = err.message;
+        outEl.appendChild(errSpan);
+        statusEl.textContent = '';
+      } finally {
+        runBtn.disabled = false;
+      }
+    }
+
+    function pyodideReset(id) {
+      const cm = _pyodideEditors[id];
+      cm.setValue(cm._originalCode);
+      const outEl = document.getElementById(id + '-output');
+      outEl.textContent = '';
+    }
+  </script>
+{{- end -}}
