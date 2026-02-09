@@ -3,7 +3,7 @@ title: "Survol rapide de la programmation"
 weight: 10
 ---
 
-# Survol compact de la programmation
+# Survol rapide de la programmation
 
 Nous allons faire un survol rapide des idées les plus importantes et
 fondamentales de la programmation logicielle. Pour aller droit au but, nous
