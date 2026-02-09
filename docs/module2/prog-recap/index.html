@@ -2,7 +2,7 @@
 Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexe (non-atomique) qui impliquent, en général, les types de base, d’une manière ou d’une autre.
 "><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Survol rapide de la programmation"><meta property="og:description" content="Survol rapide de la programmation# Nous allons faire un survol rapide des idées les plus importantes et fondamentales de la programmation logicielle. Pour aller droit au but, nous allons utiliser le langage Python, qui est très facile à comprendre, même sans aucune expérience explicite.
 Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexe (non-atomique) qui impliquent, en général, les types de base, d’une manière ou d’une autre."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Survol rapide de la programmation"><meta itemprop=description content="Survol rapide de la programmation# Nous allons faire un survol rapide des idées les plus importantes et fondamentales de la programmation logicielle. Pour aller droit au but, nous allons utiliser le langage Python, qui est très facile à comprendre, même sans aucune expérience explicite.
-Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexe (non-atomique) qui impliquent, en général, les types de base, d’une manière ou d’une autre."><meta itemprop=wordCount content="2325"><title>Survol rapide de la programmation | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.427fd74effaa6729c02a67f5c2fcf3aacdee5c04af08e6536e0f6fc0b2d61589.css integrity="sha256-Qn/XTv+qZynAKmf1wvzzqs3uXASvCOZTbg9vwLLWFYk=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexe (non-atomique) qui impliquent, en général, les types de base, d’une manière ou d’une autre."><meta itemprop=wordCount content="2318"><title>Survol rapide de la programmation | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.427fd74effaa6729c02a67f5c2fcf3aacdee5c04af08e6536e0f6fc0b2d61589.css integrity="sha256-Qn/XTv+qZynAKmf1wvzzqs3uXASvCOZTbg9vwLLWFYk=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/>Qu'est-ce que le génie logiciel?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Les idées historiques importantes</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique2/>Survol historiquee des jalons du GL</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle checked>
@@ -22,99 +22,102 @@ aucune expérience explicite.</p><h2 id=structures-de-données-fondamentales>Str
 (entiers, réels, etc) et les chaines de caractères (strings), nous avons les
 structures de données, qui sont des constructions logiques plus complexe
 (non-atomique) qui impliquent, en général, les types de base, d&rsquo;une manière ou
-d&rsquo;une autre.</p><h3 id=la-liste-et-le-set>La liste et le <code>set</code><a class=anchor href=#la-liste-et-le-set>#</a></h3><p>La liste est une structure de données qui est une collection de valeurs :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> a <span style=color:#f92672>=</span> [<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>30</span>]</span></span></code></pre></div><p>Il est possible d&rsquo;y ajouter, ou d&rsquo;enlever des éléments :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> a<span style=color:#f92672>.</span>append(<span style=color:#ae81ff>40</span>)
-</span></span><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> a
-</span></span><span style=display:flex><span>[<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>30</span>, <span style=color:#ae81ff>40</span>]
-</span></span><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> a<span style=color:#f92672>.</span>remove(<span style=color:#ae81ff>10</span>)
-</span></span><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> a
-</span></span><span style=display:flex><span>[<span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>30</span>, <span style=color:#ae81ff>40</span>]
-</span></span><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> len(a)
-</span></span><span style=display:flex><span><span style=color:#ae81ff>3</span></span></span></code></pre></div><label class=book-image for=book-image-toggle-0><input class="hidden toggle" type=checkbox id=book-image-toggle-0>
+d&rsquo;une autre.</p><h3 id=la-liste-et-le-set>La liste et le <code>set</code><a class=anchor href=#la-liste-et-le-set>#</a></h3><p>La liste est une structure de données qui est une collection de valeurs :</p><div class=pyodide-block id=pyodide-0><textarea id=pyodide-0-code>a = [10, 20, 30]
+print(a)</textarea><div class=pyodide-toolbar><button id=pyodide-0-run onclick='pyodideRun("pyodide-0")'>&#9654; Exécuter</button>
+<button id=pyodide-0-reset onclick='pyodideReset("pyodide-0")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-0-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-0-output></pre></div><p>Il est possible d&rsquo;y ajouter, ou d&rsquo;enlever des éléments :</p><div class=pyodide-block id=pyodide-1><textarea id=pyodide-1-code>a.append(40)
+print(a)
+a.remove(10)
+print(a)
+print(len(a))</textarea><div class=pyodide-toolbar><button id=pyodide-1-run onclick='pyodideRun("pyodide-1")'>&#9654; Exécuter</button>
+<button id=pyodide-1-reset onclick='pyodideReset("pyodide-1")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-1-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-1-output></pre></div><label class=book-image for=book-image-toggle-2><input class="hidden toggle" type=checkbox id=book-image-toggle-2>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/list.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-0"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>La liste a une taille et ses éléments ont un ordre. En contraste, le <code>set</code> a une taille, mais ses éléments
+</label><script>(function(){const e=document.getElementById("book-image-toggle-2"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>La liste a une taille et ses éléments ont un ordre. En contraste, le <code>set</code> a une taille, mais ses éléments
 n&rsquo;ont aucun ordre (il s&rsquo;agit d&rsquo;un &ldquo;sac&rdquo; de valeurs). Il est également possible de lui ajouter ou enlever
-des éléments :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> s <span style=color:#f92672>=</span> {<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>30</span>, <span style=color:#ae81ff>40</span>}
-</span></span><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> len(s)
-</span></span><span style=display:flex><span><span style=color:#ae81ff>4</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> s<span style=color:#f92672>.</span>add(<span style=color:#ae81ff>50</span>)
-</span></span><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> s<span style=color:#f92672>.</span>remove(<span style=color:#ae81ff>20</span>)
-</span></span><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> s
-</span></span><span style=display:flex><span>{<span style=color:#ae81ff>40</span>, <span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>50</span>, <span style=color:#ae81ff>30</span>}</span></span></code></pre></div><p>Il est d&rsquo;une importance <strong>capitale</strong> d&rsquo;avoir un modèle mental <strong>archi-clair</strong> de
+des éléments :</p><div class=pyodide-block id=pyodide-3><textarea id=pyodide-3-code>s = {10, 20, 30, 40}
+print(len(s))
+s.add(50)
+s.remove(20)
+print(s)</textarea><div class=pyodide-toolbar><button id=pyodide-3-run onclick='pyodideRun("pyodide-3")'>&#9654; Exécuter</button>
+<button id=pyodide-3-reset onclick='pyodideReset("pyodide-3")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-3-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-3-output></pre></div><p>Il est d&rsquo;une importance <strong>capitale</strong> d&rsquo;avoir un modèle mental <strong>archi-clair</strong> de
 la différence entre ces deux structures de données à l&rsquo;apparence si semblable,
 pour la raison fondamentale suivante : <strong>chercher un item dans une liste a un coût
 proportionnel à la taille de la liste, tandis que chercher un item dans un <code>set</code>
-a un coût fixe (et très faible)</strong> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#ae81ff>20</span> <span style=color:#f92672>in</span> a  <span style=color:#75715e># coût proportionnel à la taille de `a`</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#ae81ff>20</span> <span style=color:#f92672>in</span> s  <span style=color:#75715e># coût fixe, extrêmement faible !</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>False</span></span></span></code></pre></div><label class=book-image for=book-image-toggle-1><input class="hidden toggle" type=checkbox id=book-image-toggle-1>
+a un coût fixe (et très faible)</strong> :</p><div class=pyodide-block id=pyodide-4><textarea id=pyodide-4-code>print(20 in a)  # coût proportionnel à la taille de `a`
+print(20 in s)  # coût fixe, extrêmement faible !</textarea><div class=pyodide-toolbar><button id=pyodide-4-run onclick='pyodideRun("pyodide-4")'>&#9654; Exécuter</button>
+<button id=pyodide-4-reset onclick='pyodideReset("pyodide-4")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-4-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-4-output></pre></div><label class=book-image for=book-image-toggle-5><input class="hidden toggle" type=checkbox id=book-image-toggle-5>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/set.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-1"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Imaginez que vous cherchiez une aiguille dans une botte de foin :</p><label class=book-image for=book-image-toggle-2><input class="hidden toggle" type=checkbox id=book-image-toggle-2>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-5"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Imaginez que vous cherchiez une aiguille dans une botte de foin :</p><label class=book-image for=book-image-toggle-6><input class="hidden toggle" type=checkbox id=book-image-toggle-6>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/haystack.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-2"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Préférez-vous que votre botte de foin soit :</p><ol><li>Une liste</li><li>Un <code>set</code></li></ol><h3 id=le-dictionnaire-table-associative-etc>Le dictionnaire (table associative, etc)<a class=anchor href=#le-dictionnaire-table-associative-etc>#</a></h3><p>La notion de &ldquo;table associative&rdquo; a plusieurs noms, selon les langages et les
+</label><script>(function(){const e=document.getElementById("book-image-toggle-6"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Préférez-vous que votre botte de foin soit :</p><ol><li>Une liste</li><li>Un <code>set</code></li></ol><h3 id=le-dictionnaire-table-associative-etc>Le dictionnaire (table associative, etc)<a class=anchor href=#le-dictionnaire-table-associative-etc>#</a></h3><p>La notion de &ldquo;table associative&rdquo; a plusieurs noms, selon les langages et les
 cultures de programmation :</p><ol><li>On parle d&rsquo;un <code>dict</code> en Python (pour dictionnaire)</li><li>D&rsquo;un <code>Object</code> en JavaScript (ou <code>{}</code>, à ne pas confondre avec les &ldquo;objets&rdquo; de la programmation orientée-objet, bien que ces concepts sont reliés)</li><li>Un <code>Hash</code> en Ruby</li><li>Un <code>array</code> (associatif) en PHP</li><li>Une <code>table</code> en Lua</li><li>Une <code>map</code> en Go
 etc.</li></ol><p>Il s&rsquo;agit d&rsquo;une autre famille de structures de données pour laquelle il est
 crucial d&rsquo;avoir un modèle mental clair et limpide. Une manière de se représenter
 le fonctionnement d&rsquo;une table associative est en tant qu&rsquo;extension d&rsquo;un <code>set</code> :
-imaginons qu&rsquo;à chaque élément (ou valeur) d&rsquo;un <code>set</code>, nous attachons une valeur.</p><label class=book-image for=book-image-toggle-3><input class="hidden toggle" type=checkbox id=book-image-toggle-3>
+imaginons qu&rsquo;à chaque élément (ou valeur) d&rsquo;un <code>set</code>, nous attachons une valeur.</p><label class=book-image for=book-image-toggle-7><input class="hidden toggle" type=checkbox id=book-image-toggle-7>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/dict.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-3"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>On considère le <code>dict</code> comme une structure de données plus versatile et générale
+</label><script>(function(){const e=document.getElementById("book-image-toggle-7"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>On considère le <code>dict</code> comme une structure de données plus versatile et générale
 que les autres parce qu&rsquo;il est possible d&rsquo;implémenter, par exemple, une liste
-avec un <code>dict</code> :</p><label class=book-image for=book-image-toggle-4><input class="hidden toggle" type=checkbox id=book-image-toggle-4>
+avec un <code>dict</code> :</p><label class=book-image for=book-image-toggle-8><input class="hidden toggle" type=checkbox id=book-image-toggle-8>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/dict-as-list.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-4"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Il est aussi possible d&rsquo;implémenter un <code>set</code> avec un <code>dict</code> :</p><label class=book-image for=book-image-toggle-5><input class="hidden toggle" type=checkbox id=book-image-toggle-5>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-8"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Il est aussi possible d&rsquo;implémenter un <code>set</code> avec un <code>dict</code> :</p><label class=book-image for=book-image-toggle-9><input class="hidden toggle" type=checkbox id=book-image-toggle-9>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/dict-as-set.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-5"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h3 id=le-dictionnaire-en-tant-que-record>Le dictionnaire en tant que <code>record</code><a class=anchor href=#le-dictionnaire-en-tant-que-record>#</a></h3><p>Étant donné la structure du dictionnaire, il est souvent possible de l&rsquo;utiliser
+</label><script>(function(){const e=document.getElementById("book-image-toggle-9"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h3 id=le-dictionnaire-en-tant-que-record>Le dictionnaire en tant que <code>record</code><a class=anchor href=#le-dictionnaire-en-tant-que-record>#</a></h3><p>Étant donné la structure du dictionnaire, il est souvent possible de l&rsquo;utiliser
 en tant
 qu&rsquo;<a href=https://fr.wikipedia.org/wiki/Enregistrement_%28structure_de_donn%C3%A9es%29>enregistrement</a>
 (record en anglais, plus couramment), c&rsquo;est-à-dire en tant que contenant pouvant
 contenir des valeurs diverses pour un &ldquo;object&rdquo;. Ce type d&rsquo;usage est très courant dans
-les langages de plus haut niveau. Par exemple en Python :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># =========================</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 1) dict</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># =========================</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>person_dict <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Alice&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;age&#34;</span>: <span style=color:#ae81ff>30</span>
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;DICT:&#34;</span>)
-</span></span><span style=display:flex><span>print(person_dict[<span style=color:#e6db74>&#34;name&#34;</span>])
-</span></span><span style=display:flex><span>print(person_dict[<span style=color:#e6db74>&#34;age&#34;</span>])
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># =========================</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2) class</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># =========================</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PersonClass</span>:
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, name: str, age: int):
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>name <span style=color:#f92672>=</span> name
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>age <span style=color:#f92672>=</span> age
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>person_class <span style=color:#f92672>=</span> PersonClass(<span style=color:#e6db74>&#34;Alice&#34;</span>, <span style=color:#ae81ff>30</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>CLASS:&#34;</span>)
-</span></span><span style=display:flex><span>print(person_class<span style=color:#f92672>.</span>name)
-</span></span><span style=display:flex><span>print(person_class<span style=color:#f92672>.</span>age)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># =========================</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3) dataclass</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># =========================</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> dataclasses <span style=color:#f92672>import</span> dataclass
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@dataclass</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PersonDataClass</span>:
-</span></span><span style=display:flex><span>    name: str
-</span></span><span style=display:flex><span>    age: int
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>person_dataclass <span style=color:#f92672>=</span> PersonDataClass(<span style=color:#e6db74>&#34;Alice&#34;</span>, <span style=color:#ae81ff>30</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>DATACLASS:&#34;</span>)
-</span></span><span style=display:flex><span>print(person_dataclass<span style=color:#f92672>.</span>name)
-</span></span><span style=display:flex><span>print(person_dataclass<span style=color:#f92672>.</span>age)</span></span></code></pre></div><p>Ou encore en JavaScript, avec l&rsquo;<a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>object</a>, qui ressemble au <code>dict</code> Python :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>/*
+les langages de plus haut niveau. Par exemple en Python :</p><div class=pyodide-block id=pyodide-10><textarea id=pyodide-10-code># =========================
+# 1) dict
+# =========================
+
+person_dict = {
+    &#34;name&#34;: &#34;Alice&#34;,
+    &#34;age&#34;: 30
+}
+
+print(&#34;DICT:&#34;)
+print(person_dict[&#34;name&#34;])
+print(person_dict[&#34;age&#34;])
+
+
+# =========================
+# 2) class
+# =========================
+
+class PersonClass:
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+
+person_class = PersonClass(&#34;Alice&#34;, 30)
+
+print(&#34;\nCLASS:&#34;)
+print(person_class.name)
+print(person_class.age)
+
+
+# =========================
+# 3) dataclass
+# =========================
+
+from dataclasses import dataclass
+
+@dataclass
+class PersonDataClass:
+    name: str
+    age: int
+
+person_dataclass = PersonDataClass(&#34;Alice&#34;, 30)
+
+print(&#34;\nDATACLASS:&#34;)
+print(person_dataclass.name)
+print(person_dataclass.age)</textarea><div class=pyodide-toolbar><button id=pyodide-10-run onclick='pyodideRun("pyodide-10")'>&#9654; Exécuter</button>
+<button id=pyodide-10-reset onclick='pyodideReset("pyodide-10")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-10-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-10-output></pre></div><p>Ou encore en JavaScript, avec l&rsquo;<a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>object</a>, qui ressemble au <code>dict</code> Python :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>/*
 </span></span></span><span style=display:flex><span><span style=color:#75715e>Exemples simples de &#34;record&#34; en JavaScript :
 </span></span></span><span style=display:flex><span><span style=color:#75715e>- objet littéral
 </span></span></span><span style=display:flex><span><span style=color:#75715e>- class
@@ -176,9 +179,9 @@ hachage</a> à un élément (la clé), ce
 qui permet de déterminer l&rsquo;index dans un tableau, où on pourra mettre la valeur
 associée. Dans certaines implémentations, il est nécessaire de gérer les
 collisions possibles : si deux clés mènent au même index par exemple, il sera
-possible d&rsquo;utiliser une liste, pour cette clé particulière.</p><label class=book-image for=book-image-toggle-6><input class="hidden toggle" type=checkbox id=book-image-toggle-6>
+possible d&rsquo;utiliser une liste, pour cette clé particulière.</p><label class=book-image for=book-image-toggle-11><input class="hidden toggle" type=checkbox id=book-image-toggle-11>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/hashtable.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-6"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h3 id=la-correspondance-avec-json>La correspondance avec JSON<a class=anchor href=#la-correspondance-avec-json>#</a></h3><p>Une fois que vous avez des modèles mentaux clairs et efficaces par rapport aux
+</label><script>(function(){const e=document.getElementById("book-image-toggle-11"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h3 id=la-correspondance-avec-json>La correspondance avec JSON<a class=anchor href=#la-correspondance-avec-json>#</a></h3><p>Une fois que vous avez des modèles mentaux clairs et efficaces par rapport aux
 différences et similarités de ces trois structures de données dont nous avons
 parlées dans cette section, il est utile de considérer leur correspondance avec
 la notation JSON.</p><p>JSON (JavaScript Object Notation) est un format textuel léger destiné à
@@ -213,23 +216,31 @@ Bien qu&rsquo;en pratique les détails d&rsquo;implémentation (comment un progr
 (l&rsquo;ordinateur particulier qui est utilisé) sont très importants, en général
 quand on parle de complexité algorithmique on a en tête quelque chose de plus
 abstrait.</p><p>Examinons certains exemples. Imaginons tout d&rsquo;abord que nous avons une fonction
-qui construit une liste de <code>N</code> nombres entiers aléatoires (entre 1 et <code>N</code>) :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> random
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_random_numbers</span>(n):
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> [random<span style=color:#f92672>.</span>randint(<span style=color:#ae81ff>1</span>, n) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(n)]</span></span></code></pre></div><p>Imagions ensuite que nous aimerions savoir si une paire de nombres distincts,
-dans cette liste, résulte en une somme donnée <code>K</code>.</p><label class=book-image for=book-image-toggle-7><input class="hidden toggle" type=checkbox id=book-image-toggle-7>
+qui construit une liste de <code>N</code> nombres entiers aléatoires (entre 1 et <code>N</code>) :</p><div class=pyodide-block id=pyodide-12><textarea id=pyodide-12-code>import random
+
+def get_random_numbers(n):
+    return [random.randint(1, n) for _ in range(n)]
+
+print(&#34;Fonction &#39;get_random_numbers&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-12-run onclick='pyodideRun("pyodide-12")'>&#9654; Exécuter</button>
+<button id=pyodide-12-reset onclick='pyodideReset("pyodide-12")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-12-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-12-output></pre></div><p>Imagions ensuite que nous aimerions savoir si une paire de nombres distincts,
+dans cette liste, résulte en une somme donnée <code>K</code>.</p><label class=book-image for=book-image-toggle-13><input class="hidden toggle" type=checkbox id=book-image-toggle-13>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/two-sum.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-7"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Une méthode naive pour résoudre ce problème consiste à considérer toutes les
-paires :</p><label class=book-image for=book-image-toggle-8><input class="hidden toggle" type=checkbox id=book-image-toggle-8>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-13"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Une méthode naive pour résoudre ce problème consiste à considérer toutes les
+paires :</p><label class=book-image for=book-image-toggle-14><input class="hidden toggle" type=checkbox id=book-image-toggle-14>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/two-sum-quadratic.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-8"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>two_sum_quadratic_version</span>(a, k):
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> i, x <span style=color:#f92672>in</span> enumerate(a):
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> j, y <span style=color:#f92672>in</span> enumerate(a):
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> i <span style=color:#f92672>==</span> j: <span style=color:#66d9ef>continue</span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> x <span style=color:#f92672>+</span> y <span style=color:#f92672>==</span> k:
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> (x, y)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>None</span></span></span></code></pre></div><p>Cette méthode est assez coûteuse parce que pour chaque item de la liste (qui
+</label><script>(function(){const e=document.getElementById("book-image-toggle-14"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=pyodide-block id=pyodide-15><textarea id=pyodide-15-code>def two_sum_quadratic_version(a, k):
+    for i, x in enumerate(a):
+        for j, y in enumerate(a):
+            if i == j: continue
+            if x &#43; y == k:
+                return (x, y)
+
+    return None
+
+print(&#34;Fonction &#39;two_sum_quadratic_version&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-15-run onclick='pyodideRun("pyodide-15")'>&#9654; Exécuter</button>
+<button id=pyodide-15-reset onclick='pyodideReset("pyodide-15")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-15-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-15-output></pre></div><p>Cette méthode est assez coûteuse parce que pour chaque item de la liste (qui
 contient <code>N</code> items), il faut considérer une sous-liste (en fait la même liste,
 implicitement), de <code>N</code> éléments. Il faut donc faire, au maximum, $N^2$ (<code>N</code> au
 carré) vérifications. On parle donc d&rsquo;un algorithme de complexité
@@ -239,17 +250,21 @@ O&rdquo;</a>
 pour décrire la complexité algorithmique d&rsquo;une fonction, dans ce cas $O(N^2)$.</p><p>Si on y pense un peu, une méthode beaucoup plus efficace consisterait à utiliser
 un <code>set</code> pour conserver les valeurs qu&rsquo;on a déjà rencontrées, et à chaque
 nouvelle valeur de la liste (à ne pas confondre avec le <code>set</code>!), tester si <code>K</code>
-moins la nouvelle valeur se trouve dans le <code>set</code> :</p><label class=book-image for=book-image-toggle-9><input class="hidden toggle" type=checkbox id=book-image-toggle-9>
+moins la nouvelle valeur se trouve dans le <code>set</code> :</p><label class=book-image for=book-image-toggle-16><input class="hidden toggle" type=checkbox id=book-image-toggle-16>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/two-sum-linear.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-9"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>two_sum_linear_version</span>(a, k):
-</span></span><span style=display:flex><span>    seen <span style=color:#f92672>=</span> set()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> a:
-</span></span><span style=display:flex><span>        target <span style=color:#f92672>=</span> k <span style=color:#f92672>-</span> x
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> target <span style=color:#f92672>in</span> seen:
-</span></span><span style=display:flex><span>          <span style=color:#66d9ef>return</span> (x, target)
-</span></span><span style=display:flex><span>        seen<span style=color:#f92672>.</span>add(x)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>None</span></span></span></code></pre></div><p>La raison pour laquelle cet algorithme est beaucoup plus efficace est dû au fait
+</label><script>(function(){const e=document.getElementById("book-image-toggle-16"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=pyodide-block id=pyodide-17><textarea id=pyodide-17-code>def two_sum_linear_version(a, k):
+    seen = set()
+    for x in a:
+        target = k - x
+        if target in seen:
+            return (x, target)
+        seen.add(x)
+
+    return None
+
+print(&#34;Fonction &#39;two_sum_linear_version&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-17-run onclick='pyodideRun("pyodide-17")'>&#9654; Exécuter</button>
+<button id=pyodide-17-reset onclick='pyodideReset("pyodide-17")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-17-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-17-output></pre></div><p>La raison pour laquelle cet algorithme est beaucoup plus efficace est dû au fait
 que tester l&rsquo;inclusion d&rsquo;un item dans un <code>set</code> (ce qui se fait, dans le code
 ci-haut, à l&rsquo;aide de l&rsquo;opérateur <code>in</code>, dans la ligne <code>if target in seen</code>),
 contrairement au fait de le faire dans une liste, est extrêmement efficace : si
@@ -262,44 +277,60 @@ avons besoin de considérer plusieurs résultats (c-à-d plusieurs sommes
 possibles), car un seul appel pourrait être &ldquo;chanceux&rdquo; (la première paire
 considérée est tout de suite la bonne). On peut utiliser cette fonction, qui
 prend en entrée une variable <code>fn</code>, qui va contenir la fonction qui sera exécutée
-(<code>two_sum_linear_version</code> ou <code>two_sum_quadratic_version</code>) :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_algo</span>(fn, a):
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(len(a)):
-</span></span><span style=display:flex><span>        res <span style=color:#f92672>=</span> fn(a, k)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> res:
-</span></span><span style=display:flex><span>          <span style=color:#66d9ef>assert</span> res[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+</span> res[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> k</span></span></code></pre></div><p>Quand la taille de la liste est raisonnable, la différence entre les deux
+(<code>two_sum_linear_version</code> ou <code>two_sum_quadratic_version</code>) :</p><div class=pyodide-block id=pyodide-18><textarea id=pyodide-18-code>def test_algo(fn, a):
+    for k in range(len(a)):
+        res = fn(a, k)
+        if res:
+            assert res[0] &#43; res[1] == k
+
+print(&#34;Fonction &#39;test_algo&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-18-run onclick='pyodideRun("pyodide-18")'>&#9654; Exécuter</button>
+<button id=pyodide-18-reset onclick='pyodideReset("pyodide-18")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-18-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-18-output></pre></div><p>Quand la taille de la liste est raisonnable, la différence entre les deux
 algorithmes n&rsquo;est pas si notable (ici on utilise la console
 <a href=https://ipython.org/>ipython</a>, qui possède des fonctionnalités pratiques pour
-mesurer le temps d&rsquo;exécution) </p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>In [<span style=color:#ae81ff>60</span>]: a <span style=color:#f92672>=</span> get_random_numbers(<span style=color:#ae81ff>1000</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>In [<span style=color:#ae81ff>61</span>]: <span style=color:#f92672>%</span>time test_algo(two_sum_quadratic_version, a)
-</span></span><span style=display:flex><span>CPU times: user <span style=color:#ae81ff>486</span> ms, sys: <span style=color:#ae81ff>2.93</span> ms, total: <span style=color:#ae81ff>489</span> ms
-</span></span><span style=display:flex><span>Wall time: <span style=color:#ae81ff>489</span> ms
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>In [<span style=color:#ae81ff>62</span>]: <span style=color:#f92672>%</span>time test_algo(two_sum_linear_version, a)
-</span></span><span style=display:flex><span>CPU times: user <span style=color:#ae81ff>10.4</span> ms, sys: <span style=color:#ae81ff>162</span> μs, total: <span style=color:#ae81ff>10.6</span> ms
-</span></span><span style=display:flex><span>Wall time: <span style=color:#ae81ff>10.6</span> ms</span></span></code></pre></div><p>Mais si on augmente <code>N</code>, la différence devient rapidement assez dramatique :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>In [<span style=color:#ae81ff>63</span>]: a <span style=color:#f92672>=</span> get_random_numbers(<span style=color:#ae81ff>5000</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>In [<span style=color:#ae81ff>64</span>]: <span style=color:#f92672>%</span>time test_algo(two_sum_quadratic_version, a)
-</span></span><span style=display:flex><span>CPU times: user <span style=color:#ae81ff>7.13</span> s, sys: <span style=color:#ae81ff>46.2</span> ms, total: <span style=color:#ae81ff>7.17</span> s
-</span></span><span style=display:flex><span>Wall time: <span style=color:#ae81ff>7.17</span> s
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>In [<span style=color:#ae81ff>65</span>]: <span style=color:#f92672>%</span>time test_algo(two_sum_linear_version, a)
-</span></span><span style=display:flex><span>CPU times: user <span style=color:#ae81ff>52</span> ms, sys: <span style=color:#ae81ff>1.91</span> ms, total: <span style=color:#ae81ff>53.9</span> ms
-</span></span><span style=display:flex><span>Wall time: <span style=color:#ae81ff>53.1</span> ms</span></span></code></pre></div><p>Il est très important de comprendre à quel point l&rsquo;utilisation de la bonne
+mesurer le temps d&rsquo;exécution) </p><div class=pyodide-block id=pyodide-19><textarea id=pyodide-19-code>import time
+
+a = get_random_numbers(1000)
+
+start = time.time()
+test_algo(two_sum_quadratic_version, a)
+print(f&#34;Quadratique: {time.time() - start:.3f}s&#34;)
+
+start = time.time()
+test_algo(two_sum_linear_version, a)
+print(f&#34;Linéaire: {time.time() - start:.3f}s&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-19-run onclick='pyodideRun("pyodide-19")'>&#9654; Exécuter</button>
+<button id=pyodide-19-reset onclick='pyodideReset("pyodide-19")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-19-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-19-output></pre></div><p>Mais si on augmente <code>N</code>, la différence devient rapidement assez dramatique :</p><div class=pyodide-block id=pyodide-20><textarea id=pyodide-20-code>a = get_random_numbers(5000)
+
+start = time.time()
+test_algo(two_sum_quadratic_version, a)
+print(f&#34;Quadratique: {time.time() - start:.3f}s&#34;)
+
+start = time.time()
+test_algo(two_sum_linear_version, a)
+print(f&#34;Linéaire: {time.time() - start:.3f}s&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-20-run onclick='pyodideRun("pyodide-20")'>&#9654; Exécuter</button>
+<button id=pyodide-20-reset onclick='pyodideReset("pyodide-20")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-20-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-20-output></pre></div><p>Il est très important de comprendre à quel point l&rsquo;utilisation de la bonne
 structure de données est cruciale, pour certains algorithmes. Si on remplace
-le <code>set</code> de la méthode linéaire par une liste, elle redevient quadratique :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>two_sum_falsely_linear_version</span>(a, k):
-</span></span><span style=display:flex><span>    seen <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> a:
-</span></span><span style=display:flex><span>        target <span style=color:#f92672>=</span> k <span style=color:#f92672>-</span> x
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> target <span style=color:#f92672>in</span> seen:
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> (x, target)
-</span></span><span style=display:flex><span>        seen<span style=color:#f92672>.</span>append(x)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>None</span></span></span></code></pre></div><label class=book-image for=book-image-toggle-10><input class="hidden toggle" type=checkbox id=book-image-toggle-10>
+le <code>set</code> de la méthode linéaire par une liste, elle redevient quadratique :</p><div class=pyodide-block id=pyodide-21><textarea id=pyodide-21-code>def two_sum_falsely_linear_version(a, k):
+    seen = []
+    for x in a:
+        target = k - x
+        if target in seen:
+            return (x, target)
+        seen.append(x)
+
+    return None
+
+print(&#34;Fonction &#39;two_sum_falsely_linear_version&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-21-run onclick='pyodideRun("pyodide-21")'>&#9654; Exécuter</button>
+<button id=pyodide-21-reset onclick='pyodideReset("pyodide-21")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-21-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-21-output></pre></div><label class=book-image for=book-image-toggle-22><input class="hidden toggle" type=checkbox id=book-image-toggle-22>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/two-sum-falsely-linear.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-10"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>In [<span style=color:#ae81ff>67</span>]: <span style=color:#f92672>%</span>time test_algo(two_sum_falsely_linear_version, a)
-</span></span><span style=display:flex><span>CPU times: user <span style=color:#ae81ff>607</span> ms, sys: <span style=color:#ae81ff>5.68</span> ms, total: <span style=color:#ae81ff>613</span> ms
-</span></span><span style=display:flex><span>Wall time: <span style=color:#ae81ff>612</span> ms</span></span></code></pre></div><p>Nous avons dit que cet algorithme est &ldquo;faussement linéaire&rdquo;, et qu&rsquo;il est en
+</label><script>(function(){const e=document.getElementById("book-image-toggle-22"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=pyodide-block id=pyodide-23><textarea id=pyodide-23-code>start = time.time()
+test_algo(two_sum_falsely_linear_version, a)
+print(f&#34;Faussement linéaire: {time.time() - start:.3f}s&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-23-run onclick='pyodideRun("pyodide-23")'>&#9654; Exécuter</button>
+<button id=pyodide-23-reset onclick='pyodideReset("pyodide-23")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-23-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-23-output></pre></div><p>Nous avons dit que cet algorithme est &ldquo;faussement linéaire&rdquo;, et qu&rsquo;il est en
 fait quadratique, en raison de l&rsquo;usage de la liste (plutôt qu&rsquo;un <code>set</code>). Mais
 pourquoi la performance semble être &ldquo;entre les deux&rdquo;, dans ce cas particulier,
 si on compare les temps d&rsquo;exécution? La réponse est que l&rsquo;opérateur <code>in</code> est
@@ -319,11 +350,11 @@ quadratique, qui est beaucoup moins efficace. Et nous avons vu qu&rsquo;il est
 possible de généraliser au-delà : $O(N^3)$, temps cubique, etc. On appelle cette
 classe de performance <em>polynomiale</em>.</p><p>Il existe cependant d&rsquo;autres profils de performance dont il est utile de
 connaître l&rsquo;existence. Supposons qu&rsquo;on ait une liste triée de nombres, et qu&rsquo;on
-cherche un nombre particulier dans cette liste :</p><label class=book-image for=book-image-toggle-11><input class="hidden toggle" type=checkbox id=book-image-toggle-11>
+cherche un nombre particulier dans cette liste :</p><label class=book-image for=book-image-toggle-24><input class="hidden toggle" type=checkbox id=book-image-toggle-24>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/sorted-list.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-11"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Est-ce qu&rsquo;il existe un algorithme plus performant que $O(N)$ pour ce problème?</p><label class=book-image for=book-image-toggle-12><input class="hidden toggle" type=checkbox id=book-image-toggle-12>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-24"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Est-ce qu&rsquo;il existe un algorithme plus performant que $O(N)$ pour ce problème?</p><label class=book-image for=book-image-toggle-25><input class="hidden toggle" type=checkbox id=book-image-toggle-25>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/binary-search.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-12"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Cet algorithme très fameux s&rsquo;appelle la &ldquo;recherche binaire&rdquo;, et son temps
+</label><script>(function(){const e=document.getElementById("book-image-toggle-25"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Cet algorithme très fameux s&rsquo;appelle la &ldquo;recherche binaire&rdquo;, et son temps
 d&rsquo;exécution est $O(log N)$, car il s&rsquo;agit essentiellement d&rsquo;une série de
 &ldquo;division par deux&rdquo; (à chaque fois qu&rsquo;on coupe la liste en deux), l&rsquo;inverse donc
 d&rsquo;une multiplication. Dans le contexte de ce que nous avons vu jusqu&rsquo;à
@@ -338,16 +369,23 @@ mathématiquement impossible de faire mieux qu&rsquo;une performance supra-liné
 pour trier une liste de nombres ou d&rsquo;objets quelconques.</p><p>Finalement, certains algorithmes ont des profils de performance encore plus
 coûteux que la classe polynomiale : ils nécessitent un temps exponentiel, par
 exemple $O(2^N)$. Voici certains exemples fameux de problèmes dont les algorithmes
-pour produire une solution optimale sont exponentiels :</p><label class=book-image for=book-image-toggle-13><input class="hidden toggle" type=checkbox id=book-image-toggle-13>
+pour produire une solution optimale sont exponentiels :</p><label class=book-image for=book-image-toggle-26><input class="hidden toggle" type=checkbox id=book-image-toggle-26>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/tsp.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-13"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le <a href=https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_voyageur_de_commerce>problème du voyageur de
+</label><script>(function(){const e=document.getElementById("book-image-toggle-26"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le <a href=https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_voyageur_de_commerce>problème du voyageur de
 commerce</a>,
 qui consister à déterminer le circuit le plus court passant par une série de
-villes, dans un graphe.</p><p>Les échecs :</p><label class=book-image for=book-image-toggle-14><input class="hidden toggle" type=checkbox id=book-image-toggle-14>
+villes, dans un graphe.</p><p>Les échecs :</p><label class=book-image for=book-image-toggle-27><input class="hidden toggle" type=checkbox id=book-image-toggle-27>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/chess.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-14"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Et finalement, le jeu de Sudoku :</p><label class=book-image for=book-image-toggle-15><input class="hidden toggle" type=checkbox id=book-image-toggle-15>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-27"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Et finalement, le jeu de Sudoku :</p><label class=book-image for=book-image-toggle-28><input class="hidden toggle" type=checkbox id=book-image-toggle-28>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/sudoku.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-15"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-28"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
 <span>Module 2 - La programmation</span>
 </a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/ class="flex align-center"><span>Principes généraux fameux</span>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#structures-de-données-fondamentales>Structures de données fondamentales</a><ul><li><a href=#la-liste-et-le-set>La liste et le <code>set</code></a></li><li><a href=#le-dictionnaire-table-associative-etc>Le dictionnaire (table associative, etc)</a></li><li><a href=#le-dictionnaire-en-tant-que-record>Le dictionnaire en tant que <code>record</code></a></li><li><a href=#limplémentation-du-dictionnaire>L&rsquo;implémentation du dictionnaire</a></li><li><a href=#la-correspondance-avec-json>La correspondance avec JSON</a></li></ul></li><li><a href=#complexité-algorithmique-et-performance>Complexité algorithmique et performance</a><ul><li><a href=#au-delà-et-en-deça-de-la-complexité-polynomiale>Au-delà et en-deça de la complexité polynomiale</a></li></ul></li></ul></nav></div></aside></main></body></html>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#structures-de-données-fondamentales>Structures de données fondamentales</a><ul><li><a href=#la-liste-et-le-set>La liste et le <code>set</code></a></li><li><a href=#le-dictionnaire-table-associative-etc>Le dictionnaire (table associative, etc)</a></li><li><a href=#le-dictionnaire-en-tant-que-record>Le dictionnaire en tant que <code>record</code></a></li><li><a href=#limplémentation-du-dictionnaire>L&rsquo;implémentation du dictionnaire</a></li><li><a href=#la-correspondance-avec-json>La correspondance avec JSON</a></li></ul></li><li><a href=#complexité-algorithmique-et-performance>Complexité algorithmique et performance</a><ul><li><a href=#au-delà-et-en-deça-de-la-complexité-polynomiale>Au-delà et en-deça de la complexité polynomiale</a></li></ul></li></ul></nav></div></aside></main><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js></script><script>const _pyodideEditors={};document.querySelectorAll(".pyodide-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const s=e.id,o=t.value,n=CodeMirror.fromTextArea(t,{mode:"python",theme:"material-darker",indentUnit:4,tabSize:4,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=o,_pyodideEditors[s]=n});let _pyodideReady=null;async function _getPyodide(){return _pyodideReady||(_pyodideReady=(async()=>(await new Promise((e,t)=>{const n=document.createElement("script");n.src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js",n.onload=e,n.onerror=t,document.head.appendChild(n)}),await loadPyodide()))()),_pyodideReady}async function pyodideRun(e){const o=_pyodideEditors[e],t=document.getElementById(e+"-output"),s=document.getElementById(e+"-run"),n=document.getElementById(e+"-status"),i=o.getValue();s.disabled=!0,t.textContent="",t.classList.remove("pyodide-output-hidden"),n.textContent="Chargement de Pyodide…";try{const e=await _getPyodide();n.textContent="Exécution…",e.runPython(`
+import sys, io
+sys.stdout = io.StringIO()
+sys.stderr = io.StringIO()
+`);try{e.runPython(i)}catch(o){const i=e.runPython("sys.stderr.getvalue()"),s=e.runPython("sys.stdout.getvalue()");t.innerHTML="",s&&t.appendChild(document.createTextNode(s));const n=document.createElement("span");n.className="pyodide-error",n.textContent=i||o.message,t.appendChild(n);return}finally{const s=e.runPython("sys.stdout.getvalue()"),n=e.runPython("sys.stderr.getvalue()");if(e.runPython(`
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+`),!t.children.length&&(t.textContent=s,n)){const e=document.createElement("span");e.className="pyodide-error",e.textContent=n,t.appendChild(e)}}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("span");e.className="pyodide-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function pyodideReset(e){const t=_pyodideEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.textContent=""}</script></body></html>
