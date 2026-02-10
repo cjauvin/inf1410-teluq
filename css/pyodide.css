@@ -33,9 +33,9 @@
 
 .pyodide-toolbar button {
   padding: 0.25rem 0.75rem;
-  border: 1px solid var(--gray-300, #ccc);
+  border: 1px solid var(--gray-500, #ccc);
   border-radius: 4px;
-  background: #fff;
+  background: var(--body-background, #fff);
   color: var(--body-font-color, #333);
   font-size: 0.8rem;
   cursor: pointer;
@@ -44,6 +44,7 @@
 
 .pyodide-toolbar button:hover {
   background: var(--gray-100, #f0f0f3);
+  border-color: var(--body-font-color, #333);
 }
 
 .pyodide-toolbar button:disabled {
