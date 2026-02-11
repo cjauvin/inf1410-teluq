@@ -1,0 +1,90 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="La gestion des dépendances# Dès qu’un programme devient un peu plus complexe, deux phénomènes interviennent habituellement :
+Le programme est décomposé en plusieurs modules Certaines fonctionnalités du programmes peuvent être accomplies par des programmes (ou des librairies) externes Dans le cas (2), on nomme parfois les librairies externes des “dépendances”, ou des “paquets” (packages en anglais, plus communément).
+Dans les débuts de l’ingénierie logicielle, ces dépendances étaient gérées à la main, en copiant et échangeant des fichiers.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/gestion-des-d%C3%A9pendances/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="La gestion des dépendances"><meta property="og:description" content="La gestion des dépendances# Dès qu’un programme devient un peu plus complexe, deux phénomènes interviennent habituellement :
+Le programme est décomposé en plusieurs modules Certaines fonctionnalités du programmes peuvent être accomplies par des programmes (ou des librairies) externes Dans le cas (2), on nomme parfois les librairies externes des “dépendances”, ou des “paquets” (packages en anglais, plus communément).
+Dans les débuts de l’ingénierie logicielle, ces dépendances étaient gérées à la main, en copiant et échangeant des fichiers."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="La gestion des dépendances"><meta itemprop=description content="La gestion des dépendances# Dès qu’un programme devient un peu plus complexe, deux phénomènes interviennent habituellement :
+Le programme est décomposé en plusieurs modules Certaines fonctionnalités du programmes peuvent être accomplies par des programmes (ou des librairies) externes Dans le cas (2), on nomme parfois les librairies externes des “dépendances”, ou des “paquets” (packages en anglais, plus communément).
+Dans les débuts de l’ingénierie logicielle, ces dépendances étaient gérées à la main, en copiant et échangeant des fichiers."><meta itemprop=wordCount content="820"><title>La gestion des dépendances | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/gestion-des-d%C3%A9pendances/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.427fd74effaa6729c02a67f5c2fcf3aacdee5c04af08e6536e0f6fc0b2d61589.css integrity="sha256-Qn/XTv+qZynAKmf1wvzzqs3uXASvCOZTbg9vwLLWFYk=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/>Qu'est-ce que le génie logiciel?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Les idées historiques importantes</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique2/>Survol historiquee des jalons du GL</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - La programmation</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/>Principes généraux fameux</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle checked>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Les outils et les environnements</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/docker/>La conteneurisation avec docker</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/gestion-des-d%C3%A9pendances/ class=active>La gestion des dépendances</a></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - La gestion de projet et la collaboration</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/>Le manifeste Agile</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a role=button>Module 6 - L'infonuagique</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>La gestion des dépendances</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#le-versionnage-sémantique--semver>Le versionnage sémantique : SemVer</a></li><li><a href=#le-gestionnaire-uv-pour-python>Le gestionnaire <code>uv</code> pour Python</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=la-gestion-des-dépendances>La gestion des dépendances<a class=anchor href=#la-gestion-des-d%c3%a9pendances>#</a></h1><p>Dès qu&rsquo;un programme devient un peu plus complexe, deux phénomènes interviennent
+habituellement :</p><ol><li>Le programme est décomposé en plusieurs modules</li><li>Certaines fonctionnalités du programmes peuvent être accomplies par des
+programmes (ou des librairies) externes</li></ol><p>Dans le cas (2), on nomme parfois les librairies externes des &ldquo;dépendances&rdquo;, ou des
+&ldquo;paquets&rdquo; (packages en anglais, plus communément).</p><p>Dans les débuts de l&rsquo;ingénierie logicielle, ces dépendances étaient gérées à la
+main, en copiant et échangeant des fichiers.</p><p>Avec l&rsquo;apparition de Linux au début des années 90, une innovation importante
+allait vite apparaître : les gestionnaire de paquets. Des exemples fameux sont
+<a href=https://fr.wikipedia.org/wiki/Advanced_Packaging_Tool>APT</a> pour les
+distributions Debian et Ubuntu de Linux, et
+<a href=https://fr.wikipedia.org/wiki/RPM_Package_Manager>RPM</a> pour d&rsquo;autres
+distributions comme Red Hat, Fedora, etc.</p><p>Ces paquets sont en général des programmes et des librairies qui sont
+compatibles avec une version particulière de Linux et des sous-systèmes qui sont
+présents dans une distribution particulière. Par exemple si on utilise Ubuntu
+24.04, une version particulière d&rsquo;une distribution particulière de Linux basée
+sur Debian, le gestionnaire de paquets <code>apt</code> ne permettra que d&rsquo;installer des
+programmes compatibles avec Ubuntu 24.04. Non seulement la compatibilité des versions
+est gérée au niveau du système global, mais aussi entre les paquets (programmes ou librairies, entre eux). Si par exemple l&rsquo;installation de la version 7 de LibreOffice
+nécessite une version particulière de Java, le gestionnaire de paquets gérera les
+dépendances intelligemment, et automatiquement.</p><h2 id=le-versionnage-sémantique--semver>Le versionnage sémantique : SemVer<a class=anchor href=#le-versionnage-s%c3%a9mantique--semver>#</a></h2><p>Au fil du temps et de l&rsquo;évolution de la culture du développement logiciel, le
+versionnage dit <em>sémantique</em> (SemVer) s&rsquo;est imposé en tant que convention pour numéroter
+les versions d&rsquo;un logiciel, que ce soit un programme ou une librairie.</p><label class=book-image for=book-image-toggle-0><input class="hidden toggle" type=checkbox id=book-image-toggle-0>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module3/gestion-des-d%C3%A9pendances/semver.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-0"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Bien que l&rsquo;interprétation ne soit pas toujours identique, en général on
+s&rsquo;accorde pour dire que la composante &ldquo;majeure&rdquo; du numéro de version correspond
+à un changement important, qui &ldquo;brise&rdquo; la compatibilité avec les versions
+précédentes (s&rsquo;il y en a). S&rsquo;il s&rsquo;agit d&rsquo;une librairie logicielle par exemple,
+la mise à jour demandera probablement un travail assez important, non-trivial.</p><p>Le deuxième nombre, la version mineure, indique l’ajout de nouvelles
+fonctionnalités qui demeurent compatibles avec l’existant. Le logiciel
+s’enrichit, mais sans obliger les utilisateurs à modifier leur code. Enfin, le
+troisième nombre, appelé correctif ou patch, correspond à des réparations
+internes : corrections de bugs, améliorations de performance ou failles de
+sécurité qui ne modifient pas l’interface offerte aux autres programmes.</p><p>Grâce à cette structure simple, un numéro de version devient une véritable
+promesse. Il permet aux équipes de décider automatiquement quelles mises à jour
+peuvent être installées sans risque et lesquelles exigent une attention
+particulière. Les gestionnaires de dépendances modernes s’appuient largement sur
+cette logique pour éviter les surprises. Sans une convention partagée, une
+nouvelle version pourrait tout aussi bien contenir une amélioration bénigne
+qu’un changement radical rendant l’application inutilisable.</p><p>Adopter SemVer revient donc à instaurer une relation de confiance entre les
+mainteneurs d’un logiciel et celles et ceux qui l’intègrent dans leurs propres
+projets. Le numéro n’est plus simplement un identifiant : il devient une
+information sur la stabilité, la continuité et l’effort requis pour évoluer avec
+le produit.</p><p>Il est à noter que bien que SemVer soit le schéma le plus répandu, il en existe
+d&rsquo;autres : Ubuntu par exemple utilise des numéros de version qui correspondent à
+l&rsquo;année et au mois de livraison d&rsquo;une certaine version.</p><p>Il y a aussi une notion assez populaire, qui consiste à considérer qu&rsquo;un
+logiciel ou une librairie ne peut pas être considérée <em>stable</em> tant qu&rsquo;elle n&rsquo;a
+pas atteint au moins la version <code>1.0.0</code>. Certains projets restent d&rsquo;ailleurs
+indéfiniment dans un schéma de versions <code>0.x.y</code>, afin d&rsquo;échapper à une certaine
+pression sociale, et ainsi pouvoir conserver une certaine liberté créative et
+d&rsquo;action.</p><p>Il est à noter que pour les langages de programmation (qui sont à la fois des
+programmes et des librairies), la question du numéro de version est
+particulièrement cruciale et parfois même controversée. Un cas fameux est la
+transition de la version 2 du langage Python, à la version 3, qui était prévue
+devoir être relativement simple et rapide, mais qui a pris au moins 10 ans à
+intervenir, étant donné toute la complexité technique et sociale que cette
+transition a entraînée.</p><p>La notion de versionnage sémantique est tellement importante et omniprésente
+qu&rsquo;elle a de l&rsquo;influence à l&rsquo;extérieur de la sphère du développement logiciel.
+On parlera ainsi de la Playstation 5, de la Mazda 3, etc. Même des choses qui
+pourraient à priori ressembler à du logiciel, comme le Web 2.0 et le Web3, n&rsquo;en
+sont pas vraiment.</p><h2 id=le-gestionnaire-uv-pour-python>Le gestionnaire <code>uv</code> pour Python<a class=anchor href=#le-gestionnaire-uv-pour-python>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ uv init
+</span></span><span style=display:flex><span>Initialized project <span style=color:#e6db74>`</span>uv-demo<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>$ ls -la
+</span></span><span style=display:flex><span>total <span style=color:#ae81ff>24</span>
+</span></span><span style=display:flex><span>drwxr-xr-x@ <span style=color:#ae81ff>6</span> cjauvin  staff  <span style=color:#ae81ff>192</span> Feb <span style=color:#ae81ff>11</span> 14:46 ./
+</span></span><span style=display:flex><span>drwxr-xr-x@ <span style=color:#ae81ff>4</span> cjauvin  staff  <span style=color:#ae81ff>128</span> Feb <span style=color:#ae81ff>11</span> 14:42 ../
+</span></span><span style=display:flex><span>-rw-r--r--@ <span style=color:#ae81ff>1</span> cjauvin  staff    <span style=color:#ae81ff>5</span> Feb <span style=color:#ae81ff>11</span> 14:46 .python-version
+</span></span><span style=display:flex><span>-rw-r--r--@ <span style=color:#ae81ff>1</span> cjauvin  staff   <span style=color:#ae81ff>85</span> Feb <span style=color:#ae81ff>11</span> 14:46 main.py
+</span></span><span style=display:flex><span>-rw-r--r--@ <span style=color:#ae81ff>1</span> cjauvin  staff  <span style=color:#ae81ff>153</span> Feb <span style=color:#ae81ff>11</span> 14:46 pyproject.toml
+</span></span><span style=display:flex><span>-rw-r--r--@ <span style=color:#ae81ff>1</span> cjauvin  staff    <span style=color:#ae81ff>0</span> Feb <span style=color:#ae81ff>11</span> 14:46 README.md</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/docker/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>La conteneurisation avec docker</span>
+</a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/ class="flex align-center"><span>Module 4 - La gestion de projet et la collaboration</span>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#le-versionnage-sémantique--semver>Le versionnage sémantique : SemVer</a></li><li><a href=#le-gestionnaire-uv-pour-python>Le gestionnaire <code>uv</code> pour Python</a></li></ul></nav></div></aside></main></body></html>

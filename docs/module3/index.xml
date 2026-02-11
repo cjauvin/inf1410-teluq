@@ -10,4 +10,15 @@ technologie Docker, ses concepts de base, et comment utiliser certains de ses
 outils principaux. Le but est de favoriser la création d’un modèle mental
 robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire,
 nous allons tout d’abord répondre à quelques questions courantes, et explorer
-ensuite une série d’exemples, de manière progressive et cohérente.&lt;/p&gt;</description></item><item><title>La gestion de packages et de librairies avec uv</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/package-managers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/package-managers/</guid><description>&lt;p&gt;Bla&lt;/p&gt;</description></item></channel></rss>
+ensuite une série d’exemples, de manière progressive et cohérente.&lt;/p&gt;</description></item><item><title>La gestion des dépendances</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/gestion-des-d%C3%A9pendances/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/gestion-des-d%C3%A9pendances/</guid><description>&lt;h1 id="la-gestion-des-dépendances"&gt;La gestion des dépendances&lt;a class="anchor" href="#la-gestion-des-d%c3%a9pendances"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Dès qu&amp;rsquo;un programme devient un peu plus complexe, deux phénomènes interviennent
+habituellement :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Le programme est décomposé en plusieurs modules&lt;/li&gt;
+&lt;li&gt;Certaines fonctionnalités du programmes peuvent être accomplies par des
+programmes (ou des librairies) externes&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Dans le cas (2), on nomme parfois les librairies externes des &amp;ldquo;dépendances&amp;rdquo;, ou des
+&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;
+&lt;p&gt;Dans les débuts de l&amp;rsquo;ingénierie logicielle, ces dépendances étaient gérées à la
+main, en copiant et échangeant des fichiers.&lt;/p&gt;</description></item></channel></rss>
