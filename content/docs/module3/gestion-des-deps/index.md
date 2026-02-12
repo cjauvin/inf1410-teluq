@@ -99,8 +99,19 @@ plus des "évolutions culturelles et technologiques".
 
 ## Le gestionnaire `uv` pour Python
 
-Pour explorer concrètement ces idées, nous allons utiliser le gestionnaire
-de librairies `uv`, pour Python.
+Pour explorer concrètement ces idées, nous allons utiliser le gestionnaire de
+librairies `uv`, pour Python. `uv` est un outil très intéressant, car il est
+apparu relativement tard dans l'histoire de Python (en 2024), à la suite d'une
+longue lignée d'outils du même genre : `pipenv`, `poetry`, etc. Ces outils ne
+doivent pas être confondus avec `pip`, qui est l'outil de base dans la
+distribution Python, qui est moins puissant que les gestionnaires de
+dépendances, dont il sera question ici. `uv` est apparu au bon moment, avec les
+bonnes caractéristiques : extrêmement rapide (il est écrit lui-même dans le
+langage Rust), avec une implémentation très complète et flexible des standards
+de l'écosystème de packaging pour Python, qui ont pris un long moment avant de
+maturer. Pendant de nombreuses années, la gestion du packaging en Python était
+considéré un sujet pénible et beaucoup de controverse existait. L'apparition de
+`uv` a introduit une certaine sérénité dans la culture de Python.
 
 ### La librairie `my-lib`
 
