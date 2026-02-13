@@ -70,6 +70,8 @@ projets. Le numéro n’est plus simplement un identifiant : il devient une
 information sur la stabilité, la continuité et l’effort requis pour évoluer avec
 le produit.
 
+{{< image src="versions.png" alt="" title="" loading="lazy" >}}
+
 Il est à noter que bien que SemVer soit le schéma le plus répandu, il en existe
 d'autres : Ubuntu par exemple utilise des numéros de version qui correspondent à
 l'année et au mois de livraison d'une certaine version.
@@ -87,7 +89,9 @@ particulièrement cruciale et parfois même controversée. Un cas fameux est la
 transition de la version 2 du langage Python, à la version 3, qui était prévue
 devoir être relativement simple et rapide, mais qui a pris au moins 10 ans à
 intervenir, étant donné toute la complexité technique et sociale que cette
-transition a entraînée.
+transition a entraînée. En fait il est très probable que Python ne passe jamais
+à la version 4, étant donné son historique et sa position centrale dans de
+nombreux écosystèmes technologiques (web, IA, calcul scientifique, etc).
 
 La notion de versionnage sémantique est tellement importante et omniprésente
 qu'elle a de l'influence à l'extérieur de la sphère du développement logiciel.
@@ -116,7 +120,7 @@ considéré un sujet pénible et beaucoup de controverse existait. L'apparition 
 ### La librairie `my-lib`
 
 Nous allons tout d'abord créer, avec `uv`, une petite librairie simple, qui
-n'offrira qu'une seule fonction :
+n'offrira qu'une seule fonction&nbsp;:
 
 
 ```shell
@@ -164,8 +168,8 @@ $ uv run python -c 'from my_lib.secret import get_secret_number; print(get_secre
 ```
 
 On doit ensuite produire un artefact de type `wheel`, qui va contenir la totalité
-de notre librairie, en un seul fichier `.whl` (qu'il sera possible pour un autre projet
-d'installer) :
+de notre librairie, en un seul fichier `.whl` (qu'il sera possible d'installer dans un
+autre projet)&nbsp;:
 
 ```shell
 $ cd my-lib
@@ -176,8 +180,7 @@ Successfully built ../packages/my_lib-0.1.0.tar.gz
 Successfully built ../packages/my_lib-0.1.0-py3-none-any.whl
 ```
 
-Voici maintenant où nous en sommes :
-
+Voici maintenant où nous en sommes&nbsp;:
 ```shell
 $ tree
 .
@@ -199,6 +202,8 @@ $ tree
 
 6 directories, 10 files
 ```
+
+{{< image src="mylib.png" alt="" title="" loading="lazy" >}}
 
 ### L'application `my-app` (qui utilise la librairie `my-lib`)
 
@@ -280,6 +285,8 @@ $ cd my-app
 $ uv run main.py
 The secret number is: 42
 ```
+
+{{< image src="mylib+myapp.png" alt="" title="" loading="lazy" >}}
 
 Maintenant regardons attentivement notre fichier `my-app/pyproject.toml` :
 
@@ -410,9 +417,11 @@ Resolved 2 packages in 17ms
 Audited 1 package in 0.28ms
 ```
 
+{{< image src="myapp1.png" alt="" title="" loading="lazy" >}}
+
 Rien ne se passe, car bien que `my-lib` version `0.2.0` soit disponible, la
-configuration de `my-app` ne la permet pas. Pour changer cela, on peut utiliser
-la commande :
+configuration de `my-app` ne lui permet pas d'utiliser une version aussi élevée.
+Pour changer cela, on peut utiliser la commande :
 
 ```shell
 uv add "my-lib>=0.1.0,<=0.2.0"
@@ -433,10 +442,26 @@ Installed 1 package in 1ms
  + my-lib==0.2.0
 ```
 
-On peut finalement constater l'effet de cette mise à niveau de `my-lib`, sur notre
+On peut constater l'effet de cette mise à niveau de `my-lib`, sur notre
 application elle-même :
 
 ```shell
 $ uv run main.py
 The secret number is: 99
 ```
+
+Finalement, étant donné ce changement de comportement important, et pour éviter
+de confondre les utilisateurs, on va vouloir mettre à jour la version de
+`my-app` elle-même :
+
+```shell
+$ uv version --bump major
+Resolved 2 packages in 7ms
+Audited 1 package in 0.25ms
+my-app 0.1.0 => 1.0.0
+```
+
+Dans ce cas étant donné qu'il s'agit d'une application, nous avons choisi de
+changer la version majeure, qui passe donc à `1.0.0`.
+
+{{< image src="myapp2.png" alt="" title="" loading="lazy" >}}
