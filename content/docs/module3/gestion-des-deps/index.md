@@ -6,11 +6,15 @@ weight: 20
 # La gestion des dépendances
 
 Dès qu'un programme devient un peu plus complexe, deux phénomènes interviennent
-habituellement :
+habituellement&nbsp;:
 
-1. Le programme est décomposé en plusieurs modules
-2. Certaines fonctionnalités du programmes peuvent être accomplies par des
-   programmes (ou des librairies) externes
+1. Le programme doit être décomposé en plusieurs modules
+2. Certaines fonctionnalités du programmes, pouvant être accomplies par des
+   programmes (ou des librairies) externes, doivent être détachées en des
+   composantes ou des librairies distinctes, qu'il est possible de réutiliser
+   (c'est un peu le [principe
+   DRY](../module2/principes#dry-dont-repeat-yourself-ne-vous-répétez-pas-) que
+   nous avons vu, appliqué dans le sens plus large d'un écosystème logiciel)
 
 Dans le cas (2), on nomme parfois les librairies externes des "dépendances", ou des
 "paquets" (packages en anglais, plus communément).
@@ -30,16 +34,70 @@ compatibles avec une version particulière de Linux et des sous-systèmes qui so
 présents dans une distribution particulière. Par exemple si on utilise Ubuntu
 24.04, une version particulière d'une distribution particulière de Linux basée
 sur Debian, le gestionnaire de paquets `apt` ne permettra que d'installer des
-programmes compatibles avec Ubuntu 24.04. Non seulement la compatibilité des versions
-est gérée au niveau du système global, mais aussi entre les paquets (programmes ou librairies, entre eux). Si par exemple l'installation de la version 7 de LibreOffice
-nécessite une version particulière de Java, le gestionnaire de paquets gérera les
-dépendances intelligemment, et automatiquement.
+programmes compatibles avec Ubuntu 24.04. Un aspect important des systèmes de
+gestion de ce genre est que les dépendances ne sont pas des objets atomiques et
+isolées : en général une dépendance est liée à une autre, ce qui forme un graphe
+de dépendances, qu'on dit transitives, ou récursives (si `X` dépend de `Y` qui
+dépend de `Z`, alors `X` dépend de `Z`, de manière transitive). Donc non
+seulement la compatibilité des versions est gérée au niveau du système global,
+mais aussi entre les paquets (programmes ou librairies, entre eux). Si par
+exemple l'installation de la version 7 de LibreOffice nécessite une version
+particulière de Java, le gestionnaire de paquets gérera les dépendances
+intelligemment, et automatiquement.
 
-## Le versionnage sémantique : SemVer
+Par exemple on peut voir le graphe de dépendances du paquet `sl` sur Ubuntu,
+en utilisant l'utilitaire `apt-rdepends` :
+
+```shell
+$ apt-rdepends sl
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+sl
+  Depends: libc6 (>= 2.2.5)
+  Depends: libncurses6 (>= 6)
+  Depends: libtinfo6 (>= 6)
+libc6
+  Depends: libgcc-s1
+libgcc-s1
+  Depends: gcc-14-base (= 14.2.0-4ubuntu2~24.04)
+  Depends: libc6 (>= 2.35)
+gcc-14-base
+libncurses6
+  Depends: libc6 (>= 2.34)
+  Depends: libtinfo6 (= 6.4+20240113-1ubuntu2)
+libtinfo6
+  Depends: libc6 (>= 2.34)
+  ```
+
+{{< image src="sl-deps.png" alt="" title="" loading="lazy" >}}
+
+## La sécurité
+
+Les gestionnaires de paquets jouent aujourd’hui un rôle central dans le
+développement logiciel, mais ils introduisent également des enjeux importants de
+sécurité. Lorsqu’un projet déclare une dépendance, il ne fait pas seulement
+confiance à une bibliothèque précise, mais aussi à l’ensemble de ses dépendances
+transitives, parfois très nombreuses, ainsi qu’aux personnes et aux
+infrastructures qui les distribuent. Cette situation élargit considérablement la
+surface d’attaque potentielle : un paquet compromis, un mainteneur malveillant,
+une prise de contrôle d’un compte ou encore une simple faute de frappe dans le
+nom d’une librairie (typosquatting) peuvent entraîner l’intégration de code
+hostile dans un système sans que l’équipe de développement ne s’en aperçoive
+immédiatement. Pour répondre à ces risques, les écosystèmes modernes proposent
+divers mécanismes comme les audits automatiques de vulnérabilités connues, les
+signatures cryptographiques, la vérification d’intégrité et la production
+d’inventaires de composants (SBOM). Comprendre ces mécanismes fait désormais
+partie des compétences essentielles du génie logiciel, car la gestion des
+dépendances n’est plus seulement une question de commodité, mais aussi de
+responsabilité opérationnelle et parfois légale. Les gestionnaires de
+dépendances permettent
+
+## Le versionnage sémantique (SemVer)
 
 Au fil du temps et de l'évolution de la culture du développement logiciel, le
-versionnage dit _sémantique_ (SemVer) s'est imposé en tant que convention pour numéroter
-les versions d'un logiciel, que ce soit un programme ou une librairie.
+versionnage dit _sémantique_ (SemVer) s'est imposé en tant que convention pour
+numéroter les versions d'un logiciel, que ce soit un programme ou une librairie.
 
 {{< image src="semver.png" alt="" title="" loading="lazy" >}}
 
@@ -101,6 +159,14 @@ pourraient à priori ressembler à du logiciel, comme le [Web
 [Web3](https://fr.wikipedia.org/wiki/Web3), n'en sont pas vraiment, ils sont
 plus des "évolutions culturelles et technologiques".
 
+## La reproductibilité
+
+Comme on le verra avec git, le code source d'une application est un objet férocement
+dynamique, qui change tout le temps
+
+L'utilisation de numéros de version a un autre avantage : elle permet d'identifier
+de manière unique
+
 ## Le gestionnaire `uv` pour Python
 
 Pour explorer concrètement ces idées, nous allons utiliser le gestionnaire de
@@ -121,7 +187,6 @@ considéré un sujet pénible et beaucoup de controverse existait. L'apparition 
 
 Nous allons tout d'abord créer, avec `uv`, une petite librairie simple, qui
 n'offrira qu'une seule fonction&nbsp;:
-
 
 ```shell
 $ uv init --lib my-lib

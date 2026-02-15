@@ -122,7 +122,6 @@
 
 ## Design by contract
 
-
 # Module 3 — Les outils et les environnements
 
 ## Git et le contrôle de versions
@@ -149,6 +148,7 @@
 - SemVer
 - Manifests et lockfiles
 - Sécurité et licences
+- Vendoring
 
 ## DevOps
 - CI/CD
@@ -174,6 +174,7 @@
 - Peter Naur: Programming as Theory Building
 
 # Module 5 — Les données
+
 - SQL
 - SQL vs NoSQL
 - Intégrité et normalisation
@@ -182,8 +183,8 @@
 - Web sémantique
 - Caching
 
-
 # Module 6 — L'infonuagique
+
 - Modèles de service (IaaS, PaaS, SaaS, Serverless)
 - Grands fournisseurs (AWS, Azure, GCP)
 - Haute disponibilité et scalabilité
