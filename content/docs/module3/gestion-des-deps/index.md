@@ -303,7 +303,7 @@ find-links = ["../packages"]
 
 Ces deux lignes sont très importantes dans notre contexte :
 
-1. `no-index` empêche `uv` d'aller chercher `my-lib` sur le dépôt public [PyPI](https://pypi.org), qui contient déjà apparemment une [librairie avec ce nom](https://pypi.org/project/my-lib/). Nous voulons que `uv` utilise notre version locale de `my-lib`, que nous avons sur notre propre disque
+1. `no-index` empêche `uv` d'aller chercher `my-lib` sur registre de paquets public [PyPI](https://pypi.org), qui contient déjà apparemment une [librairie avec ce nom](https://pypi.org/project/my-lib/). Nous voulons que `uv` utilise notre version locale de `my-lib`, que nous avons sur notre propre disque
 2. `find-links` indique le lieu où `uv` devra trouver les fichiers "wheels", qui sont des sortes de "zip" d'une librairie entière, optimisée pour un système particulier
 
 Une fois cette configuration effectuée, on peut ajouter notre dépendance avec `uv add` :
@@ -328,10 +328,186 @@ my-app v0.1.0
 └── my-lib v0.1.0
 ```
 
-Tout comme nous l'avons fait pour `my-lib`, c'est à nous qu'incombe la
+#### La notion de registre de paquets (PyPI)
+
+Nous avons brièvement mentionné ci-haut la notion de _registre de paquets_.
+Étant donné que nous voulions utiliser notre propre librairie `my-lib`, et non
+celle qui se trouve en ligne, nous avons dû spécifier `no-index = true` dans la
+configuration `pyproject.toml` de notre projet. Que se serait-il passé, sans
+cette instruction particulière? `uv` est configuré, par défaut, pour fonctionner
+avec le registre en ligne et officiel [PyPI](https://pypi.org), qui est un
+endroit public où il est possible de télécharger et publier des paquets.
+Explorons cette notion en créant un nouveau projet avec `uv` :
+
+```shell
+$ cd ..  # on ne doit pas être dans le répertoire d'un projet existant
+$ uv init my-venv
+Initialized project `my-venv` at `/Users/cjauvin/gh/inf1410-teluq/content/docs/module3/gestion-des-deps/uv-demo3/my-venv`
+```
+
+Ajoutons une dépendance vers la librairie [requests](https://pypi.org/project/requests/),
+qui permet de faire des requêtes HTTP (web) en python :
+
+```shell
+$ cd my-venv
+$ uv add requests
+Using CPython 3.13.5
+Creating virtual environment at: .venv
+Resolved 6 packages in 183ms
+Installed 5 packages in 4ms
+ + certifi==2026.1.4
+ + charset-normalizer==3.4.4
+ + idna==3.11
+ + requests==2.32.5
+ + urllib3==2.6.3
+```
+
+On constate trois choses :
+
+1. `uv` a téléchargé automatiquement la librairie `requests` de PyPI, sans que l'ait rien configuré
+2. La librairie `requests` elle-même nécessite quelques dépendances additionnelles (des dépendances transitives donc) : `certifi`, `charset-normalizer`, etc.
+3. Apparemment un "environnement virtuel" a été créé, dans le répertoire `.venv` de notre projet
+
+Qu'est-ce qu'un environnement virtuel donc?
+
+#### La notion d'environnement virtuel (virtual env, ou `venv`)
+
+En fait une question reliée serait : qu'est-ce qu'un projet `uv`, au juste?
+Quand j'ajoute une dépendance dans mon projet, quel est l'effet concret, et
+comment puis-le constater? Voyons voir le contenu du répertoire du projet
+dans lequel nous venons d'installer une dépendance :
+:
+
+```shell
+$ cd my-venv
+$ ls -la
+total 24
+drwxr-xr-x@ 8 cjauvin  staff  256 Feb 16 17:13 ./
+drwxr-xr-x@ 5 cjauvin  staff  160 Feb 16 17:14 ../
+-rw-r--r--@ 1 cjauvin  staff    5 Feb 12 14:55 .python-version
+drwxr-xr-x@ 8 cjauvin  staff  256 Feb 12 14:58 .venv/
+-rw-r--r--@ 1 cjauvin  staff  358 Feb 16 17:12 pyproject.toml
+-rw-r--r--@ 1 cjauvin  staff    0 Feb 12 14:55 README.md
+drwxr-xr-x@ 3 cjauvin  staff   96 Feb 12 14:55 src/
+-rw-r--r--@ 1 cjauvin  staff  254 Feb 16 17:13 uv.lock
+```
+
+On constate un répertoire particulier, appelé `.venv` : il s'agit d'un
+environnement virtuel (souvent appelé `venv`), un endroit particulier sur le
+disque qui contient :
+
+1. Une version particulière de l'interpréteur Python (par exemple la version
+   3.13, dans cet exemple), ainsi qu'une série d'utilitaires reliés
+2. Une série de paquets (packages) qui ont été installés dans le venv (dans le
+   contexte de ce projet, un seul a été installé : `requests`)
+
+Il est crucial de savoir et de comprendre que les paquets installés dans un venv
+particulier fonctionnent exclusivement dans le contexte de l'interpréteur python
+particulier, installé dans ce venv. On peut s'en convaincre avec cette commande :
+
+```shell
+$ ll .venv/lib/python3.13/site-packages/
+total 24
+-rw-r--r--@  1 cjauvin  staff    18B Feb 17 15:46 _virtualenv.pth
+-rw-r--r--@  1 cjauvin  staff   4.2K Feb 17 15:46 _virtualenv.py
+drwxr-xr-x@  7 cjauvin  staff   224B Feb 17 15:46 certifi/
+drwxr-xr-x@  9 cjauvin  staff   288B Feb 17 15:46 certifi-2026.1.4.dist-info/
+drwxr-xr-x@ 16 cjauvin  staff   512B Feb 17 15:46 charset_normalizer/
+drwxr-xr-x@ 10 cjauvin  staff   320B Feb 17 15:46 charset_normalizer-3.4.4.dist-info/
+drwxr-xr-x@ 11 cjauvin  staff   352B Feb 17 15:46 idna/
+drwxr-xr-x@  8 cjauvin  staff   256B Feb 17 15:46 idna-3.11.dist-info/
+drwxr-xr-x@ 20 cjauvin  staff   640B Feb 17 15:46 requests/
+drwxr-xr-x@  9 cjauvin  staff   288B Feb 17 15:46 requests-2.32.5.dist-info/
+drwxr-xr-x@ 18 cjauvin  staff   576B Feb 17 15:46 urllib3/
+drwxr-xr-x@  8 cjauvin  staff   256B Feb 17 15:46 urllib3-2.6.3.dist-info/
+```
+
+Ceci permet un mécanisme d'isolation, qui permet d'éviter les conflits et les
+problèmes de compatibilité entre les composantes. Par exemple, si un script de
+traitement de données utilise la version 1 de `numpy`, on peut le rouler dans un
+venv dont la version de `numpy` est gardée exclusivement à cette version. Si un
+autre script utilise la version 2, il peut rouler dans son propre venv. Il est
+en de même pour la version de l'interpréteur python utilisée, qui peut varier de
+venv en venv, elle aussi.
+
+{{< image src="two-venvs.png" alt="" title="" loading="lazy" >}}
+
+> [!NOTE]
+Chaque fois qu'une commande `uv` est exécutée, elle l'est dans le contexte d'un
+venv particulier. Si le venv n'existe pas, il sera créé pour l'occasion.
+
+#### La notion de reproductibilité (`uv.lock`)
+
+Un autre fichier qu'il est intéressant de considérer dans notre projet est
+`uv.lock`. Ce fichier contient la liste des dépendances du projet, sous la forme
+de métadonnées précises, permettent de reconstruire de manière parfaite et
+exhaustive le contenu d'un venv particulier (c'est une manière de le copier
+donc, en le reproduisant avec une recette). Chaque dépendance y est figée dans
+le temps, à l'aide d'identifiants et de urls non-ambigus, qui permettent de
+faire en sorte de réinstaller exactement le même environnement, dans un endroit
+différent. Quand le projet vient d'être créé, `uv.lock` est vide. Mais dans
+notre cas, étant donné que nous avons ajouté `requests` au projet, on peut
+constater, en l'examinant, qu'il contient une série de références précises vers
+les artefacts en ligne des packages correspondant :
+
+```shell
+$ cd my-venv
+$ cat uv.lock
+version = 1
+revision = 3
+requires-python = ">=3.13"
+
+[[package]]
+name = "certifi"
+version = "2026.1.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e0/2d/a891ca51311197f6ad14a7ef42e2399f36cf2f9bd44752b3dc4eab60fdc5/certifi-2026.1.4.tar.gz", hash = "sha256:ac726dd470482006e014ad384921ed6438c457018f4b3d204aea4281258b2120", size = 154268, upload-time = "2026-01-04T02:42:41.825Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e6/ad/3cc14f097111b4de0040c83a525973216457bbeeb63739ef1ed275c1c021/certifi-2026.1.4-py3-none-any.whl", hash = "sha256:9943707519e4add1115f44c2bc244f782c0249876bf51b6599fee1ffbedd685c", size = 152900, upload-time = "2026-01-04T02:42:40.15Z" },
+]
+...
+```
+
+Cette notion de reproductibilité est extrêmement importante dans les
+environnements de production, où certaines composantes logicielles sont parfois
+installées à répétition, de manière scriptée et automatisée, dans des
+environnements éphémères, comme des containers (docker ou autre), dans un
+système Kubernetes, ou un environnement pour effectuer des tests.
+
+#### Est-ce sécuritaire?
+
+Qu'arriverait-il si, au lieu d'installer la librairie `requests`, nous tentions
+d'installer, par mégarde, `request` (sans `s`)? Voyons voir :
+
+```shell
+$ uv add request
+  × No solution found when resolving dependencies:
+  ╰─▶ Because request was not found in the package registry and your project depends on request, we can
+      conclude that your project's requirements are unsatisfiable.
+  help: If you want to add the package regardless of the failed resolution, provide the `--frozen` flag
+        to skip locking and syncing.
+```
+
+Dans ce cas, le comportement souhaité est le bon : PyPI ne reconnaît pas le nom
+de cette librairie, et qui plus est, ce qui est le plus important : PyPI ne
+permettrait pas à quelqu'un de publier une librairie dont le nom serait trop
+proche d'une librairie très connue (`requests` est extrêmement populaire). Un
+danger qui nous guette cependant avec les systèmes comme PyPI, est le
+[typosquattage](https://fr.wikipedia.org/wiki/Typosquattage), le fait
+d'exploiter une variante orthographique proche, pour publier du contenu
+malicieux. Il est également possible, dans certains cas, que le compte PyPI
+associé à une librairie soit piraté, et que son contenu soit remplacé par une
+version malicieuse, qui contient un virus, ou encore un mécanisme pour voler des
+données, par exemple.
+
+---
+
+Après ces détours, revenons maintenant à notre application `my-app` : tout comme
+nous l'avons fait pour la librairie `my-lib`, c'est à nous qu'incombe la
 responsabilité de fournir le code source pour l'application, qui sera très
-simple. Dans le fichier `my-app/main.py` (qui a été créé automatiquement par `uv`
-puisqu'il s'agissait d'une application), nous devons remplacer le contenu par :
+simple. Dans le fichier `my-app/main.py` (qui a été créé automatiquement par
+`uv` puisqu'il s'agissait d'une application), nous devons remplacer le contenu
+par :
 
 ```python
 from my_lib.secret import get_secret_number
