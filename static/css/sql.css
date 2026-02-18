@@ -1,0 +1,122 @@
+/* ── SQL executable code block ── */
+
+.sql-block {
+  margin: 1rem 0;
+  border: 1px solid var(--gray-200, #e2e8f0);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Hide the raw textarea (CodeMirror replaces it) */
+.sql-block > textarea {
+  display: none;
+}
+
+/* CodeMirror overrides */
+.sql-block .CodeMirror {
+  height: auto;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border: none;
+  border-radius: 0;
+}
+
+/* ── Toolbar ── */
+
+.sql-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--gray-200, #e2e8f0);
+  border-top: 1px solid var(--gray-200, #e2e8f0);
+}
+
+.sql-toolbar button {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--gray-500, #ccc);
+  border-radius: 4px;
+  background: var(--body-background, #fff);
+  color: var(--body-font-color, #333);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.sql-toolbar button:hover {
+  background: var(--gray-100, #f0f0f3);
+  border-color: var(--body-font-color, #333);
+}
+
+.sql-toolbar button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sql-toolbar .sql-status {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--gray-500, #888);
+  align-self: center;
+}
+
+/* ── Output ── */
+
+.sql-output {
+  margin: 0;
+  border-top: 1px solid var(--gray-200, #e2e8f0);
+  background: #1e1e2e;
+  color: #cdd6f4;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.825rem;
+  line-height: 1.5;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.sql-output.sql-output-hidden {
+  display: none;
+}
+
+/* Message output (row count, errors) */
+.sql-output .sql-message {
+  padding: 0.75rem 1rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.sql-output .sql-error {
+  color: #f38ba8;
+}
+
+/* ── Result table ── */
+
+.sql-output table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.sql-output th,
+.sql-output td {
+  padding: 0.35rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #313244;
+  white-space: nowrap;
+}
+
+.sql-output th {
+  background: #313244;
+  color: #89b4fa;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+.sql-output tr:hover td {
+  background: rgba(137, 180, 250, 0.07);
+}
+
+.sql-output td.sql-null {
+  color: #6c7086;
+  font-style: italic;
+}

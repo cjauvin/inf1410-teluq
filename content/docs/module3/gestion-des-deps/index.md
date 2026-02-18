@@ -728,5 +728,7 @@ et de tenter de répondre aux questions suivantes :
 2. Est-ce qu'il y a un dépôt centralisé de librairies et de packages (comme PyPI)?
 3. Est-ce qu'il y a un mécanisme de lockfile (comme `uv.lock`)?
 4. Est-ce que SemVer y est utilisé de la même manière?
-5. Est-ce les contraintes au niveau des dépendances sont exprimées de la même manière?
-6. Est-ce qu'on y retrouve le même genre de vulnérabilités au niveau de la sécurité (typosquatting, etc)?
+5. Est-ce les contraintes au niveau des dépendances sont exprimées de la même
+   manière (avec le même "mini-langage")?
+6. Est-ce qu'on y retrouve la possibilité du même genre de vulnérabilité au
+   niveau de la sécurité (typosquatting, etc)?

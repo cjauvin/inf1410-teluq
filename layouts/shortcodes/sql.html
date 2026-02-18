@@ -1,0 +1,14 @@
+{{/* layouts/shortcodes/sql.html */}}
+{{- .Page.Scratch.Set "needs_sql" true -}}
+{{- $id := printf "sql-%d" .Ordinal -}}
+{{- $code := .Inner | strings.TrimPrefix "\n" | strings.TrimSuffix "\n" -}}
+
+<div class="sql-block" id="{{ $id }}">
+  <textarea id="{{ $id }}-code">{{ $code }}</textarea>
+  <div class="sql-toolbar">
+    <button id="{{ $id }}-run" onclick="sqlRun('{{ $id }}')">&#9654; Exécuter</button>
+    <button id="{{ $id }}-reset" onclick="sqlReset('{{ $id }}')">&#8634; Réinitialiser</button>
+    <span class="sql-status" id="{{ $id }}-status"></span>
+  </div>
+  <div class="sql-output sql-output-hidden" id="{{ $id }}-output"></div>
+</div>

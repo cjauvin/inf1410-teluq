@@ -44,8 +44,11 @@
   </script>
 {{- end -}}
 
-{{- if .Page.Scratch.Get "needs_pyodide" -}}
+{{- if or (.Page.Scratch.Get "needs_pyodide") (.Page.Scratch.Get "needs_sql") -}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
+{{- end -}}
+
+{{- if .Page.Scratch.Get "needs_pyodide" -}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js"></script>
   <script>
     // ── CodeMirror editor initialization ──
@@ -161,6 +164,138 @@ sys.stderr = sys.__stderr__
       cm.setValue(cm._originalCode);
       const outEl = document.getElementById(id + '-output');
       outEl.textContent = '';
+    }
+  </script>
+{{- end -}}
+
+{{- if .Page.Scratch.Get "needs_sql" -}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/sql/sql.min.js"></script>
+  <script>
+    // ── CodeMirror editor initialization for SQL blocks ──
+    const _sqlEditors = {};
+
+    document.querySelectorAll('.sql-block').forEach(block => {
+      const textarea = block.querySelector('textarea');
+      if (!textarea) return;
+
+      const id = block.id;
+      const original = textarea.value;
+
+      const cm = CodeMirror.fromTextArea(textarea, {
+        mode: 'text/x-sql',
+        theme: 'material-darker',
+        indentUnit: 2,
+        tabSize: 2,
+        indentWithTabs: false,
+        lineNumbers: false,
+        viewportMargin: Infinity,
+      });
+
+      cm._originalCode = original;
+      _sqlEditors[id] = cm;
+    });
+
+    // ── sql.js runtime (lazy-loaded on first run) ──
+    let _sqlDbReady = null;
+
+    async function _getSqlDb() {
+      if (!_sqlDbReady) {
+        _sqlDbReady = (async () => {
+          await new Promise((resolve, reject) => {
+            const s = document.createElement('script');
+            s.src = 'https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.js';
+            s.onload = resolve;
+            s.onerror = reject;
+            document.head.appendChild(s);
+          });
+          const SQL = await initSqlJs({
+            locateFile: () => 'https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.wasm'
+          });
+          return new SQL.Database();
+        })();
+      }
+      return _sqlDbReady;
+    }
+
+    function _sqlResultToTable(columns, values) {
+      let html = '<table><thead><tr>';
+      for (const col of columns) {
+        html += '<th>' + _sqlEscape(col) + '</th>';
+      }
+      html += '</tr></thead><tbody>';
+      for (const row of values) {
+        html += '<tr>';
+        for (const val of row) {
+          if (val === null) {
+            html += '<td class="sql-null">NULL</td>';
+          } else {
+            html += '<td>' + _sqlEscape(String(val)) + '</td>';
+          }
+        }
+        html += '</tr>';
+      }
+      html += '</tbody></table>';
+      return html;
+    }
+
+    function _sqlEscape(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    async function sqlRun(id) {
+      const cm = _sqlEditors[id];
+      const outEl = document.getElementById(id + '-output');
+      const runBtn = document.getElementById(id + '-run');
+      const statusEl = document.getElementById(id + '-status');
+      const code = cm.getValue();
+
+      runBtn.disabled = true;
+      outEl.innerHTML = '';
+      outEl.classList.remove('sql-output-hidden');
+      statusEl.textContent = 'Chargement de SQL.js…';
+
+      try {
+        const db = await _getSqlDb();
+        statusEl.textContent = 'Exécution…';
+
+        const results = db.exec(code);
+
+        if (results.length === 0) {
+          // Statement with no results (CREATE, INSERT, UPDATE, DELETE…)
+          const changes = db.getRowsModified();
+          const msg = document.createElement('div');
+          msg.className = 'sql-message';
+          msg.textContent = changes > 0
+            ? changes + ' ligne(s) modifiée(s).'
+            : 'Requête exécutée avec succès.';
+          outEl.appendChild(msg);
+        } else {
+          // One or more result sets
+          for (const res of results) {
+            const div = document.createElement('div');
+            div.innerHTML = _sqlResultToTable(res.columns, res.values);
+            outEl.appendChild(div);
+          }
+        }
+        statusEl.textContent = '';
+      } catch (err) {
+        outEl.innerHTML = '';
+        const msg = document.createElement('div');
+        msg.className = 'sql-message sql-error';
+        msg.textContent = err.message;
+        outEl.appendChild(msg);
+        statusEl.textContent = '';
+      } finally {
+        runBtn.disabled = false;
+      }
+    }
+
+    function sqlReset(id) {
+      const cm = _sqlEditors[id];
+      cm.setValue(cm._originalCode);
+      const outEl = document.getElementById(id + '-output');
+      outEl.innerHTML = '';
+      outEl.classList.add('sql-output-hidden');
     }
   </script>
 {{- end -}}
