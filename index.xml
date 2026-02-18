@@ -73,7 +73,34 @@ DRY&lt;/a&gt; que
 nous avons vu, appliqué dans le sens plus large d&amp;rsquo;un écosystème logiciel)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Dans le cas (2), on nomme parfois les librairies externes des &amp;ldquo;dépendances&amp;rdquo;, ou des
-&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>Principes généraux fameux</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</guid><description>&lt;h1 id="quelques-principes-généraux-fameux-en-développement-logiciel"&gt;Quelques principes généraux fameux en développement logiciel&lt;a class="anchor" href="#quelques-principes-g%c3%a9n%c3%a9raux-fameux-en-d%c3%a9veloppement-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>Les bases de données relationnelles et SQL</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/</guid><description>&lt;h1 id="les-bases-de-données-relationnelles-et-sql"&gt;Les bases de données relationnelles et SQL&lt;a class="anchor" href="#les-bases-de-donn%c3%a9es-relationnelles-et-sql"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Test :&lt;/p&gt;
+&lt;div class="sql-block" id="sql-0"&gt;
+ &lt;textarea id="sql-0-code"&gt;CREATE TABLE etudiants (
+ id INTEGER PRIMARY KEY,
+ nom TEXT,
+ age INTEGER
+);
+
+INSERT INTO etudiants VALUES (1, &amp;#39;Alice&amp;#39;, 22), (2, &amp;#39;Bob&amp;#39;, 25);&lt;/textarea&gt;
+ &lt;div class="sql-toolbar"&gt;
+ &lt;button id="sql-0-run" onclick="sqlRun('sql-0')"&gt;&amp;#9654; Exécuter&lt;/button&gt;
+ &lt;button id="sql-0-reset" onclick="sqlReset('sql-0')"&gt;&amp;#8634; Réinitialiser&lt;/button&gt;
+ &lt;span class="sql-status" id="sql-0-status"&gt;&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="sql-output sql-output-hidden" id="sql-0-output"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sql-block" id="sql-1"&gt;
+ &lt;textarea id="sql-1-code"&gt;
+select * from etudiants;
+&lt;/textarea&gt;
+ &lt;div class="sql-toolbar"&gt;
+ &lt;button id="sql-1-run" onclick="sqlRun('sql-1')"&gt;&amp;#9654; Exécuter&lt;/button&gt;
+ &lt;button id="sql-1-reset" onclick="sqlReset('sql-1')"&gt;&amp;#8634; Réinitialiser&lt;/button&gt;
+ &lt;span class="sql-status" id="sql-1-status"&gt;&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="sql-output sql-output-hidden" id="sql-1-output"&gt;&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>Principes généraux fameux</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</guid><description>&lt;h1 id="quelques-principes-généraux-fameux-en-développement-logiciel"&gt;Quelques principes généraux fameux en développement logiciel&lt;a class="anchor" href="#quelques-principes-g%c3%a9n%c3%a9raux-fameux-en-d%c3%a9veloppement-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="dry-dont-repeat-yourself-ne-vous-répétez-pas-"&gt;DRY (Don&amp;rsquo;t Repeat Yourself), ne vous répétez pas !&lt;a class="anchor" href="#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Le fameux principe
 &lt;a href="https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas"&gt;DRY&lt;/a&gt; est

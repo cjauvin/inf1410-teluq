@@ -1,1 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 5 - Les données on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/</link><description>Recent content in Module 5 - Les données on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module5/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 5 - Les données on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/</link><description>Recent content in Module 5 - Les données on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module5/index.xml" rel="self" type="application/rss+xml"/><item><title>Les bases de données relationnelles et SQL</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/</guid><description>&lt;h1 id="les-bases-de-données-relationnelles-et-sql"&gt;Les bases de données relationnelles et SQL&lt;a class="anchor" href="#les-bases-de-donn%c3%a9es-relationnelles-et-sql"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Test :&lt;/p&gt;
+&lt;div class="sql-block" id="sql-0"&gt;
+ &lt;textarea id="sql-0-code"&gt;CREATE TABLE etudiants (
+ id INTEGER PRIMARY KEY,
+ nom TEXT,
+ age INTEGER
+);
+
+INSERT INTO etudiants VALUES (1, &amp;#39;Alice&amp;#39;, 22), (2, &amp;#39;Bob&amp;#39;, 25);&lt;/textarea&gt;
+ &lt;div class="sql-toolbar"&gt;
+ &lt;button id="sql-0-run" onclick="sqlRun('sql-0')"&gt;&amp;#9654; Exécuter&lt;/button&gt;
+ &lt;button id="sql-0-reset" onclick="sqlReset('sql-0')"&gt;&amp;#8634; Réinitialiser&lt;/button&gt;
+ &lt;span class="sql-status" id="sql-0-status"&gt;&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="sql-output sql-output-hidden" id="sql-0-output"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sql-block" id="sql-1"&gt;
+ &lt;textarea id="sql-1-code"&gt;
+select * from etudiants;
+&lt;/textarea&gt;
+ &lt;div class="sql-toolbar"&gt;
+ &lt;button id="sql-1-run" onclick="sqlRun('sql-1')"&gt;&amp;#9654; Exécuter&lt;/button&gt;
+ &lt;button id="sql-1-reset" onclick="sqlReset('sql-1')"&gt;&amp;#8634; Réinitialiser&lt;/button&gt;
+ &lt;span class="sql-status" id="sql-1-status"&gt;&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="sql-output sql-output-hidden" id="sql-1-output"&gt;&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>
