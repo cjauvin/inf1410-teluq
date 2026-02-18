@@ -140,7 +140,7 @@
 - Debugging
 - Extensions
 
-## Gestionnaires de paquets
+## Gestion des dépendances
 - Dependency hell
 - Builds reproductibles
 - Artifacts vs sources
@@ -174,7 +174,6 @@
 - Peter Naur: Programming as Theory Building
 
 # Module 5 — Les données
-
 - SQL
 - SQL vs NoSQL
 - Intégrité et normalisation

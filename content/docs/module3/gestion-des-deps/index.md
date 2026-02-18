@@ -159,14 +159,6 @@ pourraient à priori ressembler à du logiciel, comme le [Web
 [Web3](https://fr.wikipedia.org/wiki/Web3), n'en sont pas vraiment, ils sont
 plus des "évolutions culturelles et technologiques".
 
-## La reproductibilité
-
-Comme on le verra avec git, le code source d'une application est un objet férocement
-dynamique, qui change tout le temps
-
-L'utilisation de numéros de version a un autre avantage : elle permet d'identifier
-de manière unique
-
 ## Le gestionnaire `uv` pour Python
 
 Pour explorer concrètement ces idées, nous allons utiliser le gestionnaire de
@@ -439,16 +431,17 @@ venv particulier. Si le venv n'existe pas, il sera créé pour l'occasion.
 #### La notion de reproductibilité (`uv.lock`)
 
 Un autre fichier qu'il est intéressant de considérer dans notre projet est
-`uv.lock`. Ce fichier contient la liste des dépendances du projet, sous la forme
-de métadonnées précises, permettent de reconstruire de manière parfaite et
-exhaustive le contenu d'un venv particulier (c'est une manière de le copier
-donc, en le reproduisant avec une recette). Chaque dépendance y est figée dans
-le temps, à l'aide d'identifiants et de urls non-ambigus, qui permettent de
-faire en sorte de réinstaller exactement le même environnement, dans un endroit
-différent. Quand le projet vient d'être créé, `uv.lock` est vide. Mais dans
-notre cas, étant donné que nous avons ajouté `requests` au projet, on peut
-constater, en l'examinant, qu'il contient une série de références précises vers
-les artefacts en ligne des packages correspondant :
+`uv.lock`. Ce fichier (qu'on appelle parfois un "lockfile") contient la liste
+des dépendances du projet, sous la forme de métadonnées précises et exactes,
+permettant de reconstruire de manière parfaite et exhaustive le contenu d'un
+venv particulier (c'est une manière de le copier donc, en le reproduisant avec
+une recette). Chaque dépendance y est figée dans le temps, à l'aide
+d'identifiants et de urls non-ambigus, qui permettent de faire en sorte de
+réinstaller exactement le même environnement, dans un endroit différent. Quand
+le projet vient d'être créé, `uv.lock` est vide. Mais dans notre cas, étant
+donné que nous avons ajouté `requests` au projet, on peut constater, en
+l'examinant, qu'il contient une série de références précises vers les artefacts
+en ligne des packages correspondant :
 
 ```shell
 $ cd my-venv
@@ -547,18 +540,26 @@ no-index = true
 find-links = ["../packages"]
 ```
 
-On note que `my-app` définie sa dépendance à `my-lib` en spécifiant : n'importe quelle
+On note que `my-app` définie sa dépendance à `my-lib` en utilisant une syntaxe
+particulière : `my-lib>=0.1.0`, ce qui signifie évidemment : n'importe quelle
 version de `my-lib` dont la version est plus grande ou égale à `0.1.0`. Ceci peut
 être dangereux, car que se passerait-il dans le cas où une nouvelle version de `my-lib`
 serait publiée, et qu'elle contiendra des changements qui feraient en sorte de modifier
 le comportement de `my-app`? Soyons plus conservateur en fixant plus précisément notre
-limite de version pour `my-lib` :
+limite de version pour `my-lib`. Pour ce faire, on va utiliser de nouveau cette syntaxe
+particulière :
 
 ```shell
 $ uv add "my-lib>=0.1.0,<0.2.0"
 Resolved 2 packages in 7ms
 Audited 1 package in 0.28ms
 ```
+
+> [!NOTE]
+Avec `u`v, les contraintes de version servent à indiquer quelles versions d’un paquet peuvent être installées. Les opérateurs classiques `<`, `<=`, `>`, `>=` permettent de fixer des bornes (par exemple `>=1.2.0` signifie « version 1.2.0 ou supérieure »), tandis que `==` impose une version exacte. `uv` suit la spécification PEP 440 de l’écosystème Python : l’opérateur `~=` (compatible release) autorise les mises à jour compatibles selon la version indiquée (par exemple `~=1.4` accepte les versions `1.x` à partir de `1.4`, sans passer à `2.0`). Ces contraintes permettent de contrôler finement la stabilité d’un projet tout en autorisant, si souhaité, certaines mises à jour automatiques lors du verrouillage (uv lock).
+
+> [!NOTE]
+La commande `uv add "my-lib~=0.1.0"` serait ici équivalent à `uv add "my-lib>=0.1.0,<0.2.0"`.
 
 On peut maintenant constater l'effet de cette précision dans notre même fichier
 `my-app/pyproject.toml` :
@@ -706,3 +707,26 @@ Dans ce cas étant donné qu'il s'agit d'une application, nous avons choisi de
 changer la version majeure, qui passe donc à `1.0.0`.
 
 {{< image src="myapp2.png" alt="" title="" loading="lazy" >}}
+
+# Pas seulement pour Python !
+
+Tout ce que nous avons dit et expliqué à propos de `uv` et python s'applique
+également à d'autres langages et leur écosystème :
+
+1. JavaScript avec Node et NPM
+2. Rust et Cargo
+3. Java avec Maven ou Gradle
+4. Go avec go mod
+5. .NET (C#, etc) et NuGet
+6. Perl et CPAN
+7. Ruby et Bundler
+
+Pour votre culture personnelle, je vous suggère d'explorer une ou plusieurs de ces "paires",
+et de tenter de répondre aux questions suivantes :
+
+1. Est-ce qu'il y a une notion d'environnement virtuel?
+2. Est-ce qu'il y a un dépôt centralisé de librairies et de packages (comme PyPI)?
+3. Est-ce qu'il y a un mécanisme de lockfile (comme `uv.lock`)?
+4. Est-ce que SemVer y est utilisé de la même manière?
+5. Est-ce les contraintes au niveau des dépendances sont exprimées de la même manière?
+6. Est-ce qu'on y retrouve le même genre de vulnérabilités au niveau de la sécurité (typosquatting, etc)?
