@@ -144,6 +144,9 @@ sys.stderr = sys.__stderr__
               errSpan.textContent = stderr;
               outEl.appendChild(errSpan);
             }
+            if (!stdout && !stderr) {
+              outEl.textContent = '(Exécution terminée, aucune sortie)';
+            }
           }
         }
         statusEl.textContent = '';
