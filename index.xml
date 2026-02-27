@@ -31,7 +31,14 @@ etc) par opposition au type plus moderne de l&amp;rsquo;&lt;a href="https://fr.w
 graphique&lt;/a&gt; (GUI en anglais,
 graphical user interface, ou souvent juste UI). Le CLI est plus &amp;ldquo;proche&amp;rdquo; de la
 programmation, qui est elle aussi un média essentiellement textuel (et logique,
-souvent mathématique).&lt;/p&gt;</description></item><item><title>Le manifeste Agile</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</guid><description>&lt;h1 id="la-manifeste-agile"&gt;La manifeste Agile&lt;a class="anchor" href="#la-manifeste-agile"&gt;#&lt;/a&gt;&lt;/h1&gt;
+souvent mathématique).&lt;/p&gt;</description></item><item><title>La représentation des données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/repr%C3%A9sentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/repr%C3%A9sentation/</guid><description>&lt;h1 id="la-représentation-des-données"&gt;La représentation des données&lt;a class="anchor" href="#la-repr%c3%a9sentation-des-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="données-vs-information-vs-connaissances"&gt;Données vs information vs connaissances&lt;a class="anchor" href="#donn%c3%a9es-vs-information-vs-connaissances"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;C&amp;rsquo;est une distinction classique et fondamentale en sciences de l&amp;rsquo;information.
+Voici comment ces trois niveaux s&amp;rsquo;articulent :&lt;/p&gt;
+&lt;p&gt;Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des
+symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
+», « 2026-02-27 ». En soi, une donnée ne veut rien dire — elle attend d&amp;rsquo;être
+mise en relation avec autre chose.&lt;/p&gt;</description></item><item><title>Le manifeste Agile</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</guid><description>&lt;h1 id="la-manifeste-agile"&gt;La manifeste Agile&lt;a class="anchor" href="#la-manifeste-agile"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;En quelque au début des années 2000, le mot &amp;ldquo;agile&amp;rdquo; est devenu omniprésent, dans
 la culture technologique et même au-delà. Il représente en fait un phénomène
 culturel dont la genèse est un petit groupe de professionnels, qui se sont
@@ -73,34 +80,15 @@ DRY&lt;/a&gt; que
 nous avons vu, appliqué dans le sens plus large d&amp;rsquo;un écosystème logiciel)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Dans le cas (2), on nomme parfois les librairies externes des &amp;ldquo;dépendances&amp;rdquo;, ou des
-&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>Les bases de données relationnelles et SQL</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/</guid><description>&lt;h1 id="les-bases-de-données-relationnelles-et-sql"&gt;Les bases de données relationnelles et SQL&lt;a class="anchor" href="#les-bases-de-donn%c3%a9es-relationnelles-et-sql"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Test :&lt;/p&gt;
-&lt;div class="sql-block" id="sql-0"&gt;
- &lt;textarea id="sql-0-code"&gt;CREATE TABLE etudiants (
- id INTEGER PRIMARY KEY,
- nom TEXT,
- age INTEGER
-);
-
-INSERT INTO etudiants VALUES (1, &amp;#39;Alice&amp;#39;, 22), (2, &amp;#39;Bob&amp;#39;, 25);&lt;/textarea&gt;
- &lt;div class="sql-toolbar"&gt;
- &lt;button id="sql-0-run" onclick="sqlRun('sql-0')"&gt;&amp;#9654; Exécuter&lt;/button&gt;
- &lt;button id="sql-0-reset" onclick="sqlReset('sql-0')"&gt;&amp;#8634; Réinitialiser&lt;/button&gt;
- &lt;span class="sql-status" id="sql-0-status"&gt;&lt;/span&gt;
- &lt;/div&gt;
- &lt;div class="sql-output sql-output-hidden" id="sql-0-output"&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sql-block" id="sql-1"&gt;
- &lt;textarea id="sql-1-code"&gt;
-select * from etudiants;
-&lt;/textarea&gt;
- &lt;div class="sql-toolbar"&gt;
- &lt;button id="sql-1-run" onclick="sqlRun('sql-1')"&gt;&amp;#9654; Exécuter&lt;/button&gt;
- &lt;button id="sql-1-reset" onclick="sqlReset('sql-1')"&gt;&amp;#8634; Réinitialiser&lt;/button&gt;
- &lt;span class="sql-status" id="sql-1-status"&gt;&lt;/span&gt;
- &lt;/div&gt;
- &lt;div class="sql-output sql-output-hidden" id="sql-1-output"&gt;&lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Principes généraux fameux</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</guid><description>&lt;h1 id="quelques-principes-généraux-fameux-en-développement-logiciel"&gt;Quelques principes généraux fameux en développement logiciel&lt;a class="anchor" href="#quelques-principes-g%c3%a9n%c3%a9raux-fameux-en-d%c3%a9veloppement-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>Les bases de données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/</guid><description>&lt;h1 id="lévolution-des-bases-de-données"&gt;L&amp;rsquo;évolution des bases de données&lt;a class="anchor" href="#l%c3%a9volution-des-bases-de-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Nous allons faire un survol de l&amp;rsquo;évolution des bases de données d&amp;rsquo;une manière un
+peu particulière : au lieu de donner leurs caractéristiques de manière abstraite
+et théorique, nous allons étudier un modèle simplifié sous la forme d&amp;rsquo;un
+programme python simple.&lt;/p&gt;
+&lt;h2 id="le-modèle-hiérarchique-ibm-années-69"&gt;Le modèle hiérarchique (IBM, années 69)&lt;a class="anchor" href="#le-mod%c3%a8le-hi%c3%a9rarchique-ibm-ann%c3%a9es-69"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est
+fondamentalement basé sur la notion d&amp;rsquo;un arbre. Pour implémenter un modèle
+simplifié en python, c&amp;rsquo;est relativement facile.&lt;/p&gt;</description></item><item><title>Principes généraux fameux</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</guid><description>&lt;h1 id="quelques-principes-généraux-fameux-en-développement-logiciel"&gt;Quelques principes généraux fameux en développement logiciel&lt;a class="anchor" href="#quelques-principes-g%c3%a9n%c3%a9raux-fameux-en-d%c3%a9veloppement-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="dry-dont-repeat-yourself-ne-vous-répétez-pas-"&gt;DRY (Don&amp;rsquo;t Repeat Yourself), ne vous répétez pas !&lt;a class="anchor" href="#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Le fameux principe
 &lt;a href="https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas"&gt;DRY&lt;/a&gt; est
@@ -127,7 +115,9 @@ application, pour ensuite simuler une rencontre du client imaginaire, afin d&amp
 extraire les spécifications et le fonctionnement exacts. Vous devrez ensuite
 produire un document de conception, en utilisant une technique de modélisation
 de votre choix, afin de tenter de penser d&amp;rsquo;avance au fonctionnement de votre
-application, avant de vous lancer dans le développement à proprement parler.&lt;/p&gt;</description></item><item><title>Qu'est-ce que le génie logiciel?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</guid><description>&lt;h1 id="quest-ce-que-le-génie-logiciel"&gt;Qu&amp;rsquo;est-ce que le génie logiciel?&lt;a class="anchor" href="#quest-ce-que-le-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;</description></item><item><title>Les idées historiques importantes</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</guid><description>&lt;h1 id="historique"&gt;Historique&lt;a class="anchor" href="#historique"&gt;#&lt;/a&gt;&lt;/h1&gt;
+application, avant de vous lancer dans le développement à proprement parler.&lt;/p&gt;</description></item><item><title>Serveur Discord</title><link>https://cjauvin.github.io/inf1410-teluq/docs/discord/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/discord/</guid><description>&lt;h1 id="venez-discuter-de-gl-sur-discord-"&gt;Venez discuter de GL sur Discord !&lt;a class="anchor" href="#venez-discuter-de-gl-sur-discord-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Venez..&lt;/p&gt;
+&lt;iframe src="https://discord.com/widget?id=1448801083991396450&amp;theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"&gt;&lt;/iframe&gt;</description></item><item><title>Qu'est-ce que le génie logiciel?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</guid><description>&lt;h1 id="quest-ce-que-le-génie-logiciel"&gt;Qu&amp;rsquo;est-ce que le génie logiciel?&lt;a class="anchor" href="#quest-ce-que-le-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;</description></item><item><title>Les idées historiques importantes</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</guid><description>&lt;h1 id="historique"&gt;Historique&lt;a class="anchor" href="#historique"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="une-conférence-en-temps-de-crise"&gt;Une conférence en temps de crise&lt;a class="anchor" href="#une-conf%c3%a9rence-en-temps-de-crise"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;D&amp;rsquo;une manière similaire à la conférence de Dartmouth qui a dans un sens inauguré
 le domaine de l&amp;rsquo;intelligence artificielle en 1956, on peut dire que c&amp;rsquo;est la

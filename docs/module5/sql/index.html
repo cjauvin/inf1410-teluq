@@ -1,8 +1,9 @@
-<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Les bases de données relationnelles et SQL# Test :
-CREATE TABLE etudiants ( id INTEGER PRIMARY KEY, nom TEXT, age INTEGER ); INSERT INTO etudiants VALUES (1, 'Alice', 22), (2, 'Bob', 25); ▶ Exécuter ↺ Réinitialiser select * from etudiants; ▶ Exécuter ↺ Réinitialiser "><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Les bases de données relationnelles et SQL"><meta property="og:description" content="Les bases de données relationnelles et SQL# Test :
-CREATE TABLE etudiants ( id INTEGER PRIMARY KEY, nom TEXT, age INTEGER ); INSERT INTO etudiants VALUES (1, 'Alice', 22), (2, 'Bob', 25); ▶ Exécuter ↺ Réinitialiser select * from etudiants; ▶ Exécuter ↺ Réinitialiser"><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Les bases de données relationnelles et SQL"><meta itemprop=description content="Les bases de données relationnelles et SQL# Test :
-CREATE TABLE etudiants ( id INTEGER PRIMARY KEY, nom TEXT, age INTEGER ); INSERT INTO etudiants VALUES (1, 'Alice', 22), (2, 'Bob', 25); ▶ Exécuter ↺ Réinitialiser select * from etudiants; ▶ Exécuter ↺ Réinitialiser"><meta itemprop=wordCount content="44"><title>Les bases de données relationnelles et SQL | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.427fd74effaa6729c02a67f5c2fcf3aacdee5c04af08e6536e0f6fc0b2d61589.css integrity="sha256-Qn/XTv+qZynAKmf1wvzzqs3uXASvCOZTbg9vwLLWFYk=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/sql.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
-<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="L’évolution des bases de données# Nous allons faire un survol de l’évolution des bases de données d’une manière un peu particulière : au lieu de donner leurs caractéristiques de manière abstraite et théorique, nous allons étudier un modèle simplifié sous la forme d’un programme python simple.
+Le modèle hiérarchique (IBM, années 69)# Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est fondamentalement basé sur la notion d’un arbre. Pour implémenter un modèle simplifié en python, c’est relativement facile.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Les bases de données"><meta property="og:description" content="L’évolution des bases de données# Nous allons faire un survol de l’évolution des bases de données d’une manière un peu particulière : au lieu de donner leurs caractéristiques de manière abstraite et théorique, nous allons étudier un modèle simplifié sous la forme d’un programme python simple.
+Le modèle hiérarchique (IBM, années 69)# Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est fondamentalement basé sur la notion d’un arbre. Pour implémenter un modèle simplifié en python, c’est relativement facile."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Les bases de données"><meta itemprop=description content="L’évolution des bases de données# Nous allons faire un survol de l’évolution des bases de données d’une manière un peu particulière : au lieu de donner leurs caractéristiques de manière abstraite et théorique, nous allons étudier un modèle simplifié sous la forme d’un programme python simple.
+Le modèle hiérarchique (IBM, années 69)# Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est fondamentalement basé sur la notion d’un arbre. Pour implémenter un modèle simplifié en python, c’est relativement facile."><meta itemprop=wordCount content="2296"><title>Les bases de données | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.427fd74effaa6729c02a67f5c2fcf3aacdee5c04af08e6536e0f6fc0b2d61589.css integrity="sha256-Qn/XTv+qZynAKmf1wvzzqs3uXASvCOZTbg9vwLLWFYk=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/sql.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/>Qu'est-ce que le génie logiciel?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Les idées historiques importantes</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique2/>Survol historiquee des jalons du GL</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
 <label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - La programmation</a>
@@ -12,20 +13,487 @@ CREATE TABLE etudiants ( id INTEGER PRIMARY KEY, nom TEXT, age INTEGER ); INSERT
 <label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - La gestion de projet et la collaboration</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/>Le manifeste Agile</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle checked>
 <label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Les données</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/ class=active>Les bases de données relationnelles et SQL</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/ class=active>Les bases de données</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a role=button>Module 6 - L'infonuagique</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Les bases de données relationnelles et SQL</h3><label for=toc-control></label></div></header><article class="markdown book-article"><h1 id=les-bases-de-données-relationnelles-et-sql>Les bases de données relationnelles et SQL<a class=anchor href=#les-bases-de-donn%c3%a9es-relationnelles-et-sql>#</a></h1><p>Test :</p><div class=sql-block id=sql-0><textarea id=sql-0-code>CREATE TABLE etudiants (
-  id INTEGER PRIMARY KEY,
-  nom TEXT,
-  age INTEGER
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Les bases de données</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#le-modèle-hiérarchique-ibm-années-69>Le modèle hiérarchique (IBM, années 69)</a></li><li><a href=#le-modèle-en-réseau-codasyl-fin-des-années-60>Le modèle en réseau (CODASYL, fin des années 60)</a></li><li><a href=#le-modèle-relationnel-et-sql>Le modèle relationnel et SQL</a><ul><li><a href=#les-orms-object-relational-mappers>Les ORMs (object relational mappers)</a></li></ul></li><li><a href=#la-révolution-nosql>La révolution NoSQL</a><ul><li><a href=#key-value-stores>Key-Value Stores</a></li><li><a href=#document-stores>Document Stores</a></li><li><a href=#columnar-stores>Columnar Stores</a></li><li><a href=#graph-databases>Graph Databases</a></li></ul></li><li><a href=#les-bases-de-données-de-séries-temporelles>Les bases de données de séries temporelles</a></li><li><a href=#les-bases-de-données-vectorielles>Les bases de données vectorielles</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=lévolution-des-bases-de-données>L&rsquo;évolution des bases de données<a class=anchor href=#l%c3%a9volution-des-bases-de-donn%c3%a9es>#</a></h1><p>Nous allons faire un survol de l&rsquo;évolution des bases de données d&rsquo;une manière un
+peu particulière : au lieu de donner leurs caractéristiques de manière abstraite
+et théorique, nous allons étudier un modèle simplifié sous la forme d&rsquo;un
+programme python simple.</p><h2 id=le-modèle-hiérarchique-ibm-années-69>Le modèle hiérarchique (IBM, années 69)<a class=anchor href=#le-mod%c3%a8le-hi%c3%a9rarchique-ibm-ann%c3%a9es-69>#</a></h2><p>Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est
+fondamentalement basé sur la notion d&rsquo;un arbre. Pour implémenter un modèle
+simplifié en python, c&rsquo;est relativement facile.</p><div class=pyodide-block id=pyodide-0><textarea id=pyodide-0-code>
+&#34;&#34;&#34;
+Modèle hiérarchique — illustration en Python
+==============================================
+
+Le modèle hiérarchique (IMS d&#39;IBM, 1966) organise les données
+en arbre : chaque enregistrement a exactement un parent,
+et on navigue de haut en bas dans l&#39;arbre.
+
+Ce programme illustre les idées centrales :
+  1. La structure est un ARBRE (pas un graphe quelconque)
+  2. Chaque nœud a UN SEUL parent (sauf la racine)
+  3. L&#39;accès aux données est NAVIGATIONNEL (on descend dans l&#39;arbre)
+  4. La duplication est inévitable pour les relations M:N
+&#34;&#34;&#34;
+
+class Noeud:
+    &#34;&#34;&#34;Un enregistrement dans la base hiérarchique.&#34;&#34;&#34;
+
+    def __init__(self, type_segment: str, donnees: dict):
+        self.type_segment = type_segment  # le « type de segment » (≈ type d&#39;entité)
+        self.donnees = donnees
+        self.enfants: list[&#34;Noeud&#34;] = []
+
+    def ajouter_enfant(self, type_segment: str, donnees: dict):
+        enfant = Noeud(type_segment, donnees)
+        self.enfants.append(enfant)
+        return enfant                     # pratique pour le chaînage
+
+    def __repr__(self):
+        return f&#34;{self.type_segment}({self.donnees})&#34;
+</textarea><div class=pyodide-toolbar><button id=pyodide-0-run onclick='pyodideRun("pyodide-0")'>&#9654; Exécuter</button>
+<button id=pyodide-0-reset onclick='pyodideReset("pyodide-0")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-0-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-0-output></pre></div><p>L&rsquo;implémentation d&rsquo;un arbre est fondamentalement très simple, comme on le constate.
+Nous allons maintenant créer une petite base de données dont le schéma sera :</p><pre tabindex=0><code>Université
+  └── Département
+        ├── Professeur
+        └── Cours
+              └── Étudiant</code></pre><div class=pyodide-block id=pyodide-1><textarea id=pyodide-1-code>
+# Racine
+uqam = Noeud(&#34;Université&#34;, {&#34;nom&#34;: &#34;UQAM&#34;})
+
+# Départements
+info = uqam.ajouter_enfant(&#34;Département&#34;, {&#34;nom&#34;: &#34;Informatique&#34;, &#34;code&#34;: &#34;INFO&#34;})
+math = uqam.ajouter_enfant(&#34;Département&#34;, {&#34;nom&#34;: &#34;Mathématiques&#34;, &#34;code&#34;: &#34;MATH&#34;})
+
+# Professeurs
+info.ajouter_enfant(&#34;Professeur&#34;, {&#34;nom&#34;: &#34;Tremblay&#34;, &#34;bureau&#34;: &#34;PK-4150&#34;})
+info.ajouter_enfant(&#34;Professeur&#34;, {&#34;nom&#34;: &#34;Gagnon&#34;,   &#34;bureau&#34;: &#34;PK-4920&#34;})
+math.ajouter_enfant(&#34;Professeur&#34;, {&#34;nom&#34;: &#34;Lavoie&#34;,   &#34;bureau&#34;: &#34;PK-5230&#34;})
+
+# Cours
+bd   = info.ajouter_enfant(&#34;Cours&#34;, {&#34;sigle&#34;: &#34;INF3080&#34;, &#34;titre&#34;: &#34;Bases de données&#34;})
+algo = info.ajouter_enfant(&#34;Cours&#34;, {&#34;sigle&#34;: &#34;INF3105&#34;, &#34;titre&#34;: &#34;Structures de données&#34;})
+stat = math.ajouter_enfant(&#34;Cours&#34;, {&#34;sigle&#34;: &#34;MAT2080&#34;, &#34;titre&#34;: &#34;Statistiques&#34;})
+
+# Étudiants inscrits aux cours
+bd.ajouter_enfant(&#34;Étudiant&#34;, {&#34;matricule&#34;: &#34;TRAA01&#34;, &#34;nom&#34;: &#34;Alice&#34;})
+bd.ajouter_enfant(&#34;Étudiant&#34;, {&#34;matricule&#34;: &#34;MORB02&#34;, &#34;nom&#34;: &#34;Bob&#34;})
+algo.ajouter_enfant(&#34;Étudiant&#34;, {&#34;matricule&#34;: &#34;TRAA01&#34;, &#34;nom&#34;: &#34;Alice&#34;})  # ⚠ DUPLICATION
+stat.ajouter_enfant(&#34;Étudiant&#34;, {&#34;matricule&#34;: &#34;MORB02&#34;, &#34;nom&#34;: &#34;Bob&#34;})    # ⚠ DUPLICATION
+</textarea><div class=pyodide-toolbar><button id=pyodide-1-run onclick='pyodideRun("pyodide-1")'>&#9654; Exécuter</button>
+<button id=pyodide-1-reset onclick='pyodideReset("pyodide-1")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-1-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-1-output></pre></div><p>Nous avons besoin de quelques mécanismes supplémentaires pour pouvoir faire des requêtes dans
+notre base de données :</p><div class=pyodide-block id=pyodide-2><textarea id=pyodide-2-code>
+def afficher_arbre(noeud: Noeud, niveau: int = 0):
+    &#34;&#34;&#34;Parcours en profondeur — la façon naturelle de lire une base hiérarchique.&#34;&#34;&#34;
+    indent = &#34;    &#34; * niveau
+    print(f&#34;{indent}📂 {noeud.type_segment} : {noeud.donnees}&#34;)
+    for enfant in noeud.enfants:
+        afficher_arbre(enfant, niveau &#43; 1)
+
+afficher_arbre(uqam)</textarea><div class=pyodide-toolbar><button id=pyodide-2-run onclick='pyodideRun("pyodide-2")'>&#9654; Exécuter</button>
+<button id=pyodide-2-reset onclick='pyodideReset("pyodide-2")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-2-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-2-output></pre></div><p>Ensuite on peut naviguer dans l&rsquo;arborescence des données :</p><div class=pyodide-block id=pyodide-3><textarea id=pyodide-3-code>
+def naviguer(noeud: Noeud, *chemin: str) -&gt; list[Noeud]:
+    &#34;&#34;&#34;
+    Navigation descendante par types de segments.
+
+    Exemple : naviguer(uqam, &#34;Département&#34;, &#34;Cours&#34;)
+    → retourne tous les Cours de tous les Départements.
+
+    C&#39;est l&#39;équivalent simplifié de la commande GN (Get Next)
+    d&#39;IMS : on spécifie le chemin dans l&#39;arbre.
+    &#34;&#34;&#34;
+    if not chemin:
+        return [noeud]
+
+    type_cherche, *reste = chemin
+    resultats = []
+    for enfant in noeud.enfants:
+        if enfant.type_segment == type_cherche:
+            resultats.extend(naviguer(enfant, *reste))
+    return resultats
+
+for cours in naviguer(uqam, &#34;Département&#34;, &#34;Cours&#34;):
+    print(f&#34;  → {cours.donnees}&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-3-run onclick='pyodideRun("pyodide-3")'>&#9654; Exécuter</button>
+<button id=pyodide-3-reset onclick='pyodideReset("pyodide-3")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-3-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-3-output></pre></div><p>On peut également y chercher quelque chose :</p><div class=pyodide-block id=pyodide-4><textarea id=pyodide-4-code>def chercher(noeud: Noeud, type_segment: str, cle: str, valeur) -&gt; list[Noeud]:
+    &#34;&#34;&#34;
+    Recherche par type &#43; valeur — toujours en descendant dans l&#39;arbre.
+    &#34;&#34;&#34;
+    resultats = []
+    if noeud.type_segment == type_segment and noeud.donnees.get(cle) == valeur:
+        resultats.append(noeud)
+    for enfant in noeud.enfants:
+        resultats.extend(chercher(enfant, type_segment, cle, valeur))
+    return resultats
+
+alices = chercher(uqam, &#34;Étudiant&#34;, &#34;nom&#34;, &#34;Alice&#34;)
+print(f&#34;  Trouvé {len(alices)} occurrence(s) :&#34;)
+for a in alices:
+    print(f&#34;    → {a.donnees}&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-4-run onclick='pyodideRun("pyodide-4")'>&#9654; Exécuter</button>
+<button id=pyodide-4-reset onclick='pyodideReset("pyodide-4")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-4-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-4-output></pre></div><p>Alice est inscrite à INF3080 et INF3105. Dans le modèle hiérarchique, chaque
+nœud a UN SEUL parent, donc Alice doit apparaître DEUX FOIS dans l&rsquo;arbre :</p><pre tabindex=0><code>    Cours INF3080
+    └── Étudiant Alice  ← copie 1
+    Cours INF3105
+    └── Étudiant Alice  ← copie 2</code></pre><p>Conséquences :</p><ul><li>Gaspillage d&rsquo;espace</li><li>Risque d&rsquo;incohérence si on met à jour une copie mais pas l&rsquo;autre</li><li>Pas de moyen simple de poser la question :
+« À quels cours Alice est-elle inscrite ? »
+(il faut parcourir TOUT l&rsquo;arbre)</li></ul><h2 id=le-modèle-en-réseau-codasyl-fin-des-années-60>Le modèle en réseau (CODASYL, fin des années 60)<a class=anchor href=#le-mod%c3%a8le-en-r%c3%a9seau-codasyl-fin-des-ann%c3%a9es-60>#</a></h2><p>Le deuxième modèle important de base de données qui est apparu dans l&rsquo;histoire
+est le modèle en réseau. Si le modèle hiérarchique était basé sur un arbre, le
+modèle en réseau est basé sur un graphe :</p><div class=pyodide-block id=pyodide-5><textarea id=pyodide-5-code>
+&#34;&#34;&#34;
+Modèle réseau (CODASYL) — illustration en Python
+==================================================
+
+Le modèle réseau (CODASYL/DBTG, 1969) est une évolution du modèle
+hiérarchique. L&#39;idée clé : un enregistrement peut avoir PLUSIEURS
+parents, grâce à des ensembles nommés (SETs) qui relient un type
+« owner » à un type « member ».
+
+Ce programme illustre les idées centrales :
+  1. Les enregistrements (RECORDS) existent indépendamment
+  2. Les liens sont des ENSEMBLES NOMMÉS (SETs) de type owner → member
+  3. Un enregistrement peut être member de PLUSIEURS sets
+     → résout le problème de duplication du modèle hiérarchique
+  4. L&#39;accès reste NAVIGATIONNEL (FIND, GET, FIND NEXT WITHIN SET…)
+&#34;&#34;&#34;
+
+# ============================================================
+# 1. Définitions : Record, Set, et la base réseau
+# ============================================================
+
+class Record:
+    &#34;&#34;&#34;Un enregistrement dans la base réseau.&#34;&#34;&#34;
+
+    def __init__(self, type_record: str, donnees: dict):
+        self.type_record = type_record
+        self.donnees = donnees
+
+    def __repr__(self):
+        return f&#34;{self.type_record}({self.donnees})&#34;
+
+
+class Set:
+    &#34;&#34;&#34;
+    Un SET CODASYL : un lien nommé entre un owner et ses members.
+
+    Contrainte fondamentale : chaque member ne peut appartenir
+    qu&#39;à UNE SEULE instance d&#39;un set donné (un seul owner par set).
+    Mais un record peut être member de PLUSIEURS sets différents.
+    &#34;&#34;&#34;
+
+    def __init__(self, nom: str, owner: Record):
+        self.nom = nom
+        self.owner = owner
+        self.members: list[Record] = []
+
+    def inserer(self, member: Record):
+        self.members.append(member)
+
+    def __repr__(self):
+        return f&#34;Set &#39;{self.nom}&#39; : {self.owner} → {self.members}&#34;
+
+
+class BaseReseau:
+    &#34;&#34;&#34;
+    Une base de données réseau simplifiée.
+
+    Stocke tous les records et tous les sets,
+    et fournit des opérations de navigation.
+    &#34;&#34;&#34;
+
+    def __init__(self):
+        self.records: list[Record] = []
+        self.sets: list[Set] = []
+
+    def creer_record(self, type_record: str, donnees: dict) -&gt; Record:
+        &#34;&#34;&#34;STORE record — crée un enregistrement dans la base.&#34;&#34;&#34;
+        rec = Record(type_record, donnees)
+        self.records.append(rec)
+        return rec
+
+    def creer_set(self, nom: str, owner: Record) -&gt; Set:
+        &#34;&#34;&#34;Déclare une instance de set avec son owner.&#34;&#34;&#34;
+        s = Set(nom, owner)
+        self.sets.append(s)
+        return s
+
+    # --- Navigation dans les sets ---
+
+    def find_members(self, nom_set: str, owner: Record) -&gt; list[Record]:
+        &#34;&#34;&#34;
+        FIND NEXT WITHIN SET — retourne tous les members
+        d&#39;un owner dans un set nommé.
+        &#34;&#34;&#34;
+        for s in self.sets:
+            if s.nom == nom_set and s.owner is owner:
+                return list(s.members)
+        return []
+
+    def find_owner(self, nom_set: str, member: Record) -&gt; Record | None:
+        &#34;&#34;&#34;
+        FIND OWNER WITHIN SET — navigation INVERSE.
+        Étant donné un member, retrouve son owner dans un set nommé.
+        &#34;&#34;&#34;
+        for s in self.sets:
+            if s.nom == nom_set and member in s.members:
+                return s.owner
+        return None
+
+    def find_all_owners(self, nom_set: str, member: Record) -&gt; list[Record]:
+        &#34;&#34;&#34;
+        Retrouve TOUS les owners d&#39;un member dans un type de set.
+        (Utile quand un record est member de plusieurs instances du même set.)
+        &#34;&#34;&#34;
+        return [s.owner for s in self.sets
+                if s.nom == nom_set and member in s.members]
+
+    def find_records(self, type_record: str, cle: str, valeur) -&gt; list[Record]:
+        &#34;&#34;&#34;FIND record by type &#43; valeur.&#34;&#34;&#34;
+        return [r for r in self.records
+                if r.type_record == type_record and r.donnees.get(cle) == valeur]
+</textarea><div class=pyodide-toolbar><button id=pyodide-5-run onclick='pyodideRun("pyodide-5")'>&#9654; Exécuter</button>
+<button id=pyodide-5-reset onclick='pyodideReset("pyodide-5")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-5-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-5-output></pre></div><p>À partir de cette mécanique, nous pouvons donc maintenant créer notre base de données
+en réseau :</p><div class=pyodide-block id=pyodide-6><textarea id=pyodide-6-code>
+# ============================================================
+# 2. Construction de la base — même scénario universitaire
+# ============================================================
+#
+# Schéma réseau :
+#
+#   Département ──[DEPT_PROF]──→ Professeur
+#   Département ──[DEPT_COURS]──→ Cours
+#   Cours ────────[INSCRIPTION]──→ Étudiant   ← un étudiant peut
+#   (plusieurs cours)                            être member de
+#                                                PLUSIEURS sets
+#                                                INSCRIPTION
+
+db = BaseReseau()
+
+# --- Records (existent indépendamment, pas dans un arbre) ---
+info = db.creer_record(&#34;Département&#34;, {&#34;nom&#34;: &#34;Informatique&#34;, &#34;code&#34;: &#34;INFO&#34;})
+math = db.creer_record(&#34;Département&#34;, {&#34;nom&#34;: &#34;Mathématiques&#34;, &#34;code&#34;: &#34;MATH&#34;})
+
+tremblay = db.creer_record(&#34;Professeur&#34;, {&#34;nom&#34;: &#34;Tremblay&#34;, &#34;bureau&#34;: &#34;PK-4150&#34;})
+gagnon   = db.creer_record(&#34;Professeur&#34;, {&#34;nom&#34;: &#34;Gagnon&#34;,   &#34;bureau&#34;: &#34;PK-4920&#34;})
+lavoie   = db.creer_record(&#34;Professeur&#34;, {&#34;nom&#34;: &#34;Lavoie&#34;,   &#34;bureau&#34;: &#34;PK-5230&#34;})
+
+bd   = db.creer_record(&#34;Cours&#34;, {&#34;sigle&#34;: &#34;INF3080&#34;, &#34;titre&#34;: &#34;Bases de données&#34;})
+algo = db.creer_record(&#34;Cours&#34;, {&#34;sigle&#34;: &#34;INF3105&#34;, &#34;titre&#34;: &#34;Structures de données&#34;})
+stat = db.creer_record(&#34;Cours&#34;, {&#34;sigle&#34;: &#34;MAT2080&#34;, &#34;titre&#34;: &#34;Statistiques&#34;})
+
+alice = db.creer_record(&#34;Étudiant&#34;, {&#34;matricule&#34;: &#34;TRAA01&#34;, &#34;nom&#34;: &#34;Alice&#34;})  # ← UNE SEULE fois !
+bob   = db.creer_record(&#34;Étudiant&#34;, {&#34;matricule&#34;: &#34;MORB02&#34;, &#34;nom&#34;: &#34;Bob&#34;})    # ← UNE SEULE fois !
+
+# --- Sets : les liens nommés entre records ---
+
+# Département → Professeurs
+set_info_prof = db.creer_set(&#34;DEPT_PROF&#34;, info)
+set_info_prof.inserer(tremblay)
+set_info_prof.inserer(gagnon)
+
+set_math_prof = db.creer_set(&#34;DEPT_PROF&#34;, math)
+set_math_prof.inserer(lavoie)
+
+# Département → Cours
+set_info_cours = db.creer_set(&#34;DEPT_COURS&#34;, info)
+set_info_cours.inserer(bd)
+set_info_cours.inserer(algo)
+
+set_math_cours = db.creer_set(&#34;DEPT_COURS&#34;, math)
+set_math_cours.inserer(stat)
+
+# Cours → Étudiants (INSCRIPTION)
+# Alice est inscrite à BD et ALGO — même objet, deux sets différents
+set_inscr_bd = db.creer_set(&#34;INSCRIPTION&#34;, bd)
+set_inscr_bd.inserer(alice)
+set_inscr_bd.inserer(bob)
+
+set_inscr_algo = db.creer_set(&#34;INSCRIPTION&#34;, algo)
+set_inscr_algo.inserer(alice)       # ✅ PAS de duplication !
+
+set_inscr_stat = db.creer_set(&#34;INSCRIPTION&#34;, stat)
+set_inscr_stat.inserer(bob)         # ✅ PAS de duplication !
+</textarea><div class=pyodide-toolbar><button id=pyodide-6-run onclick='pyodideRun("pyodide-6")'>&#9654; Exécuter</button>
+<button id=pyodide-6-reset onclick='pyodideReset("pyodide-6")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-6-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-6-output></pre></div><p>On peut afficher la structure de notre base de données :</p><div class=pyodide-block id=pyodide-7><textarea id=pyodide-7-code>
+print(&#34;=&#34; * 60)
+print(&#34;STRUCTURE DE LA BASE RÉSEAU&#34;)
+print(&#34;=&#34; * 60)
+for dept in db.find_records(&#34;Département&#34;, &#34;nom&#34;, &#34;Informatique&#34;) &#43; \
+            db.find_records(&#34;Département&#34;, &#34;nom&#34;, &#34;Mathématiques&#34;):
+    print(f&#34;\n📂 {dept}&#34;)
+    profs = db.find_members(&#34;DEPT_PROF&#34;, dept)
+    if profs:
+        print(&#34;    Professeurs :&#34;)
+        for p in profs:
+            print(f&#34;        → {p.donnees}&#34;)
+    cours = db.find_members(&#34;DEPT_COURS&#34;, dept)
+    if cours:
+        print(&#34;    Cours :&#34;)
+        for c in cours:
+            etudiants = db.find_members(&#34;INSCRIPTION&#34;, c)
+            noms = [e.donnees[&#34;nom&#34;] for e in etudiants]
+            print(f&#34;        → {c.donnees}  [{&#39;, &#39;.join(noms)}]&#34;)
+</textarea><div class=pyodide-toolbar><button id=pyodide-7-run onclick='pyodideRun("pyodide-7")'>&#9654; Exécuter</button>
+<button id=pyodide-7-reset onclick='pyodideReset("pyodide-7")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-7-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-7-output></pre></div><p>On peut faire une requête pour tous les étudiants inscrits à un cours particulier :</p><div class=pyodide-block id=pyodide-8><textarea id=pyodide-8-code>
+print(&#34;\n&#34; &#43; &#34;=&#34; * 60)
+print(&#34;NAVIGATION AVANT : étudiants inscrits à INF3080&#34;)
+print(&#34;=&#34; * 60)
+for e in db.find_members(&#34;INSCRIPTION&#34;, bd):
+    print(f&#34;  → {e.donnees}&#34;)
+</textarea><div class=pyodide-toolbar><button id=pyodide-8-run onclick='pyodideRun("pyodide-8")'>&#9654; Exécuter</button>
+<button id=pyodide-8-reset onclick='pyodideReset("pyodide-8")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-8-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-8-output></pre></div><p>Ou encore, une requête pour tous les cours suivis par une étudiante particulière :</p><div class=pyodide-block id=pyodide-9><textarea id=pyodide-9-code>
+print(&#34;\n&#34; &#43; &#34;=&#34; * 60)
+print(&#34;NAVIGATION INVERSE : cours d&#39;Alice&#34;)
+print(&#34;=&#34; * 60)
+cours_alice = db.find_all_owners(&#34;INSCRIPTION&#34;, alice)
+for c in cours_alice:
+    print(f&#34;  → {c.donnees}&#34;)
+</textarea><div class=pyodide-toolbar><button id=pyodide-9-run onclick='pyodideRun("pyodide-9")'>&#9654; Exécuter</button>
+<button id=pyodide-9-reset onclick='pyodideReset("pyodide-9")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-9-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-9-output></pre></div><p>Alice n&rsquo;existe qu&rsquo;UNE SEULE FOIS dans la base de données. Elle est membre de
+deux sets INSCRIPTION (un par cours).</p><ul><li>Plus de duplication !</li><li>La question « quels cours suit Alice ? » se résout
+par navigation inverse (FIND OWNER WITHIN SET).</li></ul><p>Mais il reste des problèmes :</p><ul><li>L&rsquo;accès est toujours NAVIGATIONNEL : le programmeur doit connaître le schéma
+des sets et écrire des boucles pour traverser les liens.</li><li>Ajouter un nouveau type de lien exige de modifier le schéma et le code de
+navigation.</li><li>Pas de langage déclaratif : on dit COMMENT chercher, pas CE QU&rsquo;ON cherche.</li></ul><h2 id=le-modèle-relationnel-et-sql>Le modèle relationnel et SQL<a class=anchor href=#le-mod%c3%a8le-relationnel-et-sql>#</a></h2><p>On en arrive finalement au modèle relationnel.</p><div class=sql-block id=sql-10><textarea id=sql-10-code>
+-- ============================================================
+-- Modele relationnel -- illustration en SQL
+-- ============================================================
+--
+-- Le modele relationnel (Codd, 1970) remplace les arbres
+-- et les liens navigationnels par des TABLES et des REQUETES
+-- DECLARATIVES : on decrit CE QU&#39;ON CHERCHE, pas COMMENT
+-- le trouver.
+--
+-- Meme scenario universitaire que les programmes Python
+-- pour le modele hierarchique et le modele reseau.
+-- ============================================================
+
+
+-- ============================================================
+-- 1. Definition du schema : des TABLES plates
+-- ============================================================
+-- Plus d&#39;arbre, plus de sets/owners/members.
+-- Chaque entite a sa propre table, et les relations
+-- sont exprimees par des CLES ETRANGERES.
+
+CREATE TABLE departement (
+    code  VARCHAR(10) PRIMARY KEY,
+    nom   VARCHAR(50) NOT NULL
 );
 
-INSERT INTO etudiants VALUES (1, &#39;Alice&#39;, 22), (2, &#39;Bob&#39;, 25);</textarea><div class=sql-toolbar><button id=sql-0-run onclick='sqlRun("sql-0")'>&#9654; Exécuter</button>
-<button id=sql-0-reset onclick='sqlReset("sql-0")'>&#8634; Réinitialiser</button>
-<span class=sql-status id=sql-0-status></span></div><div class="sql-output sql-output-hidden" id=sql-0-output></div></div><div class=sql-block id=sql-1><textarea id=sql-1-code>
-select * from etudiants;
-</textarea><div class=sql-toolbar><button id=sql-1-run onclick='sqlRun("sql-1")'>&#9654; Exécuter</button>
-<button id=sql-1-reset onclick='sqlReset("sql-1")'>&#8634; Réinitialiser</button>
-<span class=sql-status id=sql-1-status></span></div><div class="sql-output sql-output-hidden" id=sql-1-output></div></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
-<span>Module 5 - Les données</span>
-</a></span><span></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div></main><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/sql/sql.min.js></script><script>const _sqlEditors={};document.querySelectorAll(".sql-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const s=e.id,o=t.value,n=CodeMirror.fromTextArea(t,{mode:"text/x-sql",theme:"material-darker",indentUnit:2,tabSize:2,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=o,_sqlEditors[s]=n});let _sqlDbReady=null;async function _getSqlDb(){return _sqlDbReady||(_sqlDbReady=(async()=>{await new Promise((e,t)=>{const n=document.createElement("script");n.src="https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.js",n.onload=e,n.onerror=t,document.head.appendChild(n)});const e=await initSqlJs({locateFile:()=>"https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.wasm"});return new e.Database})()),_sqlDbReady}function _sqlResultToTable(e,t){let n="<table><thead><tr>";for(const t of e)n+="<th>"+_sqlEscape(t)+"</th>";n+="</tr></thead><tbody>";for(const e of t){n+="<tr>";for(const t of e)t===null?n+='<td class="sql-null">NULL</td>':n+="<td>"+_sqlEscape(String(t))+"</td>";n+="</tr>"}return n+="</tbody></table>",n}function _sqlEscape(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}async function sqlRun(e){const o=_sqlEditors[e],t=document.getElementById(e+"-output"),s=document.getElementById(e+"-run"),n=document.getElementById(e+"-status"),i=o.getValue();s.disabled=!0,t.innerHTML="",t.classList.remove("sql-output-hidden"),n.textContent="Chargement de SQL.js…";try{const e=await _getSqlDb();n.textContent="Exécution…";const s=e.exec(i);if(s.length===0){const s=e.getRowsModified(),n=document.createElement("div");n.className="sql-message",n.textContent=s>0?s+" ligne(s) modifiée(s).":"Requête exécutée avec succès.",t.appendChild(n)}else for(const e of s){const n=document.createElement("div");n.innerHTML=_sqlResultToTable(e.columns,e.values),t.appendChild(n)}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("div");e.className="sql-message sql-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function sqlReset(e){const t=_sqlEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.innerHTML="",n.classList.add("sql-output-hidden")}</script></body></html>
+CREATE TABLE professeur (
+    id     INTEGER     PRIMARY KEY,
+    nom    VARCHAR(50) NOT NULL,
+    bureau VARCHAR(20),
+    dept   VARCHAR(10) REFERENCES departement(code)
+);
+
+CREATE TABLE cours (
+    sigle  VARCHAR(10) PRIMARY KEY,
+    titre  VARCHAR(80) NOT NULL,
+    dept   VARCHAR(10) REFERENCES departement(code)
+);
+
+CREATE TABLE etudiant (
+    matricule VARCHAR(10) PRIMARY KEY,    -- UNE SEULE FOIS
+    nom       VARCHAR(50) NOT NULL
+);
+
+-- La relation M:N (cours &lt;-&gt; etudiants) est une TABLE DE JOINTURE.
+-- Ni duplication (modele hierarchique),
+-- ni navigation par sets (modele reseau) :
+-- juste une table avec deux cles etrangeres.
+
+CREATE TABLE inscription (
+    matricule VARCHAR(10) REFERENCES etudiant(matricule),
+    sigle     VARCHAR(10) REFERENCES cours(sigle),
+    PRIMARY KEY (matricule, sigle)
+);
+</textarea><div class=sql-toolbar><button id=sql-10-run onclick='sqlRun("sql-10")'>&#9654; Exécuter</button>
+<button id=sql-10-reset onclick='sqlReset("sql-10")'>&#8634; Réinitialiser</button>
+<span class=sql-status id=sql-10-status></span></div><div class="sql-output sql-output-hidden" id=sql-10-output></div></div><p>Une fois notre schéma en place, on peut ajouter des données.</p><div class=sql-block id=sql-11><textarea id=sql-11-code>
+-- ============================================================
+-- 2. Insertion des donnees
+-- ============================================================
+
+INSERT INTO departement VALUES (&#39;INFO&#39;, &#39;Informatique&#39;);
+INSERT INTO departement VALUES (&#39;MATH&#39;, &#39;Mathematiques&#39;);
+
+INSERT INTO professeur VALUES (1, &#39;Tremblay&#39;, &#39;PK-4150&#39;, &#39;INFO&#39;);
+INSERT INTO professeur VALUES (2, &#39;Gagnon&#39;,   &#39;PK-4920&#39;, &#39;INFO&#39;);
+INSERT INTO professeur VALUES (3, &#39;Lavoie&#39;,   &#39;PK-5230&#39;, &#39;MATH&#39;);
+
+INSERT INTO cours VALUES (&#39;INF3080&#39;, &#39;Bases de donnees&#39;,        &#39;INFO&#39;);
+INSERT INTO cours VALUES (&#39;INF3105&#39;, &#39;Structures de donnees&#39;,   &#39;INFO&#39;);
+INSERT INTO cours VALUES (&#39;MAT2080&#39;, &#39;Statistiques&#39;,            &#39;MATH&#39;);
+
+INSERT INTO etudiant VALUES (&#39;TRAA01&#39;, &#39;Alice&#39;);
+INSERT INTO etudiant VALUES (&#39;MORB02&#39;, &#39;Bob&#39;);
+
+INSERT INTO inscription VALUES (&#39;TRAA01&#39;, &#39;INF3080&#39;);   -- Alice -&gt; BD
+INSERT INTO inscription VALUES (&#39;TRAA01&#39;, &#39;INF3105&#39;);   -- Alice -&gt; Algo
+INSERT INTO inscription VALUES (&#39;MORB02&#39;, &#39;INF3080&#39;);   -- Bob   -&gt; BD
+INSERT INTO inscription VALUES (&#39;MORB02&#39;, &#39;MAT2080&#39;);   -- Bob   -&gt; Stat
+</textarea><div class=sql-toolbar><button id=sql-11-run onclick='sqlRun("sql-11")'>&#9654; Exécuter</button>
+<button id=sql-11-reset onclick='sqlReset("sql-11")'>&#8634; Réinitialiser</button>
+<span class=sql-status id=sql-11-status></span></div><div class="sql-output sql-output-hidden" id=sql-11-output></div></div><p>Et finalement on peut faire des requêtes :</p><div class=sql-block id=sql-12><textarea id=sql-12-code>
+-- ============================================================
+-- 3. Requetes declaratives -- CE QU&#39;ON CHERCHE, pas COMMENT
+-- ============================================================
+
+-- Equivalent de naviguer(uqam, &#34;Departement&#34;, &#34;Cours&#34;)
+-- du modele hierarchique, mais sans connaitre aucun chemin :
+
+SELECT d.nom AS departement, c.sigle, c.titre
+  FROM departement d
+  JOIN cours c ON c.dept = d.code;
+
+-- Equivalent de find_members(&#34;INSCRIPTION&#34;, bd)
+-- du modele reseau -- etudiants inscrits a INF3080 :
+
+SELECT e.matricule, e.nom
+  FROM etudiant e
+  JOIN inscription i ON i.matricule = e.matricule
+ WHERE i.sigle = &#39;INF3080&#39;;
+
+
+-- La question qui etait penible dans le modele hierarchique
+-- et qui necessitait une navigation inverse dans le modele reseau
+-- &#34;A quels cours Alice est-elle inscrite ?&#34;
+-- s&#39;ecrit naturellement :
+
+SELECT c.sigle, c.titre
+  FROM cours c
+  JOIN inscription i ON i.sigle = c.sigle
+ WHERE i.matricule = &#39;TRAA01&#39;;
+
+
+-- Une question impossible a poser simplement dans les
+-- modeles precedents -- &#34;Quels etudiants partagent
+-- au moins un cours avec Alice ?&#34;
+
+SELECT DISTINCT e.nom
+  FROM etudiant e
+  JOIN inscription i1 ON i1.matricule = e.matricule
+  JOIN inscription i2 ON i2.sigle = i1.sigle
+ WHERE i2.matricule = &#39;TRAA01&#39;
+   AND e.matricule != &#39;TRAA01&#39;;
+</textarea><div class=sql-toolbar><button id=sql-12-run onclick='sqlRun("sql-12")'>&#9654; Exécuter</button>
+<button id=sql-12-reset onclick='sqlReset("sql-12")'>&#8634; Réinitialiser</button>
+<span class=sql-status id=sql-12-status></span></div><div class="sql-output sql-output-hidden" id=sql-12-output></div></div><h3 id=les-orms-object-relational-mappers>Les ORMs (object relational mappers)<a class=anchor href=#les-orms-object-relational-mappers>#</a></h3><h2 id=la-révolution-nosql>La révolution NoSQL<a class=anchor href=#la-r%c3%a9volution-nosql>#</a></h2><h3 id=key-value-stores>Key-Value Stores<a class=anchor href=#key-value-stores>#</a></h3><h3 id=document-stores>Document Stores<a class=anchor href=#document-stores>#</a></h3><h3 id=columnar-stores>Columnar Stores<a class=anchor href=#columnar-stores>#</a></h3><h3 id=graph-databases>Graph Databases<a class=anchor href=#graph-databases>#</a></h3><h2 id=les-bases-de-données-de-séries-temporelles>Les bases de données de séries temporelles<a class=anchor href=#les-bases-de-donn%c3%a9es-de-s%c3%a9ries-temporelles>#</a></h2><h2 id=les-bases-de-données-vectorielles>Les bases de données vectorielles<a class=anchor href=#les-bases-de-donn%c3%a9es-vectorielles>#</a></h2></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/repr%C3%A9sentation/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>La représentation des données</span>
+</a></span><span></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#le-modèle-hiérarchique-ibm-années-69>Le modèle hiérarchique (IBM, années 69)</a></li><li><a href=#le-modèle-en-réseau-codasyl-fin-des-années-60>Le modèle en réseau (CODASYL, fin des années 60)</a></li><li><a href=#le-modèle-relationnel-et-sql>Le modèle relationnel et SQL</a><ul><li><a href=#les-orms-object-relational-mappers>Les ORMs (object relational mappers)</a></li></ul></li><li><a href=#la-révolution-nosql>La révolution NoSQL</a><ul><li><a href=#key-value-stores>Key-Value Stores</a></li><li><a href=#document-stores>Document Stores</a></li><li><a href=#columnar-stores>Columnar Stores</a></li><li><a href=#graph-databases>Graph Databases</a></li></ul></li><li><a href=#les-bases-de-données-de-séries-temporelles>Les bases de données de séries temporelles</a></li><li><a href=#les-bases-de-données-vectorielles>Les bases de données vectorielles</a></li></ul></nav></div></aside></main><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js></script><script>const _pyodideEditors={};document.querySelectorAll(".pyodide-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const s=e.id,o=t.value,n=CodeMirror.fromTextArea(t,{mode:"python",theme:"material-darker",indentUnit:4,tabSize:4,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=o,_pyodideEditors[s]=n});let _pyodideReady=null;async function _getPyodide(){return _pyodideReady||(_pyodideReady=(async()=>(await new Promise((e,t)=>{const n=document.createElement("script");n.src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js",n.onload=e,n.onerror=t,document.head.appendChild(n)}),await loadPyodide()))()),_pyodideReady}async function pyodideRun(e){const o=_pyodideEditors[e],t=document.getElementById(e+"-output"),s=document.getElementById(e+"-run"),n=document.getElementById(e+"-status"),i=o.getValue();s.disabled=!0,t.textContent="",t.classList.remove("pyodide-output-hidden"),n.textContent="Chargement de Pyodide…";try{const e=await _getPyodide();n.textContent="Exécution…",e.runPython(`
+import sys, io
+sys.stdout = io.StringIO()
+sys.stderr = io.StringIO()
+`);try{e.runPython(i)}catch(o){const i=e.runPython("sys.stderr.getvalue()"),s=e.runPython("sys.stdout.getvalue()");t.innerHTML="",s&&t.appendChild(document.createTextNode(s));const n=document.createElement("span");n.className="pyodide-error",n.textContent=i||o.message,t.appendChild(n);return}finally{const s=e.runPython("sys.stdout.getvalue()"),n=e.runPython("sys.stderr.getvalue()");if(e.runPython(`
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+`),!t.children.length){if(t.textContent=s,n){const e=document.createElement("span");e.className="pyodide-error",e.textContent=n,t.appendChild(e)}!s&&!n&&(t.textContent="(Exécution terminée, aucune sortie)")}}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("span");e.className="pyodide-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function pyodideReset(e){const t=_pyodideEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.textContent=""}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/sql/sql.min.js></script><script>const _sqlEditors={};document.querySelectorAll(".sql-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const s=e.id,o=t.value,n=CodeMirror.fromTextArea(t,{mode:"text/x-sql",theme:"material-darker",indentUnit:2,tabSize:2,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=o,_sqlEditors[s]=n});let _sqlDbReady=null;async function _getSqlDb(){return _sqlDbReady||(_sqlDbReady=(async()=>{await new Promise((e,t)=>{const n=document.createElement("script");n.src="https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.js",n.onload=e,n.onerror=t,document.head.appendChild(n)});const e=await initSqlJs({locateFile:()=>"https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.wasm"});return new e.Database})()),_sqlDbReady}function _sqlResultToTable(e,t){let n="<table><thead><tr>";for(const t of e)n+="<th>"+_sqlEscape(t)+"</th>";n+="</tr></thead><tbody>";for(const e of t){n+="<tr>";for(const t of e)t===null?n+='<td class="sql-null">NULL</td>':n+="<td>"+_sqlEscape(String(t))+"</td>";n+="</tr>"}return n+="</tbody></table>",n}function _sqlEscape(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}async function sqlRun(e){const o=_sqlEditors[e],t=document.getElementById(e+"-output"),s=document.getElementById(e+"-run"),n=document.getElementById(e+"-status"),i=o.getValue();s.disabled=!0,t.innerHTML="",t.classList.remove("sql-output-hidden"),n.textContent="Chargement de SQL.js…";try{const e=await _getSqlDb();n.textContent="Exécution…";const s=e.exec(i);if(s.length===0){const s=e.getRowsModified(),n=document.createElement("div");n.className="sql-message",n.textContent=s>0?s+" ligne(s) modifiée(s).":"Requête exécutée avec succès.",t.appendChild(n)}else for(const e of s){const n=document.createElement("div");n.innerHTML=_sqlResultToTable(e.columns,e.values),t.appendChild(n)}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("div");e.className="sql-message sql-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function sqlReset(e){const t=_sqlEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.innerHTML="",n.classList.add("sql-output-hidden")}</script></body></html>
