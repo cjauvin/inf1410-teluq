@@ -80,7 +80,7 @@ DRY&lt;/a&gt; que
 nous avons vu, appliqué dans le sens plus large d&amp;rsquo;un écosystème logiciel)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Dans le cas (2), on nomme parfois les librairies externes des &amp;ldquo;dépendances&amp;rdquo;, ou des
-&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>Les bases de données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/sql/</guid><description>&lt;h1 id="lévolution-des-bases-de-données"&gt;L&amp;rsquo;évolution des bases de données&lt;a class="anchor" href="#l%c3%a9volution-des-bases-de-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>Les bases de données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/storage/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/storage/</guid><description>&lt;h1 id="lévolution-des-bases-de-données"&gt;L&amp;rsquo;évolution des bases de données&lt;a class="anchor" href="#l%c3%a9volution-des-bases-de-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Nous allons faire un survol de l&amp;rsquo;évolution des bases de données d&amp;rsquo;une manière un
 peu particulière : au lieu de donner leurs caractéristiques de manière abstraite
 et théorique, nous allons étudier un modèle simplifié sous la forme d&amp;rsquo;un
