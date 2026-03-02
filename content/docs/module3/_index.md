@@ -1,10 +1,10 @@
 ---
-title: "Module 3 - Les outils et les environnements"
+title: "Module 3 - Évolution du logiciel"
 weight: 300
 bookCollapseSection: true
 ---
 
-# Outils et environnements
+# Évolution du logiciel
 
 Dans ce module, nous examinerons en profondeur une série d'outils qui ont
 profondément façonné le monde du développement informatique :

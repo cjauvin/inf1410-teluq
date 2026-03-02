@@ -1,5 +1,5 @@
 ---
-title: "Module 5 - Les données"
+title: "Module 5 - Faire vivre le logiciel"
 weight: 500
 bookCollapseSection: true
 ---

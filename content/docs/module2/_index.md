@@ -1,10 +1,10 @@
 ---
-title: "Module 2 - La programmation"
+title: "Module 2 - Concevoir un logiciel correct"
 weight: 200
 bookCollapseSection: true
 ---
 
-# Module 2 - La programmation
+# Module 2 - Concevoir un logiciel correct
 
 Dans ce module, nous allons traiter d'une série de sujets qui sont à
 l'intersection du génie logiciel et de la programmation, car ce sont des sujets

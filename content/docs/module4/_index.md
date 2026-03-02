@@ -1,7 +1,9 @@
 ---
-title: "Module 4 - La gestion de projet et la collaboration"
+title: "Module 4 - Construire en équipe"
 weight: 400
 bookCollapseSection: true
 ---
+
+# Module 4 - Construire en équipe
 
 Hello!
