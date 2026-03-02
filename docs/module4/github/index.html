@@ -1,0 +1,249 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Au-delà du git local : git distribué# Jusqu’ici nous avons utilisé git en mode local, c’est-à-dire que la totalité des opérations que nous avons effectuées sont confinées dans le contexte particulier de notre dépôt local, dans un endroit particulier de notre disque, sur un ordinateur particulier. Mais le modèle de git est beaucoup plus puissant et général, car il permet de synchroniser des versions différentes du même dépôt, à travers le réseau internet. On dit que le modèle est distribué. Ce mode est évidemment optionnel, et il est tout à fait possible d’utiliser git de manière exclusivement locale, si ça correspond à notre besoin. Mais dans un contexte de collaboration pour le développement logiciel, le mode distribué de git est quasiment essentiel. Une bonne manière de commencer notre exploration de cette nouvelle idée est en étendant notre modèle mental des trois “endroits” du git local avec un quatrième “endroit”, qui correspond à une autre version du même depot, qui se trouve “ailleurs” :
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module4/github/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Git distribué (GitHub)"><meta property="og:description" content="Au-delà du git local : git distribué# Jusqu’ici nous avons utilisé git en mode local, c’est-à-dire que la totalité des opérations que nous avons effectuées sont confinées dans le contexte particulier de notre dépôt local, dans un endroit particulier de notre disque, sur un ordinateur particulier. Mais le modèle de git est beaucoup plus puissant et général, car il permet de synchroniser des versions différentes du même dépôt, à travers le réseau internet. On dit que le modèle est distribué. Ce mode est évidemment optionnel, et il est tout à fait possible d’utiliser git de manière exclusivement locale, si ça correspond à notre besoin. Mais dans un contexte de collaboration pour le développement logiciel, le mode distribué de git est quasiment essentiel. Une bonne manière de commencer notre exploration de cette nouvelle idée est en étendant notre modèle mental des trois “endroits” du git local avec un quatrième “endroit”, qui correspond à une autre version du même depot, qui se trouve “ailleurs” :"><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Git distribué (GitHub)"><meta itemprop=description content="Au-delà du git local : git distribué# Jusqu’ici nous avons utilisé git en mode local, c’est-à-dire que la totalité des opérations que nous avons effectuées sont confinées dans le contexte particulier de notre dépôt local, dans un endroit particulier de notre disque, sur un ordinateur particulier. Mais le modèle de git est beaucoup plus puissant et général, car il permet de synchroniser des versions différentes du même dépôt, à travers le réseau internet. On dit que le modèle est distribué. Ce mode est évidemment optionnel, et il est tout à fait possible d’utiliser git de manière exclusivement locale, si ça correspond à notre besoin. Mais dans un contexte de collaboration pour le développement logiciel, le mode distribué de git est quasiment essentiel. Une bonne manière de commencer notre exploration de cette nouvelle idée est en étendant notre modèle mental des trois “endroits” du git local avec un quatrième “endroit”, qui correspond à une autre version du même depot, qui se trouve “ailleurs” :"><meta itemprop=wordCount content="2015"><title>Git distribué (GitHub) | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.427fd74effaa6729c02a67f5c2fcf3aacdee5c04af08e6536e0f6fc0b2d61589.css integrity="sha256-Qn/XTv+qZynAKmf1wvzzqs3uXASvCOZTbg9vwLLWFYk=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/>Qu'est-ce que le génie logiciel?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Les idées historiques importantes</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique2/>Survol historiquee des jalons du GL</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - Concevoir un logiciel correct</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/>Principes généraux fameux</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Évolution du logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><input type=checkbox id=section-b4423ff35b8162b03509f568bb7842c7 class=toggle>
+<label for=section-b4423ff35b8162b03509f568bb7842c7 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/>Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/storage/>Les bases de données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/autres-paradigmes/>Autres paradigmes importants</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle checked>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - Construire en équipe</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/>Le manifeste Agile</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/ class=active>Git distribué (GitHub)</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/>La conteneurisation avec docker</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Au-delà du logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Git distribué (GitHub)</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#collaborer-avec-git-et-github>Collaborer avec git et GitHub</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=au-delà-du-git-local--git-distribué>Au-delà du git local : git distribué<a class=anchor href=#au-del%c3%a0-du-git-local--git-distribu%c3%a9>#</a></h1><p>Jusqu&rsquo;ici nous avons utilisé git en mode local, c&rsquo;est-à-dire que la totalité des
+opérations que nous avons effectuées sont confinées dans le contexte particulier
+de notre dépôt local, dans un endroit particulier de notre disque, sur un
+ordinateur particulier. Mais le modèle de git est beaucoup plus puissant et
+général, car il permet de synchroniser des versions différentes du même dépôt, à
+travers le réseau internet. On dit que le modèle est <em>distribué</em>. Ce mode est
+évidemment optionnel, et il est tout à fait possible d&rsquo;utiliser git de manière
+exclusivement locale, si ça correspond à notre besoin. Mais dans un contexte de
+collaboration pour le développement logiciel, le mode distribué de git est
+quasiment essentiel. Une bonne manière de commencer notre exploration de cette
+nouvelle idée est en étendant notre modèle mental des trois &ldquo;endroits&rdquo; du git
+local avec un quatrième &ldquo;endroit&rdquo;, qui correspond à une autre version du même
+depot, qui se trouve &ldquo;ailleurs&rdquo; :</p><label class=book-image for=book-image-toggle-0><input class="hidden toggle" type=checkbox id=book-image-toggle-0>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-4-places.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-0"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Il est important de comprendre que cet &ldquo;ailleurs&rdquo; peut être en fait plusieurs types d&rsquo;endroit :</p><ol><li>Un autre répertoire sur le même ordinateur</li><li>Un autre ordinateur (par exemple un serveur en ligne)</li><li>Un service d&rsquo;hébergement en ligne pour git, par exemple GitHub, qui est de loin le plus populaire.</li></ol><p>Fondamentalement tous ces endroits fonctionnent de la même manière (pour
+communiquer entre eux), mais nous allons nous concentrer sur l&rsquo;usage avec
+GitHub, qui est le plus courant et utile. Jusqu&rsquo;ici nous avons travaillé dans
+notre dépôt local, mais imaginons que nous aimerions collaborer avec d&rsquo;autres
+programmeurs. Pour cela, il est très courant d&rsquo;utiliser GitHub. Créons tout
+d&rsquo;abord un nouveau dépôt dans notre compte GitHub :</p><label class=book-image for=book-image-toggle-1><input class="hidden toggle" type=checkbox id=book-image-toggle-1>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-gh-create-repo.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-1"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>GitHub nous offre ensuite deux scénarios :</p><label class=book-image for=book-image-toggle-2><input class="hidden toggle" type=checkbox id=book-image-toggle-2>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-gh-create-repo-2-options.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-2"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><ol><li>Nous avons créé ce dépôt entièrement en ligne, et il est donc nouveau (nous en voudrions donc une copie locale, pour pouvoir y travailler)</li><li>Nous avons déjà un dépôt local existant, et nous aimerions que ce dépôt en ligne que nous venons de créer (sur GitHub) y soit associé</li></ol><p>Dans notre scénario d&rsquo;apprentissage, nous sommes dans l&rsquo;option 2 (assurez-vous
+de vous arrêter un moment pour y penser, et vous en convaincre, car les nuances
+topologiques des dépôts git distribués peuvent devenir difficile à se
+représenter).</p><p>Effectuons donc les commandes recommandées par GitHub, dans la ligne de commande
+de notre dépôt local :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ git remote add origin git@github.com:cjauvin/mon-premier-depot.git</span></span></code></pre></div><p>Avec cette commande, nous avons créé un &ldquo;remote&rdquo;, nommé <code>origin</code> qui est
+simplement un lien (url), de notre dépôt local, vers un dépôt distant (remote
+veut dire distant, souvent en ligne).</p><p>On peut constater l&rsquo;ajout de ce lien dans le fichier <code>.git/config</code> de notre
+dépôt local :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ cat .git/config
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>core<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>        repositoryformatversion <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        filemode <span style=color:#f92672>=</span> true
+</span></span><span style=display:flex><span>        bare <span style=color:#f92672>=</span> false
+</span></span><span style=display:flex><span>        logallrefupdates <span style=color:#f92672>=</span> true
+</span></span><span style=display:flex><span>        ignorecase <span style=color:#f92672>=</span> true
+</span></span><span style=display:flex><span>        precomposeunicode <span style=color:#f92672>=</span> true
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>remote <span style=color:#e6db74>&#34;origin&#34;</span><span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>        url <span style=color:#f92672>=</span> git@github.com:cjauvin/mon-premier-depot.git
+</span></span><span style=display:flex><span>        fetch <span style=color:#f92672>=</span> +refs/heads/*:refs/remotes/origin/*</span></span></code></pre></div><p>La deuxième commande proposée est :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ git branch -M main</span></span></code></pre></div><p>Ceci a pour but de changer le nom de la branche locale courante, historiquement
+par défaut nommée <code>master</code> par git, à <code>main</code>, qui est le nouveau nom par défaut
+de la branche principale d&rsquo;un dépôt sur GitHub. Ceci est simplement pour éviter
+la confusion, et synchroniser le nom des deux branches à une valeur commune.</p><p>La troisième commande va envoyer (push) notre branche locale <code>main</code>
+vers le remote <code>origin</code>, afin de synchroniser les deux dépôts :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ git push -u origin main
+</span></span><span style=display:flex><span>Enumerating objects: 27, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Counting objects: 100% <span style=color:#f92672>(</span>27/27<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Delta compression using up to <span style=color:#ae81ff>10</span> threads
+</span></span><span style=display:flex><span>Compressing objects: 100% <span style=color:#f92672>(</span>16/16<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Writing objects: 100% <span style=color:#f92672>(</span>27/27<span style=color:#f92672>)</span>, 2.23 KiB | 1.11 MiB/s, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Total <span style=color:#ae81ff>27</span> <span style=color:#f92672>(</span>delta 1<span style=color:#f92672>)</span>, reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, pack-reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>from 0<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>remote: Resolving deltas: 100% <span style=color:#f92672>(</span>1/1<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>To github.com:cjauvin/mon-premier-depot.git
+</span></span><span style=display:flex><span> * <span style=color:#f92672>[</span>new branch<span style=color:#f92672>]</span>      main -&gt; main
+</span></span><span style=display:flex><span>branch <span style=color:#e6db74>&#39;main&#39;</span> set up to track <span style=color:#e6db74>&#39;origin/main&#39;</span>.</span></span></code></pre></div><p>L&rsquo;option <code>-u</code> (pour &ldquo;upstream&rdquo;) en particulier est cruciale, car elle permet de
+faire une association directe entre la branche locale <code>main</code> et la branche en
+ligne correspondante, <code>origin/main</code>. Donc dans le contexte de la branche locale
+<code>main</code>, nous n&rsquo;aurons pas à spécifier de quel remote en particulier on parle,
+quand on voudra faire les commandes <code>git push</code> et <code>git pull</code>, car l&rsquo;association
+sera implicite.</p><p>Si on rafraîchit maintenant la page du dépôt sur GitHub, on devrait voir ceci :</p><label class=book-image for=book-image-toggle-3><input class="hidden toggle" type=checkbox id=book-image-toggle-3>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-gh-repo-ready.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-3"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Et si on visite la section des commits en particulier, on peut voir l&rsquo;historique
+de notre dépôt local, qui se retrouve maintenant intégralement dans la version
+du dépôt en ligne sur GitHub :</p><label class=book-image for=book-image-toggle-4><input class="hidden toggle" type=checkbox id=book-image-toggle-4>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-gh-commit-history.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-4"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Nous allons maintenant explorer les possibilités qu&rsquo;offre le fait d&rsquo;avoir un
+dépôt en ligne, dans le contexte d&rsquo;un groupe de collaborateurs. Imaginons que
+nous sommes Leila, jusqu&rsquo;à maintenant, et qu&rsquo;une deuxième collaboratrice, nommée
+Sara, voudrait se joindre à notre projet, pour y contribuer. Pour simuler cela,
+nous allons simplement imaginer que Sara voudrait travailler sur le même
+ordinateur (local) que celui de Leila, mais dans un autre répertoire, ailleurs
+sur le disque donc (ce que git permet très aisément, avec ou sans dépôt en ligne
+d&rsquo;ailleurs). Sara va donc &ldquo;cloner&rdquo; le dépôt en ligne, de GitHub vers un autre
+endroit sur l&rsquo;ordinateur local :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ cd /espace/de/travail/de/sara/
+</span></span><span style=display:flex><span>$ git clone git@github.com:cjauvin/mon-premier-depot.git meme-depot-ailleurs
+</span></span><span style=display:flex><span>Cloning into <span style=color:#e6db74>&#39;meme-depot-ailleurs&#39;</span>...
+</span></span><span style=display:flex><span>remote: Enumerating objects: 27, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Counting objects: 100% <span style=color:#f92672>(</span>27/27<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Compressing objects: 100% <span style=color:#f92672>(</span>15/15<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Total <span style=color:#ae81ff>27</span> <span style=color:#f92672>(</span>delta 1<span style=color:#f92672>)</span>, reused <span style=color:#ae81ff>27</span> <span style=color:#f92672>(</span>delta 1<span style=color:#f92672>)</span>, pack-reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>from 0<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Receiving objects: 100% <span style=color:#f92672>(</span>27/27<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Resolving deltas: 100% <span style=color:#f92672>(</span>1/1<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.</span></span></code></pre></div><p>Notons que quand on clone un dépôt, on peut choisir le nom que l&rsquo;on veut pour le
+répertoire qui le contient. Dans ce cas nous avons choisi <code>meme-depot-ailleurs</code>
+pour réduire la confusion, mais si on avait utilisé la commande <code>git clone</code> sans
+spécifier de nom, un nouveau répertoire <code>mon-premier-depot</code> serait
+automatiquement créé et utilisé. C&rsquo;est pourquoi il est préférable d&rsquo;avoir
+navigué au préalable vers <code>/un/autre/endroit/du/disque/</code>.</p><p>Nous nous retrouvons donc dans la situation suivante :</p><label class=book-image for=book-image-toggle-5><input class="hidden toggle" type=checkbox id=book-image-toggle-5>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-3-repos.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-5"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Supposons maintenant que Sara souhaite faire un changement au code de son nouveau
+dépôt :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ echo <span style=color:#e6db74>&#34;de Sara!&#34;</span> &gt;&gt; toto.txt
+</span></span><span style=display:flex><span>$ $ git commit -am <span style=color:#e6db74>&#34;Neuvième commit (de Sara)&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>main 878933d<span style=color:#f92672>]</span> Neuvième commit <span style=color:#f92672>(</span>de Sara<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span> <span style=color:#ae81ff>1</span> file changed, <span style=color:#ae81ff>1</span> insertion<span style=color:#f92672>(</span>+<span style=color:#f92672>)</span></span></span></code></pre></div><p>Comment sera-t-il possible pour Leila de prendre connaissance de son travail? Il faut
+passer par le dépôt en ligne, sur GitHub :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ git push
+</span></span><span style=display:flex><span>Enumerating objects: 5, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Counting objects: 100% <span style=color:#f92672>(</span>5/5<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Delta compression using up to <span style=color:#ae81ff>10</span> threads
+</span></span><span style=display:flex><span>Compressing objects: 100% <span style=color:#f92672>(</span>2/2<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Writing objects: 100% <span style=color:#f92672>(</span>3/3<span style=color:#f92672>)</span>, <span style=color:#ae81ff>330</span> bytes | 330.00 KiB/s, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Total <span style=color:#ae81ff>3</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, pack-reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>from 0<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>To github.com:cjauvin/mon-premier-depot.git
+</span></span><span style=display:flex><span>   55f1243..878933d  main -&gt; main</span></span></code></pre></div><p>On remarque que Sara (qui vient de faire la commande <code>git push</code> dans son dépôt)
+n&rsquo;a pas eu à se préoccuper de la configuration du remote <code>origin</code>, ni de
+l&rsquo;association de sa branche locale <code>main</code> avec la branche <code>origin/main</code>, car le
+fait d&rsquo;avoir utilisé <code>clone</code> effectue cette configuration initiale,
+automatiquement.</p><p>Si on rafraîchit maintenant la page des commits de notre dépôt en ligne sur GitHub,
+on devrait voir apparaître le commit de Sara, qu&rsquo;elle vient de &ldquo;pousser&rdquo; (<code>push</code>) :</p><label class=book-image for=book-image-toggle-6><input class="hidden toggle" type=checkbox id=book-image-toggle-6>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-gh-commit-sara.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-6"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>À ce point dans notre histoire, le nouveau commit de Sara (<code>8789</code>, pour être précis)
+se trouve dans deux dépôts : le sien, et celui de GitHub. Pour que Leila puisse l&rsquo;obtenir,
+elle doit faire <code>git pull</code> dans son propre dépôt :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ git pull
+</span></span><span style=display:flex><span>remote: Enumerating objects: 5, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Counting objects: 100% <span style=color:#f92672>(</span>5/5<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Compressing objects: 100% <span style=color:#f92672>(</span>2/2<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Total <span style=color:#ae81ff>3</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, reused <span style=color:#ae81ff>3</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, pack-reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>from 0<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Unpacking objects: 100% <span style=color:#f92672>(</span>3/3<span style=color:#f92672>)</span>, <span style=color:#ae81ff>310</span> bytes | 62.00 KiB/s, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>From github.com:cjauvin/mon-premier-depot
+</span></span><span style=display:flex><span>   55f1243..878933d  main       -&gt; origin/main
+</span></span><span style=display:flex><span>Updating 55f1243..878933d
+</span></span><span style=display:flex><span>Fast-forward
+</span></span><span style=display:flex><span> toto.txt | <span style=color:#ae81ff>1</span> +
+</span></span><span style=display:flex><span> <span style=color:#ae81ff>1</span> file changed, <span style=color:#ae81ff>1</span> insertion<span style=color:#f92672>(</span>+<span style=color:#f92672>)</span></span></span></code></pre></div><p>Les trois dépôts sont maintenant synchronisés :</p><label class=book-image for=book-image-toggle-7><input class="hidden toggle" type=checkbox id=book-image-toggle-7>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-3-repos-synced.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-7"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h2 id=collaborer-avec-git-et-github>Collaborer avec git et GitHub<a class=anchor href=#collaborer-avec-git-et-github>#</a></h2><p>Nous allons finalement explorer une variation plus réaliste d&rsquo;un mécanisme de
+collaboration rendu possible par git et GitHub : la &ldquo;pull request&rdquo;.</p><p>Supposons que Sara veuille encore une fois collaborer au projet, mais cette fois
+elle aimerait le faire d&rsquo;une manière qui impliquerait Leila de manière plus
+active, en lui &ldquo;demandant la permission&rdquo; (dans un certain sens), d&rsquo;effectuer une
+modification. Sara pourrait commencer en créant une branche dans son dépôt local :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ git switch -c proposition
+</span></span><span style=display:flex><span>Switched to a new branch <span style=color:#e6db74>&#39;proposition&#39;</span></span></span></code></pre></div><p>Elle pourrait alors effectuer son travail, le commiter, et pousser sa nouvelle
+branche vers le dépôt en ligne GitHub :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ echo <span style=color:#e6db74>&#34;c&#39;est nouveau!&#34;</span> &gt;&gt; sara.txt
+</span></span><span style=display:flex><span>$
+</span></span><span style=display:flex><span>$ git add sara.txt
+</span></span><span style=display:flex><span>$
+</span></span><span style=display:flex><span>$ git commit -m <span style=color:#e6db74>&#34;Dixième commit (de Sara)&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>proposition 5998c71<span style=color:#f92672>]</span> Dixième commit <span style=color:#f92672>(</span>de Sara<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span> <span style=color:#ae81ff>1</span> file changed, <span style=color:#ae81ff>1</span> insertion<span style=color:#f92672>(</span>+<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span> create mode <span style=color:#ae81ff>100644</span> sara.txt
+</span></span><span style=display:flex><span>$
+</span></span><span style=display:flex><span>$ git push --set-upstream origin proposition
+</span></span><span style=display:flex><span>Enumerating objects: 4, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Counting objects: 100% <span style=color:#f92672>(</span>4/4<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Delta compression using up to <span style=color:#ae81ff>10</span> threads
+</span></span><span style=display:flex><span>Compressing objects: 100% <span style=color:#f92672>(</span>2/2<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Writing objects: 100% <span style=color:#f92672>(</span>3/3<span style=color:#f92672>)</span>, <span style=color:#ae81ff>336</span> bytes | 336.00 KiB/s, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>Total <span style=color:#ae81ff>3</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, pack-reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>from 0<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>remote:
+</span></span><span style=display:flex><span>remote: Create a pull request <span style=color:#66d9ef>for</span> <span style=color:#e6db74>&#39;proposition&#39;</span> on GitHub by visiting:
+</span></span><span style=display:flex><span>remote:      https://github.com/cjauvin/mon-premier-depot/pull/new/proposition
+</span></span><span style=display:flex><span>remote:
+</span></span><span style=display:flex><span>To github.com:cjauvin/mon-premier-depot.git
+</span></span><span style=display:flex><span> * <span style=color:#f92672>[</span>new branch<span style=color:#f92672>]</span>      proposition -&gt; proposition
+</span></span><span style=display:flex><span>branch <span style=color:#e6db74>&#39;proposition&#39;</span> set up to track <span style=color:#e6db74>&#39;origin/proposition&#39;</span>.</span></span></code></pre></div><p>Après avoir fait cela, Sara devrait voir une option apparaître dans le dépôt GitHub,
+après l&rsquo;avoir rafraîchi :</p><label class=book-image for=book-image-toggle-8><input class="hidden toggle" type=checkbox id=book-image-toggle-8>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-gh-pr-offer.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-8"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Elle peut ensuite préparer sa pull request (PR), en faisant une description et
+en expliquant le contexte (peut-être qu&rsquo;il s&rsquo;agit d&rsquo;un bogue qu&rsquo;elle a remarqué,
+et pour lequel elle aimerait proposer une correction). Elle peut souvent
+assigner un &ldquo;reviewer&rdquo;, qui sera en charge de faire l&rsquo;évaluation de la PR, et de
+déterminer si elle sera acceptée ou non. Imaginons que ce reviewer devrait être
+Leila.</p><label class=book-image for=book-image-toggle-9><input class="hidden toggle" type=checkbox id=book-image-toggle-9>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-gh-pr.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-9"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Leila pourra ensuite entrer en jeu : elle recevra la PR, pourra examiner les
+changements, commenter, demander des changements supplémentaires, et finalement
+l&rsquo;accepter ou la refuser :</p><label class=book-image for=book-image-toggle-10><input class="hidden toggle" type=checkbox id=book-image-toggle-10>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-gh-pr-suite.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-10"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Notez qu&rsquo;une PR est souvent un lieu de conversation, parfois très longue, et qui
+peut être particulièrement animée !</p><p>Si Leila accepte le travail effectué par Sara (donc la PR), la branche
+<code>proposition</code> sera &ldquo;mergée&rdquo; dans la branche <code>main</code> (tout cela se passe toujours
+dans le dépôt en ligne GitHub) :</p><label class=book-image for=book-image-toggle-11><input class="hidden toggle" type=checkbox id=book-image-toggle-11>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-gh-pr-merged.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-11"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Après le merge de la PR, si on consulte la page des commits (de la branche <code>main</code>), on constate qu&rsquo;un
+nouveau commit, est apparu, en plus du commit correspondant au travail de Sara à
+proprement parlé :</p><label class=book-image for=book-image-toggle-12><input class="hidden toggle" type=checkbox id=book-image-toggle-12>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/git-gh-pr-merge-commit.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-12"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Notez qu&rsquo;un nouveau commit correspondant au merge est parfois nécessaire dans
+certains contextes (quand git ne peut pas effecter un merge de type
+&ldquo;fast-forward&rdquo;, qui est le type le plus simple).</p><p>Pour avoir la version la plus récente du travail effectué (sur la branche
+<code>main</code>), Leila doit faire un pull dans son dépôt local :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ git pull
+</span></span><span style=display:flex><span>remote: Enumerating objects: 5, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Counting objects: 100% <span style=color:#f92672>(</span>5/5<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Compressing objects: 100% <span style=color:#f92672>(</span>3/3<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Total <span style=color:#ae81ff>4</span> <span style=color:#f92672>(</span>delta 1<span style=color:#f92672>)</span>, reused <span style=color:#ae81ff>2</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, pack-reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>from 0<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Unpacking objects: 100% <span style=color:#f92672>(</span>4/4<span style=color:#f92672>)</span>, 1.08 KiB | 158.00 KiB/s, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>From github.com:cjauvin/mon-premier-depot
+</span></span><span style=display:flex><span>   878933d..e58cc7a  main        -&gt; origin/main
+</span></span><span style=display:flex><span> * <span style=color:#f92672>[</span>new branch<span style=color:#f92672>]</span>      proposition -&gt; origin/proposition
+</span></span><span style=display:flex><span>Updating 878933d..e58cc7a
+</span></span><span style=display:flex><span>Fast-forward
+</span></span><span style=display:flex><span> sara.txt | <span style=color:#ae81ff>1</span> +
+</span></span><span style=display:flex><span> <span style=color:#ae81ff>1</span> file changed, <span style=color:#ae81ff>1</span> insertion<span style=color:#f92672>(</span>+<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span> create mode <span style=color:#ae81ff>100644</span> sara.txt
+</span></span><span style=display:flex><span>$
+</span></span><span style=display:flex><span>$ git log -1
+</span></span><span style=display:flex><span>commit e58cc7a8a34ccf66158cc05c98bfd2700e7fba04 <span style=color:#f92672>(</span>HEAD -&gt; main, origin/main, origin/HEAD<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Merge: 878933d 5998c71
+</span></span><span style=display:flex><span>Author: Christian Jauvin &lt;cjauvin@gmail.com&gt;
+</span></span><span style=display:flex><span>Date:   Wed Jan <span style=color:#ae81ff>28</span> 11:44:47 <span style=color:#ae81ff>2026</span> -0500
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Merge pull request <span style=color:#75715e>#1 from cjauvin/proposition</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Proposition d<span style=color:#960050;background-color:#1e0010>&#39;</span>une nouvelle fonction</span></span></code></pre></div><p>Et finalement, Sara doit également rafraîchir son dépôt local, même si c&rsquo;est
+elle qui a fait le travail, car sa branche <code>main</code> locale ne contient pas encore
+le commit final de merge, ajouté par git, dans le dépôt en ligne GitHub. Elle
+doit tout d&rsquo;abord switcher à sa branche locale <code>main</code> (de sa branche
+<code>proposition</code>), et ensuite la rafraîchir :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ git switch main
+</span></span><span style=display:flex><span>Switched to branch <span style=color:#e6db74>&#39;main&#39;</span>
+</span></span><span style=display:flex><span>Your branch is up to date with <span style=color:#e6db74>&#39;origin/main&#39;</span>.
+</span></span><span style=display:flex><span>$
+</span></span><span style=display:flex><span>$ git pull
+</span></span><span style=display:flex><span>remote: Enumerating objects: 1, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Counting objects: 100% <span style=color:#f92672>(</span>1/1<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Total <span style=color:#ae81ff>1</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, pack-reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>from 0<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Unpacking objects: 100% <span style=color:#f92672>(</span>1/1<span style=color:#f92672>)</span>, <span style=color:#ae81ff>909</span> bytes | 454.00 KiB/s, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>From github.com:cjauvin/mon-premier-depot
+</span></span><span style=display:flex><span>   878933d..e58cc7a  main       -&gt; origin/main
+</span></span><span style=display:flex><span>Updating 878933d..e58cc7a
+</span></span><span style=display:flex><span>Fast-forward
+</span></span><span style=display:flex><span> sara.txt | <span style=color:#ae81ff>1</span> +
+</span></span><span style=display:flex><span> <span style=color:#ae81ff>1</span> file changed, <span style=color:#ae81ff>1</span> insertion<span style=color:#f92672>(</span>+<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span> create mode <span style=color:#ae81ff>100644</span> sara.txt
+</span></span><span style=display:flex><span>$
+</span></span><span style=display:flex><span>$ git log -1
+</span></span><span style=display:flex><span>commit e58cc7a8a34ccf66158cc05c98bfd2700e7fba04 <span style=color:#f92672>(</span>HEAD -&gt; main, origin/main, origin/HEAD<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Merge: 878933d 5998c71
+</span></span><span style=display:flex><span>Author: Christian Jauvin &lt;cjauvin@gmail.com&gt;
+</span></span><span style=display:flex><span>Date:   Wed Jan <span style=color:#ae81ff>28</span> 11:44:47 <span style=color:#ae81ff>2026</span> -0500
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Merge pull request <span style=color:#75715e>#1 from cjauvin/proposition</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Proposition d<span style=color:#960050;background-color:#1e0010>&#39;</span>une nouvelle fonction</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>Le manifeste Agile</span>
+</a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/ class="flex align-center"><span>Module 5 - Faire vivre le logiciel</span>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#collaborer-avec-git-et-github>Collaborer avec git et GitHub</a></li></ul></nav></div></aside></main></body></html>
