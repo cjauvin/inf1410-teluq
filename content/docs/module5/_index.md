@@ -13,4 +13,4 @@ importance sur la prise de conscience, à cette époque, du fait que ces sujets
 sont étroitement imbriqués. Ce module en couvrira les aspects les plus
 importants, à la fois culturels et techniques.
 
-
+TODO: Mentioner le livre Designing Data-Intensive Applications, 2nd Edition

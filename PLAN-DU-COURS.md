@@ -2,6 +2,14 @@
 
 ## Qu'est-ce que le GL?
 
+## Quelques livres fameux
+- The Mythical Man-Month
+- The Pragmatic Programmer
+- Clean Code
+- Design Patterns
+- Phoenix Project
+- Refactoring (?)
+
 ## Histoire du GL
 
 ### Les années 40 à mi-60 : l'ère pré-GL
@@ -174,10 +182,12 @@
 - Peter Naur: Programming as Theory Building
 
 # Module 5 — Les données
+- Designing Data-Intensive Applications, 2nd Edition
 - SQL
 - SQL vs NoSQL
 - Intégrité et normalisation
 - ORM
+- Transactions
 - Big data et ML
 - Web sémantique
 - Caching

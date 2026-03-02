@@ -562,6 +562,8 @@ SELECT DISTINCT e.nom
 
 {{< /sql >}}
 
+### Les transactions
+
 ### Les ORMs (object relational mappers)
 
 ## La révolution NoSQL
