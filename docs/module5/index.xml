@@ -13,4 +13,24 @@ programme python simple.&lt;/p&gt;
 &lt;h2 id="le-modèle-hiérarchique-ibm-années-69"&gt;Le modèle hiérarchique (IBM, années 69)&lt;a class="anchor" href="#le-mod%c3%a8le-hi%c3%a9rarchique-ibm-ann%c3%a9es-69"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est
 fondamentalement basé sur la notion d&amp;rsquo;un arbre. Pour implémenter un modèle
-simplifié en python, c&amp;rsquo;est relativement facile.&lt;/p&gt;</description></item></channel></rss>
+simplifié en python, c&amp;rsquo;est relativement facile.&lt;/p&gt;</description></item><item><title>Autres paradigmes importants</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/autres-paradigmes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/autres-paradigmes/</guid><description>&lt;h1 id="autres-paradigmes-importants"&gt;Autres paradigmes importants&lt;a class="anchor" href="#autres-paradigmes-importants"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="logging"&gt;Logging&lt;a class="anchor" href="#logging"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Le &lt;em&gt;logging&lt;/em&gt; (journalisation) consiste à enregistrer de façon systématique les
+événements qui se produisent dans un système : erreurs, avertissements, actions
+utilisateur, métriques de performance, etc. Dans un contexte de gestion des
+données, les logs constituent eux-mêmes une source de données précieuse. Le
+module &lt;code&gt;logging&lt;/code&gt; de Python offre un système structuré avec des niveaux de
+sévérité (&lt;code&gt;DEBUG&lt;/code&gt;, &lt;code&gt;INFO&lt;/code&gt;, &lt;code&gt;WARNING&lt;/code&gt;, &lt;code&gt;ERROR&lt;/code&gt;, &lt;code&gt;CRITICAL&lt;/code&gt;), des &lt;em&gt;handlers&lt;/em&gt;
+configurables et des formats personnalisables. À petite échelle, on peut écrire
+les logs dans des fichiers locaux, mais à l&amp;rsquo;échelle d&amp;rsquo;une infrastructure
+distribuée, le volume de logs générés devient rapidement massif et difficile à
+exploiter. C&amp;rsquo;est là qu&amp;rsquo;interviennent des outils comme
+&lt;a href="https://www.elastic.co/elasticsearch"&gt;Elasticsearch&lt;/a&gt;, un moteur de recherche et
+d&amp;rsquo;analytique distribué souvent déployé au sein de la pile « ELK »
+(Elasticsearch, Logstash, Kibana). Logstash collecte et transforme les logs
+provenant de sources multiples, Elasticsearch les indexe pour permettre des
+recherches &lt;em&gt;full-text&lt;/em&gt; quasi instantanées, et Kibana fournit des tableaux de
+bord de visualisation. Cette approche transforme des logs bruts — qui seraient
+autrement difficiles à consulter — en une base de données interrogeable en temps
+réel, permettant le débogage, la surveillance d&amp;rsquo;anomalies et l&amp;rsquo;analyse de
+tendances.&lt;/p&gt;</description></item></channel></rss>

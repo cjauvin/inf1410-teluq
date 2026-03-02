@@ -115,7 +115,27 @@ application, pour ensuite simuler une rencontre du client imaginaire, afin d&amp
 extraire les spécifications et le fonctionnement exacts. Vous devrez ensuite
 produire un document de conception, en utilisant une technique de modélisation
 de votre choix, afin de tenter de penser d&amp;rsquo;avance au fonctionnement de votre
-application, avant de vous lancer dans le développement à proprement parler.&lt;/p&gt;</description></item><item><title>Serveur Discord</title><link>https://cjauvin.github.io/inf1410-teluq/docs/discord/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/discord/</guid><description>&lt;h1 id="venez-discuter-de-gl-sur-discord-"&gt;Venez discuter de GL sur Discord !&lt;a class="anchor" href="#venez-discuter-de-gl-sur-discord-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+application, avant de vous lancer dans le développement à proprement parler.&lt;/p&gt;</description></item><item><title>Autres paradigmes importants</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/autres-paradigmes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/autres-paradigmes/</guid><description>&lt;h1 id="autres-paradigmes-importants"&gt;Autres paradigmes importants&lt;a class="anchor" href="#autres-paradigmes-importants"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="logging"&gt;Logging&lt;a class="anchor" href="#logging"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Le &lt;em&gt;logging&lt;/em&gt; (journalisation) consiste à enregistrer de façon systématique les
+événements qui se produisent dans un système : erreurs, avertissements, actions
+utilisateur, métriques de performance, etc. Dans un contexte de gestion des
+données, les logs constituent eux-mêmes une source de données précieuse. Le
+module &lt;code&gt;logging&lt;/code&gt; de Python offre un système structuré avec des niveaux de
+sévérité (&lt;code&gt;DEBUG&lt;/code&gt;, &lt;code&gt;INFO&lt;/code&gt;, &lt;code&gt;WARNING&lt;/code&gt;, &lt;code&gt;ERROR&lt;/code&gt;, &lt;code&gt;CRITICAL&lt;/code&gt;), des &lt;em&gt;handlers&lt;/em&gt;
+configurables et des formats personnalisables. À petite échelle, on peut écrire
+les logs dans des fichiers locaux, mais à l&amp;rsquo;échelle d&amp;rsquo;une infrastructure
+distribuée, le volume de logs générés devient rapidement massif et difficile à
+exploiter. C&amp;rsquo;est là qu&amp;rsquo;interviennent des outils comme
+&lt;a href="https://www.elastic.co/elasticsearch"&gt;Elasticsearch&lt;/a&gt;, un moteur de recherche et
+d&amp;rsquo;analytique distribué souvent déployé au sein de la pile « ELK »
+(Elasticsearch, Logstash, Kibana). Logstash collecte et transforme les logs
+provenant de sources multiples, Elasticsearch les indexe pour permettre des
+recherches &lt;em&gt;full-text&lt;/em&gt; quasi instantanées, et Kibana fournit des tableaux de
+bord de visualisation. Cette approche transforme des logs bruts — qui seraient
+autrement difficiles à consulter — en une base de données interrogeable en temps
+réel, permettant le débogage, la surveillance d&amp;rsquo;anomalies et l&amp;rsquo;analyse de
+tendances.&lt;/p&gt;</description></item><item><title>Serveur Discord</title><link>https://cjauvin.github.io/inf1410-teluq/docs/discord/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/discord/</guid><description>&lt;h1 id="venez-discuter-de-gl-sur-discord-"&gt;Venez discuter de GL sur Discord !&lt;a class="anchor" href="#venez-discuter-de-gl-sur-discord-"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Venez..&lt;/p&gt;
 &lt;iframe src="https://discord.com/widget?id=1448801083991396450&amp;theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"&gt;&lt;/iframe&gt;</description></item><item><title>Qu'est-ce que le génie logiciel?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro-gl/</guid><description>&lt;h1 id="quest-ce-que-le-génie-logiciel"&gt;Qu&amp;rsquo;est-ce que le génie logiciel?&lt;a class="anchor" href="#quest-ce-que-le-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;</description></item><item><title>Les idées historiques importantes</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</guid><description>&lt;h1 id="historique"&gt;Historique&lt;a class="anchor" href="#historique"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="une-conférence-en-temps-de-crise"&gt;Une conférence en temps de crise&lt;a class="anchor" href="#une-conf%c3%a9rence-en-temps-de-crise"&gt;#&lt;/a&gt;&lt;/h2&gt;
