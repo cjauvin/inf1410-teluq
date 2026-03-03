@@ -1,11 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 4 - Construire en équipe on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/</link><description>Recent content in Module 4 - Construire en équipe on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module4/index.xml" rel="self" type="application/rss+xml"/><item><title>Le manifeste Agile</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</guid><description>&lt;h1 id="la-manifeste-agile"&gt;La manifeste Agile&lt;a class="anchor" href="#la-manifeste-agile"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;En quelque au début des années 2000, le mot &amp;ldquo;agile&amp;rdquo; est devenu omniprésent, dans
-la culture technologique et même au-delà. Il représente en fait un phénomène
-culturel dont la genèse est un petit groupe de professionnels, qui se sont
-rassemblés pour mettre en commun leurs idées par rapport au changement de
-paradigme dans la culture du développement logiciel, par rapport aux décennies
-qui précédaient.&lt;/p&gt;
-&lt;p&gt;Voici les douze principes du &lt;a href="https://agilemanifesto.org/iso/fr/principles.html"&gt;manifeste Agile&lt;/a&gt; :&lt;/p&gt;</description></item><item><title>Git distribué (GitHub)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/github/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/github/</guid><description>&lt;h1 id="au-delà-du-git-local--git-distribué"&gt;Au-delà du git local : git distribué&lt;a class="anchor" href="#au-del%c3%a0-du-git-local--git-distribu%c3%a9"&gt;#&lt;/a&gt;&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 4 - Construire en équipe on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/</link><description>Recent content in Module 4 - Construire en équipe on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module4/index.xml" rel="self" type="application/rss+xml"/><item><title>Git distribué (GitHub)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/github/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/github/</guid><description>&lt;h1 id="au-delà-du-git-local--git-distribué"&gt;Au-delà du git local : git distribué&lt;a class="anchor" href="#au-del%c3%a0-du-git-local--git-distribu%c3%a9"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Jusqu&amp;rsquo;ici nous avons utilisé git en mode local, c&amp;rsquo;est-à-dire que la totalité des
 opérations que nous avons effectuées sont confinées dans le contexte particulier
 de notre dépôt local, dans un endroit particulier de notre disque, sur un
@@ -18,4 +11,11 @@ collaboration pour le développement logiciel, le mode distribué de git est
 quasiment essentiel. Une bonne manière de commencer notre exploration de cette
 nouvelle idée est en étendant notre modèle mental des trois &amp;ldquo;endroits&amp;rdquo; du git
 local avec un quatrième &amp;ldquo;endroit&amp;rdquo;, qui correspond à une autre version du même
-depot, qui se trouve &amp;ldquo;ailleurs&amp;rdquo; :&lt;/p&gt;</description></item></channel></rss>
+depot, qui se trouve &amp;ldquo;ailleurs&amp;rdquo; :&lt;/p&gt;</description></item><item><title>Le manifeste Agile</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</guid><description>&lt;h1 id="la-manifeste-agile"&gt;La manifeste Agile&lt;a class="anchor" href="#la-manifeste-agile"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;En quelque au début des années 2000, le mot &amp;ldquo;agile&amp;rdquo; est devenu omniprésent, dans
+la culture technologique et même au-delà. Il représente en fait un phénomène
+culturel dont la genèse est un petit groupe de professionnels, qui se sont
+rassemblés pour mettre en commun leurs idées par rapport au changement de
+paradigme dans la culture du développement logiciel, par rapport aux décennies
+qui précédaient.&lt;/p&gt;
+&lt;p&gt;Voici les douze principes du &lt;a href="https://agilemanifesto.org/iso/fr/principles.html"&gt;manifeste Agile&lt;/a&gt; :&lt;/p&gt;</description></item></channel></rss>

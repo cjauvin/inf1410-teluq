@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 2 - Concevoir un logiciel correct on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/</link><description>Recent content in Module 2 - Concevoir un logiciel correct on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module2/index.xml" rel="self" type="application/rss+xml"/><item><title>Survol rapide de la programmation</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/prog-recap/</guid><description>&lt;h1 id="survol-rapide-de-la-programmation"&gt;Survol rapide de la programmation&lt;a class="anchor" href="#survol-rapide-de-la-programmation"&gt;#&lt;/a&gt;&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 2 - Concevoir un logiciel correct on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/</link><description>Recent content in Module 2 - Concevoir un logiciel correct on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module2/index.xml" rel="self" type="application/rss+xml"/><item><title>Survol rapide de la programmation</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</guid><description>&lt;h1 id="survol-rapide-de-la-programmation"&gt;Survol rapide de la programmation&lt;a class="anchor" href="#survol-rapide-de-la-programmation"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Nous allons faire un survol rapide des idées les plus importantes et
 fondamentales de la programmation logicielle. Pour aller droit au but, nous
 allons utiliser le langage Python, qui est très facile à comprendre, même sans
@@ -14,22 +14,8 @@ d&amp;rsquo;une autre.&lt;/p&gt;</description></item><item><title>Le versioning 
 fondamentale : il change tout le temps. Même un programme simple est rapidement
 modifié - pour corriger un bug, ajouter une fonctionnalité, améliorer la
 performance ou simplement rendre le code plus lisible. Et très vite, une
-question apparaît : comment savoir ce qui a changé, quand, et pourquoi ?&lt;/p&gt;</description></item><item><title>Principes généraux fameux</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/</guid><description>&lt;h1 id="quelques-principes-généraux-fameux-en-développement-logiciel"&gt;Quelques principes généraux fameux en développement logiciel&lt;a class="anchor" href="#quelques-principes-g%c3%a9n%c3%a9raux-fameux-en-d%c3%a9veloppement-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="dry-dont-repeat-yourself-ne-vous-répétez-pas-"&gt;DRY (Don&amp;rsquo;t Repeat Yourself), ne vous répétez pas !&lt;a class="anchor" href="#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Le fameux principe
-&lt;a href="https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas"&gt;DRY&lt;/a&gt; est
-assurément l&amp;rsquo;un des plus profonds de l&amp;rsquo;informatique, qui consiste à simplement
-reconnaître que c&amp;rsquo;est préférable de modifier quelque chose à un seul endroit,
-plutôt que plusieurs, à la fois pour l&amp;rsquo;économie d&amp;rsquo;effort, et la minimisation des
-risques d&amp;rsquo;erreur.&lt;/p&gt;
-&lt;h2 id="kiss-keep-it-simple-stupid"&gt;KISS: Keep It Simple Stupid&lt;a class="anchor" href="#kiss-keep-it-simple-stupid"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="yagni"&gt;YAGNI&lt;a class="anchor" href="#yagni"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="solid"&gt;SOLID&lt;a class="anchor" href="#solid"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="separation-of-concerns"&gt;Separation of concerns&lt;a class="anchor" href="#separation-of-concerns"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="law-of-demeter"&gt;Law of Demeter&lt;a class="anchor" href="#law-of-demeter"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="composition-over-inheritance"&gt;Composition over inheritance&lt;a class="anchor" href="#composition-over-inheritance"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="boy-scout-rule"&gt;Boy scout rule&lt;a class="anchor" href="#boy-scout-rule"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&amp;ldquo;Always leave the campground cleaner than you found it.&amp;rdquo;&lt;/p&gt;</description></item><item><title>La gestion des dépendances</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</guid><description>&lt;h1 id="la-gestion-des-dépendances"&gt;La gestion des dépendances&lt;a class="anchor" href="#la-gestion-des-d%c3%a9pendances"&gt;#&lt;/a&gt;&lt;/h1&gt;
+question apparaît : comment savoir ce qui a changé, quand, et pourquoi ?&lt;/p&gt;</description></item><item><title>Les tests</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</guid><description>&lt;h1 id="les-tests"&gt;Les tests&lt;a class="anchor" href="#les-tests"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;TODO&lt;/p&gt;</description></item><item><title>La gestion des dépendances</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</guid><description>&lt;h1 id="la-gestion-des-dépendances"&gt;La gestion des dépendances&lt;a class="anchor" href="#la-gestion-des-d%c3%a9pendances"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dès qu&amp;rsquo;un programme devient un peu plus complexe, deux phénomènes interviennent
 habituellement :&lt;/p&gt;
 &lt;ol&gt;
@@ -37,9 +23,9 @@ habituellement :&lt;/p&gt;
 &lt;li&gt;Certaines fonctionnalités du programmes, pouvant être accomplies par des
 programmes (ou des librairies) externes, doivent être détachées en des
 composantes ou des librairies distinctes, qu&amp;rsquo;il est possible de réutiliser
-(c&amp;rsquo;est un peu le &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/principes/#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-"&gt;principe
+(c&amp;rsquo;est un peu le &lt;a href="../module2/principes#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-"&gt;principe
 DRY&lt;/a&gt; que
 nous avons vu, appliqué dans le sens plus large d&amp;rsquo;un écosystème logiciel)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Dans le cas (2), on nomme parfois les librairies externes des &amp;ldquo;dépendances&amp;rdquo;, ou des
-&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item></channel></rss>
+&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>L'intégration continue (CI)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</guid><description>&lt;h1 id="lintégration-continue-ci"&gt;L&amp;rsquo;intégration continue (CI)&lt;a class="anchor" href="#lint%c3%a9gration-continue-ci"&gt;#&lt;/a&gt;&lt;/h1&gt;</description></item></channel></rss>
