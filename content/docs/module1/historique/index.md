@@ -29,7 +29,19 @@ Les choses commencent à changer avec l'apparition des premiers langages de
 programmation dans les années 1950. FORTRAN (1957), conçu par John Backus chez
 IBM, est généralement considéré comme le premier langage de haut niveau : il
 permettait aux scientifiques d'écrire des formules mathématiques de façon
-lisible, plutôt que de manipuler directement les instructions de la machine.
+lisible, plutôt que de manipuler directement les instructions de la machine :
+
+```fortran
+      PROGRAM HELLO
+      PRINT *, 'Hello, World!'
+      STOP
+      END
+```
+
+L'indentation à 6 espaces et les majuscules obligatoires sont typiques du
+FORTRAN de l'époque, un langage conçu pour les cartes perforées où les colonnes
+avaient un sens précis.
+
 LISP (1958), créé par John McCarthy au MIT, introduisait des concepts
 radicalement différents comme la récursivité et la manipulation de listes, qui
 influenceront la programmation pendant des décennies :
@@ -242,13 +254,37 @@ Netscape. Ce langage, conçu dans l'urgence pour ajouter de l'interactivité aux
 pages web, deviendra contre toute attente l'un des langages les plus utilisés au
 monde. Le niveau d'abstraction monte encore d'un cran : on ne programme plus
 pour une machine, mais pour un navigateur qui tourne sur n'importe quelle
-machine.
+machine :
+
+```javascript
+document.getElementById("btn").addEventListener("click", function() {
+    alert("Hello, World!");
+});
+```
+
+On voit ici le modèle événementiel en action : plutôt que d'exécuter du code de
+façon séquentielle, on attache un comportement à un événement (le clic sur un
+bouton).
 
 {{< image src="brendaneich.jpg" alt="" title="" loading="lazy" >}}
 
 **Java** (1995), créé par James Gosling chez Sun Microsystems, arrive avec la
 promesse « *Write Once, Run Anywhere* » : grâce à sa machine virtuelle (JVM), un
-programme Java peut s'exécuter sur n'importe quelle plateforme. Java popularise
+programme Java peut s'exécuter sur n'importe quelle plateforme :
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+La verbosité de Java saute aux yeux : pour afficher une ligne de texte, il faut
+une classe, une méthode `main` avec sa signature complète, et
+`System.out.println`. C'est le prix de l'architecture « tout est objet ».
+
+Java popularise
 aussi la gestion automatique de la mémoire et un écosystème d'outils de
 développement. Un an plus tôt, en 1994, le livre *Design Patterns* du « Gang of
 Four » avait catalogué 23 patrons de conception récurrents (Singleton, Observer,
