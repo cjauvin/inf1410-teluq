@@ -1,17 +1,17 @@
 ---
 title: "Historique"
-weight: 10
+slug: "historique"
+weight: 20
 ---
 
 # Historique du génie logiciel
 
-Pour bien comprendre le génie logiciel tel qu'il se pratique aujourd'hui, il est
-utile de retracer son évolution. Cette histoire n'est pas qu'une suite
-d'inventions techniques : c'est aussi l'histoire de problèmes récurrents, de
-solutions qui créent de nouveaux problèmes, et de débats qui traversent les
-décennies. En la parcourant, on comprend mieux pourquoi certaines pratiques
-existent, pourquoi d'autres ont été abandonnées, et pourquoi certaines idées
-qu'on croyait nouvelles sont en fait très anciennes.
+L'histoire du génie logiciel n'est pas qu'une suite d'inventions techniques :
+c'est aussi l'histoire de problèmes récurrents, de solutions qui créent de
+nouveaux problèmes, et de débats qui traversent les décennies. Les tensions
+entre complexité essentielle et accidentelle, entre rigueur formelle et
+pragmatisme, y apparaissent dès les premières décennies, et n'ont jamais
+vraiment disparu.
 
 ## Les années 40 à mi-60 : l'ère pré-GL
 

@@ -1,60 +1,67 @@
 # Module 1 — Le génie logiciel
 
-## Quelques livres et articles fameux
+## Introduction au génie logiciel (complété)
+- Le problème fondamental : pourquoi le logiciel est difficile (rapport CHAOS, SAAQclic)
+- Définition du GL : programmer vs faire du génie logiciel
+- Complexité essentielle vs accidentelle (Fred Brooks, *No Silver Bullet*)
+- Présentation de la structure du cours (les six modules)
 
-- The Mythical Man-Month
-- The Pragmatic Programmer
-- Clean Code
-- Design Patterns
-- Phoenix Project
-- Refactoring (?)
-- Article : Peter Naur: Programming as Theory Building
-- Fred Brooks : no silver bullet
+## Histoire du GL (complété)
 
-## Histoire du GL
+### Quelques livres et articles fameux référencés
+- *The Mythical Man-Month* (Fred Brooks)
+- *The Pragmatic Programmer* (Hunt, Thomas)
+- *Clean Code* (Robert Martin)
+- *Design Patterns* (Gang of Four)
+- *No Silver Bullet* (Fred Brooks)
+- *Programming as Theory Building* (Peter Naur)
 
 ### Les années 40 à mi-60 : l'ère pré-GL
 - ENIAC et les premiers ordinateurs
 - Premiers assembleurs et compilateurs
-- FORTRAN, LISP, ALGO et COBOL
+- FORTRAN, LISP, ALGOL et COBOL
 - Premiers OS
 
 ### Les années 60 et 70 : la crise logicielle et la naissance du GL
 - Conférence NATO (crise du logiciel)
-- Programmation structurée
+- Programmation structurée (Dijkstra)
 - Modèle en cascade (waterfall)
-- Modèle relationnel (base de données)
-- Modèle en spirale
-- *The Mythical Man-Month*
+- Modèle relationnel (Edgar Codd)
+- Modèle en spirale (Barry Boehm)
+- *The Mythical Man-Month* et la loi de Brooks
+- *No Silver Bullet*
 - Unix et C
 
 ### Les années 80 : l'ère des abstractions, du PC et du GUI
 - OOP et C++
-- GUI et programmation événementielle
-- Standardisation de la stack de networking (pré-internet)
+- GUI et programmation événementielle (Macintosh, Windows)
+- Standardisation de la stack de networking (TCP/IP)
 
 ### Les années 90 : la naissance du web
-- Web
-- Open source, Linux
-- Design patterns
-- Extreme Programming
-- UML
+- Web (Tim Berners-Lee)
+- JavaScript
 - Java
+- Open source, Linux (Linus Torvalds)
+- Design patterns (Gang of Four)
+- UML
+- Extreme Programming (Kent Beck)
+- *The Pragmatic Programmer* et le principe DRY
 
 ### Les années 00 : l'ère de l'agilité
-- Manifeste Agile
+- Manifeste Agile (Snowbird 2001)
 - Scrum, Kanban
-- AWS
-- GitHub
+- Web 2.0
+- AWS (2006)
+- GitHub (2008)
 
 ### Les années 10 : l'ère du cloud et du DevOps
 - CI/CD
 - Microservices
-- Docker
+- Docker, Kubernetes
 - Serverless
 
 ### Les années 20 : l'ère de l'IA
-- LLM
+- LLM, GitHub Copilot, ChatGPT, Claude Code
 
 # Module 2 - Concevoir un logiciel correct
 
