@@ -65,11 +65,39 @@
 
 # Module 2 - Concevoir un logiciel correct
 
-- Structures de données, complexité algorithmiques de base, types
-- Versioning
-- Les tests
-- Gestion des dépendances
-- Intégration continue (CI)
+## Introduction (à développer)
+- *Programming as Theory Building* (Peter Naur) : programmer comme construction d'une théorie / d'un modèle mental
+- Fil conducteur du module : les outils pour formaliser, vérifier et préserver cette théorie
+
+## Survol rapide de la programmation (~95% complété)
+- Structures de données (listes, ensembles, dictionnaires)
+- Complexité algorithmique (Big O, Two Sum, recherche binaire)
+- Types (à développer) : statique vs dynamique, strong vs weak, lien avec les schémas
+
+## Les tests (à développer)
+- Pourquoi tester (coût des bugs, confiance dans le code)
+- Pyramide des tests : unitaires, d'intégration, end-to-end
+- pytest comme outil concret
+- TDD (Test-Driven Development)
+- Coverage et ses limites
+- Property-based testing (hypothesis)
+
+## Le versioning avec git (complété)
+- Problème fondamental du changement
+- Histoire du versioning (SCCS → CVS → SVN → Git)
+- Objets git (blobs, trees, commits), branches, merges, DAG
+
+## La gestion des dépendances (complété)
+- Problème de la réutilisation et de la décomposition
+- Sécurité de la chaîne d'approvisionnement
+- Versionnement sémantique (SemVer)
+- uv comme outil concret (bibliothèques, applications, venv, lock files)
+
+## L'intégration continue - CI (à développer)
+- Concept de CI : intégrer souvent, automatiser la vérification
+- GitHub Actions comme outil concret
+- Exemple de workflow (tests automatiques sur push)
+- Lien tests + CI comme filet de sécurité
 
 # Module 3 - Évolution du logiciel
 

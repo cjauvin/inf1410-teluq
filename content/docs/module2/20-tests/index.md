@@ -1,6 +1,7 @@
 ---
 title: "Les tests"
-weight: 30
+slug: "tests"
+weight: 20
 ---
 
 # Les tests

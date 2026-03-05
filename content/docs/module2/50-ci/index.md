@@ -1,5 +1,6 @@
 ---
 title: "L'intégration continue (CI)"
+slug: "ci"
 weight: 50
 ---
 

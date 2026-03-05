@@ -1,5 +1,6 @@
 ---
 title: "La gestion des dépendances"
+slug: "gestion-des-deps"
 weight: 40
 ---
 

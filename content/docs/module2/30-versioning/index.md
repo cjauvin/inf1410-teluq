@@ -1,6 +1,7 @@
 ---
 title: "Le versioning avec git"
-weight: 20
+slug: "versioning"
+weight: 30
 ---
 
 # Le versioning

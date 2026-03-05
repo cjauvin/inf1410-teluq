@@ -1,5 +1,6 @@
 ---
 title: "Survol rapide de la programmation"
+slug: "programmation"
 weight: 10
 ---
 
@@ -510,4 +511,162 @@ Et finalement, le jeu de Sudoku :
 
 ## Les types
 
-TODO
+Nous avons vu que le choix de la bonne structure de données peut avoir un impact
+fondamental sur la performance d'un programme. Les types sont un autre concept
+fondamental de la programmation, et ils jouent un rôle analogue mais différent :
+alors que les structures de données organisent l'information, les types
+permettent de contraindre et de clarifier la nature de cette information. En ce
+sens, ils constituent un outil puissant pour formaliser notre modèle mental de ce
+que notre programme manipule, et de ce qu'il est censé faire. Cette idée devient
+encore plus centrale dans le contexte de la programmation orientée-objet, où les
+types ne se limitent pas à décrire des valeurs simples, mais définissent des
+entités complètes avec leurs données et leurs comportements.
+
+### Typage statique vs dynamique
+
+Pour bien comprendre cette distinction, il est utile de rappeler qu'il existe
+deux grandes familles de langages de programmation. Les langages compilés, comme
+C ou Rust, passent par une étape de compilation qui transforme le code source en
+un programme exécutable, avant que celui-ci ne puisse être lancé. Les langages
+interprétés, comme Python ou JavaScript, sont exécutés directement, ligne par
+ligne, par un interpréteur, sans cette étape préalable de transformation. En
+réalité, cette distinction est davantage un spectre qu'une frontière nette :
+Java, par exemple, compile le code source en un format intermédiaire appelé
+bytecode, qui est ensuite interprété par une machine virtuelle (la JVM). Python
+fait quelque chose de similaire avec ses fichiers `.pyc`, bien qu'on le
+considère généralement comme un langage interprété.
+
+La distinction entre typage statique et dynamique est étroitement liée à celle
+entre compilation et interprétation. Dans un langage à typage statique, comme C,
+Rust ou Java, le type de chaque variable doit être connu au moment de la
+compilation, avant même que le programme ne s'exécute. Le compilateur peut ainsi
+détecter toute une classe d'erreurs avant l'exécution. Dans un langage à typage
+dynamique, comme Python ou JavaScript, les types ne sont vérifiés qu'au moment
+de l'exécution : on peut assigner n'importe quelle valeur à n'importe quelle
+variable, et c'est seulement quand le programme tente une opération incompatible
+qu'une erreur survient.
+
+En Python, par exemple, rien n'empêche de changer le type d'une variable en
+cours de route :
+
+{{< pyodide >}}
+x = 42        # x est un entier
+x = "hello"   # x est maintenant une chaine de caractères
+x = [1, 2, 3] # x est maintenant une liste
+print(x)
+{{< /pyodide >}}
+
+En C, le type d'une variable est fixé à la déclaration, et le compilateur refuse
+toute incohérence :
+
+```c
+int x = 42;
+x = "hello";  // erreur de compilation !
+```
+
+### Typage fort vs faible
+
+La distinction entre typage statique et dynamique est souvent confondue avec une
+autre distinction, tout aussi importante : celle entre typage fort et typage
+faible. Un langage à typage fort refuse les opérations entre types
+incompatibles, même au moment de l'exécution. Un langage à typage faible, au
+contraire, tentera de convertir implicitement les valeurs pour que l'opération
+puisse se faire, ce qui peut mener à des résultats surprenants.
+
+Python, bien que dynamique, est un langage à typage fort :
+
+{{< pyodide >}}
+"5" + 3  # TypeError !
+{{< /pyodide >}}
+
+JavaScript, également dynamique, est à typage faible :
+
+```js
+"5" + 3  // "53" (!)
+```
+
+On voit donc que ces deux axes sont indépendants l'un de l'autre. On peut les
+combiner pour situer les langages les plus courants :
+
+| | Typage fort | Typage faible |
+|---|---|---|
+| **Statique** | Rust, Java | C |
+| **Dynamique** | Python | JavaScript |
+
+C est un cas intéressant : bien qu'il soit statique, son typage est considéré
+comme relativement faible, car il permet des conversions implicites entre types
+numériques et des manipulations directes de la mémoire via les pointeurs, ce qui
+peut mener à des comportements non détectés par le compilateur.
+
+### Les type hints en Python
+
+Une tendance intéressante dans l'évolution des langages modernes est l'ajout
+d'un typage statique optionnel à des langages historiquement dynamiques. Python a
+introduit les type hints à partir de la version 3.5, et TypeScript est
+essentiellement JavaScript avec un système de types statiques ajouté par-dessus.
+
+En Python, les type hints permettent d'annoter les types des paramètres et des
+valeurs de retour d'une fonction :
+
+```python
+def addition(a: int, b: int) -> int:
+    return a + b
+```
+
+Il est important de comprendre que Python lui-même ignore complètement ces
+annotations au moment de l'exécution. Elles servent plutôt de documentation
+formelle, qui peut être vérifiée par un outil externe comme `mypy`, avant
+l'exécution :
+
+```shell
+$ mypy exemple.py
+exemple.py:4: error: Argument 2 to "addition" has incompatible type "str"; expected "int"
+```
+
+On obtient ainsi une partie des avantages du typage statique (la détection
+précoce d'erreurs), tout en conservant la flexibilité d'un langage dynamique.
+C'est un compromis de plus en plus populaire dans l'industrie.
+
+### Les types et les schémas
+
+L'idée de contraindre la forme des données ne se limite pas aux langages de
+programmation. Quand on valide un document JSON contre un schéma JSON, on fait
+essentiellement la même chose que ce que fait un compilateur quand il vérifie les
+types : on s'assure que les données respectent une structure attendue, avant de
+les utiliser. Considérons par exemple un schéma JSON qui décrit une personne :
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "nom": { "type": "string" },
+    "age": { "type": "integer" }
+  },
+  "required": ["nom", "age"]
+}
+```
+
+Un document comme `{"nom": "Alice", "age": 30}` serait valide selon ce schéma,
+mais `{"nom": "Alice", "age": "trente"}` serait rejeté, exactement comme un
+compilateur refuserait de passer une chaine de caractères là où un entier est
+attendu.
+
+Cette même idée se retrouve dans les bases de données relationnelles, où le
+schéma d'une table définit le nom et le type de chaque colonne. Par exemple, une
+table `personnes` pourrait être définie ainsi en SQL :
+
+```sql
+CREATE TABLE personnes (
+    nom TEXT NOT NULL,
+    age INTEGER NOT NULL
+);
+```
+
+On retrouve donc la même idée fondamentale à trois niveaux différents : les
+types dans un langage de programmation, les schémas JSON pour valider des
+documents échangés entre systèmes, et les schémas de bases de données pour
+structurer les données persistantes. Dans tous les cas, il s'agit de formaliser
+nos attentes sur la forme des données, pour que les erreurs soient détectées le
+plus tôt possible. Nous reviendrons en détail sur les bases de données et leurs
+schémas dans le module 3.
