@@ -1,4 +1,5 @@
-<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="L’intégration continue (CI)#"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="L'intégration continue (CI)"><meta property="og:description" content="L’intégration continue (CI)#"><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="L'intégration continue (CI)"><meta itemprop=description content="L’intégration continue (CI)#"><meta itemprop=wordCount content="3"><title>L'intégration continue (CI) | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="L’intégration continue (CI)# Quel est le problème qu’on cherche à résoudre?# Dans les sections précédentes, nous avons vu comment écrire des tests pour vérifier qu’un programme se comporte correctement, comment utiliser git pour gérer l’évolution du code, et comment gérer les dépendances d’un projet avec uv. Mais il reste un problème important : toutes ces vérifications dépendent de la discipline individuelle du programmeur. Rien ne garantit qu’un développeur va exécuter les tests avant de pousser son code. Rien ne garantit non plus que son environnement local est représentatif de l’environnement réel : peut-être que les tests passent sur sa machine parce qu’il a une dépendance installée globalement, ou une version de Python légèrement différente. Le fameux “ça marche sur ma machine” est l’un des problèmes les plus classiques du développement logiciel.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="L'intégration continue (CI)"><meta property="og:description" content="L’intégration continue (CI)# Quel est le problème qu’on cherche à résoudre?# Dans les sections précédentes, nous avons vu comment écrire des tests pour vérifier qu’un programme se comporte correctement, comment utiliser git pour gérer l’évolution du code, et comment gérer les dépendances d’un projet avec uv. Mais il reste un problème important : toutes ces vérifications dépendent de la discipline individuelle du programmeur. Rien ne garantit qu’un développeur va exécuter les tests avant de pousser son code. Rien ne garantit non plus que son environnement local est représentatif de l’environnement réel : peut-être que les tests passent sur sa machine parce qu’il a une dépendance installée globalement, ou une version de Python légèrement différente. Le fameux “ça marche sur ma machine” est l’un des problèmes les plus classiques du développement logiciel."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="L'intégration continue (CI)"><meta itemprop=description content="L’intégration continue (CI)# Quel est le problème qu’on cherche à résoudre?# Dans les sections précédentes, nous avons vu comment écrire des tests pour vérifier qu’un programme se comporte correctement, comment utiliser git pour gérer l’évolution du code, et comment gérer les dépendances d’un projet avec uv. Mais il reste un problème important : toutes ces vérifications dépendent de la discipline individuelle du programmeur. Rien ne garantit qu’un développeur va exécuter les tests avant de pousser son code. Rien ne garantit non plus que son environnement local est représentatif de l’environnement réel : peut-être que les tests passent sur sa machine parce qu’il a une dépendance installée globalement, ou une version de Python légèrement différente. Le fameux “ça marche sur ma machine” est l’un des problèmes les plus classiques du développement logiciel."><meta itemprop=wordCount content="1825"><title>L'intégration continue (CI) | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle checked>
@@ -13,7 +14,197 @@
 <label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/>La conteneurisation avec docker</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Au-delà du logiciel</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>L'intégration continue (CI)</h3><label for=toc-control></label></div></header><article class="markdown book-article"><h1 id=lintégration-continue-ci>L&rsquo;intégration continue (CI)<a class=anchor href=#lint%c3%a9gration-continue-ci>#</a></h1></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>L'intégration continue (CI)</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#quel-est-le-problème-quon-cherche-à-résoudre>Quel est le problème qu&rsquo;on cherche à résoudre?</a></li><li><a href=#yaml>YAML</a></li><li><a href=#github-actions>GitHub Actions</a></li><li><a href=#exemple-concret>Exemple concret</a></li><li><a href=#au-delà-des-tests>Au-delà des tests</a></li><li><a href=#vers-le-déploiement-continu-cd>Vers le déploiement continu (CD)</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=lintégration-continue-ci>L&rsquo;intégration continue (CI)<a class=anchor href=#lint%c3%a9gration-continue-ci>#</a></h1><h2 id=quel-est-le-problème-quon-cherche-à-résoudre>Quel est le problème qu&rsquo;on cherche à résoudre?<a class=anchor href=#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre>#</a></h2><p>Dans les sections précédentes, nous avons vu comment écrire des tests pour
+vérifier qu&rsquo;un programme se comporte correctement, comment utiliser git pour
+gérer l&rsquo;évolution du code, et comment gérer les dépendances d&rsquo;un projet avec uv.
+Mais il reste un problème important : toutes ces vérifications dépendent de la
+discipline individuelle du programmeur. Rien ne garantit qu&rsquo;un développeur va
+exécuter les tests avant de pousser son code. Rien ne garantit non plus que son
+environnement local est représentatif de l&rsquo;environnement réel : peut-être que
+les tests passent sur sa machine parce qu&rsquo;il a une dépendance installée
+globalement, ou une version de Python légèrement différente. Le fameux &ldquo;ça marche
+sur ma machine&rdquo; est l&rsquo;un des problèmes les plus classiques du développement
+logiciel.</p><p>L&rsquo;intégration continue (CI, pour <em>continuous integration</em>) est la pratique qui
+résout ce problème en automatisant les vérifications à chaque changement. L&rsquo;idée
+est simple : chaque fois qu&rsquo;un développeur pousse du code vers le dépôt partagé,
+un serveur distant exécute automatiquement une série de vérifications (tests,
+linting, etc.) dans un environnement propre et reproductible. Si quelque chose
+échoue, l&rsquo;équipe en est immédiatement informée.</p><p>Le terme &ldquo;intégration continue&rdquo; vient de l&rsquo;Extreme Programming (XP), la
+méthodologie proposée par Kent Beck à la fin des années 90, dont on a parlé dans
+le module 1. L&rsquo;une des pratiques centrales de XP était justement d&rsquo;intégrer le
+code de tous les développeurs plusieurs fois par jour, plutôt que d&rsquo;attendre des
+semaines ou des mois avant de fusionner les changements de chacun. En 2006,
+Martin Fowler a publié un article influent intitulé <em>Continuous Integration</em> qui
+a formalisé et popularisé la pratique au-delà de la communauté XP. Son argument
+principal était que plus on attend avant d&rsquo;intégrer, plus les conflits sont
+difficiles à résoudre, et que l&rsquo;automatisation des vérifications est la clé pour
+rendre l&rsquo;intégration fréquente viable.</p><h2 id=yaml>YAML<a class=anchor href=#yaml>#</a></h2><p>Avant d&rsquo;aborder GitHub Actions, il faut dire un mot sur YAML, le format utilisé
+pour décrire les workflows de CI. YAML (<em>YAML Ain&rsquo;t Markup Language</em>) est un
+format de données conçu pour être lisible par les humains. Il joue le même rôle
+que JSON (décrire des structures de données), mais avec une syntaxe plus légère,
+basée sur l&rsquo;indentation plutôt que sur les accolades et les crochets. Voici un
+exemple qui illustre les éléments de base :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Un commentaire</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>nom</span>: <span style=color:#ae81ff>Alice</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>age</span>: <span style=color:#ae81ff>30</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Une liste</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>langages</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>Python</span>
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>JavaScript</span>
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>Rust</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Un objet imbriqué</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>adresse</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>rue</span>: <span style=color:#ae81ff>123</span> <span style=color:#ae81ff>Main Street</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>ville</span>: <span style=color:#ae81ff>Montréal</span></span></span></code></pre></div><p>Les règles essentielles sont peu nombreuses : les clés et les valeurs sont
+séparées par <code>:</code>, les listes sont indiquées par des tirets <code>-</code>, et la hiérarchie
+est exprimée par l&rsquo;indentation (toujours des espaces, jamais des tabulations).
+YAML est très utilisé dans le monde du DevOps et de la CI, entre autres parce
+que les fichiers de configuration doivent souvent être lus et modifiés à la main,
+et que sa lisibilité est un avantage réel par rapport à JSON.</p><p>YAML a cependant la réputation d&rsquo;être une source de frustration, justement à
+cause de sa dépendance à l&rsquo;indentation. Une erreur d&rsquo;un seul espace peut rendre
+un fichier invalide, ou pire, changer silencieusement sa signification. Par
+exemple :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Ceci est une liste de deux éléments à l&#39;intérieur de &#34;fruits&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>fruits</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>pomme</span>
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>banane</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Ceci est une erreur : &#34;banane&#34; n&#39;est plus au même niveau</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>fruits</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>pomme</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>banane</span></span></span></code></pre></div><p>Un autre piège classique concerne les valeurs qui ressemblent à autre chose que
+des chaînes de caractères. Par exemple, <code>version: 3.10</code> sera interprété comme le
+nombre <code>3.1</code> (le zéro final est supprimé), et non comme la chaîne <code>"3.10"</code>. Pour
+éviter ce problème, il faut mettre des guillemets explicites :
+<code>version: "3.10"</code>. Ce genre de subtilité est une source fréquente de bugs dans
+les fichiers de CI, en particulier lorsqu&rsquo;on spécifie des versions de Python.</p><h2 id=github-actions>GitHub Actions<a class=anchor href=#github-actions>#</a></h2><p>GitHub Actions est le système de CI intégré directement dans GitHub. Il est
+gratuit pour les projets open source et offre un quota mensuel généreux pour les
+dépôts privés. Son principal avantage est qu&rsquo;il ne nécessite aucune configuration
+externe : tout se passe à l&rsquo;intérieur de GitHub, et il suffit d&rsquo;ajouter un
+fichier dans le dépôt pour activer la CI.</p><p>Le fonctionnement repose sur quelques concepts clés qu&rsquo;il faut comprendre :</p><ul><li><p><strong>Workflow</strong> : un fichier YAML placé dans le répertoire <code>.github/workflows/</code>
+du dépôt. Chaque fichier décrit une automatisation complète. Un dépôt peut
+contenir plusieurs workflows (par exemple, un pour les tests et un autre pour
+le déploiement).</p></li><li><p><strong>Event</strong> (ou <em>trigger</em>) : l&rsquo;événement qui déclenche l&rsquo;exécution du workflow.
+Le plus courant est <code>push</code> (quelqu&rsquo;un pousse du code), mais ça peut aussi être
+l&rsquo;ouverture d&rsquo;une pull request, un horaire programmé (<em>cron</em>), ou même un
+déclenchement manuel.</p></li><li><p><strong>Job</strong> : un groupe d&rsquo;étapes qui s&rsquo;exécutent ensemble, sur une même machine.
+Un workflow peut contenir plusieurs jobs, qui par défaut s&rsquo;exécutent en
+parallèle.</p></li><li><p><strong>Step</strong> : une étape individuelle à l&rsquo;intérieur d&rsquo;un job. Chaque step est soit
+une commande shell (par exemple <code>pytest</code>), soit l&rsquo;utilisation d&rsquo;une <em>action</em>
+pré-faite.</p></li><li><p><strong>Action</strong> : un bloc réutilisable, publié par GitHub ou par la communauté, qui
+encapsule une tâche courante. Par exemple, <code>actions/checkout</code> clone le dépôt
+dans la machine, et <code>actions/setup-python</code> installe une version de Python. On
+peut voir les actions comme des fonctions de bibliothèque pour la CI.</p></li><li><p><strong>Runner</strong> : la machine qui exécute le job. C&rsquo;est ici que les choses
+deviennent intéressantes. Quand un workflow se déclenche, GitHub crée à la
+volée une machine virtuelle (VM) dans le cloud, y installe le système
+d&rsquo;exploitation demandé (Ubuntu, macOS ou Windows), exécute toutes les étapes du
+job, puis détruit la machine. Chaque exécution part donc d&rsquo;un environnement
+complètement vierge, ce qui élimine le problème du &ldquo;ça marche sur ma machine&rdquo;.
+Ce concept de machines éphémères dans le cloud sera exploré plus en profondeur
+dans le module 5.</p></li></ul><h2 id=exemple-concret>Exemple concret<a class=anchor href=#exemple-concret>#</a></h2><p>Construisons un exemple de bout en bout : un petit projet Python avec un test,
+un workflow GitHub Actions, et on observera le résultat sur GitHub. L&rsquo;idée est de
+voir tout le cycle : un <code>push</code> déclenche la CI, qui exécute les tests
+automatiquement.</p><p>Commençons par créer un petit projet Python avec uv :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>mkdir ci-demo
+</span></span><span style=display:flex><span>cd ci-demo
+</span></span><span style=display:flex><span>uv init</span></span></code></pre></div><p>Ajoutons pytest comme dépendance de développement :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>uv add --dev pytest</span></span></code></pre></div><p>Créons un fichier <code>main.py</code> avec une fonction simple :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>est_palindrome</span>(mot):
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;&#34;&#34;Vérifie si un mot est un palindrome.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    mot <span style=color:#f92672>=</span> mot<span style=color:#f92672>.</span>lower()<span style=color:#f92672>.</span>replace(<span style=color:#e6db74>&#34; &#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> mot <span style=color:#f92672>==</span> mot[::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]</span></span></code></pre></div><p>Et un fichier <code>test_main.py</code> avec quelques tests :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> main <span style=color:#f92672>import</span> est_palindrome
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_palindrome_simple</span>():
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> est_palindrome(<span style=color:#e6db74>&#34;kayak&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> est_palindrome(<span style=color:#e6db74>&#34;radar&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_palindrome_avec_majuscules</span>():
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> est_palindrome(<span style=color:#e6db74>&#34;Kayak&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_non_palindrome</span>():
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> <span style=color:#f92672>not</span> est_palindrome(<span style=color:#e6db74>&#34;python&#34;</span>)</span></span></code></pre></div><p>Vérifions que les tests passent localement :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>uv run pytest</span></span></code></pre></div><p>Maintenant, créons le workflow GitHub Actions. Il faut d&rsquo;abord créer le
+répertoire :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>mkdir -p .github/workflows</span></span></code></pre></div><p>Puis créer le fichier <code>.github/workflows/ci.yml</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>CI</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>on</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>push</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>branches</span>: [<span style=color:#e6db74>&#34;main&#34;</span>]
+</span></span><span style=display:flex><span>  <span style=color:#f92672>pull_request</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>branches</span>: [<span style=color:#e6db74>&#34;main&#34;</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>tests</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Installer Python</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/setup-python@v5</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>python-version</span>: <span style=color:#e6db74>&#34;3.12&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Installer uv</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>astral-sh/setup-uv@v3</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Installer les dépendances</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>uv sync</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Exécuter les tests</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>uv run pytest</span></span></span></code></pre></div><p>Reprenons ce fichier section par section :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>CI</span></span></span></code></pre></div><p>Le nom du workflow, qui apparaît dans l&rsquo;onglet Actions de GitHub.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>on</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>push</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>branches</span>: [<span style=color:#e6db74>&#34;main&#34;</span>]
+</span></span><span style=display:flex><span>  <span style=color:#f92672>pull_request</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>branches</span>: [<span style=color:#e6db74>&#34;main&#34;</span>]</span></span></code></pre></div><p>Les événements déclencheurs. Ici, le workflow s&rsquo;exécute quand quelqu&rsquo;un pousse du
+code sur la branche <code>main</code>, ou quand une pull request cible <code>main</code>. Notez les
+guillemets autour de <code>"main"</code> : c&rsquo;est une bonne habitude en YAML pour éviter les
+surprises d&rsquo;interprétation, comme on l&rsquo;a vu plus haut.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>tests</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span></span></span></code></pre></div><p>On déclare un job nommé <code>tests</code>, qui s&rsquo;exécutera sur un runner Ubuntu (la
+dernière version disponible). C&rsquo;est la machine virtuelle éphémère que GitHub va
+créer pour nous.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span></span></span></code></pre></div><p>La première étape utilise l&rsquo;action <code>actions/checkout</code>, qui clone notre dépôt dans
+la VM. Sans cette étape, le runner ne contiendrait aucun fichier, car la machine
+est créée vierge. Le <code>@v4</code> indique la version de l&rsquo;action à utiliser.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Installer Python</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/setup-python@v5</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>python-version</span>: <span style=color:#e6db74>&#34;3.12&#34;</span></span></span></code></pre></div><p>On installe Python 3.12. Le champ <code>with</code> permet de passer des paramètres à
+l&rsquo;action. Notez les guillemets autour de <code>"3.12"</code> : c&rsquo;est exactement le piège
+YAML dont on a parlé. Sans guillemets, <code>3.12</code> serait interprété comme le nombre
+<code>3.12</code>, ce qui pourrait causer des problèmes.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Installer uv</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>astral-sh/setup-uv@v3</span></span></span></code></pre></div><p>On installe uv en utilisant une action publiée par Astral, l&rsquo;entreprise derrière
+uv. C&rsquo;est un bon exemple d&rsquo;action communautaire : plutôt que d&rsquo;écrire nous-mêmes
+les commandes d&rsquo;installation, on réutilise un bloc maintenu par les auteurs de
+l&rsquo;outil.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Installer les dépendances</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>uv sync</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Exécuter les tests</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>uv run pytest</span></span></span></code></pre></div><p>Les deux dernières étapes sont des commandes shell ordinaires (indiquées par
+<code>run:</code> plutôt que <code>uses:</code>). On installe les dépendances avec <code>uv sync</code>, puis on
+exécute les tests. Ce sont exactement les mêmes commandes qu&rsquo;on utiliserait
+localement sur notre propre machine.</p><p>Il ne reste qu&rsquo;à initialiser un dépôt git, faire un commit et pousser le tout
+vers GitHub :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>git init
+</span></span><span style=display:flex><span>git add .
+</span></span><span style=display:flex><span>git commit -m <span style=color:#e6db74>&#34;Initial commit&#34;</span>
+</span></span><span style=display:flex><span>gh repo create ci-demo --public --source<span style=color:#f92672>=</span>. --push</span></span></code></pre></div><p>Une fois le push complété, allez dans l&rsquo;onglet <strong>Actions</strong> de votre dépôt sur
+GitHub. Vous devriez voir le workflow &ldquo;CI&rdquo; qui s&rsquo;est déclenché automatiquement.
+Après quelques secondes, si tout va bien, vous verrez un check vert indiquant que
+les tests ont passé.</p><h2 id=au-delà-des-tests>Au-delà des tests<a class=anchor href=#au-del%c3%a0-des-tests>#</a></h2><p>Les tests sont le cas d&rsquo;utilisation le plus courant de la CI, mais un workflow
+peut automatiser bien d&rsquo;autres vérifications. Voici quelques exemples fréquents :</p><ul><li><strong>Le linting</strong> : des outils comme <a href=https://docs.astral.sh/ruff/>ruff</a>
+analysent le code pour détecter des erreurs potentielles, des variables
+inutilisées, des imports manquants, ou des violations de conventions de style.
+C&rsquo;est un peu comme un correcteur grammatical pour le code.</li><li><strong>Le formatage</strong> : on peut vérifier que le code respecte un style uniforme
+(indentation, longueur des lignes, etc.). Ruff peut aussi jouer ce rôle. La CI
+peut rejeter du code mal formaté, ce qui évite les débats de style en revue de
+code.</li><li><strong>Le type checking</strong> : des outils comme mypy, qu&rsquo;on a mentionné dans la
+section sur les types, peuvent être exécutés en CI pour vérifier la cohérence
+des annotations de type.</li><li><strong>La vérification des dépendances</strong> : on peut détecter automatiquement si
+l&rsquo;une des dépendances du projet contient une vulnérabilité de sécurité connue.</li></ul><p>L&rsquo;idée générale est que tout ce qui peut être vérifié automatiquement devrait
+l&rsquo;être en CI. Chaque vérification ajoutée au workflow est une erreur de moins qui
+peut se rendre en production.</p><h2 id=vers-le-déploiement-continu-cd>Vers le déploiement continu (CD)<a class=anchor href=#vers-le-d%c3%a9ploiement-continu-cd>#</a></h2><p>L&rsquo;intégration continue se concentre sur la vérification automatique du code, mais
+l&rsquo;automatisation ne doit pas s&rsquo;arrêter là. L&rsquo;extension naturelle de la CI est le
+<em>continuous deployment</em> (CD), ou déploiement continu : une fois que les
+vérifications passent, le code est automatiquement déployé en production, sans
+intervention humaine. On parle souvent de &ldquo;pipeline CI/CD&rdquo; pour désigner cette
+chaîne complète, de la vérification au déploiement. GitHub Actions permet de
+définir de tels pipelines dans les mêmes fichiers de workflow qu&rsquo;on a vus ici.
+Nous reviendrons sur le déploiement et les pratiques DevOps dans le module 5.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
 <span>La gestion des dépendances</span>
 </a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/ class="flex align-center"><span>Module 3 - Évolution du logiciel</span>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div></main></body></html>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#quel-est-le-problème-quon-cherche-à-résoudre>Quel est le problème qu&rsquo;on cherche à résoudre?</a></li><li><a href=#yaml>YAML</a></li><li><a href=#github-actions>GitHub Actions</a></li><li><a href=#exemple-concret>Exemple concret</a></li><li><a href=#au-delà-des-tests>Au-delà des tests</a></li><li><a href=#vers-le-déploiement-continu-cd>Vers le déploiement continu (CD)</a></li></ul></nav></div></aside></main></body></html>
