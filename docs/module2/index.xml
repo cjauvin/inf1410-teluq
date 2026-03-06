@@ -9,7 +9,14 @@ aucune expérience explicite.&lt;/p&gt;
 structures de données, qui sont des constructions logiques plus complexe
 (non-atomique) qui impliquent, en général, les types de base, d&amp;rsquo;une manière ou
 d&amp;rsquo;une autre.&lt;/p&gt;</description></item><item><title>Les tests</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</guid><description>&lt;h1 id="les-tests"&gt;Les tests&lt;a class="anchor" href="#les-tests"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;TODO&lt;/p&gt;</description></item><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Dans la section précédente, nous avons vu que la programmation repose sur des
+structures de données, des algorithmes et des systèmes de types. Mais écrire du
+code qui &lt;em&gt;semble&lt;/em&gt; correct ne suffit pas : il faut pouvoir &lt;em&gt;vérifier&lt;/em&gt; qu&amp;rsquo;il se
+comporte comme on le pense. C&amp;rsquo;est exactement ce que Peter Naur décrivait dans
+&lt;em&gt;Programming as Theory Building&lt;/em&gt; : le programmeur construit un modèle mental de
+ce que le programme est censé faire. Les tests sont la manière la plus directe
+de confronter ce modèle mental à la réalité.&lt;/p&gt;</description></item><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Le logiciel (et le code source dont il est constitué) a une particularité
 fondamentale : il change tout le temps. Même un programme simple est rapidement

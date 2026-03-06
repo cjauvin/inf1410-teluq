@@ -113,7 +113,14 @@ programme python simple.&lt;/p&gt;
 &lt;p&gt;Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est
 fondamentalement basé sur la notion d&amp;rsquo;un arbre. Pour implémenter un modèle
 simplifié en python, c&amp;rsquo;est relativement facile.&lt;/p&gt;</description></item><item><title>Les tests</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</guid><description>&lt;h1 id="les-tests"&gt;Les tests&lt;a class="anchor" href="#les-tests"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;TODO&lt;/p&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Dans la section précédente, nous avons vu que la programmation repose sur des
+structures de données, des algorithmes et des systèmes de types. Mais écrire du
+code qui &lt;em&gt;semble&lt;/em&gt; correct ne suffit pas : il faut pouvoir &lt;em&gt;vérifier&lt;/em&gt; qu&amp;rsquo;il se
+comporte comme on le pense. C&amp;rsquo;est exactement ce que Peter Naur décrivait dans
+&lt;em&gt;Programming as Theory Building&lt;/em&gt; : le programmeur construit un modèle mental de
+ce que le programme est censé faire. Les tests sont la manière la plus directe
+de confronter ce modèle mental à la réalité.&lt;/p&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
 faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc
 choisi un modèle de développement d&amp;rsquo;application qui comportera différents volets
