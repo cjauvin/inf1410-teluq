@@ -2,7 +2,7 @@
 title: "Accueil"
 ---
 
-![HAL9000](/images/data-center.jpg)
+![](open-space.png)
 
 # Bienvenue
 

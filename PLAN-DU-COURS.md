@@ -97,11 +97,14 @@
 - Versionnement sémantique (SemVer)
 - uv comme outil concret (bibliothèques, applications, venv, lock files)
 
-## L'intégration continue - CI (à développer)
-- Concept de CI : intégrer souvent, automatiser la vérification
-- GitHub Actions comme outil concret
-- Exemple de workflow (tests automatiques sur push)
-- Lien tests + CI comme filet de sécurité
+## L'intégration continue - CI (complété)
+- Le problème : vérifications manuelles, "ça marche sur ma machine"
+- Historique : Extreme Programming (Kent Beck), article de Martin Fowler (2006)
+- Aparté sur YAML : syntaxe de base, pièges (indentation, types implicites)
+- GitHub Actions : concepts (workflow, event, job, step, action, runner)
+- Exemple concret : projet Python avec pytest, workflow CI, démo sur GitHub
+- Au-delà des tests : linting (ruff), formatage, type checking (mypy), sécurité des dépendances
+- Lien CI → CD (déploiement continu), renvoi au module 5
 
 # Module 3 - Évolution du logiciel
 
