@@ -106,29 +106,56 @@
 - Au-delà des tests : linting (ruff), formatage, type checking (mypy), sécurité des dépendances
 - Lien CI → CD (déploiement continu), renvoi au module 5
 
-# Module 3 - Évolution du logiciel
+# Module 3 - Du programme au système
 
-## Principes importants et fameux
-- Principe DRY
-- KISS
-- YAGNI
-- Principes SOLID
-- Separation of Concerns
-- Law of Demeter
-- Composition over inheritance
-- Boy scout rule
-  > “Always leave the campground cleaner than you found it.”
-- Principle of Least Astonishment (POLA)
-  - Un composant doit se comporter comme on s’y attend
-  - Une fonction `calculateTotal()` ne devrait pas aussi envoyer un courriel
+## Introduction : la complexité comme problème central (à développer)
+- Le passage du programme au système
+- Complexité essentielle vs accidentelle (Brooks, *No Silver Bullet*)
+- La gestion de la complexité comme fil conducteur
+- Les principes fameux comme heuristiques (introduction, avec renvoi vers
+  la page de référence transversale `content/docs/principes.md`)
+- Les principes sont développés en profondeur dans les sections où ils
+  sont le plus pertinents (dans ce module et les suivants)
 
-- Architecture
-- Modularité
-- API
-- Données
-- Couplage
-- Patterns
-- Dette technique
+NOTE : revisiter les modules 1 et 2 pour y intégrer des références aux
+principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
+
+## Architecture et modularité (à développer)
+- Parnas et le papier fondateur sur la modularité (1972)
+- Couplage et cohésion
+- Couches (layers) et séparation des responsabilités
+- Monolithe vs microservices
+- Patterns architecturaux (event-driven, pipes and filters, etc.)
+
+## Les APIs (à développer)
+- L’API comme interface entre composants
+- REST, GraphQL, gRPC
+- Design d’API
+- Lien avec les schémas (JSON Schema, OpenAPI, Protobuf)
+
+## Les données (en cours)
+
+### La représentation des données (complété)
+- Données vs information vs connaissances (pyramide DIKW)
+- Encodage et sérialisation (ASCII, UTF-8, CSV, XML, JSON, Protobuf)
+- La notion de schéma (SQL DDL, type hints, OpenAPI, JSON Schema)
+- Évolution des schémas (compatibilité avant/arrière)
+
+### Le stockage des données (en cours)
+- Modèle hiérarchique (IBM, années 60)
+- Modèle en réseau (CODASYL)
+- Modèle relationnel et SQL
+- Transactions (à développer)
+- ORMs (à développer)
+- Révolution NoSQL (à développer)
+- Bases de données de séries temporelles (à développer)
+- Bases de données vectorielles (à développer)
+
+### Les autres paradigmes de données (complété)
+- Logging, Messaging, Streaming, Caching
+- Recherche et indexation, Object storage, Analytics/OLAP
+- Séries temporelles, Configuration/coordination
+- Données collaboratives/répliquées (CRDTs), Ledgers/blockchain
 
 # Module 4 - Construire en équipe
 
@@ -136,9 +163,10 @@
 - Agile
 - Kanban
 - Scrum
-- Communication (importance d'outils comme Slack, etc).
+- Communication (importance d’outils comme Slack, etc).
 - Estimation
 - Coordination
+- Dette technique (dimension sociale et organisationnelle)
 
 # Module 5 - Faire vivre le logiciel
 
