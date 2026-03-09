@@ -19,25 +19,19 @@ développés dans leurs sections respectives.)*
 ## Principes de conception
 
 - **Information hiding** (David Parnas, 1972) : chaque module cache une décision de conception susceptible de changer → [Module 3, Architecture et modularité]({{< ref "/docs/module3/architecture" >}})
-- **DRY** (Don't Repeat Yourself)
+- **DRY** (Don't Repeat Yourself, Hunt & Thomas, *The Pragmatic Programmer*, 1999) : chaque connaissance doit avoir une représentation unique → [Module 3, Architecture et modularité]({{< ref "/docs/module3/architecture" >}})
 - **KISS** (Keep It Simple Stupid)
-- **YAGNI** (You Ain't Gonna Need It)
+- **YAGNI** (You Ain't Gonna Need It, Kent Beck, Extreme Programming) : ne construis pas d'abstraction pour un besoin qui n'existe pas encore → [Module 3, Architecture et modularité]({{< ref "/docs/module3/architecture" >}})
 - **Separation of Concerns**
-- **SOLID**
+- **SOLID** (Robert C. Martin, *Clean Code*, 2008) : cinq principes de conception OO (S, O, L, I, D) → [Module 3, Architecture et modularité]({{< ref "/docs/module3/architecture" >}})
 - **Law of Demeter**
-- **Composition over inheritance**
+- **Composition over inheritance** (Gang of Four, *Design Patterns*, 1994) : favoriser l'assemblage d'objets plutôt que l'héritage de classes → [Module 3, Architecture et modularité]({{< ref "/docs/module3/architecture" >}})
 - **Principle of Least Astonishment (POLA)**
 
 ## Principes de pratique
 
 - **Boy Scout Rule** : "Always leave the campground cleaner than you found it."
 
-## Penseurs et publications de référence
+## Lectures et publications de référence
 
-- Fred Brooks, *The Mythical Man-Month* (1975) et *No Silver Bullet* (1986)
-- Peter Naur, *Programming as Theory Building* (1985)
-- David Parnas, *On the Criteria To Be Used in Decomposing Systems into Modules* (1972)
-- Andrew Hunt et David Thomas, *The Pragmatic Programmer* (1999)
-- Robert C. Martin, *Clean Code* (2008)
-- Gang of Four, *Design Patterns* (1994)
-- Martin Kleppmann, *Designing Data-Intensive Applications* (2017)
+Voir la page [Lectures et publications de référence]({{< ref "/docs/lectures" >}}).
