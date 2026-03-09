@@ -164,7 +164,9 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - Xerox PARC, Smalltalk et la naissance du GUI (années 70-80)
 - Le modèle événementiel : de la boucle d'événements aux callbacks
 - MVC (Reenskaug, 1979) : origine dans Smalltalk, renvoi vers la section architecture
+- Visual Basic (1991) : démocratisation du développement GUI par drag-and-drop
 - Les toolkits desktop : Tk, Qt, GTK, Win32, Cocoa
+- Flash/ActionScript (Macromedia, puis Adobe) : le web interactif avant HTML5, mort annoncée par Steve Jobs (2010)
 - Le web comme plateforme UI : du document statique à l'application
 
 ### L'architecture des applications web
@@ -175,6 +177,8 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - Static Site Generation (SSG) et sites Jamstack
 
 ### Les frameworks JavaScript
+- Le DOM (Document Object Model) : qu'est-ce que c'est, pourquoi c'est important
+- La tension déclaratif vs impératif comme fil conducteur : HTML (déclaratif) → jQuery (impératif, manipulation directe du DOM) → React (retour au déclaratif avec JSX)
 - jQuery (2006) : simplification du DOM, uniformisation des navigateurs
 - Angular (2010/2016) : framework complet, two-way data binding, TypeScript
 - React (2013, Facebook) : DOM virtuel, composants, flux de données unidirectionnel, JSX
@@ -190,6 +194,8 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - Progressive Web Apps (PWA) : service workers, installation, mode hors-ligne
 - Responsive design et l'adaptation aux formats d'écran
 - Electron et Tauri : le web comme runtime desktop
+- WebAssembly (WASM) : exécuter du C++/Rust dans le navigateur, brouillage de la frontière web/natif
+- Pattern BFF (Backend For Frontend, Sam Newman) : un backend adapté par type de client
 - La tension fondamentale : write once run anywhere vs expérience native optimale
 
 ## Les données (en cours)
