@@ -123,11 +123,30 @@ NOTE : revisiter les modules 1 et 2 pour y intégrer des références aux
 principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 
 ## Architecture et modularité (à développer)
-- Parnas et le papier fondateur sur la modularité (1972)
+- Introduction : pourquoi découper ?
+- Parnas et l'information hiding (1972)
+  - Exemple KWIC (Key Word In Context) reproduit en Python
+  - Deux décompositions comparées : par flux vs par information hiding
+  - Principe : Separation of Concerns
 - Couplage et cohésion
-- Couches (layers) et séparation des responsabilités
+  - Définitions avec exemples Python
+  - Lien avec DRY : la duplication comme symptôme de mauvais découpage
+- SOLID (principes de conception OO)
+  - Focus sur S (Single Responsibility) et D (Dependency Inversion)
+  - Les autres (O, L, I) traités plus brièvement
+  - Perspective critique : lien avec YAGNI
+- Les couches (layers)
+  - Pattern présentation → logique → données
+  - Exemple concret en Python
 - Monolithe vs microservices
-- Patterns architecturaux (event-driven, pipes and filters, etc.)
+  - Le monolithe comme point de départ raisonnable
+  - Quand et pourquoi découper
+  - Loi de Conway (pont vers module 4)
+- Patterns architecturaux (en profondeur)
+  - Event-driven architecture
+  - Pipes and filters
+  - Client-server, MVC
+  - Liens avec les paradigmes de données (messaging, streaming)
 
 ## Les APIs (à développer)
 - L’API comme interface entre composants

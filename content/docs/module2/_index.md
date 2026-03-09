@@ -1,10 +1,10 @@
 ---
-title: "Module 2 - Concevoir un logiciel correct"
+title: "Module 2 - Concevoir un programme correct"
 weight: 200
 bookCollapseSection: true
 ---
 
-# Module 2 - Concevoir un logiciel correct
+# Module 2 - Concevoir un programme correct
 
 Dans le module précédent, on a vu que le génie logiciel est né d'un constat :
 programmer et construire du logiciel fiable sont deux choses très différentes.

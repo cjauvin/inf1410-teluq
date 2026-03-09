@@ -14,10 +14,11 @@ développés dans leurs sections respectives.)*
 
 ## Gestion de la complexité
 
-- **Complexité essentielle vs accidentelle** (Fred Brooks, *No Silver Bullet*, 1986)
+- **Complexité essentielle vs accidentelle** (Fred Brooks, *No Silver Bullet*, 1986) → [Module 3, Introduction]({{< ref "/docs/module3" >}})
 
 ## Principes de conception
 
+- **Information hiding** (David Parnas, 1972) : chaque module cache une décision de conception susceptible de changer → [Module 3, Architecture et modularité]({{< ref "/docs/module3/architecture" >}})
 - **DRY** (Don't Repeat Yourself)
 - **KISS** (Keep It Simple Stupid)
 - **YAGNI** (You Ain't Gonna Need It)
