@@ -84,28 +84,57 @@ développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id="principes-de-conception"&gt;Principes de conception&lt;a class="anchor" href="#principes-de-conception"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Information hiding&lt;/strong&gt; (David Parnas, 1972) : chaque module cache une décision de conception susceptible de changer → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;DRY&lt;/strong&gt; (Don&amp;rsquo;t Repeat Yourself)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DRY&lt;/strong&gt; (Don&amp;rsquo;t Repeat Yourself, Hunt &amp;amp; Thomas, &lt;em&gt;The Pragmatic Programmer&lt;/em&gt;, 1999) : chaque connaissance doit avoir une représentation unique → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;KISS&lt;/strong&gt; (Keep It Simple Stupid)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;YAGNI&lt;/strong&gt; (You Ain&amp;rsquo;t Gonna Need It)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;YAGNI&lt;/strong&gt; (You Ain&amp;rsquo;t Gonna Need It, Kent Beck, Extreme Programming) : ne construis pas d&amp;rsquo;abstraction pour un besoin qui n&amp;rsquo;existe pas encore → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Separation of Concerns&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;SOLID&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SOLID&lt;/strong&gt; (Robert C. Martin, &lt;em&gt;Clean Code&lt;/em&gt;, 2008) : cinq principes de conception OO (S, O, L, I, D) → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Law of Demeter&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Composition over inheritance&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Composition over inheritance&lt;/strong&gt; (Gang of Four, &lt;em&gt;Design Patterns&lt;/em&gt;, 1994) : favoriser l&amp;rsquo;assemblage d&amp;rsquo;objets plutôt que l&amp;rsquo;héritage de classes → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Principle of Least Astonishment (POLA)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="principes-de-pratique"&gt;Principes de pratique&lt;a class="anchor" href="#principes-de-pratique"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Boy Scout Rule&lt;/strong&gt; : &amp;ldquo;Always leave the campground cleaner than you found it.&amp;rdquo;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="penseurs-et-publications-de-référence"&gt;Penseurs et publications de référence&lt;a class="anchor" href="#penseurs-et-publications-de-r%c3%a9f%c3%a9rence"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="lectures-et-publications-de-référence"&gt;Lectures et publications de référence&lt;a class="anchor" href="#lectures-et-publications-de-r%c3%a9f%c3%a9rence"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Voir la page &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/lectures/"&gt;Lectures et publications de référence&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Lectures et publications de référence</title><link>https://cjauvin.github.io/inf1410-teluq/docs/lectures/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/lectures/</guid><description>&lt;h1 id="lectures-et-publications-de-référence"&gt;Lectures et publications de référence&lt;a class="anchor" href="#lectures-et-publications-de-r%c3%a9f%c3%a9rence"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Cette page rassemble les livres, articles et publications importants qui sont
+mentionnés à travers l&amp;rsquo;ensemble du cours. Chaque entrée pointe vers la ou les
+sections où elle est discutée.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(Cette page sera enrichie au fur et à mesure que de nouvelles références seront
+intégrées dans le cours.)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id="livres"&gt;Livres&lt;a class="anchor" href="#livres"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Fred Brooks, &lt;em&gt;The Mythical Man-Month&lt;/em&gt; (1975) et &lt;em&gt;No Silver Bullet&lt;/em&gt; (1986)&lt;/li&gt;
-&lt;li&gt;Peter Naur, &lt;em&gt;Programming as Theory Building&lt;/em&gt; (1985)&lt;/li&gt;
-&lt;li&gt;David Parnas, &lt;em&gt;On the Criteria To Be Used in Decomposing Systems into Modules&lt;/em&gt; (1972)&lt;/li&gt;
-&lt;li&gt;Andrew Hunt et David Thomas, &lt;em&gt;The Pragmatic Programmer&lt;/em&gt; (1999)&lt;/li&gt;
-&lt;li&gt;Robert C. Martin, &lt;em&gt;Clean Code&lt;/em&gt; (2008)&lt;/li&gt;
-&lt;li&gt;Gang of Four, &lt;em&gt;Design Patterns&lt;/em&gt; (1994)&lt;/li&gt;
-&lt;li&gt;Martin Kleppmann, &lt;em&gt;Designing Data-Intensive Applications&lt;/em&gt; (2017)&lt;/li&gt;
+&lt;li&gt;Fred Brooks, &lt;em&gt;The Mythical Man-Month&lt;/em&gt; (1975) : réflexions sur la gestion de
+grands projets logiciels, dont la célèbre « loi de Brooks » → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Andrew Hunt et David Thomas, &lt;em&gt;The Pragmatic Programmer&lt;/em&gt; (1999) : conseils
+pratiques pour le développeur, origine du principe DRY → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Kent Beck, &lt;em&gt;Extreme Programming Explained&lt;/em&gt; (1999) : manifeste de l&amp;rsquo;XP, origine
+de YAGNI et du TDD → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Robert C. Martin, &lt;em&gt;Clean Code&lt;/em&gt; (2008) : principes de conception et SOLID →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mike Cohn, &lt;em&gt;Succeeding with Agile&lt;/em&gt; (2009) : la pyramide des tests →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/"&gt;Module 2, Les tests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Gang of Four (Gamma, Helm, Johnson, Vlissides), &lt;em&gt;Design Patterns&lt;/em&gt; (1994) :
+catalogue fondateur des patrons de conception → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Martin Kleppmann, &lt;em&gt;Designing Data-Intensive Applications&lt;/em&gt; (2017) : référence
+moderne sur les systèmes de données → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/"&gt;Module 3, Les données&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="articles-et-essais"&gt;Articles et essais&lt;a class="anchor" href="#articles-et-essais"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Edgar F. Codd, &lt;em&gt;A Relational Model of Data for Large Shared Data Banks&lt;/em&gt; (1970) :
+article fondateur du modèle relationnel → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;David Parnas, &lt;em&gt;On the Criteria To Be Used in Decomposing Systems into Modules&lt;/em&gt;
+(1972) : introduction de l&amp;rsquo;information hiding → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Peter Naur, &lt;em&gt;Programming as Theory Building&lt;/em&gt; (1985) : programmer comme
+construction d&amp;rsquo;un modèle mental → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/"&gt;Module 2, Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fred Brooks, &lt;em&gt;No Silver Bullet&lt;/em&gt; (1986) : complexité essentielle vs
+accidentelle → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/"&gt;Module 3, Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Edsger Dijkstra, &lt;em&gt;Go To Statement Considered Harmful&lt;/em&gt; (1968) : plaidoyer pour
+la programmation structurée → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Martin Fowler, &lt;em&gt;Continuous Integration&lt;/em&gt; (2006) : article de référence sur
+l&amp;rsquo;intégration continue → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/"&gt;Module 2, L&amp;rsquo;intégration continue&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Historique</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</guid><description>&lt;h1 id="historique-du-génie-logiciel"&gt;Historique du génie logiciel&lt;a class="anchor" href="#historique-du-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;L&amp;rsquo;histoire du génie logiciel n&amp;rsquo;est pas qu&amp;rsquo;une suite d&amp;rsquo;inventions techniques :
 c&amp;rsquo;est aussi l&amp;rsquo;histoire de problèmes récurrents, de solutions qui créent de

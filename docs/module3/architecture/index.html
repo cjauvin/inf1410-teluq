@@ -1,6 +1,6 @@
 <!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Architecture et modularité# Quand un programme est petit, sa structure importe peu. On peut tout mettre dans un seul fichier, avec quelques fonctions, et ça fonctionne. Mais dès que le programme grossit, cette approche atteint ses limites. Un fichier de 5000 lignes devient difficile à naviguer. Deux développeurs qui modifient le même fichier se marchent sur les pieds. Un changement dans une partie du code casse quelque chose dans une autre. Le programme est devenu un système, mais sa structure ne le reflète pas encore. La question n’est alors pas s’il faut découper le système en parties, mais comment le découper. Et cette question est bien plus subtile qu’elle n’y paraît.
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Architecture et modularité"><meta property="og:description" content="Architecture et modularité# Quand un programme est petit, sa structure importe peu. On peut tout mettre dans un seul fichier, avec quelques fonctions, et ça fonctionne. Mais dès que le programme grossit, cette approche atteint ses limites. Un fichier de 5000 lignes devient difficile à naviguer. Deux développeurs qui modifient le même fichier se marchent sur les pieds. Un changement dans une partie du code casse quelque chose dans une autre. Le programme est devenu un système, mais sa structure ne le reflète pas encore. La question n’est alors pas s’il faut découper le système en parties, mais comment le découper. Et cette question est bien plus subtile qu’elle n’y paraît."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Architecture et modularité"><meta itemprop=description content="Architecture et modularité# Quand un programme est petit, sa structure importe peu. On peut tout mettre dans un seul fichier, avec quelques fonctions, et ça fonctionne. Mais dès que le programme grossit, cette approche atteint ses limites. Un fichier de 5000 lignes devient difficile à naviguer. Deux développeurs qui modifient le même fichier se marchent sur les pieds. Un changement dans une partie du code casse quelque chose dans une autre. Le programme est devenu un système, mais sa structure ne le reflète pas encore. La question n’est alors pas s’il faut découper le système en parties, mais comment le découper. Et cette question est bien plus subtile qu’elle n’y paraît."><meta itemprop=wordCount content="1150"><title>Architecture et modularité | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
-<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Architecture et modularité"><meta property="og:description" content="Architecture et modularité# Quand un programme est petit, sa structure importe peu. On peut tout mettre dans un seul fichier, avec quelques fonctions, et ça fonctionne. Mais dès que le programme grossit, cette approche atteint ses limites. Un fichier de 5000 lignes devient difficile à naviguer. Deux développeurs qui modifient le même fichier se marchent sur les pieds. Un changement dans une partie du code casse quelque chose dans une autre. Le programme est devenu un système, mais sa structure ne le reflète pas encore. La question n’est alors pas s’il faut découper le système en parties, mais comment le découper. Et cette question est bien plus subtile qu’elle n’y paraît."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Architecture et modularité"><meta itemprop=description content="Architecture et modularité# Quand un programme est petit, sa structure importe peu. On peut tout mettre dans un seul fichier, avec quelques fonctions, et ça fonctionne. Mais dès que le programme grossit, cette approche atteint ses limites. Un fichier de 5000 lignes devient difficile à naviguer. Deux développeurs qui modifient le même fichier se marchent sur les pieds. Un changement dans une partie du code casse quelque chose dans une autre. Le programme est devenu un système, mais sa structure ne le reflète pas encore. La question n’est alors pas s’il faut découper le système en parties, mais comment le découper. Et cette question est bien plus subtile qu’elle n’y paraît."><meta itemprop=wordCount content="2866"><title>Architecture et modularité | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
 <label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - Concevoir un programme correct</a>
@@ -14,7 +14,7 @@
 <label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/>La conteneurisation avec docker</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Architecture et modularité</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#parnas-et-linformation-hiding-1972>Parnas et l&rsquo;information hiding (1972)</a><ul><li><a href=#décomposition-1--par-flux-de-traitement>Décomposition 1 : par flux de traitement</a></li><li><a href=#décomposition-2--par-information-hiding-parnas>Décomposition 2 : par information hiding (Parnas)</a></li></ul></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=architecture-et-modularité>Architecture et modularité<a class=anchor href=#architecture-et-modularit%c3%a9>#</a></h1><p>Quand un programme est petit, sa structure importe peu. On peut tout mettre dans
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Architecture et modularité</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#parnas-et-linformation-hiding-1972>Parnas et l&rsquo;information hiding (1972)</a><ul><li><a href=#décomposition-1--par-flux-de-traitement>Décomposition 1 : par flux de traitement</a></li><li><a href=#décomposition-2--par-information-hiding-parnas>Décomposition 2 : par information hiding (Parnas)</a></li></ul></li><li><a href=#couplage-et-cohésion>Couplage et cohésion</a></li><li><a href=#les-principes-solid>Les principes SOLID</a><ul><li><a href=#s--single-responsibility-principle>S : Single Responsibility Principle</a></li><li><a href=#d--dependency-inversion-principle>D : Dependency Inversion Principle</a></li><li><a href=#o--openclosed-principle>O : Open/Closed Principle</a></li><li><a href=#l--liskov-substitution-principle>L : Liskov Substitution Principle</a></li><li><a href=#i--interface-segregation-principle>I : Interface Segregation Principle</a></li><li><a href=#solid-et-yagni--la-tension-créative>SOLID et YAGNI : la tension créative</a></li></ul></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=architecture-et-modularité>Architecture et modularité<a class=anchor href=#architecture-et-modularit%c3%a9>#</a></h1><p>Quand un programme est petit, sa structure importe peu. On peut tout mettre dans
 un seul fichier, avec quelques fonctions, et ça fonctionne. Mais dès que le
 programme grossit, cette approche atteint ses limites. Un fichier de 5000 lignes
 devient difficile à naviguer. Deux développeurs qui modifient le même fichier se
@@ -186,7 +186,222 @@ lignes dans un fichier plutôt qu&rsquo;en mémoire, il suffit de modifier
 veut ajouter des règles de filtrage des stop words, seul <code>Rotator</code> est concerné.
 Chaque changement est <em>local</em> à un module. C&rsquo;est exactement ce que Parnas
 voulait démontrer : le bon critère de décomposition n&rsquo;est pas &ldquo;quelle étape du
-traitement&rdquo;, mais &ldquo;quelle décision pourrait changer&rdquo;.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+traitement&rdquo;, mais &ldquo;quelle décision pourrait changer&rdquo;.</p><h2 id=couplage-et-cohésion>Couplage et cohésion<a class=anchor href=#couplage-et-coh%c3%a9sion>#</a></h2><p>L&rsquo;exemple KWIC illustre un phénomène que les informaticiens Larry Constantine et
+Edward Yourdon ont formalisé dans les années 1970 : la qualité d&rsquo;un découpage se
+mesure selon deux axes complémentaires. Le <em>couplage</em> mesure le degré de
+dépendance entre les modules. La <em>cohésion</em> mesure le degré auquel les éléments
+d&rsquo;un même module sont reliés entre eux. Un bon découpage minimise le couplage
+(les modules se connaissent peu) et maximise la cohésion (chaque module a une
+responsabilité claire et unifiée). Dans la première décomposition de KWIC, le
+couplage est fort : tous les modules dépendent des mêmes données globales. Dans
+la deuxième, le couplage est faible : chaque module interagit avec les autres
+uniquement à travers une interface étroite.</p><p>Ces deux axes sont faciles à illustrer. Prenons un exemple simple : un système
+qui envoie des notifications aux utilisateurs.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Couplage fort, cohésion faible</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserManager</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_user</span>(self, name, email):
+</span></span><span style=display:flex><span>        <span style=color:#75715e># Crée l&#39;utilisateur dans la base de données</span>
+</span></span><span style=display:flex><span>        db <span style=color:#f92672>=</span> sqlite3<span style=color:#f92672>.</span>connect(<span style=color:#e6db74>&#34;app.db&#34;</span>)
+</span></span><span style=display:flex><span>        db<span style=color:#f92672>.</span>execute(<span style=color:#e6db74>&#34;INSERT INTO users (name, email) VALUES (?, ?)&#34;</span>, (name, email))
+</span></span><span style=display:flex><span>        db<span style=color:#f92672>.</span>commit()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># Envoie un email de bienvenue</span>
+</span></span><span style=display:flex><span>        smtp <span style=color:#f92672>=</span> smtplib<span style=color:#f92672>.</span>SMTP(<span style=color:#e6db74>&#34;smtp.example.com&#34;</span>)
+</span></span><span style=display:flex><span>        smtp<span style=color:#f92672>.</span>send_message(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Bienvenue </span><span style=color:#e6db74>{</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74> !&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># Écrit dans le journal</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>with</span> open(<span style=color:#e6db74>&#34;/var/log/app.log&#34;</span>, <span style=color:#e6db74>&#34;a&#34;</span>) <span style=color:#66d9ef>as</span> f:
+</span></span><span style=display:flex><span>            f<span style=color:#f92672>.</span>write(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Utilisateur </span><span style=color:#e6db74>{</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74> créé</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)</span></span></code></pre></div><p>Cette classe fait trois choses : gérer la base de données, envoyer des emails et
+écrire des logs. Sa cohésion est faible, car ses responsabilités n&rsquo;ont rien en
+commun. Son couplage est fort, car elle dépend directement de <code>sqlite3</code>, de
+<code>smtplib</code> et du système de fichiers. Si on change de base de données, de service
+d&rsquo;email ou de système de logging, il faut modifier cette classe.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Couplage faible, cohésion forte</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserRepository</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, db):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>db <span style=color:#f92672>=</span> db
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create</span>(self, name, email):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>db<span style=color:#f92672>.</span>execute(<span style=color:#e6db74>&#34;INSERT INTO users (name, email) VALUES (?, ?)&#34;</span>, (name, email))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>NotificationService</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, sender):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>sender <span style=color:#f92672>=</span> sender
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>welcome</span>(self, name):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>sender<span style=color:#f92672>.</span>send(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Bienvenue </span><span style=color:#e6db74>{</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74> !&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserManager</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, repo, notifications, logger):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>repo <span style=color:#f92672>=</span> repo
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>notifications <span style=color:#f92672>=</span> notifications
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>logger <span style=color:#f92672>=</span> logger
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_user</span>(self, name, email):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>repo<span style=color:#f92672>.</span>create(name, email)
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>notifications<span style=color:#f92672>.</span>welcome(name)
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>logger<span style=color:#f92672>.</span>info(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Utilisateur </span><span style=color:#e6db74>{</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74> créé&#34;</span>)</span></span></code></pre></div><p>Chaque classe a maintenant une seule responsabilité (cohésion forte), et
+<code>UserManager</code> ne connaît pas les détails internes des modules qu&rsquo;il utilise
+(couplage faible). On retrouve exactement le même principe que Parnas défendait
+avec KWIC : chaque module cache une décision susceptible de changer.</p><p>Le couplage et la cohésion sont aussi liés au principe DRY (Don&rsquo;t Repeat
+Yourself), formulé par Andrew Hunt et David Thomas dans <em>The Pragmatic
+Programmer</em> (1999). L&rsquo;idée est simple : chaque élément de connaissance dans un
+système devrait avoir une représentation unique et non ambiguë. La duplication de
+code est souvent un symptôme de mauvais découpage. Quand on retrouve la même
+logique à deux endroits, c&rsquo;est souvent parce qu&rsquo;une responsabilité n&rsquo;a pas été
+isolée dans son propre module. Éliminer la duplication revient alors à améliorer
+la cohésion : on regroupe la logique qui va ensemble, et on l&rsquo;expose à travers
+une interface claire.</p><p>Mais DRY ne concerne pas seulement le code dupliqué au sens littéral. Il
+s&rsquo;applique aussi aux structures de données, aux configurations, à la
+documentation. Si la même information existe à deux endroits et qu&rsquo;elle peut
+diverger, c&rsquo;est une violation de DRY, et c&rsquo;est une source de bugs. Le principe
+nous force à nous demander : &ldquo;est-ce que cette connaissance a un seul
+propriétaire dans mon système ?&rdquo;</p><h2 id=les-principes-solid>Les principes SOLID<a class=anchor href=#les-principes-solid>#</a></h2><p>L&rsquo;acronyme SOLID, popularisé par Robert C. Martin (<em>Clean Code</em>, 2008), regroupe
+cinq principes de conception orientée objet. Ils ne sont pas tous également
+importants dans la pratique. Le <strong>S</strong> (Single Responsibility) et le <strong>D</strong>
+(Dependency Inversion) sont de loin les plus influents et les plus utiles au
+quotidien. Les trois autres (Open/Closed, Liskov Substitution, Interface
+Segregation) sont plus situationnels : ils s&rsquo;appliquent surtout dans des
+contextes de hiérarchies de classes complexes, qu&rsquo;on rencontre moins souvent en
+Python qu&rsquo;en Java ou C#. On les présentera tous, mais avec un niveau de détail
+proportionnel à leur importance pratique.</p><h3 id=s--single-responsibility-principle>S : Single Responsibility Principle<a class=anchor href=#s--single-responsibility-principle>#</a></h3><p>Le principe de responsabilité unique dit qu&rsquo;une classe (ou un module) ne devrait
+avoir qu&rsquo;une seule raison de changer. C&rsquo;est essentiellement une reformulation du
+concept de cohésion qu&rsquo;on vient de voir, appliqué à la conception orientée objet.
+L&rsquo;exemple du <code>UserManager</code> monolithique illustre exactement une violation de ce
+principe : la classe change si on modifie la base de données, si on change le
+service d&rsquo;email, ou si on change le système de logs. Trois raisons de changer,
+donc trois responsabilités, donc il faudrait trois classes.</p><h3 id=d--dependency-inversion-principle>D : Dependency Inversion Principle<a class=anchor href=#d--dependency-inversion-principle>#</a></h3><p>L&rsquo;inversion de dépendance est peut-être le principe SOLID le plus puissant.
+L&rsquo;idée est que les modules de haut niveau (la logique métier) ne devraient pas
+dépendre des modules de bas niveau (les détails d&rsquo;implémentation). Les deux
+devraient dépendre d&rsquo;abstractions. En pratique, cela signifie qu&rsquo;au lieu de
+créer ses propres dépendances, un module les <em>reçoit</em> de l&rsquo;extérieur. C&rsquo;est ce
+qu&rsquo;on appelle l&rsquo;<em>injection de dépendances</em>.</p><p>On l&rsquo;a déjà vu dans l&rsquo;exemple du <code>UserManager</code> refactorisé : plutôt que de
+créer lui-même sa connexion <code>sqlite3</code> et son client <code>smtplib</code>, il reçoit un
+<code>repo</code>, un <code>notifications</code> et un <code>logger</code> dans son constructeur. Mais pour bien
+comprendre la différence, comparons deux approches d&rsquo;un système de paiement :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Sans inversion de dépendance</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>OrderService</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>checkout</span>(self, order):
+</span></span><span style=display:flex><span>        payment <span style=color:#f92672>=</span> StripeClient(<span style=color:#e6db74>&#34;sk_live_xxx&#34;</span>)
+</span></span><span style=display:flex><span>        payment<span style=color:#f92672>.</span>charge(order<span style=color:#f92672>.</span>total)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Avec inversion de dépendance</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>OrderService</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, payment_gateway):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>payment_gateway <span style=color:#f92672>=</span> payment_gateway
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>checkout</span>(self, order):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>payment_gateway<span style=color:#f92672>.</span>charge(order<span style=color:#f92672>.</span>total)</span></span></code></pre></div><p>Dans la première version, <code>OrderService</code> <em>crée</em> directement un <code>StripeClient</code>.
+Il est impossible de tester cette classe sans se connecter à Stripe, et si on
+veut un jour passer à un autre fournisseur de paiement, il faut modifier la
+logique métier. Dans la seconde version, <code>OrderService</code> ne sait même pas quel
+fournisseur de paiement est utilisé. On peut lui passer un client Stripe en
+production, un client PayPal dans un autre contexte, ou un mock dans les tests.
+La direction de la dépendance est <em>inversée</em> : c&rsquo;est le code appelant qui décide
+de l&rsquo;implémentation, pas le module lui-même.</p><h3 id=o--openclosed-principle>O : Open/Closed Principle<a class=anchor href=#o--openclosed-principle>#</a></h3><p>Un module devrait être <em>ouvert à l&rsquo;extension</em> mais <em>fermé à la modification</em>. En
+d&rsquo;autres termes, on devrait pouvoir ajouter un nouveau comportement sans modifier
+le code existant. Ce principe est surtout pertinent quand on conçoit des systèmes
+avec des familles de comportements interchangeables.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Violation : il faut modifier la fonction pour chaque nouveau format</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>export</span>(data, format):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> format <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;json&#34;</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> json<span style=color:#f92672>.</span>dumps(data)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>elif</span> format <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;csv&#34;</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> to_csv(data)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>elif</span> format <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;xml&#34;</span>:  <span style=color:#75715e># chaque nouveau format modifie cette fonction</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> to_xml(data)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Conforme : on ajoute un exporteur sans toucher au code existant</span>
+</span></span><span style=display:flex><span>exporters <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;json&#34;</span>: JsonExporter(),
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;csv&#34;</span>: CsvExporter(),
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>export</span>(data, format):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> exporters[format]<span style=color:#f92672>.</span>export(data)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Ajouter un format XML = ajouter une ligne, pas modifier la logique</span>
+</span></span><span style=display:flex><span>exporters[<span style=color:#e6db74>&#34;xml&#34;</span>] <span style=color:#f92672>=</span> XmlExporter()</span></span></code></pre></div><h3 id=l--liskov-substitution-principle>L : Liskov Substitution Principle<a class=anchor href=#l--liskov-substitution-principle>#</a></h3><p>Formulé par Barbara Liskov en 1987, ce principe dit qu&rsquo;un objet d&rsquo;une
+sous-classe devrait pouvoir remplacer un objet de la classe parente sans casser
+le programme. C&rsquo;est un garde-fou contre les hiérarchies d&rsquo;héritage mal conçues.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Violation classique : un carré n&#39;est pas un rectangle au sens du LSP</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Rectangle</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, width, height):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>width <span style=color:#f92672>=</span> width
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>height <span style=color:#f92672>=</span> height
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>area</span>(self):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>width <span style=color:#f92672>*</span> self<span style=color:#f92672>.</span>height
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Square</span>(Rectangle):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, side):
+</span></span><span style=display:flex><span>        super()<span style=color:#f92672>.</span><span style=color:#a6e22e>__init__</span>(side, side)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Problème : si on modifie width, height ne suit pas</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Le contrat de Rectangle est violé</span></span></span></code></pre></div><p>L&rsquo;exemple classique est celui du carré et du rectangle. En mathématiques, un
+carré <em>est</em> un rectangle. Mais en programmation, si on hérite <code>Square</code> de
+<code>Rectangle</code>, le contrat est brisé : modifier la largeur d&rsquo;un carré devrait aussi
+modifier sa hauteur, ce qui n&rsquo;est pas le comportement attendu d&rsquo;un rectangle. Ce
+genre de piège est un argument en faveur de la composition plutôt que de
+l&rsquo;héritage.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Avec héritage : on crée une hiérarchie rigide</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Animal</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>speak</span>(self): <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FlyingAnimal</span>(Animal):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fly</span>(self): print(<span style=color:#e6db74>&#34;Je vole&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SwimmingAnimal</span>(Animal):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>swim</span>(self): print(<span style=color:#e6db74>&#34;Je nage&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Problème : un canard vole ET nage. Héritage multiple?</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Duck</span>(FlyingAnimal, SwimmingAnimal):  <span style=color:#75715e># fragile et confus</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>speak</span>(self): print(<span style=color:#e6db74>&#34;Coin&#34;</span>)</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Avec composition : on assemble des capacités</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FlyAbility</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fly</span>(self): print(<span style=color:#e6db74>&#34;Je vole&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SwimAbility</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>swim</span>(self): print(<span style=color:#e6db74>&#34;Je nage&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Duck</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>flying <span style=color:#f92672>=</span> FlyAbility()
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>swimming <span style=color:#f92672>=</span> SwimAbility()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>speak</span>(self): print(<span style=color:#e6db74>&#34;Coin&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>donald <span style=color:#f92672>=</span> Duck()
+</span></span><span style=display:flex><span>donald<span style=color:#f92672>.</span>flying<span style=color:#f92672>.</span>fly()    <span style=color:#75715e># &#34;Je vole&#34;</span>
+</span></span><span style=display:flex><span>donald<span style=color:#f92672>.</span>swimming<span style=color:#f92672>.</span>swim()  <span style=color:#75715e># &#34;Je nage&#34;</span></span></span></code></pre></div><p>Avec l&rsquo;héritage, on est forcé de modéliser les capacités dans une hiérarchie
+d&rsquo;ancêtres, ce qui devient vite un casse-tête quand un objet combine plusieurs
+comportements. Avec la composition, on assemble des briques indépendantes :
+chaque capacité est un objet qu&rsquo;on <em>possède</em>, plutôt qu&rsquo;un ancêtre dont on
+<em>hérite</em>. Ce principe, connu sous le nom de <em>composition over inheritance</em>, a
+été popularisé par le livre <em>Design Patterns</em> du Gang of Four (1994), qui
+recommande de &ldquo;favoriser la composition d&rsquo;objets plutôt que l&rsquo;héritage de
+classes&rdquo;.</p><h3 id=i--interface-segregation-principle>I : Interface Segregation Principle<a class=anchor href=#i--interface-segregation-principle>#</a></h3><p>Un client ne devrait pas être forcé de dépendre de méthodes qu&rsquo;il n&rsquo;utilise pas.
+Plutôt qu&rsquo;une grosse interface qui fait tout, il vaut mieux plusieurs interfaces
+spécialisées.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Interface trop large : tous les clients doivent implémenter toutes les méthodes</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Worker</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>work</span>(self): <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>eat</span>(self): <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>sleep</span>(self): <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Interfaces séparées : chaque client n&#39;implémente que ce dont il a besoin</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Workable</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>work</span>(self): <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Feedable</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>eat</span>(self): <span style=color:#f92672>...</span></span></span></code></pre></div><p>Ce principe est plus naturel en Python qu&rsquo;en Java, grâce au <em>duck typing</em> : on
+ne dépend pas d&rsquo;une interface formelle, mais simplement des méthodes qu&rsquo;on
+appelle effectivement.</p><h3 id=solid-et-yagni--la-tension-créative>SOLID et YAGNI : la tension créative<a class=anchor href=#solid-et-yagni--la-tension-cr%c3%a9ative>#</a></h3><p>Ces cinq principes sont des guides utiles, mais il faut les appliquer avec
+discernement. Le principe YAGNI (You Ain&rsquo;t Gonna Need It), issu de la culture
+Extreme Programming de Kent Beck, sert de contrepoids. YAGNI dit : ne construis
+pas d&rsquo;abstraction pour un besoin qui n&rsquo;existe pas encore. N&rsquo;ajoute pas une
+interface parce qu&rsquo;un jour, peut-être, tu auras besoin d&rsquo;une deuxième
+implémentation. Ne découpe pas un module en trois parce que le principe de
+responsabilité unique le suggère, si en pratique ce module est simple et ne
+change jamais.</p><p>La tension entre SOLID et YAGNI est saine. SOLID pousse vers plus d&rsquo;abstraction
+et de découpage. YAGNI pousse vers la simplicité et le pragmatisme. Un
+développeur expérimenté navigue entre les deux en se posant la bonne question :
+&ldquo;est-ce que cette complexité supplémentaire résout un problème réel, ou est-ce
+que je me prépare à un problème imaginaire ?&rdquo; Parnas nous rappelle que le bon
+critère de découpage est &ldquo;quelle décision pourrait changer&rdquo;. Si la réponse est
+&ldquo;aucune, pour l&rsquo;instant&rdquo;, alors YAGNI l&rsquo;emporte.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
 <span>Module 3 - Du programme au système</span>
 </a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/ class="flex align-center"><span>Les données</span>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#parnas-et-linformation-hiding-1972>Parnas et l&rsquo;information hiding (1972)</a><ul><li><a href=#décomposition-1--par-flux-de-traitement>Décomposition 1 : par flux de traitement</a></li><li><a href=#décomposition-2--par-information-hiding-parnas>Décomposition 2 : par information hiding (Parnas)</a></li></ul></li></ul></nav></div></aside></main></body></html>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#parnas-et-linformation-hiding-1972>Parnas et l&rsquo;information hiding (1972)</a><ul><li><a href=#décomposition-1--par-flux-de-traitement>Décomposition 1 : par flux de traitement</a></li><li><a href=#décomposition-2--par-information-hiding-parnas>Décomposition 2 : par information hiding (Parnas)</a></li></ul></li><li><a href=#couplage-et-cohésion>Couplage et cohésion</a></li><li><a href=#les-principes-solid>Les principes SOLID</a><ul><li><a href=#s--single-responsibility-principle>S : Single Responsibility Principle</a></li><li><a href=#d--dependency-inversion-principle>D : Dependency Inversion Principle</a></li><li><a href=#o--openclosed-principle>O : Open/Closed Principle</a></li><li><a href=#l--liskov-substitution-principle>L : Liskov Substitution Principle</a></li><li><a href=#i--interface-segregation-principle>I : Interface Segregation Principle</a></li><li><a href=#solid-et-yagni--la-tension-créative>SOLID et YAGNI : la tension créative</a></li></ul></li></ul></nav></div></aside></main></body></html>
