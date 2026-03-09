@@ -524,3 +524,100 @@ développeur expérimenté navigue entre les deux en se posant la bonne question
 que je me prépare à un problème imaginaire ?" Parnas nous rappelle que le bon
 critère de découpage est "quelle décision pourrait changer". Si la réponse est
 "aucune, pour l'instant", alors YAGNI l'emporte.
+
+## Les couches (layers)
+
+Les principes qu'on vient de voir (information hiding, couplage/cohésion, SOLID) nous disent *comment* découper un système en modules. Mais ils ne disent pas *selon quelle logique* organiser ces modules entre eux. En pratique, un pattern d'organisation revient constamment : le découpage en couches. L'idée est simple : on empile des niveaux d'abstraction, chaque couche ne communiquant qu'avec celle qui est directement en dessous. Ce pattern est si répandu qu'on le retrouve partout, du modèle OSI des réseaux (7 couches) aux applications web modernes. Dans le contexte d'une application, la forme la plus courante est le découpage en trois couches : présentation, logique métier (*business logic*) et accès aux données.
+
+<!-- ILLUSTRATION: trois couches empilées (présentation → logique métier → données) avec flèches de dépendance vers le bas -->
+
+Prenons une application simple de gestion de produits pour illustrer ce découpage :
+
+```python
+# Couche données : gère le stockage
+class ProductRepository:
+    def __init__(self, db):
+        self.db = db
+
+    def find_by_id(self, product_id):
+        row = self.db.execute(
+            "SELECT id, name, price, stock FROM products WHERE id = ?",
+            (product_id,)
+        ).fetchone()
+        if row:
+            return {"id": row[0], "name": row[1], "price": row[2], "stock": row[3]}
+        return None
+
+    def update_stock(self, product_id, new_stock):
+        self.db.execute(
+            "UPDATE products SET stock = ? WHERE id = ?",
+            (new_stock, product_id)
+        )
+
+# Couche logique métier : applique les règles d'affaires
+class OrderService:
+    def __init__(self, products):
+        self.products = products
+
+    def place_order(self, product_id, quantity):
+        product = self.products.find_by_id(product_id)
+        if product is None:
+            raise ValueError("Produit introuvable")
+        if product["stock"] < quantity:
+            raise ValueError("Stock insuffisant")
+        self.products.update_stock(product_id, product["stock"] - quantity)
+        total = product["price"] * quantity
+        return {"product": product["name"], "quantity": quantity, "total": total}
+
+# Couche présentation : gère l'interaction avec l'utilisateur
+class OrderHandler:
+    def __init__(self, order_service):
+        self.order_service = order_service
+
+    def handle_request(self, request):
+        try:
+            result = self.order_service.place_order(
+                request["product_id"], request["quantity"]
+            )
+            return {"status": 200, "data": result}
+        except ValueError as e:
+            return {"status": 400, "error": str(e)}
+```
+
+La règle fondamentale est que les dépendances vont dans un seul sens : la présentation dépend de la logique métier, qui dépend de l'accès aux données. Jamais l'inverse. Le `ProductRepository` ne sait pas qu'il est utilisé par un `OrderService`, et l'`OrderService` ne sait pas s'il est appelé depuis une API web, une interface en ligne de commande ou un script de test. Chaque couche peut évoluer indépendamment : on peut remplacer SQLite par PostgreSQL sans toucher à la logique métier, ou transformer le handler HTTP en interface CLI sans modifier les règles d'affaires.
+
+## Monolithe vs microservices
+
+Jusqu'ici, on a parlé de découpage *interne* : comment organiser les modules à l'intérieur d'une application. Mais il existe un autre niveau de découpage, qui concerne la manière dont on *déploie* le système. Un monolithe est une application déployée comme une seule unité : tout le code vit dans le même processus, partage la même base de données, et est livré en bloc. À l'opposé, une architecture en microservices découpe le système en petits services indépendants, chacun déployé séparément, avec sa propre base de données et ses propres API. Le débat entre ces deux approches est l'un des plus animés en génie logiciel moderne, et il mérite d'être abordé avec nuance.
+
+L'intuition naturelle, surtout quand on a appris les vertus du découpage, est de vouloir tout séparer dès le départ. Mais l'expérience de l'industrie montre le contraire. Un monolithe bien structuré (avec des couches claires, des modules cohésifs et un couplage faible) est presque toujours le meilleur point de départ. Martin Fowler résume cette idée par la formule *monolith first* : commencer par un monolithe, et ne découper en services que lorsque la douleur le justifie. La raison est simple : les microservices résolvent des problèmes d'organisation et de passage à l'échelle, mais ils en créent d'autres. Chaque service a besoin de sa propre infrastructure de déploiement, de monitoring, de gestion des erreurs. La communication entre services passe par le réseau, ce qui introduit de la latence, des pannes partielles et des problèmes de cohérence des données. Déboguer un problème qui traverse cinq services est incomparablement plus difficile que de déboguer un appel de fonction dans un monolithe.
+
+<!-- ILLUSTRATION: monolithe (un seul bloc avec modules internes) vs microservices (plusieurs blocs reliés par des flèches réseau) -->
+
+Quand est-ce que le découpage en services devient pertinent ? Typiquement quand l'organisation grandit. Si plusieurs équipes travaillent sur le même monolithe et se marchent constamment sur les pieds, si les cycles de déploiement deviennent trop lents parce qu'il faut tout retester à chaque changement, ou si certaines parties du système ont des besoins de passage à l'échelle très différents (le moteur de recherche doit gérer 10 000 requêtes par seconde, mais le module de facturation n'en traite que 100), alors il peut être judicieux d'extraire certains composants en services indépendants.
+
+Cette observation rejoint une idée formulée dès 1968 par Melvin Conway : "les organisations qui conçoivent des systèmes sont contraintes de produire des architectures qui sont des copies de leurs structures de communication." C'est la *loi de Conway*. Si trois équipes travaillent sur un projet, le système aura tendance à se structurer en trois composants, peu importe ce que dicterait la logique technique. Cette loi a une conséquence pratique importante : l'architecture d'un système ne peut pas être décidée indépendamment de l'organisation humaine qui le construit. C'est pourquoi la question du monolithe vs microservices n'est pas seulement technique, elle est aussi organisationnelle. On reviendra sur ces dimensions humaines et collaboratives dans le module 4.
+
+## Patterns architecturaux
+
+Les couches, le monolithe et les microservices décrivent comment *structurer* un système. Mais il existe aussi des patterns qui décrivent comment les parties d'un système *communiquent* entre elles. Ces patterns architecturaux ne sont pas mutuellement exclusifs : un même système peut en combiner plusieurs. Ils répondent chacun à des contraintes différentes, et le choix de l'un plutôt que l'autre dépend du problème qu'on cherche à résoudre.
+
+Le pattern le plus fondamental est probablement le **client-server**. L'idée est simple : un composant (le client) envoie des requêtes, un autre (le serveur) les traite et renvoie des réponses. C'est le modèle qui sous-tend le web tout entier : un navigateur envoie une requête HTTP, un serveur web la traite et renvoie une page ou des données. Ce pattern est tellement omniprésent qu'on a tendance à l'oublier, mais il incarne une décision architecturale importante : la centralisation de la logique et des données côté serveur, avec des clients qui ne font qu'interagir avec cette logique à travers une interface (l'API). La section suivante de ce module sera entièrement consacrée à ces interfaces.
+
+Dans le contexte des applications web, le pattern le plus courant est le **MVC** (Model-View-Controller). Il a été conçu à l'origine par Trygve Reenskaug en 1979 pour les interfaces graphiques de Smalltalk, où il séparait les données (Model), leur affichage à l'écran (View) et la gestion des interactions souris et clavier (Controller). Les frameworks web modernes ont adopté le vocabulaire de MVC, mais en le réinterprétant : le "Model" représente les données et la logique métier, la "View" génère du HTML (ou du JSON), et le "Controller" route les requêtes HTTP vers la bonne logique. En pratique, ce découpage est une variante du pattern trois couches qu'on a vu plus haut, adapté aux spécificités du cycle requête-réponse du web.
+
+{{< hint info >}}
+**Frameworks web**
+
+Un *framework* web est une bibliothèque qui fournit une structure prête à l'emploi pour construire des applications web : routage des requêtes HTTP, connexion à la base de données, rendu des pages, et organisation du code selon un pattern comme MVC. Parmi les plus connus, on trouve Ruby on Rails (Ruby), Django et Flask (Python), Laravel (PHP), et Express (JavaScript/Node.js). Django se décrit d'ailleurs comme MTV (Model-Template-View) plutôt que MVC, ce qui illustre bien le fait que le vocabulaire varie d'un framework à l'autre, mais que l'idée sous-jacente reste la même.
+{{< /hint >}}
+
+Le pattern **pipes and filters** organise le traitement comme une chaîne d'étapes indépendantes. Chaque filtre (*filter*) reçoit des données en entrée, les transforme, et les passe au filtre suivant via un canal (*pipe*). Ce pattern est au coeur de la philosophie Unix, où de petits utilitaires spécialisés se combinent en pipelines :
+
+```shell
+cat access.log | grep "POST" | cut -d' ' -f1 | sort | uniq -c | sort -rn
+```
+
+Cette commande extrait les adresses IP qui ont fait des requêtes POST, les compte et les trie par fréquence. Chaque utilitaire fait une seule chose (cohésion forte), ne connaît pas les autres (couplage faible), et communique par un flux de texte standard. On retrouve d'ailleurs exactement ce pattern dans la première décomposition de KWIC qu'on a vue plus tôt : une séquence d'étapes où chacune consomme la sortie de la précédente. La différence avec la deuxième décomposition de Parnas, c'est que pipes and filters optimise la composabilité au prix d'un couplage plus fort au format des données qui transitent entre les étapes.
+
+Le dernier pattern qu'on va aborder est l'**architecture événementielle** (*event-driven*). Plutôt que d'appeler directement un autre composant (comme dans client-server), un composant *émet* un événement, et d'autres composants qui se sont *abonnés* à ce type d'événement le reçoivent et réagissent. Le producteur de l'événement ne sait pas qui l'écoute, ni même si quelqu'un l'écoute. Ce découplage est puissant : on peut ajouter de nouveaux comportements sans modifier le code existant. Par exemple, quand un utilisateur passe une commande sur un site de commerce en ligne, l'événement `CommandePassée` peut déclencher l'envoi d'un courriel de confirmation, la mise à jour de l'inventaire, et la notification au système de livraison, le tout sans que le module de commande ait besoin de connaître l'existence de ces autres modules. Ce pattern est omniprésent dans les systèmes distribués modernes, où des outils comme Apache Kafka ou RabbitMQ servent de bus d'événements. On le retrouvera d'ailleurs dans la section sur les données, quand on parlera de messaging et de streaming.

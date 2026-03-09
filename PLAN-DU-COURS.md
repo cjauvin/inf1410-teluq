@@ -110,7 +110,7 @@
 
 # Module 3 - Du programme au système
 
-## Introduction : la complexité comme problème central (à développer)
+## Introduction : la complexité comme problème central (complété)
 - Le passage du programme au système
 - Complexité essentielle vs accidentelle (Brooks, *No Silver Bullet*)
 - La gestion de la complexité comme fil conducteur
@@ -122,7 +122,7 @@
 NOTE : revisiter les modules 1 et 2 pour y intégrer des références aux
 principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 
-## Architecture et modularité (à développer)
+## Architecture et modularité (complété)
 - Introduction : pourquoi découper ?
 - Parnas et l'information hiding (1972)
   - Exemple KWIC (Key Word In Context) reproduit en Python
@@ -135,6 +135,9 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
   - Focus sur S (Single Responsibility) et D (Dependency Inversion)
   - Les autres (O, L, I) traités plus brièvement
   - Perspective critique : lien avec YAGNI
+- Composition over inheritance
+  - Exemple Python : héritage vs composition
+  - Lien avec le principe d'inversion des dépendances
 - Les couches (layers)
   - Pattern présentation → logique → données
   - Exemple concret en Python
@@ -142,11 +145,11 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
   - Le monolithe comme point de départ raisonnable
   - Quand et pourquoi découper
   - Loi de Conway (pont vers module 4)
-- Patterns architecturaux (en profondeur)
-  - Event-driven architecture
-  - Pipes and filters
-  - Client-server, MVC
-  - Liens avec les paradigmes de données (messaging, streaming)
+- Patterns architecturaux
+  - Client-server
+  - MVC (Reenskaug, 1979) et frameworks web (Rails, Django, Flask, etc.)
+  - Pipes and filters (philosophie Unix, lien avec KWIC)
+  - Architecture événementielle (event-driven, Kafka, RabbitMQ)
 
 ## Les APIs (à développer)
 - L’API comme interface entre composants

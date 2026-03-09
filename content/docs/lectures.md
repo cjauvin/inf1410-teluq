@@ -39,6 +39,9 @@ intégrées dans le cours.)*
   construction d'un modèle mental → [Module 2, Introduction]({{< ref "/docs/module2" >}})
 - Fred Brooks, *No Silver Bullet* (1986) : complexité essentielle vs
   accidentelle → [Module 3, Introduction]({{< ref "/docs/module3" >}})
+- Melvin Conway, *How Do Committees Invent?* (1968) : la structure d'un système
+  reflète celle de l'organisation qui le produit (loi de Conway) →
+  [Module 3, Architecture et modularité]({{< ref "/docs/module3/architecture" >}})
 - Edsger Dijkstra, *Go To Statement Considered Harmful* (1968) : plaidoyer pour
   la programmation structurée → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}})
 - Martin Fowler, *Continuous Integration* (2006) : article de référence sur
