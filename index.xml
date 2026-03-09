@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Accueil on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/</link><description>Recent content in Accueil on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/index.xml" rel="self" type="application/rss+xml"/><item><title>Environnements du cours</title><link>https://cjauvin.github.io/inf1410-teluq/docs/environnements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/environnements/</guid><description>&lt;h1 id="les-environnements-du-cours"&gt;Les environnements du cours&lt;a class="anchor" href="#les-environnements-du-cours"&gt;#&lt;/a&gt;&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Accueil on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/</link><description>Recent content in Accueil on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/index.xml" rel="self" type="application/rss+xml"/><item><title>Architecture et modularité</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/</guid><description>&lt;h1 id="architecture-et-modularité"&gt;Architecture et modularité&lt;a class="anchor" href="#architecture-et-modularit%c3%a9"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Quand un programme est petit, sa structure importe peu. On peut tout mettre dans
+un seul fichier, avec quelques fonctions, et ça fonctionne. Mais dès que le
+programme grossit, cette approche atteint ses limites. Un fichier de 5000 lignes
+devient difficile à naviguer. Deux développeurs qui modifient le même fichier se
+marchent sur les pieds. Un changement dans une partie du code casse quelque
+chose dans une autre. Le programme est devenu un système, mais sa structure ne
+le reflète pas encore. La question n&amp;rsquo;est alors pas &lt;em&gt;s&amp;rsquo;il faut&lt;/em&gt; découper le
+système en parties, mais &lt;em&gt;comment&lt;/em&gt; le découper. Et cette question est bien plus
+subtile qu&amp;rsquo;elle n&amp;rsquo;y paraît.&lt;/p&gt;</description></item><item><title>Environnements du cours</title><link>https://cjauvin.github.io/inf1410-teluq/docs/environnements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/environnements/</guid><description>&lt;h1 id="les-environnements-du-cours"&gt;Les environnements du cours&lt;a class="anchor" href="#les-environnements-du-cours"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;label class="book-image" for="book-image-toggle-0"&gt;
  &lt;input class="hidden toggle" type="checkbox" id="book-image-toggle-0" /&gt;
  &lt;img src="https://cjauvin.github.io/inf1410-teluq/docs/environnements/matrix.jpg" alt=""loading="lazy"title="" /&gt;
@@ -52,22 +61,7 @@ Voici comment ces trois niveaux s&amp;rsquo;articulent :&lt;/p&gt;
 &lt;p&gt;Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des
 symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
 », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en
-relation avec autre chose.&lt;/p&gt;</description></item><item><title>Principes généraux fameux</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/principes/</guid><description>&lt;h1 id="quelques-principes-généraux-fameux-en-développement-logiciel"&gt;Quelques principes généraux fameux en développement logiciel&lt;a class="anchor" href="#quelques-principes-g%c3%a9n%c3%a9raux-fameux-en-d%c3%a9veloppement-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="dry-dont-repeat-yourself-ne-vous-répétez-pas-"&gt;DRY (Don&amp;rsquo;t Repeat Yourself), ne vous répétez pas !&lt;a class="anchor" href="#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Le fameux principe
-&lt;a href="https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas"&gt;DRY&lt;/a&gt; est
-assurément l&amp;rsquo;un des plus profonds de l&amp;rsquo;informatique, qui consiste à simplement
-reconnaître que c&amp;rsquo;est préférable de modifier quelque chose à un seul endroit,
-plutôt que plusieurs, à la fois pour l&amp;rsquo;économie d&amp;rsquo;effort, et la minimisation des
-risques d&amp;rsquo;erreur.&lt;/p&gt;
-&lt;h2 id="kiss-keep-it-simple-stupid"&gt;KISS: Keep It Simple Stupid&lt;a class="anchor" href="#kiss-keep-it-simple-stupid"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="yagni"&gt;YAGNI&lt;a class="anchor" href="#yagni"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="solid"&gt;SOLID&lt;a class="anchor" href="#solid"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="separation-of-concerns"&gt;Separation of concerns&lt;a class="anchor" href="#separation-of-concerns"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="law-of-demeter"&gt;Law of Demeter&lt;a class="anchor" href="#law-of-demeter"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="composition-over-inheritance"&gt;Composition over inheritance&lt;a class="anchor" href="#composition-over-inheritance"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id="boy-scout-rule"&gt;Boy scout rule&lt;a class="anchor" href="#boy-scout-rule"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&amp;ldquo;Always leave the campground cleaner than you found it.&amp;rdquo;&lt;/p&gt;</description></item><item><title>Survol rapide de la programmation</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</guid><description>&lt;h1 id="survol-rapide-de-la-programmation"&gt;Survol rapide de la programmation&lt;a class="anchor" href="#survol-rapide-de-la-programmation"&gt;#&lt;/a&gt;&lt;/h1&gt;
+relation avec autre chose.&lt;/p&gt;</description></item><item><title>Survol rapide de la programmation</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</guid><description>&lt;h1 id="survol-rapide-de-la-programmation"&gt;Survol rapide de la programmation&lt;a class="anchor" href="#survol-rapide-de-la-programmation"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Nous allons faire un survol rapide des idées les plus importantes et
 fondamentales de la programmation logicielle. Pour aller droit au but, nous
 allons utiliser le langage Python, qui est très facile à comprendre, même sans
@@ -85,10 +79,11 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.&lt;/
 développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id="gestion-de-la-complexité"&gt;Gestion de la complexité&lt;a class="anchor" href="#gestion-de-la-complexit%c3%a9"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Complexité essentielle vs accidentelle&lt;/strong&gt; (Fred Brooks, &lt;em&gt;No Silver Bullet&lt;/em&gt;, 1986)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Complexité essentielle vs accidentelle&lt;/strong&gt; (Fred Brooks, &lt;em&gt;No Silver Bullet&lt;/em&gt;, 1986) → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/"&gt;Module 3, Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="principes-de-conception"&gt;Principes de conception&lt;a class="anchor" href="#principes-de-conception"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Information hiding&lt;/strong&gt; (David Parnas, 1972) : chaque module cache une décision de conception susceptible de changer → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;DRY&lt;/strong&gt; (Don&amp;rsquo;t Repeat Yourself)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;KISS&lt;/strong&gt; (Keep It Simple Stupid)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;YAGNI&lt;/strong&gt; (You Ain&amp;rsquo;t Gonna Need It)&lt;/li&gt;

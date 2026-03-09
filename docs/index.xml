@@ -39,10 +39,11 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.&lt;/
 développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id="gestion-de-la-complexité"&gt;Gestion de la complexité&lt;a class="anchor" href="#gestion-de-la-complexit%c3%a9"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Complexité essentielle vs accidentelle&lt;/strong&gt; (Fred Brooks, &lt;em&gt;No Silver Bullet&lt;/em&gt;, 1986)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Complexité essentielle vs accidentelle&lt;/strong&gt; (Fred Brooks, &lt;em&gt;No Silver Bullet&lt;/em&gt;, 1986) → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/"&gt;Module 3, Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="principes-de-conception"&gt;Principes de conception&lt;a class="anchor" href="#principes-de-conception"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Information hiding&lt;/strong&gt; (David Parnas, 1972) : chaque module cache une décision de conception susceptible de changer → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;DRY&lt;/strong&gt; (Don&amp;rsquo;t Repeat Yourself)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;KISS&lt;/strong&gt; (Keep It Simple Stupid)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;YAGNI&lt;/strong&gt; (You Ain&amp;rsquo;t Gonna Need It)&lt;/li&gt;
