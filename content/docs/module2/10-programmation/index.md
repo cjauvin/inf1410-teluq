@@ -670,3 +670,11 @@ structurer les données persistantes. Dans tous les cas, il s'agit de formaliser
 nos attentes sur la forme des données, pour que les erreurs soient détectées le
 plus tôt possible. Nous reviendrons en détail sur les bases de données et leurs
 schémas dans le module 3.
+
+
+## Suggestion de lecture
+
+
+Pour en savoir plus, <a href="https://www.amazon.ca/-/fr/dp/B0CVX9296P/">vous pouvez le manuel <em>Programmation avec Python: des jeux au Web</em> de Godin et lemire chez Amazon</a>  pour une somme modeste&nbsp;:
+
+<div><a href="https://www.amazon.ca/-/fr/dp/B0CVX9296P/"><img src="https://m.media-amazon.com/images/I/61bmvkZuHfL._SL1499_.jpg" width="250px" style="margin-left:auto; margin-right:auto;"></a></div>
