@@ -181,6 +181,12 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - Lien avec DRY : le schéma comme source unique de vérité
 - Lien avec la section sur les schémas (module 3, données)
 
+### Le pattern Backend For Frontend (BFF)
+- BFF (Sam Newman, 2015) : un backend dédié par type de client
+- Lien avec GraphQL : deux réponses au même problème (besoins différents par client)
+- Lien avec la fragmentation multi-plateforme (section interfaces, tensions et convergences)
+- Nuance : YAGNI quand un seul type de client, complémentarité avec GraphQL
+
 ## Les interfaces utilisateur (complété)
 
 ### Perspective historique (complété)
