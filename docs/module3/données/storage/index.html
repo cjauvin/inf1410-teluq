@@ -1,8 +1,5 @@
-<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="L’évolution des bases de données# Nous allons faire un survol de l’évolution des bases de données d’une manière un peu particulière : au lieu de donner leurs caractéristiques de manière abstraite et théorique, nous allons étudier un modèle simplifié sous la forme d’un programme python simple.
-Le modèle hiérarchique (IBM, années 69)# Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est fondamentalement basé sur la notion d’un arbre. Pour implémenter un modèle simplifié en python, c’est relativement facile.
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/storage/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Les bases de données"><meta property="og:description" content="L’évolution des bases de données# Nous allons faire un survol de l’évolution des bases de données d’une manière un peu particulière : au lieu de donner leurs caractéristiques de manière abstraite et théorique, nous allons étudier un modèle simplifié sous la forme d’un programme python simple.
-Le modèle hiérarchique (IBM, années 69)# Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est fondamentalement basé sur la notion d’un arbre. Pour implémenter un modèle simplifié en python, c’est relativement facile."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Les bases de données"><meta itemprop=description content="L’évolution des bases de données# Nous allons faire un survol de l’évolution des bases de données d’une manière un peu particulière : au lieu de donner leurs caractéristiques de manière abstraite et théorique, nous allons étudier un modèle simplifié sous la forme d’un programme python simple.
-Le modèle hiérarchique (IBM, années 69)# Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est fondamentalement basé sur la notion d’un arbre. Pour implémenter un modèle simplifié en python, c’est relativement facile."><meta itemprop=wordCount content="2298"><title>Les bases de données | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/storage/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/sql.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="L’évolution des bases de données# La section précédente a montré comment les données sont représentées : encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/storage/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Les bases de données"><meta property="og:description" content="L’évolution des bases de données# La section précédente a montré comment les données sont représentées : encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Les bases de données"><meta itemprop=description content="L’évolution des bases de données# La section précédente a montré comment les données sont représentées : encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données."><meta itemprop=wordCount content="3218"><title>Les bases de données | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/storage/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/sql.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
@@ -19,12 +16,36 @@ Le modèle hiérarchique (IBM, années 69)# Le premier modèle que nous allons e
 <label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/>La conteneurisation avec docker</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Les bases de données</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#le-modèle-hiérarchique-ibm-années-69>Le modèle hiérarchique (IBM, années 69)</a></li><li><a href=#le-modèle-en-réseau-codasyl-fin-des-années-60>Le modèle en réseau (CODASYL, fin des années 60)</a></li><li><a href=#le-modèle-relationnel-et-sql>Le modèle relationnel et SQL</a><ul><li><a href=#les-transactions>Les transactions</a></li><li><a href=#les-orms-object-relational-mappers>Les ORMs (object relational mappers)</a></li></ul></li><li><a href=#la-révolution-nosql>La révolution NoSQL</a><ul><li><a href=#key-value-stores>Key-Value Stores</a></li><li><a href=#document-stores>Document Stores</a></li><li><a href=#columnar-stores>Columnar Stores</a></li><li><a href=#graph-databases>Graph Databases</a></li></ul></li><li><a href=#les-bases-de-données-de-séries-temporelles>Les bases de données de séries temporelles</a></li><li><a href=#les-bases-de-données-vectorielles>Les bases de données vectorielles</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=lévolution-des-bases-de-données>L&rsquo;évolution des bases de données<a class=anchor href=#l%c3%a9volution-des-bases-de-donn%c3%a9es>#</a></h1><p>Nous allons faire un survol de l&rsquo;évolution des bases de données d&rsquo;une manière un
-peu particulière : au lieu de donner leurs caractéristiques de manière abstraite
-et théorique, nous allons étudier un modèle simplifié sous la forme d&rsquo;un
-programme python simple.</p><h2 id=le-modèle-hiérarchique-ibm-années-69>Le modèle hiérarchique (IBM, années 69)<a class=anchor href=#le-mod%c3%a8le-hi%c3%a9rarchique-ibm-ann%c3%a9es-69>#</a></h2><p>Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est
-fondamentalement basé sur la notion d&rsquo;un arbre. Pour implémenter un modèle
-simplifié en python, c&rsquo;est relativement facile.</p><div class=pyodide-block id=pyodide-0><textarea id=pyodide-0-code>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Les bases de données</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#le-modèle-hiérarchique-ibm-années-60>Le modèle hiérarchique (IBM, années 60)</a></li><li><a href=#le-modèle-en-réseau-codasyl-fin-des-années-60>Le modèle en réseau (CODASYL, fin des années 60)</a></li><li><a href=#le-modèle-relationnel-et-sql>Le modèle relationnel et SQL</a><ul><li><a href=#les-transactions>Les transactions</a></li><li><a href=#les-orms-object-relational-mappers>Les ORMs (object relational mappers)</a></li></ul></li><li><a href=#la-révolution-nosql>La révolution NoSQL</a><ul><li><a href=#key-value-stores>Key-Value Stores</a></li><li><a href=#document-stores>Document Stores</a></li><li><a href=#columnar-stores>Columnar Stores</a></li><li><a href=#graph-databases>Graph Databases</a></li></ul></li><li><a href=#les-bases-de-données-de-séries-temporelles>Les bases de données de séries temporelles</a></li><li><a href=#les-bases-de-données-vectorielles>Les bases de données vectorielles</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=lévolution-des-bases-de-données>L&rsquo;évolution des bases de données<a class=anchor href=#l%c3%a9volution-des-bases-de-donn%c3%a9es>#</a></h1><p>La section précédente a montré comment les données sont représentées : encodées
+en bits, sérialisées en formats textuels ou binaires, structurées par des
+schémas. Mais représenter des données ne suffit pas. Dès qu&rsquo;un système doit
+conserver des données au-delà de l&rsquo;exécution d&rsquo;un programme, les retrouver
+efficacement, et garantir leur cohérence même en cas de panne ou d&rsquo;accès
+concurrent, on entre dans le domaine des bases de données.</p><p>L&rsquo;histoire des bases de données est une des plus riches de l&rsquo;informatique. Elle
+s&rsquo;étend sur plus de soixante ans et reflète, à chaque étape, les tensions
+fondamentales du génie logiciel : simplicité contre expressivité, performance
+contre flexibilité, cohérence contre disponibilité. Martin Kleppmann, dans
+<em>Designing Data-Intensive Applications</em>, montre que comprendre cette histoire
+n&rsquo;est pas un exercice académique : les compromis qui ont guidé la conception
+d&rsquo;IMS en 1966 sont les mêmes qui orientent aujourd&rsquo;hui le choix entre une base
+relationnelle et une base NoSQL.</p><p>Nous allons parcourir cette évolution d&rsquo;une manière un peu particulière : au
+lieu de décrire chaque modèle de manière abstraite, nous allons les
+implémenter. Le même scénario universitaire (départements, professeurs, cours,
+étudiants) sera modélisé successivement dans le modèle hiérarchique, le modèle
+en réseau, puis le modèle relationnel, ce qui permettra de voir concrètement ce
+que chaque paradigme gagne et ce qu&rsquo;il perd par rapport au précédent. On
+poursuivra ensuite avec les transactions, les ORMs, la révolution NoSQL et les
+bases spécialisées.</p><h2 id=le-modèle-hiérarchique-ibm-années-60>Le modèle hiérarchique (IBM, années 60)<a class=anchor href=#le-mod%c3%a8le-hi%c3%a9rarchique-ibm-ann%c3%a9es-60>#</a></h2><p>Le modèle hiérarchique est le premier modèle de base de données à avoir été
+formalisé. Son incarnation la plus célèbre, IMS (<em>Information Management
+System</em>) d&rsquo;IBM, a été développée à partir de 1966 pour le programme Apollo de
+la NASA : il fallait gérer la nomenclature de millions de pièces qui composaient
+le vaisseau spatial, et cette nomenclature avait naturellement une structure
+d&rsquo;arbre (un module contient des sous-systèmes, qui contiennent des composants,
+qui contiennent des pièces). Le modèle hiérarchique généralise cette intuition :
+toutes les données sont organisées en arbre, où chaque enregistrement a
+exactement un parent (sauf la racine). L&rsquo;accès aux données est navigationnel :
+on descend dans l&rsquo;arbre en suivant les branches.</p><p>Pour comprendre concrètement ce que cela implique, implémentons un modèle
+hiérarchique simplifié en Python.</p><div class=pyodide-block id=pyodide-0><textarea id=pyodide-0-code>
 &#34;&#34;&#34;
 Modèle hiérarchique — illustration en Python
 ==============================================
@@ -57,8 +78,10 @@ class Noeud:
         return f&#34;{self.type_segment}({self.donnees})&#34;
 </textarea><div class=pyodide-toolbar><button id=pyodide-0-run onclick='pyodideRun("pyodide-0")'>&#9654; Exécuter</button>
 <button id=pyodide-0-reset onclick='pyodideReset("pyodide-0")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-0-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-0-output></pre></div><p>L&rsquo;implémentation d&rsquo;un arbre est fondamentalement très simple, comme on le constate.
-Nous allons maintenant créer une petite base de données dont le schéma sera :</p><pre tabindex=0><code>Université
+<span class=pyodide-status id=pyodide-0-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-0-output></pre></div><p>La structure est simple : un noeud contient un type, des données et une liste
+d&rsquo;enfants. C&rsquo;est précisément cette simplicité qui a rendu le modèle hiérarchique
+attrayant dans les années 60. Créons maintenant une petite base de données
+universitaire pour voir comment les données s&rsquo;organisent dans cet arbre :</p><pre tabindex=0><code>Université
   └── Département
         ├── Professeur
         └── Cours
@@ -87,8 +110,10 @@ algo.ajouter_enfant(&#34;Étudiant&#34;, {&#34;matricule&#34;: &#34;TRAA01&#34;,
 stat.ajouter_enfant(&#34;Étudiant&#34;, {&#34;matricule&#34;: &#34;MORB02&#34;, &#34;nom&#34;: &#34;Bob&#34;})    # ⚠ DUPLICATION
 </textarea><div class=pyodide-toolbar><button id=pyodide-1-run onclick='pyodideRun("pyodide-1")'>&#9654; Exécuter</button>
 <button id=pyodide-1-reset onclick='pyodideReset("pyodide-1")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-1-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-1-output></pre></div><p>Nous avons besoin de quelques mécanismes supplémentaires pour pouvoir faire des requêtes dans
-notre base de données :</p><div class=pyodide-block id=pyodide-2><textarea id=pyodide-2-code>
+<span class=pyodide-status id=pyodide-1-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-1-output></pre></div><p>Pour explorer cette base, il nous faut des outils de navigation. Dans IMS,
+l&rsquo;opération fondamentale était le <em>Get Next</em> (GN) : on parcourait l&rsquo;arbre en
+profondeur, segment par segment. Notre fonction <code>afficher_arbre</code> reproduit cette
+logique :</p><div class=pyodide-block id=pyodide-2><textarea id=pyodide-2-code>
 def afficher_arbre(noeud: Noeud, niveau: int = 0):
     &#34;&#34;&#34;Parcours en profondeur — la façon naturelle de lire une base hiérarchique.&#34;&#34;&#34;
     indent = &#34;    &#34; * niveau
@@ -98,7 +123,8 @@ def afficher_arbre(noeud: Noeud, niveau: int = 0):
 
 afficher_arbre(uqam)</textarea><div class=pyodide-toolbar><button id=pyodide-2-run onclick='pyodideRun("pyodide-2")'>&#9654; Exécuter</button>
 <button id=pyodide-2-reset onclick='pyodideReset("pyodide-2")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-2-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-2-output></pre></div><p>Ensuite on peut naviguer dans l&rsquo;arborescence des données :</p><div class=pyodide-block id=pyodide-3><textarea id=pyodide-3-code>
+<span class=pyodide-status id=pyodide-2-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-2-output></pre></div><p>On peut aussi naviguer vers un type de segment particulier en spécifiant un
+chemin dans l&rsquo;arbre, l&rsquo;équivalent simplifié de la commande GN d&rsquo;IMS :</p><div class=pyodide-block id=pyodide-3><textarea id=pyodide-3-code>
 def naviguer(noeud: Noeud, *chemin: str) -&gt; list[Noeud]:
     &#34;&#34;&#34;
     Navigation descendante par types de segments.
@@ -122,7 +148,8 @@ def naviguer(noeud: Noeud, *chemin: str) -&gt; list[Noeud]:
 for cours in naviguer(uqam, &#34;Département&#34;, &#34;Cours&#34;):
     print(f&#34;  → {cours.donnees}&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-3-run onclick='pyodideRun("pyodide-3")'>&#9654; Exécuter</button>
 <button id=pyodide-3-reset onclick='pyodideReset("pyodide-3")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-3-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-3-output></pre></div><p>On peut également y chercher quelque chose :</p><div class=pyodide-block id=pyodide-4><textarea id=pyodide-4-code>def chercher(noeud: Noeud, type_segment: str, cle: str, valeur) -&gt; list[Noeud]:
+<span class=pyodide-status id=pyodide-3-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-3-output></pre></div><p>Et si on veut chercher un enregistrement par sa valeur plutôt que par sa
+position dans l&rsquo;arbre, il faut parcourir toute la structure :</p><div class=pyodide-block id=pyodide-4><textarea id=pyodide-4-code>def chercher(noeud: Noeud, type_segment: str, cle: str, valeur) -&gt; list[Noeud]:
     &#34;&#34;&#34;
     Recherche par type &#43; valeur — toujours en descendant dans l&#39;arbre.
     &#34;&#34;&#34;
@@ -144,9 +171,15 @@ nœud a UN SEUL parent, donc Alice doit apparaître DEUX FOIS dans l&rsquo;arbre
     Cours INF3105
     └── Étudiant Alice  ← copie 2</code></pre><p>Conséquences :</p><ul><li>Gaspillage d&rsquo;espace</li><li>Risque d&rsquo;incohérence si on met à jour une copie mais pas l&rsquo;autre</li><li>Pas de moyen simple de poser la question :
 « À quels cours Alice est-elle inscrite ? »
-(il faut parcourir TOUT l&rsquo;arbre)</li></ul><h2 id=le-modèle-en-réseau-codasyl-fin-des-années-60>Le modèle en réseau (CODASYL, fin des années 60)<a class=anchor href=#le-mod%c3%a8le-en-r%c3%a9seau-codasyl-fin-des-ann%c3%a9es-60>#</a></h2><p>Le deuxième modèle important de base de données qui est apparu dans l&rsquo;histoire
-est le modèle en réseau. Si le modèle hiérarchique était basé sur un arbre, le
-modèle en réseau est basé sur un graphe :</p><div class=pyodide-block id=pyodide-5><textarea id=pyodide-5-code>
+(il faut parcourir TOUT l&rsquo;arbre)</li></ul><h2 id=le-modèle-en-réseau-codasyl-fin-des-années-60>Le modèle en réseau (CODASYL, fin des années 60)<a class=anchor href=#le-mod%c3%a8le-en-r%c3%a9seau-codasyl-fin-des-ann%c3%a9es-60>#</a></h2><p>Le modèle hiérarchique avait un défaut structurel : la contrainte d&rsquo;un seul
+parent par enregistrement rendait les relations plusieurs-à-plusieurs impossibles
+sans duplication. Le comité CODASYL (<em>Conference on Data Systems Languages</em>), le
+même organisme qui avait standardisé COBOL, s&rsquo;est attaqué à ce problème à la fin
+des années 60. Son <em>Data Base Task Group</em> (DBTG) a proposé en 1969 le modèle en
+réseau, qui généralise l&rsquo;arbre en graphe : un enregistrement peut désormais avoir
+plusieurs parents, grâce à des ensembles nommés (<em>sets</em>) qui relient un type
+« propriétaire » (<em>owner</em>) à un type « membre » (<em>member</em>). La duplication
+disparaît, mais l&rsquo;accès aux données reste navigationnel.</p><div class=pyodide-block id=pyodide-5><textarea id=pyodide-5-code>
 &#34;&#34;&#34;
 Modèle réseau (CODASYL) — illustration en Python
 ==================================================
@@ -260,8 +293,9 @@ class BaseReseau:
                 if r.type_record == type_record and r.donnees.get(cle) == valeur]
 </textarea><div class=pyodide-toolbar><button id=pyodide-5-run onclick='pyodideRun("pyodide-5")'>&#9654; Exécuter</button>
 <button id=pyodide-5-reset onclick='pyodideReset("pyodide-5")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-5-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-5-output></pre></div><p>À partir de cette mécanique, nous pouvons donc maintenant créer notre base de données
-en réseau :</p><div class=pyodide-block id=pyodide-6><textarea id=pyodide-6-code>
+<span class=pyodide-status id=pyodide-5-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-5-output></pre></div><p>Remarquons que les enregistrements existent désormais indépendamment, sans être
+imbriqués dans un arbre. Les liens entre eux sont explicites et nommés.
+Reconstruisons notre scénario universitaire avec ce modèle :</p><div class=pyodide-block id=pyodide-6><textarea id=pyodide-6-code>
 # ============================================================
 # 2. Construction de la base — même scénario universitaire
 # ============================================================
@@ -323,7 +357,9 @@ set_inscr_stat = db.creer_set(&#34;INSCRIPTION&#34;, stat)
 set_inscr_stat.inserer(bob)         # ✅ PAS de duplication !
 </textarea><div class=pyodide-toolbar><button id=pyodide-6-run onclick='pyodideRun("pyodide-6")'>&#9654; Exécuter</button>
 <button id=pyodide-6-reset onclick='pyodideReset("pyodide-6")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-6-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-6-output></pre></div><p>On peut afficher la structure de notre base de données :</p><div class=pyodide-block id=pyodide-7><textarea id=pyodide-7-code>
+<span class=pyodide-status id=pyodide-6-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-6-output></pre></div><p>Le résultat ressemble à ce qu&rsquo;on obtenait avec le modèle hiérarchique, mais la
+structure sous-jacente est fondamentalement différente : Alice et Bob n&rsquo;existent
+qu&rsquo;une seule fois dans la base :</p><div class=pyodide-block id=pyodide-7><textarea id=pyodide-7-code>
 print(&#34;=&#34; * 60)
 print(&#34;STRUCTURE DE LA BASE RÉSEAU&#34;)
 print(&#34;=&#34; * 60)
@@ -344,7 +380,8 @@ for dept in db.find_records(&#34;Département&#34;, &#34;nom&#34;, &#34;Informat
             print(f&#34;        → {c.donnees}  [{&#39;, &#39;.join(noms)}]&#34;)
 </textarea><div class=pyodide-toolbar><button id=pyodide-7-run onclick='pyodideRun("pyodide-7")'>&#9654; Exécuter</button>
 <button id=pyodide-7-reset onclick='pyodideReset("pyodide-7")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-7-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-7-output></pre></div><p>On peut faire une requête pour tous les étudiants inscrits à un cours particulier :</p><div class=pyodide-block id=pyodide-8><textarea id=pyodide-8-code>
+<span class=pyodide-status id=pyodide-7-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-7-output></pre></div><p>La navigation avant fonctionne comme avant : trouver les étudiants inscrits à un
+cours donné :</p><div class=pyodide-block id=pyodide-8><textarea id=pyodide-8-code>
 print(&#34;\n&#34; &#43; &#34;=&#34; * 60)
 print(&#34;NAVIGATION AVANT : étudiants inscrits à INF3080&#34;)
 print(&#34;=&#34; * 60)
@@ -352,7 +389,9 @@ for e in db.find_members(&#34;INSCRIPTION&#34;, bd):
     print(f&#34;  → {e.donnees}&#34;)
 </textarea><div class=pyodide-toolbar><button id=pyodide-8-run onclick='pyodideRun("pyodide-8")'>&#9654; Exécuter</button>
 <button id=pyodide-8-reset onclick='pyodideReset("pyodide-8")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-8-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-8-output></pre></div><p>Ou encore, une requête pour tous les cours suivis par une étudiante particulière :</p><div class=pyodide-block id=pyodide-9><textarea id=pyodide-9-code>
+<span class=pyodide-status id=pyodide-8-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-8-output></pre></div><p>Mais la vraie nouveauté, c&rsquo;est la navigation inverse. La question « à quels
+cours Alice est-elle inscrite ? », qui exigeait un parcours complet de l&rsquo;arbre
+dans le modèle hiérarchique, se résout maintenant directement :</p><div class=pyodide-block id=pyodide-9><textarea id=pyodide-9-code>
 print(&#34;\n&#34; &#43; &#34;=&#34; * 60)
 print(&#34;NAVIGATION INVERSE : cours d&#39;Alice&#34;)
 print(&#34;=&#34; * 60)
@@ -365,7 +404,34 @@ for c in cours_alice:
 deux sets INSCRIPTION (un par cours).</p><ul><li>Plus de duplication !</li><li>La question « quels cours suit Alice ? » se résout
 par navigation inverse (FIND OWNER WITHIN SET).</li></ul><p>Mais il reste des problèmes :</p><ul><li>L&rsquo;accès est toujours NAVIGATIONNEL : le programmeur doit connaître le schéma
 des sets et écrire des boucles pour traverser les liens.</li><li>Ajouter un nouveau type de lien exige de modifier le schéma et le code de
-navigation.</li><li>Pas de langage déclaratif : on dit COMMENT chercher, pas CE QU&rsquo;ON cherche.</li></ul><h2 id=le-modèle-relationnel-et-sql>Le modèle relationnel et SQL<a class=anchor href=#le-mod%c3%a8le-relationnel-et-sql>#</a></h2><p>On en arrive finalement au modèle relationnel.</p><div class=sql-block id=sql-10><textarea id=sql-10-code>
+navigation.</li><li>Pas de langage déclaratif : on dit COMMENT chercher, pas CE QU&rsquo;ON cherche.</li></ul><h2 id=le-modèle-relationnel-et-sql>Le modèle relationnel et SQL<a class=anchor href=#le-mod%c3%a8le-relationnel-et-sql>#</a></h2><p>En 1970, Edgar F. Codd, un mathématicien britannique travaillant chez IBM, publie
+un article qui va transformer le domaine : <em>A Relational Model of Data for Large
+Shared Data Banks</em>. Sa proposition est radicale : abandonner complètement la
+navigation. Au lieu de dire au système <em>comment</em> trouver les données (en
+descendant dans un arbre ou en suivant des liens), on lui dit <em>ce qu&rsquo;on cherche</em>,
+et c&rsquo;est le système qui détermine la meilleure façon de l&rsquo;obtenir. Les données
+sont organisées en tables (que Codd appelle « relations », d&rsquo;où le nom), et les
+requêtes s&rsquo;expriment dans un langage déclaratif : SQL. SQL est d&rsquo;ailleurs souvent
+considéré comme l&rsquo;exemple le plus abouti d&rsquo;un langage de quatrième génération
+(4GL) : un langage où le programmeur décrit ce qu&rsquo;il veut obtenir, pas comment y
+arriver.</p><blockquote class="book-hint info"><p><strong>Les générations de langages de programmation</strong></p><p>La classification des langages en « générations » est une grille de lecture
+historique qui a été très influente dans les années 80 et 90 :</p><ul><li><strong>1GL</strong> : le code machine, des séquences de 0 et de 1 directement exécutées
+par le processeur.</li><li><strong>2GL</strong> : l&rsquo;assembleur, qui remplace les codes binaires par des mnémoniques
+lisibles (<code>MOV</code>, <code>ADD</code>, <code>JMP</code>), mais reste lié à une architecture matérielle
+spécifique.</li><li><strong>3GL</strong> : les langages procéduraux de haut niveau (FORTRAN, C, COBOL, Java,
+Python), où le programmeur écrit des algorithmes qui décrivent <em>comment</em>
+résoudre un problème, de manière indépendante du matériel.</li><li><strong>4GL</strong> : les langages déclaratifs spécialisés, où le programmeur décrit <em>ce
+qu&rsquo;il veut</em> sans spécifier la procédure. SQL en est l&rsquo;exemple canonique : on
+écrit <code>SELECT ... WHERE ...</code> et c&rsquo;est l&rsquo;optimiseur de requêtes qui choisit le
+plan d&rsquo;exécution.</li></ul><p>À l&rsquo;époque, certains prédisaient l&rsquo;avènement d&rsquo;un 5GL qui permettrait de
+programmer en langage naturel. Cette vision ne s&rsquo;est pas concrétisée sous la
+forme imaginée, mais on peut noter que les LLMs modernes réalisent en quelque
+sorte cette promesse, d&rsquo;une manière que personne n&rsquo;avait anticipée.</p></blockquote><p>C&rsquo;est un changement de paradigme au sens propre du terme. Le modèle hiérarchique
+et le modèle en réseau demandaient au programmeur de connaître la structure
+physique des données et d&rsquo;écrire des boucles de navigation. Le modèle relationnel
+sépare la structure logique de l&rsquo;implémentation physique, une application directe
+du principe d&rsquo;<em>information hiding</em> de Parnas que nous avons vu dans la section
+sur l&rsquo;architecture.</p><div class=sql-block id=sql-11><textarea id=sql-11-code>
 -- ============================================================
 -- Modele relationnel -- illustration en SQL
 -- ============================================================
@@ -420,9 +486,12 @@ CREATE TABLE inscription (
     sigle     VARCHAR(10) REFERENCES cours(sigle),
     PRIMARY KEY (matricule, sigle)
 );
-</textarea><div class=sql-toolbar><button id=sql-10-run onclick='sqlRun("sql-10")'>&#9654; Exécuter</button>
-<button id=sql-10-reset onclick='sqlReset("sql-10")'>&#8634; Réinitialiser</button>
-<span class=sql-status id=sql-10-status></span></div><div class="sql-output sql-output-hidden" id=sql-10-output></div></div><p>Une fois notre schéma en place, on peut ajouter des données.</p><div class=sql-block id=sql-11><textarea id=sql-11-code>
+</textarea><div class=sql-toolbar><button id=sql-11-run onclick='sqlRun("sql-11")'>&#9654; Exécuter</button>
+<button id=sql-11-reset onclick='sqlReset("sql-11")'>&#8634; Réinitialiser</button>
+<span class=sql-status id=sql-11-status></span></div><div class="sql-output sql-output-hidden" id=sql-11-output></div></div><p>Remarquons la différence fondamentale : plus d&rsquo;arbre, plus de sets. Chaque
+entité a sa propre table, et les relations plusieurs-à-plusieurs passent par une
+table de jointure. Le schéma est déclaré une fois, et le SGBD se charge de
+l&rsquo;appliquer. Ajoutons nos données :</p><div class=sql-block id=sql-12><textarea id=sql-12-code>
 -- ============================================================
 -- 2. Insertion des donnees
 -- ============================================================
@@ -445,9 +514,12 @@ INSERT INTO inscription VALUES (&#39;TRAA01&#39;, &#39;INF3080&#39;);   -- Alice
 INSERT INTO inscription VALUES (&#39;TRAA01&#39;, &#39;INF3105&#39;);   -- Alice -&gt; Algo
 INSERT INTO inscription VALUES (&#39;MORB02&#39;, &#39;INF3080&#39;);   -- Bob   -&gt; BD
 INSERT INTO inscription VALUES (&#39;MORB02&#39;, &#39;MAT2080&#39;);   -- Bob   -&gt; Stat
-</textarea><div class=sql-toolbar><button id=sql-11-run onclick='sqlRun("sql-11")'>&#9654; Exécuter</button>
-<button id=sql-11-reset onclick='sqlReset("sql-11")'>&#8634; Réinitialiser</button>
-<span class=sql-status id=sql-11-status></span></div><div class="sql-output sql-output-hidden" id=sql-11-output></div></div><p>Et finalement on peut faire des requêtes :</p><div class=sql-block id=sql-12><textarea id=sql-12-code>
+</textarea><div class=sql-toolbar><button id=sql-12-run onclick='sqlRun("sql-12")'>&#9654; Exécuter</button>
+<button id=sql-12-reset onclick='sqlReset("sql-12")'>&#8634; Réinitialiser</button>
+<span class=sql-status id=sql-12-status></span></div><div class="sql-output sql-output-hidden" id=sql-12-output></div></div><p>C&rsquo;est dans les requêtes que la puissance du modèle relationnel se révèle. Chaque
+requête décrit <em>ce qu&rsquo;on veut</em>, pas <em>comment le trouver</em>. Reprenons les mêmes
+questions que dans les modèles précédents, plus une nouvelle qui aurait été quasi
+impossible à formuler avant :</p><div class=sql-block id=sql-13><textarea id=sql-13-code>
 -- ============================================================
 -- 3. Requetes declaratives -- CE QU&#39;ON CHERCHE, pas COMMENT
 -- ============================================================
@@ -489,12 +561,12 @@ SELECT DISTINCT e.nom
   JOIN inscription i2 ON i2.sigle = i1.sigle
  WHERE i2.matricule = &#39;TRAA01&#39;
    AND e.matricule != &#39;TRAA01&#39;;
-</textarea><div class=sql-toolbar><button id=sql-12-run onclick='sqlRun("sql-12")'>&#9654; Exécuter</button>
-<button id=sql-12-reset onclick='sqlReset("sql-12")'>&#8634; Réinitialiser</button>
-<span class=sql-status id=sql-12-status></span></div><div class="sql-output sql-output-hidden" id=sql-12-output></div></div><h3 id=les-transactions>Les transactions<a class=anchor href=#les-transactions>#</a></h3><h3 id=les-orms-object-relational-mappers>Les ORMs (object relational mappers)<a class=anchor href=#les-orms-object-relational-mappers>#</a></h3><h2 id=la-révolution-nosql>La révolution NoSQL<a class=anchor href=#la-r%c3%a9volution-nosql>#</a></h2><h3 id=key-value-stores>Key-Value Stores<a class=anchor href=#key-value-stores>#</a></h3><h3 id=document-stores>Document Stores<a class=anchor href=#document-stores>#</a></h3><h3 id=columnar-stores>Columnar Stores<a class=anchor href=#columnar-stores>#</a></h3><h3 id=graph-databases>Graph Databases<a class=anchor href=#graph-databases>#</a></h3><h2 id=les-bases-de-données-de-séries-temporelles>Les bases de données de séries temporelles<a class=anchor href=#les-bases-de-donn%c3%a9es-de-s%c3%a9ries-temporelles>#</a></h2><h2 id=les-bases-de-données-vectorielles>Les bases de données vectorielles<a class=anchor href=#les-bases-de-donn%c3%a9es-vectorielles>#</a></h2></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/repr%C3%A9sentation/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+</textarea><div class=sql-toolbar><button id=sql-13-run onclick='sqlRun("sql-13")'>&#9654; Exécuter</button>
+<button id=sql-13-reset onclick='sqlReset("sql-13")'>&#8634; Réinitialiser</button>
+<span class=sql-status id=sql-13-status></span></div><div class="sql-output sql-output-hidden" id=sql-13-output></div></div><h3 id=les-transactions>Les transactions<a class=anchor href=#les-transactions>#</a></h3><h3 id=les-orms-object-relational-mappers>Les ORMs (object relational mappers)<a class=anchor href=#les-orms-object-relational-mappers>#</a></h3><h2 id=la-révolution-nosql>La révolution NoSQL<a class=anchor href=#la-r%c3%a9volution-nosql>#</a></h2><h3 id=key-value-stores>Key-Value Stores<a class=anchor href=#key-value-stores>#</a></h3><h3 id=document-stores>Document Stores<a class=anchor href=#document-stores>#</a></h3><h3 id=columnar-stores>Columnar Stores<a class=anchor href=#columnar-stores>#</a></h3><h3 id=graph-databases>Graph Databases<a class=anchor href=#graph-databases>#</a></h3><h2 id=les-bases-de-données-de-séries-temporelles>Les bases de données de séries temporelles<a class=anchor href=#les-bases-de-donn%c3%a9es-de-s%c3%a9ries-temporelles>#</a></h2><h2 id=les-bases-de-données-vectorielles>Les bases de données vectorielles<a class=anchor href=#les-bases-de-donn%c3%a9es-vectorielles>#</a></h2></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/repr%C3%A9sentation/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
 <span>La représentation des données</span>
 </a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/autres-paradigmes/ class="flex align-center"><span>Autres paradigmes importants</span>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#le-modèle-hiérarchique-ibm-années-69>Le modèle hiérarchique (IBM, années 69)</a></li><li><a href=#le-modèle-en-réseau-codasyl-fin-des-années-60>Le modèle en réseau (CODASYL, fin des années 60)</a></li><li><a href=#le-modèle-relationnel-et-sql>Le modèle relationnel et SQL</a><ul><li><a href=#les-transactions>Les transactions</a></li><li><a href=#les-orms-object-relational-mappers>Les ORMs (object relational mappers)</a></li></ul></li><li><a href=#la-révolution-nosql>La révolution NoSQL</a><ul><li><a href=#key-value-stores>Key-Value Stores</a></li><li><a href=#document-stores>Document Stores</a></li><li><a href=#columnar-stores>Columnar Stores</a></li><li><a href=#graph-databases>Graph Databases</a></li></ul></li><li><a href=#les-bases-de-données-de-séries-temporelles>Les bases de données de séries temporelles</a></li><li><a href=#les-bases-de-données-vectorielles>Les bases de données vectorielles</a></li></ul></nav></div></aside></main><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js></script><script>const _pyodideEditors={};document.querySelectorAll(".pyodide-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const s=e.id,o=t.value,n=CodeMirror.fromTextArea(t,{mode:"python",theme:"material-darker",indentUnit:4,tabSize:4,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=o,_pyodideEditors[s]=n});let _pyodideReady=null;async function _getPyodide(){return _pyodideReady||(_pyodideReady=(async()=>(await new Promise((e,t)=>{const n=document.createElement("script");n.src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js",n.onload=e,n.onerror=t,document.head.appendChild(n)}),await loadPyodide()))()),_pyodideReady}async function pyodideRun(e){const o=_pyodideEditors[e],t=document.getElementById(e+"-output"),s=document.getElementById(e+"-run"),n=document.getElementById(e+"-status"),i=o.getValue();s.disabled=!0,t.textContent="",t.classList.remove("pyodide-output-hidden"),n.textContent="Chargement de Pyodide…";try{const e=await _getPyodide();n.textContent="Exécution…",e.runPython(`
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#le-modèle-hiérarchique-ibm-années-60>Le modèle hiérarchique (IBM, années 60)</a></li><li><a href=#le-modèle-en-réseau-codasyl-fin-des-années-60>Le modèle en réseau (CODASYL, fin des années 60)</a></li><li><a href=#le-modèle-relationnel-et-sql>Le modèle relationnel et SQL</a><ul><li><a href=#les-transactions>Les transactions</a></li><li><a href=#les-orms-object-relational-mappers>Les ORMs (object relational mappers)</a></li></ul></li><li><a href=#la-révolution-nosql>La révolution NoSQL</a><ul><li><a href=#key-value-stores>Key-Value Stores</a></li><li><a href=#document-stores>Document Stores</a></li><li><a href=#columnar-stores>Columnar Stores</a></li><li><a href=#graph-databases>Graph Databases</a></li></ul></li><li><a href=#les-bases-de-données-de-séries-temporelles>Les bases de données de séries temporelles</a></li><li><a href=#les-bases-de-données-vectorielles>Les bases de données vectorielles</a></li></ul></nav></div></aside></main><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js></script><script>const _pyodideEditors={};document.querySelectorAll(".pyodide-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const s=e.id,o=t.value,n=CodeMirror.fromTextArea(t,{mode:"python",theme:"material-darker",indentUnit:4,tabSize:4,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=o,_pyodideEditors[s]=n});let _pyodideReady=null;async function _getPyodide(){return _pyodideReady||(_pyodideReady=(async()=>(await new Promise((e,t)=>{const n=document.createElement("script");n.src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js",n.onload=e,n.onerror=t,document.head.appendChild(n)}),await loadPyodide()))()),_pyodideReady}async function pyodideRun(e){const o=_pyodideEditors[e],t=document.getElementById(e+"-output"),s=document.getElementById(e+"-run"),n=document.getElementById(e+"-status"),i=o.getValue();s.disabled=!0,t.textContent="",t.classList.remove("pyodide-output-hidden"),n.textContent="Chargement de Pyodide…";try{const e=await _getPyodide();n.textContent="Exécution…",e.runPython(`
 import sys, io
 sys.stdout = io.StringIO()
 sys.stderr = io.StringIO()

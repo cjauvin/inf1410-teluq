@@ -57,7 +57,11 @@ depot, qui se trouve &amp;ldquo;ailleurs&amp;rdquo; :&lt;/p&gt;</description></i
 &lt;p&gt;Le logiciel est partout. Il fait fonctionner les téléphones, les voitures, les hôpitaux, les banques, les avions. Pourtant, malgré des décennies de progrès, construire du logiciel reste une activité notoirement difficile. Les projets dépassent leurs budgets, les délais explosent, les bogues s&amp;rsquo;accumulent. En 1995, le Standish Group publiait son rapport &lt;em&gt;CHAOS&lt;/em&gt;, révélant que seulement 16% des projets logiciels étaient livrés à temps et dans les limites du budget. Trente ans plus tard, les échecs spectaculaires continuent de faire les manchettes. Au Québec, le projet SAAQclic de la Société de l&amp;rsquo;assurance automobile, estimé à 638 millions de dollars en 2017, a fini par coûter plus de 1,1 milliard, et son déploiement en 2023 a été marqué par des pannes majeures et des dépassements de coûts dissimulés pendant des années. Le génie logiciel, en tant que discipline, est né de ce constat : il ne suffit pas de savoir programmer pour construire du logiciel qui fonctionne.&lt;/p&gt;</description></item><item><title>La représentation des données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/repr%C3%A9sentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/repr%C3%A9sentation/</guid><description>&lt;h1 id="la-représentation-des-données"&gt;La représentation des données&lt;a class="anchor" href="#la-repr%c3%a9sentation-des-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="données-vs-information-vs-connaissances"&gt;Données vs information vs connaissances&lt;a class="anchor" href="#donn%c3%a9es-vs-information-vs-connaissances"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;C&amp;rsquo;est une distinction classique et fondamentale en sciences de l&amp;rsquo;information.
-Voici comment ces trois niveaux s&amp;rsquo;articulent :&lt;/p&gt;
+Martin Kleppmann consacre une partie importante de &lt;em&gt;Designing Data-Intensive
+Applications&lt;/em&gt; à ces questions de représentation, en montrant que le choix d&amp;rsquo;un
+format d&amp;rsquo;encodage et d&amp;rsquo;un schéma sont parmi les premières décisions
+architecturales qu&amp;rsquo;on prend quand on conçoit un système distribué. Voici
+comment ces trois niveaux s&amp;rsquo;articulent :&lt;/p&gt;
 &lt;p&gt;Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des
 symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
 », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en
@@ -183,14 +187,12 @@ paradigme dans la culture du développement logiciel, par rapport aux décennies
 qui précédaient.&lt;/p&gt;
 &lt;p&gt;Voici les douze principes du &lt;a href="https://agilemanifesto.org/iso/fr/principles.html"&gt;manifeste Agile&lt;/a&gt; :&lt;/p&gt;</description></item><item><title>Les APIs</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/</guid><description>&lt;h1 id="les-apis"&gt;Les APIs&lt;a class="anchor" href="#les-apis"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Le terme API (&lt;em&gt;Application Programming Interface&lt;/em&gt;) est omniprésent dans le vocabulaire du développement logiciel moderne. Mais ce qu&amp;rsquo;on entend par &amp;ldquo;API&amp;rdquo; aujourd&amp;rsquo;hui n&amp;rsquo;est pas ce qu&amp;rsquo;on entendait il y a trente ans. Le mot a traversé plusieurs incarnations, et chacune reflète un changement profond dans la manière dont on conçoit les systèmes logiciels. Comprendre cette évolution, c&amp;rsquo;est comprendre comment le génie logiciel est passé du programme monolithique au système distribué.&lt;/p&gt;</description></item><item><title>Les bases de données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/storage/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/storage/</guid><description>&lt;h1 id="lévolution-des-bases-de-données"&gt;L&amp;rsquo;évolution des bases de données&lt;a class="anchor" href="#l%c3%a9volution-des-bases-de-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Nous allons faire un survol de l&amp;rsquo;évolution des bases de données d&amp;rsquo;une manière un
-peu particulière : au lieu de donner leurs caractéristiques de manière abstraite
-et théorique, nous allons étudier un modèle simplifié sous la forme d&amp;rsquo;un
-programme python simple.&lt;/p&gt;
-&lt;h2 id="le-modèle-hiérarchique-ibm-années-69"&gt;Le modèle hiérarchique (IBM, années 69)&lt;a class="anchor" href="#le-mod%c3%a8le-hi%c3%a9rarchique-ibm-ann%c3%a9es-69"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est
-fondamentalement basé sur la notion d&amp;rsquo;un arbre. Pour implémenter un modèle
-simplifié en python, c&amp;rsquo;est relativement facile.&lt;/p&gt;</description></item><item><title>Les tests</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</guid><description>&lt;h1 id="les-tests"&gt;Les tests&lt;a class="anchor" href="#les-tests"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;La section précédente a montré comment les données sont représentées : encodées
+en bits, sérialisées en formats textuels ou binaires, structurées par des
+schémas. Mais représenter des données ne suffit pas. Dès qu&amp;rsquo;un système doit
+conserver des données au-delà de l&amp;rsquo;exécution d&amp;rsquo;un programme, les retrouver
+efficacement, et garantir leur cohérence même en cas de panne ou d&amp;rsquo;accès
+concurrent, on entre dans le domaine des bases de données.&lt;/p&gt;</description></item><item><title>Les tests</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</guid><description>&lt;h1 id="les-tests"&gt;Les tests&lt;a class="anchor" href="#les-tests"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Dans la section précédente, nous avons vu que la programmation repose sur des
 structures de données, des algorithmes et des systèmes de types. Mais écrire du
