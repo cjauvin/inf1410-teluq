@@ -237,7 +237,7 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - WebAssembly (WASM, W3C 2017) : code compilé dans le navigateur, Figma, Google Earth
 - La tension fondamentale : write once run anywhere vs expérience native optimale
 
-## Les données (en cours)
+## Les données (complété)
 
 ### La représentation des données (complété)
 - Données vs information vs connaissances (pyramide DIKW)
@@ -245,21 +245,23 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - La notion de schéma (SQL DDL, type hints, OpenAPI, JSON Schema)
 - Évolution des schémas (compatibilité avant/arrière)
 
-### Le stockage des données (en cours)
-- Modèle hiérarchique (IBM, années 60)
-- Modèle en réseau (CODASYL)
-- Modèle relationnel et SQL
-- Transactions (à développer)
-- ORMs (à développer)
-- Révolution NoSQL (à développer)
-- Bases de données de séries temporelles (à développer)
-- Bases de données vectorielles (à développer)
+### Le stockage des données (complété)
+- Arc historique : modèle hiérarchique (IMS, IBM, 1966) → réseau (CODASYL, 1969) → relationnel (Codd, 1970)
+- Transactions et propriétés ACID (Jim Gray)
+- ORMs et impedance mismatch (Hibernate, ActiveRecord, SQLAlchemy)
+- La révolution NoSQL (2009) :
+  - Bases clé-valeur (Redis, caching, invalidation)
+  - Bases orientées documents (MongoDB, lien avec IMS)
+  - Bases orientées colonnes (OLTP vs OLAP, data warehouse, ETL)
+  - Bases orientées graphes (Neo4j, Cypher, lien avec CODASYL)
+- Bases de séries temporelles (InfluxDB, Prometheus, TimescaleDB)
+- Bases vectorielles (embeddings, Word2Vec, RAG, ANN/HNSW)
 
-### Les autres paradigmes de données (complété)
-- Logging, Messaging, Streaming, Caching
-- Recherche et indexation, Object storage, Analytics/OLAP
-- Séries temporelles, Configuration/coordination
-- Données collaboratives/répliquées (CRDTs), Ledgers/blockchain
+### Au-delà des bases de données (complété)
+- Recherche et indexation (Salton, SMART, index inversé, TF-IDF, Elasticsearch)
+- Stockage objet (S3, MinIO, data lake vs data warehouse)
+- Données répliquées et CRDTs (Shapiro et al. 2011, Automerge, Yjs)
+- Registres immuables et blockchain (Nakamoto 2008, event sourcing, chaînage cryptographique)
 
 # Module 4 - Construire en équipe
 

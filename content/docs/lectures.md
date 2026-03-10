@@ -32,7 +32,7 @@ intégrées dans le cours.)*
 ## Articles et essais
 
 - Edgar F. Codd, *A Relational Model of Data for Large Shared Data Banks* (1970) :
-  article fondateur du modèle relationnel → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}})
+  article fondateur du modèle relationnel → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}}), [Module 3, Les données (stockage)]({{< ref "/docs/module3/données/storage" >}})
 - David Parnas, *On the Criteria To Be Used in Decomposing Systems into Modules*
   (1972) : introduction de l'information hiding → [Module 3, Architecture et modularité]({{< ref "/docs/module3/architecture" >}})
 - Peter Naur, *Programming as Theory Building* (1985) : programmer comme
@@ -58,3 +58,21 @@ intégrées dans le cours.)*
 - Leonard Richardson, *Richardson Maturity Model* : classification des APIs
   REST en quatre niveaux de maturité →
   [Module 3, Les APIs]({{< ref "/docs/module3/apis" >}})
+- Jim Gray, contributions aux transactions et bases de données (prix Turing
+  1998) : formalisation des propriétés ACID →
+  [Module 3, Les données (stockage)]({{< ref "/docs/module3/données/storage" >}})
+- Gerard Salton, *A Theory of Indexing* (1975) et le système SMART : père de
+  l'*information retrieval*, concepts fondateurs de TF-IDF et de l'index inversé →
+  [Module 3, Les données (au-delà des BD)]({{< ref "/docs/module3/données/autres-paradigmes" >}})
+- Google, *Bigtable: A Distributed Storage System for Structured Data* (2006) :
+  article fondateur du stockage orienté colonnes à grande échelle →
+  [Module 3, Les données (stockage)]({{< ref "/docs/module3/données/storage" >}})
+- Tomas Mikolov et al., *Efficient Estimation of Word Representations in Vector
+  Space* (2013) : introduction de Word2Vec et des embeddings de mots →
+  [Module 3, Les données (stockage)]({{< ref "/docs/module3/données/storage" >}})
+- Marc Shapiro, Nuno Preguiça, Carlos Baquero et Marek Zawirski, *Conflict-free
+  Replicated Data Types* (2011) : formalisation des CRDTs →
+  [Module 3, Les données (au-delà des BD)]({{< ref "/docs/module3/données/autres-paradigmes" >}})
+- Satoshi Nakamoto, *Bitcoin: A Peer-to-Peer Electronic Cash System* (2008) :
+  livre blanc introduisant la blockchain et le consensus distribué →
+  [Module 3, Les données (au-delà des BD)]({{< ref "/docs/module3/données/autres-paradigmes" >}})

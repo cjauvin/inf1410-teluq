@@ -38,12 +38,15 @@ pense et structure un système. Plutôt que de les présenter dans un catalogue
 isolé, nous les introduirons tout au long de ce module et des suivants, dans les
 contextes où ils sont le plus pertinents.
 
-Ce module s'articule autour de trois grandes dimensions. D'abord,
+Ce module s'articule autour de quatre grandes dimensions. D'abord,
 l'**architecture et la modularité** : comment découper un système en parties
 cohérentes, et quels sont les compromis impliqués. Ensuite, les **APIs** : le
 mécanisme par lequel ces parties communiquent entre elles, et qui constitue
-l'interface visible d'un système. Enfin, les **données** : comment on les
-représente, comment on les stocke, et comment elles circulent à travers les
-différentes couches d'un système. Ces trois dimensions sont étroitement liées,
-et ensemble, elles forment l'ossature de tout logiciel qui dépasse le stade du
-programme individuel.
+l'interface programmatique d'un système. Puis, les **interfaces utilisateur** :
+comment les humains interagissent avec le logiciel, de la ligne de commande aux
+applications web modernes, en passant par les tensions entre natif et
+cross-platform. Enfin, les **données** : comment on les représente, comment on
+les stocke, et comment elles circulent à travers les différentes couches d'un
+système. Ces quatre dimensions sont étroitement liées, et ensemble, elles
+forment l'ossature de tout logiciel qui dépasse le stade du programme
+individuel.
