@@ -5,16 +5,46 @@ weight: 20
 
 # L'évolution des bases de données
 
-Nous allons faire un survol de l'évolution des bases de données d'une manière un
-peu particulière : au lieu de donner leurs caractéristiques de manière abstraite
-et théorique, nous allons étudier un modèle simplifié sous la forme d'un
-programme python simple.
+La section précédente a montré comment les données sont représentées : encodées
+en bits, sérialisées en formats textuels ou binaires, structurées par des
+schémas. Mais représenter des données ne suffit pas. Dès qu'un système doit
+conserver des données au-delà de l'exécution d'un programme, les retrouver
+efficacement, et garantir leur cohérence même en cas de panne ou d'accès
+concurrent, on entre dans le domaine des bases de données.
 
-## Le modèle hiérarchique (IBM, années 69)
+L'histoire des bases de données est une des plus riches de l'informatique. Elle
+s'étend sur plus de soixante ans et reflète, à chaque étape, les tensions
+fondamentales du génie logiciel : simplicité contre expressivité, performance
+contre flexibilité, cohérence contre disponibilité. Martin Kleppmann, dans
+*Designing Data-Intensive Applications*, montre que comprendre cette histoire
+n'est pas un exercice académique : les compromis qui ont guidé la conception
+d'IMS en 1966 sont les mêmes qui orientent aujourd'hui le choix entre une base
+relationnelle et une base NoSQL.
 
-Le premier modèle que nous allons examiner est le modèle hiérarchique. Il est
-fondamentalement basé sur la notion d'un arbre. Pour implémenter un modèle
-simplifié en python, c'est relativement facile.
+Nous allons parcourir cette évolution d'une manière un peu particulière : au
+lieu de décrire chaque modèle de manière abstraite, nous allons les
+implémenter. Le même scénario universitaire (départements, professeurs, cours,
+étudiants) sera modélisé successivement dans le modèle hiérarchique, le modèle
+en réseau, puis le modèle relationnel, ce qui permettra de voir concrètement ce
+que chaque paradigme gagne et ce qu'il perd par rapport au précédent. On
+poursuivra ensuite avec les transactions, les ORMs, la révolution NoSQL et les
+bases spécialisées.
+
+## Le modèle hiérarchique (IBM, années 60)
+
+Le modèle hiérarchique est le premier modèle de base de données à avoir été
+formalisé. Son incarnation la plus célèbre, IMS (*Information Management
+System*) d'IBM, a été développée à partir de 1966 pour le programme Apollo de
+la NASA : il fallait gérer la nomenclature de millions de pièces qui composaient
+le vaisseau spatial, et cette nomenclature avait naturellement une structure
+d'arbre (un module contient des sous-systèmes, qui contiennent des composants,
+qui contiennent des pièces). Le modèle hiérarchique généralise cette intuition :
+toutes les données sont organisées en arbre, où chaque enregistrement a
+exactement un parent (sauf la racine). L'accès aux données est navigationnel :
+on descend dans l'arbre en suivant les branches.
+
+Pour comprendre concrètement ce que cela implique, implémentons un modèle
+hiérarchique simplifié en Python.
 
 {{< pyodide >}}
 
@@ -51,8 +81,10 @@ class Noeud:
 
 {{< /pyodide >}}
 
-L'implémentation d'un arbre est fondamentalement très simple, comme on le constate.
-Nous allons maintenant créer une petite base de données dont le schéma sera :
+La structure est simple : un noeud contient un type, des données et une liste
+d'enfants. C'est précisément cette simplicité qui a rendu le modèle hiérarchique
+attrayant dans les années 60. Créons maintenant une petite base de données
+universitaire pour voir comment les données s'organisent dans cet arbre :
 
 ```
 Université
@@ -89,8 +121,10 @@ stat.ajouter_enfant("Étudiant", {"matricule": "MORB02", "nom": "Bob"})    # ⚠
 
 {{< /pyodide >}}
 
-Nous avons besoin de quelques mécanismes supplémentaires pour pouvoir faire des requêtes dans
-notre base de données :
+Pour explorer cette base, il nous faut des outils de navigation. Dans IMS,
+l'opération fondamentale était le *Get Next* (GN) : on parcourait l'arbre en
+profondeur, segment par segment. Notre fonction `afficher_arbre` reproduit cette
+logique :
 
 {{< pyodide >}}
 
@@ -104,7 +138,8 @@ def afficher_arbre(noeud: Noeud, niveau: int = 0):
 afficher_arbre(uqam)
 {{< /pyodide >}}
 
-Ensuite on peut naviguer dans l'arborescence des données :
+On peut aussi naviguer vers un type de segment particulier en spécifiant un
+chemin dans l'arbre, l'équivalent simplifié de la commande GN d'IMS :
 
 {{< pyodide >}}
 
@@ -132,7 +167,8 @@ for cours in naviguer(uqam, "Département", "Cours"):
     print(f"  → {cours.donnees}")
 {{< /pyodide >}}
 
-On peut également y chercher quelque chose :
+Et si on veut chercher un enregistrement par sa valeur plutôt que par sa
+position dans l'arbre, il faut parcourir toute la structure :
 
 {{< pyodide >}}
 def chercher(noeud: Noeud, type_segment: str, cle: str, valeur) -> list[Noeud]:
@@ -171,9 +207,15 @@ Conséquences :
 
 ## Le modèle en réseau (CODASYL, fin des années 60)
 
-Le deuxième modèle important de base de données qui est apparu dans l'histoire
-est le modèle en réseau. Si le modèle hiérarchique était basé sur un arbre, le
-modèle en réseau est basé sur un graphe :
+Le modèle hiérarchique avait un défaut structurel : la contrainte d'un seul
+parent par enregistrement rendait les relations plusieurs-à-plusieurs impossibles
+sans duplication. Le comité CODASYL (*Conference on Data Systems Languages*), le
+même organisme qui avait standardisé COBOL, s'est attaqué à ce problème à la fin
+des années 60. Son *Data Base Task Group* (DBTG) a proposé en 1969 le modèle en
+réseau, qui généralise l'arbre en graphe : un enregistrement peut désormais avoir
+plusieurs parents, grâce à des ensembles nommés (*sets*) qui relient un type
+« propriétaire » (*owner*) à un type « membre » (*member*). La duplication
+disparaît, mais l'accès aux données reste navigationnel.
 
 {{< pyodide >}}
 
@@ -291,8 +333,9 @@ class BaseReseau:
 
 {{< /pyodide >}}
 
-À partir de cette mécanique, nous pouvons donc maintenant créer notre base de données
-en réseau :
+Remarquons que les enregistrements existent désormais indépendamment, sans être
+imbriqués dans un arbre. Les liens entre eux sont explicites et nommés.
+Reconstruisons notre scénario universitaire avec ce modèle :
 
 {{< pyodide >}}
 
@@ -358,7 +401,9 @@ set_inscr_stat.inserer(bob)         # ✅ PAS de duplication !
 
 {{< /pyodide >}}
 
-On peut afficher la structure de notre base de données :
+Le résultat ressemble à ce qu'on obtenait avec le modèle hiérarchique, mais la
+structure sous-jacente est fondamentalement différente : Alice et Bob n'existent
+qu'une seule fois dans la base :
 
 {{< pyodide >}}
 
@@ -383,7 +428,8 @@ for dept in db.find_records("Département", "nom", "Informatique") + \
 
 {{< /pyodide >}}
 
-On peut faire une requête pour tous les étudiants inscrits à un cours particulier :
+La navigation avant fonctionne comme avant : trouver les étudiants inscrits à un
+cours donné :
 
 {{< pyodide >}}
 
@@ -395,7 +441,9 @@ for e in db.find_members("INSCRIPTION", bd):
 
 {{< /pyodide >}}
 
-Ou encore, une requête pour tous les cours suivis par une étudiante particulière :
+Mais la vraie nouveauté, c'est la navigation inverse. La question « à quels
+cours Alice est-elle inscrite ? », qui exigeait un parcours complet de l'arbre
+dans le modèle hiérarchique, se résout maintenant directement :
 
 {{< pyodide >}}
 
@@ -424,7 +472,49 @@ Mais il reste des problèmes :
 
 ## Le modèle relationnel et SQL
 
-On en arrive finalement au modèle relationnel.
+En 1970, Edgar F. Codd, un mathématicien britannique travaillant chez IBM, publie
+un article qui va transformer le domaine : *A Relational Model of Data for Large
+Shared Data Banks*. Sa proposition est radicale : abandonner complètement la
+navigation. Au lieu de dire au système *comment* trouver les données (en
+descendant dans un arbre ou en suivant des liens), on lui dit *ce qu'on cherche*,
+et c'est le système qui détermine la meilleure façon de l'obtenir. Les données
+sont organisées en tables (que Codd appelle « relations », d'où le nom), et les
+requêtes s'expriment dans un langage déclaratif : SQL. SQL est d'ailleurs souvent
+considéré comme l'exemple le plus abouti d'un langage de quatrième génération
+(4GL) : un langage où le programmeur décrit ce qu'il veut obtenir, pas comment y
+arriver.
+
+{{% hint info %}}
+**Les générations de langages de programmation**
+
+La classification des langages en « générations » est une grille de lecture
+historique qui a été très influente dans les années 80 et 90 :
+
+- **1GL** : le code machine, des séquences de 0 et de 1 directement exécutées
+  par le processeur.
+- **2GL** : l'assembleur, qui remplace les codes binaires par des mnémoniques
+  lisibles (`MOV`, `ADD`, `JMP`), mais reste lié à une architecture matérielle
+  spécifique.
+- **3GL** : les langages procéduraux de haut niveau (FORTRAN, C, COBOL, Java,
+  Python), où le programmeur écrit des algorithmes qui décrivent *comment*
+  résoudre un problème, de manière indépendante du matériel.
+- **4GL** : les langages déclaratifs spécialisés, où le programmeur décrit *ce
+  qu'il veut* sans spécifier la procédure. SQL en est l'exemple canonique : on
+  écrit `SELECT ... WHERE ...` et c'est l'optimiseur de requêtes qui choisit le
+  plan d'exécution.
+
+À l'époque, certains prédisaient l'avènement d'un 5GL qui permettrait de
+programmer en langage naturel. Cette vision ne s'est pas concrétisée sous la
+forme imaginée, mais on peut noter que les LLMs modernes réalisent en quelque
+sorte cette promesse, d'une manière que personne n'avait anticipée.
+{{% /hint %}}
+
+C'est un changement de paradigme au sens propre du terme. Le modèle hiérarchique
+et le modèle en réseau demandaient au programmeur de connaître la structure
+physique des données et d'écrire des boucles de navigation. Le modèle relationnel
+sépare la structure logique de l'implémentation physique, une application directe
+du principe d'*information hiding* de Parnas que nous avons vu dans la section
+sur l'architecture.
 
 {{< sql >}}
 
@@ -485,7 +575,10 @@ CREATE TABLE inscription (
 
 {{< /sql >}}
 
-Une fois notre schéma en place, on peut ajouter des données.
+Remarquons la différence fondamentale : plus d'arbre, plus de sets. Chaque
+entité a sa propre table, et les relations plusieurs-à-plusieurs passent par une
+table de jointure. Le schéma est déclaré une fois, et le SGBD se charge de
+l'appliquer. Ajoutons nos données :
 
 {{< sql >}}
 
@@ -514,7 +607,10 @@ INSERT INTO inscription VALUES ('MORB02', 'MAT2080');   -- Bob   -> Stat
 
 {{< /sql >}}
 
-Et finalement on peut faire des requêtes :
+C'est dans les requêtes que la puissance du modèle relationnel se révèle. Chaque
+requête décrit *ce qu'on veut*, pas *comment le trouver*. Reprenons les mêmes
+questions que dans les modèles précédents, plus une nouvelle qui aurait été quasi
+impossible à formuler avant :
 
 {{< sql >}}
 

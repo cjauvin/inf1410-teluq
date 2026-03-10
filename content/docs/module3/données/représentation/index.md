@@ -8,7 +8,11 @@ weight: 10
 ## Données vs information vs connaissances
 
 C'est une distinction classique et fondamentale en sciences de l'information.
-Voici comment ces trois niveaux s'articulent :
+Martin Kleppmann consacre une partie importante de *Designing Data-Intensive
+Applications* à ces questions de représentation, en montrant que le choix d'un
+format d'encodage et d'un schéma sont parmi les premières décisions
+architecturales qu'on prend quand on conçoit un système distribué. Voici
+comment ces trois niveaux s'articulent :
 
 Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des
 symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
@@ -320,9 +324,11 @@ On retrouve le même principe que le DDL relationnel, mais appliqué au monde de
 ### L'évolution des schémas
 
 C'est un des problèmes les plus concrets et les plus sous-estimés en ingénierie
-logicielle. Les structures de données changent — on ajoute un champ, on renomme
-une colonne, on change un type. Mais les anciennes données (en base, en cache,
-en transit) existent toujours sous l'ancien schéma.
+logicielle, et un exemple concret de complexité essentielle au sens de Brooks :
+le changement est inévitable, et le schéma doit l'accommoder sans briser ce qui
+existe déjà. Les structures de données changent — on ajoute un champ, on
+renomme une colonne, on change un type. Mais les anciennes données (en base, en
+cache, en transit) existent toujours sous l'ancien schéma.
 
 On parle de **compatibilité ascendante** (*backward compatibility*) quand le
 nouveau code peut lire les anciennes données, et de **compatibilité
