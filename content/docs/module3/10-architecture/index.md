@@ -1,5 +1,6 @@
 ---
 title: "Architecture et modularité"
+slug: "architecture"
 weight: 10
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Les frameworks JavaScript"
+slug: "frameworks"
 weight: 30
 ---
 

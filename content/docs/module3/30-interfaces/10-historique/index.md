@@ -1,5 +1,6 @@
 ---
 title: "Perspective historique"
+slug: "historique"
 weight: 10
 ---
 

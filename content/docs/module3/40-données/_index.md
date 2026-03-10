@@ -1,6 +1,7 @@
 ---
 title: "Les données"
-weight: 20
+slug: "données"
+weight: 40
 bookCollapseSection: true
 ---
 

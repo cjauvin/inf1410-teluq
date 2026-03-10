@@ -1,5 +1,6 @@
 ---
 title: "La représentation des données"
+slug: "représentation"
 weight: 10
 ---
 

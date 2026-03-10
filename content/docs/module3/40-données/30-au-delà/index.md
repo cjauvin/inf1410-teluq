@@ -1,5 +1,6 @@
 ---
 title: "Au-delà des bases de données"
+slug: "au-delà"
 weight: 30
 ---
 

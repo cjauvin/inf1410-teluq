@@ -1,5 +1,6 @@
 ---
 title: "L'architecture des applications web"
+slug: "architectures-web"
 weight: 20
 ---
 

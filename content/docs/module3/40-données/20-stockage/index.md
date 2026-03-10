@@ -1,5 +1,6 @@
 ---
 title: "Les bases de données"
+slug: "stockage"
 weight: 20
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Desktop, web et mobile"
+slug: "convergences"
 weight: 40
 ---
 

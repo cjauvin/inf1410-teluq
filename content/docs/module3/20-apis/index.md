@@ -1,5 +1,6 @@
 ---
 title: "Les APIs"
+slug: "apis"
 weight: 20
 ---
 
