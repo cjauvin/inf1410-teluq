@@ -53,6 +53,7 @@ développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Composition over inheritance&lt;/strong&gt; (Gang of Four, &lt;em&gt;Design Patterns&lt;/em&gt;, 1994) : favoriser l&amp;rsquo;assemblage d&amp;rsquo;objets plutôt que l&amp;rsquo;héritage de classes → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Loi de Conway&lt;/strong&gt; (Melvin Conway, 1967) : la structure d&amp;rsquo;un système reflète la structure de communication de l&amp;rsquo;organisation qui le produit → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Principle of Least Astonishment (POLA)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Idempotence&lt;/strong&gt; : une opération qu&amp;rsquo;on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="principes-de-pratique"&gt;Principes de pratique&lt;a class="anchor" href="#principes-de-pratique"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
@@ -99,6 +100,18 @@ reflète celle de l&amp;rsquo;organisation qui le produit (loi de Conway) →
 la programmation structurée → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Martin Fowler, &lt;em&gt;Continuous Integration&lt;/em&gt; (2006) : article de référence sur
 l&amp;rsquo;intégration continue → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/"&gt;Module 2, L&amp;rsquo;intégration continue&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Roy Fielding, &lt;em&gt;Architectural Styles and the Design of Network-based Software
+Architectures&lt;/em&gt; (thèse de doctorat, 2000) : définition de REST →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Roy Fielding, &lt;em&gt;REST APIs must be hypertext-driven&lt;/em&gt; (billet de blog, 2008) :
+critique des APIs « REST » qui n&amp;rsquo;implémentent pas HATEOAS →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Peter Deutsch et al., &lt;em&gt;Fallacies of Distributed Computing&lt;/em&gt; (1994) : huit
+hypothèses fausses sur les systèmes distribués →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Leonard Richardson, &lt;em&gt;Richardson Maturity Model&lt;/em&gt; : classification des APIs
+REST en quatre niveaux de maturité →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
 faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc
