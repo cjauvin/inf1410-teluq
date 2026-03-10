@@ -47,7 +47,7 @@ développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;DRY&lt;/strong&gt; (Don&amp;rsquo;t Repeat Yourself, Hunt &amp;amp; Thomas, &lt;em&gt;The Pragmatic Programmer&lt;/em&gt;, 1999) : chaque connaissance doit avoir une représentation unique → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;KISS&lt;/strong&gt; (Keep It Simple Stupid)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;YAGNI&lt;/strong&gt; (You Ain&amp;rsquo;t Gonna Need It, Kent Beck, Extreme Programming) : ne construis pas d&amp;rsquo;abstraction pour un besoin qui n&amp;rsquo;existe pas encore → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Separation of Concerns&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Separation of Concerns&lt;/strong&gt; : diviser un système en parties qui traitent chacune un aspect distinct du problème → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"&gt;Module 3, Les données (OLTP vs OLAP)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;SOLID&lt;/strong&gt; (Robert C. Martin, &lt;em&gt;Clean Code&lt;/em&gt;, 2008) : cinq principes de conception OO (S, O, L, I, D) → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Law of Demeter&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Composition over inheritance&lt;/strong&gt; (Gang of Four, &lt;em&gt;Design Patterns&lt;/em&gt;, 1994) : favoriser l&amp;rsquo;assemblage d&amp;rsquo;objets plutôt que l&amp;rsquo;héritage de classes → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
@@ -81,12 +81,12 @@ de YAGNI et du TDD → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/
 &lt;li&gt;Gang of Four (Gamma, Helm, Johnson, Vlissides), &lt;em&gt;Design Patterns&lt;/em&gt; (1994) :
 catalogue fondateur des patrons de conception → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Martin Kleppmann, &lt;em&gt;Designing Data-Intensive Applications&lt;/em&gt; (2017) : référence
-moderne sur les systèmes de données → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/"&gt;Module 3, Les données&lt;/a&gt;&lt;/li&gt;
+moderne sur les systèmes de données → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/"&gt;Module 3, Les données&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="articles-et-essais"&gt;Articles et essais&lt;a class="anchor" href="#articles-et-essais"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Edgar F. Codd, &lt;em&gt;A Relational Model of Data for Large Shared Data Banks&lt;/em&gt; (1970) :
-article fondateur du modèle relationnel → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;&lt;/li&gt;
+article fondateur du modèle relationnel → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"&gt;Module 3, Les données (stockage)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;David Parnas, &lt;em&gt;On the Criteria To Be Used in Decomposing Systems into Modules&lt;/em&gt;
 (1972) : introduction de l&amp;rsquo;information hiding → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Peter Naur, &lt;em&gt;Programming as Theory Building&lt;/em&gt; (1985) : programmer comme
@@ -112,6 +112,24 @@ hypothèses fausses sur les systèmes distribués →
 &lt;li&gt;Leonard Richardson, &lt;em&gt;Richardson Maturity Model&lt;/em&gt; : classification des APIs
 REST en quatre niveaux de maturité →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Jim Gray, contributions aux transactions et bases de données (prix Turing
+1998) : formalisation des propriétés ACID →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"&gt;Module 3, Les données (stockage)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Gerard Salton, &lt;em&gt;A Theory of Indexing&lt;/em&gt; (1975) et le système SMART : père de
+l&amp;rsquo;&lt;em&gt;information retrieval&lt;/em&gt;, concepts fondateurs de TF-IDF et de l&amp;rsquo;index inversé →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/"&gt;Module 3, Les données (au-delà des BD)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google, &lt;em&gt;Bigtable: A Distributed Storage System for Structured Data&lt;/em&gt; (2006) :
+article fondateur du stockage orienté colonnes à grande échelle →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"&gt;Module 3, Les données (stockage)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tomas Mikolov et al., &lt;em&gt;Efficient Estimation of Word Representations in Vector
+Space&lt;/em&gt; (2013) : introduction de Word2Vec et des embeddings de mots →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"&gt;Module 3, Les données (stockage)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Marc Shapiro, Nuno Preguiça, Carlos Baquero et Marek Zawirski, &lt;em&gt;Conflict-free
+Replicated Data Types&lt;/em&gt; (2011) : formalisation des CRDTs →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/"&gt;Module 3, Les données (au-delà des BD)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Satoshi Nakamoto, &lt;em&gt;Bitcoin: A Peer-to-Peer Electronic Cash System&lt;/em&gt; (2008) :
+livre blanc introduisant la blockchain et le consensus distribué →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/"&gt;Module 3, Les données (au-delà des BD)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
 faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc

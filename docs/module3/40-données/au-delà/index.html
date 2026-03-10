@@ -1,0 +1,495 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Au-delà des bases de données# Les bases de données, qu’elles soient relationnelles ou NoSQL, répondent à un besoin fondamental : stocker des données structurées et les retrouver par des requêtes. Mais dans un système réel, les données vivent aussi ailleurs. Elles sont indexées pour la recherche en texte intégral, archivées dans des lacs de données sous forme d’objets, répliquées entre appareils qui ne sont pas toujours connectés, ou inscrites dans des registres immuables où chaque modification est tracée à jamais. Ces paradigmes ne remplacent pas les bases de données : ils les complètent, chacun répondant à un besoin que les bases traditionnelles servent mal.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Au-delà des bases de données"><meta property="og:description" content="Au-delà des bases de données# Les bases de données, qu’elles soient relationnelles ou NoSQL, répondent à un besoin fondamental : stocker des données structurées et les retrouver par des requêtes. Mais dans un système réel, les données vivent aussi ailleurs. Elles sont indexées pour la recherche en texte intégral, archivées dans des lacs de données sous forme d’objets, répliquées entre appareils qui ne sont pas toujours connectés, ou inscrites dans des registres immuables où chaque modification est tracée à jamais. Ces paradigmes ne remplacent pas les bases de données : ils les complètent, chacun répondant à un besoin que les bases traditionnelles servent mal."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Au-delà des bases de données"><meta itemprop=description content="Au-delà des bases de données# Les bases de données, qu’elles soient relationnelles ou NoSQL, répondent à un besoin fondamental : stocker des données structurées et les retrouver par des requêtes. Mais dans un système réel, les données vivent aussi ailleurs. Elles sont indexées pour la recherche en texte intégral, archivées dans des lacs de données sous forme d’objets, répliquées entre appareils qui ne sont pas toujours connectés, ou inscrites dans des registres immuables où chaque modification est tracée à jamais. Ces paradigmes ne remplacent pas les bases de données : ils les complètent, chacun répondant à un besoin que les bases traditionnelles servent mal."><meta itemprop=wordCount content="2546"><title>Au-delà des bases de données | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - Concevoir un programme correct</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle checked>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Du programme au système</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
+<label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/>Perspective historique</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>L'architecture des applications web</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/>Les frameworks JavaScript</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/convergences/>Desktop, web et mobile</a></li></ul></li><li><input type=checkbox id=section-e4d51cc3c07f12fea00e9c0cd309e911 class=toggle checked>
+<label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/ class=active>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - Construire en équipe</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/>Le manifeste Agile</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/>La conteneurisation avec docker</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Au-delà des bases de données</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#la-recherche-et-lindexation>La recherche et l&rsquo;indexation</a></li><li><a href=#le-stockage-objet>Le stockage objet</a></li><li><a href=#les-données-répliquées-et-les-crdts>Les données répliquées et les CRDTs</a></li><li><a href=#les-registres-immuables-et-la-blockchain>Les registres immuables et la blockchain</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=au-delà-des-bases-de-données>Au-delà des bases de données<a class=anchor href=#au-del%c3%a0-des-bases-de-donn%c3%a9es>#</a></h1><p>Les bases de données, qu&rsquo;elles soient relationnelles ou NoSQL, répondent à un
+besoin fondamental : stocker des données structurées et les retrouver par des
+requêtes. Mais dans un système réel, les données vivent aussi ailleurs. Elles
+sont indexées pour la recherche en texte intégral, archivées dans des lacs de
+données sous forme d&rsquo;objets, répliquées entre appareils qui ne sont pas toujours
+connectés, ou inscrites dans des registres immuables où chaque modification est
+tracée à jamais. Ces paradigmes ne remplacent pas les bases de données : ils les
+complètent, chacun répondant à un besoin que les bases traditionnelles servent
+mal.</p><h2 id=la-recherche-et-lindexation>La recherche et l&rsquo;indexation<a class=anchor href=#la-recherche-et-lindexation>#</a></h2><p>La recherche d&rsquo;information (<em>information retrieval</em>) est un domaine qui précède
+l&rsquo;informatique moderne. Dès les années 1960, Gerard Salton et son équipe à
+Cornell développent le système SMART (<em>System for the Mechanical Analysis and
+Retrieval of Text</em>), qui introduit les concepts fondamentaux encore utilisés
+aujourd&rsquo;hui : la pondération des termes (TF-IDF), le modèle vectoriel de
+similarité entre documents, et l&rsquo;évaluation de la pertinence par précision et
+rappel. Le mécanisme central est l&rsquo;index inversé (<em>inverted index</em>) : plutôt que
+de parcourir chaque document pour y chercher un mot, on construit à l&rsquo;avance une
+table qui associe chaque terme à la liste des documents qui le contiennent,
+exactement comme l&rsquo;index à la fin d&rsquo;un livre. Google, à sa fondation en 1998,
+n&rsquo;est fondamentalement rien d&rsquo;autre qu&rsquo;un index inversé à l&rsquo;échelle du web,
+enrichi par l&rsquo;algorithme PageRank pour classer les résultats.</p><p>Dans le monde du logiciel d&rsquo;entreprise,
+<a href=https://www.elastic.co/elasticsearch>Elasticsearch</a> (2010, Shay Banon) et
+<a href=https://solr.apache.org/>Apache Solr</a>, tous deux construits sur la
+bibliothèque <a href=https://lucene.apache.org/>Apache Lucene</a>, sont les moteurs de
+recherche les plus utilisés. Ils offrent la tokenisation (découpage du texte en
+termes), la racinisation (<em>stemming</em> : « chercher », « cherche », « cherché » →
+« cherch »), le classement par pertinence (TF-IDF, BM25) et la recherche par
+facettes. Elasticsearch est aussi au cœur de la pile ELK (Elasticsearch,
+Logstash, Kibana) utilisée pour l&rsquo;analyse de logs, qu&rsquo;on retrouvera dans le
+module 5.</p><p>En Python, on peut illustrer le concept d&rsquo;index inversé avec un simple
+dictionnaire, ce qui permet de comprendre le principe avant de passer à des
+systèmes distribués :</p><div class=pyodide-block id=pyodide-0><textarea id=pyodide-0-code>import re
+from collections import defaultdict
+
+# --- Construction d&#39;un index inversé ---
+
+documents = {
+    1: &#34;Le langage Python est utilisé en science des données et en intelligence artificielle&#34;,
+    2: &#34;Les bases de données relationnelles utilisent le langage SQL pour les requêtes&#34;,
+    3: &#34;Python permet de se connecter à des bases de données avec des bibliothèques comme SQLAlchemy&#34;,
+    4: &#34;L&#39;intelligence artificielle utilise des modèles entraînés sur de grandes quantités de données&#34;,
+    5: &#34;La science des données combine statistiques, programmation Python et visualisation&#34;,
+}
+
+def tokeniser(texte):
+    &#34;&#34;&#34;Découpe un texte en tokens normalisés (minuscules, sans ponctuation).&#34;&#34;&#34;
+    return re.findall(r&#34;\b[a-zàâéèêëïîôùûüç]&#43;\b&#34;, texte.lower())
+
+# Construire l&#39;index inversé
+index = defaultdict(set)
+for doc_id, texte in documents.items():
+    for token in tokeniser(texte):
+        index[token].add(doc_id)
+
+print(f&#34;=== Index inversé ({len(index)} termes) ===\n&#34;)
+for terme in [&#34;python&#34;, &#34;données&#34;, &#34;intelligence&#34;, &#34;sql&#34;]:
+    print(f&#39;  &#34;{terme}&#34; → documents {sorted(index[terme])}&#39;)
+
+# --- Recherche avec classement par pertinence (TF simple) ---
+
+def rechercher(requete, index, documents):
+    &#34;&#34;&#34;Recherche les documents correspondant à la requête, classés par pertinence.&#34;&#34;&#34;
+    termes = tokeniser(requete)
+    scores = defaultdict(int)
+    for terme in termes:
+        for doc_id in index.get(terme, set()):
+            scores[doc_id] &#43;= 1  # Score = nombre de termes trouvés
+    resultats = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    return resultats
+
+print(f&#34;\n=== Recherche : &#39;Python données science&#39; ===\n&#34;)
+resultats = rechercher(&#34;Python données science&#34;, index, documents)
+for doc_id, score in resultats:
+    print(f&#34;  [{score} terme(s)] Doc {doc_id}: {documents[doc_id][:70]}...&#34;)
+
+print(f&#34;\n=== Recherche : &#39;intelligence artificielle&#39; ===\n&#34;)
+resultats = rechercher(&#34;intelligence artificielle&#34;, index, documents)
+for doc_id, score in resultats:
+    print(f&#34;  [{score} terme(s)] Doc {doc_id}: {documents[doc_id][:70]}...&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-0-run onclick='pyodideRun("pyodide-0")'>&#9654; Exécuter</button>
+<button id=pyodide-0-reset onclick='pyodideReset("pyodide-0")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-0-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-0-output></pre></div><h2 id=le-stockage-objet>Le stockage objet<a class=anchor href=#le-stockage-objet>#</a></h2><p>Le stockage objet (<em>object storage</em>) est né d&rsquo;un constat simple : les systèmes
+de fichiers traditionnels, avec leur hiérarchie de répertoires, ne passent pas à
+l&rsquo;échelle du web. Quand on doit stocker des milliards de photos, de vidéos ou de
+fichiers de logs, la métaphore du dossier et du sous-dossier devient un goulot
+d&rsquo;étranglement. Amazon S3 (<em>Simple Storage Service</em>), lancé en mars 2006, a
+proposé une alternative radicale : un espace de noms plat (<em>flat namespace</em>) où
+chaque objet est identifié par une clé unique (qui peut ressembler à un chemin,
+comme <code>rapports/2025/ventes-q1.csv</code>, mais qui n&rsquo;est qu&rsquo;une chaîne de
+caractères). Chaque objet contient les données brutes (<em>blob</em>), des métadonnées
+descriptives et sa clé d&rsquo;identification. L&rsquo;API de S3 est devenue un standard de
+facto, implémenté par des alternatives open source comme
+<a href=https://min.io/>MinIO</a>.</p><p>Dans l&rsquo;architecture des systèmes de données, le stockage objet joue souvent le
+rôle de <em>data lake</em> (lac de données) : un réservoir brut où l&rsquo;on déverse tout
+(logs, exports CSV, images, modèles entraînés) sans imposer de structure a
+priori. C&rsquo;est l&rsquo;opposé du <em>data warehouse</em> (entrepôt de données) vu dans la
+section précédente, où les données sont nettoyées et structurées selon un schéma
+rigide. Le pattern typique est de stocker les données brutes dans un lac (S3,
+MinIO), puis de les extraire, transformer et charger (ETL) vers un entrepôt
+orienté colonnes pour l&rsquo;analyse. Cette complémentarité illustre un thème
+récurrent : il n&rsquo;y a pas un seul bon endroit pour les données, mais plusieurs,
+chacun optimisé pour un usage différent.</p><p>En Python, on peut illustrer les concepts fondamentaux du stockage objet (espace
+de noms plat, métadonnées, opérations CRUD par clé) avec un simple
+dictionnaire :</p><div class=pyodide-block id=pyodide-1><textarea id=pyodide-1-code>import datetime
+import hashlib
+import json
+
+class StockageObjet:
+    &#34;&#34;&#34;Simulacre minimaliste d&#39;un service de stockage objet (style S3).&#34;&#34;&#34;
+
+    def __init__(self, nom_bucket):
+        self.nom = nom_bucket
+        self.objets = {}  # clé → {&#34;donnees&#34;: bytes, &#34;meta&#34;: dict}
+
+    def put(self, cle, donnees, **meta):
+        &#34;&#34;&#34;Dépose un objet dans le bucket.&#34;&#34;&#34;
+        contenu = donnees.encode() if isinstance(donnees, str) else donnees
+        self.objets[cle] = {
+            &#34;donnees&#34;: contenu,
+            &#34;meta&#34;: {
+                &#34;taille&#34;: len(contenu),
+                &#34;md5&#34;: hashlib.md5(contenu).hexdigest(),
+                &#34;date&#34;: datetime.datetime.now().isoformat(),
+                **meta,
+            },
+        }
+        print(f&#34;  PUT  {cle}  ({len(contenu)} octets)&#34;)
+
+    def get(self, cle):
+        &#34;&#34;&#34;Récupère un objet par sa clé.&#34;&#34;&#34;
+        obj = self.objets.get(cle)
+        if obj is None:
+            print(f&#34;  GET  {cle}  → NON TROUVÉ&#34;)
+            return None
+        print(f&#34;  GET  {cle}  → {obj[&#39;meta&#39;][&#39;taille&#39;]} octets&#34;)
+        return obj[&#34;donnees&#34;]
+
+    def head(self, cle):
+        &#34;&#34;&#34;Retourne uniquement les métadonnées (sans télécharger le contenu).&#34;&#34;&#34;
+        obj = self.objets.get(cle)
+        if obj is None:
+            return None
+        return obj[&#34;meta&#34;]
+
+    def ls(self, prefixe=&#34;&#34;):
+        &#34;&#34;&#34;Liste les clés avec un préfixe donné (simule le flat namespace).&#34;&#34;&#34;
+        return [c for c in sorted(self.objets) if c.startswith(prefixe)]
+
+    def delete(self, cle):
+        &#34;&#34;&#34;Supprime un objet.&#34;&#34;&#34;
+        if cle in self.objets:
+            del self.objets[cle]
+            print(f&#34;  DEL  {cle}&#34;)
+
+# --- Démonstration ---
+
+bucket = StockageObjet(&#34;mon-data-lake&#34;)
+
+print(&#34;=== Dépôt d&#39;objets ===\n&#34;)
+bucket.put(&#34;rapports/2025/ventes-q1.csv&#34;, &#34;produit,montant\nCafé,1200\nThé,800&#34;, type=&#34;text/csv&#34;)
+bucket.put(&#34;rapports/2025/ventes-q2.csv&#34;, &#34;produit,montant\nCafé,1350\nThé,920&#34;, type=&#34;text/csv&#34;)
+bucket.put(&#34;images/logo.png&#34;, &#34;&lt;&lt;données binaires PNG simulées&gt;&gt;&#34;, type=&#34;image/png&#34;)
+bucket.put(&#34;modeles/classification-v2.pkl&#34;, &#34;&lt;&lt;modèle sérialisé&gt;&gt;&#34;, type=&#34;application/octet-stream&#34;)
+
+print(f&#34;\n=== Liste par préfixe ===\n&#34;)
+for prefixe in [&#34;rapports/&#34;, &#34;images/&#34;, &#34;&#34;]:
+    cles = bucket.ls(prefixe)
+    label = prefixe if prefixe else &#34;(tout)&#34;
+    print(f&#39;  &#34;{label}&#34; → {cles}&#39;)
+
+print(f&#34;\n=== Métadonnées (HEAD) ===\n&#34;)
+meta = bucket.head(&#34;rapports/2025/ventes-q1.csv&#34;)
+for k, v in meta.items():
+    print(f&#34;  {k:8s} : {v}&#34;)
+
+print(f&#34;\n=== Lecture et suppression ===\n&#34;)
+contenu = bucket.get(&#34;rapports/2025/ventes-q1.csv&#34;)
+print(f&#34;  Contenu : {contenu.decode()[:50]}...&#34;)
+bucket.delete(&#34;modeles/classification-v2.pkl&#34;)
+print(f&#34;  Objets restants : {bucket.ls()}&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-1-run onclick='pyodideRun("pyodide-1")'>&#9654; Exécuter</button>
+<button id=pyodide-1-reset onclick='pyodideReset("pyodide-1")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-1-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-1-output></pre></div><h2 id=les-données-répliquées-et-les-crdts>Les données répliquées et les CRDTs<a class=anchor href=#les-donn%c3%a9es-r%c3%a9pliqu%c3%a9es-et-les-crdts>#</a></h2><p>Jusqu&rsquo;ici, on a implicitement supposé que les données vivent dans un seul
+endroit faisant autorité : un serveur de base de données, un bucket S3, un
+moteur de recherche. Mais que se passe-t-il quand les données doivent exister
+simultanément sur plusieurs appareils qui ne sont pas toujours connectés ? C&rsquo;est
+le défi de l&rsquo;édition collaborative en temps réel (Google Docs, Figma) et des
+applications <em>offline-first</em> (qui fonctionnent hors ligne et se synchronisent
+plus tard). Le problème fondamental est la convergence : si Alice et Bob
+modifient chacun leur copie locale des mêmes données, comment garantir qu&rsquo;après
+synchronisation, ils auront le même résultat, quel que soit l&rsquo;ordre dans lequel
+les modifications arrivent ?</p><p>La réponse théorique est venue en 2011, quand Marc Shapiro, Nuno Preguiça,
+Carlos Baquero et Marek Zawirski ont formalisé les CRDT (<em>Conflict-free
+Replicated Data Types</em>), des structures de données mathématiquement conçues pour
+que la fusion de modifications concurrentes soit toujours possible sans conflit.
+L&rsquo;intuition est élégante : on conçoit des opérations qui sont commutatives
+(l&rsquo;ordre n&rsquo;importe pas) et idempotentes (appliquer deux fois donne le même
+résultat). Un G-Counter (compteur croissant), par exemple, donne à chaque nœud
+son propre compteur ; la fusion prend le maximum de chaque compteur, et la
+valeur globale est la somme. Peu importe l&rsquo;ordre de synchronisation, le résultat
+est toujours correct. Martin Kleppmann, l&rsquo;auteur de <em>Designing Data-Intensive
+Applications</em>, travaille activement sur ce sujet : il est l&rsquo;un des créateurs
+d&rsquo;<a href=https://automerge.org/>Automerge</a>, une bibliothèque CRDT pour l&rsquo;édition
+collaborative. <a href=https://yjs.dev/>Yjs</a> est l&rsquo;autre bibliothèque de référence
+dans ce domaine.</p><p>En Python, on peut implémenter deux CRDTs fondamentaux pour illustrer comment la
+convergence automatique fonctionne :</p><div class=pyodide-block id=pyodide-2><textarea id=pyodide-2-code># --- G-Counter : compteur distribué (croissant seulement) ---
+
+class GCounter:
+    &#34;&#34;&#34;
+    Grow-only Counter — chaque nœud maintient son propre compteur.
+    La valeur globale est la somme de tous les compteurs.
+    La fusion prend le max de chaque compteur (idempotente et commutative).
+    &#34;&#34;&#34;
+
+    def __init__(self, noeud_id, compteurs=None):
+        self.noeud_id = noeud_id
+        self.compteurs = dict(compteurs) if compteurs else {}
+
+    def incrementer(self, n=1):
+        self.compteurs[self.noeud_id] = self.compteurs.get(self.noeud_id, 0) &#43; n
+
+    def valeur(self):
+        return sum(self.compteurs.values())
+
+    def merge(self, autre):
+        &#34;&#34;&#34;Fusionne avec un autre G-Counter (max par nœud).&#34;&#34;&#34;
+        tous_noeuds = set(self.compteurs) | set(autre.compteurs)
+        fusionne = {}
+        for n in tous_noeuds:
+            fusionne[n] = max(self.compteurs.get(n, 0), autre.compteurs.get(n, 0))
+        return GCounter(self.noeud_id, fusionne)
+
+    def __repr__(self):
+        return f&#34;GCounter({self.compteurs}) = {self.valeur()}&#34;
+
+# Simulation : 3 serveurs comptent des visites indépendamment
+
+print(&#34;=== G-Counter : compteur de visites distribué ===\n&#34;)
+
+serveur_a = GCounter(&#34;A&#34;)
+serveur_b = GCounter(&#34;B&#34;)
+serveur_c = GCounter(&#34;C&#34;)
+
+# Chaque serveur reçoit des visites indépendamment
+serveur_a.incrementer(5)
+serveur_b.incrementer(3)
+serveur_c.incrementer(7)
+serveur_a.incrementer(2)  # A reçoit encore des visites
+
+print(f&#34;  Serveur A (local) : {serveur_a}&#34;)
+print(f&#34;  Serveur B (local) : {serveur_b}&#34;)
+print(f&#34;  Serveur C (local) : {serveur_c}&#34;)
+
+# Synchronisation : fusion des états
+total = serveur_a.merge(serveur_b).merge(serveur_c)
+print(f&#34;\n  Après fusion      : {total}&#34;)
+
+# --- OR-Set : ensemble avec ajout ET suppression ---
+
+print(f&#34;\n=== OR-Set : panier d&#39;achat collaboratif ===\n&#34;)
+
+class ORSet:
+    &#34;&#34;&#34;
+    Observed-Remove Set — supporte ajout et suppression sans conflit.
+    Chaque ajout reçoit un tag unique ; la suppression retire les tags observés.
+    &#34;&#34;&#34;
+
+    def __init__(self, noeud_id):
+        self.noeud_id = noeud_id
+        self.elements = {}  # element → set(tags)
+        self.compteur = 0
+
+    def _tag(self):
+        self.compteur &#43;= 1
+        return f&#34;{self.noeud_id}:{self.compteur}&#34;
+
+    def ajouter(self, element):
+        tag = self._tag()
+        self.elements.setdefault(element, set()).add(tag)
+        print(f&#34;  [{self.noeud_id}] &#43; {element}  (tag={tag})&#34;)
+
+    def supprimer(self, element):
+        if element in self.elements:
+            tags = self.elements.pop(element)
+            print(f&#34;  [{self.noeud_id}] - {element}  (tags supprimés: {tags})&#34;)
+
+    def contenu(self):
+        return {e for e, tags in self.elements.items() if tags}
+
+    def merge(self, autre):
+        &#34;&#34;&#34;Fusionne : union des tags pour chaque élément.&#34;&#34;&#34;
+        resultat = ORSet(self.noeud_id)
+        resultat.compteur = max(self.compteur, autre.compteur)
+        tous = set(self.elements) | set(autre.elements)
+        for e in tous:
+            tags = self.elements.get(e, set()) | autre.elements.get(e, set())
+            if tags:
+                resultat.elements[e] = set(tags)
+        return resultat
+
+    def __repr__(self):
+        return f&#34;ORSet({sorted(self.contenu())})&#34;
+
+# Alice et Bob modifient le même panier hors ligne
+
+alice = ORSet(&#34;Alice&#34;)
+bob = ORSet(&#34;Bob&#34;)
+
+alice.ajouter(&#34;Lait&#34;)
+alice.ajouter(&#34;Pain&#34;)
+alice.ajouter(&#34;Beurre&#34;)
+
+print()
+bob.ajouter(&#34;Lait&#34;)
+bob.ajouter(&#34;Œufs&#34;)
+bob.supprimer(&#34;Lait&#34;)  # Bob retire le lait
+
+print(f&#34;\n  Panier Alice : {alice}&#34;)
+print(f&#34;  Panier Bob   : {bob}&#34;)
+
+# Synchronisation
+fusionne = alice.merge(bob)
+print(f&#34;\n  Après fusion  : {fusionne}&#34;)
+print(f&#34;  → Le lait est présent car Alice l&#39;a ajouté avec un tag&#34;)
+print(f&#34;    que Bob n&#39;avait pas observé lors de sa suppression&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-2-run onclick='pyodideRun("pyodide-2")'>&#9654; Exécuter</button>
+<button id=pyodide-2-reset onclick='pyodideReset("pyodide-2")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-2-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-2-output></pre></div><h2 id=les-registres-immuables-et-la-blockchain>Les registres immuables et la blockchain<a class=anchor href=#les-registres-immuables-et-la-blockchain>#</a></h2><p>Un <em>ledger</em> (grand livre) est un registre chronologique et immuable de
+transactions, exactement comme le grand livre comptable utilisé depuis des
+siècles, où chaque écriture est datée, signée et ne peut être ni effacée ni
+modifiée après coup. En informatique, l&rsquo;immuabilité est une propriété
+puissante : plutôt que de mettre à jour un solde en écrasant l&rsquo;ancienne valeur
+(comme dans une base de données classique), un registre immuable conserve
+l&rsquo;historique complet de toutes les opérations, et l&rsquo;état courant se déduit en
+rejouant la séquence des transactions. C&rsquo;est le principe de la comptabilité en
+partie double, mais c&rsquo;est aussi celui de l&rsquo;<em>event sourcing</em>, un pattern
+architectural décrit par Martin Fowler où l&rsquo;on stocke les événements plutôt que
+l&rsquo;état courant. Git, d&rsquo;ailleurs, fonctionne exactement sur ce principe : chaque
+commit est un événement immuable, et l&rsquo;état du code à un instant donné se
+reconstitue en rejouant l&rsquo;historique.</p><p>La blockchain pousse cette idée un cran plus loin en la rendant distribuée et
+résistante à la falsification. Les transactions sont regroupées en blocs, chaque
+bloc contenant le hash cryptographique du bloc précédent, formant une chaîne
+dont toute modification rétroactive serait immédiatement détectable. Le livre
+blanc de Satoshi Nakamoto (2008), qui a introduit Bitcoin, a montré qu&rsquo;il était
+possible de maintenir un tel registre sans autorité centrale, en utilisant un
+mécanisme de consensus (<em>proof of work</em>). Au-delà des cryptomonnaies, le concept
+de registre immuable avec vérification cryptographique trouve des applications en
+traçabilité (chaînes d&rsquo;approvisionnement), en audit financier et en
+certification de documents. <a href=https://aws.amazon.com/qldb/>Amazon QLDB</a> offre un
+ledger centralisé (sans consensus distribué) avec vérification cryptographique,
+utile quand on veut l&rsquo;immuabilité sans la complexité d&rsquo;une blockchain.</p><p>En Python, on peut implémenter un mini-ledger avec chaînage cryptographique pour
+illustrer les principes fondamentaux :</p><div class=pyodide-block id=pyodide-3><textarea id=pyodide-3-code>import hashlib
+import json
+from datetime import datetime
+
+# --- Bloc : unité de base de la chaîne ---
+
+class Bloc:
+    def __init__(self, index, transactions, hash_precedent):
+        self.index = index
+        self.horodatage = datetime.now().isoformat()
+        self.transactions = transactions
+        self.hash_precedent = hash_precedent
+        self.hash = self.calculer_hash()
+
+    def calculer_hash(self):
+        &#34;&#34;&#34;Hash SHA-256 du contenu du bloc (immuabilité cryptographique).&#34;&#34;&#34;
+        contenu = json.dumps({
+            &#34;index&#34;: self.index,
+            &#34;horodatage&#34;: self.horodatage,
+            &#34;transactions&#34;: self.transactions,
+            &#34;hash_precedent&#34;: self.hash_precedent,
+        }, sort_keys=True)
+        return hashlib.sha256(contenu.encode()).hexdigest()
+
+# --- Ledger : chaîne de blocs ---
+
+class Ledger:
+    def __init__(self):
+        # Bloc genesis (premier bloc, sans prédécesseur)
+        genesis = Bloc(0, [{&#34;type&#34;: &#34;GENESIS&#34;, &#34;description&#34;: &#34;Création du ledger&#34;}], &#34;0&#34; * 64)
+        self.chaine = [genesis]
+        self.transactions_en_attente = []
+
+    def ajouter_transaction(self, transaction):
+        &#34;&#34;&#34;Ajoute une transaction au pool en attente.&#34;&#34;&#34;
+        transaction[&#34;horodatage&#34;] = datetime.now().isoformat()
+        self.transactions_en_attente.append(transaction)
+
+    def miner_bloc(self):
+        &#34;&#34;&#34;Regroupe les transactions en attente dans un nouveau bloc.&#34;&#34;&#34;
+        if not self.transactions_en_attente:
+            print(&#34;  Aucune transaction en attente.&#34;)
+            return
+        nouveau = Bloc(
+            index=len(self.chaine),
+            transactions=self.transactions_en_attente,
+            hash_precedent=self.chaine[-1].hash,
+        )
+        self.chaine.append(nouveau)
+        n = len(self.transactions_en_attente)
+        self.transactions_en_attente = []
+        print(f&#34;  Bloc #{nouveau.index} miné ({n} transaction(s)), hash: {nouveau.hash[:16]}...&#34;)
+
+    def verifier_integrite(self):
+        &#34;&#34;&#34;Vérifie que la chaîne n&#39;a pas été altérée.&#34;&#34;&#34;
+        for i in range(1, len(self.chaine)):
+            bloc = self.chaine[i]
+            precedent = self.chaine[i - 1]
+            # Vérifier le chaînage
+            if bloc.hash_precedent != precedent.hash:
+                return False, f&#34;Bloc #{i} : hash_precedent ne correspond pas&#34;
+            # Vérifier l&#39;intégrité du bloc lui-même
+            if bloc.hash != bloc.calculer_hash():
+                return False, f&#34;Bloc #{i} : hash invalide (données altérées)&#34;
+        return True, &#34;Chaîne intègre&#34;
+
+    def solde(self, compte):
+        &#34;&#34;&#34;Calcule le solde d&#39;un compte en rejouant toutes les transactions.&#34;&#34;&#34;
+        total = 0.0
+        for bloc in self.chaine:
+            for tx in bloc.transactions:
+                if tx.get(&#34;de&#34;) == compte:
+                    total -= tx.get(&#34;montant&#34;, 0)
+                if tx.get(&#34;a&#34;) == compte:
+                    total &#43;= tx.get(&#34;montant&#34;, 0)
+        return total
+
+# --- Démonstration ---
+
+ledger = Ledger()
+
+print(&#34;=== Ajout de transactions ===\n&#34;)
+
+# Dépôts initiaux
+ledger.ajouter_transaction({&#34;type&#34;: &#34;DEPOT&#34;, &#34;a&#34;: &#34;Alice&#34;, &#34;montant&#34;: 1000, &#34;description&#34;: &#34;Dépôt initial&#34;})
+ledger.ajouter_transaction({&#34;type&#34;: &#34;DEPOT&#34;, &#34;a&#34;: &#34;Bob&#34;, &#34;montant&#34;: 500, &#34;description&#34;: &#34;Dépôt initial&#34;})
+ledger.miner_bloc()
+
+# Transferts
+ledger.ajouter_transaction({&#34;type&#34;: &#34;TRANSFERT&#34;, &#34;de&#34;: &#34;Alice&#34;, &#34;a&#34;: &#34;Bob&#34;, &#34;montant&#34;: 150, &#34;description&#34;: &#34;Paiement facture&#34;})
+ledger.ajouter_transaction({&#34;type&#34;: &#34;TRANSFERT&#34;, &#34;de&#34;: &#34;Bob&#34;, &#34;a&#34;: &#34;Charlie&#34;, &#34;montant&#34;: 75, &#34;description&#34;: &#34;Remboursement&#34;})
+ledger.miner_bloc()
+
+ledger.ajouter_transaction({&#34;type&#34;: &#34;TRANSFERT&#34;, &#34;de&#34;: &#34;Alice&#34;, &#34;a&#34;: &#34;Charlie&#34;, &#34;montant&#34;: 200, &#34;description&#34;: &#34;Achat service&#34;})
+ledger.miner_bloc()
+
+print(f&#34;\n=== État de la chaîne ({len(ledger.chaine)} blocs) ===\n&#34;)
+for bloc in ledger.chaine:
+    print(f&#34;  Bloc #{bloc.index}  hash: {bloc.hash[:16]}...  prev: {bloc.hash_precedent[:16]}...&#34;)
+    for tx in bloc.transactions:
+        desc = tx.get(&#34;description&#34;, &#34;&#34;)
+        montant = tx.get(&#34;montant&#34;, &#34;&#34;)
+        print(f&#34;    → {tx[&#39;type&#39;]:10s} {desc}  {f&#39;{montant} $&#39; if montant else &#39;&#39;}&#34;)
+
+print(f&#34;\n=== Soldes (calculés par replay) ===\n&#34;)
+for compte in [&#34;Alice&#34;, &#34;Bob&#34;, &#34;Charlie&#34;]:
+    print(f&#34;  {compte:10s} : {ledger.solde(compte):8.2f} $&#34;)
+
+print(f&#34;\n=== Vérification d&#39;intégrité ===\n&#34;)
+valide, message = ledger.verifier_integrite()
+print(f&#34;  {message}&#34;)
+
+# Tentative de falsification
+print(f&#34;\n=== Tentative de falsification ===\n&#34;)
+ledger.chaine[1].transactions[0][&#34;montant&#34;] = 999999
+print(f&#34;  Bloc #1 modifié : montant changé à 999999 $&#34;)
+valide, message = ledger.verifier_integrite()
+print(f&#34;  Vérification : {message}&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-3-run onclick='pyodideRun("pyodide-3")'>&#9654; Exécuter</button>
+<button id=pyodide-3-reset onclick='pyodideReset("pyodide-3")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-3-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-3-output></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>Les bases de données</span>
+</a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/ class="flex align-center"><span>Module 4 - Construire en équipe</span>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#la-recherche-et-lindexation>La recherche et l&rsquo;indexation</a></li><li><a href=#le-stockage-objet>Le stockage objet</a></li><li><a href=#les-données-répliquées-et-les-crdts>Les données répliquées et les CRDTs</a></li><li><a href=#les-registres-immuables-et-la-blockchain>Les registres immuables et la blockchain</a></li></ul></nav></div></aside></main><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js></script><script>const _pyodideEditors={};document.querySelectorAll(".pyodide-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const s=e.id,o=t.value,n=CodeMirror.fromTextArea(t,{mode:"python",theme:"material-darker",indentUnit:4,tabSize:4,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=o,_pyodideEditors[s]=n});let _pyodideReady=null;async function _getPyodide(){return _pyodideReady||(_pyodideReady=(async()=>(await new Promise((e,t)=>{const n=document.createElement("script");n.src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js",n.onload=e,n.onerror=t,document.head.appendChild(n)}),await loadPyodide()))()),_pyodideReady}async function pyodideRun(e){const o=_pyodideEditors[e],t=document.getElementById(e+"-output"),s=document.getElementById(e+"-run"),n=document.getElementById(e+"-status"),i=o.getValue();s.disabled=!0,t.textContent="",t.classList.remove("pyodide-output-hidden"),n.textContent="Chargement de Pyodide…";try{const e=await _getPyodide();n.textContent="Exécution…",e.runPython(`
+import sys, io
+sys.stdout = io.StringIO()
+sys.stderr = io.StringIO()
+`);try{e.runPython(i)}catch(o){const i=e.runPython("sys.stderr.getvalue()"),s=e.runPython("sys.stdout.getvalue()");t.innerHTML="",s&&t.appendChild(document.createTextNode(s));const n=document.createElement("span");n.className="pyodide-error",n.textContent=i||o.message,t.appendChild(n);return}finally{const s=e.runPython("sys.stdout.getvalue()"),n=e.runPython("sys.stderr.getvalue()");if(e.runPython(`
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+`),!t.children.length){if(t.textContent=s,n){const e=document.createElement("span");e.className="pyodide-error",e.textContent=n,t.appendChild(e)}!s&&!n&&(t.textContent="(Exécution terminée, aucune sortie)")}}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("span");e.className="pyodide-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function pyodideReset(e){const t=_pyodideEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.textContent=""}</script></body></html>

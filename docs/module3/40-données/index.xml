@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Les données on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/</link><description>Recent content in Les données on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/index.xml" rel="self" type="application/rss+xml"/><item><title>La représentation des données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/</guid><description>&lt;h1 id="la-représentation-des-données"&gt;La représentation des données&lt;a class="anchor" href="#la-repr%c3%a9sentation-des-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="données-vs-information-vs-connaissances"&gt;Données vs information vs connaissances&lt;a class="anchor" href="#donn%c3%a9es-vs-information-vs-connaissances"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;C&amp;rsquo;est une distinction classique et fondamentale en sciences de l&amp;rsquo;information.
+Martin Kleppmann consacre une partie importante de &lt;em&gt;Designing Data-Intensive
+Applications&lt;/em&gt; à ces questions de représentation, en montrant que le choix d&amp;rsquo;un
+format d&amp;rsquo;encodage et d&amp;rsquo;un schéma sont parmi les premières décisions
+architecturales qu&amp;rsquo;on prend quand on conçoit un système distribué. Voici
+comment ces trois niveaux s&amp;rsquo;articulent :&lt;/p&gt;
+&lt;p&gt;Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des
+symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
+», « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en
+relation avec autre chose.&lt;/p&gt;</description></item><item><title>Les bases de données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/</guid><description>&lt;h1 id="lévolution-des-bases-de-données"&gt;L&amp;rsquo;évolution des bases de données&lt;a class="anchor" href="#l%c3%a9volution-des-bases-de-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;La section précédente a montré comment les données sont représentées : encodées
+en bits, sérialisées en formats textuels ou binaires, structurées par des
+schémas. Mais représenter des données ne suffit pas. Dès qu&amp;rsquo;un système doit
+conserver des données au-delà de l&amp;rsquo;exécution d&amp;rsquo;un programme, les retrouver
+efficacement, et garantir leur cohérence même en cas de panne ou d&amp;rsquo;accès
+concurrent, on entre dans le domaine des bases de données.&lt;/p&gt;</description></item><item><title>Au-delà des bases de données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/</guid><description>&lt;h1 id="au-delà-des-bases-de-données"&gt;Au-delà des bases de données&lt;a class="anchor" href="#au-del%c3%a0-des-bases-de-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Les bases de données, qu&amp;rsquo;elles soient relationnelles ou NoSQL, répondent à un
+besoin fondamental : stocker des données structurées et les retrouver par des
+requêtes. Mais dans un système réel, les données vivent aussi ailleurs. Elles
+sont indexées pour la recherche en texte intégral, archivées dans des lacs de
+données sous forme d&amp;rsquo;objets, répliquées entre appareils qui ne sont pas toujours
+connectés, ou inscrites dans des registres immuables où chaque modification est
+tracée à jamais. Ces paradigmes ne remplacent pas les bases de données : ils les
+complètent, chacun répondant à un besoin que les bases traditionnelles servent
+mal.&lt;/p&gt;</description></item></channel></rss>
