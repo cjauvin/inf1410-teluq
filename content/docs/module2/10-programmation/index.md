@@ -509,6 +509,170 @@ Et finalement, le jeu de Sudoku :
 
 {{< image src="sudoku.png" alt="" title="" loading="lazy" >}}
 
+## Les paradigmes de programmation
+
+Nous avons vu comment organiser les données avec les structures de données, et
+comment mesurer l'efficacité d'un algorithme avec la complexité. Mais il existe
+un autre axe fondamental selon lequel les langages et les programmes varient :
+la manière dont on organise le code lui-même. On appelle cela un *paradigme* de
+programmation. Un paradigme n'est pas simplement une question de syntaxe ou de
+préférence personnelle : c'est une façon de penser un problème, de le
+décomposer, et de structurer sa solution. Tout comme le choix d'une structure de
+données influence profondément la performance d'un algorithme, le choix d'un
+paradigme influence la manière dont on conçoit, lit et maintient un programme.
+
+### Le paradigme impératif
+
+Le paradigme le plus ancien et le plus intuitif est le paradigme *impératif* :
+un programme est une séquence d'instructions qui modifient l'état du programme,
+étape par étape. C'est la manière la plus directe de dire à l'ordinateur *quoi
+faire*, dans quel ordre. Les premiers langages de programmation, comme Fortran
+(1957) et COBOL (1959), étaient entièrement impératifs.
+
+Une variante importante du paradigme impératif est la *programmation
+procédurale*, qui consiste à regrouper des séquences d'instructions dans des
+fonctions (ou procédures) réutilisables. Le langage C (1972) en est l'exemple
+canonique. C'est aussi dans ce contexte que Dijkstra a mené sa célèbre croisade
+contre l'instruction `goto`, arguant que les programmes devraient être
+structurés à l'aide de boucles et de conditions plutôt que de sauts arbitraires.
+Cette idée, connue sous le nom de *programmation structurée*, est aujourd'hui si
+universellement adoptée qu'on n'y pense même plus.
+
+Voici un exemple simple en Python, dans un style purement impératif. On veut
+extraire les nombres pairs d'une liste et les mettre au carré :
+
+{{< pyodide >}}
+nombres = [1, 2, 3, 4, 5, 6, 7, 8]
+résultat = []
+for n in nombres:
+    if n % 2 == 0:
+        résultat.append(n ** 2)
+print(résultat)  # [4, 16, 36, 64]
+{{< /pyodide >}}
+
+On reconnaît le style impératif : une boucle qui parcourt les éléments un par
+un, une condition, une modification explicite de l'état (la liste `résultat` qui
+grandit à chaque itération).
+
+### Le paradigme orienté-objet
+
+Le paradigme *orienté-objet* (OOP) propose une autre manière de structurer un
+programme : au lieu de penser en termes de séquences d'instructions, on pense en
+termes d'*objets* qui encapsulent à la fois des données et des comportements.
+L'idée fondatrice est que le monde réel est composé d'entités qui ont des
+propriétés et qui interagissent entre elles, et que nos programmes devraient
+refléter cette structure.
+
+Les racines de l'OOP remontent au langage Simula (1967), créé par Ole-Johan
+Dahl et Kristen Nygaard en Norvège pour des problèmes de simulation. Mais c'est
+Alan Kay, avec Smalltalk dans les années 1970 au Xerox PARC, qui a
+véritablement cristallisé la vision de la programmation orientée-objet. Pour
+Kay, l'idée centrale n'était pas tant les classes ou l'héritage, mais le
+*passage de messages* entre objets autonomes. Il a d'ailleurs déclaré plus tard
+regretter d'avoir utilisé le terme "orienté-objet", car il aurait préféré qu'on
+retienne l'idée de messagerie plutôt que celle d'objet.
+
+Les concepts centraux de l'OOP sont l'*encapsulation* (regrouper données et
+comportements dans un objet, en cachant les détails internes), l'*héritage*
+(créer de nouvelles classes à partir de classes existantes) et le
+*polymorphisme* (traiter des objets de types différents de manière uniforme).
+Reprenons notre exemple :
+
+{{< pyodide >}}
+class ListeDeNombres:
+    def __init__(self, nombres):
+        self.nombres = nombres
+
+    def pairs(self):
+        return ListeDeNombres([n for n in self.nombres if n % 2 == 0])
+
+    def au_carré(self):
+        return ListeDeNombres([n ** 2 for n in self.nombres])
+
+résultat = ListeDeNombres([1, 2, 3, 4, 5, 6, 7, 8])
+print(résultat.pairs().au_carré().nombres)  # [4, 16, 36, 64]
+{{< /pyodide >}}
+
+On voit ici que les données (la liste de nombres) et les opérations (`pairs`,
+`au_carré`) sont regroupées dans un même objet. On peut aussi enchaîner les
+appels de méthodes, car chaque méthode retourne un nouvel objet du même type.
+L'OOP a dominé le développement logiciel pendant des décennies, notamment à
+travers des langages comme C++ (1985), Java (1995) et C# (2000), et elle reste
+le paradigme dominant dans l'industrie aujourd'hui.
+
+### Le paradigme fonctionnel
+
+Le paradigme *fonctionnel* aborde la programmation sous un angle radicalement
+différent : au lieu de décrire une séquence de modifications d'état, on exprime
+un programme comme une composition de *fonctions pures*, c'est-à-dire des
+fonctions qui retournent toujours le même résultat pour les mêmes arguments, et
+qui ne produisent aucun effet secondaire (pas de modification de variable
+externe, pas d'écriture sur disque, etc.).
+
+Les origines du paradigme fonctionnel sont remarquablement anciennes. Elles
+remontent au *lambda calcul*, un formalisme mathématique développé par Alonzo
+Church dans les années 1930, avant même l'invention des ordinateurs. Le premier
+langage fonctionnel, Lisp, a été créé par John McCarthy en 1958 au MIT, ce qui
+en fait l'un des plus vieux langages encore utilisés aujourd'hui (sous des
+formes modernisées comme Clojure). D'autres langages fonctionnels influents
+incluent Haskell (1990), qui pousse le paradigme à sa forme la plus pure, et
+Erlang (1986), conçu pour les systèmes téléphoniques hautement concurrents chez
+Ericsson.
+
+Deux idées centrales du paradigme fonctionnel méritent une attention
+particulière. La première est l'*immutabilité* : plutôt que de modifier une
+structure de données existante, on en crée une nouvelle. Cela élimine toute une
+classe de bugs liés aux modifications inattendues de l'état. La seconde est
+l'usage de *fonctions d'ordre supérieur*, c'est-à-dire des fonctions qui
+prennent d'autres fonctions en argument ou qui en retournent. Les plus célèbres
+sont `map`, `filter` et `reduce`, qui permettent de transformer des collections
+de données de manière déclarative.
+
+Reprenons notre exemple, cette fois dans un style fonctionnel en Python :
+
+{{< pyodide >}}
+nombres = [1, 2, 3, 4, 5, 6, 7, 8]
+résultat = list(map(lambda n: n ** 2, filter(lambda n: n % 2 == 0, nombres)))
+print(résultat)  # [4, 16, 36, 64]
+{{< /pyodide >}}
+
+On remarque qu'il n'y a ici aucune boucle, aucune variable qui s'accumule : on
+*déclare* ce qu'on veut (filtrer les pairs, puis mettre au carré) plutôt que de
+décrire *comment* le faire étape par étape. La liste d'origine n'est jamais
+modifiée. Ce style est souvent qualifié de *déclaratif*, par opposition au style
+*impératif*.
+
+### Les langages multi-paradigmes
+
+En pratique, la plupart des langages modernes ne se limitent pas à un seul
+paradigme. Python en est un excellent exemple : nous venons d'écrire le même
+programme dans trois styles différents, et les trois sont du Python parfaitement
+valide. On peut écrire du Python impératif, orienté-objet ou fonctionnel, selon
+ce qui convient le mieux au problème à résoudre. D'ailleurs, Python offre une
+syntaxe qui se situe quelque part entre le style impératif et le style
+fonctionnel, les *compréhensions de liste* (list comprehensions) :
+
+{{< pyodide >}}
+nombres = [1, 2, 3, 4, 5, 6, 7, 8]
+résultat = [n ** 2 for n in nombres if n % 2 == 0]
+print(résultat)  # [4, 16, 36, 64]
+{{< /pyodide >}}
+
+Cette tendance au mélange des paradigmes est une caractéristique forte de
+l'évolution récente des langages de programmation. JavaScript a ajouté les
+classes (empruntées à l'OOP) tout en renforçant ses capacités fonctionnelles
+avec les fonctions fléchées et les méthodes comme `map`, `filter` et `reduce`.
+Java, longtemps le bastion de l'OOP pure, a introduit les expressions lambda et
+les streams dans sa version 8 (2014). Rust combine programmation système de bas
+niveau, traits inspirés de l'OOP et influences fonctionnelles comme le pattern
+matching et l'immutabilité par défaut.
+
+La leçon à retenir est qu'un paradigme n'est pas un dogme, mais un *outil de
+pensée*. Un bon programmeur connaît plusieurs paradigmes et sait choisir celui
+qui exprime le plus clairement son intention dans un contexte donné. Nous
+verrons dans le module 3 comment ces choix de paradigme influencent directement
+l'architecture des systèmes logiciels.
+
 ## Les types
 
 Nous avons vu que le choix de la bonne structure de données peut avoir un impact

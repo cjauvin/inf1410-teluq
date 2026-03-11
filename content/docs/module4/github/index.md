@@ -5,6 +5,21 @@ weight: 10
 
 # Au-delà du git local : git distribué
 
+Avant d'aller plus loin, il est important de bien distinguer git et GitHub, car
+la confusion entre les deux est fréquente. Git est un logiciel de versioning,
+créé par Linus Torvalds en 2005, qui fonctionne entièrement en local sur votre
+machine. GitHub est un service web, fondé en 2008 par Tom Preston-Werner, Chris
+Wanstrath et PJ Hyett, qui héberge des dépôts git en ligne et ajoute par-dessus
+une couche de fonctionnalités collaboratives : pull requests, code reviews,
+gestion d'issues, et bien d'autres. Git peut fonctionner sans GitHub, et il
+existe d'autres services similaires (GitLab, Bitbucket). Mais GitHub est devenu,
+de loin, la plateforme dominante. Son rachat par Microsoft en 2018 pour 7,5
+milliards de dollars témoigne de cette centralité. Aujourd'hui, GitHub n'est pas
+seulement un hébergeur de code : c'est le lieu où se trouvent les projets open
+source majeurs, où se discutent les décisions techniques, où se construisent les
+réputations professionnelles. Comprendre GitHub, c'est comprendre comment les
+développeurs collaborent.
+
 Jusqu'ici nous avons utilisé git en mode local, c'est-à-dire que la totalité des
 opérations que nous avons effectuées sont confinées dans le contexte particulier
 de notre dépôt local, dans un endroit particulier de notre disque, sur un
@@ -76,16 +91,9 @@ $ cat .git/config
         fetch = +refs/heads/*:refs/remotes/origin/*
 ```
 
-La deuxième commande proposée est :
-
-```shell
-$ git branch -M main
-```
-
-Ceci a pour but de changer le nom de la branche locale courante, historiquement
-par défaut nommée `master` par git, à `main`, qui est le nouveau nom par défaut
-de la branche principale d'un dépôt sur GitHub. Ceci est simplement pour éviter
-la confusion, et synchroniser le nom des deux branches à une valeur commune.
+La deuxième commande, `git branch -M main`, renomme simplement la branche
+locale de `master` (le nom historique par défaut de git) à `main` (le nouveau
+nom par défaut sur GitHub), pour que les deux soient synchronisés.
 
 La troisième commande va envoyer (push) notre branche locale `main`
 vers le remote `origin`, afin de synchroniser les deux dépôts :
@@ -159,7 +167,7 @@ dépôt :
 
 ```shell
 $ echo "de Sara!" >> toto.txt
-$ $ git commit -am "Neuvième commit (de Sara)"
+$ git commit -am "Neuvième commit (de Sara)"
 [main 878933d] Neuvième commit (de Sara)
  1 file changed, 1 insertion(+)
 ```
@@ -360,3 +368,103 @@ Date:   Wed Jan 28 11:44:47 2026 -0500
 
     Proposition d'une nouvelle fonction
 ```
+
+Ce scénario simple illustre le mécanisme de base de la collaboration avec git et
+GitHub. Mais dans la pratique, une équipe doit répondre à des questions plus
+larges : comment organiser ses branches ? Que devrait-on vérifier dans une code
+review ? Comment s'assurer que le code qui arrive dans la branche principale est
+toujours fonctionnel ? Ce sont ces questions que nous allons aborder maintenant.
+
+## Les workflows git
+
+Dans le scénario précédent, Sara a créé une branche, fait son travail, et ouvert
+une pull request. C'est le patron de base. Mais quand une équipe de cinq, dix ou
+cinquante développeurs travaille sur le même projet, il faut des conventions plus
+précises : quand crée-t-on une branche ? Comment la nomme-t-on ? Qui a le droit
+de merger dans `main` ? Plusieurs modèles de workflows ont émergé au fil des
+années pour répondre à ces questions.
+
+Le premier modèle formalisé est **Git Flow**, proposé par Vincent Driessen en
+2010 dans un billet de blog devenu célèbre. Git Flow définit une structure de
+branches rigide : une branche `main` qui contient uniquement le code en
+production, une branche `develop` qui sert de branche d'intégration, des
+branches `feature/*` pour chaque nouvelle fonctionnalité, des branches
+`release/*` pour préparer les mises en production, et des branches `hotfix/*`
+pour les correctifs urgents. Ce modèle avait le mérite de la clarté : chaque
+branche a un rôle précis, et le flux de travail est entièrement prédéfini. Mais
+dans la pratique, beaucoup d'équipes ont trouvé Git Flow trop lourd, avec trop
+de branches à gérer et trop de cérémonies de merge. Driessen lui-même a ajouté
+une note à son billet original, reconnaissant que ce modèle n'est pas adapté aux
+équipes qui pratiquent le déploiement continu.
+
+En réaction à cette complexité, GitHub a proposé un modèle beaucoup plus simple,
+connu sous le nom de **GitHub Flow**. Le principe tient en quelques règles : la
+branche `main` est toujours déployable, chaque travail commence par la création
+d'une branche à partir de `main`, on ouvre une pull request dès que le travail
+est prêt à être discuté, et on ne merge dans `main` qu'après une code review.
+C'est essentiellement ce que nous avons fait avec Leila et Sara. La simplicité
+de ce modèle le rend adapté à la majorité des projets, en particulier ceux qui
+pratiquent le déploiement continu, où chaque merge dans `main` déclenche
+automatiquement une mise en production.
+
+Le **trunk-based development** pousse cette simplicité encore plus loin. Dans ce
+modèle, les développeurs travaillent directement sur la branche principale (le
+"trunk"), ou sur des branches très courtes qui ne vivent que quelques heures.
+L'idée centrale est d'éviter les branches longues, qui divergent inévitablement
+du tronc et créent des merges douloureux. Ce modèle exige en contrepartie une
+discipline forte : des tests automatisés solides, de l'intégration continue, et
+souvent l'usage de "feature flags" pour masquer les fonctionnalités en cours de
+développement dans le code déployé. C'est le modèle utilisé par Google et
+d'autres grandes entreprises technologiques.
+
+<!-- ILLUSTRATION: comparaison visuelle des trois workflows git (Git Flow, GitHub Flow, trunk-based) -->
+
+## Les code reviews
+
+Nous avons vu que la pull request est le mécanisme par lequel un développeur
+propose des changements à une base de code. Mais le vrai travail commence quand
+un autre membre de l'équipe examine ces changements. La code review est une des
+pratiques les plus importantes du développement en équipe, et pourtant elle est
+souvent mal comprise. Il ne s'agit pas simplement de vérifier que le code
+"fonctionne" : les tests automatisés s'en chargent. La code review est un acte
+de communication. C'est un moment où deux personnes construisent une
+compréhension partagée du code, de ses intentions, de ses compromis.
+
+L'idée de faire relire le code par un pair n'est pas nouvelle. Michael Fagan,
+chez IBM, a formalisé les "inspections de code" dès 1976, avec un processus
+rigoureux impliquant des rôles définis et des réunions structurées. Les code
+reviews modernes, facilitées par les outils comme GitHub, sont plus légères mais
+poursuivent les mêmes objectifs. On y cherche plusieurs choses : la correction
+logique (est-ce que ce code fait ce qu'il est censé faire ?), la lisibilité
+(est-ce qu'un autre développeur comprendra ce code dans six mois ?), la
+cohérence avec le reste du projet (conventions de nommage, patterns utilisés), et
+les problèmes potentiels de performance ou de sécurité. Mais au-delà de cette
+checklist, la code review est aussi un mécanisme de diffusion des
+connaissances : en lisant le code des autres, on apprend le système, on découvre
+des techniques, on reste au courant de ce qui change.
+
+La code review est aussi un exercice humain délicat. Recevoir des critiques sur
+son code peut être vécu comme une attaque personnelle, surtout quand on débute.
+Et donner des commentaires constructifs sans être condescendant est une
+compétence qui s'apprend. Les équipes qui pratiquent bien la code review
+développent des conventions implicites ou explicites : formuler les commentaires
+comme des questions plutôt que des jugements ("est-ce qu'on pourrait simplifier
+cette boucle ?" plutôt que "cette boucle est mal écrite"), distinguer les
+suggestions bloquantes des suggestions optionnelles, garder les PRs petites pour
+que la review soit réaliste, et se rappeler que l'objectif est d'améliorer le
+code, pas de démontrer sa supériorité. Google a publié ses pratiques de code
+review internes, qui sont devenues une référence dans l'industrie. Un de leurs
+principes clés : un reviewer devrait approuver une PR dès qu'elle améliore
+l'état général du code, même si elle n'est pas parfaite.
+
+Ces pratiques de collaboration trouvent leur aboutissement dans les mécanismes de
+protection de branches offerts par GitHub. On peut configurer la branche `main`
+pour qu'elle ne puisse pas recevoir de push direct : tout changement doit passer
+par une pull request. On peut exiger qu'au moins une personne ait approuvé la
+review avant le merge. Et on peut exiger que les tests de CI passent avec succès
+avant que le merge soit autorisé. Ces règles, configurables dans les paramètres
+du dépôt GitHub, transforment les conventions d'équipe en contraintes
+automatisées. C'est la rencontre entre l'intégration continue que nous avons vue
+au module 2 et la collaboration que nous explorons ici : la CI ne vérifie plus
+seulement le code d'un programmeur individuel, elle devient le gardien de la
+branche principale d'une équipe entière.

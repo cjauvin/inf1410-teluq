@@ -73,6 +73,11 @@
 ## Survol rapide de la programmation (complété)
 - Structures de données (listes, ensembles, dictionnaires)
 - Complexité algorithmique (Big O, Two Sum, recherche binaire)
+- Paradigmes de programmation :
+  - Impératif/procédural (Fortran, C, programmation structurée de Dijkstra)
+  - Orienté-objet (Simula, Smalltalk/Alan Kay, encapsulation/héritage/polymorphisme)
+  - Fonctionnel (lambda calcul, Lisp/McCarthy, Haskell, Erlang, immutabilité, fonctions d'ordre supérieur)
+  - Langages multi-paradigmes (Python, tendance moderne)
 - Types : compilé vs interprété, statique vs dynamique, fort vs faible,
   type hints Python/mypy, lien avec les schémas JSON et SQL
 
@@ -265,14 +270,31 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 
 # Module 4 - Construire en équipe
 
-- Git distribué (github)
-- Agile
-- Kanban
-- Scrum
-- Communication (importance d’outils comme Slack, etc).
-- Estimation
-- Coordination
-- Dette technique (dimension sociale et organisationnelle)
+## Introduction (complété)
+- Brooks (*The Mythical Man-Month*) : la communication comme coût quadratique
+- Loi de Conway : l’organisation et le logiciel se façonnent mutuellement
+- Tension autonomie vs coordination comme problème central
+
+## Git distribué et GitHub (complété)
+- Distinction git vs GitHub (Torvalds 2005, Preston-Werner/Wanstrath/Hyett 2008, rachat Microsoft 2018)
+- Git distribué : push, pull, clone, remotes, le "quatrième endroit"
+- Pull requests et collaboration (scénario Leila/Sara)
+- Workflows git : Git Flow (Driessen 2010), GitHub Flow, trunk-based development
+- Code reviews : inspections de Fagan (IBM 1976), objectifs, dimension humaine, pratiques Google
+- Protection de branches et lien CI
+
+## L’agilité (en cours)
+- Le manifeste Agile et contexte historique (existe)
+- Scrum (sprints, rôles, cérémonies) — à développer, avec démo GitHub Projects
+- Kanban (flux continu, WIP limits, visualisation) — à développer, avec démo GitHub Projects
+- XP : traité brièvement, renvois vers module 2 (TDD, CI, pair programming)
+- Perspective critique : l’agilité dévoyée, "Agile is Dead" (Dave Thomas), Dark Scrum
+
+## Gestion de projet et coordination (à développer)
+- Outils : GitHub Issues, GitHub Projects (tour guidé)
+- Estimation (story points, planning poker, difficulté fondamentale — lien avec Brooks)
+- Documentation comme outil de coordination (ADRs, RFCs, READMEs)
+- Communication (synchrone vs asynchrone, Slack, remote work)
 
 # Module 5 - Faire vivre le logiciel
 
