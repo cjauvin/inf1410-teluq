@@ -41,19 +41,20 @@ graphique&lt;/a&gt; (GUI en anglais,
 graphical user interface, ou souvent juste UI). Le CLI est plus &amp;ldquo;proche&amp;rdquo; de la
 programmation, qui est elle aussi un média essentiellement textuel (et logique,
 souvent mathématique).&lt;/p&gt;</description></item><item><title>Git distribué (GitHub)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/github/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/github/</guid><description>&lt;h1 id="au-delà-du-git-local--git-distribué"&gt;Au-delà du git local : git distribué&lt;a class="anchor" href="#au-del%c3%a0-du-git-local--git-distribu%c3%a9"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Jusqu&amp;rsquo;ici nous avons utilisé git en mode local, c&amp;rsquo;est-à-dire que la totalité des
-opérations que nous avons effectuées sont confinées dans le contexte particulier
-de notre dépôt local, dans un endroit particulier de notre disque, sur un
-ordinateur particulier. Mais le modèle de git est beaucoup plus puissant et
-général, car il permet de synchroniser des versions différentes du même dépôt, à
-travers le réseau internet. On dit que le modèle est &lt;em&gt;distribué&lt;/em&gt;. Ce mode est
-évidemment optionnel, et il est tout à fait possible d&amp;rsquo;utiliser git de manière
-exclusivement locale, si ça correspond à notre besoin. Mais dans un contexte de
-collaboration pour le développement logiciel, le mode distribué de git est
-quasiment essentiel. Une bonne manière de commencer notre exploration de cette
-nouvelle idée est en étendant notre modèle mental des trois &amp;ldquo;endroits&amp;rdquo; du git
-local avec un quatrième &amp;ldquo;endroit&amp;rdquo;, qui correspond à une autre version du même
-depot, qui se trouve &amp;ldquo;ailleurs&amp;rdquo; :&lt;/p&gt;</description></item><item><title>Introduction</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/</guid><description>&lt;h1 id="introduction-au-génie-logiciel"&gt;Introduction au génie logiciel&lt;a class="anchor" href="#introduction-au-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Avant d&amp;rsquo;aller plus loin, il est important de bien distinguer git et GitHub, car
+la confusion entre les deux est fréquente. Git est un logiciel de versioning,
+créé par Linus Torvalds en 2005, qui fonctionne entièrement en local sur votre
+machine. GitHub est un service web, fondé en 2008 par Tom Preston-Werner, Chris
+Wanstrath et PJ Hyett, qui héberge des dépôts git en ligne et ajoute par-dessus
+une couche de fonctionnalités collaboratives : pull requests, code reviews,
+gestion d&amp;rsquo;issues, et bien d&amp;rsquo;autres. Git peut fonctionner sans GitHub, et il
+existe d&amp;rsquo;autres services similaires (GitLab, Bitbucket). Mais GitHub est devenu,
+de loin, la plateforme dominante. Son rachat par Microsoft en 2018 pour 7,5
+milliards de dollars témoigne de cette centralité. Aujourd&amp;rsquo;hui, GitHub n&amp;rsquo;est pas
+seulement un hébergeur de code : c&amp;rsquo;est le lieu où se trouvent les projets open
+source majeurs, où se discutent les décisions techniques, où se construisent les
+réputations professionnelles. Comprendre GitHub, c&amp;rsquo;est comprendre comment les
+développeurs collaborent.&lt;/p&gt;</description></item><item><title>Introduction</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/</guid><description>&lt;h1 id="introduction-au-génie-logiciel"&gt;Introduction au génie logiciel&lt;a class="anchor" href="#introduction-au-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Le logiciel est partout. Il fait fonctionner les téléphones, les voitures, les hôpitaux, les banques, les avions. Pourtant, malgré des décennies de progrès, construire du logiciel reste une activité notoirement difficile. Les projets dépassent leurs budgets, les délais explosent, les bogues s&amp;rsquo;accumulent. En 1995, le Standish Group publiait son rapport &lt;em&gt;CHAOS&lt;/em&gt;, révélant que seulement 16% des projets logiciels étaient livrés à temps et dans les limites du budget. Trente ans plus tard, les échecs spectaculaires continuent de faire les manchettes. Au Québec, le projet SAAQclic de la Société de l&amp;rsquo;assurance automobile, estimé à 638 millions de dollars en 2017, a fini par coûter plus de 1,1 milliard, et son déploiement en 2023 a été marqué par des pannes majeures et des dépassements de coûts dissimulés pendant des années. Le génie logiciel, en tant que discipline, est né de ce constat : il ne suffit pas de savoir programmer pour construire du logiciel qui fonctionne.&lt;/p&gt;</description></item><item><title>La représentation des données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/</guid><description>&lt;h1 id="la-représentation-des-données"&gt;La représentation des données&lt;a class="anchor" href="#la-repr%c3%a9sentation-des-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="données-vs-information-vs-connaissances"&gt;Données vs information vs connaissances&lt;a class="anchor" href="#donn%c3%a9es-vs-information-vs-connaissances"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;C&amp;rsquo;est une distinction classique et fondamentale en sciences de l&amp;rsquo;information.

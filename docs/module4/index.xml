@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 4 - Construire en équipe on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/</link><description>Recent content in Module 4 - Construire en équipe on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module4/index.xml" rel="self" type="application/rss+xml"/><item><title>Git distribué (GitHub)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/github/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/github/</guid><description>&lt;h1 id="au-delà-du-git-local--git-distribué"&gt;Au-delà du git local : git distribué&lt;a class="anchor" href="#au-del%c3%a0-du-git-local--git-distribu%c3%a9"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Jusqu&amp;rsquo;ici nous avons utilisé git en mode local, c&amp;rsquo;est-à-dire que la totalité des
-opérations que nous avons effectuées sont confinées dans le contexte particulier
-de notre dépôt local, dans un endroit particulier de notre disque, sur un
-ordinateur particulier. Mais le modèle de git est beaucoup plus puissant et
-général, car il permet de synchroniser des versions différentes du même dépôt, à
-travers le réseau internet. On dit que le modèle est &lt;em&gt;distribué&lt;/em&gt;. Ce mode est
-évidemment optionnel, et il est tout à fait possible d&amp;rsquo;utiliser git de manière
-exclusivement locale, si ça correspond à notre besoin. Mais dans un contexte de
-collaboration pour le développement logiciel, le mode distribué de git est
-quasiment essentiel. Une bonne manière de commencer notre exploration de cette
-nouvelle idée est en étendant notre modèle mental des trois &amp;ldquo;endroits&amp;rdquo; du git
-local avec un quatrième &amp;ldquo;endroit&amp;rdquo;, qui correspond à une autre version du même
-depot, qui se trouve &amp;ldquo;ailleurs&amp;rdquo; :&lt;/p&gt;</description></item><item><title>Le manifeste Agile</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</guid><description>&lt;h1 id="la-manifeste-agile"&gt;La manifeste Agile&lt;a class="anchor" href="#la-manifeste-agile"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Avant d&amp;rsquo;aller plus loin, il est important de bien distinguer git et GitHub, car
+la confusion entre les deux est fréquente. Git est un logiciel de versioning,
+créé par Linus Torvalds en 2005, qui fonctionne entièrement en local sur votre
+machine. GitHub est un service web, fondé en 2008 par Tom Preston-Werner, Chris
+Wanstrath et PJ Hyett, qui héberge des dépôts git en ligne et ajoute par-dessus
+une couche de fonctionnalités collaboratives : pull requests, code reviews,
+gestion d&amp;rsquo;issues, et bien d&amp;rsquo;autres. Git peut fonctionner sans GitHub, et il
+existe d&amp;rsquo;autres services similaires (GitLab, Bitbucket). Mais GitHub est devenu,
+de loin, la plateforme dominante. Son rachat par Microsoft en 2018 pour 7,5
+milliards de dollars témoigne de cette centralité. Aujourd&amp;rsquo;hui, GitHub n&amp;rsquo;est pas
+seulement un hébergeur de code : c&amp;rsquo;est le lieu où se trouvent les projets open
+source majeurs, où se discutent les décisions techniques, où se construisent les
+réputations professionnelles. Comprendre GitHub, c&amp;rsquo;est comprendre comment les
+développeurs collaborent.&lt;/p&gt;</description></item><item><title>Le manifeste Agile</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</guid><description>&lt;h1 id="la-manifeste-agile"&gt;La manifeste Agile&lt;a class="anchor" href="#la-manifeste-agile"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;En quelque au début des années 2000, le mot &amp;ldquo;agile&amp;rdquo; est devenu omniprésent, dans
 la culture technologique et même au-delà. Il représente en fait un phénomène
 culturel dont la genèse est un petit groupe de professionnels, qui se sont
