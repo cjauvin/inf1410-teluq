@@ -513,3 +513,50 @@ print(f"  Bloc #1 modifié : montant changé à 999999 $")
 valide, message = ledger.verifier_integrite()
 print(f"  Vérification : {message}")
 {{< /pyodide >}}
+
+## Le web sémantique : une grande ambition inachevée
+
+Au début des années 2000, Tim Berners-Lee, l'inventeur du World Wide Web, a
+proposé une vision ambitieuse : le *web sémantique*. L'idée était de transformer
+le web, conçu pour être lu par des humains, en un réseau de données structurées
+lisibles par des machines. Plutôt que de publier des pages HTML dont le contenu
+n'est compréhensible que visuellement, on décrirait les données avec des formats
+standardisés (RDF, OWL) et on les relierait entre elles par des identifiants
+universels (URI), créant un immense graphe de connaissances interrogeable par un
+langage de requêtes dédié (SPARQL). La promesse était séduisante : un agent
+logiciel pourrait, par exemple, trouver automatiquement un médecin disponible
+près de chez vous en croisant des données médicales, géographiques et d'agenda,
+toutes publiées dans des formats interopérables.
+
+Dans la pratique, le web sémantique n'a jamais atteint la masse critique
+espérée. Les standards RDF et OWL se sont avérés complexes à maîtriser pour les
+développeurs ordinaires, et le coût d'annotation des données existantes était
+prohibitif. Publier une page HTML est simple ; la décrire dans un graphe RDF
+avec des ontologies formelles demande un effort considérable pour un bénéfice
+souvent incertain. Le web "réel" a évolué dans une direction différente : plutôt
+que des données sémantiquement riches et décentralisées, ce sont les grandes
+plateformes centralisées (Google, Facebook, Amazon) qui ont structuré
+l'information, chacune dans ses propres formats propriétaires. Le web sémantique
+est devenu un cas d'étude intéressant en génie logiciel : une architecture
+techniquement élégante qui n'a pas survécu au contact avec les réalités
+économiques et la friction d'adoption. C'est une illustration du principe YAGNI
+à l'échelle d'un écosystème : la complexité anticipée n'a pas trouvé preneur.
+
+Certaines idées du web sémantique ont toutefois survécu sous des formes plus
+pragmatiques. [Schema.org](https://schema.org/), lancé en 2011 par Google,
+Microsoft, Yahoo et Yandex, propose un vocabulaire commun pour annoter les pages
+web avec des métadonnées structurées : le type d'un contenu (recette, événement,
+produit, personne), ses propriétés et ses relations. Ces annotations, encodées
+en [JSON-LD](https://json-ld.org/) (*JSON for Linked Data*), sont invisibles
+pour l'utilisateur mais exploitées par les moteurs de recherche pour afficher des
+résultats enrichis (les "rich snippets" de Google : étoiles de notation,
+horaires, prix). JSON-LD a réussi là où RDF avait échoué : il s'intègre
+naturellement dans les pratiques existantes des développeurs web, puisqu'il
+s'agit simplement de JSON avec quelques conventions supplémentaires. Le projet
+[Wikidata](https://www.wikidata.org/), la base de connaissances structurée de
+Wikipédia, est probablement la réalisation la plus fidèle de la vision originale
+du web sémantique, avec plus de 100 millions d'éléments reliés entre eux dans un
+graphe ouvert et interrogeable. L'héritage du web sémantique est donc réel, mais
+il a pris une forme que ses concepteurs n'avaient pas tout à fait anticipée : des
+standards légers adoptés par pragmatisme, plutôt qu'une infrastructure
+universelle adoptée par conviction.
