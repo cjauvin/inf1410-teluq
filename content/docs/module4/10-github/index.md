@@ -1,5 +1,6 @@
 ---
 title: "Git distribué (GitHub)"
+slug: "github"
 weight: 10
 ---
 

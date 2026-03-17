@@ -284,11 +284,24 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - Protection de branches et lien CI
 
 ## L’agilité (en cours)
-- Le manifeste Agile et contexte historique (existe)
-- Scrum (sprints, rôles, cérémonies) — à développer, avec démo GitHub Projects
-- Kanban (flux continu, WIP limits, visualisation) — à développer, avec démo GitHub Projects
-- XP : traité brièvement, renvois vers module 2 (TDD, CI, pair programming)
-- Perspective critique : l’agilité dévoyée, "Agile is Dead" (Dave Thomas), Dark Scrum
+- Le manifeste Agile et contexte historique (complété)
+- Mention d’XP avec renvois vers module 2 (TDD, CI) (complété)
+- Perspective critique : l’agilité dévoyée, "Agile is Dead" (Dave Thomas), Dark Scrum (à développer)
+
+### Scrum (complété)
+- Historique : Takeuchi et Nonaka (1986), Sutherland et Schwaber (1990s), Scrum Guide
+- Rôles : Product Owner, Scrum Master, équipe de développement
+- Démonstration GitHub Projects (scénario RéservaSalle, équipe Leila/Sara/Marco/Nadia) :
+  - Mise en place : vues (Table, Board, Roadmap), colonnes (Status), ajout In Review, champs (Story Points, Iteration)
+  - Product backlog : user stories (format « En tant que... »), labels (story, tech, bug), introduction de l’outil `gh`
+  - Cérémonies du sprint : sprint planning (estimation, vélocité, objectif de sprint), daily standup, sprint review, rétrospective
+  - Déroulement d’un sprint : flux des issues (Todo → In Progress → In Review → Done), lien avec branches/PR, automatisation
+  - Auto-calibration : vélocité mesurée, amélioration continue via les rétrospectives
+
+### Kanban (à développer)
+- Origines Toyota (Taiichi Ohno), transposition au logiciel (David Anderson)
+- Flux continu vs sprints, WIP limits, visualisation
+- Démonstration GitHub Projects
 
 ## Gestion de projet et coordination (à développer)
 - Outils : GitHub Issues, GitHub Projects (tour guidé)

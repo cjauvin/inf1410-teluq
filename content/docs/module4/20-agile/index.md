@@ -1,9 +1,11 @@
 ---
-title: "Le manifeste Agile"
+title: "L'agilité"
+slug: "agile"
 weight: 20
+bookCollapseSection: true
 ---
 
-# La manifeste Agile
+# Le manifeste Agile
 
 En quelque au début des années 2000, le mot "agile" est devenu omniprésent, dans
 la culture technologique et même au-delà. Il représente en fait un phénomène
@@ -27,30 +29,30 @@ semaines à quelques mois, en privilégiant les plus courts.
 4. Les utilisateurs ou représentants métier et les développeurs doivent
 collaborer quotidiennement tout au long du projet.
 
-5. Réalisez les projets avec des personnes motivées. Donnez-leur l’environnement
+5. Réalisez les projets avec des personnes motivées. Donnez-leur l'environnement
 et le soutien dont elles ont besoin, et faites-leur confiance pour atteindre les
 objectifs.
 
 6. La méthode la plus simple et la plus efficace pour transmettre de
-l’information à l’équipe de développement et au sein de celle-ci est la
+l'information à l'équipe de développement et au sein de celle-ci est la
 conversation en face à face.
 
-7. Un logiciel opérationnel est la principale mesure d’avancement.
+7. Un logiciel opérationnel est la principale mesure d'avancement.
 
 8. Les processus agiles encouragent un rythme de développement soutenable. Les
 commanditaires, les développeurs et les utilisateurs doivent pouvoir maintenir
 indéfiniment un rythme constant.
 
-9. Une attention continue à l’excellence technique et à une bonne conception
-   renforce l’agilité.
+9. Une attention continue à l'excellence technique et à une bonne conception
+   renforce l'agilité.
 
-10. La simplicité — l’art de maximiser la quantité de travail non effectué — est
+10. La simplicité — l'art de maximiser la quantité de travail non effectué — est
     essentielle.
 
-11. Les meilleures architectures, exigences et conceptions émergent d’équipes
+11. Les meilleures architectures, exigences et conceptions émergent d'équipes
     auto-organisées.
 
-12. À intervalles réguliers, l’équipe réfléchit aux moyens de devenir plus
+12. À intervalles réguliers, l'équipe réfléchit aux moyens de devenir plus
     efficace, puis ajuste et modifie son comportement en conséquence.
 
 Avant le manifeste Agile, on traitait essentiellement la conception logicielle
@@ -67,9 +69,17 @@ attention quotidienne et en constante évolution :
 
 {{< image src="gardening.png" alt="" title="" loading="lazy" >}}
 
-## La méthode Scrum
-
-## La méthode Kanban
-
-## La programmation extrême (XP)
-
+Plusieurs méthodes concrètes ont émergé du mouvement agile. Les deux plus
+influentes, que nous allons explorer en détail dans les sections qui suivent,
+sont Scrum et Kanban. Mais il faut aussi mentionner la *programmation extrême*
+(Extreme Programming, ou XP), proposée par Kent Beck à la fin des années 1990.
+XP n'est pas tant une méthode de gestion de projet qu'un ensemble de pratiques
+d'ingénierie : le développement piloté par les tests (TDD), l'intégration
+continue, le pair programming, le refactoring continu. Plusieurs de ces
+pratiques sont devenues tellement courantes qu'on oublie parfois qu'elles
+viennent d'XP. Nous les avons d'ailleurs déjà abordées dans ce cours : le TDD
+et les tests au [module 2]({{< relref "/docs/module2/20-tests" >}}),
+l'intégration continue dans la section sur la
+[CI]({{< relref "/docs/module2/50-ci" >}}). Plutôt que de consacrer une section
+séparée à XP, nous préférons souligner ici que ses idées sont tissées à travers
+plusieurs parties du cours.
