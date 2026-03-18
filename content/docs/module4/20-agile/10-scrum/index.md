@@ -62,7 +62,7 @@ souvent un tableau avec des colonnes ("À faire", "En cours", "Terminé") et des
 cartes qu'on déplace de gauche à droite. Ce tableau est un outil de
 visualisation qu'on appelle un *tableau Kanban*. Mais Kanban est aussi le nom
 d'une méthode de gestion à part entière, que nous verrons dans la
-[prochaine section]({{< relref "/docs/module4/agile/20-kanban" >}}). Le tableau
+[prochaine section]({{< relref "/docs/module4/20-agile/20-kanban" >}}). Le tableau
 et la méthode ne sont pas la même chose. Le tableau Kanban est un outil
 générique que pratiquement toutes les équipes utilisent, quelle que soit leur
 méthode. Dans la pratique, une équipe Scrum organise typiquement son sprint
@@ -74,7 +74,7 @@ démonstration qui suit.
 Pour illustrer concrètement comment Scrum fonctionne au quotidien, nous allons
 suivre une petite équipe à travers son premier sprint. Nous retrouvons Leila et
 Sara, que nous avons rencontrées dans la
-[section sur GitHub]({{< relref "/docs/module4/github" >}}). Elles travaillent
+[section sur GitHub]({{< relref "/docs/module4/10-github" >}}). Elles travaillent
 maintenant au sein d'une équipe de quatre personnes qui développe *RéservaSalle*,
 une application web permettant de réserver des salles dans un espace de
 coworking. Leila joue le rôle de Product Owner : c'est elle qui a la vision du
@@ -124,7 +124,7 @@ coéquipier. C'est un ajout simple, mais il reflète un aspect fondamental du
 travail en équipe : le code ne passe pas directement de « en cours » à
 « terminé ». Il transite par une étape de validation par les pairs, celle-là
 même que nous avons vue dans la
-[section sur GitHub]({{< relref "/docs/module4/github" >}}).
+[section sur GitHub]({{< relref "/docs/module4/10-github" >}}).
 
 <!-- ILLUSTRATION: tableau avec les 4 colonnes : Todo, In Progress, In Review, Done -->
 
@@ -340,7 +340,7 @@ est levé dans la journée.
 Suivons le parcours d'une issue à travers le tableau pour comprendre le flux de
 travail concret. Sara prend l'issue #1 (modèle de données) et se l'assigne dans
 GitHub. Elle déplace la carte de *Todo* vers *In Progress*. Comme nous l'avons
-vu dans la [section sur GitHub]({{< relref "/docs/module4/github" >}}), elle
+vu dans la [section sur GitHub]({{< relref "/docs/module4/10-github" >}}), elle
 crée une branche dédiée à cette issue, y fait ses commits, puis ouvre une pull
 request lorsque son travail est prêt. À ce moment, elle déplace la carte vers
 *In Review* : le code est écrit, mais il attend la relecture d'un coéquipier.

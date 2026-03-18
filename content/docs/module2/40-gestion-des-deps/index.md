@@ -14,7 +14,7 @@ habituellement&nbsp;:
    programmes (ou des librairies) externes, doivent être détachées en des
    composantes ou des librairies distinctes, qu'il est possible de réutiliser
    (c'est un peu le [principe
-   DRY](../module2/principes#dry-dont-repeat-yourself-ne-vous-répétez-pas-) que
+   DRY]({{< ref "/docs/principes#dry-dont-repeat-yourself-ne-vous-répétez-pas" >}}) que
    nous avons vu, appliqué dans le sens plus large d'un écosystème logiciel)
 
 Dans le cas (2), on nomme parfois les librairies externes des "dépendances", ou des

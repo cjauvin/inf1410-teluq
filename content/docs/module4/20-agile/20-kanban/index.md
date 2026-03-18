@@ -37,7 +37,7 @@ comprendre la différence avec Scrum.
 
 Le premier principe est de *visualiser le flux de travail*. C'est le tableau
 Kanban que nous avons déjà rencontré dans la
-[section sur Scrum]({{< relref "/docs/module4/agile/scrum" >}}) : des colonnes
+[section sur Scrum]({{< relref "/docs/module4/20-agile/10-scrum" >}}) : des colonnes
 qui représentent les étapes du processus, et des cartes qui se déplacent de
 gauche à droite. Mais là où une équipe Scrum utilise le tableau comme un outil
 parmi d'autres au sein d'un cadre plus large (sprints, cérémonies, rôles), en
