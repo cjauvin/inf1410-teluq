@@ -158,6 +158,9 @@ accidentelle → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module
 &lt;li&gt;Melvin Conway, &lt;em&gt;How Do Committees Invent?&lt;/em&gt; (1968) : la structure d&amp;rsquo;un système
 reflète celle de l&amp;rsquo;organisation qui le produit (loi de Conway) →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Rob Pike, &lt;em&gt;Notes on Programming in C&lt;/em&gt; (1989) : contient les « 5 règles de
+programmation » de Pike, dont la règle 5 sur la primauté des structures de
+données → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/"&gt;Module 2, Survol rapide de la programmation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Edsger Dijkstra, &lt;em&gt;Go To Statement Considered Harmful&lt;/em&gt; (1968) : plaidoyer pour
 la programmation structurée → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Martin Fowler, &lt;em&gt;Continuous Integration&lt;/em&gt; (2006) : article de référence sur
