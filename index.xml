@@ -114,6 +114,10 @@ développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Principle of Least Astonishment (POLA)&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Idempotence&lt;/strong&gt; : une opération qu&amp;rsquo;on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id="principes-de-mesure-et-dobservation"&gt;Principes de mesure et d&amp;rsquo;observation&lt;a class="anchor" href="#principes-de-mesure-et-dobservation"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Loi de Goodhart&lt;/strong&gt; (Charles Goodhart, 1975) : « Lorsqu&amp;rsquo;une mesure devient un objectif, elle cesse d&amp;rsquo;être une bonne mesure. » → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/"&gt;Module 4, L&amp;rsquo;agilité (critique)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id="principes-de-pratique"&gt;Principes de pratique&lt;a class="anchor" href="#principes-de-pratique"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Boy Scout Rule&lt;/strong&gt; : &amp;ldquo;Always leave the campground cleaner than you found it.&amp;rdquo;&lt;/li&gt;
@@ -144,6 +148,9 @@ logiciel → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20
 catalogue fondateur des patrons de conception → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Martin Kleppmann, &lt;em&gt;Designing Data-Intensive Applications&lt;/em&gt; (2017) : référence
 moderne sur les systèmes de données → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/"&gt;Module 3, Les données&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Ryan Singer, &lt;em&gt;Shape Up&lt;/em&gt; (2019) : méthodologie de développement de Basecamp,
+approche asynchrone et &amp;ldquo;pitches&amp;rdquo; écrits →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="articles-et-essais"&gt;Articles et essais&lt;a class="anchor" href="#articles-et-essais"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
@@ -195,6 +202,14 @@ Replicated Data Types&lt;/em&gt; (2011) : formalisation des CRDTs →
 &lt;li&gt;Satoshi Nakamoto, &lt;em&gt;Bitcoin: A Peer-to-Peer Electronic Cash System&lt;/em&gt; (2008) :
 livre blanc introduisant la blockchain et le consensus distribué →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/"&gt;Module 3, Les données (au-delà des BD)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hirotaka Takeuchi et Ikujiro Nonaka, &lt;em&gt;The New New Product Development Game&lt;/em&gt;
+(Harvard Business Review, 1986) : article fondateur qui introduit l&amp;rsquo;approche
+« rugby » du développement de produit, inspiration directe de Scrum →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/"&gt;Module 4, Scrum&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dave Thomas, &lt;em&gt;Agile is Dead (Long Live Agility)&lt;/em&gt; (billet de blog, 2014) :
+critique de la récupération commerciale du mot &amp;ldquo;agile&amp;rdquo; par un des signataires
+du manifeste →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/"&gt;Module 4, L&amp;rsquo;agilité&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Historique</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</guid><description>&lt;h1 id="historique-du-génie-logiciel"&gt;Historique du génie logiciel&lt;a class="anchor" href="#historique-du-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;L&amp;rsquo;histoire du génie logiciel n&amp;rsquo;est pas qu&amp;rsquo;une suite d&amp;rsquo;inventions techniques :
 c&amp;rsquo;est aussi l&amp;rsquo;histoire de problèmes récurrents, de solutions qui créent de
@@ -265,7 +280,17 @@ données sous forme d&amp;rsquo;objets, répliquées entre appareils qui ne sont
 connectés, ou inscrites dans des registres immuables où chaque modification est
 tracée à jamais. Ces paradigmes ne remplacent pas les bases de données : ils les
 complètent, chacun répondant à un besoin que les bases traditionnelles servent
-mal.&lt;/p&gt;</description></item><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
+mal.&lt;/p&gt;</description></item><item><title>Gestion de projet et coordination</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/</guid><description>&lt;h1 id="gestion-de-projet-et-coordination"&gt;Gestion de projet et coordination&lt;a class="anchor" href="#gestion-de-projet-et-coordination"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Les méthodes agiles comme Scrum et Kanban fournissent un cadre pour organiser le
+travail d&amp;rsquo;une équipe. Mais au quotidien, une équipe de développement doit aussi
+résoudre des problèmes plus terre-à-terre : comment partager les décisions
+techniques importantes ? Comment communiquer efficacement quand tout le monde
+n&amp;rsquo;est pas dans la même pièce ? Comment s&amp;rsquo;assurer qu&amp;rsquo;un nouveau membre de
+l&amp;rsquo;équipe peut comprendre non seulement le code, mais aussi les raisons derrière
+les choix qui ont été faits ? Ces questions relèvent de la coordination au sens
+large, et les réponses ne se trouvent pas dans un framework ou un outil, mais
+dans un ensemble de pratiques que les équipes développent, souvent par essais et
+erreurs.&lt;/p&gt;</description></item><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Le logiciel (et le code source dont il est constitué) a une particularité
 fondamentale : il change tout le temps. Même un programme simple est rapidement

@@ -55,6 +55,10 @@ développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Principle of Least Astonishment (POLA)&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Idempotence&lt;/strong&gt; : une opération qu&amp;rsquo;on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id="principes-de-mesure-et-dobservation"&gt;Principes de mesure et d&amp;rsquo;observation&lt;a class="anchor" href="#principes-de-mesure-et-dobservation"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Loi de Goodhart&lt;/strong&gt; (Charles Goodhart, 1975) : « Lorsqu&amp;rsquo;une mesure devient un objectif, elle cesse d&amp;rsquo;être une bonne mesure. » → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/"&gt;Module 4, L&amp;rsquo;agilité (critique)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id="principes-de-pratique"&gt;Principes de pratique&lt;a class="anchor" href="#principes-de-pratique"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Boy Scout Rule&lt;/strong&gt; : &amp;ldquo;Always leave the campground cleaner than you found it.&amp;rdquo;&lt;/li&gt;
@@ -85,6 +89,9 @@ logiciel → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20
 catalogue fondateur des patrons de conception → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Martin Kleppmann, &lt;em&gt;Designing Data-Intensive Applications&lt;/em&gt; (2017) : référence
 moderne sur les systèmes de données → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/"&gt;Module 3, Les données&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Ryan Singer, &lt;em&gt;Shape Up&lt;/em&gt; (2019) : méthodologie de développement de Basecamp,
+approche asynchrone et &amp;ldquo;pitches&amp;rdquo; écrits →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="articles-et-essais"&gt;Articles et essais&lt;a class="anchor" href="#articles-et-essais"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
@@ -136,6 +143,14 @@ Replicated Data Types&lt;/em&gt; (2011) : formalisation des CRDTs →
 &lt;li&gt;Satoshi Nakamoto, &lt;em&gt;Bitcoin: A Peer-to-Peer Electronic Cash System&lt;/em&gt; (2008) :
 livre blanc introduisant la blockchain et le consensus distribué →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/"&gt;Module 3, Les données (au-delà des BD)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hirotaka Takeuchi et Ikujiro Nonaka, &lt;em&gt;The New New Product Development Game&lt;/em&gt;
+(Harvard Business Review, 1986) : article fondateur qui introduit l&amp;rsquo;approche
+« rugby » du développement de produit, inspiration directe de Scrum →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/"&gt;Module 4, Scrum&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dave Thomas, &lt;em&gt;Agile is Dead (Long Live Agility)&lt;/em&gt; (billet de blog, 2014) :
+critique de la récupération commerciale du mot &amp;ldquo;agile&amp;rdquo; par un des signataires
+du manifeste →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/"&gt;Module 4, L&amp;rsquo;agilité&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
 faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc
