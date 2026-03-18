@@ -334,7 +334,7 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 
 # Module 5 - Faire vivre le logiciel
 
-## Introduction (à développer)
+## Introduction (complété)
 - Le mur historique entre dev et ops : « on l'a codé, maintenant c'est votre problème »
 - *The Phoenix Project* (Gene Kim, 2013) et la naissance du mouvement DevOps
 - Les trois voies de DevOps (flow, feedback, apprentissage continu) comme grille de lecture

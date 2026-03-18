@@ -42,6 +42,14 @@ intégrées dans le cours.)*
   structures d'équipe et de leurs effets sur l'architecture logicielle, manœuvre
   de Conway inverse →
   [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
+- Gene Kim, Kevin Behr et George Spafford, *The Phoenix Project* (2013) : roman
+  fondateur du mouvement DevOps, parallèle entre lean manufacturing et livraison
+  logicielle →
+  [Module 5, Introduction]({{< ref "/docs/module5" >}})
+- Gene Kim, Jez Humble, Patrick Debois et John Willis, *The DevOps Handbook*
+  (2016) : formalisation des trois voies de DevOps (flow, feedback, apprentissage
+  continu) →
+  [Module 5, Introduction]({{< ref "/docs/module5" >}})
 
 ## Articles et essais
 
@@ -106,3 +114,6 @@ intégrées dans le cours.)*
   critique de la récupération commerciale du mot "agile" par un des signataires
   du manifeste →
   [Module 4, L'agilité]({{< ref "/docs/module4/20-agile" >}})
+- Adam Wiggins, *The Twelve-Factor App* (2011) : douze principes pour concevoir
+  des applications cloud-native, issus de l'expérience de Heroku →
+  [Module 5, Introduction]({{< ref "/docs/module5" >}})
