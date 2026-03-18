@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 5 - Faire vivre le logiciel on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/</link><description>Recent content in Module 5 - Faire vivre le logiciel on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module5/index.xml" rel="self" type="application/rss+xml"/><item><title>La conteneurisation avec docker</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/</guid><description>&lt;h1 id="la-conteneurisation-avec-docker"&gt;La conteneurisation avec docker&lt;a class="anchor" href="#la-conteneurisation-avec-docker"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la
-technologie Docker, ses concepts de base, et comment utiliser certains de ses
-outils principaux. Le but est de favoriser la création d’un modèle mental
-robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire,
-nous allons tout d’abord répondre à quelques questions courantes, et explorer
-ensuite une série d’exemples, de manière progressive et cohérente.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 5 - Faire vivre le logiciel on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/</link><description>Recent content in Module 5 - Faire vivre le logiciel on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module5/index.xml" rel="self" type="application/rss+xml"/><item><title>Où est-ce que ça tourne ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/</guid><description>&lt;h1 id="où-est-ce-que-ça-tourne-"&gt;Où est-ce que ça tourne ?&lt;a class="anchor" href="#o%c3%b9-est-ce-que-%c3%a7a-tourne-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Pour qu&amp;rsquo;un logiciel soit accessible à ses utilisateurs, il doit s&amp;rsquo;exécuter
+quelque part. Cette question, en apparence triviale, a donné lieu à l&amp;rsquo;une des
+transformations les plus profondes de l&amp;rsquo;histoire du génie logiciel. En l&amp;rsquo;espace
+de deux décennies, nous sommes passés de serveurs physiques installés dans des
+placards à des plateformes cloud capables de provisionner des milliers de
+machines virtuelles en quelques secondes. Cette évolution n&amp;rsquo;est pas seulement
+technique : elle a fondamentalement changé la manière dont on conçoit, déploie et
+opère les applications. Comprendre cette trajectoire, des machines physiques
+jusqu&amp;rsquo;aux containers et à l&amp;rsquo;orchestration, est essentiel pour saisir le contexte
+dans lequel les pratiques DevOps modernes ont émergé.&lt;/p&gt;</description></item></channel></rss>

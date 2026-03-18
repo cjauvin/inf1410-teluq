@@ -1,5 +1,5 @@
-<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="La conteneurisation avec docker# Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la technologie Docker, ses concepts de base, et comment utiliser certains de ses outils principaux. Le but est de favoriser la création d’un modèle mental robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire, nous allons tout d’abord répondre à quelques questions courantes, et explorer ensuite une série d’exemples, de manière progressive et cohérente.
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="La conteneurisation avec docker"><meta property="og:description" content="La conteneurisation avec docker# Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la technologie Docker, ses concepts de base, et comment utiliser certains de ses outils principaux. Le but est de favoriser la création d’un modèle mental robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire, nous allons tout d’abord répondre à quelques questions courantes, et explorer ensuite une série d’exemples, de manière progressive et cohérente."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="La conteneurisation avec docker"><meta itemprop=description content="La conteneurisation avec docker# Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la technologie Docker, ses concepts de base, et comment utiliser certains de ses outils principaux. Le but est de favoriser la création d’un modèle mental robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire, nous allons tout d’abord répondre à quelques questions courantes, et explorer ensuite une série d’exemples, de manière progressive et cohérente."><meta itemprop=wordCount content="2620"><title>La conteneurisation avec docker | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Où est-ce que ça tourne ?# Pour qu’un logiciel soit accessible à ses utilisateurs, il doit s’exécuter quelque part. Cette question, en apparence triviale, a donné lieu à l’une des transformations les plus profondes de l’histoire du génie logiciel. En l’espace de deux décennies, nous sommes passés de serveurs physiques installés dans des placards à des plateformes cloud capables de provisionner des milliers de machines virtuelles en quelques secondes. Cette évolution n’est pas seulement technique : elle a fondamentalement changé la manière dont on conçoit, déploie et opère les applications. Comprendre cette trajectoire, des machines physiques jusqu’aux containers et à l’orchestration, est essentiel pour saisir le contexte dans lequel les pratiques DevOps modernes ont émergé.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Où est-ce que ça tourne ?"><meta property="og:description" content="Où est-ce que ça tourne ?# Pour qu’un logiciel soit accessible à ses utilisateurs, il doit s’exécuter quelque part. Cette question, en apparence triviale, a donné lieu à l’une des transformations les plus profondes de l’histoire du génie logiciel. En l’espace de deux décennies, nous sommes passés de serveurs physiques installés dans des placards à des plateformes cloud capables de provisionner des milliers de machines virtuelles en quelques secondes. Cette évolution n’est pas seulement technique : elle a fondamentalement changé la manière dont on conçoit, déploie et opère les applications. Comprendre cette trajectoire, des machines physiques jusqu’aux containers et à l’orchestration, est essentiel pour saisir le contexte dans lequel les pratiques DevOps modernes ont émergé."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Où est-ce que ça tourne ?"><meta itemprop=description content="Où est-ce que ça tourne ?# Pour qu’un logiciel soit accessible à ses utilisateurs, il doit s’exécuter quelque part. Cette question, en apparence triviale, a donné lieu à l’une des transformations les plus profondes de l’histoire du génie logiciel. En l’espace de deux décennies, nous sommes passés de serveurs physiques installés dans des placards à des plateformes cloud capables de provisionner des milliers de machines virtuelles en quelques secondes. Cette évolution n’est pas seulement technique : elle a fondamentalement changé la manière dont on conçoit, déploie et opère les applications. Comprendre cette trajectoire, des machines physiques jusqu’aux containers et à l’orchestration, est essentiel pour saisir le contexte dans lequel les pratiques DevOps modernes ont émergé."><meta itemprop=wordCount content="4392"><title>Où est-ce que ça tourne ? | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
@@ -16,14 +16,123 @@
 <label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/>Kanban</a></li></ul></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/>Gestion de projet et coordination</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle checked>
 <label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/ class=active>La conteneurisation avec docker</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/ class=active>Où est-ce que ça tourne ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>La conteneurisation avec docker</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#quest-ce-que-cest>Qu&rsquo;est-ce que c&rsquo;est?</a></li><li><a href=#en-quoi-ça-diffère-dune-vm>En quoi ça diffère d&rsquo;une VM?</a></li><li><a href=#quel-problème-ça-résout>Quel problème ça résout?</a></li><li><a href=#de-où-ça-vient>De où ça vient?</a></li><li><a href=#comment-lutiliser>Comment l&rsquo;utiliser</a><ul><li><a href=#définir-une-image--dockerfile>Définir une image : Dockerfile</a></li></ul></li><li><a href=#créer-une-image--docker-build>Créer une image : docker build</a></li><li><a href=#créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run</a></li><li><a href=#partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte</a></li><li><a href=#gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose</a></li><li><a href=#exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker-compose exec</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=la-conteneurisation-avec-docker>La conteneurisation avec docker<a class=anchor href=#la-conteneurisation-avec-docker>#</a></h1><p>Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la
-technologie Docker, ses concepts de base, et comment utiliser certains de ses
-outils principaux. Le but est de favoriser la création d’un modèle mental
-robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire,
-nous allons tout d’abord répondre à quelques questions courantes, et explorer
-ensuite une série d’exemples, de manière progressive et cohérente.</p><h2 id=quest-ce-que-cest>Qu&rsquo;est-ce que c&rsquo;est?<a class=anchor href=#quest-ce-que-cest>#</a></h2><p>Docker est un programme qui permet de &ldquo;packager&rdquo; une application ainsi que la
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Où est-ce que ça tourne ?</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#lère-du-serveur-physique>L&rsquo;ère du serveur physique</a></li><li><a href=#la-virtualisation>La virtualisation</a></li><li><a href=#le-cloud>Le cloud</a></li><li><a href=#le-serverless>Le serverless</a></li><li><a href=#la-conteneurisation>La conteneurisation</a><ul><li><a href=#quest-ce-que-cest->Qu&rsquo;est-ce que c&rsquo;est ?</a></li><li><a href=#en-quoi-ça-diffère-dune-vm->En quoi ça diffère d&rsquo;une VM ?</a></li><li><a href=#quel-problème-ça-résout->Quel problème ça résout ?</a></li><li><a href=#comment-lutiliser>Comment l&rsquo;utiliser</a><ul><li><a href=#définir-une-image--dockerfile>Définir une image : Dockerfile</a></li><li><a href=#créer-une-image--docker-build>Créer une image : docker build</a></li><li><a href=#créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run</a></li><li><a href=#partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte</a></li><li><a href=#gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose</a></li><li><a href=#exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker compose exec</a></li></ul></li></ul></li><li><a href=#lorchestration>L&rsquo;orchestration</a></li><li><a href=#linfrastructure-comme-code>L&rsquo;infrastructure comme code</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=où-est-ce-que-ça-tourne->Où est-ce que ça tourne ?<a class=anchor href=#o%c3%b9-est-ce-que-%c3%a7a-tourne->#</a></h1><p>Pour qu&rsquo;un logiciel soit accessible à ses utilisateurs, il doit s&rsquo;exécuter
+quelque part. Cette question, en apparence triviale, a donné lieu à l&rsquo;une des
+transformations les plus profondes de l&rsquo;histoire du génie logiciel. En l&rsquo;espace
+de deux décennies, nous sommes passés de serveurs physiques installés dans des
+placards à des plateformes cloud capables de provisionner des milliers de
+machines virtuelles en quelques secondes. Cette évolution n&rsquo;est pas seulement
+technique : elle a fondamentalement changé la manière dont on conçoit, déploie et
+opère les applications. Comprendre cette trajectoire, des machines physiques
+jusqu&rsquo;aux containers et à l&rsquo;orchestration, est essentiel pour saisir le contexte
+dans lequel les pratiques DevOps modernes ont émergé.</p><h2 id=lère-du-serveur-physique>L&rsquo;ère du serveur physique<a class=anchor href=#l%c3%a8re-du-serveur-physique>#</a></h2><p>Jusqu&rsquo;au milieu des années 2000, déployer une application signifiait, de manière
+très concrète, installer un serveur. Une entreprise qui voulait mettre un site
+web ou une application interne en ligne devait acheter une machine physique (ou
+plusieurs), l&rsquo;installer dans une salle serveur climatisée, la brancher au
+réseau, installer un système d&rsquo;exploitation, configurer les logiciels
+nécessaires, et maintenir le tout. Ce processus pouvait prendre des semaines,
+voire des mois. Si la demande augmentait et que le serveur n&rsquo;arrivait plus à
+suivre, il fallait commander une nouvelle machine, attendre sa livraison, et
+répéter le processus. Pour les organisations qui n&rsquo;avaient pas les moyens de
+maintenir leur propre salle serveur, la <em>colocation</em> offrait une alternative : on
+achetait le serveur, mais on le plaçait dans un centre de données (datacenter)
+géré par un tiers, qui fournissait l&rsquo;alimentation électrique, la climatisation et
+la connectivité réseau. Pour les projets plus modestes, l&rsquo;<em>hébergement web</em>
+mutualisé (shared hosting) permettait de louer un espace sur un serveur partagé
+entre plusieurs clients, typiquement avec un accès FTP pour déposer ses fichiers
+PHP ou HTML. Des entreprises comme OVH (fondée en 1999 en France) ou GoDaddy ont
+bâti des empires sur ce modèle. C&rsquo;était simple et abordable, mais rigide : on
+avait peu de contrôle sur l&rsquo;environnement, et les ressources étaient limitées et
+partagées.</p><h2 id=la-virtualisation>La virtualisation<a class=anchor href=#la-virtualisation>#</a></h2><p>Le premier grand saut vers l&rsquo;abstraction de l&rsquo;infrastructure a été la
+virtualisation. L&rsquo;idée, qui remonte en fait aux mainframes IBM des années 1960,
+consiste à faire tourner plusieurs systèmes d&rsquo;exploitation &ldquo;invités&rdquo; sur une
+seule machine physique, chacun croyant disposer de sa propre machine dédiée. Un
+logiciel appelé <em>hyperviseur</em> s&rsquo;interpose entre le matériel et les systèmes
+invités pour gérer ce partage de manière transparente. VMware, fondée en 1998, a
+démocratisé cette technologie pour les serveurs x86, suivie par Xen (un projet
+open source issu de l&rsquo;Université de Cambridge en 2003) et KVM (intégré
+directement au noyau Linux à partir de 2007). La virtualisation a transformé la
+gestion des serveurs de plusieurs manières. D&rsquo;abord, elle a permis de consolider
+plusieurs serveurs physiques sous-utilisés en un seul, réduisant les coûts
+matériels et énergétiques. Ensuite, elle a rendu possible la création de
+nouvelles machines en minutes plutôt qu&rsquo;en semaines : il suffisait de créer une
+nouvelle machine virtuelle (VM) à partir d&rsquo;une image préexistante. Enfin, elle a
+introduit l&rsquo;idée fondamentale que l&rsquo;infrastructure pouvait être manipulée comme
+une ressource logicielle, créée, copiée, déplacée et détruite à la demande.
+C&rsquo;est cette idée qui allait rendre le cloud possible.</p><h2 id=le-cloud>Le cloud<a class=anchor href=#le-cloud>#</a></h2><p>La virtualisation a rendu l&rsquo;infrastructure manipulable comme du logiciel. Le
+cloud a poussé cette logique à sa conclusion naturelle : pourquoi posséder des
+serveurs quand on peut en louer à la demande ? Le moment fondateur est le
+lancement d&rsquo;Amazon Web Services (AWS) en 2006, avec son service EC2 (Elastic
+Compute Cloud), qui permettait à n&rsquo;importe qui de créer une machine virtuelle en
+quelques minutes, via une API, et de payer uniquement pour le temps
+d&rsquo;utilisation. L&rsquo;origine d&rsquo;AWS est elle-même révélatrice : Amazon avait développé
+une infrastructure massive pour faire fonctionner son site de commerce en ligne,
+et a réalisé qu&rsquo;elle pouvait la revendre comme service. Google Cloud Platform
+(GCP, 2008) et Microsoft Azure (2010) ont suivi, créant un oligopole qui domine
+encore aujourd&rsquo;hui le marché.</p><p>Le cloud est généralement décrit en trois niveaux d&rsquo;abstraction, souvent
+représentés sous forme de couches. L&rsquo;<em>Infrastructure as a Service</em> (IaaS) est la
+couche la plus basse : on loue des machines virtuelles, du stockage et du réseau,
+et on gère soi-même le système d&rsquo;exploitation et les logiciels (c&rsquo;est le modèle
+d&rsquo;EC2). La <em>Platform as a Service</em> (PaaS) monte d&rsquo;un cran : le fournisseur gère
+l&rsquo;infrastructure et le runtime, et le développeur ne déploie que son code. Heroku
+(2007), la plateforme dont est issue la Twelve-Factor App, est l&rsquo;exemple
+emblématique de ce modèle : un simple <code>git push heroku main</code> suffisait pour
+déployer une application. Enfin, le <em>Software as a Service</em> (SaaS) est la couche
+la plus abstraite : l&rsquo;utilisateur final consomme un logiciel complet sans se
+soucier de l&rsquo;infrastructure (Gmail, Slack, Salesforce). Ces trois niveaux ne sont
+pas mutuellement exclusifs : une même organisation peut utiliser du IaaS pour
+certains composants et du PaaS pour d&rsquo;autres.</p><p>L&rsquo;adoption du cloud a été rapide et massive. Netflix, après une panne majeure de
+son datacenter en 2008, a entrepris une migration complète vers AWS qui est
+devenue un cas d&rsquo;étude en architecture cloud (et a produit au passage de nombreux
+outils open source que nous retrouverons plus loin). Airbnb est sur AWS depuis
+ses débuts, un exemple emblématique de startup qui n&rsquo;a jamais possédé de serveur
+physique. Spotify a migré de ses propres serveurs vers Google Cloud Platform en
+2016. À l&rsquo;inverse, Dropbox a fait le chemin inverse en 2016, quittant AWS pour
+construire sa propre infrastructure, estimant qu&rsquo;à son échelle les économies
+justifiaient l&rsquo;investissement. Ce dernier cas illustre que le cloud n&rsquo;est pas une
+fin en soi : c&rsquo;est un compromis entre flexibilité, coût et contrôle, et la bonne
+réponse dépend du contexte.</p><h2 id=le-serverless>Le serverless<a class=anchor href=#le-serverless>#</a></h2><p>Le modèle PaaS a ouvert la voie à une abstraction encore plus radicale : le
+<em>serverless</em>, ou plus précisément le <em>Function as a Service</em> (FaaS). L&rsquo;idée est
+simple : au lieu de déployer une application qui tourne en permanence sur un
+serveur (même virtuel), on déploie des fonctions individuelles qui sont exécutées
+à la demande, en réponse à des événements. AWS Lambda, lancé en 2014, a
+popularisé ce modèle. On écrit une fonction (par exemple en Python), on la
+déploie sur Lambda, et elle est exécutée uniquement quand un événement
+déclencheur survient : une requête HTTP, un message dans une file d&rsquo;attente, un
+fichier déposé dans un bucket S3. On ne paie que pour le temps d&rsquo;exécution réel,
+mesuré à la milliseconde. Google Cloud Functions et Azure Functions offrent des
+services équivalents.</p><p>Le nom &ldquo;serverless&rdquo; est bien sûr trompeur : il y a toujours des serveurs quelque
+part, mais le développeur n&rsquo;a plus à s&rsquo;en soucier. C&rsquo;est l&rsquo;aboutissement logique
+de la trajectoire d&rsquo;abstraction que nous avons suivie, du serveur physique à la
+VM, de la VM au PaaS, du PaaS à la fonction. Mais cette abstraction a un coût.
+Le <em>cold start</em> (le délai de démarrage quand une fonction n&rsquo;a pas été appelée
+récemment) peut poser des problèmes de latence. Le débogage et le monitoring
+deviennent plus difficiles quand la logique est dispersée dans des dizaines de
+fonctions. Et le risque de <em>vendor lock-in</em> (dépendance au fournisseur cloud) est
+maximal, puisque chaque plateforme a ses propres conventions et services. Le
+serverless est donc particulièrement adapté à certains cas d&rsquo;usage (traitement
+d&rsquo;événements, tâches ponctuelles, backends légers), mais ne remplace pas les
+architectures plus traditionnelles pour des systèmes complexes.</p><h2 id=la-conteneurisation>La conteneurisation<a class=anchor href=#la-conteneurisation>#</a></h2><p>Parallèlement à l&rsquo;essor du cloud, une autre approche de l&rsquo;isolation a émergé,
+plus légère que la virtualisation classique. L&rsquo;idée de base est ancienne : la
+commande <code>chroot</code> d&rsquo;Unix, disponible depuis 1979, permettait déjà de restreindre
+la vision du système de fichiers d&rsquo;un processus. Au fil des années, le noyau
+Linux a développé des mécanismes d&rsquo;isolation de plus en plus sophistiqués : les
+<em>cgroups</em> (control groups, 2006), qui permettent de limiter les ressources (CPU,
+mémoire) allouées à un groupe de processus, et les <em>namespaces</em> (2002-2013), qui
+isolent différents aspects du système (réseau, identifiants de processus, système
+de fichiers). Ces primitives existaient, mais restaient difficiles à utiliser
+directement. En 2013, Solomon Hykes et son entreprise dotCloud (qui deviendra
+Docker Inc) ont lancé Docker, un outil qui rend ces mécanismes accessibles à
+travers une interface simple et élégante. Au lieu de virtualiser une machine
+complète avec son propre noyau (comme le fait une VM), un container partage le
+noyau du système hôte tout en maintenant une isolation quasi complète de
+l&rsquo;environnement applicatif. Le résultat est beaucoup plus léger qu&rsquo;une VM : un
+container démarre en secondes plutôt qu&rsquo;en minutes, et consomme une fraction des
+ressources. Docker a également popularisé le concept d&rsquo;<em>image</em> comme artefact
+reproductible et distribuable, résolvant de manière élégante le fameux problème
+&ldquo;ça marche sur ma machine&rdquo;.</p><p>Voyons concrètement comment Docker fonctionne.</p><h3 id=quest-ce-que-cest->Qu&rsquo;est-ce que c&rsquo;est ?<a class=anchor href=#quest-ce-que-cest->#</a></h3><p>Docker est un programme qui permet de &ldquo;packager&rdquo; une application ainsi que la
 totalité de son environnement dans un fichier spécial appelé une <em>image</em>. Une
 fois que cette image est disponible, Docker permet de créer et exécuter une
 instance dynamique à partir de celle-ci, sous la forme d&rsquo;un <em>container</em>. Un
@@ -33,7 +142,7 @@ Cette isolation s&rsquo;applique également au disque et au réseau, mais il est
 possible d&rsquo;introduire des exceptions à l&rsquo;aide de différents mécanismes, que nous
 allons explorer. Notons qu&rsquo;il peut être utile de se représenter le concept
 d&rsquo;image comme correspondant grosso modo à celui d&rsquo;une <em>classe</em> (au sens
-orienté-objet), et un container son <em>instance</em>.</p><h2 id=en-quoi-ça-diffère-dune-vm>En quoi ça diffère d&rsquo;une VM?<a class=anchor href=#en-quoi-%c3%a7a-diff%c3%a8re-dune-vm>#</a></h2><p>Bien que ce modèle ressemble en apparence à celui d&rsquo;une machine virtuelle (VM),
+orienté-objet), et un container son <em>instance</em>.</p><h3 id=en-quoi-ça-diffère-dune-vm->En quoi ça diffère d&rsquo;une VM ?<a class=anchor href=#en-quoi-%c3%a7a-diff%c3%a8re-dune-vm->#</a></h3><p>Bien que ce modèle ressemble en apparence à celui d&rsquo;une machine virtuelle (VM),
 il est assez différent : au lieu de faire l&rsquo;émulation complète d&rsquo;une machine
 physique, comme c&rsquo;est le cas avec les VMs du genre VMWare ou VirtualBox, Docker
 partage plutôt le système d&rsquo;exploitation hôte, en utilisant ses primitives de
@@ -42,7 +151,7 @@ gourmand en ressources qu&rsquo;une VM, et permet donc de meilleures performance
 Bien que Docker soit disponible pour toutes les plateformes, il ne peut rouler
 nativement que sur Linux (originalement) et Windows (plus récemment, et moins
 typiquement), tandis que sous MacOS, une couche de virtualisation supplémentaire
-est nécessaire.</p><h2 id=quel-problème-ça-résout>Quel problème ça résout?<a class=anchor href=#quel-probl%c3%a8me-%c3%a7a-r%c3%a9sout>#</a></h2><p>Une application moderne repose sur un assemblage impressionnant de composantes
+est nécessaire.</p><h3 id=quel-problème-ça-résout->Quel problème ça résout ?<a class=anchor href=#quel-probl%c3%a8me-%c3%a7a-r%c3%a9sout->#</a></h3><p>Une application moderne repose sur un assemblage impressionnant de composantes
 logicielles qu&rsquo;il est pratiquement impossible de contrôler dans ses moindres
 détails : votre environnement Conda a beau contenir exactement les mêmes
 versions des librairies Python que celui de votre collègue, il est possible
@@ -57,9 +166,7 @@ le transport des choses fragiles en les compartimentant.</p><p>En pratique, Dock
 une application complexe doit être déployée et gérée en production, et quand un
 développeur veut reproduire un environnement complexe (celui de production par
 exemple) localement, sans avoir à gérer une multitude de composantes complexes
-sur le système hôte.</p><h2 id=de-où-ça-vient>De où ça vient?<a class=anchor href=#de-o%c3%b9-%c3%a7a-vient>#</a></h2><p>Bien que Docker soit un projet open source, il a été créé et est développé dans
-le contexte d&rsquo;une entreprise à but lucratif (Docker Inc), qui offre des services
-de type &ldquo;entreprise&rdquo;.</p><h2 id=comment-lutiliser>Comment l&rsquo;utiliser<a class=anchor href=#comment-lutiliser>#</a></h2><h3 id=définir-une-image--dockerfile>Définir une image : Dockerfile<a class=anchor href=#d%c3%a9finir-une-image--dockerfile>#</a></h3><p>Supposons que nous voulions créer un petit outil Python qui effectue une tâche
+sur le système hôte.</p><h3 id=comment-lutiliser>Comment l&rsquo;utiliser<a class=anchor href=#comment-lutiliser>#</a></h3><h4 id=définir-une-image--dockerfile>Définir une image : Dockerfile<a class=anchor href=#d%c3%a9finir-une-image--dockerfile>#</a></h4><p>Supposons que nous voulions créer un petit outil Python qui effectue une tâche
 très simple, avec la ligne de commande. Créons tout d&rsquo;abord un répertoire de
 travail :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ mkdir util
 </span></span><span style=display:flex><span>$ cd util</span></span></code></pre></div><p>Créons ensuite un petit programme simple en python, <code>say_hello.py</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> sys
@@ -92,7 +199,7 @@ au moment de la création de l&rsquo;image, à l&rsquo;emplacement désigné (le
 <code>/inside_container</code> n&rsquo;existera que dans le container, quand il sera créé).
 <code>WORKDIR</code> spécifie le répertoire courant qui sera utilisé par la commande
 suivante <code>ENTRYPOINT</code>, qui détermine la ligne de commande qui sera utilisée par
-défaut quand le container sera exécuté.</p><h2 id=créer-une-image--docker-build>Créer une image : docker build<a class=anchor href=#cr%c3%a9er-une-image--docker-build>#</a></h2><p>Pour créer notre image, qu&rsquo;on nommera <code>hello</code>, la commande <code>build</code> prend en
+défaut quand le container sera exécuté.</p><h4 id=créer-une-image--docker-build>Créer une image : docker build<a class=anchor href=#cr%c3%a9er-une-image--docker-build>#</a></h4><p>Pour créer notre image, qu&rsquo;on nommera <code>hello</code>, la commande <code>build</code> prend en
 entrée notre <code>Dockerfile</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker build . -t hello
 </span></span><span style=display:flex><span>Sending build context to Docker daemon  3.072kB
 </span></span><span style=display:flex><span>Step 1/4 : FROM python
@@ -111,7 +218,7 @@ entrée notre <code>Dockerfile</code> :</p><div class=highlight><pre tabindex=0 
 </span></span><span style=display:flex><span>Successfully tagged hello:latest</span></span></code></pre></div><p>On peut vérifier la présence de la nouvelle image en utilisant la commande
 <code>docker images</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker images
 </span></span><span style=display:flex><span>REPOSITORY      TAG       IMAGE ID       CREATED        SIZE
-</span></span><span style=display:flex><span>hello           latest    3bfd9d7c3faf   <span style=color:#ae81ff>25</span> hours ago   886MB</span></span></code></pre></div><h2 id=créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run<a class=anchor href=#cr%c3%a9er-et-d%c3%a9marrer-un-container--docker-run>#</a></h2><p>Une fois qu&rsquo;une image existe, on peut en instancier un (ou plusieurs)
+</span></span><span style=display:flex><span>hello           latest    3bfd9d7c3faf   <span style=color:#ae81ff>25</span> hours ago   886MB</span></span></code></pre></div><h4 id=créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run<a class=anchor href=#cr%c3%a9er-et-d%c3%a9marrer-un-container--docker-run>#</a></h4><p>Une fois qu&rsquo;une image existe, on peut en instancier un (ou plusieurs)
 container à volonté. Étant donné que notre premier exemple est celui
 d&rsquo;un programme en ligne de commande (CLI), le cycle de vie de notre
 container sera bref : il sera tout d&rsquo;abord créé, sa commande (définie
@@ -136,7 +243,7 @@ l&rsquo;image :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;back
 dont l&rsquo;état dépend entièrement de l&rsquo;image dont il provient. Étant donné nous
 n&rsquo;avons pas installé de librairies supplémentaires au moment de la création de
 l&rsquo;image, la librairie <code>cowsay</code> est introuvable. Pour l&rsquo;ajouter nous devons donc
-modifier le <del>Dockerfile</del> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python</span><span style=color:#960050;background-color:#1e0010>
+modifier le <code>Dockerfile</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python</span><span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> pip install cowsay<span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
@@ -174,7 +281,7 @@ précédente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;backg
 </span></span><span style=display:flex><span>                 <span style=color:#f92672>(</span>oo<span style=color:#f92672>)</span><span style=color:#ae81ff>\_</span>______
 </span></span><span style=display:flex><span>                 <span style=color:#f92672>(</span>__<span style=color:#f92672>)</span><span style=color:#ae81ff>\ </span>      <span style=color:#f92672>)</span><span style=color:#ae81ff>\/\
 </span></span></span><span style=display:flex><span>                     <span style=color:#f92672>||</span>----w |
-</span></span><span style=display:flex><span>                     <span style=color:#f92672>||</span>     <span style=color:#f92672>||</span></span></span></code></pre></div><h2 id=partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte<a class=anchor href=#partager-un-r%c3%a9pertoire-volume-avec-lh%c3%b4te>#</a></h2><p>Dans l&rsquo;exemple précédent, comme la modification à notre programme impliquait
+</span></span><span style=display:flex><span>                     <span style=color:#f92672>||</span>     <span style=color:#f92672>||</span></span></span></code></pre></div><h4 id=partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte<a class=anchor href=#partager-un-r%c3%a9pertoire-volume-avec-lh%c3%b4te>#</a></h4><p>Dans l&rsquo;exemple précédent, comme la modification à notre programme impliquait
 l&rsquo;ajout d&rsquo;une librairie, la modification de l&rsquo;image était inévitable. Dans le
 processus de développement d&rsquo;une application par contre, la plupart des
 modifications impliquent seulement le code source, et il serait donc intéressant
@@ -207,8 +314,12 @@ container, sans avoir besoin de reconstruire l&rsquo;image :</p><div class=highl
 </span></span><span style=display:flex><span>                                       <span style=color:#f92672>||</span>     <span style=color:#f92672>||</span></span></span></code></pre></div><p>La syntaxe de l&rsquo;argument passé à <code>-v</code> est en deux parties (séparées par un <code>:</code>):
 à gauche le chemin complet (absolu) d&rsquo;un répertoire sur l&rsquo;hôte qu&rsquo;on veut
 partager (déterminé ici dynamiquement avec la commande Bash <code>pwd</code>), à droite
-l&rsquo;endroit correspondant, dans le container.</p><h2 id=gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose<a class=anchor href=#g%c3%a9rer-un-groupe-de-containers--docker-compose>#</a></h2><dl><dt>Nous allons maintenant décrire un scénario où nous voulons créer une application</dt><dt>qui nécessite plusieurs containers. L&rsquo;outil <code>docker compose</code> permet de créer et</dt><dt>orchestrer un groupe de containers de manière très conviviale, toujours avec la</dt><dt>ligne de commande, à l&rsquo;aide d&rsquo;un seul fichier de configuration. Docker-compose</dt><dt>ne remplace pas l&rsquo;outil Docker tout court, il en enrichit seulement l&rsquo;interface</dt><dd>tout ce que fait docker-compose pourrait être accompli avec Docker
-seulement.</dd></dl><p>Créons un nouveau répertoire de travail :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ mkdir app
+l&rsquo;endroit correspondant, dans le container.</p><h4 id=gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose<a class=anchor href=#g%c3%a9rer-un-groupe-de-containers--docker-compose>#</a></h4><p>Nous allons maintenant décrire un scénario où nous voulons créer une application
+qui nécessite plusieurs containers. L&rsquo;outil <code>docker compose</code> permet de créer et
+orchestrer un groupe de containers de manière très conviviale, toujours avec la
+ligne de commande, à l&rsquo;aide d&rsquo;un seul fichier de configuration. Docker compose
+ne remplace pas l&rsquo;outil Docker tout court, il en enrichit seulement l&rsquo;interface :
+tout ce que fait docker compose pourrait être accompli avec Docker seulement.</p><p>Créons un nouveau répertoire de travail :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ mkdir app
 </span></span><span style=display:flex><span>$ cd app</span></span></code></pre></div><p>Notre application est constituée de deux serveurs : un serveur <em>applicatif</em>,
 écrit en Python avec Flask, un framework web. L&rsquo;autre est basé sur Redis, une
 base de données de type &ldquo;key/value&rdquo; (dont le rôle est simplement d&rsquo;associer une
@@ -240,7 +351,7 @@ une fois basée sur une image <code>python</code> officielle :</p><div class=hig
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;No value was stored, use /set&#34;</span>
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Your stored value is </span><span style=color:#e6db74>{</span>val<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span></span></span></code></pre></div><p>Notre application web définit deux routes : <code>/set/&lt;val></code>, qui associe
 une valeur à une clé Redis (par exemple <code>/set/123</code>, qui associe <code>123</code>
-à la clé <code>some_key) et </code>/get`, qui la retourne.</p><p>Le dernier fichier nécessaire est la configuration YAML pour <code>docker compose</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>services</span>:
+à la clé <code>some_key</code>) et <code>/get</code>, qui la retourne.</p><p>Le dernier fichier nécessaire est la configuration YAML pour <code>docker compose</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>services</span>:
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#f92672>web</span>:
 </span></span><span style=display:flex><span>    <span style=color:#f92672>build</span>: <span style=color:#ae81ff>.</span>
@@ -261,8 +372,7 @@ programme Python, donc défini par le <code>Dockerfile</code>, via la clé
 <code>services.web.build</code>.</p><p>La clé <code>db</code> correspond à un deuxième container qui ne nécessite aucune phase de
 build (donc de <code>Dockerfile</code>) car nous utilisons l&rsquo;image officielle, <code>redis</code>,
 telle quelle, sans modification particulière.</p><p>On peut maintenant démarrer notre application avec la commande <code>docker compose up</code>, qui est un amalgame des commandes <code>docker build</code> et <code>docker run</code>, opérant
-dans le contexte du groupe d&rsquo;images et de containers défini par le fichier YAML
-:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker-compose up -d
+dans le contexte du groupe d&rsquo;images et de containers défini par le fichier YAML :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker compose up -d
 </span></span><span style=display:flex><span>Creating network <span style=color:#e6db74>&#34;app_default&#34;</span> with the default driver
 </span></span><span style=display:flex><span>Building web
 </span></span><span style=display:flex><span>Sending build context to Docker daemon   7.68kB
@@ -276,18 +386,18 @@ dans le contexte du groupe d&rsquo;images et de containers défini par le fichie
 </span></span><span style=display:flex><span>Creating app_web_1 ... <span style=color:#66d9ef>done</span>
 </span></span><span style=display:flex><span>Creating app_db_1  ... <span style=color:#66d9ef>done</span></span></span></code></pre></div><p>Le fait d&rsquo;avoir utilisé l&rsquo;option <code>-d</code> fait en sorte que les deux containers de
 l&rsquo;application sont démarrés en &ldquo;background&rdquo;, comme on peut le constater en
-utilisant la commande <code>docker compose ps</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker-compose ps
+utilisant la commande <code>docker compose ps</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker compose ps
 </span></span><span style=display:flex><span>  Name    Command               State  Ports
 </span></span><span style=display:flex><span>-------------------------------------------------------------
 </span></span><span style=display:flex><span>app_db_1  docker-entrypoint.sh  Up     6379/tcp
 </span></span><span style=display:flex><span>app_web_1 flask run --host ...  Up     0.0.0.0:8080-&gt;5000/tcp</span></span></code></pre></div><p>On remarque tout d&rsquo;abord que le container <code>web</code> exécute la commande <code>flask run</code>,
 spécifiée dans le fichier YAML (<code>services.web.command</code>), tandis que le container
-<code>db</code> exécute une commande par défaut définie dans l&rsquo;image <code>redis</code>. La
-comportement de la commande <del>flask run</del> est modulé par la valeur de certaines
+<code>db</code> exécute une commande par défaut définie dans l&rsquo;image <code>redis</code>. Le
+comportement de la commande <code>flask run</code> est modulé par la valeur de certaines
 variables d&rsquo;environnement propres à Flask, également définies dans le fichier de
 configuration (<code>services.web.environment</code>). Un volume partagé
 (<code>services.web.volume</code>) permet de rendre le développement encore une fois plus
-convivial.</p><p>Docker-compose crée un réseau privé interne qui permet aux containers de
+convivial.</p><p>Docker compose crée un réseau privé interne qui permet aux containers de
 communiquer entre eux, en utilisant simplement leur nom en tant que nom de
 domaine. Un exemple de ceci est utilisé dans <code>main.py</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>red <span style=color:#f92672>=</span> redis<span style=color:#f92672>.</span>Redis(<span style=color:#e6db74>&#34;db&#34;</span>)</span></span></code></pre></div><p>où <code>db</code> correspond au nom du container Redis (défini dans notre
 configuration YAML) qui est accessible au container Python (<code>web</code>).</p><p>Finalement, la configuration <code>8080:5000</code> pour <code>services.web.ports</code> est cruciale
@@ -298,7 +408,7 @@ container <code>redis</code>, complètement isolé de l&rsquo;extérieur donc.</
 l&rsquo;hôte), comme un navigateur ou <code>curl</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ curl localhost:8080/set/hello
 </span></span><span style=display:flex><span>Your value <span style=color:#f92672>(</span>hello<span style=color:#f92672>)</span> is now set in the database
 </span></span><span style=display:flex><span>$ curl localhost:8080/get
-</span></span><span style=display:flex><span>Your stored value is b<span style=color:#e6db74>&#39;hello&#39;</span></span></span></code></pre></div><h2 id=exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker-compose exec<a class=anchor href=#ex%c3%a9cuter-un-programme-dans-un-container-en-marche--docker-compose-exec>#</a></h2><p>Comme les containers de notre service roulent de manière continue, en attente de
+</span></span><span style=display:flex><span>Your stored value is b<span style=color:#e6db74>&#39;hello&#39;</span></span></span></code></pre></div><h4 id=exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker compose exec<a class=anchor href=#ex%c3%a9cuter-un-programme-dans-un-container-en-marche--docker-compose-exec>#</a></h4><p>Comme les containers de notre service roulent de manière continue, en attente de
 servir des requêtes, il est possible d&rsquo;exécuter un programme dans un container
 en marche avec la commande <code>docker exec &lt;container> &lt;command></code>. Ceci démarrera
 un process <em>en plus</em> de celui qui roule déjà dans le container. La seule
@@ -306,7 +416,7 @@ condition est que le programme désiré soit disponible dans le container, donc
 qu&rsquo;il fasse partie de son image. Docker compose rend l&rsquo;usage d&rsquo;<code>exec</code> légèrement
 plus convivial, avec sa commande correspondante. Voici par exemple comment
 utiliser <code>redis-cli</code>, un outil de ligne de commande qui permet d&rsquo;interagir avec
-Redis, et qui est disponible à même notre container <code>db</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker-compose exec db redis-cli
+Redis, et qui est disponible à même notre container <code>db</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker compose exec db redis-cli
 </span></span><span style=display:flex><span>127.0.0.1:6379&gt;
 </span></span><span style=display:flex><span>127.0.0.1:6379&gt;
 </span></span><span style=display:flex><span>127.0.0.1:6379&gt; keys *
@@ -317,7 +427,7 @@ de notre application de manière &ldquo;live&rdquo;, à l&rsquo;aide de nos outi
 les images qui sont basées ultimement sur un système de type Linux (ce qu&rsquo;il est
 possible de déterminer en suivant la chaîne récursive de commandes <code>FROM</code>, de
 <code>Dockerfile</code> en <code>Dockerfile</code>), il est également souvent possible de démarrer un
-shell :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker-compose exec web bash
+shell :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker compose exec web bash
 </span></span><span style=display:flex><span>root@d84bfe7aef1f:/app# ls -al
 </span></span><span style=display:flex><span>total <span style=color:#ae81ff>24</span>
 </span></span><span style=display:flex><span>drwxrwxr-x <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>4096</span> Nov  <span style=color:#ae81ff>3</span> 17:14 .
@@ -325,7 +435,39 @@ shell :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-c
 </span></span><span style=display:flex><span>-rw-rw-r-- <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>1000</span>   <span style=color:#ae81ff>41</span> Nov  <span style=color:#ae81ff>1</span> 19:48 Dockerfile
 </span></span><span style=display:flex><span>drwxr-xr-x <span style=color:#ae81ff>2</span> root root <span style=color:#ae81ff>4096</span> Nov  <span style=color:#ae81ff>3</span> 17:14 __pycache__
 </span></span><span style=display:flex><span>-rw-rw-r-- <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>1000</span>  <span style=color:#ae81ff>244</span> Nov  <span style=color:#ae81ff>3</span> 16:26 docker-compose.yml
-</span></span><span style=display:flex><span>-rw-rw-r-- <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>1000</span>  <span style=color:#ae81ff>398</span> Nov  <span style=color:#ae81ff>3</span> 17:14 main.py</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+</span></span><span style=display:flex><span>-rw-rw-r-- <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>1000</span>  <span style=color:#ae81ff>398</span> Nov  <span style=color:#ae81ff>3</span> 17:14 main.py</span></span></code></pre></div><h2 id=lorchestration>L&rsquo;orchestration<a class=anchor href=#lorchestration>#</a></h2><p>Docker compose, que nous venons de voir, permet de gérer un groupe de containers
+sur une seule machine. Mais que se passe-t-il quand une application doit tourner
+sur des dizaines ou des centaines de machines, avec des exigences de haute
+disponibilité ? Si un container tombe, qui le redémarre ? Si la charge augmente,
+qui décide de créer de nouvelles instances ? Comment répartir le trafic entre les
+containers disponibles ? Ces questions définissent le problème de
+l&rsquo;<em>orchestration</em>.</p><p>Google a été confronté à ce problème très tôt. En interne, l&rsquo;entreprise
+utilisait depuis le milieu des années 2000 un système appelé Borg pour gérer des
+millions de containers à travers ses datacenters. En 2014, Google a décidé de
+publier une version open source des idées de Borg sous le nom de Kubernetes (du
+grec &ldquo;pilote&rdquo; ou &ldquo;timonier&rdquo;, souvent abrégé K8s). Le projet a rapidement été
+adopté par l&rsquo;industrie et est aujourd&rsquo;hui le standard de facto pour
+l&rsquo;orchestration de containers.</p><p>Les concepts fondamentaux de Kubernetes sont relativement peu nombreux, même si
+leur combinaison peut devenir complexe. Un <em>pod</em> est la plus petite unité
+déployable : il contient un ou plusieurs containers qui partagent le même réseau
+et le même stockage (en pratique, un pod contient souvent un seul container). Un
+<em>deployment</em> décrit l&rsquo;état souhaité d&rsquo;un groupe de pods : combien d&rsquo;instances on
+veut, quelle image utiliser, comment gérer les mises à jour. Kubernetes s&rsquo;assure
+en permanence que l&rsquo;état réel du cluster correspond à cet état souhaité. Si un
+pod tombe, il en crée un nouveau. Si on modifie le deployment pour demander une
+nouvelle version de l&rsquo;image, Kubernetes effectue un <em>rolling update</em>, remplaçant
+les pods un par un pour éviter toute interruption. Un <em>service</em> fournit une
+adresse réseau stable pour accéder à un groupe de pods, jouant le rôle de load
+balancer interne. Ce modèle est fondamentalement <em>déclaratif</em> : on décrit <em>ce
+qu&rsquo;on veut</em> plutôt que <em>comment l&rsquo;obtenir</em>, et le système se charge de converger
+vers l&rsquo;état souhaité. C&rsquo;est le même paradigme que celui de SQL, que nous avons
+rencontré dans le module 3 : de la même manière qu&rsquo;une requête SQL décrit les
+données qu&rsquo;on veut obtenir sans spécifier comment les chercher (le moteur de
+requêtes s&rsquo;en charge), un fichier de configuration Kubernetes décrit l&rsquo;état
+désiré du système sans spécifier les étapes pour y arriver (le <em>control plane</em>
+s&rsquo;en charge). Cette convergence n&rsquo;est pas un hasard : le paradigme déclaratif
+s&rsquo;avère particulièrement puissant quand le système sous-jacent est complexe et
+que les chemins pour atteindre un état donné sont multiples.</p><h2 id=linfrastructure-comme-code>L&rsquo;infrastructure comme code<a class=anchor href=#linfrastructure-comme-code>#</a></h2></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
 <span>Module 5 - Faire vivre le logiciel</span>
 </a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ class="flex align-center"><span>Module 6 - Regard vers le futur</span>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#quest-ce-que-cest>Qu&rsquo;est-ce que c&rsquo;est?</a></li><li><a href=#en-quoi-ça-diffère-dune-vm>En quoi ça diffère d&rsquo;une VM?</a></li><li><a href=#quel-problème-ça-résout>Quel problème ça résout?</a></li><li><a href=#de-où-ça-vient>De où ça vient?</a></li><li><a href=#comment-lutiliser>Comment l&rsquo;utiliser</a><ul><li><a href=#définir-une-image--dockerfile>Définir une image : Dockerfile</a></li></ul></li><li><a href=#créer-une-image--docker-build>Créer une image : docker build</a></li><li><a href=#créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run</a></li><li><a href=#partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte</a></li><li><a href=#gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose</a></li><li><a href=#exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker-compose exec</a></li></ul></nav></div></aside></main></body></html>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#lère-du-serveur-physique>L&rsquo;ère du serveur physique</a></li><li><a href=#la-virtualisation>La virtualisation</a></li><li><a href=#le-cloud>Le cloud</a></li><li><a href=#le-serverless>Le serverless</a></li><li><a href=#la-conteneurisation>La conteneurisation</a><ul><li><a href=#quest-ce-que-cest->Qu&rsquo;est-ce que c&rsquo;est ?</a></li><li><a href=#en-quoi-ça-diffère-dune-vm->En quoi ça diffère d&rsquo;une VM ?</a></li><li><a href=#quel-problème-ça-résout->Quel problème ça résout ?</a></li><li><a href=#comment-lutiliser>Comment l&rsquo;utiliser</a><ul><li><a href=#définir-une-image--dockerfile>Définir une image : Dockerfile</a></li><li><a href=#créer-une-image--docker-build>Créer une image : docker build</a></li><li><a href=#créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run</a></li><li><a href=#partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte</a></li><li><a href=#gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose</a></li><li><a href=#exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker compose exec</a></li></ul></li></ul></li><li><a href=#lorchestration>L&rsquo;orchestration</a></li><li><a href=#linfrastructure-comme-code>L&rsquo;infrastructure comme code</a></li></ul></nav></div></aside></main></body></html>
