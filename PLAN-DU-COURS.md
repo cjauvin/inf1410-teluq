@@ -293,6 +293,7 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 ### Scrum (complété)
 - Historique : Takeuchi et Nonaka (1986), Sutherland et Schwaber (1990s), Scrum Guide
 - Rôles : Product Owner, Scrum Master, équipe de développement
+- Rappel de la loi de Conway : composition de l'équipe comme décision architecturale implicite
 - Démonstration GitHub Projects (scénario RéservaSalle, équipe Leila/Sara/Marco/Nadia) :
   - Mise en place : vues (Table, Board, Roadmap), colonnes (Status), ajout In Review, champs (Story Points, Iteration)
   - Product backlog : user stories (format « En tant que... »), labels (story, tech, bug), introduction de l’outil `gh`
@@ -319,10 +320,17 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
   - Zoom et la pandémie de 2020
   - Watercooler conversations et communication informelle
   - GitLab "handbook first", Basecamp/Shape Up (Ryan Singer 2019)
+  - Manœuvre de Conway inverse, *Team Topologies* (Skelton et Pais, 2019)
 - Estimation :
   - Difficulté fondamentale (lien avec Brooks, optimisme chronique)
   - Planning poker, effet d'ancrage
   - Approches alternatives (découpage en petites tâches)
+- Dette technique :
+  - Métaphore de Ward Cunningham (OOPSLA 1992)
+  - Quadrant de Fowler (2009) : délibérée/accidentelle × prudente/imprudente
+  - Refactoring (Fowler 1999), lien avec tests et CI (module 2), architecture (module 3)
+  - Gestion en équipe : allocation sprint, arbitrage features vs dette, communication avec les gestionnaires
+  - Lien vers module 5 : conséquences opérationnelles de la dette non remboursée
 
 # Module 5 - Faire vivre le logiciel
 

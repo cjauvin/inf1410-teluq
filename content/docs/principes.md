@@ -26,16 +26,19 @@ développés dans leurs sections respectives.)*
 - **SOLID** (Robert C. Martin, *Clean Code*, 2008) : cinq principes de conception OO (S, O, L, I, D) → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - **Law of Demeter**
 - **Composition over inheritance** (Gang of Four, *Design Patterns*, 1994) : favoriser l'assemblage d'objets plutôt que l'héritage de classes → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
-- **Loi de Conway** (Melvin Conway, 1967) : la structure d'un système reflète la structure de communication de l'organisation qui le produit → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
+- **Loi de Conway** (Melvin Conway, 1967) : la structure d'un système reflète la structure de communication de l'organisation qui le produit → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}}), [Module 4, Scrum]({{< ref "/docs/module4/20-agile/10-scrum" >}}), [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
+- **Manœuvre de Conway inverse** (LeRoy et Simons, 2010) : structurer délibérément les équipes pour obtenir l'architecture souhaitée → [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
 - **Principle of Least Astonishment (POLA)**
 - **Idempotence** : une opération qu'on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → [Module 3, Les APIs]({{< ref "/docs/module3/20-apis" >}})
 
 ## Principes de mesure et d'observation
 
 - **Loi de Goodhart** (Charles Goodhart, 1975) : « Lorsqu'une mesure devient un objectif, elle cesse d'être une bonne mesure. » → [Module 4, L'agilité (critique)]({{< ref "/docs/module4/20-agile" >}})
+- **Dette technique** (Ward Cunningham, 1992) : le code imparfait livré consciemment est une dette qui génère des intérêts → [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
 
 ## Principes de pratique
 
+- **Refactoring** (Martin Fowler, *Refactoring*, 1999) : modifier la structure interne du code sans changer son comportement observable, mécanisme de remboursement de la dette technique → [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
 - **Boy Scout Rule** : "Always leave the campground cleaner than you found it."
 
 ## Lectures et publications de référence

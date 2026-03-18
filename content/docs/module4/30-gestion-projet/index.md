@@ -133,6 +133,25 @@ discussions nuancées, la résolution de conflits, la construction de liens
 humains. Tout le reste passe par l'écrit, qui a l'avantage d'être cherchable,
 partageable et durable.
 
+Ces choix de communication ont aussi des implications architecturales. La loi de
+Conway, que nous avons vue dans
+l'[introduction de ce module]({{< relref "/docs/module4" >}}), ne concerne pas
+seulement l'organigramme : elle s'applique à toutes les structures de
+communication d'une équipe. Si deux sous-équipes communiquent principalement par
+des tickets dans un système de suivi, leur code communiquera probablement par des
+APIs formelles. Si elles partagent un canal Slack et font du pair programming
+régulièrement, leur code sera plus étroitement intégré. Certaines organisations
+ont retourné cette observation en stratégie, dans ce qu'on appelle parfois la
+"manœuvre de Conway inverse" (*inverse Conway maneuver*) : au lieu de subir le
+fait que l'architecture reflète l'organisation, on structure délibérément les
+équipes pour obtenir l'architecture qu'on souhaite. Si on veut des microservices
+indépendants, on crée des équipes autonomes alignées sur chaque service. Si on
+veut un monolithe cohérent, on garde une équipe intégrée avec des canaux de
+communication riches. L'idée est attribuée à Jonny LeRoy et Matt Simons (2010),
+et elle a été popularisée par le livre *Team Topologies* (Matthew Skelton et
+Manuel Pais, 2019), qui propose une taxonomie complète des structures d'équipe
+et de leurs effets sur l'architecture logicielle.
+
 ## L'estimation
 
 Nous avons vu dans la
@@ -162,3 +181,101 @@ simple : découper le travail en tâches suffisamment petites pour être termin�
 en un ou deux jours, et simplement compter le nombre de tâches. L'important
 n'est pas la méthode d'estimation, mais la conversation qu'elle provoque et la
 conscience qu'estimer du logiciel est un exercice intrinsèquement incertain.
+
+## La dette technique
+
+En 1992, Ward Cunningham présente une idée lors de la conférence OOPSLA qui va
+marquer durablement le vocabulaire du génie logiciel. Cunningham, qui est alors
+un praticien reconnu de la programmation orientée objet (et qui deviendra plus
+tard un des signataires du manifeste Agile), cherche un moyen d'expliquer à des
+gestionnaires non techniques pourquoi une équipe a parfois besoin de revenir sur
+du code qui fonctionne parfaitement bien. Sa métaphore est empruntée à la
+finance : le code imparfait qu'on livre consciemment pour aller plus vite est
+une *dette*. Comme une dette financière, elle permet d'avancer plus rapidement à
+court terme, mais elle génère des *intérêts* : chaque modification future du
+code sera plus difficile, plus lente, plus risquée, tant que la dette n'est pas
+remboursée. Et comme une dette financière, elle peut être un choix rationnel :
+s'endetter pour livrer rapidement, apprendre du feedback des utilisateurs, puis
+revenir refactoriser le code en connaissance de cause. Le problème survient quand
+la dette s'accumule sans être remboursée, quand les intérêts composés finissent
+par paralyser l'équipe.
+
+La métaphore de Cunningham est puissante, mais elle peut donner l'impression que
+la dette technique est toujours un choix délibéré. En 2009, Martin Fowler
+propose une grille de lecture plus nuancée sous la forme d'un quadrant à deux
+axes : la dette peut être *délibérée* ou *accidentelle*, et *prudente* ou
+*imprudente*. La dette délibérée et prudente correspond à l'intuition de
+Cunningham : « on connaît les compromis, on livre maintenant et on refactorise
+au prochain sprint ». La dette délibérée et imprudente, c'est : « on n'a pas le
+temps de faire un design propre, on verra plus tard », un "plus tard" qui
+n'arrive souvent jamais. La dette accidentelle et prudente survient quand
+l'équipe réalise après coup qu'elle aurait pu faire mieux : « maintenant qu'on
+comprend mieux le domaine, on voit qu'on aurait dû structurer les choses
+autrement ». Enfin, la dette accidentelle et imprudente, c'est simplement du
+mauvais code écrit par ignorance : « c'est quoi, les couches ? ». Cette grille
+est utile parce qu'elle révèle que la dette technique n'est pas un phénomène
+unique. Une partie est inévitable (on apprend toujours en cours de route), une
+partie est stratégique (on s'endette consciemment), et une partie est le
+symptôme d'un problème plus profond de compétence ou de processus. Les réponses
+appropriées sont très différentes dans chaque cas.
+
+<!-- ILLUSTRATION: le quadrant de Fowler (2x2 : délibérée/accidentelle × prudente/imprudente) avec les quatre citations -->
+
+Si la dette technique est le problème, le *refactoring* est le mécanisme par
+lequel on la rembourse. Le terme a été formalisé par Martin Fowler dans son
+livre *Refactoring: Improving the Design of Existing Code* (1999), bien que la
+pratique existait avant lui. Refactoriser, c'est modifier la structure interne
+du code sans en changer le comportement observable. On renomme une variable pour
+la rendre plus claire, on extrait une fonction pour éliminer de la duplication,
+on réorganise des modules pour réduire le couplage. Ce sont exactement les
+opérations qui ramènent le code vers les qualités architecturales que nous avons
+explorées au [module 3]({{< relref "/docs/module3/architecture" >}}) : cohésion,
+découplage, séparation des responsabilités. Le refactoring était aussi l'une des
+pratiques centrales d'Extreme Programming (Kent Beck), aux côtés du TDD et de
+l'intégration continue. Ce n'est pas un hasard : les tests automatisés sont ce
+qui rend le refactoring sûr. Sans tests, modifier la structure du code est un
+pari risqué, car on n'a aucun moyen de vérifier qu'on n'a rien cassé. Avec une
+bonne couverture de tests, on peut refactoriser avec confiance, en vérifiant
+après chaque modification que le comportement est préservé. C'est le lien entre
+la dette technique et tout ce que nous avons vu au module 2 : les
+[tests]({{< relref "/docs/module2/20-tests" >}}) et la
+[CI]({{< relref "/docs/module2/50-ci" >}}) ne sont pas seulement des outils de
+vérification, ce sont les conditions qui permettent de rembourser la dette de
+manière sûre.
+
+Mais le refactoring n'est pas seulement une question technique, c'est une
+question de priorité. Et les priorités, dans une équipe, se négocient. C'est ici
+que la dette technique rejoint pleinement le sujet de ce module. Dans un contexte
+Scrum, la question se pose concrètement à chaque sprint planning : combien de la
+capacité de l'équipe consacre-t-on aux nouvelles fonctionnalités, et combien au
+remboursement de la dette ? Certaines équipes adoptent une règle simple, comme
+réserver 20% de chaque sprint aux tâches techniques (refactoring, mise à jour de
+dépendances, amélioration des tests). D'autres préfèrent traiter la dette comme
+n'importe quel élément du backlog, avec des issues étiquetées `tech` qui sont
+priorisées par le Product Owner au même titre que les stories. Les deux
+approches ont leurs mérites. La règle du pourcentage fixe protège l'équipe
+contre la tentation de toujours repousser le travail technique au profit des
+fonctionnalités visibles. Le traitement au cas par cas permet une priorisation
+plus fine, mais il exige un Product Owner qui comprend la valeur du travail
+technique, ce qui n'est pas toujours le cas. C'est d'ailleurs pour résoudre ce
+problème de communication que Cunningham avait inventé sa métaphore : traduire un
+enjeu technique dans un langage que les décideurs comprennent. Quand un
+développeur dit « il faut refactoriser le module d'authentification », un
+gestionnaire entend une demande abstraite. Quand il dit « on a une dette
+technique sur l'authentification, et les intérêts nous coûtent deux jours de
+travail supplémentaire à chaque fois qu'on touche à cette partie du code », le
+message passe beaucoup mieux.
+
+La dette technique qui n'est pas remboursée finit par se manifester là où ça
+fait le plus mal : en production. Un système dont l'architecture s'est dégradée
+au fil des mois devient difficile à déployer, car les composants sont tellement
+couplés qu'un changement anodin peut provoquer des effets en cascade
+imprévisibles. Il devient difficile à monitorer, car les responsabilités sont
+dispersées et personne ne sait exactement quel module est responsable de quoi.
+Il devient difficile à faire évoluer, car chaque nouvelle fonctionnalité doit
+naviguer dans un labyrinthe de dépendances implicites. Ce sont ces conséquences
+opérationnelles que nous explorerons au module 5, quand nous aborderons le
+déploiement, l'observabilité et la fiabilité des systèmes en production. La
+dette technique est le fil qui relie la qualité du code (module 2),
+l'architecture (module 3), les décisions d'équipe (ce module) et la santé
+opérationnelle du système (module 5).

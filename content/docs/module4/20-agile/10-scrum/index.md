@@ -43,6 +43,18 @@ travail. Il n'y a pas de chef d'équipe, pas de répartition des tâches par un
 gestionnaire. Cette distinction entre le *quoi* (Product Owner) et le *comment*
 (équipe) est au cœur de la philosophie Scrum.
 
+Cette structure d'équipe n'est pas anodine. Rappelons la loi de Conway, que nous
+avons introduite dans l'[introduction de ce module]({{< relref "/docs/module4" >}}) :
+la structure d'une organisation tend à se refléter dans l'architecture de ses
+logiciels. Une équipe Scrum de quatre ou cinq personnes, travaillant ensemble sur
+un même produit, va naturellement produire un système relativement intégré. Si
+l'équipe comprend un développeur frontend et un développeur backend, le système
+aura vraisemblablement une séparation frontend/backend. Si on divise le travail
+entre deux équipes distinctes, une pour les réservations et une pour
+l'authentification, on obtiendra deux sous-systèmes avec une API entre eux. Ce
+n'est ni bien ni mal en soi, mais il faut en être conscient : quand on décide de
+la composition d'une équipe, on prend implicitement une décision architecturale.
+
 Le sprint est l'unité de temps fondamentale de Scrum : une période fixe,
 généralement de deux semaines, pendant laquelle l'équipe s'engage à livrer un
 incrément fonctionnel du produit. Chaque sprint commence par une séance de

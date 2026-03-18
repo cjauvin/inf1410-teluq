@@ -31,8 +31,16 @@ intégrées dans le cours.)*
   catalogue fondateur des patrons de conception → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}}), [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Martin Kleppmann, *Designing Data-Intensive Applications* (2017) : référence
   moderne sur les systèmes de données → [Module 3, Les données]({{< ref "/docs/module3/40-données" >}})
+- Martin Fowler, *Refactoring: Improving the Design of Existing Code* (1999) :
+  formalisation du refactoring comme discipline, mécanisme de remboursement de la
+  dette technique →
+  [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
 - Ryan Singer, *Shape Up* (2019) : méthodologie de développement de Basecamp,
   approche asynchrone et "pitches" écrits →
+  [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
+- Matthew Skelton et Manuel Pais, *Team Topologies* (2019) : taxonomie des
+  structures d'équipe et de leurs effets sur l'architecture logicielle, manœuvre
+  de Conway inverse →
   [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
 
 ## Articles et essais
@@ -47,7 +55,12 @@ intégrées dans le cours.)*
   accidentelle → [Module 3, Introduction]({{< ref "/docs/module3" >}})
 - Melvin Conway, *How Do Committees Invent?* (1968) : la structure d'un système
   reflète celle de l'organisation qui le produit (loi de Conway) →
-  [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
+  [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}}),
+  [Module 4, Scrum]({{< ref "/docs/module4/20-agile/10-scrum" >}}),
+  [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
+- Ward Cunningham, *The WyCash Portfolio Management System* (OOPSLA 1992) :
+  introduction de la métaphore de la dette technique →
+  [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
 - Rob Pike, *Notes on Programming in C* (1989) : contient les « 5 règles de
   programmation » de Pike, dont la règle 5 sur la primauté des structures de
   données → [Module 2, Survol rapide de la programmation]({{< ref "/docs/module2/10-programmation" >}})
