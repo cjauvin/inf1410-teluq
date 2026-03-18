@@ -51,16 +51,19 @@ développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;SOLID&lt;/strong&gt; (Robert C. Martin, &lt;em&gt;Clean Code&lt;/em&gt;, 2008) : cinq principes de conception OO (S, O, L, I, D) → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Law of Demeter&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Composition over inheritance&lt;/strong&gt; (Gang of Four, &lt;em&gt;Design Patterns&lt;/em&gt;, 1994) : favoriser l&amp;rsquo;assemblage d&amp;rsquo;objets plutôt que l&amp;rsquo;héritage de classes → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Loi de Conway&lt;/strong&gt; (Melvin Conway, 1967) : la structure d&amp;rsquo;un système reflète la structure de communication de l&amp;rsquo;organisation qui le produit → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Loi de Conway&lt;/strong&gt; (Melvin Conway, 1967) : la structure d&amp;rsquo;un système reflète la structure de communication de l&amp;rsquo;organisation qui le produit → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/"&gt;Module 4, Scrum&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Manœuvre de Conway inverse&lt;/strong&gt; (LeRoy et Simons, 2010) : structurer délibérément les équipes pour obtenir l&amp;rsquo;architecture souhaitée → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Principle of Least Astonishment (POLA)&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Idempotence&lt;/strong&gt; : une opération qu&amp;rsquo;on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="principes-de-mesure-et-dobservation"&gt;Principes de mesure et d&amp;rsquo;observation&lt;a class="anchor" href="#principes-de-mesure-et-dobservation"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Loi de Goodhart&lt;/strong&gt; (Charles Goodhart, 1975) : « Lorsqu&amp;rsquo;une mesure devient un objectif, elle cesse d&amp;rsquo;être une bonne mesure. » → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/"&gt;Module 4, L&amp;rsquo;agilité (critique)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dette technique&lt;/strong&gt; (Ward Cunningham, 1992) : le code imparfait livré consciemment est une dette qui génère des intérêts → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="principes-de-pratique"&gt;Principes de pratique&lt;a class="anchor" href="#principes-de-pratique"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Refactoring&lt;/strong&gt; (Martin Fowler, &lt;em&gt;Refactoring&lt;/em&gt;, 1999) : modifier la structure interne du code sans changer son comportement observable, mécanisme de remboursement de la dette technique → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Boy Scout Rule&lt;/strong&gt; : &amp;ldquo;Always leave the campground cleaner than you found it.&amp;rdquo;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="lectures-et-publications-de-référence"&gt;Lectures et publications de référence&lt;a class="anchor" href="#lectures-et-publications-de-r%c3%a9f%c3%a9rence"&gt;#&lt;/a&gt;&lt;/h2&gt;
@@ -89,8 +92,16 @@ logiciel → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20
 catalogue fondateur des patrons de conception → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Martin Kleppmann, &lt;em&gt;Designing Data-Intensive Applications&lt;/em&gt; (2017) : référence
 moderne sur les systèmes de données → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/"&gt;Module 3, Les données&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Martin Fowler, &lt;em&gt;Refactoring: Improving the Design of Existing Code&lt;/em&gt; (1999) :
+formalisation du refactoring comme discipline, mécanisme de remboursement de la
+dette technique →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Ryan Singer, &lt;em&gt;Shape Up&lt;/em&gt; (2019) : méthodologie de développement de Basecamp,
 approche asynchrone et &amp;ldquo;pitches&amp;rdquo; écrits →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Matthew Skelton et Manuel Pais, &lt;em&gt;Team Topologies&lt;/em&gt; (2019) : taxonomie des
+structures d&amp;rsquo;équipe et de leurs effets sur l&amp;rsquo;architecture logicielle, manœuvre
+de Conway inverse →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="articles-et-essais"&gt;Articles et essais&lt;a class="anchor" href="#articles-et-essais"&gt;#&lt;/a&gt;&lt;/h2&gt;
@@ -105,7 +116,12 @@ construction d&amp;rsquo;un modèle mental → &lt;a href="https://cjauvin.githu
 accidentelle → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/"&gt;Module 3, Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Melvin Conway, &lt;em&gt;How Do Committees Invent?&lt;/em&gt; (1968) : la structure d&amp;rsquo;un système
 reflète celle de l&amp;rsquo;organisation qui le produit (loi de Conway) →
-&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;,
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/"&gt;Module 4, Scrum&lt;/a&gt;,
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Ward Cunningham, &lt;em&gt;The WyCash Portfolio Management System&lt;/em&gt; (OOPSLA 1992) :
+introduction de la métaphore de la dette technique →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Rob Pike, &lt;em&gt;Notes on Programming in C&lt;/em&gt; (1989) : contient les « 5 règles de
 programmation » de Pike, dont la règle 5 sur la primauté des structures de
 données → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/"&gt;Module 2, Survol rapide de la programmation&lt;/a&gt;&lt;/li&gt;
