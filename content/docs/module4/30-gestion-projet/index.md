@@ -229,7 +229,7 @@ du code sans en changer le comportement observable. On renomme une variable pour
 la rendre plus claire, on extrait une fonction pour éliminer de la duplication,
 on réorganise des modules pour réduire le couplage. Ce sont exactement les
 opérations qui ramènent le code vers les qualités architecturales que nous avons
-explorées au [module 3]({{< relref "/docs/module3/architecture" >}}) : cohésion,
+explorées au [module 3]({{< relref "/docs/module3/10-architecture" >}}) : cohésion,
 découplage, séparation des responsabilités. Le refactoring était aussi l'une des
 pratiques centrales d'Extreme Programming (Kent Beck), aux côtés du TDD et de
 l'intégration continue. Ce n'est pas un hasard : les tests automatisés sont ce
