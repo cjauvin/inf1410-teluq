@@ -283,10 +283,12 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - Code reviews : inspections de Fagan (IBM 1976), objectifs, dimension humaine, pratiques Google
 - Protection de branches et lien CI
 
-## L’agilité (en cours)
+## L’agilité (complété)
 - Le manifeste Agile et contexte historique (complété)
 - Mention d’XP avec renvois vers module 2 (TDD, CI) (complété)
-- Perspective critique : l’agilité dévoyée, "Agile is Dead" (Dave Thomas), Dark Scrum (à développer)
+- Perspective critique (complété) : l’agilité dévoyée, "Agile is Dead" (Dave Thomas, 2014),
+  Dark Scrum (Ron Jeffries), loi de Goodhart, industrie des certifications, cargo cult agile,
+  dette organisationnelle
 
 ### Scrum (complété)
 - Historique : Takeuchi et Nonaka (1986), Sutherland et Schwaber (1990s), Scrum Guide
@@ -308,11 +310,19 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
   - Flux de travail : « stop starting, start finishing », régulation par les limites
 - Comparaison Scrum vs Kanban, Scrumban, critères de choix
 
-## Gestion de projet et coordination (à développer)
-- Outils : GitHub Issues, GitHub Projects (tour guidé)
-- Estimation (story points, planning poker, difficulté fondamentale — lien avec Brooks)
-- Documentation comme outil de coordination (ADRs, RFCs, READMEs)
-- Communication (synchrone vs asynchrone, Slack, remote work)
+## Gestion de projet et coordination (complété)
+- Documentation comme outil de coordination :
+  - ADRs (Architecture Decision Records, Michael Nygard 2011), lien avec Naur
+  - RFCs internes (Google design docs, Rust RFCs, PEPs Python, TC39 JavaScript)
+- Communication synchrone vs asynchrone :
+  - Slack (Stewart Butterfield 2013, histoire de Glitch), Microsoft Teams, Discord
+  - Zoom et la pandémie de 2020
+  - Watercooler conversations et communication informelle
+  - GitLab "handbook first", Basecamp/Shape Up (Ryan Singer 2019)
+- Estimation :
+  - Difficulté fondamentale (lien avec Brooks, optimisme chronique)
+  - Planning poker, effet d'ancrage
+  - Approches alternatives (découpage en petites tâches)
 
 # Module 5 - Faire vivre le logiciel
 

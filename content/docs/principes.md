@@ -30,6 +30,10 @@ développés dans leurs sections respectives.)*
 - **Principle of Least Astonishment (POLA)**
 - **Idempotence** : une opération qu'on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → [Module 3, Les APIs]({{< ref "/docs/module3/20-apis" >}})
 
+## Principes de mesure et d'observation
+
+- **Loi de Goodhart** (Charles Goodhart, 1975) : « Lorsqu'une mesure devient un objectif, elle cesse d'être une bonne mesure. » → [Module 4, L'agilité (critique)]({{< ref "/docs/module4/20-agile" >}})
+
 ## Principes de pratique
 
 - **Boy Scout Rule** : "Always leave the campground cleaner than you found it."

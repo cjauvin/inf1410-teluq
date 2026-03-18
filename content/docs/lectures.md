@@ -31,6 +31,9 @@ intégrées dans le cours.)*
   catalogue fondateur des patrons de conception → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}}), [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Martin Kleppmann, *Designing Data-Intensive Applications* (2017) : référence
   moderne sur les systèmes de données → [Module 3, Les données]({{< ref "/docs/module3/40-données" >}})
+- Ryan Singer, *Shape Up* (2019) : méthodologie de développement de Basecamp,
+  approche asynchrone et "pitches" écrits →
+  [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
 
 ## Articles et essais
 
@@ -82,3 +85,11 @@ intégrées dans le cours.)*
 - Satoshi Nakamoto, *Bitcoin: A Peer-to-Peer Electronic Cash System* (2008) :
   livre blanc introduisant la blockchain et le consensus distribué →
   [Module 3, Les données (au-delà des BD)]({{< ref "/docs/module3/40-données/30-au-delà" >}})
+- Hirotaka Takeuchi et Ikujiro Nonaka, *The New New Product Development Game*
+  (Harvard Business Review, 1986) : article fondateur qui introduit l'approche
+  « rugby » du développement de produit, inspiration directe de Scrum →
+  [Module 4, Scrum]({{< ref "/docs/module4/20-agile/10-scrum" >}})
+- Dave Thomas, *Agile is Dead (Long Live Agility)* (billet de blog, 2014) :
+  critique de la récupération commerciale du mot "agile" par un des signataires
+  du manifeste →
+  [Module 4, L'agilité]({{< ref "/docs/module4/20-agile" >}})
