@@ -45,6 +45,9 @@ intégrées dans le cours.)*
 - Melvin Conway, *How Do Committees Invent?* (1968) : la structure d'un système
   reflète celle de l'organisation qui le produit (loi de Conway) →
   [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
+- Rob Pike, *Notes on Programming in C* (1989) : contient les « 5 règles de
+  programmation » de Pike, dont la règle 5 sur la primauté des structures de
+  données → [Module 2, Survol rapide de la programmation]({{< ref "/docs/module2/10-programmation" >}})
 - Edsger Dijkstra, *Go To Statement Considered Harmful* (1968) : plaidoyer pour
   la programmation structurée → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}})
 - Martin Fowler, *Continuous Integration* (2006) : article de référence sur

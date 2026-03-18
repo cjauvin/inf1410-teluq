@@ -19,6 +19,19 @@ structures de données, qui sont des constructions logiques plus complexe
 (non-atomique) qui impliquent, en général, les types de base, d'une manière ou
 d'une autre.
 
+Pourquoi commencer par les structures de données ? Rob Pike, l'un des créateurs
+du langage Go (avec Ken Thompson, co-créateur d'Unix), a formulé dans ses
+célèbres "5 règles de programmation" une idée qui mérite d'être gardée en tête
+tout au long de cette section. Sa règle 5 stipule : "Data dominates. If you've
+chosen the right data structures and organized things well, the algorithms will
+almost always be self-evident." (Les données dominent. Si vous avez choisi les
+bonnes structures de données et bien organisé les choses, les algorithmes seront
+presque toujours évidents.) Pike attribue lui-même cette idée à Fred Brooks,
+l'auteur de *The Mythical Man-Month*, un ouvrage fondamental dont nous avons
+parlé dans le module 1. En d'autres mots, les structures de données ne sont pas
+un simple préalable technique : elles sont au coeur de la programmation, et le
+choix de la bonne structure dicte souvent la solution.
+
 ### La liste et le `set`
 
 La liste est une structure de données qui est une collection de valeurs :
