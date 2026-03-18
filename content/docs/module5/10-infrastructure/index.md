@@ -1,18 +1,158 @@
 ---
-title: "La conteneurisation avec docker"
-weight: 20
+title: "Où est-ce que ça tourne ?"
+weight: 10
+slug: "infrastructure"
 ---
 
-# La conteneurisation avec docker
+# Où est-ce que ça tourne ?
 
-Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la
-technologie Docker, ses concepts de base, et comment utiliser certains de ses
-outils principaux. Le but est de favoriser la création d’un modèle mental
-robuste, et non de décrire exhaustivement les plus fins détails. Pour ce faire,
-nous allons tout d’abord répondre à quelques questions courantes, et explorer
-ensuite une série d’exemples, de manière progressive et cohérente.
+Pour qu'un logiciel soit accessible à ses utilisateurs, il doit s'exécuter
+quelque part. Cette question, en apparence triviale, a donné lieu à l'une des
+transformations les plus profondes de l'histoire du génie logiciel. En l'espace
+de deux décennies, nous sommes passés de serveurs physiques installés dans des
+placards à des plateformes cloud capables de provisionner des milliers de
+machines virtuelles en quelques secondes. Cette évolution n'est pas seulement
+technique : elle a fondamentalement changé la manière dont on conçoit, déploie et
+opère les applications. Comprendre cette trajectoire, des machines physiques
+jusqu'aux containers et à l'orchestration, est essentiel pour saisir le contexte
+dans lequel les pratiques DevOps modernes ont émergé.
 
-## Qu'est-ce que c'est?
+## L'ère du serveur physique
+
+Jusqu'au milieu des années 2000, déployer une application signifiait, de manière
+très concrète, installer un serveur. Une entreprise qui voulait mettre un site
+web ou une application interne en ligne devait acheter une machine physique (ou
+plusieurs), l'installer dans une salle serveur climatisée, la brancher au
+réseau, installer un système d'exploitation, configurer les logiciels
+nécessaires, et maintenir le tout. Ce processus pouvait prendre des semaines,
+voire des mois. Si la demande augmentait et que le serveur n'arrivait plus à
+suivre, il fallait commander une nouvelle machine, attendre sa livraison, et
+répéter le processus. Pour les organisations qui n'avaient pas les moyens de
+maintenir leur propre salle serveur, la *colocation* offrait une alternative : on
+achetait le serveur, mais on le plaçait dans un centre de données (datacenter)
+géré par un tiers, qui fournissait l'alimentation électrique, la climatisation et
+la connectivité réseau. Pour les projets plus modestes, l'*hébergement web*
+mutualisé (shared hosting) permettait de louer un espace sur un serveur partagé
+entre plusieurs clients, typiquement avec un accès FTP pour déposer ses fichiers
+PHP ou HTML. Des entreprises comme OVH (fondée en 1999 en France) ou GoDaddy ont
+bâti des empires sur ce modèle. C'était simple et abordable, mais rigide : on
+avait peu de contrôle sur l'environnement, et les ressources étaient limitées et
+partagées.
+
+## La virtualisation
+
+Le premier grand saut vers l'abstraction de l'infrastructure a été la
+virtualisation. L'idée, qui remonte en fait aux mainframes IBM des années 1960,
+consiste à faire tourner plusieurs systèmes d'exploitation "invités" sur une
+seule machine physique, chacun croyant disposer de sa propre machine dédiée. Un
+logiciel appelé *hyperviseur* s'interpose entre le matériel et les systèmes
+invités pour gérer ce partage de manière transparente. VMware, fondée en 1998, a
+démocratisé cette technologie pour les serveurs x86, suivie par Xen (un projet
+open source issu de l'Université de Cambridge en 2003) et KVM (intégré
+directement au noyau Linux à partir de 2007). La virtualisation a transformé la
+gestion des serveurs de plusieurs manières. D'abord, elle a permis de consolider
+plusieurs serveurs physiques sous-utilisés en un seul, réduisant les coûts
+matériels et énergétiques. Ensuite, elle a rendu possible la création de
+nouvelles machines en minutes plutôt qu'en semaines : il suffisait de créer une
+nouvelle machine virtuelle (VM) à partir d'une image préexistante. Enfin, elle a
+introduit l'idée fondamentale que l'infrastructure pouvait être manipulée comme
+une ressource logicielle, créée, copiée, déplacée et détruite à la demande.
+C'est cette idée qui allait rendre le cloud possible.
+
+## Le cloud
+
+La virtualisation a rendu l'infrastructure manipulable comme du logiciel. Le
+cloud a poussé cette logique à sa conclusion naturelle : pourquoi posséder des
+serveurs quand on peut en louer à la demande ? Le moment fondateur est le
+lancement d'Amazon Web Services (AWS) en 2006, avec son service EC2 (Elastic
+Compute Cloud), qui permettait à n'importe qui de créer une machine virtuelle en
+quelques minutes, via une API, et de payer uniquement pour le temps
+d'utilisation. L'origine d'AWS est elle-même révélatrice : Amazon avait développé
+une infrastructure massive pour faire fonctionner son site de commerce en ligne,
+et a réalisé qu'elle pouvait la revendre comme service. Google Cloud Platform
+(GCP, 2008) et Microsoft Azure (2010) ont suivi, créant un oligopole qui domine
+encore aujourd'hui le marché.
+
+Le cloud est généralement décrit en trois niveaux d'abstraction, souvent
+représentés sous forme de couches. L'*Infrastructure as a Service* (IaaS) est la
+couche la plus basse : on loue des machines virtuelles, du stockage et du réseau,
+et on gère soi-même le système d'exploitation et les logiciels (c'est le modèle
+d'EC2). La *Platform as a Service* (PaaS) monte d'un cran : le fournisseur gère
+l'infrastructure et le runtime, et le développeur ne déploie que son code. Heroku
+(2007), la plateforme dont est issue la Twelve-Factor App, est l'exemple
+emblématique de ce modèle : un simple `git push heroku main` suffisait pour
+déployer une application. Enfin, le *Software as a Service* (SaaS) est la couche
+la plus abstraite : l'utilisateur final consomme un logiciel complet sans se
+soucier de l'infrastructure (Gmail, Slack, Salesforce). Ces trois niveaux ne sont
+pas mutuellement exclusifs : une même organisation peut utiliser du IaaS pour
+certains composants et du PaaS pour d'autres.
+
+<!-- ILLUSTRATION: diagramme des trois couches IaaS/PaaS/SaaS avec exemples -->
+
+L'adoption du cloud a été rapide et massive. Netflix, après une panne majeure de
+son datacenter en 2008, a entrepris une migration complète vers AWS qui est
+devenue un cas d'étude en architecture cloud (et a produit au passage de nombreux
+outils open source que nous retrouverons plus loin). Airbnb est sur AWS depuis
+ses débuts, un exemple emblématique de startup qui n'a jamais possédé de serveur
+physique. Spotify a migré de ses propres serveurs vers Google Cloud Platform en
+2016. À l'inverse, Dropbox a fait le chemin inverse en 2016, quittant AWS pour
+construire sa propre infrastructure, estimant qu'à son échelle les économies
+justifiaient l'investissement. Ce dernier cas illustre que le cloud n'est pas une
+fin en soi : c'est un compromis entre flexibilité, coût et contrôle, et la bonne
+réponse dépend du contexte.
+
+## Le serverless
+
+Le modèle PaaS a ouvert la voie à une abstraction encore plus radicale : le
+*serverless*, ou plus précisément le *Function as a Service* (FaaS). L'idée est
+simple : au lieu de déployer une application qui tourne en permanence sur un
+serveur (même virtuel), on déploie des fonctions individuelles qui sont exécutées
+à la demande, en réponse à des événements. AWS Lambda, lancé en 2014, a
+popularisé ce modèle. On écrit une fonction (par exemple en Python), on la
+déploie sur Lambda, et elle est exécutée uniquement quand un événement
+déclencheur survient : une requête HTTP, un message dans une file d'attente, un
+fichier déposé dans un bucket S3. On ne paie que pour le temps d'exécution réel,
+mesuré à la milliseconde. Google Cloud Functions et Azure Functions offrent des
+services équivalents.
+
+Le nom "serverless" est bien sûr trompeur : il y a toujours des serveurs quelque
+part, mais le développeur n'a plus à s'en soucier. C'est l'aboutissement logique
+de la trajectoire d'abstraction que nous avons suivie, du serveur physique à la
+VM, de la VM au PaaS, du PaaS à la fonction. Mais cette abstraction a un coût.
+Le *cold start* (le délai de démarrage quand une fonction n'a pas été appelée
+récemment) peut poser des problèmes de latence. Le débogage et le monitoring
+deviennent plus difficiles quand la logique est dispersée dans des dizaines de
+fonctions. Et le risque de *vendor lock-in* (dépendance au fournisseur cloud) est
+maximal, puisque chaque plateforme a ses propres conventions et services. Le
+serverless est donc particulièrement adapté à certains cas d'usage (traitement
+d'événements, tâches ponctuelles, backends légers), mais ne remplace pas les
+architectures plus traditionnelles pour des systèmes complexes.
+
+## La conteneurisation
+
+Parallèlement à l'essor du cloud, une autre approche de l'isolation a émergé,
+plus légère que la virtualisation classique. L'idée de base est ancienne : la
+commande `chroot` d'Unix, disponible depuis 1979, permettait déjà de restreindre
+la vision du système de fichiers d'un processus. Au fil des années, le noyau
+Linux a développé des mécanismes d'isolation de plus en plus sophistiqués : les
+*cgroups* (control groups, 2006), qui permettent de limiter les ressources (CPU,
+mémoire) allouées à un groupe de processus, et les *namespaces* (2002-2013), qui
+isolent différents aspects du système (réseau, identifiants de processus, système
+de fichiers). Ces primitives existaient, mais restaient difficiles à utiliser
+directement. En 2013, Solomon Hykes et son entreprise dotCloud (qui deviendra
+Docker Inc) ont lancé Docker, un outil qui rend ces mécanismes accessibles à
+travers une interface simple et élégante. Au lieu de virtualiser une machine
+complète avec son propre noyau (comme le fait une VM), un container partage le
+noyau du système hôte tout en maintenant une isolation quasi complète de
+l'environnement applicatif. Le résultat est beaucoup plus léger qu'une VM : un
+container démarre en secondes plutôt qu'en minutes, et consomme une fraction des
+ressources. Docker a également popularisé le concept d'*image* comme artefact
+reproductible et distribuable, résolvant de manière élégante le fameux problème
+"ça marche sur ma machine".
+
+Voyons concrètement comment Docker fonctionne.
+
+### Qu'est-ce que c'est ?
 
 Docker est un programme qui permet de "packager" une application ainsi que la
 totalité de son environnement dans un fichier spécial appelé une *image*. Une
@@ -26,7 +166,7 @@ allons explorer. Notons qu'il peut être utile de se représenter le concept
 d'image comme correspondant grosso modo à celui d'une _classe_ (au sens
 orienté-objet), et un container son _instance_.
 
-## En quoi ça diffère d'une VM?
+### En quoi ça diffère d'une VM ?
 
 Bien que ce modèle ressemble en apparence à celui d'une machine virtuelle (VM),
 il est assez différent : au lieu de faire l'émulation complète d'une machine
@@ -39,7 +179,7 @@ nativement que sur Linux (originalement) et Windows (plus récemment, et moins
 typiquement), tandis que sous MacOS, une couche de virtualisation supplémentaire
 est nécessaire.
 
-## Quel problème ça résout?
+### Quel problème ça résout ?
 
 Une application moderne repose sur un assemblage impressionnant de composantes
 logicielles qu'il est pratiquement impossible de contrôler dans ses moindres
@@ -60,15 +200,9 @@ développeur veut reproduire un environnement complexe (celui de production par
 exemple) localement, sans avoir à gérer une multitude de composantes complexes
 sur le système hôte.
 
-## De où ça vient?
+### Comment l'utiliser
 
-Bien que Docker soit un projet open source, il a été créé et est développé dans
-le contexte d'une entreprise à but lucratif (Docker Inc), qui offre des services
-de type "entreprise".
-
-## Comment l'utiliser
-
-### Définir une image : Dockerfile
+#### Définir une image : Dockerfile
 
 Supposons que nous voulions créer un petit outil Python qui effectue une tâche
 très simple, avec la ligne de commande. Créons tout d'abord un répertoire de
@@ -131,7 +265,7 @@ au moment de la création de l'image, à l'emplacement désigné (le répertoire
 suivante `ENTRYPOINT`, qui détermine la ligne de commande qui sera utilisée par
 défaut quand le container sera exécuté.
 
-## Créer une image : docker build
+#### Créer une image : docker build
 
 Pour créer notre image, qu'on nommera `hello`, la commande `build` prend en
 entrée notre `Dockerfile` :
@@ -164,7 +298,7 @@ REPOSITORY      TAG       IMAGE ID       CREATED        SIZE
 hello           latest    3bfd9d7c3faf   25 hours ago   886MB
 ```
 
-## Créer et démarrer un container : docker run
+#### Créer et démarrer un container : docker run
 
 Une fois qu'une image existe, on peut en instancier un (ou plusieurs)
 container à volonté. Étant donné que notre premier exemple est celui
@@ -216,7 +350,7 @@ Cette erreur démontre que le container est un environnement complètement isol�
 dont l'état dépend entièrement de l'image dont il provient. Étant donné nous
 n'avons pas installé de librairies supplémentaires au moment de la création de
 l'image, la librairie `cowsay` est introuvable. Pour l'ajouter nous devons donc
-modifier le ~Dockerfile~ :
+modifier le `Dockerfile` :
 
 ```dockerfile
 FROM python
@@ -272,7 +406,7 @@ $ docker run hello-cow Leila
                      ||     ||
 ```
 
-## Partager un répertoire (volume) avec l'hôte
+#### Partager un répertoire (volume) avec l'hôte
 
 Dans l'exemple précédent, comme la modification à notre programme impliquait
 l'ajout d'une librairie, la modification de l'image était inévitable. Dans le
@@ -321,15 +455,14 @@ La syntaxe de l'argument passé à `-v` est en deux parties (séparées par un `
 partager (déterminé ici dynamiquement avec la commande Bash `pwd`), à droite
 l'endroit correspondant, dans le container.
 
-## Gérer un groupe de containers : docker compose
+#### Gérer un groupe de containers : docker compose
 
 Nous allons maintenant décrire un scénario où nous voulons créer une application
 qui nécessite plusieurs containers. L'outil `docker compose` permet de créer et
 orchestrer un groupe de containers de manière très conviviale, toujours avec la
-ligne de commande, à l'aide d'un seul fichier de configuration. Docker-compose
-ne remplace pas l'outil Docker tout court, il en enrichit seulement l'interface
-: tout ce que fait docker-compose pourrait être accompli avec Docker
-seulement.
+ligne de commande, à l'aide d'un seul fichier de configuration. Docker compose
+ne remplace pas l'outil Docker tout court, il en enrichit seulement l'interface :
+tout ce que fait docker compose pourrait être accompli avec Docker seulement.
 
 Créons un nouveau répertoire de travail :
 
@@ -383,7 +516,7 @@ def get_value():
 
 Notre application web définit deux routes : `/set/<val>`, qui associe
 une valeur à une clé Redis (par exemple `/set/123`, qui associe `123`
-à la clé `some_key) et `/get`, qui la retourne.
+à la clé `some_key`) et `/get`, qui la retourne.
 
 Le dernier fichier nécessaire est la configuration YAML pour `docker compose` :
 
@@ -417,11 +550,10 @@ telle quelle, sans modification particulière.
 
 On peut maintenant démarrer notre application avec la commande `docker compose
 up`, qui est un amalgame des commandes `docker build` et `docker run`, opérant
-dans le contexte du groupe d'images et de containers défini par le fichier YAML
-:
+dans le contexte du groupe d'images et de containers défini par le fichier YAML :
 
 ```shell
-$ docker-compose up -d
+$ docker compose up -d
 Creating network "app_default" with the default driver
 Building web
 Sending build context to Docker daemon   7.68kB
@@ -441,7 +573,7 @@ l'application sont démarrés en "background", comme on peut le constater en
 utilisant la commande `docker compose ps` :
 
 ```shell
-$ docker-compose ps
+$ docker compose ps
   Name    Command               State  Ports
 -------------------------------------------------------------
 app_db_1  docker-entrypoint.sh  Up     6379/tcp
@@ -450,14 +582,14 @@ app_web_1 flask run --host ...  Up     0.0.0.0:8080->5000/tcp
 
 On remarque tout d'abord que le container `web` exécute la commande `flask run`,
 spécifiée dans le fichier YAML (`services.web.command`), tandis que le container
-`db` exécute une commande par défaut définie dans l'image `redis`. La
-comportement de la commande ~flask run~ est modulé par la valeur de certaines
+`db` exécute une commande par défaut définie dans l'image `redis`. Le
+comportement de la commande `flask run` est modulé par la valeur de certaines
 variables d'environnement propres à Flask, également définies dans le fichier de
 configuration (`services.web.environment`). Un volume partagé
 (`services.web.volume`) permet de rendre le développement encore une fois plus
 convivial.
 
-Docker-compose crée un réseau privé interne qui permet aux containers de
+Docker compose crée un réseau privé interne qui permet aux containers de
 communiquer entre eux, en utilisant simplement leur nom en tant que nom de
 domaine. Un exemple de ceci est utilisé dans `main.py` :
 
@@ -484,7 +616,7 @@ $ curl localhost:8080/get
 Your stored value is b'hello'
 ```
 
-## Exécuter un programme dans un container en marche : docker-compose exec
+#### Exécuter un programme dans un container en marche : docker compose exec
 
 Comme les containers de notre service roulent de manière continue, en attente de
 servir des requêtes, il est possible d'exécuter un programme dans un container
@@ -497,7 +629,7 @@ utiliser `redis-cli`, un outil de ligne de commande qui permet d'interagir avec
 Redis, et qui est disponible à même notre container `db` :
 
 ```shell
-$ docker-compose exec db redis-cli
+$ docker compose exec db redis-cli
 127.0.0.1:6379>
 127.0.0.1:6379>
 127.0.0.1:6379> keys *
@@ -514,7 +646,7 @@ possible de déterminer en suivant la chaîne récursive de commandes `FROM`, de
 shell :
 
 ```shell
-$ docker-compose exec web bash
+$ docker compose exec web bash
 root@d84bfe7aef1f:/app# ls -al
 total 24
 drwxrwxr-x 3 1000 1000 4096 Nov  3 17:14 .
@@ -524,3 +656,49 @@ drwxr-xr-x 2 root root 4096 Nov  3 17:14 __pycache__
 -rw-rw-r-- 1 1000 1000  244 Nov  3 16:26 docker-compose.yml
 -rw-rw-r-- 1 1000 1000  398 Nov  3 17:14 main.py
 ```
+
+## L'orchestration
+
+Docker compose, que nous venons de voir, permet de gérer un groupe de containers
+sur une seule machine. Mais que se passe-t-il quand une application doit tourner
+sur des dizaines ou des centaines de machines, avec des exigences de haute
+disponibilité ? Si un container tombe, qui le redémarre ? Si la charge augmente,
+qui décide de créer de nouvelles instances ? Comment répartir le trafic entre les
+containers disponibles ? Ces questions définissent le problème de
+l'*orchestration*.
+
+Google a été confronté à ce problème très tôt. En interne, l'entreprise
+utilisait depuis le milieu des années 2000 un système appelé Borg pour gérer des
+millions de containers à travers ses datacenters. En 2014, Google a décidé de
+publier une version open source des idées de Borg sous le nom de Kubernetes (du
+grec "pilote" ou "timonier", souvent abrégé K8s). Le projet a rapidement été
+adopté par l'industrie et est aujourd'hui le standard de facto pour
+l'orchestration de containers.
+
+Les concepts fondamentaux de Kubernetes sont relativement peu nombreux, même si
+leur combinaison peut devenir complexe. Un *pod* est la plus petite unité
+déployable : il contient un ou plusieurs containers qui partagent le même réseau
+et le même stockage (en pratique, un pod contient souvent un seul container). Un
+*deployment* décrit l'état souhaité d'un groupe de pods : combien d'instances on
+veut, quelle image utiliser, comment gérer les mises à jour. Kubernetes s'assure
+en permanence que l'état réel du cluster correspond à cet état souhaité. Si un
+pod tombe, il en crée un nouveau. Si on modifie le deployment pour demander une
+nouvelle version de l'image, Kubernetes effectue un *rolling update*, remplaçant
+les pods un par un pour éviter toute interruption. Un *service* fournit une
+adresse réseau stable pour accéder à un groupe de pods, jouant le rôle de load
+balancer interne. Ce modèle est fondamentalement *déclaratif* : on décrit *ce
+qu'on veut* plutôt que *comment l'obtenir*, et le système se charge de converger
+vers l'état souhaité. C'est le même paradigme que celui de SQL, que nous avons
+rencontré dans le module 3 : de la même manière qu'une requête SQL décrit les
+données qu'on veut obtenir sans spécifier comment les chercher (le moteur de
+requêtes s'en charge), un fichier de configuration Kubernetes décrit l'état
+désiré du système sans spécifier les étapes pour y arriver (le *control plane*
+s'en charge). Cette convergence n'est pas un hasard : le paradigme déclaratif
+s'avère particulièrement puissant quand le système sous-jacent est complexe et
+que les chemins pour atteindre un état donné sont multiples.
+
+<!-- TODO: Tutoriel Minikube — transposer l'app Flask+Redis de docker compose vers Kubernetes -->
+
+## L'infrastructure comme code
+
+<!-- TODO: Infrastructure as Code (Terraform, Ansible) -->

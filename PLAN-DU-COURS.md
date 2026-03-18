@@ -341,7 +341,7 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - La Twelve-Factor App (Adam Wiggins, Heroku, 2011) : présentation générale, principes distribués dans le module
 - Pont avec les modules précédents (CI du module 2, équipes du module 4)
 
-## « Où est-ce que ça tourne ? » (à développer)
+## « Où est-ce que ça tourne ? » (en cours)
 - L'ère pré-cloud : le serveur physique, le datacenter, la colocation
 - La virtualisation (VMware, Xen) et le virage vers l'abstraction
 - Le cloud (AWS 2006, GCP, Azure) : IaaS, PaaS, SaaS, pay-as-you-go
