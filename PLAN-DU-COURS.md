@@ -334,19 +334,96 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 
 # Module 5 - Faire vivre le logiciel
 
-- Cloud
-- DevOps
-- The Twelve-Factor App (Adam Wiggins, Heroku, 2011) : méthodologie pour concevoir des applications cloud-native
-  - Liens avec les modules précédents (dépendances, CI, architecture, APIs)
-- Observabilité
-- Monitoring
-- Logging
-- Sécurité
-- Scalabilité
+## Introduction (à développer)
+- Le mur historique entre dev et ops : « on l'a codé, maintenant c'est votre problème »
+- *The Phoenix Project* (Gene Kim, 2013) et la naissance du mouvement DevOps
+- Les trois voies de DevOps (flow, feedback, apprentissage continu) comme grille de lecture
+- La Twelve-Factor App (Adam Wiggins, Heroku, 2011) : présentation générale, principes distribués dans le module
+- Pont avec les modules précédents (CI du module 2, équipes du module 4)
+
+## « Où est-ce que ça tourne ? » (à développer)
+- L'ère pré-cloud : le serveur physique, le datacenter, la colocation
+- La virtualisation (VMware, Xen) et le virage vers l'abstraction
+- Le cloud (AWS 2006, GCP, Azure) : IaaS, PaaS, SaaS, pay-as-you-go
+- Serverless / FaaS (Lambda 2014) : pousser l'abstraction à l'extrême
+- La conteneurisation : contexte historique (chroot, cgroups, namespaces Linux),
+  Docker (Solomon Hykes, 2013), section existante intégrée
+- L'orchestration : Kubernetes (Google, Borg → K8s 2014)
+- Tutoriel Minikube : transposer l'app Flask+Redis de docker compose vers Kubernetes
+- Infrastructure as Code (Terraform, Ansible)
+
+## « Comment je le déploie ? » (à développer)
+- Du CI au CD : reprendre le fil du module 2
+- Stratégies de déploiement : blue-green, canary, rolling update
+- Feature flags : découpler déploiement et activation
+- GitOps : le repo git comme source de vérité pour l'état du système
+- Immutable infrastructure : ne jamais modifier, toujours remplacer
+- Principes Twelve-Factor pertinents (build/release/run, config, parité dev/prod)
+
+## « Est-ce que ça marche ? » (à développer)
+- Les trois piliers de l'observabilité : logs, métriques, traces
+- Logging structuré (JSON logs, niveaux, corrélation)
+  - Twelve-Factor : logs comme flux d'événements
+- Métriques et monitoring (Prometheus, Grafana, quatre golden signals de Google SRE)
+- Tracing distribué (OpenTelemetry, Jaeger)
+- Alertes : quand et comment alerter, fatigue d'alerte
+- SLIs, SLOs, SLA : mesurer la fiabilité du point de vue de l'utilisateur
+
+## « Que faire quand ça casse ? » (à développer)
+- L'incident est inévitable : accepter la faillibilité
+- Site Reliability Engineering (Google, livre de 2016) : les SRE comme pont entre dev et ops
+- Error budgets : quantifier le droit à l'erreur
+- Postmortems blameless : apprendre sans blâmer
+- Chaos engineering (Netflix Chaos Monkey, Principles of Chaos Engineering)
+- Runbooks et automatisation de la réponse
+- Lien avec la dette technique (module 4)
+
+## « Est-ce que c'est sécuritaire ? » (à développer)
+- La sécurité comme préoccupation transversale, pas une couche ajoutée après
+- DevSecOps et shift left : intégrer la sécurité dans le pipeline
+- OWASP Top 10 : tour d'horizon des vulnérabilités web
+- HTTPS/TLS : le chiffrement en transit
+- Gestion des secrets (vaults, variables d'environnement)
+- Authentification et autorisation (OAuth 2.0, JWT, sessions)
+- Sécurité de la supply chain logicielle (lien avec module 2, dépendances)
+- Principe du moindre privilège
+
+## « Est-ce que ça va tenir la charge ? » (à développer)
+- Scalabilité verticale vs horizontale
+- Load balancing (round-robin, health checks)
+- Caching (navigateur, CDN, Redis/Memcached, invalidation)
+- Réplication de bases de données, sharding
+- CDN (Content Delivery Network)
+- Théorème CAP (Brewer, 2000)
+- Files d'attente et traitement asynchrone (lien avec architecture événementielle, module 3)
 
 # Module 6 - Au-delà du logiciel
 
-- Open source
-- AI-assisted dev
-- Économie du logiciel
-- Plateformes (iOS, Android, etc)
+## Le développement assisté par IA (à développer)
+- Historique : autocomplétion → Copilot (2021) → ChatGPT (2022) → agents (Claude Code, Cursor, etc.)
+- Le "vibe coding" et ses limites
+- Impact sur les pratiques du GL : tests encore plus importants, code review change de nature
+- Questions ouvertes : propriété intellectuelle, fiabilité, dépendance
+
+## Les grandes catastrophes logicielles et leurs leçons (à développer)
+- Therac-25 (radiothérapie mortelle), Ariane 5, Knight Capital (440M$ en 45 minutes), Boeing 737 MAX MCAS
+- Boucle avec le module 1 : la crise du logiciel revisitée avec des cas concrets et modernes
+- Lois de Lehman sur l'évolution du logiciel (1974) : un logiciel qui ne change pas devient progressivement inutile
+- Éthique et responsabilité : biais algorithmiques, vie privée, ACM Code of Ethics
+
+## Le métier de développeur et son évolution (à développer)
+- Le mythe du "10x developer", l'impostor syndrome, le burnout
+- Le débat craft vs engineering : Manifeste du Software Craftsmanship (2009)
+- *Working Effectively with Legacy Code* (Michael Feathers, 2004) : la réalité du code existant
+- Évolution du rôle : programmeur → développeur → full-stack → DevOps → AI-augmented
+
+## La dette intellectuelle du domaine (à développer)
+- Les idées qui reviennent en cycle (Lisp → fonctionnel moderne, Smalltalk → React, etc.)
+- Fred Brooks revisité 30 ans plus tard : a-t-on trouvé la silver bullet ?
+- "Worse is better" (Richard Gabriel, 1989) : pourquoi les solutions imparfaites gagnent souvent
+
+## L'open source (à développer)
+- Historique : Stallman, GNU (1983), FSF, GPL vs licences permissives (MIT, Apache, BSD)
+- *The Cathedral and the Bazaar* (Eric Raymond, 1997)
+- Le problème du mainteneur épuisé (left-pad 2016, xz backdoor 2024, Heartbleed)
+- Business models : support, dual licensing, open core, SaaS
