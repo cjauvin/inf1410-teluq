@@ -24,6 +24,9 @@ intégrées dans le cours.)*
   [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Mike Cohn, *Succeeding with Agile* (2009) : la pyramide des tests →
   [Module 2, Les tests]({{< ref "/docs/module2/20-tests" >}})
+- David Anderson, *Kanban: Successful Evolutionary Change for Your Technology
+  Business* (2010) : formalisation de la méthode Kanban pour le développement
+  logiciel → [Module 4, Kanban]({{< ref "/docs/module4/agile/kanban" >}})
 - Gang of Four (Gamma, Helm, Johnson, Vlissides), *Design Patterns* (1994) :
   catalogue fondateur des patrons de conception → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}}), [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Martin Kleppmann, *Designing Data-Intensive Applications* (2017) : référence

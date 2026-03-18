@@ -298,10 +298,15 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
   - Déroulement d’un sprint : flux des issues (Todo → In Progress → In Review → Done), lien avec branches/PR, automatisation
   - Auto-calibration : vélocité mesurée, amélioration continue via les rétrospectives
 
-### Kanban (à développer)
-- Origines Toyota (Taiichi Ohno), transposition au logiciel (David Anderson)
-- Flux continu vs sprints, WIP limits, visualisation
-- Démonstration GitHub Projects
+### Kanban (complété)
+- Historique : Toyota (Taiichi Ohno, TPS, flux tiré), David Anderson (2010)
+- Principes fondamentaux : visualisation du flux, limites de WIP, flux continu
+- Analogie de l'autoroute pour illustrer le WIP
+- Métriques : cycle time et lead time (contraste avec la vélocité de Scrum)
+- Démonstration GitHub Projects (scénario RéservaSalle) :
+  - Configuration : mêmes colonnes, pas de story points ni d'itérations, limites de WIP
+  - Flux de travail : « stop starting, start finishing », régulation par les limites
+- Comparaison Scrum vs Kanban, Scrumban, critères de choix
 
 ## Gestion de projet et coordination (à développer)
 - Outils : GitHub Issues, GitHub Projects (tour guidé)
