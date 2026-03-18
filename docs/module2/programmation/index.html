@@ -15,9 +15,9 @@ Structures de données fondamentales# Au-delà des types de base, qui sont gén�
 <label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
 <label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - Construire en équipe</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-d23625aa2be3e6d041c729d9a229385a class=toggle>
-<label for=section-d23625aa2be3e6d041c729d9a229385a class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/>L'agilité</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=toggle>
+<label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/>Kanban</a></li></ul></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
 <label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/>La conteneurisation avec docker</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
@@ -180,14 +180,14 @@ implémentation ! Étant donné que Python, le langage lui-même, est écrit dan
 langage C, comment écrit-on un <code>dict</code> Python, en C? Il existe plusieurs manières
 de le faire, mais l&rsquo;une d&rsquo;elles est <a href=https://fr.wikipedia.org/wiki/Table_de_hachage>table de
 hachage</a> (hash table en
-anglais). En gros, l&rsquo;idée est d&rsquo;appliquer une <a href=docs/module2/versioning/#fonction-de-hachage#fonction-de-hachage>fonction de
+anglais). En gros, l&rsquo;idée est d&rsquo;appliquer une <a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/#fonction-de-hachage>fonction de
 hachage</a> à un élément (la clé), ce
 qui permet de déterminer l&rsquo;index dans un tableau, où on pourra mettre la valeur
 associée. Dans certaines implémentations, il est nécessaire de gérer les
 collisions possibles : si deux clés mènent au même index par exemple, il sera
-possible d&rsquo;utiliser une liste, pour cette clé particulière.</p><label class=book-image for=book-image-toggle-11><input class="hidden toggle" type=checkbox id=book-image-toggle-11>
+possible d&rsquo;utiliser une liste, pour cette clé particulière.</p><label class=book-image for=book-image-toggle-12><input class="hidden toggle" type=checkbox id=book-image-toggle-12>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/hashtable.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-11"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h3 id=la-correspondance-avec-json>La correspondance avec JSON<a class=anchor href=#la-correspondance-avec-json>#</a></h3><p>Une fois que vous avez des modèles mentaux clairs et efficaces par rapport aux
+</label><script>(function(){const e=document.getElementById("book-image-toggle-12"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h3 id=la-correspondance-avec-json>La correspondance avec JSON<a class=anchor href=#la-correspondance-avec-json>#</a></h3><p>Une fois que vous avez des modèles mentaux clairs et efficaces par rapport aux
 différences et similarités de ces trois structures de données dont nous avons
 parlées dans cette section, il est utile de considérer leur correspondance avec
 la notation JSON.</p><p>JSON (JavaScript Object Notation) est un format textuel léger destiné à
@@ -222,20 +222,20 @@ Bien qu&rsquo;en pratique les détails d&rsquo;implémentation (comment un progr
 (l&rsquo;ordinateur particulier qui est utilisé) sont très importants, en général
 quand on parle de complexité algorithmique on a en tête quelque chose de plus
 abstrait.</p><p>Examinons certains exemples. Imaginons tout d&rsquo;abord que nous avons une fonction
-qui construit une liste de <code>N</code> nombres entiers aléatoires (entre 1 et <code>N</code>) :</p><div class=pyodide-block id=pyodide-12><textarea id=pyodide-12-code>import random
+qui construit une liste de <code>N</code> nombres entiers aléatoires (entre 1 et <code>N</code>) :</p><div class=pyodide-block id=pyodide-13><textarea id=pyodide-13-code>import random
 
 def get_random_numbers(n):
     return [random.randint(1, n) for _ in range(n)]
 
-print(&#34;Fonction &#39;get_random_numbers&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-12-run onclick='pyodideRun("pyodide-12")'>&#9654; Exécuter</button>
-<button id=pyodide-12-reset onclick='pyodideReset("pyodide-12")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-12-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-12-output></pre></div><p>Imagions ensuite que nous aimerions savoir si une paire de nombres distincts,
-dans cette liste, résulte en une somme donnée <code>K</code>.</p><label class=book-image for=book-image-toggle-13><input class="hidden toggle" type=checkbox id=book-image-toggle-13>
+print(&#34;Fonction &#39;get_random_numbers&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-13-run onclick='pyodideRun("pyodide-13")'>&#9654; Exécuter</button>
+<button id=pyodide-13-reset onclick='pyodideReset("pyodide-13")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-13-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-13-output></pre></div><p>Imagions ensuite que nous aimerions savoir si une paire de nombres distincts,
+dans cette liste, résulte en une somme donnée <code>K</code>.</p><label class=book-image for=book-image-toggle-14><input class="hidden toggle" type=checkbox id=book-image-toggle-14>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/two-sum.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-13"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Une méthode naive pour résoudre ce problème consiste à considérer toutes les
-paires :</p><label class=book-image for=book-image-toggle-14><input class="hidden toggle" type=checkbox id=book-image-toggle-14>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-14"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Une méthode naive pour résoudre ce problème consiste à considérer toutes les
+paires :</p><label class=book-image for=book-image-toggle-15><input class="hidden toggle" type=checkbox id=book-image-toggle-15>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/two-sum-quadratic.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-14"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=pyodide-block id=pyodide-15><textarea id=pyodide-15-code>def two_sum_quadratic_version(a, k):
+</label><script>(function(){const e=document.getElementById("book-image-toggle-15"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=pyodide-block id=pyodide-16><textarea id=pyodide-16-code>def two_sum_quadratic_version(a, k):
     for i, x in enumerate(a):
         for j, y in enumerate(a):
             if i == j: continue
@@ -244,9 +244,9 @@ paires :</p><label class=book-image for=book-image-toggle-14><input class="hidde
 
     return None
 
-print(&#34;Fonction &#39;two_sum_quadratic_version&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-15-run onclick='pyodideRun("pyodide-15")'>&#9654; Exécuter</button>
-<button id=pyodide-15-reset onclick='pyodideReset("pyodide-15")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-15-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-15-output></pre></div><p>Cette méthode est assez coûteuse parce que pour chaque item de la liste (qui
+print(&#34;Fonction &#39;two_sum_quadratic_version&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-16-run onclick='pyodideRun("pyodide-16")'>&#9654; Exécuter</button>
+<button id=pyodide-16-reset onclick='pyodideReset("pyodide-16")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-16-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-16-output></pre></div><p>Cette méthode est assez coûteuse parce que pour chaque item de la liste (qui
 contient <code>N</code> items), il faut considérer une sous-liste (en fait la même liste,
 implicitement), de <code>N</code> éléments. Il faut donc faire, au maximum, $N^2$ (<code>N</code> au
 carré) vérifications. On parle donc d&rsquo;un algorithme de complexité
@@ -256,9 +256,9 @@ O&rdquo;</a>
 pour décrire la complexité algorithmique d&rsquo;une fonction, dans ce cas $O(N^2)$.</p><p>Si on y pense un peu, une méthode beaucoup plus efficace consisterait à utiliser
 un <code>set</code> pour conserver les valeurs qu&rsquo;on a déjà rencontrées, et à chaque
 nouvelle valeur de la liste (à ne pas confondre avec le <code>set</code>!), tester si <code>K</code>
-moins la nouvelle valeur se trouve dans le <code>set</code> :</p><label class=book-image for=book-image-toggle-16><input class="hidden toggle" type=checkbox id=book-image-toggle-16>
+moins la nouvelle valeur se trouve dans le <code>set</code> :</p><label class=book-image for=book-image-toggle-17><input class="hidden toggle" type=checkbox id=book-image-toggle-17>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/two-sum-linear.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-16"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=pyodide-block id=pyodide-17><textarea id=pyodide-17-code>def two_sum_linear_version(a, k):
+</label><script>(function(){const e=document.getElementById("book-image-toggle-17"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=pyodide-block id=pyodide-18><textarea id=pyodide-18-code>def two_sum_linear_version(a, k):
     seen = set()
     for x in a:
         target = k - x
@@ -268,9 +268,9 @@ moins la nouvelle valeur se trouve dans le <code>set</code> :</p><label class=bo
 
     return None
 
-print(&#34;Fonction &#39;two_sum_linear_version&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-17-run onclick='pyodideRun("pyodide-17")'>&#9654; Exécuter</button>
-<button id=pyodide-17-reset onclick='pyodideReset("pyodide-17")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-17-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-17-output></pre></div><p>La raison pour laquelle cet algorithme est beaucoup plus efficace est dû au fait
+print(&#34;Fonction &#39;two_sum_linear_version&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-18-run onclick='pyodideRun("pyodide-18")'>&#9654; Exécuter</button>
+<button id=pyodide-18-reset onclick='pyodideReset("pyodide-18")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-18-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-18-output></pre></div><p>La raison pour laquelle cet algorithme est beaucoup plus efficace est dû au fait
 que tester l&rsquo;inclusion d&rsquo;un item dans un <code>set</code> (ce qui se fait, dans le code
 ci-haut, à l&rsquo;aide de l&rsquo;opérateur <code>in</code>, dans la ligne <code>if target in seen</code>),
 contrairement au fait de le faire dans une liste, est extrêmement efficace : si
@@ -283,18 +283,18 @@ avons besoin de considérer plusieurs résultats (c-à-d plusieurs sommes
 possibles), car un seul appel pourrait être &ldquo;chanceux&rdquo; (la première paire
 considérée est tout de suite la bonne). On peut utiliser cette fonction, qui
 prend en entrée une variable <code>fn</code>, qui va contenir la fonction qui sera exécutée
-(<code>two_sum_linear_version</code> ou <code>two_sum_quadratic_version</code>) :</p><div class=pyodide-block id=pyodide-18><textarea id=pyodide-18-code>def test_algo(fn, a):
+(<code>two_sum_linear_version</code> ou <code>two_sum_quadratic_version</code>) :</p><div class=pyodide-block id=pyodide-19><textarea id=pyodide-19-code>def test_algo(fn, a):
     for k in range(len(a)):
         res = fn(a, k)
         if res:
             assert res[0] &#43; res[1] == k
 
-print(&#34;Fonction &#39;test_algo&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-18-run onclick='pyodideRun("pyodide-18")'>&#9654; Exécuter</button>
-<button id=pyodide-18-reset onclick='pyodideReset("pyodide-18")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-18-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-18-output></pre></div><p>Quand la taille de la liste est raisonnable, la différence entre les deux
+print(&#34;Fonction &#39;test_algo&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-19-run onclick='pyodideRun("pyodide-19")'>&#9654; Exécuter</button>
+<button id=pyodide-19-reset onclick='pyodideReset("pyodide-19")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-19-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-19-output></pre></div><p>Quand la taille de la liste est raisonnable, la différence entre les deux
 algorithmes n&rsquo;est pas si notable (ici on utilise la console
 <a href=https://ipython.org/>ipython</a>, qui possède des fonctionnalités pratiques pour
-mesurer le temps d&rsquo;exécution) </p><div class=pyodide-block id=pyodide-19><textarea id=pyodide-19-code>import time
+mesurer le temps d&rsquo;exécution) </p><div class=pyodide-block id=pyodide-20><textarea id=pyodide-20-code>import time
 
 a = get_random_numbers(1000)
 
@@ -304,9 +304,9 @@ print(f&#34;Quadratique: {time.time() - start:.3f}s&#34;)
 
 start = time.time()
 test_algo(two_sum_linear_version, a)
-print(f&#34;Linéaire: {time.time() - start:.3f}s&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-19-run onclick='pyodideRun("pyodide-19")'>&#9654; Exécuter</button>
-<button id=pyodide-19-reset onclick='pyodideReset("pyodide-19")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-19-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-19-output></pre></div><p>Mais si on augmente <code>N</code>, la différence devient rapidement assez dramatique :</p><div class=pyodide-block id=pyodide-20><textarea id=pyodide-20-code>a = get_random_numbers(5000)
+print(f&#34;Linéaire: {time.time() - start:.3f}s&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-20-run onclick='pyodideRun("pyodide-20")'>&#9654; Exécuter</button>
+<button id=pyodide-20-reset onclick='pyodideReset("pyodide-20")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-20-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-20-output></pre></div><p>Mais si on augmente <code>N</code>, la différence devient rapidement assez dramatique :</p><div class=pyodide-block id=pyodide-21><textarea id=pyodide-21-code>a = get_random_numbers(5000)
 
 start = time.time()
 test_algo(two_sum_quadratic_version, a)
@@ -314,11 +314,11 @@ print(f&#34;Quadratique: {time.time() - start:.3f}s&#34;)
 
 start = time.time()
 test_algo(two_sum_linear_version, a)
-print(f&#34;Linéaire: {time.time() - start:.3f}s&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-20-run onclick='pyodideRun("pyodide-20")'>&#9654; Exécuter</button>
-<button id=pyodide-20-reset onclick='pyodideReset("pyodide-20")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-20-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-20-output></pre></div><p>Il est très important de comprendre à quel point l&rsquo;utilisation de la bonne
+print(f&#34;Linéaire: {time.time() - start:.3f}s&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-21-run onclick='pyodideRun("pyodide-21")'>&#9654; Exécuter</button>
+<button id=pyodide-21-reset onclick='pyodideReset("pyodide-21")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-21-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-21-output></pre></div><p>Il est très important de comprendre à quel point l&rsquo;utilisation de la bonne
 structure de données est cruciale, pour certains algorithmes. Si on remplace
-le <code>set</code> de la méthode linéaire par une liste, elle redevient quadratique :</p><div class=pyodide-block id=pyodide-21><textarea id=pyodide-21-code>def two_sum_falsely_linear_version(a, k):
+le <code>set</code> de la méthode linéaire par une liste, elle redevient quadratique :</p><div class=pyodide-block id=pyodide-22><textarea id=pyodide-22-code>def two_sum_falsely_linear_version(a, k):
     seen = []
     for x in a:
         target = k - x
@@ -328,15 +328,15 @@ le <code>set</code> de la méthode linéaire par une liste, elle redevient quadr
 
     return None
 
-print(&#34;Fonction &#39;two_sum_falsely_linear_version&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-21-run onclick='pyodideRun("pyodide-21")'>&#9654; Exécuter</button>
-<button id=pyodide-21-reset onclick='pyodideReset("pyodide-21")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-21-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-21-output></pre></div><label class=book-image for=book-image-toggle-22><input class="hidden toggle" type=checkbox id=book-image-toggle-22>
+print(&#34;Fonction &#39;two_sum_falsely_linear_version&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-22-run onclick='pyodideRun("pyodide-22")'>&#9654; Exécuter</button>
+<button id=pyodide-22-reset onclick='pyodideReset("pyodide-22")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-22-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-22-output></pre></div><label class=book-image for=book-image-toggle-23><input class="hidden toggle" type=checkbox id=book-image-toggle-23>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/two-sum-falsely-linear.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-22"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=pyodide-block id=pyodide-23><textarea id=pyodide-23-code>start = time.time()
+</label><script>(function(){const e=document.getElementById("book-image-toggle-23"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><div class=pyodide-block id=pyodide-24><textarea id=pyodide-24-code>start = time.time()
 test_algo(two_sum_falsely_linear_version, a)
-print(f&#34;Faussement linéaire: {time.time() - start:.3f}s&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-23-run onclick='pyodideRun("pyodide-23")'>&#9654; Exécuter</button>
-<button id=pyodide-23-reset onclick='pyodideReset("pyodide-23")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-23-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-23-output></pre></div><p>Nous avons dit que cet algorithme est &ldquo;faussement linéaire&rdquo;, et qu&rsquo;il est en
+print(f&#34;Faussement linéaire: {time.time() - start:.3f}s&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-24-run onclick='pyodideRun("pyodide-24")'>&#9654; Exécuter</button>
+<button id=pyodide-24-reset onclick='pyodideReset("pyodide-24")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-24-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-24-output></pre></div><p>Nous avons dit que cet algorithme est &ldquo;faussement linéaire&rdquo;, et qu&rsquo;il est en
 fait quadratique, en raison de l&rsquo;usage de la liste (plutôt qu&rsquo;un <code>set</code>). Mais
 pourquoi la performance semble être &ldquo;entre les deux&rdquo;, dans ce cas particulier,
 si on compare les temps d&rsquo;exécution? La réponse est que l&rsquo;opérateur <code>in</code> est
@@ -356,11 +356,11 @@ quadratique, qui est beaucoup moins efficace. Et nous avons vu qu&rsquo;il est
 possible de généraliser au-delà : $O(N^3)$, temps cubique, etc. On appelle cette
 classe de performance <em>polynomiale</em>.</p><p>Il existe cependant d&rsquo;autres profils de performance dont il est utile de
 connaître l&rsquo;existence. Supposons qu&rsquo;on ait une liste triée de nombres, et qu&rsquo;on
-cherche un nombre particulier dans cette liste :</p><label class=book-image for=book-image-toggle-24><input class="hidden toggle" type=checkbox id=book-image-toggle-24>
+cherche un nombre particulier dans cette liste :</p><label class=book-image for=book-image-toggle-25><input class="hidden toggle" type=checkbox id=book-image-toggle-25>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/sorted-list.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-24"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Est-ce qu&rsquo;il existe un algorithme plus performant que $O(N)$ pour ce problème?</p><label class=book-image for=book-image-toggle-25><input class="hidden toggle" type=checkbox id=book-image-toggle-25>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-25"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Est-ce qu&rsquo;il existe un algorithme plus performant que $O(N)$ pour ce problème?</p><label class=book-image for=book-image-toggle-26><input class="hidden toggle" type=checkbox id=book-image-toggle-26>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/binary-search.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-25"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Cet algorithme très fameux s&rsquo;appelle la &ldquo;recherche binaire&rdquo;, et son temps
+</label><script>(function(){const e=document.getElementById("book-image-toggle-26"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Cet algorithme très fameux s&rsquo;appelle la &ldquo;recherche binaire&rdquo;, et son temps
 d&rsquo;exécution est $O(log N)$, car il s&rsquo;agit essentiellement d&rsquo;une série de
 &ldquo;division par deux&rdquo; (à chaque fois qu&rsquo;on coupe la liste en deux), l&rsquo;inverse donc
 d&rsquo;une multiplication. Dans le contexte de ce que nous avons vu jusqu&rsquo;à
@@ -375,16 +375,16 @@ mathématiquement impossible de faire mieux qu&rsquo;une performance supra-liné
 pour trier une liste de nombres ou d&rsquo;objets quelconques.</p><p>Finalement, certains algorithmes ont des profils de performance encore plus
 coûteux que la classe polynomiale : ils nécessitent un temps exponentiel, par
 exemple $O(2^N)$. Voici certains exemples fameux de problèmes dont les algorithmes
-pour produire une solution optimale sont exponentiels :</p><label class=book-image for=book-image-toggle-26><input class="hidden toggle" type=checkbox id=book-image-toggle-26>
+pour produire une solution optimale sont exponentiels :</p><label class=book-image for=book-image-toggle-27><input class="hidden toggle" type=checkbox id=book-image-toggle-27>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/tsp.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-26"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le <a href=https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_voyageur_de_commerce>problème du voyageur de
+</label><script>(function(){const e=document.getElementById("book-image-toggle-27"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le <a href=https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_voyageur_de_commerce>problème du voyageur de
 commerce</a>,
 qui consister à déterminer le circuit le plus court passant par une série de
-villes, dans un graphe.</p><p>Les échecs :</p><label class=book-image for=book-image-toggle-27><input class="hidden toggle" type=checkbox id=book-image-toggle-27>
+villes, dans un graphe.</p><p>Les échecs :</p><label class=book-image for=book-image-toggle-28><input class="hidden toggle" type=checkbox id=book-image-toggle-28>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/chess.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-27"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Et finalement, le jeu de Sudoku :</p><label class=book-image for=book-image-toggle-28><input class="hidden toggle" type=checkbox id=book-image-toggle-28>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-28"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Et finalement, le jeu de Sudoku :</p><label class=book-image for=book-image-toggle-29><input class="hidden toggle" type=checkbox id=book-image-toggle-29>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/sudoku.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-28"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h2 id=les-paradigmes-de-programmation>Les paradigmes de programmation<a class=anchor href=#les-paradigmes-de-programmation>#</a></h2><p>Nous avons vu comment organiser les données avec les structures de données, et
+</label><script>(function(){const e=document.getElementById("book-image-toggle-29"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h2 id=les-paradigmes-de-programmation>Les paradigmes de programmation<a class=anchor href=#les-paradigmes-de-programmation>#</a></h2><p>Nous avons vu comment organiser les données avec les structures de données, et
 comment mesurer l&rsquo;efficacité d&rsquo;un algorithme avec la complexité. Mais il existe
 un autre axe fondamental selon lequel les langages et les programmes varient :
 la manière dont on organise le code lui-même. On appelle cela un <em>paradigme</em> de
@@ -404,14 +404,14 @@ contre l&rsquo;instruction <code>goto</code>, arguant que les programmes devraie
 structurés à l&rsquo;aide de boucles et de conditions plutôt que de sauts arbitraires.
 Cette idée, connue sous le nom de <em>programmation structurée</em>, est aujourd&rsquo;hui si
 universellement adoptée qu&rsquo;on n&rsquo;y pense même plus.</p><p>Voici un exemple simple en Python, dans un style purement impératif. On veut
-extraire les nombres pairs d&rsquo;une liste et les mettre au carré :</p><div class=pyodide-block id=pyodide-29><textarea id=pyodide-29-code>nombres = [1, 2, 3, 4, 5, 6, 7, 8]
+extraire les nombres pairs d&rsquo;une liste et les mettre au carré :</p><div class=pyodide-block id=pyodide-30><textarea id=pyodide-30-code>nombres = [1, 2, 3, 4, 5, 6, 7, 8]
 résultat = []
 for n in nombres:
     if n % 2 == 0:
         résultat.append(n ** 2)
-print(résultat)  # [4, 16, 36, 64]</textarea><div class=pyodide-toolbar><button id=pyodide-29-run onclick='pyodideRun("pyodide-29")'>&#9654; Exécuter</button>
-<button id=pyodide-29-reset onclick='pyodideReset("pyodide-29")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-29-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-29-output></pre></div><p>On reconnaît le style impératif : une boucle qui parcourt les éléments un par
+print(résultat)  # [4, 16, 36, 64]</textarea><div class=pyodide-toolbar><button id=pyodide-30-run onclick='pyodideRun("pyodide-30")'>&#9654; Exécuter</button>
+<button id=pyodide-30-reset onclick='pyodideReset("pyodide-30")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-30-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-30-output></pre></div><p>On reconnaît le style impératif : une boucle qui parcourt les éléments un par
 un, une condition, une modification explicite de l&rsquo;état (la liste <code>résultat</code> qui
 grandit à chaque itération).</p><h3 id=le-paradigme-orienté-objet>Le paradigme orienté-objet<a class=anchor href=#le-paradigme-orient%c3%a9-objet>#</a></h3><p>Le paradigme <em>orienté-objet</em> (OOP) propose une autre manière de structurer un
 programme : au lieu de penser en termes de séquences d&rsquo;instructions, on pense en
@@ -429,7 +429,7 @@ retienne l&rsquo;idée de messagerie plutôt que celle d&rsquo;objet.</p><p>Les 
 comportements dans un objet, en cachant les détails internes), l&rsquo;<em>héritage</em>
 (créer de nouvelles classes à partir de classes existantes) et le
 <em>polymorphisme</em> (traiter des objets de types différents de manière uniforme).
-Reprenons notre exemple :</p><div class=pyodide-block id=pyodide-30><textarea id=pyodide-30-code>class ListeDeNombres:
+Reprenons notre exemple :</p><div class=pyodide-block id=pyodide-31><textarea id=pyodide-31-code>class ListeDeNombres:
     def __init__(self, nombres):
         self.nombres = nombres
 
@@ -440,9 +440,9 @@ Reprenons notre exemple :</p><div class=pyodide-block id=pyodide-30><textarea id
         return ListeDeNombres([n ** 2 for n in self.nombres])
 
 résultat = ListeDeNombres([1, 2, 3, 4, 5, 6, 7, 8])
-print(résultat.pairs().au_carré().nombres)  # [4, 16, 36, 64]</textarea><div class=pyodide-toolbar><button id=pyodide-30-run onclick='pyodideRun("pyodide-30")'>&#9654; Exécuter</button>
-<button id=pyodide-30-reset onclick='pyodideReset("pyodide-30")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-30-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-30-output></pre></div><p>On voit ici que les données (la liste de nombres) et les opérations (<code>pairs</code>,
+print(résultat.pairs().au_carré().nombres)  # [4, 16, 36, 64]</textarea><div class=pyodide-toolbar><button id=pyodide-31-run onclick='pyodideRun("pyodide-31")'>&#9654; Exécuter</button>
+<button id=pyodide-31-reset onclick='pyodideReset("pyodide-31")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-31-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-31-output></pre></div><p>On voit ici que les données (la liste de nombres) et les opérations (<code>pairs</code>,
 <code>au_carré</code>) sont regroupées dans un même objet. On peut aussi enchaîner les
 appels de méthodes, car chaque méthode retourne un nouvel objet du même type.
 L&rsquo;OOP a dominé le développement logiciel pendant des décennies, notamment à
@@ -467,11 +467,11 @@ classe de bugs liés aux modifications inattendues de l&rsquo;état. La seconde 
 l&rsquo;usage de <em>fonctions d&rsquo;ordre supérieur</em>, c&rsquo;est-à-dire des fonctions qui
 prennent d&rsquo;autres fonctions en argument ou qui en retournent. Les plus célèbres
 sont <code>map</code>, <code>filter</code> et <code>reduce</code>, qui permettent de transformer des collections
-de données de manière déclarative.</p><p>Reprenons notre exemple, cette fois dans un style fonctionnel en Python :</p><div class=pyodide-block id=pyodide-31><textarea id=pyodide-31-code>nombres = [1, 2, 3, 4, 5, 6, 7, 8]
+de données de manière déclarative.</p><p>Reprenons notre exemple, cette fois dans un style fonctionnel en Python :</p><div class=pyodide-block id=pyodide-32><textarea id=pyodide-32-code>nombres = [1, 2, 3, 4, 5, 6, 7, 8]
 résultat = list(map(lambda n: n ** 2, filter(lambda n: n % 2 == 0, nombres)))
-print(résultat)  # [4, 16, 36, 64]</textarea><div class=pyodide-toolbar><button id=pyodide-31-run onclick='pyodideRun("pyodide-31")'>&#9654; Exécuter</button>
-<button id=pyodide-31-reset onclick='pyodideReset("pyodide-31")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-31-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-31-output></pre></div><p>On remarque qu&rsquo;il n&rsquo;y a ici aucune boucle, aucune variable qui s&rsquo;accumule : on
+print(résultat)  # [4, 16, 36, 64]</textarea><div class=pyodide-toolbar><button id=pyodide-32-run onclick='pyodideRun("pyodide-32")'>&#9654; Exécuter</button>
+<button id=pyodide-32-reset onclick='pyodideReset("pyodide-32")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-32-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-32-output></pre></div><p>On remarque qu&rsquo;il n&rsquo;y a ici aucune boucle, aucune variable qui s&rsquo;accumule : on
 <em>déclare</em> ce qu&rsquo;on veut (filtrer les pairs, puis mettre au carré) plutôt que de
 décrire <em>comment</em> le faire étape par étape. La liste d&rsquo;origine n&rsquo;est jamais
 modifiée. Ce style est souvent qualifié de <em>déclaratif</em>, par opposition au style
@@ -481,11 +481,11 @@ programme dans trois styles différents, et les trois sont du Python parfaitemen
 valide. On peut écrire du Python impératif, orienté-objet ou fonctionnel, selon
 ce qui convient le mieux au problème à résoudre. D&rsquo;ailleurs, Python offre une
 syntaxe qui se situe quelque part entre le style impératif et le style
-fonctionnel, les <em>compréhensions de liste</em> (list comprehensions) :</p><div class=pyodide-block id=pyodide-32><textarea id=pyodide-32-code>nombres = [1, 2, 3, 4, 5, 6, 7, 8]
+fonctionnel, les <em>compréhensions de liste</em> (list comprehensions) :</p><div class=pyodide-block id=pyodide-33><textarea id=pyodide-33-code>nombres = [1, 2, 3, 4, 5, 6, 7, 8]
 résultat = [n ** 2 for n in nombres if n % 2 == 0]
-print(résultat)  # [4, 16, 36, 64]</textarea><div class=pyodide-toolbar><button id=pyodide-32-run onclick='pyodideRun("pyodide-32")'>&#9654; Exécuter</button>
-<button id=pyodide-32-reset onclick='pyodideReset("pyodide-32")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-32-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-32-output></pre></div><p>Cette tendance au mélange des paradigmes est une caractéristique forte de
+print(résultat)  # [4, 16, 36, 64]</textarea><div class=pyodide-toolbar><button id=pyodide-33-run onclick='pyodideRun("pyodide-33")'>&#9654; Exécuter</button>
+<button id=pyodide-33-reset onclick='pyodideReset("pyodide-33")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-33-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-33-output></pre></div><p>Cette tendance au mélange des paradigmes est une caractéristique forte de
 l&rsquo;évolution récente des langages de programmation. JavaScript a ajouté les
 classes (empruntées à l&rsquo;OOP) tout en renforçant ses capacités fonctionnelles
 avec les fonctions fléchées et les méthodes comme <code>map</code>, <code>filter</code> et <code>reduce</code>.
@@ -524,12 +524,12 @@ dynamique, comme Python ou JavaScript, les types ne sont vérifiés qu&rsquo;au 
 de l&rsquo;exécution : on peut assigner n&rsquo;importe quelle valeur à n&rsquo;importe quelle
 variable, et c&rsquo;est seulement quand le programme tente une opération incompatible
 qu&rsquo;une erreur survient.</p><p>En Python, par exemple, rien n&rsquo;empêche de changer le type d&rsquo;une variable en
-cours de route :</p><div class=pyodide-block id=pyodide-33><textarea id=pyodide-33-code>x = 42        # x est un entier
+cours de route :</p><div class=pyodide-block id=pyodide-34><textarea id=pyodide-34-code>x = 42        # x est un entier
 x = &#34;hello&#34;   # x est maintenant une chaine de caractères
 x = [1, 2, 3] # x est maintenant une liste
-print(x)</textarea><div class=pyodide-toolbar><button id=pyodide-33-run onclick='pyodideRun("pyodide-33")'>&#9654; Exécuter</button>
-<button id=pyodide-33-reset onclick='pyodideReset("pyodide-33")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-33-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-33-output></pre></div><p>En C, le type d&rsquo;une variable est fixé à la déclaration, et le compilateur refuse
+print(x)</textarea><div class=pyodide-toolbar><button id=pyodide-34-run onclick='pyodideRun("pyodide-34")'>&#9654; Exécuter</button>
+<button id=pyodide-34-reset onclick='pyodideReset("pyodide-34")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-34-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-34-output></pre></div><p>En C, le type d&rsquo;une variable est fixé à la déclaration, et le compilateur refuse
 toute incohérence :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>int</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>42</span>;
 </span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;hello&#34;</span>;  <span style=color:#75715e>// erreur de compilation !
 </span></span></span></code></pre></div><h3 id=typage-fort-vs-faible>Typage fort vs faible<a class=anchor href=#typage-fort-vs-faible>#</a></h3><p>La distinction entre typage statique et dynamique est souvent confondue avec une
@@ -537,9 +537,9 @@ autre distinction, tout aussi importante : celle entre typage fort et typage
 faible. Un langage à typage fort refuse les opérations entre types
 incompatibles, même au moment de l&rsquo;exécution. Un langage à typage faible, au
 contraire, tentera de convertir implicitement les valeurs pour que l&rsquo;opération
-puisse se faire, ce qui peut mener à des résultats surprenants.</p><p>Python, bien que dynamique, est un langage à typage fort :</p><div class=pyodide-block id=pyodide-34><textarea id=pyodide-34-code>&#34;5&#34; &#43; 3  # TypeError !</textarea><div class=pyodide-toolbar><button id=pyodide-34-run onclick='pyodideRun("pyodide-34")'>&#9654; Exécuter</button>
-<button id=pyodide-34-reset onclick='pyodideReset("pyodide-34")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-34-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-34-output></pre></div><p>JavaScript, également dynamique, est à typage faible :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#e6db74>&#34;5&#34;</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>3</span>  <span style=color:#75715e>// &#34;53&#34; (!)
+puisse se faire, ce qui peut mener à des résultats surprenants.</p><p>Python, bien que dynamique, est un langage à typage fort :</p><div class=pyodide-block id=pyodide-35><textarea id=pyodide-35-code>&#34;5&#34; &#43; 3  # TypeError !</textarea><div class=pyodide-toolbar><button id=pyodide-35-run onclick='pyodideRun("pyodide-35")'>&#9654; Exécuter</button>
+<button id=pyodide-35-reset onclick='pyodideReset("pyodide-35")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-35-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-35-output></pre></div><p>JavaScript, également dynamique, est à typage faible :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#e6db74>&#34;5&#34;</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>3</span>  <span style=color:#75715e>// &#34;53&#34; (!)
 </span></span></span></code></pre></div><p>On voit donc que ces deux axes sont indépendants l&rsquo;un de l&rsquo;autre. On peut les
 combiner pour situer les langages les plus courants :</p><table><thead><tr><th></th><th>Typage fort</th><th>Typage faible</th></tr></thead><tbody><tr><td><strong>Statique</strong></td><td>Rust, Java</td><td>C</td></tr><tr><td><strong>Dynamique</strong></td><td>Python</td><td>JavaScript</td></tr></tbody></table><p>C est un cas intéressant : bien qu&rsquo;il soit statique, son typage est considéré
 comme relativement faible, car il permet des conversions implicites entre types

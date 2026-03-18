@@ -67,7 +67,20 @@ comment ces trois niveaux s&amp;rsquo;articulent :&lt;/p&gt;
 symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
 », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en
 relation avec autre chose.&lt;/p&gt;</description></item><item><title>Perspective historique</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/</guid><description>&lt;h1 id="perspective-historique-des-interfaces-utilisateur"&gt;Perspective historique des interfaces utilisateur&lt;a class="anchor" href="#perspective-historique-des-interfaces-utilisateur"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;L&amp;rsquo;interface utilisateur est le point de contact entre un humain et un logiciel. C&amp;rsquo;est la partie visible, celle que l&amp;rsquo;utilisateur touche, voit et manipule. Pourtant, la manière dont on conçoit cette interaction a radicalement changé au fil des décennies. Les premiers programmeurs interagissaient avec leurs machines par des cartes perforées et des imprimantes ; aujourd&amp;rsquo;hui, on glisse du doigt sur des écrans tactiles ou on parle à des assistants vocaux. Cette évolution n&amp;rsquo;est pas qu&amp;rsquo;une question de technologie : elle reflète des changements profonds dans notre conception de ce qu&amp;rsquo;un ordinateur peut et devrait être. Comprendre cette histoire permet de mieux saisir pourquoi les interfaces modernes sont construites comme elles le sont, et quelles tensions fondamentales continuent de les façonner.&lt;/p&gt;</description></item><item><title>Survol rapide de la programmation</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</guid><description>&lt;h1 id="survol-rapide-de-la-programmation"&gt;Survol rapide de la programmation&lt;a class="anchor" href="#survol-rapide-de-la-programmation"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;L&amp;rsquo;interface utilisateur est le point de contact entre un humain et un logiciel. C&amp;rsquo;est la partie visible, celle que l&amp;rsquo;utilisateur touche, voit et manipule. Pourtant, la manière dont on conçoit cette interaction a radicalement changé au fil des décennies. Les premiers programmeurs interagissaient avec leurs machines par des cartes perforées et des imprimantes ; aujourd&amp;rsquo;hui, on glisse du doigt sur des écrans tactiles ou on parle à des assistants vocaux. Cette évolution n&amp;rsquo;est pas qu&amp;rsquo;une question de technologie : elle reflète des changements profonds dans notre conception de ce qu&amp;rsquo;un ordinateur peut et devrait être. Comprendre cette histoire permet de mieux saisir pourquoi les interfaces modernes sont construites comme elles le sont, et quelles tensions fondamentales continuent de les façonner.&lt;/p&gt;</description></item><item><title>Scrum</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/</guid><description>&lt;h1 id="la-méthode-scrum"&gt;La méthode Scrum&lt;a class="anchor" href="#la-m%c3%a9thode-scrum"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;En 1986, les professeurs Hirotaka Takeuchi et Ikujiro Nonaka publient dans la
+&lt;em&gt;Harvard Business Review&lt;/em&gt; un article intitulé &amp;ldquo;The New New Product Development
+Game&amp;rdquo;. Leur sujet n&amp;rsquo;est pas le logiciel : ils étudient comment des entreprises
+japonaises comme Honda, Canon et Fuji-Xerox parviennent à développer de nouveaux
+produits plus rapidement que leurs concurrents. Leur constat est que les équipes
+les plus performantes ne suivent pas un processus séquentiel où chaque phase est
+complétée avant de passer à la suivante (ce qu&amp;rsquo;ils comparent à une course à
+relais). Elles fonctionnent plutôt comme une mêlée de rugby (&lt;em&gt;scrum&lt;/em&gt;) : l&amp;rsquo;équipe
+avance ensemble, en bloc, en se passant le ballon d&amp;rsquo;avant en arrière tout en
+progressant sur le terrain. L&amp;rsquo;analogie peut sembler anecdotique, mais elle
+capture une idée profonde : le développement de produits complexes n&amp;rsquo;est pas un
+processus linéaire qu&amp;rsquo;on peut planifier de bout en bout, c&amp;rsquo;est un effort
+collectif, adaptatif, où les phases se chevauchent et où l&amp;rsquo;équipe s&amp;rsquo;auto-organise.&lt;/p&gt;</description></item><item><title>Survol rapide de la programmation</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</guid><description>&lt;h1 id="survol-rapide-de-la-programmation"&gt;Survol rapide de la programmation&lt;a class="anchor" href="#survol-rapide-de-la-programmation"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Nous allons faire un survol rapide des idées les plus importantes et
 fondamentales de la programmation logicielle. Pour aller droit au but, nous
 allons utiliser le langage Python, qui est très facile à comprendre, même sans
@@ -124,6 +137,9 @@ de YAGNI et du TDD → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Mike Cohn, &lt;em&gt;Succeeding with Agile&lt;/em&gt; (2009) : la pyramide des tests →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/"&gt;Module 2, Les tests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;David Anderson, &lt;em&gt;Kanban: Successful Evolutionary Change for Your Technology
+Business&lt;/em&gt; (2010) : formalisation de la méthode Kanban pour le développement
+logiciel → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/"&gt;Module 4, Kanban&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Gang of Four (Gamma, Helm, Johnson, Vlissides), &lt;em&gt;Design Patterns&lt;/em&gt; (1994) :
 catalogue fondateur des patrons de conception → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Martin Kleppmann, &lt;em&gt;Designing Data-Intensive Applications&lt;/em&gt; (2017) : référence
@@ -190,14 +206,20 @@ physique : il fallait littéralement brancher et débrancher des connexions pour
 changer le comportement de la machine. Il n&amp;rsquo;existait pas encore de notion de
 « programme stocké en mémoire », et encore moins de génie logiciel. La
 programmation, si on peut l&amp;rsquo;appeler ainsi, était une affaire de quelques
-spécialistes qui travaillaient seuls, en contact direct avec le matériel.&lt;/p&gt;</description></item><item><title>L'agilité</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/agile/</guid><description>&lt;h1 id="le-manifeste-agile"&gt;Le manifeste Agile&lt;a class="anchor" href="#le-manifeste-agile"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;En quelque au début des années 2000, le mot &amp;ldquo;agile&amp;rdquo; est devenu omniprésent, dans
-la culture technologique et même au-delà. Il représente en fait un phénomène
-culturel dont la genèse est un petit groupe de professionnels, qui se sont
-rassemblés pour mettre en commun leurs idées par rapport au changement de
-paradigme dans la culture du développement logiciel, par rapport aux décennies
-qui précédaient.&lt;/p&gt;
-&lt;p&gt;Voici les douze principes du &lt;a href="https://agilemanifesto.org/iso/fr/principles.html"&gt;manifeste Agile&lt;/a&gt; :&lt;/p&gt;</description></item><item><title>L'architecture des applications web</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/</guid><description>&lt;h1 id="larchitecture-des-applications-web"&gt;L&amp;rsquo;architecture des applications web&lt;a class="anchor" href="#larchitecture-des-applications-web"&gt;#&lt;/a&gt;&lt;/h1&gt;
+spécialistes qui travaillaient seuls, en contact direct avec le matériel.&lt;/p&gt;</description></item><item><title>Kanban</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/</guid><description>&lt;h1 id="la-méthode-kanban"&gt;La méthode Kanban&lt;a class="anchor" href="#la-m%c3%a9thode-kanban"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Le mot &lt;em&gt;kanban&lt;/em&gt; (看板) signifie littéralement « panneau visuel » ou « enseigne »
+en japonais. Le concept naît dans les usines Toyota dans les années 1940-1950,
+sous l&amp;rsquo;impulsion de Taiichi Ohno, ingénieur et futur vice-président de
+l&amp;rsquo;entreprise. Ohno cherche à éliminer le gaspillage (&lt;em&gt;muda&lt;/em&gt;) dans la production
+automobile. Son idée centrale est simple : au lieu de produire en grandes
+quantités puis de stocker, chaque poste de travail ne produit que ce que le
+poste suivant lui demande. Pour signaler ce besoin, on utilise une carte
+physique (un &lt;em&gt;kanban&lt;/em&gt;) qui circule entre les postes. Quand un poste a besoin de
+pièces, il envoie un kanban au poste en amont, qui lance alors la production.
+C&amp;rsquo;est un système &lt;em&gt;à flux tiré&lt;/em&gt; (&lt;em&gt;pull system&lt;/em&gt;) : le travail est déclenché par
+la demande réelle, pas par une planification centrale. Ce principe est au cœur
+du &lt;em&gt;Toyota Production System&lt;/em&gt; (TPS), qui deviendra l&amp;rsquo;une des plus grandes
+innovations de l&amp;rsquo;histoire industrielle du XXe siècle.&lt;/p&gt;</description></item><item><title>L'architecture des applications web</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/</guid><description>&lt;h1 id="larchitecture-des-applications-web"&gt;L&amp;rsquo;architecture des applications web&lt;a class="anchor" href="#larchitecture-des-applications-web"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Le web a été conçu comme un système de documents. Un navigateur envoie une requête HTTP à un serveur, qui répond avec un document HTML. L&amp;rsquo;utilisateur clique sur un lien, le navigateur envoie une nouvelle requête, et reçoit un nouveau document. Ce modèle requête-réponse, simple et élégant, a fonctionné remarquablement bien pour le web documentaire. Mais à mesure que le web s&amp;rsquo;est transformé en plateforme d&amp;rsquo;applications, ce modèle a montré ses limites. Comment construire une boîte de réception Gmail, avec ses messages qui apparaissent en temps réel, dans un système conçu pour afficher des pages statiques ? La réponse à cette question a donné lieu à une succession d&amp;rsquo;architectures, chacune tentant de résoudre les problèmes de la précédente.&lt;/p&gt;</description></item><item><title>La conteneurisation avec docker</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/</guid><description>&lt;h1 id="la-conteneurisation-avec-docker"&gt;La conteneurisation avec docker&lt;a class="anchor" href="#la-conteneurisation-avec-docker"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Cette section propose un chemin rapide et efficace pour comprendre ce qu’est la
 technologie Docker, ses concepts de base, et comment utiliser certains de ses
@@ -258,7 +280,7 @@ habituellement :&lt;/p&gt;
 &lt;li&gt;Certaines fonctionnalités du programmes, pouvant être accomplies par des
 programmes (ou des librairies) externes, doivent être détachées en des
 composantes ou des librairies distinctes, qu&amp;rsquo;il est possible de réutiliser
-(c&amp;rsquo;est un peu le &lt;a href="../module2/principes#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-"&gt;principe
+(c&amp;rsquo;est un peu le &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/principes/#dry-dont-repeat-yourself-ne-vous-répétez-pas"&gt;principe
 DRY&lt;/a&gt; que
 nous avons vu, appliqué dans le sens plus large d&amp;rsquo;un écosystème logiciel)&lt;/li&gt;
 &lt;/ol&gt;

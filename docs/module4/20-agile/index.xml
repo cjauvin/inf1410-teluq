@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>L'agilité on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/</link><description>Recent content in L'agilité on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/index.xml" rel="self" type="application/rss+xml"/><item><title>Scrum</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/</guid><description>&lt;h1 id="la-méthode-scrum"&gt;La méthode Scrum&lt;a class="anchor" href="#la-m%c3%a9thode-scrum"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;En 1986, les professeurs Hirotaka Takeuchi et Ikujiro Nonaka publient dans la
+&lt;em&gt;Harvard Business Review&lt;/em&gt; un article intitulé &amp;ldquo;The New New Product Development
+Game&amp;rdquo;. Leur sujet n&amp;rsquo;est pas le logiciel : ils étudient comment des entreprises
+japonaises comme Honda, Canon et Fuji-Xerox parviennent à développer de nouveaux
+produits plus rapidement que leurs concurrents. Leur constat est que les équipes
+les plus performantes ne suivent pas un processus séquentiel où chaque phase est
+complétée avant de passer à la suivante (ce qu&amp;rsquo;ils comparent à une course à
+relais). Elles fonctionnent plutôt comme une mêlée de rugby (&lt;em&gt;scrum&lt;/em&gt;) : l&amp;rsquo;équipe
+avance ensemble, en bloc, en se passant le ballon d&amp;rsquo;avant en arrière tout en
+progressant sur le terrain. L&amp;rsquo;analogie peut sembler anecdotique, mais elle
+capture une idée profonde : le développement de produits complexes n&amp;rsquo;est pas un
+processus linéaire qu&amp;rsquo;on peut planifier de bout en bout, c&amp;rsquo;est un effort
+collectif, adaptatif, où les phases se chevauchent et où l&amp;rsquo;équipe s&amp;rsquo;auto-organise.&lt;/p&gt;</description></item><item><title>Kanban</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/</guid><description>&lt;h1 id="la-méthode-kanban"&gt;La méthode Kanban&lt;a class="anchor" href="#la-m%c3%a9thode-kanban"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Le mot &lt;em&gt;kanban&lt;/em&gt; (看板) signifie littéralement « panneau visuel » ou « enseigne »
+en japonais. Le concept naît dans les usines Toyota dans les années 1940-1950,
+sous l&amp;rsquo;impulsion de Taiichi Ohno, ingénieur et futur vice-président de
+l&amp;rsquo;entreprise. Ohno cherche à éliminer le gaspillage (&lt;em&gt;muda&lt;/em&gt;) dans la production
+automobile. Son idée centrale est simple : au lieu de produire en grandes
+quantités puis de stocker, chaque poste de travail ne produit que ce que le
+poste suivant lui demande. Pour signaler ce besoin, on utilise une carte
+physique (un &lt;em&gt;kanban&lt;/em&gt;) qui circule entre les postes. Quand un poste a besoin de
+pièces, il envoie un kanban au poste en amont, qui lance alors la production.
+C&amp;rsquo;est un système &lt;em&gt;à flux tiré&lt;/em&gt; (&lt;em&gt;pull system&lt;/em&gt;) : le travail est déclenché par
+la demande réelle, pas par une planification centrale. Ce principe est au cœur
+du &lt;em&gt;Toyota Production System&lt;/em&gt; (TPS), qui deviendra l&amp;rsquo;une des plus grandes
+innovations de l&amp;rsquo;histoire industrielle du XXe siècle.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,152 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="La méthode Kanban# Le mot kanban (看板) signifie littéralement « panneau visuel » ou « enseigne » en japonais. Le concept naît dans les usines Toyota dans les années 1940-1950, sous l’impulsion de Taiichi Ohno, ingénieur et futur vice-président de l’entreprise. Ohno cherche à éliminer le gaspillage (muda) dans la production automobile. Son idée centrale est simple : au lieu de produire en grandes quantités puis de stocker, chaque poste de travail ne produit que ce que le poste suivant lui demande. Pour signaler ce besoin, on utilise une carte physique (un kanban) qui circule entre les postes. Quand un poste a besoin de pièces, il envoie un kanban au poste en amont, qui lance alors la production. C’est un système à flux tiré (pull system) : le travail est déclenché par la demande réelle, pas par une planification centrale. Ce principe est au cœur du Toyota Production System (TPS), qui deviendra l’une des plus grandes innovations de l’histoire industrielle du XXe siècle.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Kanban"><meta property="og:description" content="La méthode Kanban# Le mot kanban (看板) signifie littéralement « panneau visuel » ou « enseigne » en japonais. Le concept naît dans les usines Toyota dans les années 1940-1950, sous l’impulsion de Taiichi Ohno, ingénieur et futur vice-président de l’entreprise. Ohno cherche à éliminer le gaspillage (muda) dans la production automobile. Son idée centrale est simple : au lieu de produire en grandes quantités puis de stocker, chaque poste de travail ne produit que ce que le poste suivant lui demande. Pour signaler ce besoin, on utilise une carte physique (un kanban) qui circule entre les postes. Quand un poste a besoin de pièces, il envoie un kanban au poste en amont, qui lance alors la production. C’est un système à flux tiré (pull system) : le travail est déclenché par la demande réelle, pas par une planification centrale. Ce principe est au cœur du Toyota Production System (TPS), qui deviendra l’une des plus grandes innovations de l’histoire industrielle du XXe siècle."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Kanban"><meta itemprop=description content="La méthode Kanban# Le mot kanban (看板) signifie littéralement « panneau visuel » ou « enseigne » en japonais. Le concept naît dans les usines Toyota dans les années 1940-1950, sous l’impulsion de Taiichi Ohno, ingénieur et futur vice-président de l’entreprise. Ohno cherche à éliminer le gaspillage (muda) dans la production automobile. Son idée centrale est simple : au lieu de produire en grandes quantités puis de stocker, chaque poste de travail ne produit que ce que le poste suivant lui demande. Pour signaler ce besoin, on utilise une carte physique (un kanban) qui circule entre les postes. Quand un poste a besoin de pièces, il envoie un kanban au poste en amont, qui lance alors la production. C’est un système à flux tiré (pull system) : le travail est déclenché par la demande réelle, pas par une planification centrale. Ce principe est au cœur du Toyota Production System (TPS), qui deviendra l’une des plus grandes innovations de l’histoire industrielle du XXe siècle."><meta itemprop=wordCount content="1779"><title>Kanban | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - Concevoir un programme correct</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Du programme au système</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
+<label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/>Perspective historique</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>L'architecture des applications web</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/>Les frameworks JavaScript</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/convergences/>Desktop, web et mobile</a></li></ul></li><li><input type=checkbox id=section-e4d51cc3c07f12fea00e9c0cd309e911 class=toggle>
+<label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle checked>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - Construire en équipe</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=toggle checked>
+<label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/ class=active>Kanban</a></li></ul></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/>La conteneurisation avec docker</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Kanban</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#les-principes-fondamentaux>Les principes fondamentaux</a></li><li><a href=#mesurer-le-flux>Mesurer le flux</a></li><li><a href=#démonstration-avec-github-projects>Démonstration avec GitHub Projects</a></li><li><a href=#scrum-kanban-ou-les-deux->Scrum, Kanban, ou les deux ?</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=la-méthode-kanban>La méthode Kanban<a class=anchor href=#la-m%c3%a9thode-kanban>#</a></h1><p>Le mot <em>kanban</em> (看板) signifie littéralement « panneau visuel » ou « enseigne »
+en japonais. Le concept naît dans les usines Toyota dans les années 1940-1950,
+sous l&rsquo;impulsion de Taiichi Ohno, ingénieur et futur vice-président de
+l&rsquo;entreprise. Ohno cherche à éliminer le gaspillage (<em>muda</em>) dans la production
+automobile. Son idée centrale est simple : au lieu de produire en grandes
+quantités puis de stocker, chaque poste de travail ne produit que ce que le
+poste suivant lui demande. Pour signaler ce besoin, on utilise une carte
+physique (un <em>kanban</em>) qui circule entre les postes. Quand un poste a besoin de
+pièces, il envoie un kanban au poste en amont, qui lance alors la production.
+C&rsquo;est un système <em>à flux tiré</em> (<em>pull system</em>) : le travail est déclenché par
+la demande réelle, pas par une planification centrale. Ce principe est au cœur
+du <em>Toyota Production System</em> (TPS), qui deviendra l&rsquo;une des plus grandes
+innovations de l&rsquo;histoire industrielle du XXe siècle.</p><p>C&rsquo;est en 2010 que David Anderson publie <em>Kanban: Successful Evolutionary Change
+for Your Technology Business</em>, qui formalise l&rsquo;adaptation de ces idées au
+développement logiciel. Anderson ne propose pas de révolutionner la manière de
+travailler d&rsquo;une équipe du jour au lendemain. Au contraire, son approche est
+explicitement évolutive : on part du processus existant, on le rend visible, et
+on l&rsquo;améliore graduellement. C&rsquo;est une philosophie très différente de Scrum, qui
+impose dès le départ un cadre structuré avec des rôles et des cérémonies
+définis.</p><h2 id=les-principes-fondamentaux>Les principes fondamentaux<a class=anchor href=#les-principes-fondamentaux>#</a></h2><p>La méthode Kanban repose sur un petit nombre de principes, qu&rsquo;Anderson résume en
+six pratiques. Trois d&rsquo;entre elles sont particulièrement centrales pour
+comprendre la différence avec Scrum.</p><p>Le premier principe est de <em>visualiser le flux de travail</em>. C&rsquo;est le tableau
+Kanban que nous avons déjà rencontré dans la
+<a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/>section sur Scrum</a> : des colonnes
+qui représentent les étapes du processus, et des cartes qui se déplacent de
+gauche à droite. Mais là où une équipe Scrum utilise le tableau comme un outil
+parmi d&rsquo;autres au sein d&rsquo;un cadre plus large (sprints, cérémonies, rôles), en
+Kanban le tableau <em>est</em> le cadre. Tout le fonctionnement de l&rsquo;équipe tourne
+autour de ce qu&rsquo;il révèle.</p><p>Le deuxième principe est de <em>limiter le travail en cours</em> (<em>Work In Progress</em>,
+ou WIP). C&rsquo;est l&rsquo;idée la plus contre-intuitive de Kanban, et probablement la
+plus puissante. L&rsquo;intuition naturelle est que pour aller plus vite, il faut
+travailler sur plus de choses en parallèle. Kanban affirme le contraire : en
+limitant le nombre de tâches qui peuvent se trouver simultanément dans chaque
+colonne, on force l&rsquo;équipe à terminer ce qu&rsquo;elle a commencé avant de commencer
+autre chose. Si la colonne <em>In Progress</em> a une limite de 2 et qu&rsquo;elle est
+pleine, personne ne peut y ajouter une nouvelle tâche tant qu&rsquo;une des deux en
+cours n&rsquo;a pas avancé vers la colonne suivante. Ce mécanisme crée une pression
+saine : au lieu d&rsquo;accumuler du travail partiellement fait, l&rsquo;équipe se concentre
+sur ce qui est le plus près d&rsquo;être terminé. C&rsquo;est le même principe que le flux
+tiré de Toyota : le travail en aval « tire » le travail en amont, plutôt que
+l&rsquo;amont qui « pousse » du travail vers l&rsquo;aval.</p><p>L&rsquo;analogie la plus parlante est celle d&rsquo;une autoroute. Quand une autoroute est
+peu chargée, les voitures circulent vite et le débit est élevé. Quand on ajoute
+trop de voitures, tout le monde ralentit, et au-delà d&rsquo;un certain seuil, c&rsquo;est
+l&rsquo;embouteillage : le débit réel (le nombre de voitures qui arrivent à
+destination par heure) diminue alors même que le nombre de voitures sur la route
+augmente. Limiter le WIP revient à réguler l&rsquo;accès à l&rsquo;autoroute pour maintenir
+un débit optimal.</p><p>Le troisième principe est le <em>flux continu</em>. Contrairement à Scrum, Kanban ne
+découpe pas le temps en sprints. Il n&rsquo;y a pas de sprint planning, pas de date de
+fin fixe, pas d&rsquo;engagement sur un lot de tâches. Le travail entre dans le
+système de manière continue (quand une tâche est terminée, on en tire une
+nouvelle du backlog) et en sort de manière continue. Le rythme n&rsquo;est pas donné
+par un calendrier, mais par la capacité réelle de l&rsquo;équipe, telle que révélée
+par les limites de WIP et le flux observable sur le tableau.</p><h2 id=mesurer-le-flux>Mesurer le flux<a class=anchor href=#mesurer-le-flux>#</a></h2><p>En Scrum, la performance de l&rsquo;équipe se mesure principalement par la vélocité :
+le nombre de story points complétés par sprint. Kanban utilise des métriques
+différentes, centrées sur le temps plutôt que sur le volume. Les deux plus
+importantes sont le <em>cycle time</em> et le <em>lead time</em>.</p><p>Le cycle time mesure le temps qu&rsquo;une tâche passe dans le système actif,
+c&rsquo;est-à-dire entre le moment où quelqu&rsquo;un commence à travailler dessus (elle
+entre dans <em>In Progress</em>) et le moment où elle est terminée (elle arrive dans
+<em>Done</em>). Le lead time, lui, mesure le temps total entre le moment où la tâche
+est demandée (elle entre dans <em>Todo</em> ou dans le backlog) et le moment où elle
+est livrée. Le lead time est toujours supérieur ou égal au cycle time, car il
+inclut le temps d&rsquo;attente avant que quelqu&rsquo;un ne prenne la tâche en charge.</p><p>Ces deux métriques sont complémentaires. Le cycle time reflète l&rsquo;efficacité de
+l&rsquo;équipe une fois qu&rsquo;elle commence à travailler sur quelque chose. Le lead time
+reflète l&rsquo;expérience du point de vue du client ou du demandeur : combien de
+temps entre « j&rsquo;ai besoin de cette fonctionnalité » et « elle est disponible ».
+Si le cycle time est court mais le lead time est long, cela signifie que les
+tâches passent beaucoup de temps à attendre dans la file avant d&rsquo;être prises en
+charge, ce qui est un signal que les limites de WIP sont peut-être trop basses,
+ou que le backlog est trop chargé. C&rsquo;est ce type d&rsquo;analyse que Kanban
+encourage : observer les données du flux pour identifier les goulots
+d&rsquo;étranglement et ajuster le processus en conséquence.</p><h2 id=démonstration-avec-github-projects>Démonstration avec GitHub Projects<a class=anchor href=#d%c3%a9monstration-avec-github-projects>#</a></h2><p>Pour illustrer concrètement comment Kanban fonctionne, reprenons le projet
+RéservaSalle. Imaginons que l&rsquo;équipe, après quelques sprints avec Scrum, décide
+d&rsquo;expérimenter avec Kanban. Le backlog et les issues restent les mêmes, mais
+l&rsquo;organisation du travail change.</p><p>La première différence se voit dans la configuration du projet GitHub Projects.
+Le tableau garde les mêmes quatre colonnes (<em>Todo</em>, <em>In Progress</em>, <em>In Review</em>,
+<em>Done</em>), mais deux champs disparaissent : les story points et les itérations. En
+Kanban, on n&rsquo;estime pas la taille des tâches à l&rsquo;avance, et on ne découpe pas
+le temps en sprints. En revanche, on ajoute quelque chose que Scrum n&rsquo;avait
+pas : des <em>limites de travail en cours</em> sur les colonnes. Dans GitHub Projects,
+chaque colonne de la vue Board peut se voir attribuer une limite. On configure
+par exemple une limite de 2 pour <em>In Progress</em> et de 2 pour <em>In Review</em>. Ces
+limites ne sont pas bloquantes dans GitHub Projects (l&rsquo;outil affiche un
+avertissement visuel quand la limite est dépassée, mais n&rsquo;empêche pas d&rsquo;ajouter
+une carte), ce qui correspond bien à l&rsquo;esprit de Kanban : la limite est une
+convention d&rsquo;équipe, pas une contrainte technique.</p><p>Le flux de travail quotidien ressemble à celui de Scrum, mais sans la cadence
+imposée par les sprints. L&rsquo;équipe consulte le tableau chaque matin et applique
+une règle simple : avant de commencer une nouvelle tâche, vérifier s&rsquo;il y a
+quelque chose à débloquer en aval. Si la colonne <em>In Review</em> contient deux
+cartes (sa limite), la priorité n&rsquo;est pas de coder quelque chose de nouveau,
+mais de faire une revue de code pour libérer de la place. Ce réflexe, qu&rsquo;on
+appelle parfois « stop starting, start finishing », est le changement de
+mentalité le plus important qu&rsquo;apporte Kanban.</p><p>Concrètement, imaginons que Sara et Marco travaillent sur les issues #1 et #6
+(la colonne <em>In Progress</em> est pleine à sa limite de 2). Sara termine l&rsquo;issue #1
+et la déplace vers <em>In Review</em>. Elle ne peut pas immédiatement prendre l&rsquo;issue
+#2 dans <em>In Progress</em>, car Marco y est encore avec l&rsquo;issue #6. Mais la limite de
+<em>In Review</em> est à 2 et il n&rsquo;y a qu&rsquo;une seule carte, donc Sara pourrait
+techniquement prendre une nouvelle tâche si une place se libère dans <em>In
+Progress</em>. En attendant, Marco termine #6 et la déplace aussi vers <em>In Review</em>.
+Maintenant, <em>In Review</em> est pleine (2/2) et <em>In Progress</em> est vide. L&rsquo;équipe
+doit se concentrer sur les revues avant de tirer de nouvelles tâches. Sara fait
+la revue de #6, Marco fait la revue de #1, les deux passent dans <em>Done</em>, et
+l&rsquo;équipe peut tirer les prochaines tâches prioritaires du backlog.</p><p>Ce mécanisme crée un rythme naturel qui n&rsquo;a pas besoin d&rsquo;être imposé par un
+calendrier. Les tâches entrent et sortent du système en continu, et la vitesse à
+laquelle elles le traversent dépend directement de la capacité réelle de
+l&rsquo;équipe, telle que régulée par les limites de WIP.</p><h2 id=scrum-kanban-ou-les-deux->Scrum, Kanban, ou les deux ?<a class=anchor href=#scrum-kanban-ou-les-deux->#</a></h2><p>Scrum et Kanban répondent au même besoin fondamental, celui de gérer la
+complexité du développement logiciel de manière adaptative, mais ils le font
+avec des philosophies différentes. Scrum impose une structure : des rôles
+définis, des cérémonies régulières, des sprints de durée fixe. Cette structure
+est rassurante, surtout pour les équipes qui débutent avec l&rsquo;agilité, car elle
+fournit un cadre clair et des points de synchronisation réguliers. Kanban, à
+l&rsquo;inverse, n&rsquo;impose presque rien : pas de rôles prescrits, pas de cérémonies
+obligatoires, pas de découpage temporel. Sa seule contrainte réelle est la
+limite de travail en cours, et c&rsquo;est cette contrainte minimale qui régule tout
+le système.</p><p>Dans la pratique, beaucoup d&rsquo;équipes ne choisissent pas strictement l&rsquo;une ou
+l&rsquo;autre méthode. Elles empruntent des éléments aux deux, ce qu&rsquo;on appelle
+parfois <em>Scrumban</em>. Par exemple, une équipe pourrait garder les sprints et les
+cérémonies de Scrum tout en ajoutant des limites de WIP sur son tableau, ou bien
+utiliser un flux continu à la Kanban tout en conservant une rétrospective
+régulière. L&rsquo;important n&rsquo;est pas la pureté de la méthode, mais que l&rsquo;équipe
+comprenne les principes sous-jacents et choisisse consciemment les pratiques qui
+fonctionnent pour elle.</p><p>Le choix entre les deux dépend souvent du contexte. Scrum convient bien aux
+équipes qui développent un produit avec des cycles de livraison réguliers, où la
+prévisibilité est importante et où les parties prenantes ont besoin de points de
+contact fréquents. Kanban est plus adapté aux équipes qui gèrent un flux de
+travail continu et varié, comme une équipe de maintenance, une équipe DevOps, ou
+une équipe de support qui traite des demandes au fil de l&rsquo;eau. Mais ces
+distinctions ne sont pas absolues : ce qui compte, c&rsquo;est d&rsquo;observer son propre
+flux de travail, d&rsquo;identifier ce qui le freine, et d&rsquo;ajuster. C&rsquo;est, au fond,
+le message commun de toutes les approches agiles.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>Scrum</span>
+</a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/ class="flex align-center"><span>Module 5 - Faire vivre le logiciel</span>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#les-principes-fondamentaux>Les principes fondamentaux</a></li><li><a href=#mesurer-le-flux>Mesurer le flux</a></li><li><a href=#démonstration-avec-github-projects>Démonstration avec GitHub Projects</a></li><li><a href=#scrum-kanban-ou-les-deux->Scrum, Kanban, ou les deux ?</a></li></ul></nav></div></aside></main></body></html>

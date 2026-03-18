@@ -30,7 +30,7 @@ habituellement :&lt;/p&gt;
 &lt;li&gt;Certaines fonctionnalités du programmes, pouvant être accomplies par des
 programmes (ou des librairies) externes, doivent être détachées en des
 composantes ou des librairies distinctes, qu&amp;rsquo;il est possible de réutiliser
-(c&amp;rsquo;est un peu le &lt;a href="../module2/principes#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-#dry-dont-repeat-yourself-ne-vous-r%c3%a9p%c3%a9tez-pas-"&gt;principe
+(c&amp;rsquo;est un peu le &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/principes/#dry-dont-repeat-yourself-ne-vous-répétez-pas"&gt;principe
 DRY&lt;/a&gt; que
 nous avons vu, appliqué dans le sens plus large d&amp;rsquo;un écosystème logiciel)&lt;/li&gt;
 &lt;/ol&gt;
