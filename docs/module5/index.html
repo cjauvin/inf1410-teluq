@@ -1,5 +1,5 @@
-<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Module 5 - Faire vivre le logiciel# Hello!
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Module 5 - Faire vivre le logiciel"><meta property="og:description" content="Module 5 - Faire vivre le logiciel# Hello!"><meta property="og:locale" content="fr"><meta property="og:type" content="website"><meta itemprop=name content="Module 5 - Faire vivre le logiciel"><meta itemprop=description content="Module 5 - Faire vivre le logiciel# Hello!"><meta itemprop=wordCount content="8"><title>Module 5 - Faire vivre le logiciel | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><link rel=alternate type=application/rss+xml href=https://cjauvin.github.io/inf1410-teluq/docs/module5/index.xml title="INF1410 - Initiation au génie logiciel"><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-section book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Faire vivre le logiciel# Dans les modules précédents, nous avons construit un logiciel de manière méthodique : les outils du programmeur individuel (module 2), l’architecture d’un système (module 3), la coordination en équipe (module 4). Mais tout ce travail converge vers un moment critique : celui où le logiciel quitte l’environnement du développeur pour rencontrer ses utilisateurs. Un programme qui passe tous ses tests sur la machine d’un développeur, mais qui ne tourne nulle part, n’est pas vraiment un logiciel. Il ne le devient que lorsqu’il est déployé, accessible, et maintenu en condition opérationnelle. Ce passage du développement à la production est le sujet de ce module.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Module 5 - Faire vivre le logiciel"><meta property="og:description" content="Faire vivre le logiciel# Dans les modules précédents, nous avons construit un logiciel de manière méthodique : les outils du programmeur individuel (module 2), l’architecture d’un système (module 3), la coordination en équipe (module 4). Mais tout ce travail converge vers un moment critique : celui où le logiciel quitte l’environnement du développeur pour rencontrer ses utilisateurs. Un programme qui passe tous ses tests sur la machine d’un développeur, mais qui ne tourne nulle part, n’est pas vraiment un logiciel. Il ne le devient que lorsqu’il est déployé, accessible, et maintenu en condition opérationnelle. Ce passage du développement à la production est le sujet de ce module."><meta property="og:locale" content="fr"><meta property="og:type" content="website"><meta itemprop=name content="Module 5 - Faire vivre le logiciel"><meta itemprop=description content="Faire vivre le logiciel# Dans les modules précédents, nous avons construit un logiciel de manière méthodique : les outils du programmeur individuel (module 2), l’architecture d’un système (module 3), la coordination en équipe (module 4). Mais tout ce travail converge vers un moment critique : celui où le logiciel quitte l’environnement du développeur pour rencontrer ses utilisateurs. Un programme qui passe tous ses tests sur la machine d’un développeur, mais qui ne tourne nulle part, n’est pas vraiment un logiciel. Il ne le devient que lorsqu’il est déployé, accessible, et maintenu en condition opérationnelle. Ce passage du développement à la production est le sujet de ce module."><meta itemprop=wordCount content="998"><title>Module 5 - Faire vivre le logiciel | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><link rel=alternate type=application/rss+xml href=https://cjauvin.github.io/inf1410-teluq/docs/module5/index.xml title="INF1410 - Initiation au génie logiciel"><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-section book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
@@ -18,7 +18,87 @@
 <label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/ class=active>Module 5 - Faire vivre le logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/>La conteneurisation avec docker</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Module 5 - Faire vivre le logiciel</h3><label for=toc-control></label></div></header><article class="markdown book-article"><h1 id=module-5---faire-vivre-le-logiciel>Module 5 - Faire vivre le logiciel<a class=anchor href=#module-5---faire-vivre-le-logiciel>#</a></h1><p>Hello!</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Module 5 - Faire vivre le logiciel</h3><label for=toc-control></label></div></header><article class="markdown book-article"><h1 id=faire-vivre-le-logiciel>Faire vivre le logiciel<a class=anchor href=#faire-vivre-le-logiciel>#</a></h1><p>Dans les modules précédents, nous avons construit un logiciel de manière
+méthodique : les outils du programmeur individuel (module 2), l&rsquo;architecture d&rsquo;un
+système (module 3), la coordination en équipe (module 4). Mais tout ce travail
+converge vers un moment critique : celui où le logiciel quitte l&rsquo;environnement du
+développeur pour rencontrer ses utilisateurs. Un programme qui passe tous ses
+tests sur la machine d&rsquo;un développeur, mais qui ne tourne nulle part, n&rsquo;est pas
+vraiment un logiciel. Il ne le devient que lorsqu&rsquo;il est déployé, accessible, et
+maintenu en condition opérationnelle. Ce passage du développement à la production
+est le sujet de ce module.</p><p>Pendant longtemps, cette transition a été marquée par une frontière nette entre
+deux mondes. D&rsquo;un côté, les développeurs, dont le travail consistait à écrire du
+code et à livrer de nouvelles fonctionnalités. De l&rsquo;autre, les équipes
+d&rsquo;opérations (les &ldquo;ops&rdquo;), responsables de faire tourner ce code en production :
+gérer les serveurs, surveiller les performances, répondre aux pannes à trois
+heures du matin. Ces deux groupes avaient des incitatifs contradictoires. Les
+développeurs voulaient livrer vite, changer les choses. Les ops voulaient de la
+stabilité, éviter les surprises. Le résultat était prévisible : un mur, souvent
+matérialisé par un processus formel de &ldquo;mise en production&rdquo;, où les développeurs
+lançaient leur code par-dessus la clôture avec un message implicite : &ldquo;on l&rsquo;a
+codé, maintenant c&rsquo;est votre problème&rdquo;. Un cas particulier emblématique de cette
+séparation était celui du DBA (database administrator), un rôle dédié qui
+contrôlait l&rsquo;accès aux bases de données de production, validait et appliquait les
+modifications de schéma, et servait de gardien entre le code des développeurs et
+les données en production. Un développeur qui avait besoin d&rsquo;ajouter une colonne
+à une table devait soumettre une demande au DBA, souvent accompagnée de
+justifications, et attendre. Cette friction, bien qu&rsquo;elle existait pour de bonnes
+raisons (protéger l&rsquo;intégrité des données), illustrait parfaitement le coût de la
+séparation rigide entre ceux qui écrivent le code et ceux qui gèrent
+l&rsquo;infrastructure.</p><p>C&rsquo;est en réaction à cette séparation que le mouvement DevOps a émergé à la fin
+des années 2000. Le terme lui-même, une contraction de &ldquo;development&rdquo; et
+&ldquo;operations&rdquo;, a été popularisé lors des premières conférences DevOpsDays,
+organisées par Patrick Debois à partir de 2009 en Belgique. Mais c&rsquo;est le roman
+<em>The Phoenix Project</em> (Gene Kim, Kevin Behr et George Spafford, 2013) qui a
+donné au mouvement son récit fondateur. Le livre raconte l&rsquo;histoire de Bill, un
+responsable IT qui hérite d&rsquo;un projet catastrophique dans une entreprise en
+crise, et qui découvre progressivement que les principes du lean manufacturing
+(issus du système de production de Toyota, que nous avons rencontré avec Kanban
+dans le module précédent) peuvent s&rsquo;appliquer à la livraison logicielle. Le
+parallèle est frappant : de la même manière qu&rsquo;une usine doit optimiser le flux
+de production de bout en bout plutôt que de maximiser l&rsquo;efficacité de chaque
+poste individuellement, une organisation logicielle doit penser le flux du code
+depuis le commit du développeur jusqu&rsquo;à l&rsquo;utilisateur en production.</p><p>Gene Kim, dans <em>The Phoenix Project</em> puis de manière plus formelle dans <em>The
+DevOps Handbook</em> (2016, co-écrit avec Jez Humble, Patrick Debois et John Willis),
+articule la philosophie DevOps autour de trois &ldquo;voies&rdquo;. La première voie est
+celle du <em>flow</em> : accélérer le mouvement du travail de gauche à droite, du
+développement vers la production. C&rsquo;est le domaine du déploiement continu, de
+l&rsquo;automatisation, de la conteneurisation. La deuxième voie est celle du
+<em>feedback</em> : créer des boucles de rétroaction rapides de droite à gauche, de la
+production vers le développement. C&rsquo;est le domaine de l&rsquo;observabilité, du
+monitoring, des alertes. La troisième voie est celle de l&rsquo;<em>apprentissage
+continu</em> : cultiver une culture d&rsquo;expérimentation et d&rsquo;amélioration, où les
+échecs sont des occasions d&rsquo;apprendre plutôt que des fautes à punir. C&rsquo;est le
+domaine des postmortems, du chaos engineering, des error budgets. Ces trois voies
+serviront de fil conducteur pour ce module : chacune des sections qui suivent
+s&rsquo;inscrit naturellement dans l&rsquo;une d&rsquo;entre elles.</p><p>Une autre référence importante pour ce module est <em>The Twelve-Factor App</em>, un
+manifeste publié en 2011 par Adam Wiggins, cofondateur de Heroku, l&rsquo;une des
+premières plateformes cloud de type PaaS (Platform as a Service). Ce document
+propose douze principes pour concevoir des applications qui se déploient et
+s&rsquo;opèrent bien dans un environnement cloud moderne. Certains de ces principes
+nous sont déjà familiers : la gestion des dépendances (facteur II, qui rejoint
+ce que nous avons vu dans le module 2 avec uv), ou le stockage du code dans un
+système de versioning (facteur I). D&rsquo;autres, comme la gestion de la
+configuration par variables d&rsquo;environnement (facteur III), le traitement des logs
+comme des flux d&rsquo;événements (facteur XI), ou la stricte séparation entre les
+phases de build, release et run (facteur V), seront développés dans les sections
+qui suivent, là où ils sont le plus pertinents. Plutôt qu&rsquo;un dogme à suivre
+aveuglément, la Twelve-Factor App est un ensemble d&rsquo;heuristiques qui, comme les
+principes SOLID ou DRY, encapsulent des leçons durement apprises par des
+praticiens confrontés aux réalités de la production.</p><p>Ce module s&rsquo;articule autour de six questions concrètes que pose l&rsquo;exploitation
+d&rsquo;un logiciel. D&rsquo;abord, <strong>&ldquo;où est-ce que ça tourne ?&rdquo;</strong> : l&rsquo;évolution de
+l&rsquo;infrastructure, des serveurs physiques au cloud en passant par la
+conteneurisation et l&rsquo;orchestration. Ensuite, <strong>&ldquo;comment je le déploie ?&rdquo;</strong> : les
+pipelines de déploiement continu et les stratégies pour livrer du code en
+production de manière fiable. Puis, <strong>&ldquo;est-ce que ça marche ?&rdquo;</strong> :
+l&rsquo;observabilité, c&rsquo;est-à-dire la capacité à comprendre ce qui se passe à
+l&rsquo;intérieur d&rsquo;un système en production. Suivie de <strong>&ldquo;que faire quand ça
+casse ?&rdquo;</strong> : la gestion des incidents, la fiabilité, et la culture
+d&rsquo;apprentissage qui permet de s&rsquo;améliorer après chaque panne. Ensuite, <strong>&ldquo;est-ce
+que c&rsquo;est sécuritaire ?&rdquo;</strong> : les menaces auxquelles un logiciel en production est
+exposé et les pratiques pour s&rsquo;en protéger. Enfin, <strong>&ldquo;est-ce que ça va tenir la
+charge ?&rdquo;</strong> : la scalabilité, le caching, et les compromis architecturaux qui
+permettent à un système de servir un nombre croissant d&rsquo;utilisateurs.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
 <span>Gestion de projet et coordination</span>
 </a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/docker/ class="flex align-center"><span>La conteneurisation avec docker</span>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div></main></body></html>

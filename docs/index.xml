@@ -103,6 +103,14 @@ approche asynchrone et &amp;ldquo;pitches&amp;rdquo; écrits →
 structures d&amp;rsquo;équipe et de leurs effets sur l&amp;rsquo;architecture logicielle, manœuvre
 de Conway inverse →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Gene Kim, Kevin Behr et George Spafford, &lt;em&gt;The Phoenix Project&lt;/em&gt; (2013) : roman
+fondateur du mouvement DevOps, parallèle entre lean manufacturing et livraison
+logicielle →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/"&gt;Module 5, Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Gene Kim, Jez Humble, Patrick Debois et John Willis, &lt;em&gt;The DevOps Handbook&lt;/em&gt;
+(2016) : formalisation des trois voies de DevOps (flow, feedback, apprentissage
+continu) →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/"&gt;Module 5, Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="articles-et-essais"&gt;Articles et essais&lt;a class="anchor" href="#articles-et-essais"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
@@ -167,6 +175,9 @@ livre blanc introduisant la blockchain et le consensus distribué →
 critique de la récupération commerciale du mot &amp;ldquo;agile&amp;rdquo; par un des signataires
 du manifeste →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/"&gt;Module 4, L&amp;rsquo;agilité&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Adam Wiggins, &lt;em&gt;The Twelve-Factor App&lt;/em&gt; (2011) : douze principes pour concevoir
+des applications cloud-native, issus de l&amp;rsquo;expérience de Heroku →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/"&gt;Module 5, Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
 faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc
