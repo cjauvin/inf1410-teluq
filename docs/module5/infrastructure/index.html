@@ -1,5 +1,5 @@
 <!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Où est-ce que ça tourne ?# Pour qu’un logiciel soit accessible à ses utilisateurs, il doit s’exécuter quelque part. Cette question, en apparence triviale, a donné lieu à l’une des transformations les plus profondes de l’histoire du génie logiciel. En l’espace de deux décennies, nous sommes passés de serveurs physiques installés dans des placards à des plateformes cloud capables de provisionner des milliers de machines virtuelles en quelques secondes. Cette évolution n’est pas seulement technique : elle a fondamentalement changé la manière dont on conçoit, déploie et opère les applications. Comprendre cette trajectoire, des machines physiques jusqu’aux containers et à l’orchestration, est essentiel pour saisir le contexte dans lequel les pratiques DevOps modernes ont émergé.
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Où est-ce que ça tourne ?"><meta property="og:description" content="Où est-ce que ça tourne ?# Pour qu’un logiciel soit accessible à ses utilisateurs, il doit s’exécuter quelque part. Cette question, en apparence triviale, a donné lieu à l’une des transformations les plus profondes de l’histoire du génie logiciel. En l’espace de deux décennies, nous sommes passés de serveurs physiques installés dans des placards à des plateformes cloud capables de provisionner des milliers de machines virtuelles en quelques secondes. Cette évolution n’est pas seulement technique : elle a fondamentalement changé la manière dont on conçoit, déploie et opère les applications. Comprendre cette trajectoire, des machines physiques jusqu’aux containers et à l’orchestration, est essentiel pour saisir le contexte dans lequel les pratiques DevOps modernes ont émergé."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Où est-ce que ça tourne ?"><meta itemprop=description content="Où est-ce que ça tourne ?# Pour qu’un logiciel soit accessible à ses utilisateurs, il doit s’exécuter quelque part. Cette question, en apparence triviale, a donné lieu à l’une des transformations les plus profondes de l’histoire du génie logiciel. En l’espace de deux décennies, nous sommes passés de serveurs physiques installés dans des placards à des plateformes cloud capables de provisionner des milliers de machines virtuelles en quelques secondes. Cette évolution n’est pas seulement technique : elle a fondamentalement changé la manière dont on conçoit, déploie et opère les applications. Comprendre cette trajectoire, des machines physiques jusqu’aux containers et à l’orchestration, est essentiel pour saisir le contexte dans lequel les pratiques DevOps modernes ont émergé."><meta itemprop=wordCount content="4392"><title>Où est-ce que ça tourne ? | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Où est-ce que ça tourne ?"><meta property="og:description" content="Où est-ce que ça tourne ?# Pour qu’un logiciel soit accessible à ses utilisateurs, il doit s’exécuter quelque part. Cette question, en apparence triviale, a donné lieu à l’une des transformations les plus profondes de l’histoire du génie logiciel. En l’espace de deux décennies, nous sommes passés de serveurs physiques installés dans des placards à des plateformes cloud capables de provisionner des milliers de machines virtuelles en quelques secondes. Cette évolution n’est pas seulement technique : elle a fondamentalement changé la manière dont on conçoit, déploie et opère les applications. Comprendre cette trajectoire, des machines physiques jusqu’aux containers et à l’orchestration, est essentiel pour saisir le contexte dans lequel les pratiques DevOps modernes ont émergé."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Où est-ce que ça tourne ?"><meta itemprop=description content="Où est-ce que ça tourne ?# Pour qu’un logiciel soit accessible à ses utilisateurs, il doit s’exécuter quelque part. Cette question, en apparence triviale, a donné lieu à l’une des transformations les plus profondes de l’histoire du génie logiciel. En l’espace de deux décennies, nous sommes passés de serveurs physiques installés dans des placards à des plateformes cloud capables de provisionner des milliers de machines virtuelles en quelques secondes. Cette évolution n’est pas seulement technique : elle a fondamentalement changé la manière dont on conçoit, déploie et opère les applications. Comprendre cette trajectoire, des machines physiques jusqu’aux containers et à l’orchestration, est essentiel pour saisir le contexte dans lequel les pratiques DevOps modernes ont émergé."><meta itemprop=wordCount content="7149"><title>Où est-ce que ça tourne ? | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
@@ -18,7 +18,7 @@
 <label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/ class=active>Où est-ce que ça tourne ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Où est-ce que ça tourne ?</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#lère-du-serveur-physique>L&rsquo;ère du serveur physique</a></li><li><a href=#la-virtualisation>La virtualisation</a></li><li><a href=#le-cloud>Le cloud</a></li><li><a href=#le-serverless>Le serverless</a></li><li><a href=#la-conteneurisation>La conteneurisation</a><ul><li><a href=#quest-ce-que-cest->Qu&rsquo;est-ce que c&rsquo;est ?</a></li><li><a href=#en-quoi-ça-diffère-dune-vm->En quoi ça diffère d&rsquo;une VM ?</a></li><li><a href=#quel-problème-ça-résout->Quel problème ça résout ?</a></li><li><a href=#comment-lutiliser>Comment l&rsquo;utiliser</a><ul><li><a href=#définir-une-image--dockerfile>Définir une image : Dockerfile</a></li><li><a href=#créer-une-image--docker-build>Créer une image : docker build</a></li><li><a href=#créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run</a></li><li><a href=#partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte</a></li><li><a href=#gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose</a></li><li><a href=#exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker compose exec</a></li></ul></li></ul></li><li><a href=#lorchestration>L&rsquo;orchestration</a></li><li><a href=#linfrastructure-comme-code>L&rsquo;infrastructure comme code</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=où-est-ce-que-ça-tourne->Où est-ce que ça tourne ?<a class=anchor href=#o%c3%b9-est-ce-que-%c3%a7a-tourne->#</a></h1><p>Pour qu&rsquo;un logiciel soit accessible à ses utilisateurs, il doit s&rsquo;exécuter
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Où est-ce que ça tourne ?</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#lère-du-serveur-physique>L&rsquo;ère du serveur physique</a></li><li><a href=#la-virtualisation>La virtualisation</a></li><li><a href=#le-cloud>Le cloud</a></li><li><a href=#le-serverless>Le serverless</a></li><li><a href=#la-conteneurisation>La conteneurisation</a><ul><li><a href=#quest-ce-que-cest->Qu&rsquo;est-ce que c&rsquo;est ?</a></li><li><a href=#en-quoi-ça-diffère-dune-vm->En quoi ça diffère d&rsquo;une VM ?</a></li><li><a href=#quel-problème-ça-résout->Quel problème ça résout ?</a></li><li><a href=#comment-lutiliser>Comment l&rsquo;utiliser</a><ul><li><a href=#définir-une-image--dockerfile>Définir une image : Dockerfile</a></li><li><a href=#créer-une-image--docker-build>Créer une image : docker build</a></li><li><a href=#créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run</a></li><li><a href=#partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte</a></li><li><a href=#gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose</a></li><li><a href=#exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker compose exec</a></li></ul></li></ul></li><li><a href=#lorchestration>L&rsquo;orchestration</a><ul><li><a href=#tutoriel--de-docker-compose-à-kubernetes>Tutoriel : de docker compose à Kubernetes</a><ul><li><a href=#préparation>Préparation</a></li><li><a href=#le-deployment-redis>Le deployment Redis</a></li><li><a href=#le-deployment-flask>Le deployment Flask</a></li><li><a href=#déploiement-et-vérification>Déploiement et vérification</a></li><li><a href=#résilience--le-moment-kubernetes>Résilience : le moment Kubernetes</a></li><li><a href=#scaling>Scaling</a></li></ul></li></ul></li><li><a href=#linfrastructure-comme-code>L&rsquo;infrastructure comme code</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=où-est-ce-que-ça-tourne->Où est-ce que ça tourne ?<a class=anchor href=#o%c3%b9-est-ce-que-%c3%a7a-tourne->#</a></h1><p>Pour qu&rsquo;un logiciel soit accessible à ses utilisateurs, il doit s&rsquo;exécuter
 quelque part. Cette question, en apparence triviale, a donné lieu à l&rsquo;une des
 transformations les plus profondes de l&rsquo;histoire du génie logiciel. En l&rsquo;espace
 de deux décennies, nous sommes passés de serveurs physiques installés dans des
@@ -467,7 +467,325 @@ requêtes s&rsquo;en charge), un fichier de configuration Kubernetes décrit l&r
 désiré du système sans spécifier les étapes pour y arriver (le <em>control plane</em>
 s&rsquo;en charge). Cette convergence n&rsquo;est pas un hasard : le paradigme déclaratif
 s&rsquo;avère particulièrement puissant quand le système sous-jacent est complexe et
-que les chemins pour atteindre un état donné sont multiples.</p><h2 id=linfrastructure-comme-code>L&rsquo;infrastructure comme code<a class=anchor href=#linfrastructure-comme-code>#</a></h2></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+que les chemins pour atteindre un état donné sont multiples.</p><h3 id=tutoriel--de-docker-compose-à-kubernetes>Tutoriel : de docker compose à Kubernetes<a class=anchor href=#tutoriel--de-docker-compose-%c3%a0-kubernetes>#</a></h3><p>Nous avons décrit les concepts fondamentaux de Kubernetes de manière abstraite.
+Pour les rendre concrets, nous allons transposer l&rsquo;application Flask+Redis que
+nous avons construite avec docker compose vers Kubernetes. Pour expérimenter
+localement sans avoir besoin d&rsquo;un cluster cloud, nous utiliserons k3d, un outil
+qui crée un cluster Kubernetes léger (basé sur k3s, une distribution allégée de
+Kubernetes créée par Rancher) directement dans des containers Docker. Comme
+Docker est déjà installé sur notre machine, il n&rsquo;y a pas de couche
+supplémentaire à ajouter. C&rsquo;est un environnement limité en termes de capacité,
+mais il implémente la même API et les mêmes mécanismes qu&rsquo;un vrai cluster :
+tout ce que nous apprendrons ici s&rsquo;applique directement en production. Pour
+observer ce qui se passe dans le cluster, nous utiliserons k9s, une interface
+textuelle interactive (TUI) qui permet de naviguer les ressources Kubernetes de
+manière beaucoup plus fluide que la ligne de commande. Nous aurons aussi besoin
+de <code>kubectl</code>, l&rsquo;outil CLI standard de Kubernetes, pour appliquer nos fichiers
+de configuration.</p><h4 id=préparation>Préparation<a class=anchor href=#pr%c3%a9paration>#</a></h4><p>Avant de commencer, adaptons légèrement notre application Flask. Kubernetes
+attribue automatiquement un nom unique à chaque pod, accessible via la variable
+d&rsquo;environnement <code>HOSTNAME</code> à l&rsquo;intérieur du container. Nous allons modifier
+<code>main.py</code> pour afficher ce nom, ce qui nous sera utile plus tard pour observer
+le comportement du cluster quand plusieurs instances de notre application
+tournent en parallèle :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> redis
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> Flask(__name__)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>red <span style=color:#f92672>=</span> redis<span style=color:#f92672>.</span>Redis(<span style=color:#e6db74>&#34;redis&#34;</span>)
+</span></span><span style=display:flex><span>KEY <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;some_key&#34;</span>
+</span></span><span style=display:flex><span>POD_NAME <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>environ<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;HOSTNAME&#34;</span>, <span style=color:#e6db74>&#34;unknown&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/set/&lt;val&gt;&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>set_value</span>(val):
+</span></span><span style=display:flex><span>    red<span style=color:#f92672>.</span>set(KEY, val)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[</span><span style=color:#e6db74>{</span>POD_NAME<span style=color:#e6db74>}</span><span style=color:#e6db74>] Your value (</span><span style=color:#e6db74>{</span>val<span style=color:#e6db74>}</span><span style=color:#e6db74>) is now set in the database&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/get&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_value</span>():
+</span></span><span style=display:flex><span>    val <span style=color:#f92672>=</span> red<span style=color:#f92672>.</span>get(KEY)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> val <span style=color:#f92672>is</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[</span><span style=color:#e6db74>{</span>POD_NAME<span style=color:#e6db74>}</span><span style=color:#e6db74>] No value was stored, use /set&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[</span><span style=color:#e6db74>{</span>POD_NAME<span style=color:#e6db74>}</span><span style=color:#e6db74>] Your stored value is </span><span style=color:#e6db74>{</span>val<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span></span></span></code></pre></div><p>On remarque deux changements : l&rsquo;ajout de <code>POD_NAME</code> qui lit le nom d&rsquo;hôte du
+container, et le remplacement de <code>"db"</code> par <code>"redis"</code> comme adresse du serveur
+Redis. Avec docker compose, le nom du service (<code>db</code>) servait de nom de domaine
+interne. Avec Kubernetes, c&rsquo;est le nom du <em>service</em> Kubernetes qui jouera ce
+rôle, et nous l&rsquo;appellerons <code>redis</code> pour plus de clarté.</p><p>Créons maintenant le cluster k3d :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ k3d cluster create demo -p <span style=color:#e6db74>&#34;8080:80@loadbalancer&#34;</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ kubectl cluster-info
+</span></span><span style=display:flex><span>Kubernetes control plane is running at https://0.0.0.0:6443</span></span></code></pre></div><p>La commande <code>k3d cluster create</code> mérite une explication. L&rsquo;option
+<code>-p "8080:80@loadbalancer"</code> configure le port forwarding : le trafic arrivant
+sur le port 8080 de notre machine sera redirigé vers le port 80 du load
+balancer intégré à k3d (Traefik), qui le distribuera ensuite vers nos pods.
+C&rsquo;est l&rsquo;équivalent de la directive <code>ports</code> dans notre fichier docker compose,
+mais avec une couche supplémentaire : le load balancer, qui sera capable de
+répartir le trafic entre plusieurs instances de notre application.</p><h4 id=le-deployment-redis>Le deployment Redis<a class=anchor href=#le-deployment-redis>#</a></h4><p>Commençons par déployer Redis. Dans Kubernetes, chaque composant de notre
+application est décrit par un ou plusieurs fichiers YAML qu&rsquo;on appelle des
+<em>manifests</em>. Créons un fichier <code>redis-deployment.yaml</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>6379</span></span></span></code></pre></div><p>Ce fichier mérite qu&rsquo;on s&rsquo;y attarde, car il illustre la structure commune à
+tous les manifests Kubernetes. Les champs <code>apiVersion</code> et <code>kind</code> identifient le
+type de ressource (ici un Deployment). Le champ <code>metadata.name</code> lui donne un
+nom. Le bloc <code>spec</code> contient la partie intéressante : <code>replicas: 1</code> indique
+qu&rsquo;on veut exactement une instance de ce pod. Le <code>selector</code> et les <code>labels</code>
+forment un mécanisme d&rsquo;association : le deployment gère tous les pods qui
+portent le label <code>app: redis</code>. C&rsquo;est un système souple et découplé, très
+différent de docker compose où l&rsquo;association entre un service et sa définition
+est directe et implicite. Enfin, <code>template.spec.containers</code> décrit le container
+lui-même, de manière analogue à ce qu&rsquo;on faisait dans docker compose avec
+<code>image: redis</code>.</p><p>Pour que d&rsquo;autres pods puissent communiquer avec Redis, il faut aussi créer un
+<em>service</em>, dans un fichier <code>redis-service.yaml</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>port</span>: <span style=color:#ae81ff>6379</span></span></span></code></pre></div><p>Le service crée une adresse réseau stable (<code>redis</code>) qui pointe vers tous les
+pods portant le label <code>app: redis</code>. C&rsquo;est ce nom que notre application Flask
+utilise dans <code>redis.Redis("redis")</code>. Le service joue le même rôle que le réseau
+interne créé automatiquement par docker compose, mais de manière explicite et
+configurable.</p><h4 id=le-deployment-flask>Le deployment Flask<a class=anchor href=#le-deployment-flask>#</a></h4><p>Notre application Flask nécessite une image Docker personnalisée. Avec k3d, la
+manière la plus simple de rendre une image locale disponible au cluster est de
+la construire puis de l&rsquo;importer :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker build -t flask-app:latest .
+</span></span><span style=display:flex><span>$ k3d image import flask-app:latest -c demo</span></span></code></pre></div><p>La première commande construit l&rsquo;image comme nous l&rsquo;avons fait dans le tutoriel
+Docker. La seconde la transfère dans le registre interne du cluster k3d, la
+rendant accessible aux pods. Le fichier <code>web-deployment.yaml</code> décrit le
+deployment de notre application :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>web</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>web</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>web</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>web</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>flask-app:latest</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>Never</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>5000</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>env</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>FLASK_APP</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>value</span>: <span style=color:#ae81ff>main</span></span></span></code></pre></div><p>La structure est identique à celle du deployment Redis. On retrouve le même
+patron : un nombre de répliques souhaité, un sélecteur par labels, et la
+description du container. La directive <code>imagePullPolicy: Never</code> indique à
+Kubernetes de ne pas tenter de télécharger l&rsquo;image depuis un registre distant :
+elle est déjà disponible localement grâce à notre commande <code>k3d image import</code>.
+La différence notable est la section <code>env</code>, qui définit des variables
+d&rsquo;environnement à l&rsquo;intérieur du container. C&rsquo;est l&rsquo;équivalent de la clé
+<code>environment</code> dans docker compose. Ce mécanisme est au coeur du facteur III de
+la Twelve-Factor App : la configuration d&rsquo;une application doit être stockée dans
+l&rsquo;environnement, pas dans le code.</p><p>Le fichier <code>web-service.yaml</code> expose notre application à l&rsquo;intérieur du
+cluster :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>web</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>web</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>port</span>: <span style=color:#ae81ff>5000</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>targetPort</span>: <span style=color:#ae81ff>5000</span></span></span></code></pre></div><p>Mais contrairement à Redis, dont le service n&rsquo;a besoin d&rsquo;être accessible qu&rsquo;aux
+autres pods, notre application Flask doit être accessible depuis l&rsquo;extérieur du
+cluster. C&rsquo;est le rôle de l&rsquo;<em>ingress</em>, un dernier type de ressource Kubernetes
+qui définit des règles de routage HTTP. Le fichier <code>web-ingress.yaml</code> configure
+le load balancer intégré de k3d (Traefik) pour rediriger tout le trafic entrant
+vers notre service :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>networking.k8s.io/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Ingress</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>web</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>rules</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>http</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>paths</span>:
+</span></span><span style=display:flex><span>          - <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>pathType</span>: <span style=color:#ae81ff>Prefix</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>backend</span>:
+</span></span><span style=display:flex><span>              <span style=color:#f92672>service</span>:
+</span></span><span style=display:flex><span>                <span style=color:#f92672>name</span>: <span style=color:#ae81ff>web</span>
+</span></span><span style=display:flex><span>                <span style=color:#f92672>port</span>:
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>number</span>: <span style=color:#ae81ff>5000</span></span></span></code></pre></div><h4 id=déploiement-et-vérification>Déploiement et vérification<a class=anchor href=#d%c3%a9ploiement-et-v%c3%a9rification>#</a></h4><p>On peut maintenant déployer l&rsquo;ensemble de notre application avec
+<code>kubectl apply</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ kubectl apply -f redis-deployment.yaml -f redis-service.yaml
+</span></span><span style=display:flex><span>deployment.apps/redis created
+</span></span><span style=display:flex><span>service/redis created
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ kubectl apply -f web-deployment.yaml -f web-service.yaml -f web-ingress.yaml
+</span></span><span style=display:flex><span>deployment.apps/web created
+</span></span><span style=display:flex><span>service/web created
+</span></span><span style=display:flex><span>ingress.networking.k8s.io/web created</span></span></code></pre></div><p>C&rsquo;est ici que le modèle déclaratif de Kubernetes prend tout son sens. La
+commande <code>kubectl apply</code> ne dit pas &ldquo;crée un container Redis&rdquo; : elle dit &ldquo;voici
+l&rsquo;état que je souhaite, assure-toi que la réalité y correspond&rdquo;. Si on exécute
+la même commande une deuxième fois, Kubernetes ne crée rien de nouveau : il
+constate que l&rsquo;état actuel correspond déjà à l&rsquo;état désiré et ne fait rien.
+C&rsquo;est ce qu&rsquo;on appelle l&rsquo;<em>idempotence</em>, une propriété fondamentale qui rend les
+déploiements reproductibles et sûrs.</p><p>On peut vérifier que l&rsquo;application fonctionne :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ curl localhost:8080/set/hello
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>web-79d54d9df8-fsq6j<span style=color:#f92672>]</span> Your value <span style=color:#f92672>(</span>hello<span style=color:#f92672>)</span> is now set in the database
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ curl localhost:8080/get
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>web-79d54d9df8-fsq6j<span style=color:#f92672>]</span> Your stored value is b<span style=color:#e6db74>&#39;hello&#39;</span></span></span></code></pre></div><p>Le résultat est fonctionnellement identique à celui obtenu avec docker compose.
+La différence visible est le préfixe entre crochets : <code>web-79d54d9df8-fsq6j</code>
+est le nom unique que Kubernetes a attribué au pod. Ce nom deviendra intéressant
+dans un instant, quand nous aurons plusieurs instances.</p><h4 id=résilience--le-moment-kubernetes>Résilience : le moment Kubernetes<a class=anchor href=#r%c3%a9silience--le-moment-kubernetes>#</a></h4><p>Jusqu&rsquo;ici, notre déploiement Kubernetes produit le même résultat que docker
+compose. La différence fondamentale apparait quand quelque chose tourne mal.
+Avec docker compose, si un container s&rsquo;arrête, il reste arrêté (à moins d&rsquo;avoir
+configuré une politique de redémarrage). Kubernetes, lui, surveille en
+permanence l&rsquo;écart entre l&rsquo;état désiré et l&rsquo;état réel du cluster. C&rsquo;est son
+<em>control loop</em> : un cycle continu d&rsquo;observation et de correction.</p><p>Pour visualiser ce mécanisme, ouvrons k9s dans un terminal :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ k9s</span></span></code></pre></div><p>k9s est une interface textuelle interactive (TUI) qui permet de naviguer dans
+les ressources du cluster en temps réel. Par défaut, la vue affiche les pods.
+On y voit nos deux pods (<code>redis</code> et <code>web</code>) en état <code>Running</code>. On peut naviguer
+entre différentes vues avec les raccourcis clavier : <code>:deploy</code> pour voir les
+deployments, <code>:svc</code> pour les services, <code>:ingress</code> pour les ingress. La touche
+<code>d</code> affiche les détails d&rsquo;une ressource, <code>l</code> ses logs, et <code>Escape</code> permet de
+revenir en arrière.</p><p>Sélectionnons le pod <code>web</code> et appuyons sur <code>Ctrl-k</code> pour le supprimer (<em>kill</em>).
+Le pod disparait&mldr; et réapparait presque instantanément, avec un nouveau nom.
+C&rsquo;est le deployment qui a détecté que le nombre de pods réels (0) ne
+correspondait plus à l&rsquo;état désiré (<code>replicas: 1</code>), et qui en a immédiatement
+créé un nouveau. Ce comportement est le coeur de la philosophie Kubernetes : les
+pods sont <em>éphémères</em>, et c&rsquo;est normal. Le système ne tente pas de réparer un
+pod défaillant, il le remplace. C&rsquo;est le même principe que l&rsquo;<em>immutable
+infrastructure</em> que nous avons évoqué plus haut : plutôt que de corriger, on
+reconstruit.</p><h4 id=scaling>Scaling<a class=anchor href=#scaling>#</a></h4><p>L&rsquo;autre avantage fondamental de Kubernetes est la facilité avec laquelle on
+peut ajuster le nombre d&rsquo;instances d&rsquo;un service. Dans k9s, naviguons vers la
+vue des deployments en tapant <code>:deploy</code>. Sélectionnons le deployment <code>web</code> et
+appuyons sur <code>s</code> pour <em>scale</em>. Changeons le nombre de répliques de 1 à 3.</p><p>On peut aussi le faire en ligne de commande :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ kubectl scale deployment web --replicas<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span></span></span></code></pre></div><p>En revenant à la vue des pods (<code>:pod</code> dans k9s), on voit maintenant trois pods
+<code>web</code> en état <code>Running</code>, chacun avec un nom unique. Notre service et notre
+ingress n&rsquo;ont pas changé, mais ils distribuent maintenant automatiquement le
+trafic entre les trois instances. On peut le vérifier :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ curl -s localhost:8080/get
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>web-79d54d9df8-fsq6j<span style=color:#f92672>]</span> Your stored value is b<span style=color:#e6db74>&#39;hello&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ curl -s localhost:8080/get
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>web-79d54d9df8-m2x7p<span style=color:#f92672>]</span> Your stored value is b<span style=color:#e6db74>&#39;hello&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ curl -s localhost:8080/get
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>web-79d54d9df8-k9n4r<span style=color:#f92672>]</span> Your stored value is b<span style=color:#e6db74>&#39;hello&#39;</span></span></span></code></pre></div><p>Le nom du pod change entre les requêtes : le load balancer (Traefik) répartit
+le trafic entre nos trois instances. Chacune accède au même service Redis, donc
+les données restent cohérentes. C&rsquo;est exactement le type de <em>scaling horizontal</em>
+que les architectures cloud-native sont conçues pour faciliter : plutôt que de
+donner plus de ressources à une seule machine (scaling vertical), on ajoute des
+instances identiques derrière un load balancer. Et grâce au modèle déclaratif,
+cette opération est triviale : un seul chiffre à changer.</p><p>Ce tutoriel ne fait qu&rsquo;effleurer les capacités de Kubernetes. Nous avons
+travaillé sur un cluster à un seul <em>node</em> (une seule machine), ce qui suffit
+pour comprendre les mécanismes fondamentaux. En production, un cluster
+Kubernetes est composé de plusieurs nodes, et le <em>scheduler</em> se charge de
+répartir les pods entre eux. Quand on passe de 1 à 3 répliques, Kubernetes ne
+se contente pas de lancer trois processus sur la même machine : il choisit les
+nodes les plus appropriés en fonction des ressources disponibles. Si un node
+tombe en panne, les pods qu&rsquo;il hébergeait sont automatiquement recréés sur les
+nodes restants. On utiliserait aussi des <em>namespaces</em> pour isoler les
+environnements, des <em>ConfigMaps</em> et des <em>Secrets</em> pour gérer la configuration
+sensible, des <em>health checks</em> pour affiner la détection de pannes, et des
+politiques d&rsquo;<em>autoscaling</em> qui ajustent automatiquement le nombre de répliques
+en fonction de la charge. Mais l&rsquo;essentiel est là : un modèle déclaratif où
+l&rsquo;on décrit l&rsquo;état souhaité, et un système qui converge en permanence vers cet
+état. C&rsquo;est cette philosophie, plus que les détails techniques, qui fait de
+Kubernetes la plateforme dominante pour l&rsquo;orchestration de containers.</p><h2 id=linfrastructure-comme-code>L&rsquo;infrastructure comme code<a class=anchor href=#linfrastructure-comme-code>#</a></h2><p>Jusqu&rsquo;ici, nous avons traité l&rsquo;infrastructure comme une donnée : le cluster
+Kubernetes existe, les serveurs tournent, le réseau fonctionne. Mais d&rsquo;où vient
+cette infrastructure ? Concrètement, l&rsquo;infrastructure d&rsquo;un système logiciel,
+c&rsquo;est tout ce qui doit exister <em>avant</em> que le code puisse s&rsquo;exécuter : les
+serveurs (physiques ou virtuels), les réseaux (sous-réseaux, règles de
+pare-feu, load balancers), le stockage (disques, espaces de stockage cloud),
+les bases de données, les certificats SSL, les entrées DNS. Pendant longtemps,
+cette infrastructure était créée et configurée manuellement : un administrateur
+se connectait à une console cloud pour créer un serveur, puis en SSH pour
+installer des paquets et modifier des fichiers de configuration. Le résultat
+était ce qu&rsquo;on appelle un <em>snowflake server</em> : une machine unique, configurée à
+la main au fil du temps, dont personne ne sait exactement reproduire l&rsquo;état. Si
+elle tombe en panne, la reconstruire à l&rsquo;identique relève de l&rsquo;archéologie.</p><p>L&rsquo;<em>infrastructure as code</em> (IaC) est la réponse à ce problème : décrire toute
+l&rsquo;infrastructure dans des fichiers de configuration versionnés, et laisser un
+outil se charger de créer ou de modifier les ressources pour correspondre à
+cette description. Le paradigme devrait nous être familier à ce stade du cours :
+c&rsquo;est exactement le modèle déclaratif que nous avons rencontré dans SQL
+(décrire les données souhaitées, pas comment les chercher), dans les fichiers
+YAML de Kubernetes (décrire l&rsquo;état souhaité du cluster, pas les étapes pour y
+arriver), et même dans le Dockerfile (décrire l&rsquo;image souhaitée, pas comment la
+construire pas à pas). À chaque fois, le même patron se répète : on décrit
+<em>quoi</em>, pas <em>comment</em>, et un moteur se charge de la convergence. Et à chaque
+fois, la même propriété en découle : l&rsquo;idempotence. On peut réappliquer la même
+description autant de fois qu&rsquo;on veut, et si l&rsquo;état réel correspond déjà à
+l&rsquo;état souhaité, rien ne se passe.</p><p>L&rsquo;outil le plus influent dans ce domaine est Terraform, créé par HashiCorp en
+2014. Terraform utilise un langage déclaratif appelé HCL (<em>HashiCorp
+Configuration Language</em>) pour décrire des ressources cloud. Voici un exemple
+minimal qui crée un serveur virtuel sur AWS :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#66d9ef>provider</span> <span style=color:#e6db74>&#34;aws&#34;</span> {
+</span></span><span style=display:flex><span>  region <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;ca-central-1&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>resource</span> <span style=color:#e6db74>&#34;aws_instance&#34; &#34;web&#34;</span> {
+</span></span><span style=display:flex><span>  ami           <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;ami-0c55b159cbfafe1f0&#34;</span>
+</span></span><span style=display:flex><span>  instance_type <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;t3.micro&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  tags <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    Name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;web-server&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><p>La commande <code>terraform plan</code> compare cette description à l&rsquo;état réel de
+l&rsquo;infrastructure et affiche les changements nécessaires, sans rien exécuter. La
+commande <code>terraform apply</code> effectue ces changements. Si on relance
+<code>terraform apply</code> sans modifier le fichier, Terraform ne fait rien : l&rsquo;état
+réel correspond déjà à l&rsquo;état souhaité. Pour rendre cette comparaison possible,
+Terraform maintient un fichier d&rsquo;<em>état</em> (<em>state</em>) qui enregistre la
+correspondance entre les ressources décrites dans le code et les ressources
+réelles chez le fournisseur cloud. Ce fichier d&rsquo;état est essentiel : sans lui,
+Terraform ne saurait pas si le serveur <code>web</code> existe déjà ou s&rsquo;il doit être
+créé.</p><p>Terraform excelle au <em>provisioning</em> : créer et gérer les ressources
+d&rsquo;infrastructure elles-mêmes (serveurs, réseaux, bases de données). Mais une
+fois qu&rsquo;un serveur existe, il faut souvent le <em>configurer</em> : installer des
+paquets, déployer des fichiers de configuration, démarrer des services. C&rsquo;est
+le domaine du <em>configuration management</em>, dont les pionniers furent Puppet
+(2005) et Chef (2009). Ces outils installaient un agent sur chaque machine, qui
+communiquait avec un serveur central pour maintenir la configuration souhaitée.
+Ansible (Red Hat, 2012) a simplifié cette approche en éliminant l&rsquo;agent : il se
+connecte directement en SSH et exécute des tâches décrites dans des fichiers
+YAML appelés <em>playbooks</em>. Un playbook Ansible pour installer et démarrer Nginx
+ressemble à ceci :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span>- <span style=color:#f92672>hosts</span>: <span style=color:#ae81ff>webservers</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>tasks</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install Nginx</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>apt</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>nginx</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>state</span>: <span style=color:#ae81ff>present</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Start Nginx</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>service</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>nginx</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>state</span>: <span style=color:#ae81ff>started</span></span></span></code></pre></div><p>On retrouve le même vocabulaire déclaratif : <code>state: present</code> signifie
+&ldquo;assure-toi que ce paquet est installé&rdquo;, pas &ldquo;installe ce paquet&rdquo;. Si Nginx est
+déjà installé, Ansible ne fait rien. En pratique, Terraform et Ansible sont
+souvent complémentaires : Terraform crée les machines, Ansible les configure.
+Mais avec la montée des containers et de Kubernetes, la frontière entre
+provisioning et configuration s&rsquo;estompe : le Dockerfile <em>est</em> la configuration
+de la machine, et Kubernetes <em>est</em> le provisioning de l&rsquo;application.</p><p>Le mot &ldquo;code&rdquo; dans &ldquo;infrastructure as code&rdquo; n&rsquo;est pas anodin. Puisque
+l&rsquo;infrastructure est décrite dans des fichiers texte, elle bénéficie de tous
+les outils que nous avons étudiés dans ce cours : versioning avec git, revue
+par les pairs via pull requests, tests automatisés dans un pipeline CI. On peut
+voir l&rsquo;historique complet des changements d&rsquo;infrastructure, revenir à un état
+antérieur, et reproduire un environnement identique à partir de zéro. C&rsquo;est la
+même idée que le Dockerfile qui rend un environnement de développement
+reproductible, mais étendue à l&rsquo;ensemble de l&rsquo;infrastructure. Le terme <em>GitOps</em>,
+popularisé par Weaveworks en 2017, désigne cette pratique poussée à son
+extrême : le dépôt git devient la source de vérité unique pour l&rsquo;état de tout
+le système, et chaque changement, qu&rsquo;il concerne le code applicatif ou
+l&rsquo;infrastructure, passe par le même processus de commit, revue et déploiement
+automatisé.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
 <span>Module 5 - Faire vivre le logiciel</span>
 </a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ class="flex align-center"><span>Module 6 - Regard vers le futur</span>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#lère-du-serveur-physique>L&rsquo;ère du serveur physique</a></li><li><a href=#la-virtualisation>La virtualisation</a></li><li><a href=#le-cloud>Le cloud</a></li><li><a href=#le-serverless>Le serverless</a></li><li><a href=#la-conteneurisation>La conteneurisation</a><ul><li><a href=#quest-ce-que-cest->Qu&rsquo;est-ce que c&rsquo;est ?</a></li><li><a href=#en-quoi-ça-diffère-dune-vm->En quoi ça diffère d&rsquo;une VM ?</a></li><li><a href=#quel-problème-ça-résout->Quel problème ça résout ?</a></li><li><a href=#comment-lutiliser>Comment l&rsquo;utiliser</a><ul><li><a href=#définir-une-image--dockerfile>Définir une image : Dockerfile</a></li><li><a href=#créer-une-image--docker-build>Créer une image : docker build</a></li><li><a href=#créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run</a></li><li><a href=#partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte</a></li><li><a href=#gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose</a></li><li><a href=#exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker compose exec</a></li></ul></li></ul></li><li><a href=#lorchestration>L&rsquo;orchestration</a></li><li><a href=#linfrastructure-comme-code>L&rsquo;infrastructure comme code</a></li></ul></nav></div></aside></main></body></html>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#lère-du-serveur-physique>L&rsquo;ère du serveur physique</a></li><li><a href=#la-virtualisation>La virtualisation</a></li><li><a href=#le-cloud>Le cloud</a></li><li><a href=#le-serverless>Le serverless</a></li><li><a href=#la-conteneurisation>La conteneurisation</a><ul><li><a href=#quest-ce-que-cest->Qu&rsquo;est-ce que c&rsquo;est ?</a></li><li><a href=#en-quoi-ça-diffère-dune-vm->En quoi ça diffère d&rsquo;une VM ?</a></li><li><a href=#quel-problème-ça-résout->Quel problème ça résout ?</a></li><li><a href=#comment-lutiliser>Comment l&rsquo;utiliser</a><ul><li><a href=#définir-une-image--dockerfile>Définir une image : Dockerfile</a></li><li><a href=#créer-une-image--docker-build>Créer une image : docker build</a></li><li><a href=#créer-et-démarrer-un-container--docker-run>Créer et démarrer un container : docker run</a></li><li><a href=#partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte</a></li><li><a href=#gérer-un-groupe-de-containers--docker-compose>Gérer un groupe de containers : docker compose</a></li><li><a href=#exécuter-un-programme-dans-un-container-en-marche--docker-compose-exec>Exécuter un programme dans un container en marche : docker compose exec</a></li></ul></li></ul></li><li><a href=#lorchestration>L&rsquo;orchestration</a><ul><li><a href=#tutoriel--de-docker-compose-à-kubernetes>Tutoriel : de docker compose à Kubernetes</a><ul><li><a href=#préparation>Préparation</a></li><li><a href=#le-deployment-redis>Le deployment Redis</a></li><li><a href=#le-deployment-flask>Le deployment Flask</a></li><li><a href=#déploiement-et-vérification>Déploiement et vérification</a></li><li><a href=#résilience--le-moment-kubernetes>Résilience : le moment Kubernetes</a></li><li><a href=#scaling>Scaling</a></li></ul></li></ul></li><li><a href=#linfrastructure-comme-code>L&rsquo;infrastructure comme code</a></li></ul></nav></div></aside></main></body></html>
