@@ -697,8 +697,470 @@ s'en charge). Cette convergence n'est pas un hasard : le paradigme déclaratif
 s'avère particulièrement puissant quand le système sous-jacent est complexe et
 que les chemins pour atteindre un état donné sont multiples.
 
-<!-- TODO: Tutoriel Minikube — transposer l'app Flask+Redis de docker compose vers Kubernetes -->
+### Tutoriel : de docker compose à Kubernetes
+
+Nous avons décrit les concepts fondamentaux de Kubernetes de manière abstraite.
+Pour les rendre concrets, nous allons transposer l'application Flask+Redis que
+nous avons construite avec docker compose vers Kubernetes. Pour expérimenter
+localement sans avoir besoin d'un cluster cloud, nous utiliserons k3d, un outil
+qui crée un cluster Kubernetes léger (basé sur k3s, une distribution allégée de
+Kubernetes créée par Rancher) directement dans des containers Docker. Comme
+Docker est déjà installé sur notre machine, il n'y a pas de couche
+supplémentaire à ajouter. C'est un environnement limité en termes de capacité,
+mais il implémente la même API et les mêmes mécanismes qu'un vrai cluster :
+tout ce que nous apprendrons ici s'applique directement en production. Pour
+observer ce qui se passe dans le cluster, nous utiliserons k9s, une interface
+textuelle interactive (TUI) qui permet de naviguer les ressources Kubernetes de
+manière beaucoup plus fluide que la ligne de commande. Nous aurons aussi besoin
+de `kubectl`, l'outil CLI standard de Kubernetes, pour appliquer nos fichiers
+de configuration.
+
+#### Préparation
+
+Avant de commencer, adaptons légèrement notre application Flask. Kubernetes
+attribue automatiquement un nom unique à chaque pod, accessible via la variable
+d'environnement `HOSTNAME` à l'intérieur du container. Nous allons modifier
+`main.py` pour afficher ce nom, ce qui nous sera utile plus tard pour observer
+le comportement du cluster quand plusieurs instances de notre application
+tournent en parallèle :
+
+```python
+from flask import Flask
+import redis
+import os
+
+app = Flask(__name__)
+
+red = redis.Redis("redis")
+KEY = "some_key"
+POD_NAME = os.environ.get("HOSTNAME", "unknown")
+
+@app.route("/set/<val>")
+def set_value(val):
+    red.set(KEY, val)
+    return f"[{POD_NAME}] Your value ({val}) is now set in the database"
+
+@app.route("/get")
+def get_value():
+    val = red.get(KEY)
+    if val is None:
+        return f"[{POD_NAME}] No value was stored, use /set"
+    return f"[{POD_NAME}] Your stored value is {val}"
+```
+
+On remarque deux changements : l'ajout de `POD_NAME` qui lit le nom d'hôte du
+container, et le remplacement de `"db"` par `"redis"` comme adresse du serveur
+Redis. Avec docker compose, le nom du service (`db`) servait de nom de domaine
+interne. Avec Kubernetes, c'est le nom du *service* Kubernetes qui jouera ce
+rôle, et nous l'appellerons `redis` pour plus de clarté.
+
+Créons maintenant le cluster k3d :
+
+```shell
+$ k3d cluster create demo -p "8080:80@loadbalancer"
+```
+
+```shell
+$ kubectl cluster-info
+Kubernetes control plane is running at https://0.0.0.0:6443
+```
+
+La commande `k3d cluster create` mérite une explication. L'option
+`-p "8080:80@loadbalancer"` configure le port forwarding : le trafic arrivant
+sur le port 8080 de notre machine sera redirigé vers le port 80 du load
+balancer intégré à k3d (Traefik), qui le distribuera ensuite vers nos pods.
+C'est l'équivalent de la directive `ports` dans notre fichier docker compose,
+mais avec une couche supplémentaire : le load balancer, qui sera capable de
+répartir le trafic entre plusieurs instances de notre application.
+
+#### Le deployment Redis
+
+Commençons par déployer Redis. Dans Kubernetes, chaque composant de notre
+application est décrit par un ou plusieurs fichiers YAML qu'on appelle des
+*manifests*. Créons un fichier `redis-deployment.yaml` :
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
+```
+
+Ce fichier mérite qu'on s'y attarde, car il illustre la structure commune à
+tous les manifests Kubernetes. Les champs `apiVersion` et `kind` identifient le
+type de ressource (ici un Deployment). Le champ `metadata.name` lui donne un
+nom. Le bloc `spec` contient la partie intéressante : `replicas: 1` indique
+qu'on veut exactement une instance de ce pod. Le `selector` et les `labels`
+forment un mécanisme d'association : le deployment gère tous les pods qui
+portent le label `app: redis`. C'est un système souple et découplé, très
+différent de docker compose où l'association entre un service et sa définition
+est directe et implicite. Enfin, `template.spec.containers` décrit le container
+lui-même, de manière analogue à ce qu'on faisait dans docker compose avec
+`image: redis`.
+
+Pour que d'autres pods puissent communiquer avec Redis, il faut aussi créer un
+*service*, dans un fichier `redis-service.yaml` :
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  selector:
+    app: redis
+  ports:
+    - port: 6379
+```
+
+Le service crée une adresse réseau stable (`redis`) qui pointe vers tous les
+pods portant le label `app: redis`. C'est ce nom que notre application Flask
+utilise dans `redis.Redis("redis")`. Le service joue le même rôle que le réseau
+interne créé automatiquement par docker compose, mais de manière explicite et
+configurable.
+
+#### Le deployment Flask
+
+Notre application Flask nécessite une image Docker personnalisée. Avec k3d, la
+manière la plus simple de rendre une image locale disponible au cluster est de
+la construire puis de l'importer :
+
+```shell
+$ docker build -t flask-app:latest .
+$ k3d image import flask-app:latest -c demo
+```
+
+La première commande construit l'image comme nous l'avons fait dans le tutoriel
+Docker. La seconde la transfère dans le registre interne du cluster k3d, la
+rendant accessible aux pods. Le fichier `web-deployment.yaml` décrit le
+deployment de notre application :
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: flask-app:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          env:
+            - name: FLASK_APP
+              value: main
+```
+
+La structure est identique à celle du deployment Redis. On retrouve le même
+patron : un nombre de répliques souhaité, un sélecteur par labels, et la
+description du container. La directive `imagePullPolicy: Never` indique à
+Kubernetes de ne pas tenter de télécharger l'image depuis un registre distant :
+elle est déjà disponible localement grâce à notre commande `k3d image import`.
+La différence notable est la section `env`, qui définit des variables
+d'environnement à l'intérieur du container. C'est l'équivalent de la clé
+`environment` dans docker compose. Ce mécanisme est au coeur du facteur III de
+la Twelve-Factor App : la configuration d'une application doit être stockée dans
+l'environnement, pas dans le code.
+
+Le fichier `web-service.yaml` expose notre application à l'intérieur du
+cluster :
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  selector:
+    app: web
+  ports:
+    - port: 5000
+      targetPort: 5000
+```
+
+Mais contrairement à Redis, dont le service n'a besoin d'être accessible qu'aux
+autres pods, notre application Flask doit être accessible depuis l'extérieur du
+cluster. C'est le rôle de l'*ingress*, un dernier type de ressource Kubernetes
+qui définit des règles de routage HTTP. Le fichier `web-ingress.yaml` configure
+le load balancer intégré de k3d (Traefik) pour rediriger tout le trafic entrant
+vers notre service :
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  number: 5000
+```
+
+#### Déploiement et vérification
+
+On peut maintenant déployer l'ensemble de notre application avec
+`kubectl apply` :
+
+```shell
+$ kubectl apply -f redis-deployment.yaml -f redis-service.yaml
+deployment.apps/redis created
+service/redis created
+
+$ kubectl apply -f web-deployment.yaml -f web-service.yaml -f web-ingress.yaml
+deployment.apps/web created
+service/web created
+ingress.networking.k8s.io/web created
+```
+
+C'est ici que le modèle déclaratif de Kubernetes prend tout son sens. La
+commande `kubectl apply` ne dit pas "crée un container Redis" : elle dit "voici
+l'état que je souhaite, assure-toi que la réalité y correspond". Si on exécute
+la même commande une deuxième fois, Kubernetes ne crée rien de nouveau : il
+constate que l'état actuel correspond déjà à l'état désiré et ne fait rien.
+C'est ce qu'on appelle l'*idempotence*, une propriété fondamentale qui rend les
+déploiements reproductibles et sûrs.
+
+On peut vérifier que l'application fonctionne :
+
+```shell
+$ curl localhost:8080/set/hello
+[web-79d54d9df8-fsq6j] Your value (hello) is now set in the database
+
+$ curl localhost:8080/get
+[web-79d54d9df8-fsq6j] Your stored value is b'hello'
+```
+
+Le résultat est fonctionnellement identique à celui obtenu avec docker compose.
+La différence visible est le préfixe entre crochets : `web-79d54d9df8-fsq6j`
+est le nom unique que Kubernetes a attribué au pod. Ce nom deviendra intéressant
+dans un instant, quand nous aurons plusieurs instances.
+
+#### Résilience : le moment Kubernetes
+
+Jusqu'ici, notre déploiement Kubernetes produit le même résultat que docker
+compose. La différence fondamentale apparait quand quelque chose tourne mal.
+Avec docker compose, si un container s'arrête, il reste arrêté (à moins d'avoir
+configuré une politique de redémarrage). Kubernetes, lui, surveille en
+permanence l'écart entre l'état désiré et l'état réel du cluster. C'est son
+*control loop* : un cycle continu d'observation et de correction.
+
+Pour visualiser ce mécanisme, ouvrons k9s dans un terminal :
+
+```shell
+$ k9s
+```
+
+k9s est une interface textuelle interactive (TUI) qui permet de naviguer dans
+les ressources du cluster en temps réel. Par défaut, la vue affiche les pods.
+On y voit nos deux pods (`redis` et `web`) en état `Running`. On peut naviguer
+entre différentes vues avec les raccourcis clavier : `:deploy` pour voir les
+deployments, `:svc` pour les services, `:ingress` pour les ingress. La touche
+`d` affiche les détails d'une ressource, `l` ses logs, et `Escape` permet de
+revenir en arrière.
+
+<!-- ILLUSTRATION: capture d'écran de k9s montrant les pods redis et web en état Running -->
+
+Sélectionnons le pod `web` et appuyons sur `Ctrl-k` pour le supprimer (*kill*).
+Le pod disparait... et réapparait presque instantanément, avec un nouveau nom.
+C'est le deployment qui a détecté que le nombre de pods réels (0) ne
+correspondait plus à l'état désiré (`replicas: 1`), et qui en a immédiatement
+créé un nouveau. Ce comportement est le coeur de la philosophie Kubernetes : les
+pods sont *éphémères*, et c'est normal. Le système ne tente pas de réparer un
+pod défaillant, il le remplace. C'est le même principe que l'*immutable
+infrastructure* que nous avons évoqué plus haut : plutôt que de corriger, on
+reconstruit.
+
+#### Scaling
+
+L'autre avantage fondamental de Kubernetes est la facilité avec laquelle on
+peut ajuster le nombre d'instances d'un service. Dans k9s, naviguons vers la
+vue des deployments en tapant `:deploy`. Sélectionnons le deployment `web` et
+appuyons sur `s` pour *scale*. Changeons le nombre de répliques de 1 à 3.
+
+On peut aussi le faire en ligne de commande :
+
+```shell
+$ kubectl scale deployment web --replicas=3
+```
+
+En revenant à la vue des pods (`:pod` dans k9s), on voit maintenant trois pods
+`web` en état `Running`, chacun avec un nom unique. Notre service et notre
+ingress n'ont pas changé, mais ils distribuent maintenant automatiquement le
+trafic entre les trois instances. On peut le vérifier :
+
+```shell
+$ curl -s localhost:8080/get
+[web-79d54d9df8-fsq6j] Your stored value is b'hello'
+
+$ curl -s localhost:8080/get
+[web-79d54d9df8-m2x7p] Your stored value is b'hello'
+
+$ curl -s localhost:8080/get
+[web-79d54d9df8-k9n4r] Your stored value is b'hello'
+```
+
+Le nom du pod change entre les requêtes : le load balancer (Traefik) répartit
+le trafic entre nos trois instances. Chacune accède au même service Redis, donc
+les données restent cohérentes. C'est exactement le type de *scaling horizontal*
+que les architectures cloud-native sont conçues pour faciliter : plutôt que de
+donner plus de ressources à une seule machine (scaling vertical), on ajoute des
+instances identiques derrière un load balancer. Et grâce au modèle déclaratif,
+cette opération est triviale : un seul chiffre à changer.
+
+Ce tutoriel ne fait qu'effleurer les capacités de Kubernetes. Nous avons
+travaillé sur un cluster à un seul *node* (une seule machine), ce qui suffit
+pour comprendre les mécanismes fondamentaux. En production, un cluster
+Kubernetes est composé de plusieurs nodes, et le *scheduler* se charge de
+répartir les pods entre eux. Quand on passe de 1 à 3 répliques, Kubernetes ne
+se contente pas de lancer trois processus sur la même machine : il choisit les
+nodes les plus appropriés en fonction des ressources disponibles. Si un node
+tombe en panne, les pods qu'il hébergeait sont automatiquement recréés sur les
+nodes restants. On utiliserait aussi des *namespaces* pour isoler les
+environnements, des *ConfigMaps* et des *Secrets* pour gérer la configuration
+sensible, des *health checks* pour affiner la détection de pannes, et des
+politiques d'*autoscaling* qui ajustent automatiquement le nombre de répliques
+en fonction de la charge. Mais l'essentiel est là : un modèle déclaratif où
+l'on décrit l'état souhaité, et un système qui converge en permanence vers cet
+état. C'est cette philosophie, plus que les détails techniques, qui fait de
+Kubernetes la plateforme dominante pour l'orchestration de containers.
 
 ## L'infrastructure comme code
 
-<!-- TODO: Infrastructure as Code (Terraform, Ansible) -->
+Jusqu'ici, nous avons traité l'infrastructure comme une donnée : le cluster
+Kubernetes existe, les serveurs tournent, le réseau fonctionne. Mais d'où vient
+cette infrastructure ? Concrètement, l'infrastructure d'un système logiciel,
+c'est tout ce qui doit exister *avant* que le code puisse s'exécuter : les
+serveurs (physiques ou virtuels), les réseaux (sous-réseaux, règles de
+pare-feu, load balancers), le stockage (disques, espaces de stockage cloud),
+les bases de données, les certificats SSL, les entrées DNS. Pendant longtemps,
+cette infrastructure était créée et configurée manuellement : un administrateur
+se connectait à une console cloud pour créer un serveur, puis en SSH pour
+installer des paquets et modifier des fichiers de configuration. Le résultat
+était ce qu'on appelle un *snowflake server* : une machine unique, configurée à
+la main au fil du temps, dont personne ne sait exactement reproduire l'état. Si
+elle tombe en panne, la reconstruire à l'identique relève de l'archéologie.
+
+L'*infrastructure as code* (IaC) est la réponse à ce problème : décrire toute
+l'infrastructure dans des fichiers de configuration versionnés, et laisser un
+outil se charger de créer ou de modifier les ressources pour correspondre à
+cette description. Le paradigme devrait nous être familier à ce stade du cours :
+c'est exactement le modèle déclaratif que nous avons rencontré dans SQL
+(décrire les données souhaitées, pas comment les chercher), dans les fichiers
+YAML de Kubernetes (décrire l'état souhaité du cluster, pas les étapes pour y
+arriver), et même dans le Dockerfile (décrire l'image souhaitée, pas comment la
+construire pas à pas). À chaque fois, le même patron se répète : on décrit
+*quoi*, pas *comment*, et un moteur se charge de la convergence. Et à chaque
+fois, la même propriété en découle : l'idempotence. On peut réappliquer la même
+description autant de fois qu'on veut, et si l'état réel correspond déjà à
+l'état souhaité, rien ne se passe.
+
+L'outil le plus influent dans ce domaine est Terraform, créé par HashiCorp en
+2014. Terraform utilise un langage déclaratif appelé HCL (*HashiCorp
+Configuration Language*) pour décrire des ressources cloud. Voici un exemple
+minimal qui crée un serveur virtuel sur AWS :
+
+```hcl
+provider "aws" {
+  region = "ca-central-1"
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t3.micro"
+
+  tags = {
+    Name = "web-server"
+  }
+}
+```
+
+La commande `terraform plan` compare cette description à l'état réel de
+l'infrastructure et affiche les changements nécessaires, sans rien exécuter. La
+commande `terraform apply` effectue ces changements. Si on relance
+`terraform apply` sans modifier le fichier, Terraform ne fait rien : l'état
+réel correspond déjà à l'état souhaité. Pour rendre cette comparaison possible,
+Terraform maintient un fichier d'*état* (*state*) qui enregistre la
+correspondance entre les ressources décrites dans le code et les ressources
+réelles chez le fournisseur cloud. Ce fichier d'état est essentiel : sans lui,
+Terraform ne saurait pas si le serveur `web` existe déjà ou s'il doit être
+créé.
+
+Terraform excelle au *provisioning* : créer et gérer les ressources
+d'infrastructure elles-mêmes (serveurs, réseaux, bases de données). Mais une
+fois qu'un serveur existe, il faut souvent le *configurer* : installer des
+paquets, déployer des fichiers de configuration, démarrer des services. C'est
+le domaine du *configuration management*, dont les pionniers furent Puppet
+(2005) et Chef (2009). Ces outils installaient un agent sur chaque machine, qui
+communiquait avec un serveur central pour maintenir la configuration souhaitée.
+Ansible (Red Hat, 2012) a simplifié cette approche en éliminant l'agent : il se
+connecte directement en SSH et exécute des tâches décrites dans des fichiers
+YAML appelés *playbooks*. Un playbook Ansible pour installer et démarrer Nginx
+ressemble à ceci :
+
+```yaml
+- hosts: webservers
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start Nginx
+      service:
+        name: nginx
+        state: started
+```
+
+On retrouve le même vocabulaire déclaratif : `state: present` signifie
+"assure-toi que ce paquet est installé", pas "installe ce paquet". Si Nginx est
+déjà installé, Ansible ne fait rien. En pratique, Terraform et Ansible sont
+souvent complémentaires : Terraform crée les machines, Ansible les configure.
+Mais avec la montée des containers et de Kubernetes, la frontière entre
+provisioning et configuration s'estompe : le Dockerfile *est* la configuration
+de la machine, et Kubernetes *est* le provisioning de l'application.
+
+Le mot "code" dans "infrastructure as code" n'est pas anodin. Puisque
+l'infrastructure est décrite dans des fichiers texte, elle bénéficie de tous
+les outils que nous avons étudiés dans ce cours : versioning avec git, revue
+par les pairs via pull requests, tests automatisés dans un pipeline CI. On peut
+voir l'historique complet des changements d'infrastructure, revenir à un état
+antérieur, et reproduire un environnement identique à partir de zéro. C'est la
+même idée que le Dockerfile qui rend un environnement de développement
+reproductible, mais étendue à l'ensemble de l'infrastructure. Le terme *GitOps*,
+popularisé par Weaveworks en 2017, désigne cette pratique poussée à son
+extrême : le dépôt git devient la source de vérité unique pour l'état de tout
+le système, et chaque changement, qu'il concerne le code applicatif ou
+l'infrastructure, passe par le même processus de commit, revue et déploiement
+automatisé.

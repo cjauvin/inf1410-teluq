@@ -341,16 +341,25 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 - La Twelve-Factor App (Adam Wiggins, Heroku, 2011) : présentation générale, principes distribués dans le module
 - Pont avec les modules précédents (CI du module 2, équipes du module 4)
 
-## « Où est-ce que ça tourne ? » (en cours)
+## « Où est-ce que ça tourne ? » (complété)
 - L'ère pré-cloud : le serveur physique, le datacenter, la colocation
 - La virtualisation (VMware, Xen) et le virage vers l'abstraction
 - Le cloud (AWS 2006, GCP, Azure) : IaaS, PaaS, SaaS, pay-as-you-go
 - Serverless / FaaS (Lambda 2014) : pousser l'abstraction à l'extrême
 - La conteneurisation : contexte historique (chroot, cgroups, namespaces Linux),
   Docker (Solomon Hykes, 2013), section existante intégrée
-- L'orchestration : Kubernetes (Google, Borg → K8s 2014)
-- Tutoriel Minikube : transposer l'app Flask+Redis de docker compose vers Kubernetes
-- Infrastructure as Code (Terraform, Ansible)
+- L'orchestration : Kubernetes (Google, Borg → K8s 2014), pods, deployments,
+  services, ingress, labels/selectors, modèle déclaratif, control loop
+- Tutoriel k3d : transposer l'app Flask+Redis de docker compose vers Kubernetes
+  - k3d (cluster local), k9s (TUI), kubectl
+  - Manifests YAML, résilience (kill pod, recréation automatique),
+    scaling horizontal (3 répliques, load balancing), nodes
+- Infrastructure as Code :
+  - Le problème du snowflake server
+  - Le paradigme déclaratif comme fil rouge (SQL, K8s, Terraform, Ansible)
+  - Terraform (HashiCorp 2014) : HCL, plan/apply, state, provisioning
+  - Configuration management : Puppet (2005), Chef (2009), Ansible (Red Hat 2012, agentless, playbooks)
+  - GitOps (Weaveworks 2017) : git comme source de vérité pour l'infrastructure
 
 ## « Comment je le déploie ? » (à développer)
 - Du CI au CD : reprendre le fil du module 2
