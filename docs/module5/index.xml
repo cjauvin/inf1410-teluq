@@ -8,4 +8,11 @@ machines virtuelles en quelques secondes. Cette évolution n&amp;rsquo;est pas s
 technique : elle a fondamentalement changé la manière dont on conçoit, déploie et
 opère les applications. Comprendre cette trajectoire, des machines physiques
 jusqu&amp;rsquo;aux containers et à l&amp;rsquo;orchestration, est essentiel pour saisir le contexte
-dans lequel les pratiques DevOps modernes ont émergé.&lt;/p&gt;</description></item></channel></rss>
+dans lequel les pratiques DevOps modernes ont émergé.&lt;/p&gt;</description></item><item><title>Comment je le déploie ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</guid><description>&lt;h1 id="comment-je-le-déploie-"&gt;Comment je le déploie ?&lt;a class="anchor" href="#comment-je-le-d%c3%a9ploie-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Dans le module 2, nous avons mis en place un pipeline d&amp;rsquo;intégration continue
+(CI) : à chaque commit poussé sur GitHub, une série de vérifications
+automatiques (tests, linting, typage) s&amp;rsquo;exécutent pour détecter les problèmes le
+plus tôt possible. Mais la CI s&amp;rsquo;arrête à la vérification. Elle répond à la
+question &amp;ldquo;est-ce que ce code est correct ?&amp;rdquo;, pas à la question &amp;ldquo;comment est-ce
+que ce code arrive en production ?&amp;rdquo;. Ce passage de la vérification au
+déploiement est le sujet de cette section.&lt;/p&gt;</description></item></channel></rss>

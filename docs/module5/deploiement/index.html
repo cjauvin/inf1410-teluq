@@ -1,0 +1,345 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Comment je le déploie ?# Dans le module 2, nous avons mis en place un pipeline d’intégration continue (CI) : à chaque commit poussé sur GitHub, une série de vérifications automatiques (tests, linting, typage) s’exécutent pour détecter les problèmes le plus tôt possible. Mais la CI s’arrête à la vérification. Elle répond à la question “est-ce que ce code est correct ?”, pas à la question “comment est-ce que ce code arrive en production ?”. Ce passage de la vérification au déploiement est le sujet de cette section.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Comment je le déploie ?"><meta property="og:description" content="Comment je le déploie ?# Dans le module 2, nous avons mis en place un pipeline d’intégration continue (CI) : à chaque commit poussé sur GitHub, une série de vérifications automatiques (tests, linting, typage) s’exécutent pour détecter les problèmes le plus tôt possible. Mais la CI s’arrête à la vérification. Elle répond à la question “est-ce que ce code est correct ?”, pas à la question “comment est-ce que ce code arrive en production ?”. Ce passage de la vérification au déploiement est le sujet de cette section."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Comment je le déploie ?"><meta itemprop=description content="Comment je le déploie ?# Dans le module 2, nous avons mis en place un pipeline d’intégration continue (CI) : à chaque commit poussé sur GitHub, une série de vérifications automatiques (tests, linting, typage) s’exécutent pour détecter les problèmes le plus tôt possible. Mais la CI s’arrête à la vérification. Elle répond à la question “est-ce que ce code est correct ?”, pas à la question “comment est-ce que ce code arrive en production ?”. Ce passage de la vérification au déploiement est le sujet de cette section."><meta itemprop=wordCount content="3258"><title>Comment je le déploie ? | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - Concevoir un programme correct</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Du programme au système</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
+<label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/>Perspective historique</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>L'architecture des applications web</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/>Les frameworks JavaScript</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/convergences/>Desktop, web et mobile</a></li></ul></li><li><input type=checkbox id=section-e4d51cc3c07f12fea00e9c0cd309e911 class=toggle>
+<label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - Construire en équipe</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=toggle>
+<label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/>Kanban</a></li></ul></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/>Gestion de projet et coordination</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle checked>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/>Où est-ce que ça tourne ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/ class=active>Comment je le déploie ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Comment je le déploie ?</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#le-pipeline-de-déploiement-avec-github-actions>Le pipeline de déploiement avec GitHub Actions</a></li><li><a href=#stratégies-de-déploiement>Stratégies de déploiement</a><ul><li><a href=#rolling-update>Rolling update</a></li><li><a href=#blue-green-deployment>Blue-green deployment</a></li><li><a href=#canary-deployment>Canary deployment</a></li></ul></li><li><a href=#feature-flags>Feature flags</a></li><li><a href=#immutable-infrastructure>Immutable infrastructure</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=comment-je-le-déploie->Comment je le déploie ?<a class=anchor href=#comment-je-le-d%c3%a9ploie->#</a></h1><p>Dans le module 2, nous avons mis en place un pipeline d&rsquo;intégration continue
+(CI) : à chaque commit poussé sur GitHub, une série de vérifications
+automatiques (tests, linting, typage) s&rsquo;exécutent pour détecter les problèmes le
+plus tôt possible. Mais la CI s&rsquo;arrête à la vérification. Elle répond à la
+question &ldquo;est-ce que ce code est correct ?&rdquo;, pas à la question &ldquo;comment est-ce
+que ce code arrive en production ?&rdquo;. Ce passage de la vérification au
+déploiement est le sujet de cette section.</p><p>Pendant longtemps, le déploiement était un événement. Dans beaucoup
+d&rsquo;organisations, il avait lieu une fois par mois, voire une fois par trimestre,
+selon un calendrier rigide. Il impliquait des procédures manuelles, des listes
+de vérification sur papier, et souvent une fenêtre de maintenance nocturne
+pendant laquelle l&rsquo;application était indisponible. Les déploiements étaient
+stressants précisément parce qu&rsquo;ils étaient rares : chaque release accumulait des
+semaines de changements, ce qui rendait le diagnostic des problèmes difficile
+quand quelque chose tournait mal. Le livre <em>Continuous Delivery</em> de Jez Humble et
+David Farley (2010) a proposé une inversion radicale de cette logique. Leur
+argument central : si les déploiements sont douloureux, la solution n&rsquo;est pas de
+les faire moins souvent, mais <em>plus souvent</em>. Un déploiement qui contient un seul
+changement est facile à comprendre, facile à tester, et facile à annuler si
+quelque chose ne va pas. La clé est l&rsquo;automatisation complète du chemin entre le
+commit et la production, ce que Humble et Farley appellent le <em>deployment
+pipeline</em>.</p><p>Il faut ici clarifier une ambiguïté terminologique qui crée beaucoup de
+confusion. Le sigle &ldquo;CD&rdquo; désigne en fait deux pratiques distinctes. Le
+<em>continuous delivery</em> (livraison continue) signifie que le code est toujours dans
+un état déployable : chaque commit qui passe le pipeline de vérification produit
+un artefact prêt à être mis en production, mais le déploiement lui-même est
+déclenché manuellement, par un humain qui appuie sur un bouton. Le <em>continuous
+deployment</em> (déploiement continu) va un cran plus loin : chaque commit qui passe
+les vérifications est automatiquement déployé en production, sans intervention
+humaine. La différence est subtile mais importante. En continuous delivery, le
+dernier rempart est une décision humaine (&ldquo;on déploie maintenant&rdquo;). En continuous
+deployment, cette décision est éliminée : si les tests passent, le code est en
+production. Des entreprises comme GitHub ou Netflix pratiquent le continuous
+deployment, avec parfois des dizaines de déploiements par jour. La plupart des
+organisations commencent par le continuous delivery, qui offre déjà un gain
+considérable par rapport aux déploiements manuels, avant d&rsquo;éventuellement
+évoluer vers le continuous deployment lorsque la confiance dans le pipeline est
+suffisante.</p><h2 id=le-pipeline-de-déploiement-avec-github-actions>Le pipeline de déploiement avec GitHub Actions<a class=anchor href=#le-pipeline-de-d%c3%a9ploiement-avec-github-actions>#</a></h2><p>Dans le module 2, notre workflow GitHub Actions avait un seul job (<code>tests</code>) qui
+installait les dépendances et exécutait pytest. Pour passer de la CI au CD, il
+suffit conceptuellement d&rsquo;ajouter un deuxième job qui se déclenche après la
+réussite du premier. Voici à quoi pourrait ressembler un workflow CI/CD complet
+pour notre application Flask déployée sur Kubernetes (que nous avons construite
+dans la section précédente) :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>CI/CD</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>on</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>push</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>branches</span>: [<span style=color:#e6db74>&#34;main&#34;</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>tests</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Installer Python</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/setup-python@v5</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>python-version</span>: <span style=color:#e6db74>&#34;3.12&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Installer uv</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>astral-sh/setup-uv@v3</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Installer les dépendances</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>uv sync</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Exécuter les tests</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>uv run pytest</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>deploy</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>needs</span>: <span style=color:#ae81ff>tests</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: <span style=color:#ae81ff>production</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Construire l&#39;image Docker</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>docker build -t flask-app:${{ github.sha }} .</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Pousser l&#39;image vers le registre</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;${{ secrets.REGISTRY_PASSWORD }}&#34; | \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            docker login -u &#34;${{ secrets.REGISTRY_USER }}&#34; --password-stdin
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          docker push flask-app:${{ github.sha }}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Déployer sur Kubernetes</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          kubectl set image deployment/web \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            web=flask-app:${{ github.sha }}</span></span></span></code></pre></div><p>Le job <code>tests</code> devrait être familier : c&rsquo;est essentiellement le même workflow que
+celui du module 2, avec les mêmes commandes (<code>uv sync</code> pour installer les
+dépendances, <code>uv run pytest</code> pour exécuter les tests). La nouveauté est le job
+<code>deploy</code>, qui enchaîne trois commandes que nous connaissons déjà de la section
+précédente : <code>docker build</code> pour construire l&rsquo;image de notre application,
+<code>docker push</code> pour la pousser vers un registre d&rsquo;images (l&rsquo;équivalent distant de
+ce que faisait <code>k3d image import</code> dans notre tutoriel local), et <code>kubectl set image</code> pour dire à Kubernetes d&rsquo;utiliser cette nouvelle version.</p><p>Plusieurs éléments nouveaux méritent qu&rsquo;on s&rsquo;y attarde. D&rsquo;abord, la directive
+<code>needs: tests</code> sur le job <code>deploy</code> crée une dépendance explicite : le
+déploiement ne s&rsquo;exécute que si les tests ont réussi. C&rsquo;est le mécanisme
+fondamental qui connecte la CI au CD dans un même workflow. Sans cette directive,
+les deux jobs s&rsquo;exécuteraient en parallèle, ce qui n&rsquo;aurait aucun sens (on ne
+veut pas déployer du code qui n&rsquo;a pas passé les tests).</p><p>Ensuite, la directive <code>environment: production</code> active un mécanisme de GitHub
+appelé <em>environments</em>. Un environment est un contexte de déploiement nommé
+(typiquement <code>staging</code>, <code>production</code>) auquel on peut associer des règles de
+protection. Par exemple, on peut exiger qu&rsquo;un ou plusieurs réviseurs approuvent
+le déploiement avant qu&rsquo;il s&rsquo;exécute, ce qui transforme notre pipeline en
+continuous delivery (avec approbation humaine) plutôt qu&rsquo;en continuous deployment
+(entièrement automatique). On peut aussi restreindre quelles branches ont le
+droit de déployer vers un environment donné.</p><p>La syntaxe <code>${{ secrets.REGISTRY_PASSWORD }}</code> fait référence aux <em>secrets</em>
+GitHub : des variables chiffrées, configurées dans les paramètres du dépôt, qui
+ne sont jamais visibles dans les logs ni dans le code source. C&rsquo;est le mécanisme
+qui permet au pipeline d&rsquo;accéder à des informations sensibles (mots de passe,
+clés d&rsquo;API, certificats) sans les exposer. Ce principe rejoint directement le
+facteur III de la Twelve-Factor App : la configuration sensible doit vivre dans
+l&rsquo;environnement, pas dans le code.</p><p>Enfin, <code>${{ github.sha }}</code> est le hash du commit qui a déclenché le workflow.
+En l&rsquo;utilisant comme tag de l&rsquo;image Docker (<code>flask-app:abc123def...</code>), on crée
+un lien direct et traçable entre un commit précis dans git et l&rsquo;image qui tourne
+en production. Si quelque chose ne va pas après un déploiement, on peut
+immédiatement identifier quel commit est en cause. C&rsquo;est une pratique
+fondamentale du CD : chaque artefact déployé doit être traçable jusqu&rsquo;à son
+code source.</p><h2 id=stratégies-de-déploiement>Stratégies de déploiement<a class=anchor href=#strat%c3%a9gies-de-d%c3%a9ploiement>#</a></h2><p>Avoir un pipeline automatisé, c&rsquo;est bien. Mais <em>comment</em> le déploiement
+lui-même se déroule-t-il ? Quand on met à jour une application qui est en train
+de servir des utilisateurs, on ne peut pas simplement arrêter l&rsquo;ancienne version
+et démarrer la nouvelle : pendant la transition, les utilisateurs verraient des
+erreurs. Et si la nouvelle version contient un bug, on voudrait pouvoir revenir
+en arrière rapidement, sans que tous les utilisateurs aient été affectés.
+Plusieurs stratégies existent pour résoudre ce problème, chacune avec ses
+compromis.</p><h3 id=rolling-update>Rolling update<a class=anchor href=#rolling-update>#</a></h3><p>La stratégie la plus courante est le <em>rolling update</em> (mise à jour progressive).
+Le principe est simple : on remplace les instances de l&rsquo;ancienne version une par
+une, plutôt que toutes en même temps. Si on a trois instances de notre
+application Flask derrière un load balancer (comme dans notre tutoriel
+Kubernetes), un rolling update commencerait par arrêter la première instance,
+la remplacer par la nouvelle version, vérifier qu&rsquo;elle fonctionne, puis passer
+à la deuxième, et ainsi de suite. Pendant toute la durée de la mise à jour, les
+instances restantes continuent de servir le trafic : il n&rsquo;y a jamais d&rsquo;arrêt
+complet.</p><p>C&rsquo;est exactement ce que fait Kubernetes par défaut quand on modifie un
+deployment. La commande <code>kubectl set image</code> de notre pipeline CI/CD déclenche un
+rolling update : Kubernetes crée un nouveau pod avec la nouvelle image, attend
+qu&rsquo;il soit prêt, puis termine un ancien pod, et répète jusqu&rsquo;à ce que toutes les
+instances soient à jour. On peut contrôler la vitesse de cette transition avec
+deux paramètres : <code>maxUnavailable</code> (combien d&rsquo;instances peuvent être
+indisponibles simultanément) et <code>maxSurge</code> (combien d&rsquo;instances supplémentaires
+peuvent être créées temporairement). Le rolling update est la stratégie par
+défaut parce qu&rsquo;elle est simple et ne nécessite pas de ressources
+supplémentaires importantes. Sa limite principale est que pendant la transition,
+l&rsquo;ancienne et la nouvelle version coexistent : certains utilisateurs voient la
+v1, d&rsquo;autres la v2. Si les deux versions sont incompatibles (par exemple un
+changement dans le format des données), cela peut poser problème.</p><p>On peut observer ce mécanisme concrètement en reprenant notre cluster k3d de la
+section précédente. Assurons-nous d&rsquo;abord que notre deployment <code>web</code> tourne avec
+3 répliques :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ kubectl scale deployment web --replicas<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span></span></span></code></pre></div><p>Modifions maintenant notre application Flask pour ajouter un endpoint <code>/version</code>
+qui identifie la version du code :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> redis
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> Flask(__name__)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>red <span style=color:#f92672>=</span> redis<span style=color:#f92672>.</span>Redis(<span style=color:#e6db74>&#34;redis&#34;</span>)
+</span></span><span style=display:flex><span>KEY <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;some_key&#34;</span>
+</span></span><span style=display:flex><span>POD_NAME <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>environ<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;HOSTNAME&#34;</span>, <span style=color:#e6db74>&#34;unknown&#34;</span>)
+</span></span><span style=display:flex><span>VERSION <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;v2&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/set/&lt;val&gt;&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>set_value</span>(val):
+</span></span><span style=display:flex><span>    red<span style=color:#f92672>.</span>set(KEY, val)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[</span><span style=color:#e6db74>{</span>POD_NAME<span style=color:#e6db74>}</span><span style=color:#e6db74>] Your value (</span><span style=color:#e6db74>{</span>val<span style=color:#e6db74>}</span><span style=color:#e6db74>) is now set in the database&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/get&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_value</span>():
+</span></span><span style=display:flex><span>    val <span style=color:#f92672>=</span> red<span style=color:#f92672>.</span>get(KEY)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> val <span style=color:#f92672>is</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[</span><span style=color:#e6db74>{</span>POD_NAME<span style=color:#e6db74>}</span><span style=color:#e6db74>] No value was stored, use /set&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[</span><span style=color:#e6db74>{</span>POD_NAME<span style=color:#e6db74>}</span><span style=color:#e6db74>] Your stored value is </span><span style=color:#e6db74>{</span>val<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/version&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>version</span>():
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[</span><span style=color:#e6db74>{</span>POD_NAME<span style=color:#e6db74>}</span><span style=color:#e6db74>] </span><span style=color:#e6db74>{</span>VERSION<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span></span></span></code></pre></div><p>La seule différence avec notre version précédente est l&rsquo;ajout de la constante
+<code>VERSION = "v2"</code> et de la route <code>/version</code>. Reconstruisons l&rsquo;image et
+importons-la dans le cluster :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker build -t flask-app:v2 .
+</span></span><span style=display:flex><span>$ k3d image import flask-app:v2 -c demo</span></span></code></pre></div><p>Avant de déclencher la mise à jour, ouvrons un second terminal et lançons une
+boucle qui interroge <code>/version</code> toutes les secondes, ce qui nous permettra
+d&rsquo;observer la transition en temps réel :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ <span style=color:#66d9ef>while</span> true; <span style=color:#66d9ef>do</span> curl -s localhost:8080/version; echo; sleep 1; <span style=color:#66d9ef>done</span></span></span></code></pre></div><p>Pour l&rsquo;instant, toutes les réponses sont des erreurs 404, puisque la route
+<code>/version</code> n&rsquo;existe pas encore dans la version en cours. Déclenchons maintenant
+le rolling update :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ kubectl set image deployment/web web<span style=color:#f92672>=</span>flask-app:v2</span></span></code></pre></div><p>Dans le terminal où tourne notre boucle, on voit progressivement les réponses
+changer :</p><pre tabindex=0><code>404 Not Found
+404 Not Found
+[web-6f8b9d4c7-x2k9m] v2
+404 Not Found
+[web-6f8b9d4c7-x2k9m] v2
+[web-6f8b9d4c7-r7j3n] v2
+[web-6f8b9d4c7-x2k9m] v2
+[web-6f8b9d4c7-r7j3n] v2
+[web-6f8b9d4c7-q4w8p] v2</code></pre><p>On observe la transition : les 404 (ancienne version, qui ne connait pas
+<code>/version</code>) se mélangent avec les réponses v2 (nouvelle version), puis
+finissent par disparaitre complètement. Chaque réponse v2 provient d&rsquo;un pod
+différent (les noms changent), ce qui confirme que le load balancer distribue
+le trafic entre les nouvelles instances au fur et à mesure qu&rsquo;elles deviennent
+disponibles. Dans k9s, on peut aussi observer les pods se remplacer un par un :
+les anciens passent en état <code>Terminating</code> pendant que les nouveaux apparaissent
+en <code>Running</code>.</p><h3 id=blue-green-deployment>Blue-green deployment<a class=anchor href=#blue-green-deployment>#</a></h3><p>Le <em>blue-green deployment</em> est une stratégie qui élimine complètement la période
+de coexistence entre les deux versions. Le principe : on maintient deux
+environnements de production identiques, appelés par convention &ldquo;blue&rdquo; et
+&ldquo;green&rdquo;. À tout moment, un seul des deux environnements reçoit le trafic réel
+(disons blue). Pour déployer une nouvelle version, on la déploie sur
+l&rsquo;environnement inactif (green), on la teste, et quand on est satisfait, on
+bascule le routeur (ou le load balancer) pour diriger tout le trafic vers green.
+La transition est instantanée : il n&rsquo;y a pas de période où les deux versions
+coexistent. Et si un problème survient, le rollback est tout aussi instantané :
+on rebascule vers blue, qui est encore intact avec l&rsquo;ancienne version.</p><p>L&rsquo;avantage est la simplicité du modèle mental : à tout instant, 100% des
+utilisateurs voient la même version. Le rollback est une simple reconfiguration
+du routeur, sans aucune reconstruction ou redéploiement. L&rsquo;inconvénient
+principal est le coût : il faut maintenir deux environnements complets, ce qui
+double les ressources nécessaires (au moins temporairement). Dans un
+environnement cloud où les ressources sont élastiques, ce coût est plus facile à
+absorber que dans un datacenter où les serveurs physiques sont fixes. Le terme
+&ldquo;blue-green&rdquo; a été popularisé par Martin Fowler et, de manière indépendante, par
+le livre <em>Continuous Delivery</em> de Humble et Farley.</p><h3 id=canary-deployment>Canary deployment<a class=anchor href=#canary-deployment>#</a></h3><p>Le <em>canary deployment</em> (déploiement canari) est un compromis entre le rolling
+update et le blue-green. L&rsquo;idée est de déployer la nouvelle version sur un
+petit sous-ensemble de l&rsquo;infrastructure (par exemple 5% des instances), puis
+d&rsquo;observer son comportement avant de l&rsquo;étendre progressivement. Le nom vient
+des canaris que les mineurs emportaient dans les mines de charbon : si le canari
+mourait, c&rsquo;était le signe que l&rsquo;air était toxique, et les mineurs rebroussaient
+chemin avant d&rsquo;être affectés eux-mêmes.</p><p>Concrètement, un canary deployment fonctionne ainsi : on déploie la nouvelle
+version sur une ou quelques instances, le load balancer y dirige une fraction du
+trafic, et on surveille attentivement les métriques (taux d&rsquo;erreurs, latence,
+utilisation mémoire). Si tout va bien, on augmente progressivement la proportion
+de trafic vers la nouvelle version (10%, 25%, 50%, 100%). Si une anomalie est
+détectée, on retire les instances canary et tout le trafic retourne vers
+l&rsquo;ancienne version. Le rayon d&rsquo;impact d&rsquo;un bug est limité : seuls les
+utilisateurs qui ont été routés vers le canary sont affectés.</p><p>Le canary est particulièrement utile pour les changements qui sont difficiles à
+tester complètement en pré-production. Les tests automatisés et les
+environnements de staging peuvent attraper beaucoup de bugs, mais certains
+problèmes n&rsquo;apparaissent qu&rsquo;avec du vrai trafic, à vraie échelle : des
+problèmes de performance sous charge, des cas limites dans les données réelles,
+des interactions avec d&rsquo;autres services en production. Le canary permet
+d&rsquo;exposer la nouvelle version à ces conditions réelles tout en limitant le
+risque. Netflix, avec ses centaines de millions d&rsquo;utilisateurs, a été un
+pionnier de cette approche : il serait impensable d&rsquo;exposer tous les
+utilisateurs simultanément à une version non testée en production.</p><p>Ces trois stratégies ne sont pas mutuellement exclusives. On peut combiner un
+canary avec un blue-green : déployer la nouvelle version dans l&rsquo;environnement
+inactif, y diriger une fraction du trafic pour validation, puis basculer
+complètement. Le choix dépend du contexte : le rolling update convient à la
+plupart des cas, le blue-green est préférable quand on ne peut pas tolérer la
+coexistence de versions, et le canary est indiqué quand le risque d&rsquo;un
+déploiement est élevé et qu&rsquo;on veut le mitiger progressivement.</p><h2 id=feature-flags>Feature flags<a class=anchor href=#feature-flags>#</a></h2><p>Les stratégies de déploiement que nous venons de voir opèrent au niveau de
+l&rsquo;infrastructure : on contrôle <em>quelles instances</em> reçoivent le trafic. Les
+<em>feature flags</em> (aussi appelés <em>feature toggles</em>) abordent le problème sous un
+angle différent : on contrôle <em>quel code s&rsquo;exécute</em> à l&rsquo;intérieur d&rsquo;une même
+version déployée. L&rsquo;idée est de découpler le déploiement du code et l&rsquo;activation
+d&rsquo;une fonctionnalité. On peut déployer du code en production sans que les
+utilisateurs en voient les effets, puis l&rsquo;activer (ou le désactiver) à volonté,
+sans redéployer.</p><p>Dans sa forme la plus simple, un feature flag est un <code>if</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>ENABLE_NEW_SEARCH <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>environ<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;ENABLE_NEW_SEARCH&#34;</span>, <span style=color:#e6db74>&#34;false&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;true&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/search&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search</span>():
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> ENABLE_NEW_SEARCH:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> new_search_engine(request<span style=color:#f92672>.</span>args[<span style=color:#e6db74>&#34;q&#34;</span>])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> old_search_engine(request<span style=color:#f92672>.</span>args[<span style=color:#e6db74>&#34;q&#34;</span>])</span></span></code></pre></div><p>La fonctionnalité <code>new_search_engine</code> est présente dans le code déployé, mais
+elle n&rsquo;est accessible que si la variable d&rsquo;environnement <code>ENABLE_NEW_SEARCH</code> est
+définie à <code>"true"</code>. On peut déployer ce code en production avec le flag désactivé,
+vérifier que rien n&rsquo;est cassé, puis activer le flag en modifiant la variable
+d&rsquo;environnement, sans aucun redéploiement. C&rsquo;est un mécanisme puissant : il
+permet par exemple de fusionner du code incomplet dans la branche principale
+sans affecter les utilisateurs. Les développeurs travaillent sur la nouvelle
+fonctionnalité en continu, derrière un flag, et ne l&rsquo;exposent que quand elle
+est prête. Cela évite les branches de longue durée qui divergent et deviennent
+difficiles à fusionner, un problème que nous avons abordé dans le module 4.</p><p>Facebook a été l&rsquo;un des pionniers de cette pratique, sous le nom de <em>dark
+launching</em> : en 2008, l&rsquo;entreprise déployait régulièrement de nouvelles
+fonctionnalités en production, invisibles pour les utilisateurs, afin de tester
+leur impact sur les performances du système sous charge réelle. L&rsquo;idée était de
+découvrir les problèmes de scalabilité <em>avant</em> que les utilisateurs ne soient
+exposés à la fonctionnalité. C&rsquo;est un complément naturel au canary deployment :
+le canary teste une nouvelle version sur un sous-ensemble d&rsquo;utilisateurs, le
+dark launching teste une nouvelle fonctionnalité sur tout le trafic mais sans
+que les utilisateurs en voient les résultats.</p><p>Au-delà du simple <code>if</code> avec une variable d&rsquo;environnement, des plateformes
+spécialisées comme LaunchDarkly, Unleash ou Flagsmith permettent de gérer les
+feature flags de manière plus sophistiquée : activation par pourcentage
+d&rsquo;utilisateurs (comme un canary, mais au niveau applicatif), ciblage par
+attributs (activer la fonctionnalité seulement pour les utilisateurs d&rsquo;un
+certain pays, ou les membres d&rsquo;une équipe beta), et désactivation instantanée
+(<em>kill switch</em>) en cas de problème. Ces outils offrent une interface web qui
+permet aux équipes produit, et pas seulement aux développeurs, de contrôler
+quelles fonctionnalités sont visibles.</p><p>Un mot de prudence : les feature flags ajoutent de la complexité au code. Chaque
+flag crée un embranchement logique qu&rsquo;il faut tester et maintenir. Si on ne
+retire pas les flags une fois qu&rsquo;une fonctionnalité est stabilisée, on accumule
+de la dette technique sous forme de conditions mortes et de chemins de code
+jamais exécutés. La discipline est importante : un feature flag devrait avoir une
+durée de vie limitée et être nettoyé une fois que la fonctionnalité est
+définitivement activée (ou abandonnée).</p><h2 id=immutable-infrastructure>Immutable infrastructure<a class=anchor href=#immutable-infrastructure>#</a></h2><p>Un fil conducteur traverse toutes les pratiques de cette section : l&rsquo;idée qu&rsquo;on
+ne modifie pas ce qui est en production, on le remplace. Quand Kubernetes fait
+un rolling update, il ne met pas à jour le code à l&rsquo;intérieur d&rsquo;un pod existant :
+il crée un nouveau pod et détruit l&rsquo;ancien. Quand on fait un blue-green
+deployment, on ne modifie pas l&rsquo;environnement actif : on en prépare un nouveau
+et on bascule. Cette philosophie porte un nom : l&rsquo;<em>immutable infrastructure</em>
+(infrastructure immuable).</p><p>Le principe est simple : une fois qu&rsquo;un artefact est construit (une image
+Docker, une machine virtuelle, un package), il ne doit jamais être modifié. Si
+un changement est nécessaire, on construit un nouvel artefact. C&rsquo;est le même
+raisonnement que l&rsquo;immutabilité en programmation fonctionnelle, que nous avons
+rencontrée dans le module 2 : plutôt que de modifier un objet en place (ce qui
+rend difficile de savoir dans quel état il se trouve), on en crée un nouveau.
+L&rsquo;état du système est toujours le résultat d&rsquo;un processus de construction
+reproductible, jamais le produit d&rsquo;une accumulation de modifications manuelles.
+C&rsquo;est l&rsquo;opposé du <em>snowflake server</em> dont nous avons parlé dans la section sur
+l&rsquo;infrastructure as code.</p><p>La Twelve-Factor App de Wiggins capture cette idée dans son facteur V :
+<em>build, release, run</em>. Ces trois phases doivent être strictement séparées. La
+phase <em>build</em> transforme le code source en un artefact exécutable (compiler,
+installer les dépendances, construire l&rsquo;image Docker). La phase <em>release</em>
+combine cet artefact avec la configuration spécifique à un environnement
+(variables d&rsquo;environnement, secrets). La phase <em>run</em> exécute la release dans
+l&rsquo;environnement cible. L&rsquo;artefact produit par la phase build est le même qu&rsquo;il
+soit déployé en staging ou en production : seule la configuration change. C&rsquo;est
+exactement ce que fait notre pipeline CI/CD : le job <code>tests</code> vérifie le code, le
+job <code>deploy</code> construit une image Docker (build), la combine avec les secrets de
+l&rsquo;environment GitHub (release), et l&rsquo;applique au cluster Kubernetes (run).</p><p>Un autre facteur pertinent est le facteur X : <em>dev/prod parity</em> (parité entre
+développement et production). L&rsquo;idée est de réduire au maximum les écarts entre
+l&rsquo;environnement de développement et la production. Historiquement, ces écarts
+étaient considérables : les développeurs travaillaient sur Windows avec une base
+SQLite, tandis que la production tournait sur Linux avec PostgreSQL. Les bugs
+qui n&rsquo;apparaissaient qu&rsquo;en production étaient fréquents et difficiles à
+diagnostiquer. Docker et les containers ont considérablement réduit ce
+problème : si l&rsquo;application tourne dans le même container en développement et en
+production, l&rsquo;environnement est par définition le même. Le facteur III
+(<em>config</em>), que nous avons déjà abordé avec les secrets GitHub et les variables
+d&rsquo;environnement Kubernetes, complète le tableau : la configuration est la seule
+chose qui devrait varier entre les environnements. Le code, les dépendances et
+le runtime sont identiques.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>Où est-ce que ça tourne ?</span>
+</a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ class="flex align-center"><span>Module 6 - Regard vers le futur</span>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#le-pipeline-de-déploiement-avec-github-actions>Le pipeline de déploiement avec GitHub Actions</a></li><li><a href=#stratégies-de-déploiement>Stratégies de déploiement</a><ul><li><a href=#rolling-update>Rolling update</a></li><li><a href=#blue-green-deployment>Blue-green deployment</a></li><li><a href=#canary-deployment>Canary deployment</a></li></ul></li><li><a href=#feature-flags>Feature flags</a></li><li><a href=#immutable-infrastructure>Immutable infrastructure</a></li></ul></nav></div></aside></main></body></html>

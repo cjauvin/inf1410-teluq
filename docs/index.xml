@@ -54,7 +54,8 @@ développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Loi de Conway&lt;/strong&gt; (Melvin Conway, 1967) : la structure d&amp;rsquo;un système reflète la structure de communication de l&amp;rsquo;organisation qui le produit → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/"&gt;Module 4, Scrum&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Manœuvre de Conway inverse&lt;/strong&gt; (LeRoy et Simons, 2010) : structurer délibérément les équipes pour obtenir l&amp;rsquo;architecture souhaitée → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Principle of Least Astonishment (POLA)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Idempotence&lt;/strong&gt; : une opération qu&amp;rsquo;on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Idempotence&lt;/strong&gt; : une opération qu&amp;rsquo;on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Immutable infrastructure&lt;/strong&gt; : ne jamais modifier un artefact déployé, toujours le remplacer. Lien avec l&amp;rsquo;immutabilité en programmation fonctionnelle → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="principes-de-mesure-et-dobservation"&gt;Principes de mesure et d&amp;rsquo;observation&lt;a class="anchor" href="#principes-de-mesure-et-dobservation"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
@@ -177,7 +178,12 @@ du manifeste →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/"&gt;Module 4, L&amp;rsquo;agilité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Adam Wiggins, &lt;em&gt;The Twelve-Factor App&lt;/em&gt; (2011) : douze principes pour concevoir
 des applications cloud-native, issus de l&amp;rsquo;expérience de Heroku →
-&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/"&gt;Module 5, Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/"&gt;Module 5, Introduction&lt;/a&gt;,
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Jez Humble et David Farley, &lt;em&gt;Continuous Delivery&lt;/em&gt; (2010) : automatisation
+complète du chemin entre le commit et la production, concept du deployment
+pipeline →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
 faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc
