@@ -116,4 +116,9 @@ intégrées dans le cours.)*
   [Module 4, L'agilité]({{< ref "/docs/module4/20-agile" >}})
 - Adam Wiggins, *The Twelve-Factor App* (2011) : douze principes pour concevoir
   des applications cloud-native, issus de l'expérience de Heroku →
-  [Module 5, Introduction]({{< ref "/docs/module5" >}})
+  [Module 5, Introduction]({{< ref "/docs/module5" >}}),
+  [Module 5, Comment je le déploie ?]({{< ref "/docs/module5/20-deploiement" >}})
+- Jez Humble et David Farley, *Continuous Delivery* (2010) : automatisation
+  complète du chemin entre le commit et la production, concept du deployment
+  pipeline →
+  [Module 5, Comment je le déploie ?]({{< ref "/docs/module5/20-deploiement" >}})

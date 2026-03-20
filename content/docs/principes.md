@@ -29,7 +29,8 @@ développés dans leurs sections respectives.)*
 - **Loi de Conway** (Melvin Conway, 1967) : la structure d'un système reflète la structure de communication de l'organisation qui le produit → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}}), [Module 4, Scrum]({{< ref "/docs/module4/20-agile/10-scrum" >}}), [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
 - **Manœuvre de Conway inverse** (LeRoy et Simons, 2010) : structurer délibérément les équipes pour obtenir l'architecture souhaitée → [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
 - **Principle of Least Astonishment (POLA)**
-- **Idempotence** : une opération qu'on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → [Module 3, Les APIs]({{< ref "/docs/module3/20-apis" >}})
+- **Idempotence** : une opération qu'on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → [Module 3, Les APIs]({{< ref "/docs/module3/20-apis" >}}), [Module 5, Comment je le déploie ?]({{< ref "/docs/module5/20-deploiement" >}})
+- **Immutable infrastructure** : ne jamais modifier un artefact déployé, toujours le remplacer. Lien avec l'immutabilité en programmation fonctionnelle → [Module 5, Comment je le déploie ?]({{< ref "/docs/module5/20-deploiement" >}})
 
 ## Principes de mesure et d'observation
 

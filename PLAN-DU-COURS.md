@@ -361,13 +361,34 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
   - Configuration management : Puppet (2005), Chef (2009), Ansible (Red Hat 2012, agentless, playbooks)
   - GitOps (Weaveworks 2017) : git comme source de vérité pour l'infrastructure
 
-## « Comment je le déploie ? » (à développer)
+## « Comment je le déploie ? » (complété)
 - Du CI au CD : reprendre le fil du module 2
-- Stratégies de déploiement : blue-green, canary, rolling update
-- Feature flags : découpler déploiement et activation
-- GitOps : le repo git comme source de vérité pour l'état du système
-- Immutable infrastructure : ne jamais modifier, toujours remplacer
-- Principes Twelve-Factor pertinents (build/release/run, config, parité dev/prod)
+  - *Continuous Delivery* (Jez Humble et David Farley, 2010) : le livre fondateur
+  - Le deployment pipeline comme concept
+  - Distinction continuous delivery vs continuous deployment
+- Le pipeline en pratique avec GitHub Actions
+  - Workflow CI/CD complet : job tests → job deploy
+  - Mécanismes : `needs`, environments, secrets, tag par `github.sha`
+  - Lien avec les commandes connues : `uv sync`, `docker build`, `kubectl set image`
+  - Facteur III de la Twelve-Factor App (config dans l'environnement)
+- Stratégies de déploiement
+  - Rolling update : remplacement progressif, comportement par défaut de Kubernetes
+    - Démonstration k3d : ajout d'un endpoint `/version`, observation de la transition avec `curl`
+  - Blue-green deployment : deux environnements, bascule instantanée (Martin Fowler, Humble/Farley)
+  - Canary deployment : déploiement progressif, monitoring des métriques (Netflix)
+  - Synthèse et combinaisons possibles
+- Feature flags
+  - Découpler déploiement et activation
+  - Exemple Python : variable d'environnement comme flag
+  - Dark launching (Facebook, 2008) : ancêtre des feature flags
+  - Outils spécialisés : LaunchDarkly, Unleash, Flagsmith
+  - Mise en garde : dette technique des flags non nettoyés
+- Immutable infrastructure
+  - Philosophie : ne jamais modifier, toujours remplacer
+  - Lien avec l'immutabilité en programmation fonctionnelle (module 2)
+  - Facteur V (build/release/run) : les trois phases du déploiement
+  - Facteur X (dev/prod parity) : Docker comme solution
+  - Facteur III (config) : la configuration comme seule variable entre environnements
 
 ## « Est-ce que ça marche ? » (à développer)
 - Les trois piliers de l'observabilité : logs, métriques, traces
