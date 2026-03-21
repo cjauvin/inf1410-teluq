@@ -15,4 +15,17 @@ automatiques (tests, linting, typage) s&amp;rsquo;exécutent pour détecter les 
 plus tôt possible. Mais la CI s&amp;rsquo;arrête à la vérification. Elle répond à la
 question &amp;ldquo;est-ce que ce code est correct ?&amp;rdquo;, pas à la question &amp;ldquo;comment est-ce
 que ce code arrive en production ?&amp;rdquo;. Ce passage de la vérification au
-déploiement est le sujet de cette section.&lt;/p&gt;</description></item></channel></rss>
+déploiement est le sujet de cette section.&lt;/p&gt;</description></item><item><title>Est-ce que ça marche ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/</guid><description>&lt;h1 id="est-ce-que-ça-marche-"&gt;Est-ce que ça marche ?&lt;a class="anchor" href="#est-ce-que-%c3%a7a-marche-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Dans les sections précédentes, nous avons vu où déployer un logiciel et comment
+l&amp;rsquo;y amener de manière automatisée. Mais une fois le déploiement terminé, une
+question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des
+tests unitaires, qui vérifient la correction du code avant le déploiement, mais
+au sens opérationnel : est-ce que les utilisateurs arrivent à se connecter ?
+Est-ce que les requêtes sont traitées dans un temps raisonnable ? Est-ce que le
+système consomme ses ressources de manière normale ? Sur la machine d&amp;rsquo;un
+développeur, ces questions ne se posent pas vraiment. On a un debugger, des
+&lt;code&gt;print()&lt;/code&gt;, un terminal sous les yeux. En production, on perd tout ça. Le système
+tourne sur des machines distantes, traite des milliers de requêtes simultanées,
+et les problèmes qui surviennent sont souvent des problèmes qu&amp;rsquo;on n&amp;rsquo;avait pas
+anticipés. L&amp;rsquo;observabilité, c&amp;rsquo;est l&amp;rsquo;art de reconstruire cette visibilité à
+distance.&lt;/p&gt;</description></item></channel></rss>

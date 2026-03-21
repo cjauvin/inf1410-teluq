@@ -1,0 +1,418 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Est-ce que ça marche ?# Dans les sections précédentes, nous avons vu où déployer un logiciel et comment l’y amener de manière automatisée. Mais une fois le déploiement terminé, une question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des tests unitaires, qui vérifient la correction du code avant le déploiement, mais au sens opérationnel : est-ce que les utilisateurs arrivent à se connecter ? Est-ce que les requêtes sont traitées dans un temps raisonnable ? Est-ce que le système consomme ses ressources de manière normale ? Sur la machine d’un développeur, ces questions ne se posent pas vraiment. On a un debugger, des print(), un terminal sous les yeux. En production, on perd tout ça. Le système tourne sur des machines distantes, traite des milliers de requêtes simultanées, et les problèmes qui surviennent sont souvent des problèmes qu’on n’avait pas anticipés. L’observabilité, c’est l’art de reconstruire cette visibilité à distance.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Est-ce que ça marche ?"><meta property="og:description" content="Est-ce que ça marche ?# Dans les sections précédentes, nous avons vu où déployer un logiciel et comment l’y amener de manière automatisée. Mais une fois le déploiement terminé, une question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des tests unitaires, qui vérifient la correction du code avant le déploiement, mais au sens opérationnel : est-ce que les utilisateurs arrivent à se connecter ? Est-ce que les requêtes sont traitées dans un temps raisonnable ? Est-ce que le système consomme ses ressources de manière normale ? Sur la machine d’un développeur, ces questions ne se posent pas vraiment. On a un debugger, des print(), un terminal sous les yeux. En production, on perd tout ça. Le système tourne sur des machines distantes, traite des milliers de requêtes simultanées, et les problèmes qui surviennent sont souvent des problèmes qu’on n’avait pas anticipés. L’observabilité, c’est l’art de reconstruire cette visibilité à distance."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Est-ce que ça marche ?"><meta itemprop=description content="Est-ce que ça marche ?# Dans les sections précédentes, nous avons vu où déployer un logiciel et comment l’y amener de manière automatisée. Mais une fois le déploiement terminé, une question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des tests unitaires, qui vérifient la correction du code avant le déploiement, mais au sens opérationnel : est-ce que les utilisateurs arrivent à se connecter ? Est-ce que les requêtes sont traitées dans un temps raisonnable ? Est-ce que le système consomme ses ressources de manière normale ? Sur la machine d’un développeur, ces questions ne se posent pas vraiment. On a un debugger, des print(), un terminal sous les yeux. En production, on perd tout ça. Le système tourne sur des machines distantes, traite des milliers de requêtes simultanées, et les problèmes qui surviennent sont souvent des problèmes qu’on n’avait pas anticipés. L’observabilité, c’est l’art de reconstruire cette visibilité à distance."><meta itemprop=wordCount content="4484"><title>Est-ce que ça marche ? | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - Concevoir un programme correct</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Du programme au système</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
+<label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/>Perspective historique</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>L'architecture des applications web</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/>Les frameworks JavaScript</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/convergences/>Desktop, web et mobile</a></li></ul></li><li><input type=checkbox id=section-e4d51cc3c07f12fea00e9c0cd309e911 class=toggle>
+<label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - Construire en équipe</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=toggle>
+<label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/>Kanban</a></li></ul></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/>Gestion de projet et coordination</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle checked>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/>Où est-ce que ça tourne ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/>Comment je le déploie ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/ class=active>Est-ce que ça marche ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Est-ce que ça marche ?</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#les-logs>Les logs</a></li><li><a href=#les-métriques>Les métriques</a></li><li><a href=#le-tracing-distribué>Le tracing distribué</a></li><li><a href=#les-alertes>Les alertes</a></li><li><a href=#slis-slos-et-slas>SLIs, SLOs et SLAs</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=est-ce-que-ça-marche->Est-ce que ça marche ?<a class=anchor href=#est-ce-que-%c3%a7a-marche->#</a></h1><p>Dans les sections précédentes, nous avons vu où déployer un logiciel et comment
+l&rsquo;y amener de manière automatisée. Mais une fois le déploiement terminé, une
+question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des
+tests unitaires, qui vérifient la correction du code avant le déploiement, mais
+au sens opérationnel : est-ce que les utilisateurs arrivent à se connecter ?
+Est-ce que les requêtes sont traitées dans un temps raisonnable ? Est-ce que le
+système consomme ses ressources de manière normale ? Sur la machine d&rsquo;un
+développeur, ces questions ne se posent pas vraiment. On a un debugger, des
+<code>print()</code>, un terminal sous les yeux. En production, on perd tout ça. Le système
+tourne sur des machines distantes, traite des milliers de requêtes simultanées,
+et les problèmes qui surviennent sont souvent des problèmes qu&rsquo;on n&rsquo;avait pas
+anticipés. L&rsquo;observabilité, c&rsquo;est l&rsquo;art de reconstruire cette visibilité à
+distance.</p><p>Le terme &ldquo;observabilité&rdquo; n&rsquo;est pas né dans le monde du logiciel. Il vient de la
+théorie du contrôle, où il a été formalisé par le mathématicien hongrois Rudolf
+Kálmán en 1960. Kálmán est surtout connu pour le <em>filtre de Kálmán</em>, un
+algorithme d&rsquo;estimation qui est encore aujourd&rsquo;hui omniprésent en ingénierie :
+navigation GPS, pilotage automatique, véhicules autonomes, traitement du signal.
+C&rsquo;est dans ce même cadre théorique qu&rsquo;il a défini la notion d&rsquo;observabilité : un
+système est dit &ldquo;observable&rdquo; si on peut déduire son état interne complet à partir
+de ses sorties mesurables. L&rsquo;analogie avec un système logiciel en production est
+frappante : on ne peut pas s&rsquo;y connecter avec un debugger, mais on peut observer
+ce qu&rsquo;il émet (logs, métriques, réponses HTTP) et en déduire ce qui se passe à
+l&rsquo;intérieur. C&rsquo;est Charity Majors, cofondatrice de Honeycomb, qui a le plus
+contribué à populariser ce terme dans l&rsquo;industrie logicielle à partir de
+2017-2018, en le distinguant explicitement du <em>monitoring</em> traditionnel. La
+distinction est importante : le monitoring consiste à surveiller des indicateurs
+connus à l&rsquo;avance (&ldquo;est-ce que l&rsquo;utilisation CPU dépasse 90 % ?&rdquo;, &ldquo;est-ce que le
+taux d&rsquo;erreurs dépasse 1 % ?&rdquo;). L&rsquo;observabilité va plus loin : elle vise à
+permettre l&rsquo;exploration de questions qu&rsquo;on n&rsquo;avait <em>pas</em> anticipées. Quand un
+utilisateur signale que &ldquo;c&rsquo;est lent depuis ce matin&rdquo;, un bon système
+d&rsquo;observabilité permet de creuser la question en temps réel, en corrélant des
+signaux de différentes sources, sans avoir à déployer de nouvelles sondes.</p><p>Cette capacité à comprendre un système en production correspond directement à la
+deuxième voie de DevOps identifiée par Gene Kim : celle du <em>feedback</em>. La
+première voie (le <em>flow</em>) accélère le mouvement du code vers la production,
+c&rsquo;est ce que nous avons vu avec l&rsquo;infrastructure et le déploiement continu. La
+deuxième voie crée le flux inverse : des signaux qui remontent de la production
+vers les équipes de développement. Sans ce flux de retour, on déploie à
+l&rsquo;aveugle. On peut livrer du code rapidement, mais on ne sait pas si ce code
+fonctionne bien pour les utilisateurs réels, dans les conditions réelles.
+L&rsquo;observabilité est le mécanisme concret qui rend cette boucle de rétroaction
+possible.</p><p>La suite de cette section s&rsquo;organise autour de ce que l&rsquo;on appelle couramment
+les trois piliers de l&rsquo;observabilité : les <strong>logs</strong> (un enregistrement textuel
+des événements), les <strong>métriques</strong> (des mesures numériques agrégées dans le
+temps) et les <strong>traces</strong> (le suivi du parcours d&rsquo;une requête à travers les
+composants d&rsquo;un système). Chacun de ces piliers répond à un type de question
+différent. Les logs racontent <em>ce qui s&rsquo;est passé</em>. Les métriques montrent
+<em>comment le système se porte</em>. Les traces expliquent <em>pourquoi une opération est
+lente ou échoue</em>. Après avoir exploré ces trois piliers, nous verrons comment
+les alertes permettent de transformer ces signaux en actions, puis comment les
+SLIs, SLOs et SLAs formalisent la notion de fiabilité du point de vue de
+l&rsquo;utilisateur. Enfin, un tutoriel pratique montrera comment instrumenter une
+application FastAPI et visualiser ses métriques en temps réel avec Prometheus et
+Grafana dans un cluster Kubernetes local.</p><h2 id=les-logs>Les logs<a class=anchor href=#les-logs>#</a></h2><p>L&rsquo;outil d&rsquo;observabilité le plus ancien et le plus intuitif est le log : un
+enregistrement textuel d&rsquo;un événement qui s&rsquo;est produit dans le système. Tout
+développeur a déjà écrit un <code>print()</code> pour comprendre le comportement de son
+code. Quand une fonction ne retourne pas le résultat attendu, le premier réflexe
+est souvent d&rsquo;insérer des <code>print()</code> stratégiques pour suivre le fil de
+l&rsquo;exécution :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>calculer_prix</span>(produit, quantite, code_promo<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>):
+</span></span><span style=display:flex><span>    prix <span style=color:#f92672>=</span> produit[<span style=color:#e6db74>&#34;prix&#34;</span>] <span style=color:#f92672>*</span> quantite
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;prix de base: </span><span style=color:#e6db74>{</span>prix<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> code_promo <span style=color:#f92672>and</span> code_promo <span style=color:#f92672>in</span> PROMOS_VALIDES:
+</span></span><span style=display:flex><span>        rabais <span style=color:#f92672>=</span> PROMOS_VALIDES[code_promo]
+</span></span><span style=display:flex><span>        prix <span style=color:#f92672>*=</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>-</span> rabais)
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;promo </span><span style=color:#e6db74>{</span>code_promo<span style=color:#e6db74>}</span><span style=color:#e6db74> appliquée, rabais de </span><span style=color:#e6db74>{</span>rabais<span style=color:#f92672>*</span><span style=color:#ae81ff>100</span><span style=color:#e6db74>}</span><span style=color:#e6db74>%&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;pas de promo (code_promo=</span><span style=color:#e6db74>{</span>code_promo<span style=color:#e6db74>}</span><span style=color:#e6db74>)&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> quantite <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>10</span>:
+</span></span><span style=display:flex><span>        prix <span style=color:#f92672>*=</span> <span style=color:#ae81ff>0.95</span>
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;rabais volume appliqué&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;prix final: </span><span style=color:#e6db74>{</span>prix<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> prix</span></span></code></pre></div><p>Ce réflexe, universel et efficace pour le débogage local, a un problème
+fondamental : il ne survit pas au passage en production. Les <code>print()</code> n&rsquo;ont pas
+de niveau de sévérité, pas d&rsquo;horodatage, pas de contexte structuré. On ne peut
+pas les filtrer, les chercher efficacement, ni les désactiver sans modifier le
+code. Le log est la version disciplinée de ce réflexe.</p><p>Sous Unix, la notion de journal système est formalisée depuis 1983 avec syslog,
+conçu par Eric Allman (qui est aussi l&rsquo;auteur de Sendmail). Le protocole syslog
+introduisait déjà les concepts fondamentaux qu&rsquo;on retrouve aujourd&rsquo;hui : des
+niveaux de sévérité (DEBUG, INFO, WARNING, ERROR, CRITICAL), une source
+identifiée, et un horodatage. Chaque message avait une gravité, ce qui
+permettait de filtrer le bruit et de se concentrer sur les événements
+significatifs.</p><p>En Python, le module <code>logging</code> de la bibliothèque standard permet de passer du
+<code>print()</code> à un vrai système de logs en quelques lignes :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> logging
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>logging<span style=color:#f92672>.</span>basicConfig(level<span style=color:#f92672>=</span>logging<span style=color:#f92672>.</span>INFO)
+</span></span><span style=display:flex><span>logger <span style=color:#f92672>=</span> logging<span style=color:#f92672>.</span>getLogger(__name__)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>calculer_prix</span>(produit, quantite, code_promo<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>):
+</span></span><span style=display:flex><span>    prix <span style=color:#f92672>=</span> produit[<span style=color:#e6db74>&#34;prix&#34;</span>] <span style=color:#f92672>*</span> quantite
+</span></span><span style=display:flex><span>    logger<span style=color:#f92672>.</span>info(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Calcul du prix pour </span><span style=color:#e6db74>{</span>produit[<span style=color:#e6db74>&#39;nom&#39;</span>]<span style=color:#e6db74>}</span><span style=color:#e6db74>, quantité=</span><span style=color:#e6db74>{</span>quantite<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> code_promo <span style=color:#f92672>and</span> code_promo <span style=color:#f92672>in</span> PROMOS_VALIDES:
+</span></span><span style=display:flex><span>        rabais <span style=color:#f92672>=</span> PROMOS_VALIDES[code_promo]
+</span></span><span style=display:flex><span>        prix <span style=color:#f92672>*=</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>-</span> rabais)
+</span></span><span style=display:flex><span>        logger<span style=color:#f92672>.</span>info(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Promo </span><span style=color:#e6db74>{</span>code_promo<span style=color:#e6db74>}</span><span style=color:#e6db74> appliquée, rabais de </span><span style=color:#e6db74>{</span>rabais<span style=color:#f92672>*</span><span style=color:#ae81ff>100</span><span style=color:#e6db74>}</span><span style=color:#e6db74>%&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>        logger<span style=color:#f92672>.</span>debug(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Pas de promo (code_promo=</span><span style=color:#e6db74>{</span>code_promo<span style=color:#e6db74>}</span><span style=color:#e6db74>)&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> quantite <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>10</span>:
+</span></span><span style=display:flex><span>        prix <span style=color:#f92672>*=</span> <span style=color:#ae81ff>0.95</span>
+</span></span><span style=display:flex><span>        logger<span style=color:#f92672>.</span>info(<span style=color:#e6db74>&#34;Rabais volume appliqué&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    logger<span style=color:#f92672>.</span>info(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Prix final: </span><span style=color:#e6db74>{</span>prix<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> prix</span></span></code></pre></div><p>On gagne immédiatement plusieurs choses : un horodatage automatique, des niveaux
+de sévérité qui permettent de filtrer (en production, on peut n&rsquo;afficher que les
+WARNING et plus, sans toucher au code), et un nom de source (<code>__name__</code>) qui
+identifie quel module a émis le message. Mais ces logs restent du texte libre,
+des chaînes de caractères destinées à l&rsquo;œil humain. Quand un système produit des
+milliers de lignes de logs par seconde, lire du texte ne suffit plus. Il faut
+pouvoir chercher, filtrer et agréger automatiquement. C&rsquo;est ce qui a motivé le
+passage au <strong>log structuré</strong>.</p><p>L&rsquo;idée est simple : au lieu d&rsquo;émettre une ligne de texte formatée pour un
+humain, on émet un objet JSON contenant des champs nommés. Plutôt que :</p><pre tabindex=0><code>2025-03-15 14:23:01 INFO Promo PRINTEMPS20 appliquée, rabais de 20%</code></pre><p>on émet :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;timestamp&#34;</span>: <span style=color:#e6db74>&#34;2025-03-15T14:23:01.342Z&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;level&#34;</span>: <span style=color:#e6db74>&#34;INFO&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;Promo appliquée&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;code_promo&#34;</span>: <span style=color:#e6db74>&#34;PRINTEMPS20&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;rabais&#34;</span>: <span style=color:#ae81ff>0.2</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;produit&#34;</span>: <span style=color:#e6db74>&#34;Widget Pro&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;prix_avant&#34;</span>: <span style=color:#ae81ff>150.0</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;prix_apres&#34;</span>: <span style=color:#ae81ff>120.0</span>
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><p>La différence est considérable. Avec du texte, pour trouver toutes les
+applications de la promo PRINTEMPS20, il faut écrire une expression régulière
+fragile. Avec du JSON, c&rsquo;est une simple requête sur un champ. On peut calculer
+le rabais moyen accordé, filtrer par produit, agréger par période. Les logs
+deviennent des données interrogeables, pas juste un journal qu&rsquo;on feuillette.</p><p>C&rsquo;est cette transition vers le log structuré qui a rendu possible l&rsquo;émergence de
+plateformes centralisées d&rsquo;analyse de logs. La plus emblématique est la stack
+<strong>ELK</strong>, un acronyme pour trois projets open source complémentaires :
+<strong>Elasticsearch</strong> (un moteur de recherche et d&rsquo;indexation, que nous avons
+rencontré dans la section sur les données du module 3), <strong>Logstash</strong> (un
+pipeline d&rsquo;ingestion qui collecte, transforme et achemine les logs) et
+<strong>Kibana</strong> (une interface web de visualisation et d&rsquo;exploration). Apparue vers
+2012-2014, la stack ELK a transformé la gestion des logs en permettant, pour la
+première fois de manière accessible, de centraliser les logs de dizaines ou
+centaines de services dans un même endroit et de les interroger en temps réel. Un
+développeur pouvait taper une requête dans Kibana et retrouver en quelques
+secondes un événement spécifique parmi des millions de lignes de logs.
+Aujourd&rsquo;hui, des alternatives commerciales et open source existent (Datadog,
+Grafana Loki, Splunk), mais le principe reste le même : les logs sont collectés,
+indexés et rendus cherchables depuis une interface centralisée.</p><p>Cette idée de centralisation rejoint directement le <strong>facteur XI</strong> de la
+Twelve-Factor App : <em>&ldquo;Logs — Treat logs as event streams&rdquo;</em>. Le principe est que
+l&rsquo;application ne devrait jamais se préoccuper du stockage ou du routage de ses
+logs. Elle ne devrait pas écrire dans un fichier, ni gérer la rotation des
+fichiers, ni décider où les logs sont envoyés. Son seul rôle est d&rsquo;émettre ses
+logs sur la sortie standard (<code>stdout</code>), comme un flux continu d&rsquo;événements.
+C&rsquo;est l&rsquo;environnement d&rsquo;exécution (le conteneur Docker, l&rsquo;orchestrateur
+Kubernetes, la plateforme cloud) qui se charge de capturer ce flux et de
+l&rsquo;acheminer vers la bonne destination : un fichier local en développement, un
+agrégateur ELK en production, un service cloud comme CloudWatch. Cette séparation
+des responsabilités est élégante : l&rsquo;application reste simple et portable, et la
+stratégie de gestion des logs peut changer sans modifier une seule ligne de code.</p><h2 id=les-métriques>Les métriques<a class=anchor href=#les-m%c3%a9triques>#</a></h2><p>Les logs racontent des événements individuels : telle requête a été reçue, telle
+erreur s&rsquo;est produite, telle promo a été appliquée. Mais quand un système traite
+des milliers de requêtes par seconde, les événements individuels deviennent trop
+nombreux pour donner une vue d&rsquo;ensemble. On a besoin d&rsquo;un autre type de signal :
+des <strong>métriques</strong>, c&rsquo;est-à-dire des mesures numériques agrégées dans le temps.
+Combien de requêtes par seconde ? Quel temps de réponse moyen ? Quel pourcentage
+d&rsquo;erreurs ? Les métriques ne racontent pas ce qui s&rsquo;est passé pour une requête
+particulière, elles montrent comment le système se porte globalement. Si les logs
+sont l&rsquo;équivalent d&rsquo;un journal de bord, les métriques sont le tableau de bord.</p><p>Le livre <em>Site Reliability Engineering</em> (2016), publié par Google, a formalisé
+cette idée en proposant les <strong>quatre golden signals</strong>, quatre métriques qu&rsquo;il
+faut surveiller en priorité pour n&rsquo;importe quel service :</p><ul><li><strong>La latence</strong> : le temps que prend le système pour répondre à une requête. Il
+est important de distinguer la latence des requêtes réussies de celle des
+requêtes en erreur, car une erreur retournée en 2 millisecondes peut masquer
+un problème si on ne regarde que la moyenne.</li><li><strong>Le trafic</strong> : le volume de demandes que le système reçoit. Pour une API web,
+c&rsquo;est typiquement le nombre de requêtes HTTP par seconde. Cette métrique donne
+le contexte : une latence élevée n&rsquo;a pas la même signification à 10 requêtes
+par seconde qu&rsquo;à 10 000.</li><li><strong>Les erreurs</strong> : le taux de requêtes qui échouent, que ce soit explicitement
+(codes HTTP 5xx) ou implicitement (une réponse 200 qui contient un résultat
+incorrect, ou une réponse qui dépasse un seuil de latence acceptable).</li><li><strong>La saturation</strong> : à quel point le système est proche de ses limites. C&rsquo;est
+la mesure de la capacité restante : utilisation CPU, mémoire, nombre de
+connexions à la base de données, espace disque. La saturation est le signal
+d&rsquo;alerte précoce : les problèmes de latence et d&rsquo;erreurs surviennent souvent
+quand un système approche de la saturation.</li></ul><p>Avant Prometheus, l&rsquo;approche dominante pour la collecte de métriques reposait sur
+un modèle <em>push</em> : c&rsquo;est l&rsquo;application qui envoie activement ses métriques vers
+un serveur de collecte. <strong>Graphite</strong>, créé par Chris Davis chez Orbitz en 2008, a
+été l&rsquo;un des premiers systèmes open source à offrir une solution complète de
+stockage et de visualisation de métriques sous forme de séries temporelles.
+Quelques années plus tard, <strong>StatsD</strong>, développé par l&rsquo;équipe d&rsquo;Etsy en 2011 et
+présenté dans un billet de blogue devenu célèbre (<em>&ldquo;Measure Anything, Measure
+Everything&rdquo;</em>), a simplifié l&rsquo;instrumentation côté application : quelques lignes
+de code suffisaient pour envoyer un compteur ou un timer via UDP vers un serveur
+StatsD, qui agrégeait les données avant de les transmettre à Graphite. Le duo
+StatsD + Graphite a démocratisé l&rsquo;idée que les métriques n&rsquo;étaient pas réservées
+aux équipes d&rsquo;opérations, que les développeurs eux-mêmes devaient instrumenter
+leur code. C&rsquo;est dans ce contexte que Prometheus a émergé, en proposant une
+approche différente.</p><p>L&rsquo;outil qui a fini par s&rsquo;imposer comme standard dans les architectures
+cloud-native est <strong>Prometheus</strong>. Son histoire est intimement liée à celle de
+Google et de Kubernetes. En interne, Google utilisait un système appelé Borgmon
+pour surveiller les services déployés sur Borg, son orchestrateur de conteneurs
+(l&rsquo;ancêtre de Kubernetes, comme nous l&rsquo;avons vu dans la section sur
+l&rsquo;infrastructure). Quand d&rsquo;anciens ingénieurs de Google ont fondé SoundCloud, ils
+ont voulu recréer un outil similaire pour le monde open source. Le résultat,
+Prometheus, a été rendu public en 2012 et est devenu un projet de la Cloud Native
+Computing Foundation (CNCF) en 2016, le deuxième après Kubernetes lui-même.</p><p>Le fonctionnement de Prometheus repose sur un modèle <em>pull</em> : plutôt que les
+applications poussent leurs métriques vers un serveur central, c&rsquo;est Prometheus
+qui interroge périodiquement (par défaut toutes les 15 secondes) un endpoint
+HTTP exposé par chaque application, typiquement <code>/metrics</code>. Cet endpoint
+retourne les métriques dans un format textuel simple. L&rsquo;application n&rsquo;a besoin
+d&rsquo;aucune connaissance de Prometheus : elle expose ses métriques, et c&rsquo;est tout.
+Cette approche rejoint la philosophie du facteur XI de la Twelve-Factor App que
+nous avons vue pour les logs : l&rsquo;application émet des signaux, l&rsquo;infrastructure
+se charge de les collecter.</p><p>Prometheus définit quatre types fondamentaux de métriques, chacun adapté à un
+type de mesure différent. Le <strong>counter</strong> est un compteur qui ne fait
+qu&rsquo;augmenter : le nombre total de requêtes reçues, le nombre d&rsquo;erreurs
+survenues. On ne regarde jamais la valeur absolue d&rsquo;un counter (qui augmente
+indéfiniment), mais son <em>taux de variation</em> : combien de requêtes par seconde,
+combien d&rsquo;erreurs par minute. Le <strong>gauge</strong> est une valeur qui monte et descend
+librement : l&rsquo;utilisation CPU, la mémoire consommée, le nombre de connexions
+actives à un instant donné. C&rsquo;est une photographie instantanée de l&rsquo;état du
+système. Le <strong>histogram</strong> enregistre la distribution d&rsquo;une valeur, typiquement la
+latence des requêtes. Plutôt qu&rsquo;une simple moyenne (qui peut masquer des
+problèmes), un histogram permet de calculer des <strong>percentiles</strong> : le p50 (la
+latence médiane), le p95 (la latence en dessous de laquelle tombent 95 % des
+requêtes) et le p99. La distinction entre ces percentiles est cruciale : un
+service peut avoir une latence médiane excellente de 20 ms tout en ayant un p99
+de 3 secondes, ce qui signifie qu&rsquo;un utilisateur sur cent a une expérience
+dégradée. Enfin, le <strong>summary</strong> est similaire au histogram mais calcule les
+percentiles directement côté application plutôt que côté Prometheus ; il est
+moins flexible et moins couramment utilisé.</p><p>En Python, la bibliothèque <code>prometheus_client</code> permet d&rsquo;instrumenter une
+application en quelques lignes :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> prometheus_client <span style=color:#f92672>import</span> Counter, Gauge, Histogram
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Counter : combien de requêtes au total ?</span>
+</span></span><span style=display:flex><span>requetes_total <span style=color:#f92672>=</span> Counter(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;http_requetes_total&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Nombre total de requêtes HTTP&#34;</span>,
+</span></span><span style=display:flex><span>    [<span style=color:#e6db74>&#34;methode&#34;</span>, <span style=color:#e6db74>&#34;endpoint&#34;</span>, <span style=color:#e6db74>&#34;status&#34;</span>]
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Gauge : combien de connexions en ce moment ?</span>
+</span></span><span style=display:flex><span>connexions_actives <span style=color:#f92672>=</span> Gauge(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;connexions_actives&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Nombre de connexions actives&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Histogram : quelle est la distribution de la latence ?</span>
+</span></span><span style=display:flex><span>latence <span style=color:#f92672>=</span> Histogram(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;http_latence_secondes&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Latence des requêtes HTTP en secondes&#34;</span>,
+</span></span><span style=display:flex><span>    [<span style=color:#e6db74>&#34;endpoint&#34;</span>]
+</span></span><span style=display:flex><span>)</span></span></code></pre></div><p>Chaque type s&rsquo;utilise naturellement dans le code. On incrémente un counter quand
+un événement se produit (<code>requetes_total.labels(methode="GET", endpoint="/prix", status="200").inc()</code>), on ajuste un gauge quand un état change
+(<code>connexions_actives.inc()</code> à l&rsquo;ouverture, <code>connexions_actives.dec()</code> à la
+fermeture), et on observe une valeur dans un histogram pour alimenter la
+distribution (<code>latence.labels(endpoint="/prix").observe(0.042)</code>).</p><p>Pour que ces métriques soient utiles, il faut pouvoir les visualiser. C&rsquo;est le
+rôle de <strong>Grafana</strong>, un outil open source de visualisation créé en 2014 par
+Torkel Ödegaard. Grafana se connecte à Prometheus (et à de nombreuses autres
+sources de données) et permet de construire des tableaux de bord (<em>dashboards</em>)
+composés de graphiques, de jauges et de tableaux. On peut voir en temps réel
+l&rsquo;évolution du trafic, la latence par percentile, le taux d&rsquo;erreurs, la
+saturation des ressources. Le couple Prometheus + Grafana est devenu un standard
+de facto dans l&rsquo;écosystème cloud-native, au point que la plupart des tutoriels
+Kubernetes incluent leur installation comme étape de base. Nous les utiliserons
+ensemble dans le tutoriel pratique à la fin de cette section.</p><h2 id=le-tracing-distribué>Le tracing distribué<a class=anchor href=#le-tracing-distribu%c3%a9>#</a></h2><p>Les logs racontent ce qui s&rsquo;est passé à un endroit précis du système. Les
+métriques donnent une vue d&rsquo;ensemble agrégée. Mais dans une architecture
+distribuée, où une seule requête utilisateur peut traverser cinq, dix, voire
+vingt services différents avant de produire une réponse, il manque un troisième
+angle : la capacité de suivre le <strong>parcours complet</strong> d&rsquo;une requête à travers
+tous les composants qu&rsquo;elle traverse. C&rsquo;est le rôle du tracing distribué.</p><p>Prenons un exemple concret. Un utilisateur clique sur &ldquo;Confirmer la commande&rdquo;
+dans une application web. Cette action déclenche une requête HTTP vers un service
+API, qui appelle un service d&rsquo;inventaire pour vérifier la disponibilité, un
+service de paiement pour débiter la carte, un service de notification pour
+envoyer un courriel de confirmation, et un service d&rsquo;analytique pour enregistrer
+l&rsquo;événement. Si l&rsquo;utilisateur signale que &ldquo;la confirmation est lente&rdquo;, où est le
+problème ? Le service de paiement met-il trop de temps à répondre ? Le service
+d&rsquo;inventaire fait-il une requête coûteuse à la base de données ? Le problème
+est-il dans le réseau entre deux services ? Sans tracing, répondre à ces
+questions exige de fouiller manuellement dans les logs de chaque service et de
+tenter de corréler les événements par horodatage, un exercice pénible et
+fragile.</p><p>Le concept moderne de tracing distribué a été formalisé par Google dans le papier
+<strong>Dapper</strong> (2010), qui décrivait le système interne utilisé pour tracer les
+requêtes à travers l&rsquo;infrastructure massive de Google. L&rsquo;idée centrale de Dapper
+est élégante : quand une requête entre dans le système, on lui assigne un
+identifiant unique (un <em>trace ID</em>) qui est propagé de service en service via les
+en-têtes HTTP. Chaque service enregistre un <strong>span</strong>, une unité de travail avec
+un début, une fin, et des métadonnées (quel service, quelle opération, combien
+de temps). L&rsquo;ensemble des spans d&rsquo;une requête, reliés entre eux par des
+relations parent-enfant, forme une <strong>trace</strong> : une arborescence qui représente le
+parcours complet de la requête. En visualisant cette arborescence, on voit
+immédiatement où le temps est passé.</p><p>Le papier Dapper a inspiré une série d&rsquo;implémentations open source. <strong>Zipkin</strong>,
+développé par Twitter et rendu public en 2012, a été le premier à rendre le
+tracing distribué accessible en dehors de Google. <strong>Jaeger</strong>, créé par Uber en
+2017 et nommé d&rsquo;après le mot allemand pour &ldquo;chasseur&rdquo;, a suivi avec une
+architecture plus moderne et une intégration native avec Kubernetes. Pendant
+plusieurs années, deux standards concurrents coexistaient pour l&rsquo;instrumentation :
+OpenTracing (une API indépendante du fournisseur) et OpenCensus (un projet de
+Google qui couvrait à la fois le tracing et les métriques). En 2019, les deux
+projets ont fusionné pour former <strong>OpenTelemetry</strong>, souvent abrégé OTel, sous
+l&rsquo;égide de la CNCF. OpenTelemetry est aujourd&rsquo;hui le standard qui unifie les
+trois piliers de l&rsquo;observabilité : il fournit des bibliothèques
+d&rsquo;instrumentation pour les logs, les métriques et les traces, dans la plupart
+des langages, avec un format de données commun et un protocole d&rsquo;export unifié
+(OTLP). L&rsquo;idée est qu&rsquo;un développeur instrumente son code une seule fois avec
+OpenTelemetry, et peut ensuite envoyer les données vers Jaeger, Prometheus,
+Grafana, Datadog ou n&rsquo;importe quel autre backend, sans modifier le code
+d&rsquo;instrumentation.</p><p>Le tracing distribué est le pilier le plus récent et le plus complexe à mettre
+en place des trois. Il nécessite que chaque service propage correctement le trace
+ID, ce qui demande une discipline d&rsquo;équipe ou l&rsquo;utilisation de bibliothèques qui
+le font automatiquement. Pour cette raison, beaucoup d&rsquo;organisations commencent
+par les logs et les métriques, et n&rsquo;ajoutent le tracing que lorsque la complexité
+de leur architecture le justifie. Mais quand un système atteint une certaine
+taille, le tracing devient indispensable : c&rsquo;est le seul outil qui permet de
+répondre à la question &ldquo;pourquoi <em>cette</em> requête est-elle lente ?&rdquo;, plutôt que
+&ldquo;est-ce que le système est lent en général ?&rdquo;. Il faut noter que la granularité
+typique du tracing se situe au niveau des interactions entre composants (appels
+HTTP, requêtes à la base de données, messages dans une file d&rsquo;attente), pas au
+niveau de chaque appel de fonction interne. Pour ce niveau de détail, on utilise
+des <strong>profilers</strong>, des outils qui mesurent le temps passé dans chaque fonction
+d&rsquo;un programme. Le tracing et le profiling sont complémentaires : le premier
+identifie <em>quel service</em> est le goulot d&rsquo;étranglement, le second identifie
+<em>quelle fonction</em> à l&rsquo;intérieur de ce service.</p><h2 id=les-alertes>Les alertes<a class=anchor href=#les-alertes>#</a></h2><p>Les logs, les métriques et les traces sont des outils d&rsquo;investigation : ils
+permettent de comprendre ce qui se passe dans un système. Mais ils supposent que
+quelqu&rsquo;un regarde. Or personne ne surveille un dashboard Grafana 24 heures sur
+24. Les alertes sont le mécanisme qui transforme les signaux passifs en actions :
+quand une métrique franchit un seuil préoccupant, le système notifie
+automatiquement les personnes concernées, par courriel, message Slack,
+notification PagerDuty, ou SMS à trois heures du matin.</p><p>Le principe semble simple, mais en pratique, concevoir un bon système d&rsquo;alertes
+est étonnamment difficile. Le piège le plus courant est la <strong>fatigue d&rsquo;alerte</strong>
+(<em>alert fatigue</em>) : quand un système génère trop d&rsquo;alertes, trop souvent, pour
+des problèmes mineurs ou des faux positifs, les opérateurs finissent par les
+ignorer. C&rsquo;est le syndrome du garçon qui crie au loup. Des études dans le
+domaine médical (où le problème est bien documenté pour les moniteurs de
+patients) ont montré que les taux de faux positifs peuvent dépasser 90 %, ce qui
+conduit le personnel à désactiver les alarmes ou à les traiter machinalement. Le
+même phénomène se produit dans les équipes logicielles : une équipe qui reçoit
+des dizaines d&rsquo;alertes par jour finit par ne plus réagir à aucune, y compris aux
+alertes légitimes.</p><p>Le livre <em>Site Reliability Engineering</em> de Google propose un principe directeur
+pour éviter ce piège : chaque alerte doit être <strong>actionnable</strong>. Si une alerte se
+déclenche, la personne qui la reçoit doit pouvoir faire quelque chose d&rsquo;utile
+immédiatement. Si la réponse habituelle à une alerte est &ldquo;on la ferme et on
+ignore&rdquo;, c&rsquo;est que l&rsquo;alerte ne devrait pas exister. Google distingue trois
+niveaux de notification. Les <strong>alertes</strong> proprement dites (pages) sont réservées
+aux problèmes qui nécessitent une intervention humaine immédiate : le service est
+en panne, les utilisateurs sont affectés. Les <strong>tickets</strong> sont créés
+automatiquement pour les problèmes qui nécessitent une action, mais pas dans
+l&rsquo;immédiat : un disque qui se remplit lentement, un certificat TLS qui expire
+dans deux semaines. Les <strong>logs</strong> suffisent pour tout le reste : les anomalies
+mineures qu&rsquo;il est utile de pouvoir retrouver lors d&rsquo;une investigation, mais qui
+ne justifient pas d&rsquo;interrompre quelqu&rsquo;un.</p><p>En pratique, une bonne alerte repose sur quelques principes. D&rsquo;abord, alerter
+sur les <strong>symptômes</strong> plutôt que sur les <strong>causes</strong>. Alerter quand le taux
+d&rsquo;erreurs dépasse 1 % (un symptôme visible par l&rsquo;utilisateur) est plus utile
+qu&rsquo;alerter quand l&rsquo;utilisation CPU dépasse 80 % (une cause potentielle qui n&rsquo;a
+peut-être aucun impact). Ensuite, utiliser des <strong>seuils réalistes</strong> avec des
+fenêtres de temps suffisantes pour absorber les pics normaux : un bref pic de
+latence pendant 30 secondes n&rsquo;est pas la même chose qu&rsquo;une dégradation soutenue
+pendant 10 minutes. Enfin, chaque alerte devrait idéalement être accompagnée
+d&rsquo;un <strong>runbook</strong>, un document qui décrit les étapes de diagnostic et de
+résolution à suivre quand elle se déclenche. Un runbook transforme la réponse aux
+incidents d&rsquo;un art qui dépend de l&rsquo;expertise individuelle en un processus
+reproductible.</p><h2 id=slis-slos-et-slas>SLIs, SLOs et SLAs<a class=anchor href=#slis-slos-et-slas>#</a></h2><p>Les métriques et les alertes nous disent comment le système se porte du point de
+vue technique. Mais un CPU à 75 % ou une latence p99 de 200 ms, est-ce que c&rsquo;est
+<em>bien</em> ? Est-ce que c&rsquo;est <em>suffisant</em> ? La réponse dépend du contexte, et surtout
+du point de vue qu&rsquo;on adopte. Les SLIs, SLOs et SLAs sont un cadre formalisé
+principalement par Google dans le livre <em>Site Reliability Engineering</em> pour
+répondre à cette question en se plaçant du point de vue de l&rsquo;<strong>utilisateur</strong>, pas
+de l&rsquo;infrastructure.</p><p>Un <strong>SLI</strong> (<em>Service Level Indicator</em>) est une mesure quantitative d&rsquo;un aspect
+du service tel que l&rsquo;utilisateur le perçoit. Ce n&rsquo;est pas l&rsquo;utilisation CPU ou la
+mémoire disponible, ce sont des métriques internes à l&rsquo;infrastructure. Un SLI
+mesure quelque chose que l&rsquo;utilisateur ressent directement : la proportion de
+requêtes qui réussissent (disponibilité), la proportion de requêtes servies en
+moins de 300 ms (latence), la proportion de données correctement traitées
+(exactitude). Le SLI est typiquement exprimé comme un ratio : le nombre de
+&ldquo;bonnes&rdquo; interactions divisé par le nombre total d&rsquo;interactions, ce qui donne un
+pourcentage.</p><p>Un <strong>SLO</strong> (<em>Service Level Objective</em>) est une cible fixée sur un SLI. Par
+exemple : &ldquo;99,9 % des requêtes doivent réussir sur une fenêtre glissante de 30
+jours&rdquo;, ou &ldquo;95 % des requêtes doivent être servies en moins de 300 ms&rdquo;. Le choix
+du SLO est une décision d&rsquo;ingénierie et de produit, pas une décision purement
+technique. Un SLO de 99,99 % de disponibilité (environ 4 minutes
+d&rsquo;indisponibilité autorisées par mois) exige une architecture radicalement
+différente d&rsquo;un SLO de 99 % (environ 7 heures par mois). Chaque &ldquo;9&rdquo;
+supplémentaire coûte exponentiellement plus cher en complexité, en redondance et
+en effort opérationnel. Le SLO est un outil pour rendre ce compromis explicite :
+il force une conversation entre les équipes techniques, le produit et la
+direction sur le niveau de fiabilité qui est réellement nécessaire.</p><p>Un <strong>SLA</strong> (<em>Service Level Agreement</em>) est un contrat formel entre un
+fournisseur de service et ses clients, qui engage des conséquences (typiquement
+financières) si les objectifs ne sont pas atteints. Les SLAs des fournisseurs
+cloud sont un exemple familier : AWS garantit 99,99 % de disponibilité pour EC2,
+et offre des crédits si ce seuil n&rsquo;est pas respecté. Un SLA est toujours moins
+ambitieux que le SLO interne : si le SLO interne vise 99,95 %, le SLA externe
+pourrait promettre 99,9 %, avec une marge de sécurité pour éviter de déclencher
+des pénalités contractuelles. Beaucoup d&rsquo;organisations ont des SLOs sans avoir de
+SLAs formels : le SLO reste un outil interne de pilotage, même en l&rsquo;absence de
+contrat.</p><p>L&rsquo;un des concepts les plus puissants qui découlent des SLOs est celui d&rsquo;<strong>error
+budget</strong> (budget d&rsquo;erreur). Si le SLO de disponibilité est de 99,9 % sur 30
+jours, cela signifie que le service a &ldquo;droit&rdquo; à 0,1 % d&rsquo;indisponibilité, soit
+environ 43 minutes par mois. Ce budget d&rsquo;erreur n&rsquo;est pas un défaut à tolérer,
+c&rsquo;est une <strong>ressource à dépenser</strong>. Tant qu&rsquo;il reste du budget, l&rsquo;équipe peut
+prendre des risques : déployer plus souvent, tenter des migrations, expérimenter.
+Quand le budget est épuisé, on ralentit : moins de déploiements, plus de focus
+sur la fiabilité. L&rsquo;error budget transforme la tension traditionnelle entre
+développeurs (qui veulent livrer vite) et opérations (qui veulent de la
+stabilité) en une décision basée sur des données plutôt que sur des opinions.
+C&rsquo;est une incarnation concrète de la troisième voie de DevOps : l&rsquo;apprentissage
+continu et la prise de risque calculée. Nous reviendrons sur ce concept dans la
+prochaine section, consacrée à la gestion des incidents.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>Comment je le déploie ?</span>
+</a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ class="flex align-center"><span>Module 6 - Regard vers le futur</span>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#les-logs>Les logs</a></li><li><a href=#les-métriques>Les métriques</a></li><li><a href=#le-tracing-distribué>Le tracing distribué</a></li><li><a href=#les-alertes>Les alertes</a></li><li><a href=#slis-slos-et-slas>SLIs, SLOs et SLAs</a></li></ul></nav></div></aside></main></body></html>
