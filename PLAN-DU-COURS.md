@@ -127,6 +127,9 @@
 NOTE : revisiter les modules 1 et 2 pour y intégrer des références aux
 principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
 
+NOTE : définir les termes SRE (Site Reliability Engineer) et SWE (Software
+Engineer) quelque part dans le cours (probablement module 5 ou module 1)
+
 ## Architecture et modularité (complété)
 - Introduction : pourquoi découper ?
 - Parnas et l'information hiding (1972)
@@ -390,14 +393,38 @@ principes pertinents (ex: DRY dans la gestion des dépendances, etc.)
   - Facteur X (dev/prod parity) : Docker comme solution
   - Facteur III (config) : la configuration comme seule variable entre environnements
 
-## « Est-ce que ça marche ? » (à développer)
+## « Est-ce que ça marche ? » (en cours)
+- Introduction : perte de visibilité en production, deuxième voie de DevOps (feedback)
+  - Origine du terme : Rudolf Kálmán (théorie du contrôle, 1960), filtre de Kálmán
+  - Monitoring vs observabilité : Charity Majors (Honeycomb, 2017-2018)
 - Les trois piliers de l'observabilité : logs, métriques, traces
-- Logging structuré (JSON logs, niveaux, corrélation)
-  - Twelve-Factor : logs comme flux d'événements
-- Métriques et monitoring (Prometheus, Grafana, quatre golden signals de Google SRE)
-- Tracing distribué (OpenTelemetry, Jaeger)
-- Alertes : quand et comment alerter, fatigue d'alerte
-- SLIs, SLOs, SLA : mesurer la fiabilité du point de vue de l'utilisateur
+- Logs (complété) :
+  - Du `print()` au logging structuré, exemple Python progressif
+  - syslog (Eric Allman, 1983), module `logging` Python, logs JSON structurés
+  - Stack ELK (Elasticsearch, Logstash, Kibana, 2012-2014)
+  - Twelve-Factor facteur XI : logs comme flux d'événements (stdout)
+- Métriques (complété) :
+  - Quatre golden signals (Google SRE 2016) : latence, trafic, erreurs, saturation
+  - Graphite (Chris Davis, Orbitz, 2008) et StatsD (Etsy, 2011) : modèle push
+  - Prometheus (SoundCloud, 2012, inspiré de Borgmon) : modèle pull, CNCF
+  - Types de métriques : counter, gauge, histogram, summary
+  - Instrumentation Python avec `prometheus_client`
+  - Grafana (Torkel Ödegaard, 2014) : visualisation et dashboards
+- Tracing distribué (complété) :
+  - Dapper (Google, 2010) : trace ID, spans, arborescence
+  - Zipkin (Twitter, 2012), Jaeger (Uber, 2017)
+  - OpenTelemetry (2019) : fusion OpenTracing + OpenCensus, standard unifié
+  - Granularité : interactions entre services, pas appels de fonctions (→ profilers)
+- Alertes (complété) :
+  - Fatigue d'alerte, parallèle avec le domaine médical
+  - Alertes actionnables (Google SRE) : pages, tickets, logs
+  - Symptômes vs causes, seuils réalistes, runbooks
+- SLIs, SLOs, SLAs (complété) :
+  - SLI : mesure du point de vue utilisateur (ratio bonnes/totales)
+  - SLO : cible sur un SLI, coût exponentiel des "9"
+  - SLA : contrat formel avec conséquences financières
+  - Error budget : le droit à l'erreur comme ressource, lien avec la troisième voie de DevOps
+- Tutoriel pratique (à développer) : app FastAPI instrumentée + Prometheus + Grafana dans k3d
 
 ## « Que faire quand ça casse ? » (à développer)
 - L'incident est inévitable : accepter la faillibilité
