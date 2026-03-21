@@ -1,5 +1,5 @@
 <!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Est-ce que ça marche ?# Dans les sections précédentes, nous avons vu où déployer un logiciel et comment l’y amener de manière automatisée. Mais une fois le déploiement terminé, une question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des tests unitaires, qui vérifient la correction du code avant le déploiement, mais au sens opérationnel : est-ce que les utilisateurs arrivent à se connecter ? Est-ce que les requêtes sont traitées dans un temps raisonnable ? Est-ce que le système consomme ses ressources de manière normale ? Sur la machine d’un développeur, ces questions ne se posent pas vraiment. On a un debugger, des print(), un terminal sous les yeux. En production, on perd tout ça. Le système tourne sur des machines distantes, traite des milliers de requêtes simultanées, et les problèmes qui surviennent sont souvent des problèmes qu’on n’avait pas anticipés. L’observabilité, c’est l’art de reconstruire cette visibilité à distance.
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Est-ce que ça marche ?"><meta property="og:description" content="Est-ce que ça marche ?# Dans les sections précédentes, nous avons vu où déployer un logiciel et comment l’y amener de manière automatisée. Mais une fois le déploiement terminé, une question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des tests unitaires, qui vérifient la correction du code avant le déploiement, mais au sens opérationnel : est-ce que les utilisateurs arrivent à se connecter ? Est-ce que les requêtes sont traitées dans un temps raisonnable ? Est-ce que le système consomme ses ressources de manière normale ? Sur la machine d’un développeur, ces questions ne se posent pas vraiment. On a un debugger, des print(), un terminal sous les yeux. En production, on perd tout ça. Le système tourne sur des machines distantes, traite des milliers de requêtes simultanées, et les problèmes qui surviennent sont souvent des problèmes qu’on n’avait pas anticipés. L’observabilité, c’est l’art de reconstruire cette visibilité à distance."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Est-ce que ça marche ?"><meta itemprop=description content="Est-ce que ça marche ?# Dans les sections précédentes, nous avons vu où déployer un logiciel et comment l’y amener de manière automatisée. Mais une fois le déploiement terminé, une question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des tests unitaires, qui vérifient la correction du code avant le déploiement, mais au sens opérationnel : est-ce que les utilisateurs arrivent à se connecter ? Est-ce que les requêtes sont traitées dans un temps raisonnable ? Est-ce que le système consomme ses ressources de manière normale ? Sur la machine d’un développeur, ces questions ne se posent pas vraiment. On a un debugger, des print(), un terminal sous les yeux. En production, on perd tout ça. Le système tourne sur des machines distantes, traite des milliers de requêtes simultanées, et les problèmes qui surviennent sont souvent des problèmes qu’on n’avait pas anticipés. L’observabilité, c’est l’art de reconstruire cette visibilité à distance."><meta itemprop=wordCount content="4484"><title>Est-ce que ça marche ? | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Est-ce que ça marche ?"><meta property="og:description" content="Est-ce que ça marche ?# Dans les sections précédentes, nous avons vu où déployer un logiciel et comment l’y amener de manière automatisée. Mais une fois le déploiement terminé, une question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des tests unitaires, qui vérifient la correction du code avant le déploiement, mais au sens opérationnel : est-ce que les utilisateurs arrivent à se connecter ? Est-ce que les requêtes sont traitées dans un temps raisonnable ? Est-ce que le système consomme ses ressources de manière normale ? Sur la machine d’un développeur, ces questions ne se posent pas vraiment. On a un debugger, des print(), un terminal sous les yeux. En production, on perd tout ça. Le système tourne sur des machines distantes, traite des milliers de requêtes simultanées, et les problèmes qui surviennent sont souvent des problèmes qu’on n’avait pas anticipés. L’observabilité, c’est l’art de reconstruire cette visibilité à distance."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Est-ce que ça marche ?"><meta itemprop=description content="Est-ce que ça marche ?# Dans les sections précédentes, nous avons vu où déployer un logiciel et comment l’y amener de manière automatisée. Mais une fois le déploiement terminé, une question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des tests unitaires, qui vérifient la correction du code avant le déploiement, mais au sens opérationnel : est-ce que les utilisateurs arrivent à se connecter ? Est-ce que les requêtes sont traitées dans un temps raisonnable ? Est-ce que le système consomme ses ressources de manière normale ? Sur la machine d’un développeur, ces questions ne se posent pas vraiment. On a un debugger, des print(), un terminal sous les yeux. En production, on perd tout ça. Le système tourne sur des machines distantes, traite des milliers de requêtes simultanées, et les problèmes qui surviennent sont souvent des problèmes qu’on n’avait pas anticipés. L’observabilité, c’est l’art de reconstruire cette visibilité à distance."><meta itemprop=wordCount content="6284"><title>Est-ce que ça marche ? | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
@@ -18,7 +18,7 @@
 <label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/>Où est-ce que ça tourne ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/>Comment je le déploie ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/ class=active>Est-ce que ça marche ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Est-ce que ça marche ?</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#les-logs>Les logs</a></li><li><a href=#les-métriques>Les métriques</a></li><li><a href=#le-tracing-distribué>Le tracing distribué</a></li><li><a href=#les-alertes>Les alertes</a></li><li><a href=#slis-slos-et-slas>SLIs, SLOs et SLAs</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=est-ce-que-ça-marche->Est-ce que ça marche ?<a class=anchor href=#est-ce-que-%c3%a7a-marche->#</a></h1><p>Dans les sections précédentes, nous avons vu où déployer un logiciel et comment
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Est-ce que ça marche ?</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#les-logs>Les logs</a></li><li><a href=#les-métriques>Les métriques</a></li><li><a href=#le-tracing-distribué>Le tracing distribué</a></li><li><a href=#les-alertes>Les alertes</a></li><li><a href=#slis-slos-et-slas>SLIs, SLOs et SLAs</a></li><li><a href=#tutoriel--observer-une-application-en-temps-réel>Tutoriel : observer une application en temps réel</a><ul><li><a href=#lapplication>L&rsquo;application</a></li><li><a href=#déploiement-dans-kubernetes>Déploiement dans Kubernetes</a></li><li><a href=#déployer-prometheus>Déployer Prometheus</a></li><li><a href=#visualiser-avec-grafana>Visualiser avec Grafana</a></li><li><a href=#générer-du-trafic-et-observer>Générer du trafic et observer</a></li></ul></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=est-ce-que-ça-marche->Est-ce que ça marche ?<a class=anchor href=#est-ce-que-%c3%a7a-marche->#</a></h1><p>Dans les sections précédentes, nous avons vu où déployer un logiciel et comment
 l&rsquo;y amener de manière automatisée. Mais une fois le déploiement terminé, une
 question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des
 tests unitaires, qui vérifient la correction du code avant le déploiement, mais
@@ -412,7 +412,359 @@ développeurs (qui veulent livrer vite) et opérations (qui veulent de la
 stabilité) en une décision basée sur des données plutôt que sur des opinions.
 C&rsquo;est une incarnation concrète de la troisième voie de DevOps : l&rsquo;apprentissage
 continu et la prise de risque calculée. Nous reviendrons sur ce concept dans la
-prochaine section, consacrée à la gestion des incidents.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+prochaine section, consacrée à la gestion des incidents.</p><h2 id=tutoriel--observer-une-application-en-temps-réel>Tutoriel : observer une application en temps réel<a class=anchor href=#tutoriel--observer-une-application-en-temps-r%c3%a9el>#</a></h2><p>Nous avons décrit les concepts de l&rsquo;observabilité de manière abstraite. Pour les
+rendre concrets, nous allons instrumenter une petite application FastAPI avec des
+métriques Prometheus, la déployer dans un cluster Kubernetes local (avec k3d, que
+nous avons utilisé dans la section sur l&rsquo;infrastructure), et visualiser ses
+métriques en temps réel dans un dashboard Grafana. L&rsquo;objectif est de voir, de
+bout en bout, comment le code d&rsquo;une application se transforme en courbes sur un
+écran.</p><h3 id=lapplication>L&rsquo;application<a class=anchor href=#lapplication>#</a></h3><p>Notre application est un petit service de citations aléatoires, avec trois
+endpoints :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> time
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> random
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> logging
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI, Response
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> prometheus_client <span style=color:#f92672>import</span> Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>logging<span style=color:#f92672>.</span>basicConfig(level<span style=color:#f92672>=</span>logging<span style=color:#f92672>.</span>INFO)
+</span></span><span style=display:flex><span>logger <span style=color:#f92672>=</span> logging<span style=color:#f92672>.</span>getLogger(__name__)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> FastAPI()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>REQUETES <span style=color:#f92672>=</span> Counter(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;http_requetes_total&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Nombre total de requêtes HTTP&#34;</span>,
+</span></span><span style=display:flex><span>    [<span style=color:#e6db74>&#34;methode&#34;</span>, <span style=color:#e6db74>&#34;endpoint&#34;</span>, <span style=color:#e6db74>&#34;status&#34;</span>],
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>LATENCE <span style=color:#f92672>=</span> Histogram(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;http_latence_secondes&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Latence des requêtes HTTP en secondes&#34;</span>,
+</span></span><span style=display:flex><span>    [<span style=color:#e6db74>&#34;endpoint&#34;</span>],
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>CITATIONS <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Il semble que la perfection soit atteinte non quand il n&#39;y a plus rien &#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;à ajouter, mais quand il n&#39;y a plus rien à retrancher. &#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;— Antoine de Saint-Exupéry&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Premature optimization is the root of all evil. — Donald Knuth&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;There are only two hard things in Computer Science: cache invalidation &#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;and naming things. — Phil Karlton&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Any fool can write code that a computer can understand. Good programmers &#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;write code that humans can understand. — Martin Fowler&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Simplicity is prerequisite for reliability. — Edsger Dijkstra&#34;</span>,
+</span></span><span style=display:flex><span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.get</span>(<span style=color:#e6db74>&#34;/&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>index</span>():
+</span></span><span style=display:flex><span>    start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
+</span></span><span style=display:flex><span>    REQUETES<span style=color:#f92672>.</span>labels(methode<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;GET&#34;</span>, endpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/&#34;</span>, status<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;200&#34;</span>)<span style=color:#f92672>.</span>inc()
+</span></span><span style=display:flex><span>    LATENCE<span style=color:#f92672>.</span>labels(endpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/&#34;</span>)<span style=color:#f92672>.</span>observe(time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> start)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;Bienvenue! Essayez /quote pour une citation aléatoire.&#34;</span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.get</span>(<span style=color:#e6db74>&#34;/quote&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>quote</span>():
+</span></span><span style=display:flex><span>    start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Simuler une latence variable (entre 10ms et 500ms)</span>
+</span></span><span style=display:flex><span>    delay <span style=color:#f92672>=</span> random<span style=color:#f92672>.</span>uniform(<span style=color:#ae81ff>0.01</span>, <span style=color:#ae81ff>0.5</span>)
+</span></span><span style=display:flex><span>    time<span style=color:#f92672>.</span>sleep(delay)
+</span></span><span style=display:flex><span>    citation <span style=color:#f92672>=</span> random<span style=color:#f92672>.</span>choice(CITATIONS)
+</span></span><span style=display:flex><span>    logger<span style=color:#f92672>.</span>info(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Citation servie en </span><span style=color:#e6db74>{</span>delay<span style=color:#e6db74>:</span><span style=color:#e6db74>.3f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>s&#34;</span>)
+</span></span><span style=display:flex><span>    REQUETES<span style=color:#f92672>.</span>labels(methode<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;GET&#34;</span>, endpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/quote&#34;</span>, status<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;200&#34;</span>)<span style=color:#f92672>.</span>inc()
+</span></span><span style=display:flex><span>    LATENCE<span style=color:#f92672>.</span>labels(endpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/quote&#34;</span>)<span style=color:#f92672>.</span>observe(time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> start)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;quote&#34;</span>: citation}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.get</span>(<span style=color:#e6db74>&#34;/error&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>error</span>():
+</span></span><span style=display:flex><span>    start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Simuler une erreur 50% du temps</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> random<span style=color:#f92672>.</span>random() <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0.5</span>:
+</span></span><span style=display:flex><span>        REQUETES<span style=color:#f92672>.</span>labels(methode<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;GET&#34;</span>, endpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/error&#34;</span>, status<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;500&#34;</span>)<span style=color:#f92672>.</span>inc()
+</span></span><span style=display:flex><span>        LATENCE<span style=color:#f92672>.</span>labels(endpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/error&#34;</span>)<span style=color:#f92672>.</span>observe(time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> start)
+</span></span><span style=display:flex><span>        logger<span style=color:#f92672>.</span>error(<span style=color:#e6db74>&#34;Erreur simulée sur /error&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> Response(
+</span></span><span style=display:flex><span>            content<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;{&#34;error&#34;: &#34;Erreur interne simulée&#34;}&#39;</span>, status_code<span style=color:#f92672>=</span><span style=color:#ae81ff>500</span>
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>    REQUETES<span style=color:#f92672>.</span>labels(methode<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;GET&#34;</span>, endpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/error&#34;</span>, status<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;200&#34;</span>)<span style=color:#f92672>.</span>inc()
+</span></span><span style=display:flex><span>    LATENCE<span style=color:#f92672>.</span>labels(endpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/error&#34;</span>)<span style=color:#f92672>.</span>observe(time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> start)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;Pas d&#39;erreur cette fois!&#34;</span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.get</span>(<span style=color:#e6db74>&#34;/metrics&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>metrics</span>():
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> Response(content<span style=color:#f92672>=</span>generate_latest(), media_type<span style=color:#f92672>=</span>CONTENT_TYPE_LATEST)</span></span></code></pre></div><p>L&rsquo;application a trois comportements distincts qui rendront les métriques
+intéressantes. L&rsquo;endpoint <code>/</code> répond instantanément. L&rsquo;endpoint <code>/quote</code> simule
+une latence variable (entre 10 et 500 millisecondes) pour produire une
+distribution de latence réaliste. L&rsquo;endpoint <code>/error</code> simule une erreur 50 % du
+temps, ce qui nous donnera un taux d&rsquo;erreurs visible dans les métriques.
+L&rsquo;endpoint <code>/metrics</code> expose les données au format Prometheus.</p><p>On retrouve les types de métriques que nous avons vus plus haut. <code>REQUETES</code> est
+un <strong>counter</strong> avec trois labels (méthode HTTP, endpoint, code de statut), qui
+nous permettra de calculer le trafic par seconde et le taux d&rsquo;erreurs. <code>LATENCE</code>
+est un <strong>histogram</strong> par endpoint, qui nous donnera les percentiles de latence.
+L&rsquo;instrumentation est manuelle : au début de chaque handler, on note le temps, et
+à la fin, on incrémente le counter et on observe la latence dans l&rsquo;histogram.</p><h3 id=déploiement-dans-kubernetes>Déploiement dans Kubernetes<a class=anchor href=#d%c3%a9ploiement-dans-kubernetes>#</a></h3><p>Le Dockerfile est minimal : une image Python, les dépendances installées avec
+pip, et uvicorn comme serveur ASGI :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python:3.12-slim</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> pip install fastapi uvicorn prometheus-client<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> main.py /app/<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/app</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CMD</span> [<span style=color:#e6db74>&#34;uvicorn&#34;</span>, <span style=color:#e6db74>&#34;main:app&#34;</span>, <span style=color:#e6db74>&#34;--host&#34;</span>, <span style=color:#e6db74>&#34;0.0.0.0&#34;</span>, <span style=color:#e6db74>&#34;--port&#34;</span>, <span style=color:#e6db74>&#34;8000&#34;</span>]</span></span></code></pre></div><p>Créons le cluster k3d, construisons l&rsquo;image et importons-la :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ k3d cluster create obs-demo -p <span style=color:#e6db74>&#34;8080:80@loadbalancer&#34;</span>
+</span></span><span style=display:flex><span>$ docker build -t quotes-api .
+</span></span><span style=display:flex><span>$ k3d image import quotes-api:latest -c obs-demo</span></span></code></pre></div><p>Le Deployment demande deux répliques de notre application, ce qui est réaliste
+pour un service en production et nous permettra de voir les métriques agrégées de
+plusieurs instances :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># app-deployment.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>quotes-api</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>quotes-api</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>quotes-api</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>quotes-api</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>quotes-api:latest</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>Never</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>8000</span></span></span></code></pre></div><p>Le Service et l&rsquo;Ingress rendent l&rsquo;application accessible depuis l&rsquo;extérieur du
+cluster, comme dans le tutoriel précédent :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># app-service.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>quotes-api</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>quotes-api</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>port</span>: <span style=color:#ae81ff>8000</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>targetPort</span>: <span style=color:#ae81ff>8000</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># app-ingress.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>networking.k8s.io/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Ingress</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>quotes-api</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>rules</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>http</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>paths</span>:
+</span></span><span style=display:flex><span>          - <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>pathType</span>: <span style=color:#ae81ff>Prefix</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>backend</span>:
+</span></span><span style=display:flex><span>              <span style=color:#f92672>service</span>:
+</span></span><span style=display:flex><span>                <span style=color:#f92672>name</span>: <span style=color:#ae81ff>quotes-api</span>
+</span></span><span style=display:flex><span>                <span style=color:#f92672>port</span>:
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>number</span>: <span style=color:#ae81ff>8000</span></span></span></code></pre></div><p>Appliquons le tout :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ kubectl apply -f app-deployment.yaml -f app-service.yaml -f app-ingress.yaml</span></span></code></pre></div><p>Vérifions que l&rsquo;application répond :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ curl http://localhost:8080/quote
+</span></span><span style=display:flex><span><span style=color:#f92672>{</span><span style=color:#e6db74>&#34;quote&#34;</span>:<span style=color:#e6db74>&#34;Simplicity is prerequisite for reliability. — Edsger Dijkstra&#34;</span><span style=color:#f92672>}</span></span></span></code></pre></div><p>Et surtout, vérifions que l&rsquo;endpoint <code>/metrics</code> expose bien les données au
+format Prometheus :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ curl http://localhost:8080/metrics
+</span></span><span style=display:flex><span><span style=color:#75715e># HELP http_requetes_total Nombre total de requêtes HTTP</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># TYPE http_requetes_total counter</span>
+</span></span><span style=display:flex><span>http_requetes_total<span style=color:#f92672>{</span>methode<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;GET&#34;</span>,endpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/quote&#34;</span>,status<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;200&#34;</span><span style=color:#f92672>}</span> 1.0
+</span></span><span style=display:flex><span><span style=color:#75715e># HELP http_latence_secondes Latence des requêtes HTTP en secondes</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># TYPE http_latence_secondes histogram</span>
+</span></span><span style=display:flex><span>http_latence_secondes_bucket<span style=color:#f92672>{</span>endpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/quote&#34;</span>,le<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;0.005&#34;</span><span style=color:#f92672>}</span> 0.0
+</span></span><span style=display:flex><span>http_latence_secondes_bucket<span style=color:#f92672>{</span>endpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/quote&#34;</span>,le<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;0.01&#34;</span><span style=color:#f92672>}</span> 0.0
+</span></span><span style=display:flex><span>...</span></span></code></pre></div><p>On voit ici le format textuel de Prometheus : chaque métrique est identifiée par
+son nom et ses labels, avec une ligne <code>HELP</code> (description) et une ligne <code>TYPE</code>
+(counter, histogram, etc.). Pour l&rsquo;histogram, Prometheus crée automatiquement des
+<em>buckets</em> (des tranches de valeurs) qui permettront de calculer les percentiles.</p><h3 id=déployer-prometheus>Déployer Prometheus<a class=anchor href=#d%c3%a9ployer-prometheus>#</a></h3><p>Prometheus a besoin de savoir quelles cibles scraper. Cette configuration se fait
+via un fichier <code>prometheus.yml</code>, que nous fournissons sous forme de ConfigMap
+Kubernetes :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># prometheus-config.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>ConfigMap</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>prometheus-config</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>data</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>prometheus.yml</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    global:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      scrape_interval: 15s
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    scrape_configs:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - job_name: &#34;quotes-api&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        static_configs:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          - targets: [&#34;quotes-api:8000&#34;]</span></span></span></code></pre></div><p>La configuration est minimale : on dit à Prometheus d&rsquo;interroger le service
+<code>quotes-api</code> sur le port 8000 toutes les 15 secondes. Prometheus ira
+automatiquement chercher l&rsquo;endpoint <code>/metrics</code> à cette adresse. Le nom
+<code>quotes-api</code> fonctionne comme nom de domaine à l&rsquo;intérieur du cluster grâce au
+Service Kubernetes que nous avons créé, de la même manière que <code>redis</code>
+fonctionnait dans le tutoriel précédent.</p><p>Le Deployment de Prometheus monte ce ConfigMap comme volume pour que le conteneur
+y ait accès :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># prometheus-deployment.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>prometheus</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>prometheus</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>prometheus</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>prometheus</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>prom/prometheus:latest</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>9090</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>volumeMounts</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>config</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>mountPath</span>: <span style=color:#ae81ff>/etc/prometheus/prometheus.yml</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>subPath</span>: <span style=color:#ae81ff>prometheus.yml</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>config</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>configMap</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>name</span>: <span style=color:#ae81ff>prometheus-config</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># prometheus-service.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>prometheus</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>prometheus</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>port</span>: <span style=color:#ae81ff>9090</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>targetPort</span>: <span style=color:#ae81ff>9090</span></span></span></code></pre></div><p>Appliquons le tout :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ kubectl apply -f prometheus-config.yaml -f prometheus-deployment.yaml <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>    -f prometheus-service.yaml</span></span></code></pre></div><p>Pour accéder à l&rsquo;interface web de Prometheus, on utilise <code>kubectl port-forward</code>,
+qui crée un tunnel entre notre machine locale et le service à l&rsquo;intérieur du
+cluster :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ kubectl port-forward svc/prometheus 9090:9090</span></span></code></pre></div><p>En ouvrant <code>http://localhost:9090/targets</code> dans le navigateur, on peut vérifier
+que Prometheus scrape bien notre application. La cible <code>quotes-api</code> devrait
+apparaître en état &ldquo;UP&rdquo;, avec la date du dernier scrape.</p><h3 id=visualiser-avec-grafana>Visualiser avec Grafana<a class=anchor href=#visualiser-avec-grafana>#</a></h3><p>Prometheus collecte et stocke les métriques, mais son interface de visualisation
+est rudimentaire. Pour construire un vrai dashboard, on déploie Grafana dans le
+cluster. La configuration nécessite trois éléments : dire à Grafana où trouver
+Prometheus (le datasource), lui fournir un dashboard préconfiguré, et déployer le
+conteneur lui-même.</p><p>Le datasource est fourni via un ConfigMap de provisioning. L&rsquo;<code>uid</code> fixe
+(<code>prometheus</code>) permet au dashboard de référencer cette source de données de
+manière stable :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># grafana-datasource.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>ConfigMap</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>grafana-datasource</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>data</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>datasource.yml</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    apiVersion: 1
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    datasources:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - name: Prometheus
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        type: prometheus
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        uid: prometheus
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        access: proxy
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        url: http://prometheus:9090
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        isDefault: true</span></span></span></code></pre></div><p>Le dashboard est un fichier JSON, fourni lui aussi via ConfigMap. Grafana permet
+de provisionner des dashboards automatiquement au démarrage : un premier
+ConfigMap indique le dossier où chercher les fichiers JSON, et un second contient
+le dashboard lui-même. Notre dashboard comporte quatre panneaux qui correspondent
+aux quatre golden signals :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># grafana-dashboard.yaml (provider)</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>ConfigMap</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>grafana-dashboard-provider</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>data</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>dashboard.yml</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    apiVersion: 1
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    providers:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - name: default
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        folder: &#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        type: file
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        options:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          path: /var/lib/grafana/dashboards</span></span></span></code></pre></div><p>Le JSON du dashboard définit quatre panneaux. Le premier affiche le <strong>trafic</strong>
+(requêtes par seconde, décomposées par endpoint et code de statut) en utilisant
+la fonction <code>rate()</code> de Prometheus, qui calcule le taux de variation d&rsquo;un
+counter. Le deuxième montre le <strong>taux d&rsquo;erreurs</strong> en pourcentage. Le troisième
+affiche la <strong>latence</strong> par percentile (p50, p95, p99) en utilisant
+<code>histogram_quantile()</code>. Le quatrième est un simple compteur du <strong>nombre total de
+requêtes</strong>.</p><p>Le Deployment de Grafana monte les trois ConfigMaps comme volumes et configure
+l&rsquo;accès anonyme pour simplifier le tutoriel (en production, on configurerait
+évidemment une authentification) :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># grafana-deployment.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>grafana</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>grafana</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>grafana</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>grafana</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>grafana/grafana:latest</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>3000</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>env</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>GF_AUTH_ANONYMOUS_ENABLED</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;true&#34;</span>
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>GF_AUTH_ANONYMOUS_ORG_ROLE</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;Admin&#34;</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>volumeMounts</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>datasource</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>mountPath</span>: <span style=color:#ae81ff>/etc/grafana/provisioning/datasources</span>
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>dashboard-provider</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>mountPath</span>: <span style=color:#ae81ff>/etc/grafana/provisioning/dashboards</span>
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>dashboard-json</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>mountPath</span>: <span style=color:#ae81ff>/var/lib/grafana/dashboards</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>datasource</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>configMap</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>name</span>: <span style=color:#ae81ff>grafana-datasource</span>
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>dashboard-provider</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>configMap</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>name</span>: <span style=color:#ae81ff>grafana-dashboard-provider</span>
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>dashboard-json</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>configMap</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>name</span>: <span style=color:#ae81ff>grafana-dashboard-json</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># grafana-service.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>grafana</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>grafana</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>port</span>: <span style=color:#ae81ff>3000</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>targetPort</span>: <span style=color:#ae81ff>3000</span></span></span></code></pre></div><p>Appliquons le tout :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ kubectl apply -f grafana-datasource.yaml -f grafana-dashboard.yaml <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>    -f grafana-deployment.yaml -f grafana-service.yaml</span></span></code></pre></div><p>Puis ouvrons un tunnel vers Grafana :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ kubectl port-forward svc/grafana 3000:3000</span></span></code></pre></div><p>En ouvrant <code>http://localhost:3000</code> dans le navigateur, puis en naviguant vers
+Dashboards, on trouve le dashboard &ldquo;Quotes API&rdquo; préconfiguré. Pour l&rsquo;instant,
+les graphiques sont vides : il n&rsquo;y a pas encore de trafic.</p><h3 id=générer-du-trafic-et-observer>Générer du trafic et observer<a class=anchor href=#g%c3%a9n%c3%a9rer-du-trafic-et-observer>#</a></h3><p>Pour alimenter les métriques, un petit script shell envoie des requêtes en boucle
+vers les trois endpoints :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
+</span></span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Génération de trafic vers l&#39;API...&#34;</span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Appuyez sur Ctrl+C pour arrêter.&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>while</span> true; <span style=color:#66d9ef>do</span>
+</span></span><span style=display:flex><span>    curl -s http://localhost:8080/quote &gt; /dev/null
+</span></span><span style=display:flex><span>    curl -s http://localhost:8080/ &gt; /dev/null
+</span></span><span style=display:flex><span>    curl -s http://localhost:8080/error &gt; /dev/null
+</span></span><span style=display:flex><span>    sleep 0.5
+</span></span><span style=display:flex><span><span style=color:#66d9ef>done</span></span></span></code></pre></div><p>Après quelques minutes de trafic, le dashboard Grafana prend vie. On y observe
+les quatre golden signals en temps réel :</p><ul><li><strong>Requêtes par seconde</strong> : les trois endpoints apparaissent avec leur trafic
+respectif. On voit aussi la distinction par code de statut : l&rsquo;endpoint
+<code>/error</code> produit à la fois des lignes 200 et 500.</li><li><strong>Taux d&rsquo;erreurs</strong> : l&rsquo;endpoint <code>/error</code> oscille autour de 50 %, ce qui
+correspond au <code>random.random() &lt; 0.5</code> dans notre code. Les autres endpoints
+n&rsquo;apparaissent pas, car ils ne produisent pas d&rsquo;erreurs.</li><li><strong>Latence par percentile</strong> : c&rsquo;est le panneau le plus instructif. L&rsquo;endpoint
+<code>/quote</code>, avec son délai aléatoire entre 10 et 500 ms, produit une
+distribution visible : le p50 (la médiane) est autour de 250 ms, tandis que le
+p99 approche 500 ms. On voit concrètement pourquoi la moyenne seule est
+trompeuse : les percentiles révèlent la forme de la distribution.</li><li><strong>Nombre total de requêtes</strong> : un compteur qui augmente en continu, confirmant
+que le trafic est bien reçu.</li></ul><p>Ce tutoriel illustre le pipeline complet de l&rsquo;observabilité par métriques :
+l&rsquo;application instrumente son code avec <code>prometheus_client</code>, expose un endpoint
+<code>/metrics</code>, Prometheus collecte ces données toutes les 15 secondes, et Grafana
+les transforme en visualisations exploitables. En production, le même mécanisme
+fonctionne à grande échelle : Prometheus peut scraper des centaines de services,
+et Grafana peut afficher des dizaines de dashboards couvrant toute
+l&rsquo;infrastructure. Le principe reste le même, seul le nombre de cibles change.</p><p>Pour nettoyer l&rsquo;environnement quand vous avez terminé :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ k3d cluster delete obs-demo</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
 <span>Comment je le déploie ?</span>
 </a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ class="flex align-center"><span>Module 6 - Regard vers le futur</span>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#les-logs>Les logs</a></li><li><a href=#les-métriques>Les métriques</a></li><li><a href=#le-tracing-distribué>Le tracing distribué</a></li><li><a href=#les-alertes>Les alertes</a></li><li><a href=#slis-slos-et-slas>SLIs, SLOs et SLAs</a></li></ul></nav></div></aside></main></body></html>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#les-logs>Les logs</a></li><li><a href=#les-métriques>Les métriques</a></li><li><a href=#le-tracing-distribué>Le tracing distribué</a></li><li><a href=#les-alertes>Les alertes</a></li><li><a href=#slis-slos-et-slas>SLIs, SLOs et SLAs</a></li><li><a href=#tutoriel--observer-une-application-en-temps-réel>Tutoriel : observer une application en temps réel</a><ul><li><a href=#lapplication>L&rsquo;application</a></li><li><a href=#déploiement-dans-kubernetes>Déploiement dans Kubernetes</a></li><li><a href=#déployer-prometheus>Déployer Prometheus</a></li><li><a href=#visualiser-avec-grafana>Visualiser avec Grafana</a></li><li><a href=#générer-du-trafic-et-observer>Générer du trafic et observer</a></li></ul></li></ul></nav></div></aside></main></body></html>
