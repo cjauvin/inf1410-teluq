@@ -511,3 +511,524 @@ stabilité) en une décision basée sur des données plutôt que sur des opinion
 C'est une incarnation concrète de la troisième voie de DevOps : l'apprentissage
 continu et la prise de risque calculée. Nous reviendrons sur ce concept dans la
 prochaine section, consacrée à la gestion des incidents.
+
+## Tutoriel : observer une application en temps réel
+
+Nous avons décrit les concepts de l'observabilité de manière abstraite. Pour les
+rendre concrets, nous allons instrumenter une petite application FastAPI avec des
+métriques Prometheus, la déployer dans un cluster Kubernetes local (avec k3d, que
+nous avons utilisé dans la section sur l'infrastructure), et visualiser ses
+métriques en temps réel dans un dashboard Grafana. L'objectif est de voir, de
+bout en bout, comment le code d'une application se transforme en courbes sur un
+écran.
+
+### L'application
+
+Notre application est un petit service de citations aléatoires, avec trois
+endpoints :
+
+```python
+import time
+import random
+import logging
+
+from fastapi import FastAPI, Response
+from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+app = FastAPI()
+
+REQUETES = Counter(
+    "http_requetes_total",
+    "Nombre total de requêtes HTTP",
+    ["methode", "endpoint", "status"],
+)
+
+LATENCE = Histogram(
+    "http_latence_secondes",
+    "Latence des requêtes HTTP en secondes",
+    ["endpoint"],
+)
+
+CITATIONS = [
+    "Il semble que la perfection soit atteinte non quand il n'y a plus rien "
+    "à ajouter, mais quand il n'y a plus rien à retrancher. "
+    "— Antoine de Saint-Exupéry",
+    "Premature optimization is the root of all evil. — Donald Knuth",
+    "There are only two hard things in Computer Science: cache invalidation "
+    "and naming things. — Phil Karlton",
+    "Any fool can write code that a computer can understand. Good programmers "
+    "write code that humans can understand. — Martin Fowler",
+    "Simplicity is prerequisite for reliability. — Edsger Dijkstra",
+]
+
+
+@app.get("/")
+def index():
+    start = time.time()
+    REQUETES.labels(methode="GET", endpoint="/", status="200").inc()
+    LATENCE.labels(endpoint="/").observe(time.time() - start)
+    return {"message": "Bienvenue! Essayez /quote pour une citation aléatoire."}
+
+
+@app.get("/quote")
+def quote():
+    start = time.time()
+    # Simuler une latence variable (entre 10ms et 500ms)
+    delay = random.uniform(0.01, 0.5)
+    time.sleep(delay)
+    citation = random.choice(CITATIONS)
+    logger.info(f"Citation servie en {delay:.3f}s")
+    REQUETES.labels(methode="GET", endpoint="/quote", status="200").inc()
+    LATENCE.labels(endpoint="/quote").observe(time.time() - start)
+    return {"quote": citation}
+
+
+@app.get("/error")
+def error():
+    start = time.time()
+    # Simuler une erreur 50% du temps
+    if random.random() < 0.5:
+        REQUETES.labels(methode="GET", endpoint="/error", status="500").inc()
+        LATENCE.labels(endpoint="/error").observe(time.time() - start)
+        logger.error("Erreur simulée sur /error")
+        return Response(
+            content='{"error": "Erreur interne simulée"}', status_code=500
+        )
+    REQUETES.labels(methode="GET", endpoint="/error", status="200").inc()
+    LATENCE.labels(endpoint="/error").observe(time.time() - start)
+    return {"message": "Pas d'erreur cette fois!"}
+
+
+@app.get("/metrics")
+def metrics():
+    return Response(content=generate_latest(), media_type=CONTENT_TYPE_LATEST)
+```
+
+L'application a trois comportements distincts qui rendront les métriques
+intéressantes. L'endpoint `/` répond instantanément. L'endpoint `/quote` simule
+une latence variable (entre 10 et 500 millisecondes) pour produire une
+distribution de latence réaliste. L'endpoint `/error` simule une erreur 50 % du
+temps, ce qui nous donnera un taux d'erreurs visible dans les métriques.
+L'endpoint `/metrics` expose les données au format Prometheus.
+
+On retrouve les types de métriques que nous avons vus plus haut. `REQUETES` est
+un **counter** avec trois labels (méthode HTTP, endpoint, code de statut), qui
+nous permettra de calculer le trafic par seconde et le taux d'erreurs. `LATENCE`
+est un **histogram** par endpoint, qui nous donnera les percentiles de latence.
+L'instrumentation est manuelle : au début de chaque handler, on note le temps, et
+à la fin, on incrémente le counter et on observe la latence dans l'histogram.
+
+### Déploiement dans Kubernetes
+
+Le Dockerfile est minimal : une image Python, les dépendances installées avec
+pip, et uvicorn comme serveur ASGI :
+
+```dockerfile
+FROM python:3.12-slim
+
+RUN pip install fastapi uvicorn prometheus-client
+
+COPY main.py /app/
+
+WORKDIR /app
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+Créons le cluster k3d, construisons l'image et importons-la :
+
+```shell
+$ k3d cluster create obs-demo -p "8080:80@loadbalancer"
+$ docker build -t quotes-api .
+$ k3d image import quotes-api:latest -c obs-demo
+```
+
+Le Deployment demande deux répliques de notre application, ce qui est réaliste
+pour un service en production et nous permettra de voir les métriques agrégées de
+plusieurs instances :
+
+```yaml
+# app-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quotes-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quotes-api
+  template:
+    metadata:
+      labels:
+        app: quotes-api
+    spec:
+      containers:
+        - name: quotes-api
+          image: quotes-api:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+```
+
+Le Service et l'Ingress rendent l'application accessible depuis l'extérieur du
+cluster, comme dans le tutoriel précédent :
+
+```yaml
+# app-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: quotes-api
+spec:
+  selector:
+    app: quotes-api
+  ports:
+    - port: 8000
+      targetPort: 8000
+```
+
+```yaml
+# app-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: quotes-api
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: quotes-api
+                port:
+                  number: 8000
+```
+
+Appliquons le tout :
+
+```shell
+$ kubectl apply -f app-deployment.yaml -f app-service.yaml -f app-ingress.yaml
+```
+
+Vérifions que l'application répond :
+
+```shell
+$ curl http://localhost:8080/quote
+{"quote":"Simplicity is prerequisite for reliability. — Edsger Dijkstra"}
+```
+
+Et surtout, vérifions que l'endpoint `/metrics` expose bien les données au
+format Prometheus :
+
+```shell
+$ curl http://localhost:8080/metrics
+# HELP http_requetes_total Nombre total de requêtes HTTP
+# TYPE http_requetes_total counter
+http_requetes_total{methode="GET",endpoint="/quote",status="200"} 1.0
+# HELP http_latence_secondes Latence des requêtes HTTP en secondes
+# TYPE http_latence_secondes histogram
+http_latence_secondes_bucket{endpoint="/quote",le="0.005"} 0.0
+http_latence_secondes_bucket{endpoint="/quote",le="0.01"} 0.0
+...
+```
+
+On voit ici le format textuel de Prometheus : chaque métrique est identifiée par
+son nom et ses labels, avec une ligne `HELP` (description) et une ligne `TYPE`
+(counter, histogram, etc.). Pour l'histogram, Prometheus crée automatiquement des
+*buckets* (des tranches de valeurs) qui permettront de calculer les percentiles.
+
+### Déployer Prometheus
+
+Prometheus a besoin de savoir quelles cibles scraper. Cette configuration se fait
+via un fichier `prometheus.yml`, que nous fournissons sous forme de ConfigMap
+Kubernetes :
+
+```yaml
+# prometheus-config.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+
+    scrape_configs:
+      - job_name: "quotes-api"
+        static_configs:
+          - targets: ["quotes-api:8000"]
+```
+
+La configuration est minimale : on dit à Prometheus d'interroger le service
+`quotes-api` sur le port 8000 toutes les 15 secondes. Prometheus ira
+automatiquement chercher l'endpoint `/metrics` à cette adresse. Le nom
+`quotes-api` fonctionne comme nom de domaine à l'intérieur du cluster grâce au
+Service Kubernetes que nous avons créé, de la même manière que `redis`
+fonctionnait dans le tutoriel précédent.
+
+Le Deployment de Prometheus monte ce ConfigMap comme volume pour que le conteneur
+y ait accès :
+
+```yaml
+# prometheus-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+        - name: prometheus
+          image: prom/prometheus:latest
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: config
+              mountPath: /etc/prometheus/prometheus.yml
+              subPath: prometheus.yml
+      volumes:
+        - name: config
+          configMap:
+            name: prometheus-config
+```
+
+```yaml
+# prometheus-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+spec:
+  selector:
+    app: prometheus
+  ports:
+    - port: 9090
+      targetPort: 9090
+```
+
+Appliquons le tout :
+
+```shell
+$ kubectl apply -f prometheus-config.yaml -f prometheus-deployment.yaml \
+    -f prometheus-service.yaml
+```
+
+Pour accéder à l'interface web de Prometheus, on utilise `kubectl port-forward`,
+qui crée un tunnel entre notre machine locale et le service à l'intérieur du
+cluster :
+
+```shell
+$ kubectl port-forward svc/prometheus 9090:9090
+```
+
+En ouvrant `http://localhost:9090/targets` dans le navigateur, on peut vérifier
+que Prometheus scrape bien notre application. La cible `quotes-api` devrait
+apparaître en état "UP", avec la date du dernier scrape.
+
+<!-- ILLUSTRATION: capture d'écran de l'interface Prometheus montrant la cible quotes-api en état UP -->
+
+### Visualiser avec Grafana
+
+Prometheus collecte et stocke les métriques, mais son interface de visualisation
+est rudimentaire. Pour construire un vrai dashboard, on déploie Grafana dans le
+cluster. La configuration nécessite trois éléments : dire à Grafana où trouver
+Prometheus (le datasource), lui fournir un dashboard préconfiguré, et déployer le
+conteneur lui-même.
+
+Le datasource est fourni via un ConfigMap de provisioning. L'`uid` fixe
+(`prometheus`) permet au dashboard de référencer cette source de données de
+manière stable :
+
+```yaml
+# grafana-datasource.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasource
+data:
+  datasource.yml: |
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        uid: prometheus
+        access: proxy
+        url: http://prometheus:9090
+        isDefault: true
+```
+
+Le dashboard est un fichier JSON, fourni lui aussi via ConfigMap. Grafana permet
+de provisionner des dashboards automatiquement au démarrage : un premier
+ConfigMap indique le dossier où chercher les fichiers JSON, et un second contient
+le dashboard lui-même. Notre dashboard comporte quatre panneaux qui correspondent
+aux quatre golden signals :
+
+```yaml
+# grafana-dashboard.yaml (provider)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard-provider
+data:
+  dashboard.yml: |
+    apiVersion: 1
+    providers:
+      - name: default
+        folder: ""
+        type: file
+        options:
+          path: /var/lib/grafana/dashboards
+```
+
+Le JSON du dashboard définit quatre panneaux. Le premier affiche le **trafic**
+(requêtes par seconde, décomposées par endpoint et code de statut) en utilisant
+la fonction `rate()` de Prometheus, qui calcule le taux de variation d'un
+counter. Le deuxième montre le **taux d'erreurs** en pourcentage. Le troisième
+affiche la **latence** par percentile (p50, p95, p99) en utilisant
+`histogram_quantile()`. Le quatrième est un simple compteur du **nombre total de
+requêtes**.
+
+Le Deployment de Grafana monte les trois ConfigMaps comme volumes et configure
+l'accès anonyme pour simplifier le tutoriel (en production, on configurerait
+évidemment une authentification) :
+
+```yaml
+# grafana-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: GF_AUTH_ANONYMOUS_ENABLED
+              value: "true"
+            - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+              value: "Admin"
+          volumeMounts:
+            - name: datasource
+              mountPath: /etc/grafana/provisioning/datasources
+            - name: dashboard-provider
+              mountPath: /etc/grafana/provisioning/dashboards
+            - name: dashboard-json
+              mountPath: /var/lib/grafana/dashboards
+      volumes:
+        - name: datasource
+          configMap:
+            name: grafana-datasource
+        - name: dashboard-provider
+          configMap:
+            name: grafana-dashboard-provider
+        - name: dashboard-json
+          configMap:
+            name: grafana-dashboard-json
+```
+
+```yaml
+# grafana-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+spec:
+  selector:
+    app: grafana
+  ports:
+    - port: 3000
+      targetPort: 3000
+```
+
+Appliquons le tout :
+
+```shell
+$ kubectl apply -f grafana-datasource.yaml -f grafana-dashboard.yaml \
+    -f grafana-deployment.yaml -f grafana-service.yaml
+```
+
+Puis ouvrons un tunnel vers Grafana :
+
+```shell
+$ kubectl port-forward svc/grafana 3000:3000
+```
+
+En ouvrant `http://localhost:3000` dans le navigateur, puis en naviguant vers
+Dashboards, on trouve le dashboard "Quotes API" préconfiguré. Pour l'instant,
+les graphiques sont vides : il n'y a pas encore de trafic.
+
+### Générer du trafic et observer
+
+Pour alimenter les métriques, un petit script shell envoie des requêtes en boucle
+vers les trois endpoints :
+
+```shell
+#!/bin/bash
+echo "Génération de trafic vers l'API..."
+echo "Appuyez sur Ctrl+C pour arrêter."
+while true; do
+    curl -s http://localhost:8080/quote > /dev/null
+    curl -s http://localhost:8080/ > /dev/null
+    curl -s http://localhost:8080/error > /dev/null
+    sleep 0.5
+done
+```
+
+Après quelques minutes de trafic, le dashboard Grafana prend vie. On y observe
+les quatre golden signals en temps réel :
+
+<!-- ILLUSTRATION: capture d'écran du dashboard Grafana "Quotes API" avec les quatre panneaux montrant des courbes actives -->
+
+- **Requêtes par seconde** : les trois endpoints apparaissent avec leur trafic
+  respectif. On voit aussi la distinction par code de statut : l'endpoint
+  `/error` produit à la fois des lignes 200 et 500.
+- **Taux d'erreurs** : l'endpoint `/error` oscille autour de 50 %, ce qui
+  correspond au `random.random() < 0.5` dans notre code. Les autres endpoints
+  n'apparaissent pas, car ils ne produisent pas d'erreurs.
+- **Latence par percentile** : c'est le panneau le plus instructif. L'endpoint
+  `/quote`, avec son délai aléatoire entre 10 et 500 ms, produit une
+  distribution visible : le p50 (la médiane) est autour de 250 ms, tandis que le
+  p99 approche 500 ms. On voit concrètement pourquoi la moyenne seule est
+  trompeuse : les percentiles révèlent la forme de la distribution.
+- **Nombre total de requêtes** : un compteur qui augmente en continu, confirmant
+  que le trafic est bien reçu.
+
+Ce tutoriel illustre le pipeline complet de l'observabilité par métriques :
+l'application instrumente son code avec `prometheus_client`, expose un endpoint
+`/metrics`, Prometheus collecte ces données toutes les 15 secondes, et Grafana
+les transforme en visualisations exploitables. En production, le même mécanisme
+fonctionne à grande échelle : Prometheus peut scraper des centaines de services,
+et Grafana peut afficher des dizaines de dashboards couvrant toute
+l'infrastructure. Le principe reste le même, seul le nombre de cibles change.
+
+Pour nettoyer l'environnement quand vous avez terminé :
+
+```shell
+$ k3d cluster delete obs-demo
+```
