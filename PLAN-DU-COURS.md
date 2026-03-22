@@ -393,7 +393,7 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   - Facteur X (dev/prod parity) : Docker comme solution
   - Facteur III (config) : la configuration comme seule variable entre environnements
 
-## « Est-ce que ça marche ? » (en cours)
+## « Est-ce que ça marche ? » (complété)
 - Introduction : perte de visibilité en production, deuxième voie de DevOps (feedback)
   - Origine du terme : Rudolf Kálmán (théorie du contrôle, 1960), filtre de Kálmán
   - Monitoring vs observabilité : Charity Majors (Honeycomb, 2017-2018)
@@ -424,16 +424,18 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   - SLO : cible sur un SLI, coût exponentiel des "9"
   - SLA : contrat formel avec conséquences financières
   - Error budget : le droit à l'erreur comme ressource, lien avec la troisième voie de DevOps
-- Tutoriel pratique (à développer) : app FastAPI instrumentée + Prometheus + Grafana dans k3d
+- Tutoriel pratique (complété) : app FastAPI instrumentée + Prometheus + Grafana dans k3d
 
-## « Que faire quand ça casse ? » (à développer)
-- L'incident est inévitable : accepter la faillibilité
-- Site Reliability Engineering (Google, livre de 2016) : les SRE comme pont entre dev et ops
-- Error budgets : quantifier le droit à l'erreur
-- Postmortems blameless : apprendre sans blâmer
-- Chaos engineering (Netflix Chaos Monkey, Principles of Chaos Engineering)
-- Runbooks et automatisation de la réponse
-- Lien avec la dette technique (module 4)
+## « Que faire quand ça casse ? » (complété)
+- L'incident est inévitable : accepter la faillibilité (AWS S3 2017, GitLab 2017)
+- Site Reliability Engineering (Ben Treynor Sloss, Google 2003, livre 2016) : cadre de référence
+- Error budgets : quantifier le droit à l'erreur, lien avec les SLOs (section observabilité)
+- Anatomie d'un incident : détection → triage → mitigation → résolution → postmortem
+- On-call et incident commander : rôles concrets pendant un incident
+- Postmortems blameless : John Allspaw (Etsy, 2012), Sidney Dekker, just culture
+- Chaos engineering : Netflix Chaos Monkey (2010), Principles of Chaos Engineering (2014), game days
+- Runbooks et automatisation : du document au code, lien avec Kubernetes health checks
+- La dette technique comme source d'incidents : lien avec le module 4 (Ward Cunningham 1992)
 
 ## « Est-ce que c'est sécuritaire ? » (à développer)
 - La sécurité comme préoccupation transversale, pas une couche ajoutée après

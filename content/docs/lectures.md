@@ -50,6 +50,14 @@ intégrées dans le cours.)*
   (2016) : formalisation des trois voies de DevOps (flow, feedback, apprentissage
   continu) →
   [Module 5, Introduction]({{< ref "/docs/module5" >}})
+- Google (Betsy Beyer, Chris Jones, Jennifer Petoff, Niall Richard Murphy),
+  *Site Reliability Engineering* (2016) : formalisation des pratiques SRE, error
+  budgets, on-call, postmortems →
+  [Module 5, Que faire quand ça casse ?]({{< ref "/docs/module5/40-incidents" >}})
+- Sidney Dekker, *The Field Guide to Understanding Human Error* (2006) :
+  approche systémique des erreurs humaines, fondement de la culture « just
+  culture » et des postmortems blameless →
+  [Module 5, Que faire quand ça casse ?]({{< ref "/docs/module5/40-incidents" >}})
 
 ## Articles et essais
 
@@ -122,3 +130,10 @@ intégrées dans le cours.)*
   complète du chemin entre le commit et la production, concept du deployment
   pipeline →
   [Module 5, Comment je le déploie ?]({{< ref "/docs/module5/20-deploiement" >}})
+- John Allspaw, *Blameless PostMortems and a Just Culture* (2012) :
+  formalisation de l'approche non punitive après les incidents, inspirée de
+  l'aviation et de la médecine →
+  [Module 5, Que faire quand ça casse ?]({{< ref "/docs/module5/40-incidents" >}})
+- Netflix, *Principles of Chaos Engineering* (2014) : formalisation du chaos
+  engineering, expériences en production pour tester la résilience →
+  [Module 5, Que faire quand ça casse ?]({{< ref "/docs/module5/40-incidents" >}})
