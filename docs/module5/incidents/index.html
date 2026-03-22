@@ -1,0 +1,192 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Que faire quand ça casse ?# Dans les sections précédentes, nous avons construit un pipeline qui amène le code en production et des outils pour observer ce qui s’y passe. Mais tôt ou tard, quelque chose va casser. Ce n’est pas une question de “si”, mais de “quand”. Le 28 février 2017, un ingénieur d’Amazon a exécuté une commande de maintenance de routine sur le service S3, l’infrastructure de stockage qui héberge une part considérable du web. Une faute de frappe dans un paramètre a retiré plus de serveurs que prévu, déclenchant une cascade de pannes qui a rendu inaccessibles des milliers de sites et services pendant plusieurs heures. La même année, un administrateur de base de données chez GitLab a accidentellement exécuté un rm -rf sur le mauvais serveur de base de données, effaçant 300 Go de données de production. Sur les cinq mécanismes de sauvegarde en place, aucun ne fonctionnait correctement. La récupération a été diffusée en direct sur YouTube, et le postmortem public est devenu un cas d’école en fiabilité logicielle. Ces incidents ne sont pas des aberrations causées par des incompétents : ils se produisent dans les organisations les plus sophistiquées du monde. La question centrale de cette section n’est donc pas “comment éviter toute panne” — c’est impossible — mais plutôt : comment s’organiser pour détecter vite, réagir bien, et surtout apprendre de chaque incident ?
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Que faire quand ça casse ?"><meta property="og:description" content="Que faire quand ça casse ?# Dans les sections précédentes, nous avons construit un pipeline qui amène le code en production et des outils pour observer ce qui s’y passe. Mais tôt ou tard, quelque chose va casser. Ce n’est pas une question de “si”, mais de “quand”. Le 28 février 2017, un ingénieur d’Amazon a exécuté une commande de maintenance de routine sur le service S3, l’infrastructure de stockage qui héberge une part considérable du web. Une faute de frappe dans un paramètre a retiré plus de serveurs que prévu, déclenchant une cascade de pannes qui a rendu inaccessibles des milliers de sites et services pendant plusieurs heures. La même année, un administrateur de base de données chez GitLab a accidentellement exécuté un rm -rf sur le mauvais serveur de base de données, effaçant 300 Go de données de production. Sur les cinq mécanismes de sauvegarde en place, aucun ne fonctionnait correctement. La récupération a été diffusée en direct sur YouTube, et le postmortem public est devenu un cas d’école en fiabilité logicielle. Ces incidents ne sont pas des aberrations causées par des incompétents : ils se produisent dans les organisations les plus sophistiquées du monde. La question centrale de cette section n’est donc pas “comment éviter toute panne” — c’est impossible — mais plutôt : comment s’organiser pour détecter vite, réagir bien, et surtout apprendre de chaque incident ?"><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Que faire quand ça casse ?"><meta itemprop=description content="Que faire quand ça casse ?# Dans les sections précédentes, nous avons construit un pipeline qui amène le code en production et des outils pour observer ce qui s’y passe. Mais tôt ou tard, quelque chose va casser. Ce n’est pas une question de “si”, mais de “quand”. Le 28 février 2017, un ingénieur d’Amazon a exécuté une commande de maintenance de routine sur le service S3, l’infrastructure de stockage qui héberge une part considérable du web. Une faute de frappe dans un paramètre a retiré plus de serveurs que prévu, déclenchant une cascade de pannes qui a rendu inaccessibles des milliers de sites et services pendant plusieurs heures. La même année, un administrateur de base de données chez GitLab a accidentellement exécuté un rm -rf sur le mauvais serveur de base de données, effaçant 300 Go de données de production. Sur les cinq mécanismes de sauvegarde en place, aucun ne fonctionnait correctement. La récupération a été diffusée en direct sur YouTube, et le postmortem public est devenu un cas d’école en fiabilité logicielle. Ces incidents ne sont pas des aberrations causées par des incompétents : ils se produisent dans les organisations les plus sophistiquées du monde. La question centrale de cette section n’est donc pas “comment éviter toute panne” — c’est impossible — mais plutôt : comment s’organiser pour détecter vite, réagir bien, et surtout apprendre de chaque incident ?"><meta itemprop=wordCount content="2128"><title>Que faire quand ça casse ? | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - Concevoir un programme correct</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Du programme au système</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
+<label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/>Perspective historique</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>L'architecture des applications web</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/>Les frameworks JavaScript</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/convergences/>Desktop, web et mobile</a></li></ul></li><li><input type=checkbox id=section-e4d51cc3c07f12fea00e9c0cd309e911 class=toggle>
+<label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - Construire en équipe</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=toggle>
+<label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/>Kanban</a></li></ul></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/>Gestion de projet et coordination</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle checked>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/>Où est-ce que ça tourne ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/>Comment je le déploie ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/>Est-ce que ça marche ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/ class=active>Que faire quand ça casse ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Que faire quand ça casse ?</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#anatomie-dun-incident>Anatomie d&rsquo;un incident</a></li><li><a href=#postmortems-blameless>Postmortems blameless</a></li><li><a href=#chaos-engineering>Chaos engineering</a></li><li><a href=#runbooks-et-automatisation>Runbooks et automatisation</a></li><li><a href=#la-dette-technique-comme-source-dincidents>La dette technique comme source d&rsquo;incidents</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=que-faire-quand-ça-casse->Que faire quand ça casse ?<a class=anchor href=#que-faire-quand-%c3%a7a-casse->#</a></h1><p>Dans les sections précédentes, nous avons construit un pipeline qui amène le
+code en production et des outils pour observer ce qui s&rsquo;y passe. Mais tôt ou
+tard, quelque chose va casser. Ce n&rsquo;est pas une question de &ldquo;si&rdquo;, mais de
+&ldquo;quand&rdquo;. Le 28 février 2017, un ingénieur d&rsquo;Amazon a exécuté une commande de
+maintenance de routine sur le service S3, l&rsquo;infrastructure de stockage qui
+héberge une part considérable du web. Une faute de frappe dans un paramètre a
+retiré plus de serveurs que prévu, déclenchant une cascade de pannes qui a rendu
+inaccessibles des milliers de sites et services pendant plusieurs heures. La
+même année, un administrateur de base de données chez GitLab a accidentellement
+exécuté un <code>rm -rf</code> sur le mauvais serveur de base de données, effaçant 300 Go
+de données de production. Sur les cinq mécanismes de sauvegarde en place, aucun
+ne fonctionnait correctement. La récupération a été diffusée en direct sur
+YouTube, et le postmortem public est devenu un cas d&rsquo;école en fiabilité
+logicielle. Ces incidents ne sont pas des aberrations causées par des
+incompétents : ils se produisent dans les organisations les plus sophistiquées du
+monde. La question centrale de cette section n&rsquo;est donc pas &ldquo;comment éviter
+toute panne&rdquo; — c&rsquo;est impossible — mais plutôt : comment s&rsquo;organiser pour
+détecter vite, réagir bien, et surtout apprendre de chaque incident ?</p><p>Cette philosophie — accepter la faillibilité et s&rsquo;organiser en conséquence — a
+trouvé sa formalisation la plus influente chez Google, sous le nom de <em>Site
+Reliability Engineering</em> (SRE). Le terme a été inventé par Ben Treynor Sloss,
+qui a fondé la première équipe SRE chez Google en 2003. L&rsquo;idée de départ était
+simple : plutôt que de séparer les développeurs (qui écrivent le code) et les
+opérateurs (qui le font tourner), pourquoi ne pas confier les opérations à des
+ingénieurs logiciels qui abordent les problèmes d&rsquo;exploitation comme des
+problèmes de code ? Un SRE écrit des outils d&rsquo;automatisation, des systèmes de
+monitoring, des scripts de déploiement — il traite la fiabilité comme une
+fonctionnalité du système, pas comme une responsabilité extérieure. Google a
+formalisé cette approche dans le livre <em>Site Reliability Engineering</em> (2016),
+disponible gratuitement en ligne, qui est devenu une référence incontournable.
+Le SRE n&rsquo;est pas en opposition avec DevOps : c&rsquo;est plutôt une implémentation
+concrète et opiniâtrée de ses principes. Là où DevOps est une philosophie
+(abattre le mur entre dev et ops), le SRE est un ensemble de pratiques
+spécifiques pour y arriver.</p><p>L&rsquo;une des idées les plus puissantes du SRE est celle de l&rsquo;<em>error budget</em>, que
+nous avons brièvement introduite dans la section sur l&rsquo;observabilité. Le
+raisonnement est le suivant : si un service a un SLO de 99,9 % de
+disponibilité, cela signifie qu&rsquo;on accepte explicitement 0,1 %
+d&rsquo;indisponibilité, soit environ 43 minutes par mois. Ces 43 minutes ne sont pas
+un échec : elles sont un <em>budget</em> qu&rsquo;on peut dépenser. Tant qu&rsquo;il en reste,
+l&rsquo;équipe peut déployer de nouvelles fonctionnalités, prendre des risques,
+expérimenter. Quand le budget est épuisé, on gèle les déploiements non
+essentiels et on se concentre sur la fiabilité. Ce mécanisme transforme une
+tension politique (les développeurs veulent livrer vite, les ops veulent de la
+stabilité) en une décision basée sur des données. Il n&rsquo;y a plus de débat
+subjectif : on regarde le budget restant. C&rsquo;est aussi un antidote à la quête
+illusoire du 100 % de disponibilité. Comme le rappelle le livre Google SRE,
+viser 100 % est non seulement impossible, mais contre-productif : le coût
+marginal de chaque &ldquo;9&rdquo; supplémentaire est exponentiel, et les utilisateurs ne
+font généralement pas la différence entre 99,99 % et 99,999 % — leur propre
+connexion internet est probablement moins fiable que le service qu&rsquo;ils
+utilisent.</p><h2 id=anatomie-dun-incident>Anatomie d&rsquo;un incident<a class=anchor href=#anatomie-dun-incident>#</a></h2><p>Quand un incident survient, la manière dont une organisation réagit suit
+généralement un cycle bien défini. La première phase est la <strong>détection</strong> :
+quelque chose signale que le système ne fonctionne pas normalement. Idéalement,
+c&rsquo;est une alerte automatique (Prometheus qui détecte que le taux d&rsquo;erreurs
+dépasse un seuil, par exemple) qui donne l&rsquo;alarme avant même que les
+utilisateurs ne s&rsquo;en rendent compte. En pratique, il arrive encore souvent que
+ce soient les utilisateurs eux-mêmes qui signalent le problème, par le support
+client ou sur les réseaux sociaux — un signe que l&rsquo;observabilité du système est
+insuffisante. La deuxième phase est le <strong>triage</strong> : évaluer la gravité de
+l&rsquo;incident. Est-ce que ça affecte tous les utilisateurs ou un sous-ensemble ?
+Est-ce que des données sont en danger ? La réponse détermine le niveau d&rsquo;urgence
+et les personnes à mobiliser. Vient ensuite la <strong>mitigation</strong> : l&rsquo;objectif
+immédiat n&rsquo;est pas de comprendre la cause profonde, mais de rétablir le service.
+Redémarrer un pod, activer un feature flag pour désactiver la fonctionnalité
+problématique, basculer vers une base de données répliquée — on cherche à
+limiter l&rsquo;impact, quitte à appliquer un pansement temporaire. La <strong>résolution</strong>
+proprement dite vient après : identifier la cause racine et appliquer un
+correctif durable. Enfin, et c&rsquo;est la phase la plus importante pour
+l&rsquo;apprentissage, le <strong>postmortem</strong> : documenter ce qui s&rsquo;est passé, pourquoi, et
+ce qu&rsquo;on va changer pour que ça ne se reproduise pas.</p><p>Dans les organisations qui prennent la fiabilité au sérieux, la détection d&rsquo;un
+incident ne tombe pas dans le vide : elle déclenche un processus d&rsquo;astreinte
+(<em>on-call</em>). Un ingénieur de garde, désigné par rotation, reçoit l&rsquo;alerte et
+devient le premier intervenant. C&rsquo;est un rôle exigeant : l&rsquo;astreinte implique
+d&rsquo;être joignable en tout temps pendant la période de garde (souvent une
+semaine), y compris la nuit et les fins de semaine. Le livre Google SRE insiste
+sur le fait que la charge d&rsquo;astreinte doit rester soutenable : pas plus de 25 %
+du temps d&rsquo;un ingénieur devrait être consacré au travail opérationnel, le reste
+étant dédié à du travail de projet (automatisation, amélioration des outils).
+Quand la charge d&rsquo;astreinte dépasse ce seuil, c&rsquo;est un signal que le système a
+des problèmes de fiabilité structurels qu&rsquo;il faut adresser. Pour les incidents
+majeurs, un rôle distinct émerge : l&rsquo;<em>incident commander</em> (IC). L&rsquo;IC ne résout
+pas le problème lui-même — il coordonne la réponse. Il maintient un canal de
+communication (souvent un channel Slack ou une salle de visioconférence dédiée),
+assigne les tâches, tient les parties prenantes informées, et prend les
+décisions d&rsquo;escalade. Cette séparation entre coordination et investigation est
+cruciale : sans elle, les incidents complexes dégénèrent rapidement en chaos,
+avec plusieurs personnes qui tentent des corrections contradictoires en
+parallèle.</p><h2 id=postmortems-blameless>Postmortems blameless<a class=anchor href=#postmortems-blameless>#</a></h2><p>La phase d&rsquo;apprentissage après un incident est souvent la plus négligée, et
+pourtant c&rsquo;est celle qui a le plus de valeur à long terme. Le réflexe naturel
+après une panne est de chercher un coupable : qui a fait l&rsquo;erreur ? Qui a
+approuvé ce déploiement ? L&rsquo;approche <em>blameless</em> (sans blâme) prend le
+contre-pied de cette tendance. Son postulat est que dans un système complexe,
+les erreurs humaines sont presque toujours le symptôme d&rsquo;un problème systémique,
+pas la cause. L&rsquo;ingénieur d&rsquo;Amazon qui a provoqué la panne de S3 en 2017 a
+exécuté une commande que le système lui permettait d&rsquo;exécuter, sans garde-fou
+suffisant. L&rsquo;administrateur de GitLab a fait un <code>rm -rf</code> parce que la procédure
+de récupération n&rsquo;avait jamais été testée en conditions réelles. Punir ces
+individus n&rsquo;aurait rien changé aux conditions qui ont rendu l&rsquo;erreur possible —
+et aurait eu un effet pervers : dans une culture punitive, les gens cachent
+leurs erreurs au lieu de les signaler, ce qui rend les incidents futurs plus
+probables et plus graves.</p><p>Le postmortem blameless a été popularisé par John Allspaw, alors CTO d&rsquo;Etsy,
+dans un article influent de 2012 intitulé <em>Blameless PostMortems and a Just
+Culture</em>. Allspaw s&rsquo;appuyait sur les travaux de Sidney Dekker en sécurité des
+systèmes complexes (<em>The Field Guide to Understanding Human Error</em>, 2006) et sur
+les pratiques de l&rsquo;aviation et de la médecine, deux domaines où l&rsquo;analyse non
+punitive des incidents a produit des améliorations spectaculaires en sécurité. Un
+bon postmortem documente une chronologie détaillée de l&rsquo;incident, identifie les
+facteurs contributifs (pas &ldquo;la&rdquo; cause unique), et surtout produit une liste
+d&rsquo;<em>action items</em> concrets : corriger le bug, ajouter un garde-fou, améliorer le
+monitoring, mettre à jour le runbook. Sans action items, un postmortem n&rsquo;est
+qu&rsquo;un récit — il ne change rien.</p><h2 id=chaos-engineering>Chaos engineering<a class=anchor href=#chaos-engineering>#</a></h2><p>Si les incidents sont inévitables, pourquoi attendre qu&rsquo;ils surviennent
+d&rsquo;eux-mêmes ? C&rsquo;est le raisonnement à l&rsquo;origine du <em>chaos engineering</em>, une
+discipline qui consiste à provoquer délibérément des pannes dans un système pour
+tester sa résilience. L&rsquo;idée est née chez Netflix en 2010, quand l&rsquo;entreprise a
+migré son infrastructure de ses propres datacenters vers AWS. Pour s&rsquo;assurer que
+ses systèmes pouvaient survivre aux défaillances inévitables du cloud, l&rsquo;équipe
+de Greg Orzell a créé <em>Chaos Monkey</em>, un programme qui éteint aléatoirement des
+machines virtuelles en production pendant les heures de bureau. Le raisonnement
+était simple : si un service ne survit pas à la perte d&rsquo;une instance, il vaut
+mieux le découvrir un mardi à 14 h, quand toute l&rsquo;équipe est disponible, qu&rsquo;un
+samedi à 3 h du matin. Chaos Monkey a ensuite donné naissance à toute une &ldquo;armée
+du chaos&rdquo; chez Netflix : <em>Chaos Kong</em> (qui simule la perte d&rsquo;une région AWS
+entière), <em>Latency Monkey</em> (qui injecte des délais réseau), et d&rsquo;autres. En
+2014, Netflix a publié les <em>Principles of Chaos Engineering</em>, un document qui
+formalise la discipline autour de quatre principes : formuler une hypothèse sur
+le comportement normal du système, varier les conditions réelles (pas juste en
+staging), minimiser le rayon d&rsquo;impact de l&rsquo;expérience, et automatiser les
+expériences pour qu&rsquo;elles tournent en continu.</p><p>Le chaos engineering est étroitement lié à la notion de <em>game day</em>, un exercice
+planifié où une équipe simule un incident majeur pour tester non seulement la
+résilience technique du système, mais aussi la réponse humaine : est-ce que les
+alertes se déclenchent ? Est-ce que l&rsquo;on sait qui appeler ? Est-ce que les
+runbooks sont à jour ? Amazon pratique régulièrement des game days à l&rsquo;échelle de
+l&rsquo;entreprise. L&rsquo;analogie avec les exercices d&rsquo;évacuation incendie est parlante :
+personne ne trouve absurde de pratiquer une évacuation avant qu&rsquo;un feu ne se
+déclare. Le chaos engineering applique la même logique aux systèmes logiciels.
+C&rsquo;est aussi un lien direct avec la troisième voie de DevOps (l&rsquo;apprentissage
+continu) : chaque expérience de chaos est une occasion d&rsquo;apprendre quelque chose
+sur le système qu&rsquo;on ne savait pas.</p><h2 id=runbooks-et-automatisation>Runbooks et automatisation<a class=anchor href=#runbooks-et-automatisation>#</a></h2><p>Un runbook est un document qui décrit, étape par étape, la procédure à suivre
+pour diagnostiquer et résoudre un type d&rsquo;incident connu. Par exemple : &ldquo;si
+l&rsquo;alerte X se déclenche, vérifier d&rsquo;abord Y, puis essayer Z, et si ça ne
+fonctionne pas, escalader à l&rsquo;équipe W&rdquo;. Les runbooks sont un outil ancien (les
+administrateurs système en tenaient depuis bien avant DevOps), mais leur rôle
+prend une importance particulière dans le contexte du SRE. Un ingénieur
+d&rsquo;astreinte réveillé à 3 h du matin n&rsquo;est pas dans les meilleures conditions
+pour improviser une solution créative. Un bon runbook lui donne un chemin à
+suivre, réduit le temps de résolution, et diminue le risque d&rsquo;aggraver le
+problème par une mauvaise manipulation. Les alertes actionnables que nous avons
+vues dans la section sur l&rsquo;observabilité devraient idéalement pointer vers un
+runbook pertinent. L&rsquo;étape suivante, naturellement, est l&rsquo;automatisation : quand
+un runbook est suffisamment mature et que ses étapes sont déterministes, on peut
+le transformer en script ou en mécanisme automatique. Kubernetes fait déjà cela
+pour certains cas simples : quand un pod échoue à son health check, le système
+le redémarre automatiquement, sans intervention humaine. C&rsquo;est un runbook qui
+est devenu du code.</p><h2 id=la-dette-technique-comme-source-dincidents>La dette technique comme source d&rsquo;incidents<a class=anchor href=#la-dette-technique-comme-source-dincidents>#</a></h2><p>Il y a un lien direct entre la dette technique, que nous avons abordée dans le
+module 4, et la fréquence des incidents en production. Un code mal structuré, des
+tests insuffisants, des dépendances obsolètes, une documentation inexistante —
+toutes ces formes de dette accumulent silencieusement des risques opérationnels.
+Le raccourci pris il y a six mois pour livrer une fonctionnalité à temps devient
+le bug mystérieux qui fait tomber le service un vendredi soir. Ward Cunningham,
+quand il a introduit la métaphore de la dette en 1992, pensait précisément à ce
+phénomène : les intérêts de la dette finissent par se payer, souvent au moment
+le moins opportun. Les postmortems révèlent souvent que la cause profonde d&rsquo;un
+incident n&rsquo;est pas un événement ponctuel, mais l&rsquo;accumulation progressive de
+décisions qui ont dégradé la qualité du système. C&rsquo;est pourquoi les
+organisations matures allouent explicitement du temps au remboursement de la
+dette technique, souvent en utilisant les rétrospectives et les postmortems
+comme sources pour prioriser ce travail. L&rsquo;error budget offre un mécanisme
+concret pour cela : quand le budget est épuisé par des incidents liés à la
+dette, l&rsquo;équipe est contrainte de s&rsquo;y attaquer avant de livrer de nouvelles
+fonctionnalités.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>Est-ce que ça marche ?</span>
+</a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ class="flex align-center"><span>Module 6 - Regard vers le futur</span>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#anatomie-dun-incident>Anatomie d&rsquo;un incident</a></li><li><a href=#postmortems-blameless>Postmortems blameless</a></li><li><a href=#chaos-engineering>Chaos engineering</a></li><li><a href=#runbooks-et-automatisation>Runbooks et automatisation</a></li><li><a href=#la-dette-technique-comme-source-dincidents>La dette technique comme source d&rsquo;incidents</a></li></ul></nav></div></aside></main></body></html>

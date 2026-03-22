@@ -112,6 +112,14 @@ logicielle →
 (2016) : formalisation des trois voies de DevOps (flow, feedback, apprentissage
 continu) →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/"&gt;Module 5, Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google (Betsy Beyer, Chris Jones, Jennifer Petoff, Niall Richard Murphy),
+&lt;em&gt;Site Reliability Engineering&lt;/em&gt; (2016) : formalisation des pratiques SRE, error
+budgets, on-call, postmortems →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Sidney Dekker, &lt;em&gt;The Field Guide to Understanding Human Error&lt;/em&gt; (2006) :
+approche systémique des erreurs humaines, fondement de la culture « just
+culture » et des postmortems blameless →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="articles-et-essais"&gt;Articles et essais&lt;a class="anchor" href="#articles-et-essais"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
@@ -184,6 +192,13 @@ des applications cloud-native, issus de l&amp;rsquo;expérience de Heroku →
 complète du chemin entre le commit et la production, concept du deployment
 pipeline →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;John Allspaw, &lt;em&gt;Blameless PostMortems and a Just Culture&lt;/em&gt; (2012) :
+formalisation de l&amp;rsquo;approche non punitive après les incidents, inspirée de
+l&amp;rsquo;aviation et de la médecine →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Netflix, &lt;em&gt;Principles of Chaos Engineering&lt;/em&gt; (2014) : formalisation du chaos
+engineering, expériences en production pour tester la résilience →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
 faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc

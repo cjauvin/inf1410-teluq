@@ -181,6 +181,14 @@ logicielle →
 (2016) : formalisation des trois voies de DevOps (flow, feedback, apprentissage
 continu) →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/"&gt;Module 5, Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google (Betsy Beyer, Chris Jones, Jennifer Petoff, Niall Richard Murphy),
+&lt;em&gt;Site Reliability Engineering&lt;/em&gt; (2016) : formalisation des pratiques SRE, error
+budgets, on-call, postmortems →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Sidney Dekker, &lt;em&gt;The Field Guide to Understanding Human Error&lt;/em&gt; (2006) :
+approche systémique des erreurs humaines, fondement de la culture « just
+culture » et des postmortems blameless →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="articles-et-essais"&gt;Articles et essais&lt;a class="anchor" href="#articles-et-essais"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
@@ -253,6 +261,13 @@ des applications cloud-native, issus de l&amp;rsquo;expérience de Heroku →
 complète du chemin entre le commit et la production, concept du deployment
 pipeline →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;John Allspaw, &lt;em&gt;Blameless PostMortems and a Just Culture&lt;/em&gt; (2012) :
+formalisation de l&amp;rsquo;approche non punitive après les incidents, inspirée de
+l&amp;rsquo;aviation et de la médecine →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Netflix, &lt;em&gt;Principles of Chaos Engineering&lt;/em&gt; (2014) : formalisation du chaos
+engineering, expériences en production pour tester la résilience →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Comment je le déploie ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</guid><description>&lt;h1 id="comment-je-le-déploie-"&gt;Comment je le déploie ?&lt;a class="anchor" href="#comment-je-le-d%c3%a9ploie-"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dans le module 2, nous avons mis en place un pipeline d&amp;rsquo;intégration continue
 (CI) : à chaque commit poussé sur GitHub, une série de vérifications
@@ -370,7 +385,25 @@ DRY&lt;/a&gt; que
 nous avons vu, appliqué dans le sens plus large d&amp;rsquo;un écosystème logiciel)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Dans le cas (2), on nomme parfois les librairies externes des &amp;ldquo;dépendances&amp;rdquo;, ou des
-&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>L'intégration continue (CI)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</guid><description>&lt;h1 id="lintégration-continue-ci"&gt;L&amp;rsquo;intégration continue (CI)&lt;a class="anchor" href="#lint%c3%a9gration-continue-ci"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>Que faire quand ça casse ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/</guid><description>&lt;h1 id="que-faire-quand-ça-casse-"&gt;Que faire quand ça casse ?&lt;a class="anchor" href="#que-faire-quand-%c3%a7a-casse-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Dans les sections précédentes, nous avons construit un pipeline qui amène le
+code en production et des outils pour observer ce qui s&amp;rsquo;y passe. Mais tôt ou
+tard, quelque chose va casser. Ce n&amp;rsquo;est pas une question de &amp;ldquo;si&amp;rdquo;, mais de
+&amp;ldquo;quand&amp;rdquo;. Le 28 février 2017, un ingénieur d&amp;rsquo;Amazon a exécuté une commande de
+maintenance de routine sur le service S3, l&amp;rsquo;infrastructure de stockage qui
+héberge une part considérable du web. Une faute de frappe dans un paramètre a
+retiré plus de serveurs que prévu, déclenchant une cascade de pannes qui a rendu
+inaccessibles des milliers de sites et services pendant plusieurs heures. La
+même année, un administrateur de base de données chez GitLab a accidentellement
+exécuté un &lt;code&gt;rm -rf&lt;/code&gt; sur le mauvais serveur de base de données, effaçant 300 Go
+de données de production. Sur les cinq mécanismes de sauvegarde en place, aucun
+ne fonctionnait correctement. La récupération a été diffusée en direct sur
+YouTube, et le postmortem public est devenu un cas d&amp;rsquo;école en fiabilité
+logicielle. Ces incidents ne sont pas des aberrations causées par des
+incompétents : ils se produisent dans les organisations les plus sophistiquées du
+monde. La question centrale de cette section n&amp;rsquo;est donc pas &amp;ldquo;comment éviter
+toute panne&amp;rdquo; — c&amp;rsquo;est impossible — mais plutôt : comment s&amp;rsquo;organiser pour
+détecter vite, réagir bien, et surtout apprendre de chaque incident ?&lt;/p&gt;</description></item><item><title>L'intégration continue (CI)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</guid><description>&lt;h1 id="lintégration-continue-ci"&gt;L&amp;rsquo;intégration continue (CI)&lt;a class="anchor" href="#lint%c3%a9gration-continue-ci"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Dans les sections précédentes, nous avons vu comment écrire des tests pour
 vérifier qu&amp;rsquo;un programme se comporte correctement, comment utiliser git pour

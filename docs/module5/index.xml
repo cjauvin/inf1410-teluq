@@ -28,4 +28,22 @@ développeur, ces questions ne se posent pas vraiment. On a un debugger, des
 tourne sur des machines distantes, traite des milliers de requêtes simultanées,
 et les problèmes qui surviennent sont souvent des problèmes qu&amp;rsquo;on n&amp;rsquo;avait pas
 anticipés. L&amp;rsquo;observabilité, c&amp;rsquo;est l&amp;rsquo;art de reconstruire cette visibilité à
-distance.&lt;/p&gt;</description></item></channel></rss>
+distance.&lt;/p&gt;</description></item><item><title>Que faire quand ça casse ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/</guid><description>&lt;h1 id="que-faire-quand-ça-casse-"&gt;Que faire quand ça casse ?&lt;a class="anchor" href="#que-faire-quand-%c3%a7a-casse-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Dans les sections précédentes, nous avons construit un pipeline qui amène le
+code en production et des outils pour observer ce qui s&amp;rsquo;y passe. Mais tôt ou
+tard, quelque chose va casser. Ce n&amp;rsquo;est pas une question de &amp;ldquo;si&amp;rdquo;, mais de
+&amp;ldquo;quand&amp;rdquo;. Le 28 février 2017, un ingénieur d&amp;rsquo;Amazon a exécuté une commande de
+maintenance de routine sur le service S3, l&amp;rsquo;infrastructure de stockage qui
+héberge une part considérable du web. Une faute de frappe dans un paramètre a
+retiré plus de serveurs que prévu, déclenchant une cascade de pannes qui a rendu
+inaccessibles des milliers de sites et services pendant plusieurs heures. La
+même année, un administrateur de base de données chez GitLab a accidentellement
+exécuté un &lt;code&gt;rm -rf&lt;/code&gt; sur le mauvais serveur de base de données, effaçant 300 Go
+de données de production. Sur les cinq mécanismes de sauvegarde en place, aucun
+ne fonctionnait correctement. La récupération a été diffusée en direct sur
+YouTube, et le postmortem public est devenu un cas d&amp;rsquo;école en fiabilité
+logicielle. Ces incidents ne sont pas des aberrations causées par des
+incompétents : ils se produisent dans les organisations les plus sophistiquées du
+monde. La question centrale de cette section n&amp;rsquo;est donc pas &amp;ldquo;comment éviter
+toute panne&amp;rdquo; — c&amp;rsquo;est impossible — mais plutôt : comment s&amp;rsquo;organiser pour
+détecter vite, réagir bien, et surtout apprendre de chaque incident ?&lt;/p&gt;</description></item></channel></rss>
