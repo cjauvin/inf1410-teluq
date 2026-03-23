@@ -46,4 +46,29 @@ logicielle. Ces incidents ne sont pas des aberrations causées par des
 incompétents : ils se produisent dans les organisations les plus sophistiquées du
 monde. La question centrale de cette section n&amp;rsquo;est donc pas &amp;ldquo;comment éviter
 toute panne&amp;rdquo; — c&amp;rsquo;est impossible — mais plutôt : comment s&amp;rsquo;organiser pour
-détecter vite, réagir bien, et surtout apprendre de chaque incident ?&lt;/p&gt;</description></item></channel></rss>
+détecter vite, réagir bien, et surtout apprendre de chaque incident ?&lt;/p&gt;</description></item><item><title>Est-ce que c'est sécuritaire ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/</guid><description>&lt;h1 id="est-ce-que-cest-sécuritaire-"&gt;Est-ce que c&amp;rsquo;est sécuritaire ?&lt;a class="anchor" href="#est-ce-que-cest-s%c3%a9curitaire-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;La sécurité informatique est souvent traitée comme une préoccupation secondaire
+dans le développement logiciel. On construit d&amp;rsquo;abord les fonctionnalités, on
+déploie, et on se dit qu&amp;rsquo;on &amp;ldquo;ajoutera la sécurité plus tard&amp;rdquo;. Cette approche a
+un nom : le modèle du &amp;ldquo;château fort&amp;rdquo;, où la sécurité est une muraille qu&amp;rsquo;on
+érige autour d&amp;rsquo;un système déjà construit. Le problème, c&amp;rsquo;est que les attaquants
+ne se présentent pas toujours à la porte d&amp;rsquo;entrée : ils exploitent les failles
+dans les fondations, ou ils sont déjà à l&amp;rsquo;intérieur. En septembre 2017, Equifax,
+l&amp;rsquo;une des trois grandes agences d&amp;rsquo;évaluation du crédit aux États-Unis, a révélé
+que les données personnelles de 147 millions de personnes avaient été volées :
+noms, numéros de sécurité sociale, dates de naissance, adresses. La cause ? Une
+vulnérabilité connue dans Apache Struts, un framework web Java, pour laquelle un
+correctif existait depuis mars 2017. Equifax ne l&amp;rsquo;avait tout simplement pas
+appliqué. La vulnérabilité en question permettait l&amp;rsquo;exécution de code arbitraire
+à distance, et elle figurait dans le OWASP Top 10, le classement de référence
+des vulnérabilités web les plus courantes. En juin 2019, c&amp;rsquo;est au Québec que
+l&amp;rsquo;une des plus grandes fuites de données au Canada a été révélée : un employé du
+Mouvement Desjardins avait exfiltré les données personnelles de 9,7 millions de
+membres, soit la quasi-totalité de la clientèle. Noms, adresses, dates de
+naissance, numéros d&amp;rsquo;assurance sociale, habitudes transactionnelles.
+Contrairement à Equifax, il ne s&amp;rsquo;agissait pas d&amp;rsquo;une faille technique exploitée
+de l&amp;rsquo;extérieur, mais d&amp;rsquo;une menace interne : un utilisateur légitime qui avait
+accès à des données qu&amp;rsquo;il n&amp;rsquo;aurait probablement pas dû pouvoir extraire en
+masse. L&amp;rsquo;incident a mis en lumière l&amp;rsquo;importance du principe du moindre privilège
+et de la surveillance des accès internes, des aspects de la sécurité qui ne se
+règlent pas avec un pare-feu.&lt;/p&gt;</description></item></channel></rss>
