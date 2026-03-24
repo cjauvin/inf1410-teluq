@@ -371,7 +371,9 @@ api_key = os.environ["API_KEY"]
 # .env (listé dans .gitignore)
 DB_PASSWORD=motdepasse123
 API_KEY=sk-abc123def456
-``` En production, les
+```
+
+En production, les
 secrets sont injectés par la plateforme de déploiement : Kubernetes Secrets,
 les variables d'environnement de GitHub Actions, ou un service dédié comme
 HashiCorp Vault. Cette dernière catégorie d'outils, les *secrets managers*,
@@ -442,3 +444,141 @@ sessions plus volumineuses ou de pouvoir les invalider côté serveur (par exemp
 pour forcer la déconnexion d'un utilisateur compromis), on peut utiliser une
 extension comme Flask-Session qui stocke les données dans Redis ou une base de
 données.
+
+L'approche par sessions a un inconvénient : le serveur doit maintenir un état
+(la liste des sessions actives) pour chaque utilisateur connecté. Pour une
+application web classique, c'est rarement un problème. Mais pour une API
+consommée par des clients multiples (application mobile, frontend SPA, service
+tiers), cette dépendance à l'état côté serveur devient une contrainte. Les
+**JSON Web Tokens** (JWT, prononcé « jot ») proposent une alternative
+*stateless* : au lieu de stocker l'identité de l'utilisateur sur le serveur, on
+l'encode directement dans un jeton signé que le client transporte avec chaque
+requête. Un JWT est composé de trois parties séparées par des points : un
+*header* (l'algorithme de signature), un *payload* (les données, appelées
+*claims*), et une *signature* calculée par le serveur avec une clé secrète.
+Voici à quoi ressemble le payload décodé d'un JWT typique :
+
+```json
+{
+  "sub": "alice",
+  "role": "admin",
+  "exp": 1717027200
+}
+```
+
+Le champ `sub` (*subject*) identifie l'utilisateur, `role` est un claim
+personnalisé, et `exp` est la date d'expiration du jeton (en secondes depuis le
+1er janvier 1970, le format Unix). Un point important : le payload n'est pas
+chiffré, il est simplement encodé en Base64. N'importe qui peut le lire. Ce qui
+est protégé, c'est l'intégrité : la signature garantit que personne ne peut
+modifier le contenu (par exemple changer `"role": "user"` en
+`"role": "admin"`) sans invalider le jeton. Le serveur n'a besoin de rien
+stocker : quand il reçoit un JWT, il vérifie la signature avec sa clé secrète,
+décode le payload, et sait immédiatement qui est l'utilisateur. Le client envoie
+le jeton dans l'en-tête HTTP `Authorization: Bearer <token>` à chaque requête.
+Voici une implémentation simplifiée avec FastAPI (que nous avons déjà utilisé
+dans le tutoriel sur l'observabilité) :
+
+```python
+from fastapi import FastAPI, Depends, HTTPException
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+import jwt
+import os
+
+app = FastAPI()
+SECRET_KEY = os.environ["SECRET_KEY"]
+security = HTTPBearer()
+
+@app.post("/login")
+def login(username: str, password: str):
+    user = authenticate(username, password)
+    if not user:
+        raise HTTPException(status_code=401, detail="Identifiants invalides")
+    token = jwt.encode(
+        {"sub": user.username, "role": user.role, "exp": datetime.utcnow() + timedelta(hours=1)},
+        SECRET_KEY, algorithm="HS256"
+    )
+    return {"access_token": token}
+
+@app.get("/dashboard")
+def dashboard(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    try:
+        payload = jwt.decode(credentials.credentials, SECRET_KEY, algorithms=["HS256"])
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Jeton expiré")
+    except jwt.InvalidTokenError:
+        raise HTTPException(status_code=401, detail="Jeton invalide")
+    return {"message": f"Bienvenue, {payload['sub']}"}
+```
+
+Le contraste avec l'approche Flask par sessions est instructif. Avec les
+sessions, le serveur stocke l'état et envoie un identifiant opaque au client.
+Avec les JWT, le client porte toute l'information et le serveur est *stateless* :
+il n'a rien à consulter, rien à stocker. Cette propriété rend les JWT
+particulièrement adaptés aux architectures distribuées (microservices, APIs
+publiques), où partager un état de session entre plusieurs serveurs serait
+complexe. En contrepartie, les JWT ont un défaut majeur : on ne peut pas les
+invalider individuellement. Si un utilisateur se fait voler son jeton, le
+serveur n'a aucun moyen de le « révoquer » avant son expiration, puisqu'il n'en
+garde aucune trace. C'est pourquoi les JWT ont typiquement une durée de vie
+courte (15 minutes à une heure), complétée par un mécanisme de *refresh token*
+pour renouveler l'accès sans redemander le mot de passe.
+
+Les sessions et les JWT résolvent le problème de l'authentification directe :
+l'utilisateur fournit ses identifiants à l'application, qui les vérifie. Mais il
+existe un scénario de plus en plus courant où ce modèle ne fonctionne pas :
+quand une application tierce a besoin d'accéder à vos données sur un autre
+service *sans connaître votre mot de passe*. Imaginons qu'une application de
+gestion de projets veuille accéder à vos dépôts GitHub pour afficher vos pull
+requests. L'approche naïve serait de lui donner votre mot de passe GitHub, mais
+c'est évidemment inacceptable : vous donneriez un accès total à votre compte à
+une application en laquelle vous n'avez qu'une confiance limitée. Pour
+comprendre la solution, imaginons une analogie. Vous arrivez à un hôtel et
+demandez au voiturier de garer votre voiture. Vous lui remettez votre clé, mais
+pas votre trousseau complet : vous lui donnez uniquement la clé de valet, celle
+qui permet de démarrer le moteur mais pas d'ouvrir le coffre ni la boîte à
+gants. Le voiturier peut accomplir sa tâche (déplacer la voiture) sans avoir
+accès à vos affaires personnelles, et vous pouvez récupérer la clé à tout
+moment. **OAuth 2.0** (2012) fonctionne sur le même principe : au lieu de
+donner votre mot de passe (le trousseau complet) à une application tierce, vous
+lui accordez un accès limité et révocable à vos données sur un autre service.
+Concrètement, vous êtes redirigé vers le service d'origine (GitHub, Google,
+etc.), vous vous authentifiez directement auprès de lui, et vous autorisez
+explicitement l'application tierce à accéder à un périmètre limité de vos
+données (les *scopes*). Le service d'origine émet alors un jeton d'accès
+(*access token*) que l'application tierce utilise pour effectuer des requêtes en
+votre nom. Vous n'avez jamais partagé votre mot de passe, et vous pouvez
+révoquer l'accès à tout moment. Le bouton « Se connecter avec Google » ou « Se
+connecter avec GitHub » que l'on voit partout sur le web est une application
+d'OAuth 2.0 (plus précisément d'OpenID Connect, une couche d'authentification
+construite par-dessus OAuth). C'est aussi le mécanisme qu'utilise
+`gh auth login`, la commande d'authentification du CLI GitHub que nous avons vue
+dans le module 4 : plutôt que de demander votre mot de passe, elle ouvre votre
+navigateur pour que vous autorisiez le CLI via le flux OAuth de GitHub.
+
+## Le principe du moindre privilège
+
+Un fil conducteur traverse toutes les pratiques de sécurité que nous avons
+abordées dans cette section : le **principe du moindre privilège** (*principle
+of least privilege*). L'idée est simple : chaque composant d'un système, qu'il
+s'agisse d'un utilisateur, d'un programme ou d'un service, ne devrait avoir
+accès qu'aux ressources strictement nécessaires à l'accomplissement de sa tâche,
+et pas une de plus. Les requêtes paramétrées empêchent une entrée utilisateur
+d'accéder au pouvoir du langage SQL. L'échappement HTML empêche des données de
+s'élever au rang de code exécutable. OAuth 2.0 accorde une clé de valet plutôt
+que le trousseau complet. Les scopes d'un jeton d'accès limitent le périmètre
+d'action d'une application tierce. Les variables d'environnement gardent les
+secrets hors du code source. Chaque fois, le même réflexe : restreindre l'accès
+au minimum nécessaire, parce que tout privilège superflu est une surface
+d'attaque.
+
+Ce principe éclaire aussi rétrospectivement la brèche de Desjardins de 2019,
+que nous avons mentionnée en introduction. Un employé a pu exfiltrer les données
+personnelles de 4,2 millions de membres, non pas en exploitant une
+vulnérabilité technique sophistiquée, mais simplement parce qu'il avait accès à
+bien plus de données que ce que son rôle nécessitait. Si le principe du moindre
+privilège avait été appliqué rigoureusement, avec un contrôle d'accès
+granulaire limitant chaque employé aux seules données pertinentes à ses
+fonctions, l'ampleur de la brèche aurait été considérablement réduite. C'est
+une leçon qui vaut autant pour les permissions des utilisateurs humains que pour
+celles des services et des API dans une architecture logicielle.

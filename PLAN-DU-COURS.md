@@ -437,15 +437,23 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
 - Runbooks et automatisation : du document au code, lien avec Kubernetes health checks
 - La dette technique comme source d'incidents : lien avec le module 4 (Ward Cunningham 1992)
 
-## « Est-ce que c'est sécuritaire ? » (à développer)
-- La sécurité comme préoccupation transversale, pas une couche ajoutée après
+## « Est-ce que c'est sécuritaire ? » (complété)
+- Introduction : la sécurité comme préoccupation transversale (Equifax 2017, Desjardins 2019)
 - DevSecOps et shift left : intégrer la sécurité dans le pipeline
-- OWASP Top 10 : tour d'horizon des vulnérabilités web
-- HTTPS/TLS : le chiffrement en transit
-- Gestion des secrets (vaults, variables d'environnement)
-- Authentification et autorisation (OAuth 2.0, JWT, sessions)
-- Sécurité de la supply chain logicielle (lien avec module 2, dépendances)
-- Principe du moindre privilège
+- OWASP Top 10 : tour d'horizon des vulnérabilités web les plus courantes
+- Injection SQL : confusion données/code côté serveur, requêtes paramétrées, ORMs
+- Cross-Site Scripting (XSS) : reflected vs stored, échappement HTML, Jinja2/React
+- Cross-Site Request Forgery (CSRF) : cookies automatiques, jetons CSRF, Flask-WTF
+- Au-delà du code applicatif : transition vers l'infrastructure et les dépendances
+- Chaîne d'approvisionnement logicielle : SolarWinds (2020), xz Utils (2024), CVE, Dependabot
+- HTTPS/TLS : chiffrement en transit, certificats, Let's Encrypt (2015)
+- Gestion des secrets : variables d'environnement, Twelve-Factor App facteur III, python-dotenv, secrets managers
+- Authentification et autorisation :
+  - Distinction authn vs authz
+  - Sessions et cookies (Flask, Set-Cookie, Redis)
+  - JWT stateless (FastAPI, header.payload.signature, claims, refresh tokens)
+  - OAuth 2.0 : autorisation déléguée, analogie clé de valet, scopes, OpenID Connect, `gh auth login`
+- Principe du moindre privilège : fil conducteur de la section, retour sur Desjardins
 
 ## « Est-ce que ça va tenir la charge ? » (à développer)
 - Scalabilité verticale vs horizontale
