@@ -58,6 +58,11 @@ développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Idempotence&lt;/strong&gt; : une opération qu&amp;rsquo;on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Immutable infrastructure&lt;/strong&gt; : ne jamais modifier un artefact déployé, toujours le remplacer. Lien avec l&amp;rsquo;immutabilité en programmation fonctionnelle → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id="principes-de-systèmes-distribués"&gt;Principes de systèmes distribués&lt;a class="anchor" href="#principes-de-syst%c3%a8mes-distribu%c3%a9s"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Théorème CAP&lt;/strong&gt; (Eric Brewer, 2000) : un système distribué ne peut garantir simultanément que deux des trois propriétés suivantes : cohérence, disponibilité, tolérance aux partitions → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/"&gt;Module 5, Est-ce que ça va tenir la charge ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Premature optimization&lt;/strong&gt; (Donald Knuth) : « Premature optimization is the root of all evil. » Ne pas concevoir pour des millions d&amp;rsquo;utilisateurs avant d&amp;rsquo;en avoir besoin → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/"&gt;Module 5, Est-ce que ça va tenir la charge ?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id="principes-de-mesure-et-dobservation"&gt;Principes de mesure et d&amp;rsquo;observation&lt;a class="anchor" href="#principes-de-mesure-et-dobservation"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Loi de Goodhart&lt;/strong&gt; (Charles Goodhart, 1975) : « Lorsqu&amp;rsquo;une mesure devient un objectif, elle cesse d&amp;rsquo;être une bonne mesure. » → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/"&gt;Module 4, L&amp;rsquo;agilité (critique)&lt;/a&gt;&lt;/li&gt;
@@ -200,6 +205,10 @@ l&amp;rsquo;aviation et de la médecine →
 &lt;li&gt;Netflix, &lt;em&gt;Principles of Chaos Engineering&lt;/em&gt; (2014) : formalisation du chaos
 engineering, expériences en production pour tester la résilience →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Eric Brewer, &lt;em&gt;Towards Robust Distributed Systems&lt;/em&gt; (keynote PODC, 2000) :
+formulation du théorème CAP (Consistency, Availability, Partition tolerance),
+prouvé formellement par Seth Gilbert et Nancy Lynch (2002) →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/"&gt;Module 5, Est-ce que ça va tenir la charge ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
 faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc

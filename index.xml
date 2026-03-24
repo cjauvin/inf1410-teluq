@@ -127,6 +127,11 @@ développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Idempotence&lt;/strong&gt; : une opération qu&amp;rsquo;on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/"&gt;Module 3, Les APIs&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Immutable infrastructure&lt;/strong&gt; : ne jamais modifier un artefact déployé, toujours le remplacer. Lien avec l&amp;rsquo;immutabilité en programmation fonctionnelle → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id="principes-de-systèmes-distribués"&gt;Principes de systèmes distribués&lt;a class="anchor" href="#principes-de-syst%c3%a8mes-distribu%c3%a9s"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Théorème CAP&lt;/strong&gt; (Eric Brewer, 2000) : un système distribué ne peut garantir simultanément que deux des trois propriétés suivantes : cohérence, disponibilité, tolérance aux partitions → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/"&gt;Module 5, Est-ce que ça va tenir la charge ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Premature optimization&lt;/strong&gt; (Donald Knuth) : « Premature optimization is the root of all evil. » Ne pas concevoir pour des millions d&amp;rsquo;utilisateurs avant d&amp;rsquo;en avoir besoin → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/"&gt;Module 5, Est-ce que ça va tenir la charge ?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id="principes-de-mesure-et-dobservation"&gt;Principes de mesure et d&amp;rsquo;observation&lt;a class="anchor" href="#principes-de-mesure-et-dobservation"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Loi de Goodhart&lt;/strong&gt; (Charles Goodhart, 1975) : « Lorsqu&amp;rsquo;une mesure devient un objectif, elle cesse d&amp;rsquo;être une bonne mesure. » → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/"&gt;Module 4, L&amp;rsquo;agilité (critique)&lt;/a&gt;&lt;/li&gt;
@@ -269,6 +274,10 @@ l&amp;rsquo;aviation et de la médecine →
 &lt;li&gt;Netflix, &lt;em&gt;Principles of Chaos Engineering&lt;/em&gt; (2014) : formalisation du chaos
 engineering, expériences en production pour tester la résilience →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Eric Brewer, &lt;em&gt;Towards Robust Distributed Systems&lt;/em&gt; (keynote PODC, 2000) :
+formulation du théorème CAP (Consistency, Availability, Partition tolerance),
+prouvé formellement par Seth Gilbert et Nancy Lynch (2002) →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/"&gt;Module 5, Est-ce que ça va tenir la charge ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Comment je le déploie ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</guid><description>&lt;h1 id="comment-je-le-déploie-"&gt;Comment je le déploie ?&lt;a class="anchor" href="#comment-je-le-d%c3%a9ploie-"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dans le module 2, nous avons mis en place un pipeline d&amp;rsquo;intégration continue
 (CI) : à chaque commit poussé sur GitHub, une série de vérifications
@@ -441,4 +450,15 @@ environnement local est représentatif de l&amp;rsquo;environnement réel : peut
 les tests passent sur sa machine parce qu&amp;rsquo;il a une dépendance installée
 globalement, ou une version de Python légèrement différente. Le fameux &amp;ldquo;ça marche
 sur ma machine&amp;rdquo; est l&amp;rsquo;un des problèmes les plus classiques du développement
-logiciel.&lt;/p&gt;</description></item></channel></rss>
+logiciel.&lt;/p&gt;</description></item><item><title>Est-ce que ça va tenir la charge ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/</guid><description>&lt;h1 id="est-ce-que-ça-va-tenir-la-charge-"&gt;Est-ce que ça va tenir la charge ?&lt;a class="anchor" href="#est-ce-que-%c3%a7a-va-tenir-la-charge-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Les cinq sections précédentes de ce module ont abordé des questions fondamentales
+de l&amp;rsquo;exploitation d&amp;rsquo;un logiciel : où il tourne, comment le déployer, comment
+savoir s&amp;rsquo;il fonctionne, quoi faire quand il casse, et comment le protéger. Mais
+il reste une question que ces réponses ne couvrent pas : que se passe-t-il quand
+le logiciel rencontre le succès ? Un système peut être parfaitement conçu,
+déployé de manière impeccable, instrumenté avec soin, protégé contre les
+attaques&amp;hellip; et s&amp;rsquo;écrouler le jour où le nombre d&amp;rsquo;utilisateurs double. La
+scalabilité, c&amp;rsquo;est la capacité d&amp;rsquo;un système à maintenir ses performances
+lorsque la charge augmente. Ce n&amp;rsquo;est pas un problème que tous les systèmes
+rencontrent, mais quand il se manifeste, il met à l&amp;rsquo;épreuve chaque décision
+architecturale prise en amont.&lt;/p&gt;</description></item></channel></rss>

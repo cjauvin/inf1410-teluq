@@ -1,0 +1,386 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Est-ce que ça va tenir la charge ?# Les cinq sections précédentes de ce module ont abordé des questions fondamentales de l’exploitation d’un logiciel : où il tourne, comment le déployer, comment savoir s’il fonctionne, quoi faire quand il casse, et comment le protéger. Mais il reste une question que ces réponses ne couvrent pas : que se passe-t-il quand le logiciel rencontre le succès ? Un système peut être parfaitement conçu, déployé de manière impeccable, instrumenté avec soin, protégé contre les attaques… et s’écrouler le jour où le nombre d’utilisateurs double. La scalabilité, c’est la capacité d’un système à maintenir ses performances lorsque la charge augmente. Ce n’est pas un problème que tous les systèmes rencontrent, mais quand il se manifeste, il met à l’épreuve chaque décision architecturale prise en amont.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Est-ce que ça va tenir la charge ?"><meta property="og:description" content="Est-ce que ça va tenir la charge ?# Les cinq sections précédentes de ce module ont abordé des questions fondamentales de l’exploitation d’un logiciel : où il tourne, comment le déployer, comment savoir s’il fonctionne, quoi faire quand il casse, et comment le protéger. Mais il reste une question que ces réponses ne couvrent pas : que se passe-t-il quand le logiciel rencontre le succès ? Un système peut être parfaitement conçu, déployé de manière impeccable, instrumenté avec soin, protégé contre les attaques… et s’écrouler le jour où le nombre d’utilisateurs double. La scalabilité, c’est la capacité d’un système à maintenir ses performances lorsque la charge augmente. Ce n’est pas un problème que tous les systèmes rencontrent, mais quand il se manifeste, il met à l’épreuve chaque décision architecturale prise en amont."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Est-ce que ça va tenir la charge ?"><meta itemprop=description content="Est-ce que ça va tenir la charge ?# Les cinq sections précédentes de ce module ont abordé des questions fondamentales de l’exploitation d’un logiciel : où il tourne, comment le déployer, comment savoir s’il fonctionne, quoi faire quand il casse, et comment le protéger. Mais il reste une question que ces réponses ne couvrent pas : que se passe-t-il quand le logiciel rencontre le succès ? Un système peut être parfaitement conçu, déployé de manière impeccable, instrumenté avec soin, protégé contre les attaques… et s’écrouler le jour où le nombre d’utilisateurs double. La scalabilité, c’est la capacité d’un système à maintenir ses performances lorsque la charge augmente. Ce n’est pas un problème que tous les systèmes rencontrent, mais quand il se manifeste, il met à l’épreuve chaque décision architecturale prise en amont."><meta itemprop=wordCount content="4351"><title>Est-ce que ça va tenir la charge ? | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - Concevoir un programme correct</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Du programme au système</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
+<label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/>Perspective historique</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>L'architecture des applications web</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/>Les frameworks JavaScript</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/convergences/>Desktop, web et mobile</a></li></ul></li><li><input type=checkbox id=section-e4d51cc3c07f12fea00e9c0cd309e911 class=toggle>
+<label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - Construire en équipe</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=toggle>
+<label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/>Kanban</a></li></ul></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/>Gestion de projet et coordination</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle checked>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/>Où est-ce que ça tourne ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/>Comment je le déploie ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/>Est-ce que ça marche ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/>Que faire quand ça casse ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/>Est-ce que c'est sécuritaire ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/ class=active>Est-ce que ça va tenir la charge ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Regard vers le futur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Est-ce que ça va tenir la charge ?</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#scalabilité-verticale-vs-horizontale>Scalabilité verticale vs horizontale</a></li><li><a href=#load-balancing>Load balancing</a></li><li><a href=#caching>Caching</a></li><li><a href=#cdn>CDN</a></li><li><a href=#réplication-et-sharding>Réplication et sharding</a></li><li><a href=#le-théorème-cap>Le théorème CAP</a></li><li><a href=#files-dattente-et-traitement-asynchrone>Files d&rsquo;attente et traitement asynchrone</a></li><li><a href=#la-scalabilité-comme-spectre-de-compromis>La scalabilité comme spectre de compromis</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=est-ce-que-ça-va-tenir-la-charge->Est-ce que ça va tenir la charge ?<a class=anchor href=#est-ce-que-%c3%a7a-va-tenir-la-charge->#</a></h1><p>Les cinq sections précédentes de ce module ont abordé des questions fondamentales
+de l&rsquo;exploitation d&rsquo;un logiciel : où il tourne, comment le déployer, comment
+savoir s&rsquo;il fonctionne, quoi faire quand il casse, et comment le protéger. Mais
+il reste une question que ces réponses ne couvrent pas : que se passe-t-il quand
+le logiciel rencontre le succès ? Un système peut être parfaitement conçu,
+déployé de manière impeccable, instrumenté avec soin, protégé contre les
+attaques&mldr; et s&rsquo;écrouler le jour où le nombre d&rsquo;utilisateurs double. La
+scalabilité, c&rsquo;est la capacité d&rsquo;un système à maintenir ses performances
+lorsque la charge augmente. Ce n&rsquo;est pas un problème que tous les systèmes
+rencontrent, mais quand il se manifeste, il met à l&rsquo;épreuve chaque décision
+architecturale prise en amont.</p><p>L&rsquo;histoire du web regorge d&rsquo;exemples de systèmes victimes de leur propre succès.
+Twitter, dans ses premières années, était tristement célèbre pour son « fail
+whale », une illustration de baleine qui s&rsquo;affichait quand le site s&rsquo;écroulait
+sous la charge, ce qui arrivait régulièrement lors d&rsquo;événements populaires.</p><p>Le site, initialement construit comme une application Ruby on Rails monolithique,
+n&rsquo;avait tout simplement pas été conçu pour supporter des millions de tweets
+simultanés. Twitter a passé plusieurs années à réécrire ses composants critiques,
+migrant progressivement vers une architecture de microservices en Java et Scala.
+Plus près de nous, Shopify, l&rsquo;entreprise d&rsquo;Ottawa fondée par Tobias Lütke en
+2006, fait face chaque année à un défi de scalabilité extrême : le Black Friday.
+Pendant quelques heures, le trafic sur sa plateforme explose à des niveaux
+plusieurs fois supérieurs à la normale, alors que des milliers de boutiques en
+ligne gèrent simultanément des pics de commandes. En 2023, Shopify a traité
+4,2 milliards de dollars de ventes pendant le weekend du Black Friday/Cyber
+Monday. Cet exploit ne repose pas sur un seul truc magique, mais sur l&rsquo;ensemble
+des techniques que nous allons explorer dans cette section : caching agressif,
+load balancing, files d&rsquo;attente, et une infrastructure capable de s&rsquo;étirer et de
+se contracter selon la demande.</p><h2 id=scalabilité-verticale-vs-horizontale>Scalabilité verticale vs horizontale<a class=anchor href=#scalabilit%c3%a9-verticale-vs-horizontale>#</a></h2><p>Face à un système qui ne tient plus la charge, la réponse la plus intuitive est
+d&rsquo;acheter une machine plus puissante. Plus de RAM, un processeur plus rapide, un
+disque SSD plus performant. C&rsquo;est la <strong>scalabilité verticale</strong> (<em>scaling up</em>) :
+augmenter les ressources d&rsquo;un seul serveur. L&rsquo;approche est séduisante par sa
+simplicité. Le code ne change pas, l&rsquo;architecture reste la même, il n&rsquo;y a rien à
+redistribuer. Pendant longtemps, c&rsquo;était la stratégie par défaut : les bases de
+données Oracle, par exemple, tournaient typiquement sur des serveurs uniques de
+plus en plus coûteux. Mais la scalabilité verticale a une limite physique : à un
+certain point, il n&rsquo;existe tout simplement pas de machine plus puissante, ou son
+coût devient prohibitif. Et elle a une limite de fiabilité : si cette machine
+unique tombe en panne, tout le système s&rsquo;arrête. C&rsquo;est un point de défaillance
+unique (<em>single point of failure</em>), un concept que nous avons rencontré dans la
+section sur les incidents.</p><p>L&rsquo;alternative est la <strong>scalabilité horizontale</strong> (<em>scaling out</em>) : au lieu d&rsquo;une
+machine plus grosse, on utilise plusieurs machines plus petites qui se partagent
+le travail. C&rsquo;est l&rsquo;approche qu&rsquo;a rendue possible le cloud computing (section
+« Où est-ce que ça tourne ? ») et que nous avons déjà vue en action dans le
+tutoriel Kubernetes, quand nous avons passé notre application Flask de une à
+trois répliques. Le principe semble simple, mais il introduit une famille
+entière de problèmes nouveaux. Si trois serveurs répondent aux requêtes, comment
+décider lequel traite chaque requête ? Si un utilisateur modifie ses données sur
+le serveur A, comment s&rsquo;assurer que le serveur B voit la modification ? Si un
+des serveurs tombe en panne, comment redistribuer sa charge sans que les
+utilisateurs s&rsquo;en aperçoivent ? La scalabilité horizontale échange la simplicité
+d&rsquo;une seule machine contre la complexité de la coordination entre plusieurs.
+C&rsquo;est un compromis fondamental, et chaque technique que nous allons examiner
+dans cette section est une manière de gérer un aspect de cette complexité.</p><h2 id=load-balancing>Load balancing<a class=anchor href=#load-balancing>#</a></h2><p>Dès qu&rsquo;un système passe à plusieurs serveurs, une question se pose
+immédiatement : comment répartir les requêtes entre eux ? C&rsquo;est le rôle du
+<strong>load balancer</strong> (répartiteur de charge), un composant qui se place entre les
+clients et les serveurs, reçoit toutes les requêtes entrantes, et les distribue
+selon une stratégie définie. Le load balancer est le premier élément
+d&rsquo;infrastructure qu&rsquo;on ajoute quand on passe au scaling horizontal, et nous
+l&rsquo;avons déjà rencontré sans le nommer : dans le tutoriel Kubernetes, quand nous
+avions trois répliques de notre application Flask, le Service Kubernetes jouait
+exactement ce rôle, distribuant les requêtes entre les pods.</p><p>L&rsquo;algorithme de répartition le plus simple est le <strong>round-robin</strong> : les requêtes
+sont distribuées à tour de rôle, en rotation. La première requête va au serveur
+A, la deuxième au serveur B, la troisième au serveur C, puis on revient au
+serveur A. C&rsquo;est facile à implémenter et ça fonctionne bien quand les serveurs
+ont des capacités similaires et que les requêtes sont à peu près équivalentes en
+coût. Mais ce n&rsquo;est pas toujours le cas : certaines requêtes prennent 10
+millisecondes, d&rsquo;autres 10 secondes. Le <strong>least connections</strong> (moindre nombre de
+connexions) tente de résoudre ce problème en envoyant chaque nouvelle requête au
+serveur qui a le moins de requêtes en cours de traitement. D&rsquo;autres algorithmes
+existent : le <strong>weighted round-robin</strong>, qui donne plus de requêtes aux serveurs
+plus puissants, ou le <strong>IP hash</strong>, qui envoie toujours les requêtes d&rsquo;un même
+client au même serveur, ce qui peut être utile quand le serveur maintient un
+état en mémoire (comme une session).</p><p>Un load balancer ne se contente pas de distribuer les requêtes : il doit aussi
+savoir quand un serveur ne fonctionne plus. C&rsquo;est le rôle des <strong>health checks</strong>,
+des vérifications périodiques où le load balancer envoie une requête de test
+(typiquement un simple <code>GET /health</code>) à chaque serveur. Si un serveur ne répond
+pas, ou répond avec une erreur, le load balancer le retire automatiquement de la
+rotation et cesse de lui envoyer du trafic. Quand le serveur redevient sain, il
+est réintégré. Ce mécanisme, que nous avons déjà croisé avec les <em>liveness
+probes</em> et <em>readiness probes</em> de Kubernetes, est ce qui permet au scaling
+horizontal d&rsquo;offrir une meilleure fiabilité que le scaling vertical : si un
+serveur sur trois tombe en panne, les deux autres absorbent la charge, et les
+utilisateurs ne voient qu&rsquo;une légère dégradation plutôt qu&rsquo;une panne totale. Les
+outils de load balancing les plus courants sont nginx et HAProxy pour les
+déploiements traditionnels, les Services et Ingress dans Kubernetes, et les load
+balancers managés des fournisseurs cloud (AWS ELB, Google Cloud Load Balancing,
+Azure Load Balancer).</p><h2 id=caching>Caching<a class=anchor href=#caching>#</a></h2><p>Le load balancing distribue la charge entre plusieurs serveurs, mais il ne
+réduit pas la quantité de travail totale. Si chaque requête nécessite une
+requête à la base de données, ajouter des serveurs ne fait que répartir les
+requêtes à la base de données, qui devient à son tour le goulot d&rsquo;étranglement.
+Le <strong>caching</strong> (mise en cache) attaque le problème différemment : au lieu de
+faire le même travail plusieurs fois, on garde le résultat en mémoire et on le
+réutilise. C&rsquo;est une idée d&rsquo;une simplicité trompeuse, que Phil Karlton,
+ingénieur chez Netscape, a immortalisée dans une citation célèbre : « There are
+only two hard things in Computer Science: cache invalidation and naming
+things. » La difficulté n&rsquo;est pas de mettre des données en cache, c&rsquo;est de
+savoir quand les données en cache ne sont plus valides.</p><p>Le caching n&rsquo;est pas un concept propre à l&rsquo;infrastructure. Tout programmeur qui
+a déjà stocké le résultat d&rsquo;un calcul dans une variable pour éviter de le
+refaire a fait du caching. En programmation, cette technique s&rsquo;appelle la
+<strong>mémoïsation</strong> (<em>memoization</em>), un terme introduit par Donald Michie en 1968.
+Python offre un mécanisme intégré pour ça : le décorateur <code>@functools.cache</code> (ou
+<code>@lru_cache</code> pour une version avec une taille maximale) qui mémorise
+automatiquement les résultats d&rsquo;une fonction en fonction de ses arguments :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> functools <span style=color:#f92672>import</span> cache
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@cache</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fibonacci</span>(n):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> n <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>2</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> n
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> fibonacci(n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>+</span> fibonacci(n <span style=color:#f92672>-</span> <span style=color:#ae81ff>2</span>)</span></span></code></pre></div><p>Sans le décorateur, <code>fibonacci(50)</code> prendrait un temps astronomique à cause des
+appels récursifs redondants. Avec le cache, chaque valeur n&rsquo;est calculée qu&rsquo;une
+seule fois. Le principe est exactement le même quand on passe à l&rsquo;échelle d&rsquo;un
+système distribué, mais les contraintes changent. Un <code>@cache</code> vit dans la
+mémoire d&rsquo;un seul processus : si le serveur redémarre, le cache disparaît, et
+si trois serveurs tournent en parallèle, chacun a son propre cache indépendant.
+C&rsquo;est pourquoi on utilise un service de cache partagé comme Redis ou Memcached,
+accessible par tous les serveurs, persistant au-delà de la vie d&rsquo;un processus
+individuel.</p><p>Le caching opère à plusieurs niveaux dans l&rsquo;architecture d&rsquo;un système web. La
+première couche est le <strong>cache du navigateur</strong> : quand un serveur envoie une
+réponse HTTP, il peut inclure des en-têtes (<code>Cache-Control</code>, <code>ETag</code>, <code>Expires</code>)
+qui indiquent au navigateur de garder le résultat en mémoire pendant une durée
+déterminée. La prochaine fois que l&rsquo;utilisateur demande la même ressource, le
+navigateur la sert directement depuis son cache local, sans même contacter le
+serveur. C&rsquo;est extrêmement efficace pour les ressources statiques (images,
+fichiers CSS et JavaScript) qui changent rarement. La deuxième couche est le
+<strong>CDN</strong>, que nous aborderons dans la prochaine sous-section. La troisième
+couche, celle sur laquelle le développeur a le plus de contrôle, est le <strong>cache
+applicatif</strong> : un espace mémoire rapide, typiquement Redis ou Memcached, où
+l&rsquo;application stocke les résultats de calculs coûteux ou de requêtes fréquentes
+à la base de données.</p><p>Le pattern le plus courant est le <strong>cache-aside</strong> (aussi appelé <em>lazy loading</em>) :
+l&rsquo;application vérifie d&rsquo;abord si le résultat est en cache, et ne consulte la
+base de données que si ce n&rsquo;est pas le cas. Voici un exemple simplifié avec
+Redis :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> redis
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cache <span style=color:#f92672>=</span> redis<span style=color:#f92672>.</span>Redis(host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;localhost&#34;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>6379</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_user_profile</span>(user_id):
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Vérifier le cache d&#39;abord</span>
+</span></span><span style=display:flex><span>    cached <span style=color:#f92672>=</span> cache<span style=color:#f92672>.</span>get(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;user:</span><span style=color:#e6db74>{</span>user_id<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> cached:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> json<span style=color:#f92672>.</span>loads(cached)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Cache miss : aller chercher dans la base de données</span>
+</span></span><span style=display:flex><span>    profile <span style=color:#f92672>=</span> db<span style=color:#f92672>.</span>query(<span style=color:#e6db74>&#34;SELECT * FROM users WHERE id = :id&#34;</span>, {<span style=color:#e6db74>&#34;id&#34;</span>: user_id})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Stocker en cache pour 5 minutes</span>
+</span></span><span style=display:flex><span>    cache<span style=color:#f92672>.</span>setex(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;user:</span><span style=color:#e6db74>{</span>user_id<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>, <span style=color:#ae81ff>300</span>, json<span style=color:#f92672>.</span>dumps(profile))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> profile</span></span></code></pre></div><p>Le paramètre <code>300</code> de <code>setex</code> est le TTL (<em>time to live</em>) en secondes : après
+cinq minutes, Redis supprime automatiquement l&rsquo;entrée, ce qui force
+l&rsquo;application à aller chercher des données fraîches à la prochaine requête. Le
+TTL est la forme la plus simple d&rsquo;<strong>invalidation de cache</strong> : on accepte que les
+données puissent être périmées pendant une durée limitée, en échange de la
+simplicité. C&rsquo;est un compromis acceptable pour un profil utilisateur, mais pas
+pour un solde bancaire. Pour les cas où la fraîcheur est critique, l&rsquo;alternative
+est l&rsquo;invalidation explicite : quand les données changent, on supprime l&rsquo;entrée
+correspondante du cache (<code>cache.delete(f"user:{user_id}")</code>), de sorte que la
+prochaine lecture ira chercher la version à jour.</p><h2 id=cdn>CDN<a class=anchor href=#cdn>#</a></h2><p>Un <strong>CDN</strong> (<em>Content Delivery Network</em>) est un réseau de serveurs distribués
+géographiquement qui servent du contenu aux utilisateurs depuis l&rsquo;emplacement le
+plus proche. Le principe repose sur une réalité physique incontournable : la
+vitesse de la lumière. Une requête entre Montréal et un serveur à Tokyo doit
+parcourir environ 10 000 km, ce qui impose un temps de latence incompressible
+d&rsquo;au moins 30 millisecondes pour l&rsquo;aller simple, et en pratique beaucoup plus à
+cause des multiples sauts réseau. Un CDN résout ce problème en plaçant des
+copies du contenu dans des points de présence (<em>PoPs</em>) répartis à travers le
+monde. Quand un utilisateur à Montréal demande une image, elle est servie depuis
+un serveur à Montréal ou à New York plutôt que depuis Tokyo. Les premiers CDN
+sont apparus à la fin des années 1990, Akamai (fondé en 1998 au MIT) étant le
+pionnier du domaine. Aujourd&rsquo;hui, les acteurs principaux incluent Cloudflare,
+Amazon CloudFront, Fastly et Google Cloud CDN.</p><p>Un usage très courant des CDN que tout développeur web rencontre rapidement est
+l&rsquo;inclusion de bibliothèques JavaScript ou CSS hébergées sur un CDN public. Au
+lieu de télécharger une bibliothèque et de la servir depuis son propre serveur,
+on peut simplement la référencer par une URL pointant vers un CDN :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-html data-lang=html><span style=display:flex><span><span style=color:#75715e>&lt;!-- jQuery servi depuis le CDN de Google --&gt;</span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>&lt;!-- Bootstrap servi depuis le CDN cdnjs --&gt;</span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;stylesheet&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css&#34;</span> /&gt;</span></span></code></pre></div><p>L&rsquo;avantage est double. D&rsquo;abord, le fichier est servi depuis un serveur
+géographiquement proche de l&rsquo;utilisateur. Ensuite, si l&rsquo;utilisateur a déjà
+visité un autre site qui référençait la même URL, le fichier est peut-être déjà
+dans le cache de son navigateur, ce qui élimine complètement le téléchargement.
+Des services comme cdnjs, jsDelivr et unpkg se sont spécialisés dans
+l&rsquo;hébergement de bibliothèques open source sur CDN, servant collectivement des
+milliards de requêtes par jour.</p><p>Les CDN sont particulièrement efficaces pour les contenus statiques : images,
+fichiers CSS et JavaScript, vidéos, documents PDF. Ces ressources ne changent
+pas entre les utilisateurs et se prêtent naturellement à la mise en cache
+géographique. C&rsquo;est d&rsquo;ailleurs ce qui rend le modèle du <em>Static Site
+Generation</em> (SSG), que nous avons rencontré dans la section sur les interfaces
+utilisateur au module 3, si performant : un site généré statiquement par Hugo,
+Jekyll ou Astro n&rsquo;est qu&rsquo;un ensemble de fichiers HTML, CSS et JavaScript qui
+peuvent être servis entièrement par un CDN, sans aucun serveur applicatif. Ce
+cours lui-même, construit avec Hugo, pourrait être déployé sur un CDN et servir
+des milliers d&rsquo;étudiants simultanément sans aucun problème de scalabilité. Mais
+les CDN modernes vont au-delà du contenu statique. Des services comme Cloudflare
+Workers ou AWS Lambda@Edge permettent d&rsquo;exécuter du code directement sur les
+serveurs du CDN, à la périphérie du réseau (<em>edge computing</em>). Cela permet, par
+exemple, de personnaliser une page en fonction de la langue de l&rsquo;utilisateur ou
+de rediriger une requête vers le bon backend, le tout sans que la requête ne
+quitte la région géographique de l&rsquo;utilisateur.</p><h2 id=réplication-et-sharding>Réplication et sharding<a class=anchor href=#r%c3%a9plication-et-sharding>#</a></h2><p>Le load balancing et le caching permettent de distribuer et de réduire la charge
+sur les serveurs applicatifs, mais à un certain point, c&rsquo;est la base de données
+elle-même qui devient le goulot d&rsquo;étranglement. Une application peut tourner sur
+cinquante serveurs derrière un load balancer, si tous ces serveurs envoient
+leurs requêtes à une seule base de données PostgreSQL, c&rsquo;est cette base qui fixe
+la limite. Deux stratégies complémentaires permettent de passer à l&rsquo;échelle au
+niveau des données : la <strong>réplication</strong> et le <strong>sharding</strong>.</p><p>La <strong>réplication</strong> consiste à maintenir plusieurs copies identiques de la base
+de données. La forme la plus courante est la réplication <strong>leader-follower</strong>
+(aussi appelée <em>primary-replica</em> ou historiquement <em>master-slave</em>, une
+terminologie que l&rsquo;industrie abandonne progressivement). Le principe : une seule
+instance, le leader, accepte les écritures. Chaque écriture est ensuite propagée
+aux followers, qui maintiennent une copie à jour des données. Les lectures,
+elles, peuvent être distribuées entre tous les followers. Ce modèle fonctionne
+bien quand les lectures sont beaucoup plus fréquentes que les écritures, ce qui
+est le cas de la majorité des applications web : un site de commerce en ligne
+reçoit des milliers de consultations de fiches produits pour chaque commande
+passée. Mais la réplication introduit un délai : entre le moment où une écriture
+est effectuée sur le leader et celui où elle apparaît sur les followers, il y a
+un décalage (<em>replication lag</em>). Pendant ce décalage, un utilisateur qui vient
+de modifier son profil pourrait ne pas voir sa modification s&rsquo;il est servi par
+un follower qui n&rsquo;a pas encore reçu la mise à jour. C&rsquo;est un compromis entre
+performance et cohérence que nous retrouverons avec le théorème CAP.</p><p>Le <strong>sharding</strong> (aussi appelé <em>partitionnement horizontal</em>) attaque ce problème
+en découpant les données elles-mêmes : au lieu de stocker tous les utilisateurs
+dans une seule base, on les répartit entre plusieurs bases selon un critère
+déterministe. Par exemple, les utilisateurs dont le nom commence par A-M vont
+sur le shard 1, et N-Z sur le shard 2. En pratique, on utilise plutôt une
+fonction de hachage sur une clé (comme l&rsquo;identifiant de l&rsquo;utilisateur) pour
+distribuer les données uniformément. Chaque shard ne contient qu&rsquo;une fraction
+des données et ne traite qu&rsquo;une fraction des requêtes, ce qui permet de passer à
+l&rsquo;échelle aussi bien en lecture qu&rsquo;en écriture.</p><p>Le prix du sharding est la complexité. Les requêtes qui touchent un seul shard
+restent simples et rapides, mais les requêtes qui doivent combiner des données
+de plusieurs shards deviennent beaucoup plus coûteuses. Si les utilisateurs A-M
+sont sur le shard 1 et les utilisateurs N-Z sur le shard 2, une requête
+« afficher les 10 utilisateurs les plus récents » doit interroger les deux
+shards, combiner les résultats, puis trier. Les jointures entre tables réparties
+sur des shards différents sont particulièrement pénibles. Le choix de la <strong>clé
+de sharding</strong> est donc crucial : une mauvaise clé peut créer des « hot spots »
+(un shard qui reçoit beaucoup plus de trafic que les autres) ou rendre les
+requêtes courantes impossibles sans interroger tous les shards. Rééquilibrer les
+shards quand la distribution devient inégale, ou ajouter de nouveaux shards à un
+système existant, sont des opérations complexes et risquées. C&rsquo;est pourquoi le
+sharding est généralement considéré comme une solution de dernier recours : on
+réplique d&rsquo;abord, on optimise les requêtes, on ajoute du caching, et on ne
+sharde que quand on a épuisé les autres options. Le principe YAGNI s&rsquo;applique
+pleinement ici.</p><h2 id=le-théorème-cap>Le théorème CAP<a class=anchor href=#le-th%c3%a9or%c3%a8me-cap>#</a></h2><p>En 2000, lors d&rsquo;un keynote au symposium PODC (<em>Principles of Distributed
+Computing</em>), l&rsquo;informaticien Eric Brewer de l&rsquo;Université de Californie à
+Berkeley a formulé une conjecture qui allait devenir l&rsquo;un des résultats les plus
+cités en systèmes distribués. La conjecture, prouvée formellement par Seth
+Gilbert et Nancy Lynch du MIT en 2002, affirme qu&rsquo;un système distribué ne peut
+garantir simultanément que deux des trois propriétés suivantes :</p><ul><li><strong>Consistency</strong> (cohérence) : tous les nœuds voient les mêmes données au même
+moment. Une lecture retourne toujours le résultat de l&rsquo;écriture la plus
+récente.</li><li><strong>Availability</strong> (disponibilité) : chaque requête reçoit une réponse, même si
+certains nœuds sont en panne.</li><li><strong>Partition tolerance</strong> (tolérance aux partitions réseau) : le système continue
+de fonctionner même si des messages sont perdus entre les nœuds.</li></ul><p>Pour comprendre intuitivement pourquoi ces trois propriétés ne peuvent pas
+coexister, imaginons un scénario simple. Une application bancaire réplique ses
+données sur deux serveurs, A et B. Alice a un solde de 1 000 $ visible sur les
+deux serveurs. Maintenant, une partition réseau survient : A et B ne peuvent
+plus communiquer entre eux. Alice envoie une requête au serveur A pour retirer
+500 $. Le serveur A met à jour le solde localement : 500 $. Mais il ne peut pas
+informer le serveur B, puisque la connexion est coupée. À ce moment, si Bob
+consulte le solde d&rsquo;Alice sur le serveur B, que se passe-t-il ? Le système a
+deux options. Première option : le serveur B répond avec l&rsquo;ancienne valeur,
+1 000 $. Le système est disponible (B a répondu) mais incohérent (B retourne
+une donnée périmée). C&rsquo;est le choix AP. Deuxième option : le serveur B refuse
+de répondre, parce qu&rsquo;il sait qu&rsquo;il n&rsquo;est peut-être pas à jour. Le système est
+cohérent (on ne retourne jamais de donnée périmée) mais indisponible (B n&rsquo;a pas
+répondu). C&rsquo;est le choix CP. Il n&rsquo;existe pas de troisième option : tant que la
+partition persiste, on ne peut pas avoir à la fois une réponse et la garantie
+qu&rsquo;elle est à jour. Et le choix <strong>CA</strong> (cohérence + disponibilité, mais sans
+tolérance aux partitions) ? C&rsquo;est un système qui suppose que les partitions
+réseau n&rsquo;arrivent jamais. Une base de données PostgreSQL sur un seul serveur
+est techniquement CA : elle est cohérente et disponible, mais si le réseau entre
+l&rsquo;application et la base tombe, tout s&rsquo;arrête. Dès qu&rsquo;on distribue les données
+sur plusieurs nœuds, les partitions deviennent une réalité inévitable, et le
+choix se réduit à CP ou AP.</p><p>Le théorème peut sembler abstrait, mais il a une implication très concrète. Dans
+un système distribué, les partitions réseau ne sont pas un cas théorique : elles
+arrivent. Un câble est coupé, un switch tombe en panne, un datacenter devient
+temporairement injoignable. La tolérance aux partitions n&rsquo;est donc pas vraiment
+un choix, c&rsquo;est une contrainte imposée par la réalité. Le vrai dilemme est entre
+cohérence et disponibilité. Quand une partition survient, le système doit
+choisir : soit il refuse de répondre aux requêtes tant que les nœuds ne sont pas
+resynchronisés (il sacrifie la disponibilité pour préserver la cohérence, c&rsquo;est
+le choix <strong>CP</strong>), soit il continue de répondre avec des données potentiellement
+périmées (il sacrifie la cohérence pour préserver la disponibilité, c&rsquo;est le
+choix <strong>AP</strong>). Les bases de données relationnelles traditionnelles (PostgreSQL,
+MySQL) font un choix CP : elles privilégient la cohérence, quitte à devenir
+indisponibles en cas de partition. Des bases NoSQL comme Cassandra ou DynamoDB
+font le choix inverse, AP : elles restent disponibles, mais acceptent que
+différents nœuds puissent temporairement retourner des données différentes, un
+modèle appelé <strong>cohérence à terme</strong> (<em>eventual consistency</em>).</p><h2 id=files-dattente-et-traitement-asynchrone>Files d&rsquo;attente et traitement asynchrone<a class=anchor href=#files-dattente-et-traitement-asynchrone>#</a></h2><p>Toutes les techniques que nous avons vues jusqu&rsquo;ici partagent un même modèle
+d&rsquo;interaction : un client envoie une requête et attend la réponse. C&rsquo;est le
+modèle <strong>synchrone</strong>, simple et naturel. Mais certaines opérations ne se prêtent
+pas bien à ce modèle. Quand un utilisateur passe une commande sur un site de
+commerce en ligne, la réponse immédiate devrait être « votre commande est
+confirmée ». Mais en arrière-plan, il faut valider le paiement, mettre à jour
+l&rsquo;inventaire, générer une facture, envoyer un courriel de confirmation, notifier
+l&rsquo;entrepôt pour la livraison. Si toutes ces opérations sont exécutées de manière
+synchrone avant de répondre à l&rsquo;utilisateur, la requête prend plusieurs
+secondes, et le serveur est occupé pendant tout ce temps, incapable de traiter
+d&rsquo;autres requêtes. La solution est de <strong>découpler</strong> le traitement : le serveur
+accepte la commande, la dépose dans une <strong>file d&rsquo;attente</strong> (<em>message queue</em>), et
+répond immédiatement à l&rsquo;utilisateur. Des processus séparés, appelés <em>workers</em>
+ou <em>consumers</em>, consomment les messages de la file et exécutent les tâches en
+arrière-plan, à leur propre rythme.</p><p>Ce modèle est directement lié à l&rsquo;<strong>architecture événementielle</strong> que nous avons
+rencontrée dans le module 3 : la file d&rsquo;attente joue le même rôle de découplage
+entre producteurs et consommateurs que nous avions décrit avec Kafka et
+RabbitMQ. La différence de perspective est que dans le module 3, nous parlions
+d&rsquo;architecture (comment structurer les interactions entre composants), alors
+qu&rsquo;ici nous parlons de scalabilité (comment absorber la charge). Mais le
+mécanisme est le même. RabbitMQ est une file d&rsquo;attente classique : un message
+est délivré à un seul consumer, et une fois traité, il disparaît. Kafka, comme
+nous l&rsquo;avons vu, fonctionne plutôt comme un journal (<em>log</em>) distribué où les
+messages sont conservés et peuvent être lus par plusieurs consumers
+indépendants. Dans l&rsquo;écosystème Python, <strong>Celery</strong> est l&rsquo;outil le plus courant
+pour le traitement asynchrone. Il s&rsquo;appuie sur un <em>broker</em> de messages (Redis ou
+RabbitMQ) et permet de définir des tâches qui seront exécutées en arrière-plan
+par des workers séparés.</p><p>Voici un exemple simplifié d&rsquo;une tâche Celery pour le traitement d&rsquo;une
+commande :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> celery <span style=color:#f92672>import</span> Celery
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> Celery(<span style=color:#e6db74>&#34;tasks&#34;</span>, broker<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;redis://localhost:6379&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.task</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>process_order</span>(order_id):
+</span></span><span style=display:flex><span>    validate_payment(order_id)
+</span></span><span style=display:flex><span>    update_inventory(order_id)
+</span></span><span style=display:flex><span>    generate_invoice(order_id)
+</span></span><span style=display:flex><span>    send_confirmation_email(order_id)</span></span></code></pre></div><p>Côté application web, au lieu d&rsquo;exécuter toutes ces étapes avant de répondre à
+l&rsquo;utilisateur, on dépose simplement la tâche dans la file :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/order&#34;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;POST&#34;</span>])
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_order</span>():
+</span></span><span style=display:flex><span>    order <span style=color:#f92672>=</span> save_order(request<span style=color:#f92672>.</span>json)
+</span></span><span style=display:flex><span>    process_order<span style=color:#f92672>.</span>delay(order<span style=color:#f92672>.</span>id)  <span style=color:#75715e># .delay() envoie la tâche à la file</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> jsonify({<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;confirmed&#34;</span>, <span style=color:#e6db74>&#34;order_id&#34;</span>: order<span style=color:#f92672>.</span>id}), <span style=color:#ae81ff>201</span></span></span></code></pre></div><p>Le point clé est que l&rsquo;appel <code>process_order.delay()</code> est <strong>non-bloquant</strong> : il
+ne fait que déposer un message dans la file d&rsquo;attente Redis et retourne
+immédiatement, sans attendre que la tâche soit terminée. Le serveur web est
+libre de traiter la requête suivante pendant qu&rsquo;un worker, dans un processus
+séparé, exécute les étapes de traitement de la commande. C&rsquo;est le contraire d&rsquo;un
+appel <strong>bloquant</strong>, où le serveur resterait immobilisé en attendant la fin de
+chaque étape (validation du paiement, envoi de courriel, etc.) avant de pouvoir
+répondre au client. La distinction est fondamentale pour la scalabilité : un
+serveur qui bloque pendant cinq secondes sur chaque commande ne peut traiter que
+12 commandes par minute. Le même serveur, avec un traitement non-bloquant, peut
+accepter des centaines de commandes par minute, puisque chaque requête ne prend
+que quelques millisecondes, le temps de sauvegarder la commande et de la déposer
+dans la file. Si la charge augmente et que les tâches s&rsquo;accumulent dans la file,
+on peut simplement lancer plus de workers, ce qui est une forme de scaling
+horizontal appliquée au traitement asynchrone plutôt qu&rsquo;aux requêtes HTTP.</p><h2 id=la-scalabilité-comme-spectre-de-compromis>La scalabilité comme spectre de compromis<a class=anchor href=#la-scalabilit%c3%a9-comme-spectre-de-compromis>#</a></h2><p>Chaque technique que nous avons explorée dans cette section apporte une solution
+à un aspect du problème de la charge, mais chacune introduit aussi de la
+complexité. Le load balancing demande de gérer des serveurs multiples et de
+s&rsquo;assurer qu&rsquo;ils sont interchangeables. Le caching demande de décider quand les
+données sont périmées. La réplication introduit le délai de propagation. Le
+sharding complique les requêtes qui traversent les partitions. Les files
+d&rsquo;attente ajoutent une couche d&rsquo;indirection et rendent le traitement plus
+difficile à suivre et à déboguer. Le théorème CAP nous rappelle que certains
+compromis sont inévitables, pas parce que nos outils sont imparfaits, mais parce
+que la physique des systèmes distribués l&rsquo;impose.</p><p>C&rsquo;est pourquoi le principe YAGNI, que nous avons rencontré dans le module 3, est
+particulièrement pertinent en matière de scalabilité. Un système qui sert
+quelques centaines d&rsquo;utilisateurs n&rsquo;a pas besoin de sharding, de CDN, ni de
+files d&rsquo;attente. Un seul serveur avec une base de données PostgreSQL et un peu
+de caching peut aller remarquablement loin. Les premières versions de Twitter,
+de Shopify, de GitHub, toutes tournaient sur des architectures simples qui
+auraient fait sourire un architecte de systèmes distribués. Ce n&rsquo;est que lorsque
+le succès est arrivé que ces architectures ont dû évoluer, souvent dans la
+douleur. La bonne approche n&rsquo;est pas de concevoir pour des millions
+d&rsquo;utilisateurs dès le premier jour, mais de comprendre les outils disponibles
+pour savoir vers lesquels se tourner quand le besoin se manifeste. Comme le dit
+l&rsquo;adage souvent attribué à Donald Knuth : « Premature optimization is the root
+of all evil. »</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>Est-ce que c'est sécuritaire ?</span>
+</a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ class="flex align-center"><span>Module 6 - Regard vers le futur</span>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#scalabilité-verticale-vs-horizontale>Scalabilité verticale vs horizontale</a></li><li><a href=#load-balancing>Load balancing</a></li><li><a href=#caching>Caching</a></li><li><a href=#cdn>CDN</a></li><li><a href=#réplication-et-sharding>Réplication et sharding</a></li><li><a href=#le-théorème-cap>Le théorème CAP</a></li><li><a href=#files-dattente-et-traitement-asynchrone>Files d&rsquo;attente et traitement asynchrone</a></li><li><a href=#la-scalabilité-comme-spectre-de-compromis>La scalabilité comme spectre de compromis</a></li></ul></nav></div></aside></main></body></html>

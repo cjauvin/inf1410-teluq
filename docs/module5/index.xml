@@ -71,4 +71,15 @@ de l&amp;rsquo;extérieur, mais d&amp;rsquo;une menace interne : un utilisateur 
 accès à des données qu&amp;rsquo;il n&amp;rsquo;aurait probablement pas dû pouvoir extraire en
 masse. L&amp;rsquo;incident a mis en lumière l&amp;rsquo;importance du principe du moindre privilège
 et de la surveillance des accès internes, des aspects de la sécurité qui ne se
-règlent pas avec un pare-feu.&lt;/p&gt;</description></item></channel></rss>
+règlent pas avec un pare-feu.&lt;/p&gt;</description></item><item><title>Est-ce que ça va tenir la charge ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/</guid><description>&lt;h1 id="est-ce-que-ça-va-tenir-la-charge-"&gt;Est-ce que ça va tenir la charge ?&lt;a class="anchor" href="#est-ce-que-%c3%a7a-va-tenir-la-charge-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Les cinq sections précédentes de ce module ont abordé des questions fondamentales
+de l&amp;rsquo;exploitation d&amp;rsquo;un logiciel : où il tourne, comment le déployer, comment
+savoir s&amp;rsquo;il fonctionne, quoi faire quand il casse, et comment le protéger. Mais
+il reste une question que ces réponses ne couvrent pas : que se passe-t-il quand
+le logiciel rencontre le succès ? Un système peut être parfaitement conçu,
+déployé de manière impeccable, instrumenté avec soin, protégé contre les
+attaques&amp;hellip; et s&amp;rsquo;écrouler le jour où le nombre d&amp;rsquo;utilisateurs double. La
+scalabilité, c&amp;rsquo;est la capacité d&amp;rsquo;un système à maintenir ses performances
+lorsque la charge augmente. Ce n&amp;rsquo;est pas un problème que tous les systèmes
+rencontrent, mais quand il se manifeste, il met à l&amp;rsquo;épreuve chaque décision
+architecturale prise en amont.&lt;/p&gt;</description></item></channel></rss>
