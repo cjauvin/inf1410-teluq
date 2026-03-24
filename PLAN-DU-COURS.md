@@ -455,14 +455,35 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   - OAuth 2.0 : autorisation déléguée, analogie clé de valet, scopes, OpenID Connect, `gh auth login`
 - Principe du moindre privilège : fil conducteur de la section, retour sur Desjardins
 
-## « Est-ce que ça va tenir la charge ? » (à développer)
-- Scalabilité verticale vs horizontale
-- Load balancing (round-robin, health checks)
-- Caching (navigateur, CDN, Redis/Memcached, invalidation)
-- Réplication de bases de données, sharding
-- CDN (Content Delivery Network)
-- Théorème CAP (Brewer, 2000)
-- Files d'attente et traitement asynchrone (lien avec architecture événementielle, module 3)
+## « Est-ce que ça va tenir la charge ? » (complété)
+- Introduction : le succès comme défi (fail whale de Twitter, Black Friday de Shopify)
+- Scalabilité verticale vs horizontale : scaling up vs scaling out, single point of failure
+- Load balancing : round-robin, least connections, weighted round-robin, IP hash, health checks
+  - Outils : nginx, HAProxy, Kubernetes Services/Ingress, load balancers cloud
+- Caching :
+  - Mémoïsation (Donald Michie 1968) : `@functools.cache`, lien avec le caching distribué
+  - Couches de cache : navigateur (Cache-Control, ETag), CDN, cache applicatif (Redis, Memcached)
+  - Pattern cache-aside, TTL, invalidation explicite
+  - Citation de Phil Karlton sur l'invalidation de cache
+- CDN (Content Delivery Network) :
+  - Principe : distribution géographique, latence, points de présence (PoPs)
+  - Akamai (1998), Cloudflare, CloudFront, Fastly
+  - Usage courant : bibliothèques JS/CSS sur CDN public (cdnjs, jsDelivr, unpkg)
+  - Lien avec SSG (module 3), edge computing (Cloudflare Workers, Lambda@Edge)
+- Réplication et sharding :
+  - Réplication leader-follower : lectures distribuées, replication lag
+  - Sharding (partitionnement horizontal) : clé de sharding, hot spots, compromis
+  - YAGNI : sharding comme solution de dernier recours
+- Théorème CAP (Eric Brewer, PODC 2000, preuve Gilbert et Lynch 2002) :
+  - Consistency, Availability, Partition tolerance
+  - Explication intuitive (scénario bancaire)
+  - CP vs AP vs CA, cohérence à terme (eventual consistency)
+  - PostgreSQL/MySQL (CP) vs Cassandra/DynamoDB (AP)
+- Files d'attente et traitement asynchrone :
+  - Modèle synchrone vs asynchrone, appel bloquant vs non-bloquant
+  - Lien avec l'architecture événementielle (module 3), RabbitMQ, Kafka
+  - Celery (Python) : tâches en arrière-plan, broker Redis/RabbitMQ
+- Conclusion : scalabilité comme spectre de compromis, YAGNI, citation de Knuth (premature optimization)
 
 # Module 6 - Au-delà du logiciel
 

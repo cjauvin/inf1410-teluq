@@ -33,6 +33,11 @@ développés dans leurs sections respectives.)*
 - **Idempotence** : une opération qu'on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → [Module 3, Les APIs]({{< ref "/docs/module3/20-apis" >}}), [Module 5, Comment je le déploie ?]({{< ref "/docs/module5/20-deploiement" >}})
 - **Immutable infrastructure** : ne jamais modifier un artefact déployé, toujours le remplacer. Lien avec l'immutabilité en programmation fonctionnelle → [Module 5, Comment je le déploie ?]({{< ref "/docs/module5/20-deploiement" >}})
 
+## Principes de systèmes distribués
+
+- **Théorème CAP** (Eric Brewer, 2000) : un système distribué ne peut garantir simultanément que deux des trois propriétés suivantes : cohérence, disponibilité, tolérance aux partitions → [Module 5, Est-ce que ça va tenir la charge ?]({{< ref "/docs/module5/60-scalabilite" >}})
+- **Premature optimization** (Donald Knuth) : « Premature optimization is the root of all evil. » Ne pas concevoir pour des millions d'utilisateurs avant d'en avoir besoin → [Module 5, Est-ce que ça va tenir la charge ?]({{< ref "/docs/module5/60-scalabilite" >}})
+
 ## Principes de mesure et d'observation
 
 - **Loi de Goodhart** (Charles Goodhart, 1975) : « Lorsqu'une mesure devient un objectif, elle cesse d'être une bonne mesure. » → [Module 4, L'agilité (critique)]({{< ref "/docs/module4/20-agile" >}})

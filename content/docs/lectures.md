@@ -137,3 +137,7 @@ intégrées dans le cours.)*
 - Netflix, *Principles of Chaos Engineering* (2014) : formalisation du chaos
   engineering, expériences en production pour tester la résilience →
   [Module 5, Que faire quand ça casse ?]({{< ref "/docs/module5/40-incidents" >}})
+- Eric Brewer, *Towards Robust Distributed Systems* (keynote PODC, 2000) :
+  formulation du théorème CAP (Consistency, Availability, Partition tolerance),
+  prouvé formellement par Seth Gilbert et Nancy Lynch (2002) →
+  [Module 5, Est-ce que ça va tenir la charge ?]({{< ref "/docs/module5/60-scalabilite" >}})
