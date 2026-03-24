@@ -328,3 +328,117 @@ changé la donne en offrant des certificats gratuits et automatisables.
 Aujourd'hui, plus de 80 % du trafic web mondial utilise HTTPS, et les
 navigateurs modernes affichent un avertissement explicite pour les sites qui ne
 l'utilisent pas.
+
+## La gestion des secrets
+
+HTTPS protège les données en transit sur le réseau, mais il y a une autre
+catégorie de données sensibles qui mérite une attention particulière : les
+secrets de l'application elle-même. Mots de passe de bases de données, clés
+API, jetons d'accès à des services tiers, clés de chiffrement : ce sont les
+« clés du royaume », et leur mauvaise gestion est une source constante de
+brèches de sécurité. Le scénario le plus courant est tristement banal : un
+développeur, pour simplifier la configuration de son environnement local, écrit
+un mot de passe directement dans le code source, puis oublie de le retirer
+avant de pousser sur GitHub. En 2013, des chercheurs ont montré qu'en scannant
+automatiquement les dépôts publics de GitHub, on pouvait trouver des milliers
+de clés AWS, de mots de passe de bases de données et de jetons d'API exposés en
+clair. Le problème est aggravé par la nature de git : même si le développeur
+supprime le secret dans un commit subséquent, il reste dans l'historique,
+accessible à quiconque sait chercher. Des outils comme TruffleHog ou GitLeaks
+automatisent précisément cette recherche.
+
+La première ligne de défense est simple : ne jamais stocker de secrets dans le
+code source. La Twelve-Factor App (facteur III) recommande de passer toute
+configuration qui varie entre les environnements par des **variables
+d'environnement**. Au lieu d'écrire `DB_PASSWORD = "motdepasse123"` dans le
+code, on lit `os.environ["DB_PASSWORD"]` et on définit la variable à
+l'extérieur du code, dans l'environnement d'exécution. En développement local,
+le pattern courant est d'utiliser un fichier `.env` (chargé par une
+bibliothèque comme `python-dotenv`) et de s'assurer que ce fichier est listé
+dans `.gitignore` pour qu'il ne soit jamais versionné :
+
+```python
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Charge les variables depuis .env
+
+db_password = os.environ["DB_PASSWORD"]
+api_key = os.environ["API_KEY"]
+```
+
+```shell
+# .env (listé dans .gitignore)
+DB_PASSWORD=motdepasse123
+API_KEY=sk-abc123def456
+``` En production, les
+secrets sont injectés par la plateforme de déploiement : Kubernetes Secrets,
+les variables d'environnement de GitHub Actions, ou un service dédié comme
+HashiCorp Vault. Cette dernière catégorie d'outils, les *secrets managers*,
+offre des fonctionnalités avancées : rotation automatique des secrets, audit
+des accès, chiffrement au repos. Le principe est toujours le même : les secrets
+ne doivent exister qu'à l'endroit où ils sont utilisés, jamais dans le code,
+jamais dans l'historique git, et idéalement nulle part en clair sur le disque.
+
+## Authentification et autorisation
+
+Authentification et autorisation sont deux concepts distincts que l'on confond
+souvent. L'**authentification** répond à la question « qui es-tu ? » : c'est le
+processus par lequel un système vérifie l'identité d'un utilisateur.
+L'**autorisation** répond à « qu'as-tu le droit de faire ? » : une fois
+l'identité établie, quelles ressources et actions sont permises. Un utilisateur
+peut être authentifié (le système sait qui il est) mais pas autorisé à accéder
+à une ressource donnée (il n'a pas les permissions nécessaires). Le mécanisme
+d'authentification le plus ancien et le plus répandu sur le web est le couple
+identifiant/mot de passe. L'utilisateur envoie ses identifiants au serveur, qui
+les vérifie contre sa base de données. Mais cette vérification ne se fait
+qu'une fois : le serveur doit ensuite se souvenir que l'utilisateur est
+authentifié pour les requêtes suivantes. C'est le problème de la **gestion de
+session**, et sa solution la plus classique repose sur les cookies.
+
+Le mécanisme est le suivant. Quand l'utilisateur se connecte avec succès, le
+serveur crée une **session** : un enregistrement côté serveur qui contient
+l'identité de l'utilisateur et éventuellement d'autres informations (son rôle,
+ses préférences, le moment de la connexion). Le serveur attribue à cette session
+un identifiant unique, une longue chaîne aléatoire, et le renvoie au navigateur
+sous la forme d'un cookie via l'en-tête HTTP `Set-Cookie`. À partir de ce
+moment, le navigateur inclut automatiquement ce cookie dans chaque requête
+subséquente vers le même domaine. Le serveur reçoit l'identifiant de session, le
+retrouve dans sa mémoire (ou dans une base de données comme Redis), et sait
+ainsi qui est l'utilisateur sans lui redemander ses identifiants. C'est
+précisément ce mécanisme que le CSRF exploite, comme nous l'avons vu plus tôt :
+le navigateur envoie le cookie de session *automatiquement*, même si la requête
+a été initiée par un site tiers. En Flask, les sessions sont intégrées
+directement dans le framework :
+
+```python
+from flask import Flask, session, request, redirect
+import os
+
+app = Flask(__name__)
+app.secret_key = os.environ["SECRET_KEY"]  # Clé pour signer les cookies
+
+@app.route("/login", methods=["POST"])
+def login():
+    user = authenticate(request.form["username"], request.form["password"])
+    if user:
+        session["user_id"] = user.id
+        session["role"] = user.role
+        return redirect("/dashboard")
+    return "Identifiants invalides", 401
+
+@app.route("/dashboard")
+def dashboard():
+    if "user_id" not in session:
+        return redirect("/login")
+    return f"Bienvenue, utilisateur {session['user_id']}"
+```
+
+L'objet `session` de Flask est un dictionnaire signé cryptographiquement : le
+contenu est stocké dans le cookie lui-même (pas sur le serveur), mais il est
+signé avec la `secret_key` de l'application, ce qui empêche un utilisateur de
+modifier ses données de session. Si l'application a besoin de stocker des
+sessions plus volumineuses ou de pouvoir les invalider côté serveur (par exemple
+pour forcer la déconnexion d'un utilisateur compromis), on peut utiliser une
+extension comme Flask-Session qui stocke les données dans Redis ou une base de
+données.
