@@ -219,3 +219,62 @@ soi-même a une valeur que les clients sont prêts à payer. C'est le modèle de
 GitHub (avant son rachat par Microsoft), de Automattic (WordPress.com) et de
 nombreuses startups modernes. Nous approfondirons ces modèles économiques dans la
 section suivante sur l'économie du logiciel.
+
+## La fragilité cachée de l'open source
+
+La "loi de Linus" affirme qu'avec suffisamment d'yeux, tous les bogues sont
+superficiels. Mais que se passe-t-il quand personne ne regarde ? Derrière la
+façade de projets massifs comme Linux ou Kubernetes, une grande partie de
+l'infrastructure open source repose sur des bibliothèques modestes, maintenues
+par une poignée de personnes, souvent bénévolement, dans leur temps libre.
+Plusieurs incidents ont mis en lumière cette fragilité.
+
+En 2014, la faille Heartbleed a révélé une vulnérabilité critique dans OpenSSL,
+la bibliothèque de chiffrement utilisée par une grande partie du web. Le bogue,
+présent dans le code depuis deux ans, permettait à un attaquant de lire la
+mémoire des serveurs, exposant potentiellement des mots de passe, des clés
+privées et d'autres données sensibles. La découverte a mis en lumière un fait
+troublant : OpenSSL, dont dépendaient des millions de serveurs, était maintenu
+essentiellement par deux développeurs, avec un budget annuel d'environ 2000
+dollars en dons. L'incident a mené à la création de la Core Infrastructure
+Initiative (Linux Foundation), puis de l'Open Source Security Foundation
+(OpenSSF), pour tenter de financer les projets critiques.
+
+En 2016, un développeur nommé Azer Koçulu a retiré du registre npm un paquet
+appelé left-pad, une bibliothèque de 11 lignes de code qui ajoutait des espaces
+à gauche d'une chaîne de caractères. Des milliers de projets en dépendaient,
+directement ou indirectement, et leur build a instantanément cassé. L'incident a
+révélé la fragilité de l'écosystème des dépendances : une pyramide immense
+reposant parfois sur des micro-paquets maintenus par une seule personne. C'est le
+problème de la chaîne d'approvisionnement logicielle que nous avons abordé dans
+le module 2.
+
+Le cas le plus inquiétant est peut-être celui de xz Utils en 2024. Un
+contributeur opérant sous le pseudonyme "Jia Tan" a patiemment gagné la
+confiance du mainteneur solitaire du projet xz, une bibliothèque de compression
+utilisée dans pratiquement toutes les distributions Linux. Après des années de
+contributions légitimes, Jia Tan a introduit une porte dérobée (backdoor)
+sophistiquée qui aurait pu compromettre des millions de serveurs. La backdoor a
+été découverte par accident, par un développeur de Microsoft qui a remarqué que
+les connexions SSH étaient anormalement lentes. L'attaque exploitait précisément
+la vulnérabilité sociale de l'open source : un mainteneur épuisé, soulagé de
+recevoir enfin de l'aide, avait progressivement cédé les droits de commit à un
+inconnu. C'est un sujet que nous avons également abordé dans la section sur la
+sécurité du module 5.
+
+Ces épisodes illustrent une tension fondamentale. L'open source a
+spectaculairement réussi comme modèle de développement : il a produit les
+logiciels les plus utilisés au monde. Mais il n'a pas résolu le problème de la
+maintenance à long terme. Les développeurs créent et contribuent par passion,
+mais la maintenance quotidienne (répondre aux issues, réviser les pull requests,
+mettre à jour les dépendances, corriger les failles de sécurité) est un travail
+ingrat qui mène à l'épuisement. Le dessin humoristique de xkcd intitulé
+"Dependency" résume bien la situation :
+
+![xkcd #2347 : Dependency](xkcd_dependency.png)
+
+*Source : [xkcd.com/2347](https://xkcd.com/2347/), licence CC BY-NC 2.5.*
+
+Toute l'infrastructure numérique moderne, représentée par un empilement de
+blocs massifs, repose en fin de compte sur un projet maintenu bénévolement par
+un inconnu quelque part.

@@ -487,12 +487,30 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
 
 # Module 6 - Le logiciel dans le monde
 
-## L'open source (à développer)
-- Historique : Stallman, GNU (1983), FSF, la distinction libre vs open source
-- *The Cathedral and the Bazaar* (Eric Raymond, 1997)
-- Licences : GPL vs licences permissives (MIT, Apache, BSD), copyleft, compatibilité
-- Le problème du mainteneur épuisé (left-pad 2016, xz backdoor 2024, Heartbleed)
-- Lien avec la chaîne d'approvisionnement (module 2) et la sécurité (module 5)
+## L'open source (complété)
+- Les origines du logiciel libre :
+  - Stallman au MIT, anecdote de l'imprimante Xerox, Emacs
+  - Projet GNU (1983), FSF (1985), les quatre libertés
+  - Linux (Torvalds 1991), message Usenet original, modèle de développement ouvert
+  - Aparté sur le shareware (DOOM, WinZip, WinRAR) comme modèle alternatif
+- De "libre" à "open source" :
+  - *The Cathedral and the Bazaar* (Eric Raymond, 1997), loi de Linus
+  - Netscape et la libération du code (1998), Mozilla, Firefox
+  - L'écosystème des navigateurs et moteurs open source (Chromium, WebKit, Gecko)
+  - Création du terme "open source" (Christine Peterson, 1998), OSI, tension avec Stallman
+- Les licences open source :
+  - Copyleft (GPL) vs licences permissives (MIT, BSD, Apache)
+  - Controverses : React/Facebook (2017), MongoDB SSPL (2018), Elasticsearch (2021),
+    Terraform/OpenTofu (2023), Redis/Valkey (2024), Ext JS/Sencha
+- L'économie de l'open source :
+  - Red Hat (services/support, acquisition IBM 34G$ en 2019)
+  - Dual licensing (MySQL), open core (GitLab, Grafana), SaaS (GitHub, WordPress.com)
+- La fragilité cachée de l'open source :
+  - Heartbleed (OpenSSL, 2014), Core Infrastructure Initiative, OpenSSF
+  - left-pad (npm, 2016), fragilité des micro-dépendances
+  - xz Utils backdoor (2024), vulnérabilité sociale du mainteneur épuisé
+  - xkcd "Dependency" (#2347)
+  - Lien avec la chaîne d'approvisionnement (module 2) et la sécurité (module 5)
 
 ## L'économie du logiciel (à développer)
 - Business models : SaaS, open core, freemium, dual licensing, marketplace
