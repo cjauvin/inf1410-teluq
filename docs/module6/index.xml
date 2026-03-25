@@ -1,1 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 6 - Regard vers le futur on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/</link><description>Recent content in Module 6 - Regard vers le futur on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module6/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 6 - Le logiciel dans le monde on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/</link><description>Recent content in Module 6 - Le logiciel dans le monde on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module6/index.xml" rel="self" type="application/rss+xml"/><item><title>L'open source</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/</guid><description>&lt;h1 id="lopen-source"&gt;L&amp;rsquo;open source&lt;a class="anchor" href="#lopen-source"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Pratiquement tout le logiciel moderne repose sur de l&amp;rsquo;open source. Le noyau
+Linux fait tourner la grande majorité des serveurs web, des téléphones Android et
+des superordinateurs. Python, JavaScript, React, PostgreSQL, Docker,
+Kubernetes : les outils que nous avons utilisés tout au long de ce cours sont
+tous des projets open source. Quand un développeur crée une application
+aujourd&amp;rsquo;hui, il écrit peut-être 5 à 10 % du code total ; le reste provient de
+bibliothèques et de frameworks développés et maintenus par des communautés
+ouvertes. Cette réalité est tellement omniprésente qu&amp;rsquo;on peut facilement oublier
+qu&amp;rsquo;elle n&amp;rsquo;a rien de naturel. Elle est le résultat d&amp;rsquo;un mouvement qui a émergé
+dans les années 1980, porté par des convictions idéologiques fortes, et qui a
+profondément transformé non seulement la manière dont on produit du logiciel,
+mais aussi son économie.&lt;/p&gt;</description></item></channel></rss>

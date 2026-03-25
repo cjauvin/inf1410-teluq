@@ -1,0 +1,197 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="L’open source# Pratiquement tout le logiciel moderne repose sur de l’open source. Le noyau Linux fait tourner la grande majorité des serveurs web, des téléphones Android et des superordinateurs. Python, JavaScript, React, PostgreSQL, Docker, Kubernetes : les outils que nous avons utilisés tout au long de ce cours sont tous des projets open source. Quand un développeur crée une application aujourd’hui, il écrit peut-être 5 à 10 % du code total ; le reste provient de bibliothèques et de frameworks développés et maintenus par des communautés ouvertes. Cette réalité est tellement omniprésente qu’on peut facilement oublier qu’elle n’a rien de naturel. Elle est le résultat d’un mouvement qui a émergé dans les années 1980, porté par des convictions idéologiques fortes, et qui a profondément transformé non seulement la manière dont on produit du logiciel, mais aussi son économie.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="L'open source"><meta property="og:description" content="L’open source# Pratiquement tout le logiciel moderne repose sur de l’open source. Le noyau Linux fait tourner la grande majorité des serveurs web, des téléphones Android et des superordinateurs. Python, JavaScript, React, PostgreSQL, Docker, Kubernetes : les outils que nous avons utilisés tout au long de ce cours sont tous des projets open source. Quand un développeur crée une application aujourd’hui, il écrit peut-être 5 à 10 % du code total ; le reste provient de bibliothèques et de frameworks développés et maintenus par des communautés ouvertes. Cette réalité est tellement omniprésente qu’on peut facilement oublier qu’elle n’a rien de naturel. Elle est le résultat d’un mouvement qui a émergé dans les années 1980, porté par des convictions idéologiques fortes, et qui a profondément transformé non seulement la manière dont on produit du logiciel, mais aussi son économie."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="L'open source"><meta itemprop=description content="L’open source# Pratiquement tout le logiciel moderne repose sur de l’open source. Le noyau Linux fait tourner la grande majorité des serveurs web, des téléphones Android et des superordinateurs. Python, JavaScript, React, PostgreSQL, Docker, Kubernetes : les outils que nous avons utilisés tout au long de ce cours sont tous des projets open source. Quand un développeur crée une application aujourd’hui, il écrit peut-être 5 à 10 % du code total ; le reste provient de bibliothèques et de frameworks développés et maintenus par des communautés ouvertes. Cette réalité est tellement omniprésente qu’on peut facilement oublier qu’elle n’a rien de naturel. Elle est le résultat d’un mouvement qui a émergé dans les années 1980, porté par des convictions idéologiques fortes, et qui a profondément transformé non seulement la manière dont on produit du logiciel, mais aussi son économie."><meta itemprop=wordCount content="2222"><title>L'open source | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - Concevoir un programme correct</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Du programme au système</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
+<label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/>Perspective historique</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>L'architecture des applications web</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/>Les frameworks JavaScript</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/convergences/>Desktop, web et mobile</a></li></ul></li><li><input type=checkbox id=section-e4d51cc3c07f12fea00e9c0cd309e911 class=toggle>
+<label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - Construire en équipe</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=toggle>
+<label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/>Kanban</a></li></ul></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/>Gestion de projet et coordination</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/>Où est-ce que ça tourne ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/>Comment je le déploie ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/>Est-ce que ça marche ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/>Que faire quand ça casse ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/>Est-ce que c'est sécuritaire ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/>Est-ce que ça va tenir la charge ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle checked>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Le logiciel dans le monde</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/ class=active>L'open source</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>L'open source</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#les-origines-du-logiciel-libre>Les origines du logiciel libre</a></li><li><a href=#de-libre-à-open-source>De &ldquo;libre&rdquo; à &ldquo;open source&rdquo;</a></li><li><a href=#les-licences-open-source>Les licences open source</a></li><li><a href=#léconomie-de-lopen-source>L&rsquo;économie de l&rsquo;open source</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=lopen-source>L&rsquo;open source<a class=anchor href=#lopen-source>#</a></h1><p>Pratiquement tout le logiciel moderne repose sur de l&rsquo;open source. Le noyau
+Linux fait tourner la grande majorité des serveurs web, des téléphones Android et
+des superordinateurs. Python, JavaScript, React, PostgreSQL, Docker,
+Kubernetes : les outils que nous avons utilisés tout au long de ce cours sont
+tous des projets open source. Quand un développeur crée une application
+aujourd&rsquo;hui, il écrit peut-être 5 à 10 % du code total ; le reste provient de
+bibliothèques et de frameworks développés et maintenus par des communautés
+ouvertes. Cette réalité est tellement omniprésente qu&rsquo;on peut facilement oublier
+qu&rsquo;elle n&rsquo;a rien de naturel. Elle est le résultat d&rsquo;un mouvement qui a émergé
+dans les années 1980, porté par des convictions idéologiques fortes, et qui a
+profondément transformé non seulement la manière dont on produit du logiciel,
+mais aussi son économie.</p><h2 id=les-origines-du-logiciel-libre>Les origines du logiciel libre<a class=anchor href=#les-origines-du-logiciel-libre>#</a></h2><p>Pour comprendre comment on en est arrivé là, il faut remonter au début des
+années 1980, au laboratoire d&rsquo;intelligence artificielle du MIT. À cette époque,
+le partage du code source entre chercheurs et programmeurs était la norme. Quand
+on recevait un logiciel, on recevait son code, et on pouvait le modifier,
+l&rsquo;améliorer, le redistribuer. Richard Stallman, programmeur au MIT et créateur
+d&rsquo;Emacs (un éditeur de texte extensible, toujours utilisé aujourd&rsquo;hui, dont la
+particularité est d&rsquo;être programmable par ses utilisateurs via un dialecte de
+Lisp), raconte souvent l&rsquo;anecdote qui a cristallisé sa prise de conscience : le
+laboratoire avait reçu une nouvelle imprimante Xerox qui avait la fâcheuse
+habitude de coincer le papier. Avec l&rsquo;ancienne imprimante, Stallman avait
+modifié le logiciel pour qu&rsquo;il envoie un message aux utilisateurs quand un
+bourrage survenait. Mais le logiciel de la nouvelle imprimante était livré
+uniquement sous forme binaire, sans code source. Impossible de le modifier.
+Quand Stallman a demandé le code source à un chercheur de Carnegie Mellon qui
+avait signé un accord de non-divulgation avec Xerox, celui-ci a refusé. Pour
+Stallman, cet épisode illustrait un changement profond en cours dans
+l&rsquo;industrie : le logiciel, jusque-là partagé librement, devenait un produit
+propriétaire verrouillé.</p><p>En réponse, Stallman a lancé en 1983 le projet GNU (un acronyme récursif pour
+&ldquo;GNU&rsquo;s Not Unix&rdquo;), avec l&rsquo;objectif ambitieux de créer un système d&rsquo;exploitation
+entièrement libre. L&rsquo;idée n&rsquo;était pas simplement de produire du logiciel
+gratuit, mais de garantir des libertés fondamentales aux utilisateurs. En 1985,
+Stallman a fondé la Free Software Foundation (FSF) et formalisé sa philosophie
+autour de quatre libertés : la liberté d&rsquo;exécuter le programme (liberté 0), de
+l&rsquo;étudier et de le modifier en ayant accès au code source (liberté 1), de
+redistribuer des copies (liberté 2), et de distribuer des versions modifiées
+(liberté 3). Stallman insistait sur la distinction : &ldquo;free as in freedom, not as
+in free beer&rdquo;. Le logiciel libre n&rsquo;est pas une question de prix, mais de droits.
+Au fil des années 1980 et 1990, le projet GNU a produit des composants
+essentiels qui sont toujours omniprésents aujourd&rsquo;hui : le compilateur GCC, le
+débogueur GDB, l&rsquo;outil de build Make, et bien sûr Emacs. Il manquait cependant
+une pièce cruciale : le noyau du système d&rsquo;exploitation. C&rsquo;est cette pièce qu&rsquo;un
+étudiant finlandais nommé Linus Torvalds allait fournir en 1991.</p><p>Linux, que nous avons déjà rencontré dans le module 1, est né d&rsquo;un message
+modeste posté par Torvalds sur le groupe Usenet comp.os.minix en août 1991 :</p><pre tabindex=0><code>Hello everybody out there using minix -
+
+I&#39;m doing a (free) operating system (just a hobby, won&#39;t be big and
+professional like gnu) for 386(486) AT clones. This has been brewing
+since april, and is starting to get ready. I&#39;d like any feedback on
+things people like/dislike in minix, as my OS resembles it somewhat
+(same physical layout of the file-system (due to practical reasons)
+among other things).</code></pre><p>Le noyau Linux, combiné aux outils GNU, a formé le premier système
+d&rsquo;exploitation entièrement libre et fonctionnel, souvent appelé GNU/Linux (une
+appellation sur laquelle Stallman insiste, mais que la plupart des gens
+raccourcissent simplement à &ldquo;Linux&rdquo;). Ce qui distinguait Linux des projets qui
+l&rsquo;avaient précédé, c&rsquo;était moins sa qualité technique initiale que son modèle de
+développement. Torvalds acceptait les contributions de quiconque voulait
+participer, publiait des versions fréquemment, et laissait les utilisateurs
+eux-mêmes identifier et corriger les bogues. Ce modèle, chaotique en apparence,
+allait se révéler remarquablement efficace.</p><p>Il faut noter que le logiciel libre de Stallman n&rsquo;était pas la seule alternative
+au modèle propriétaire dominant. Durant les années 1980 et 1990, le <em>shareware</em>
+offrait un compromis populaire : le logiciel était distribué gratuitement
+(souvent sur des disquettes, puis via des BBS et des CD-ROM), mais l&rsquo;utilisateur
+était invité à payer après une période d&rsquo;essai. Des logiciels comme DOOM (id
+Software, 1993), WinZip ou WinRAR ont été distribués de cette manière. Le
+shareware partageait le programme, mais pas le code source : c&rsquo;était un modèle
+de distribution commerciale, pas un mouvement pour la liberté du logiciel. Nous y
+reviendrons dans la section sur l&rsquo;économie du logiciel. Le mouvement du logiciel
+libre, lui, allait prendre une direction très différente, portée par une
+réflexion sur le <em>processus</em> de développement lui-même.</p><h2 id=de-libre-à-open-source>De &ldquo;libre&rdquo; à &ldquo;open source&rdquo;<a class=anchor href=#de-libre-%c3%a0-open-source>#</a></h2><p>En 1997, Eric Raymond a publié <em>The Cathedral and the Bazaar</em>, un essai qui
+allait redéfinir la manière dont on parlait du logiciel libre. Raymond y opposait
+deux modèles de développement. Le modèle de la <em>cathédrale</em>, celui de GNU et de
+la plupart des projets logiciels traditionnels, où le code est développé par un
+petit groupe d&rsquo;architectes entre les releases, dans un processus soigneusement
+contrôlé. Et le modèle du <em>bazar</em>, celui de Linux, où le code est ouvert en
+permanence, les versions sont fréquentes, et la coordination émerge de manière
+organique d&rsquo;une communauté large et décentralisée. La conclusion de Raymond
+était contre-intuitive : le bazar fonctionnait mieux. Il a formulé ce constat
+sous la forme de la &ldquo;loi de Linus&rdquo; : &ldquo;given enough eyeballs, all bugs are
+shallow&rdquo; (avec suffisamment d&rsquo;yeux, tous les bogues sont superficiels). L&rsquo;idée
+est que plus il y a de personnes qui lisent et testent le code, plus les erreurs
+sont détectées rapidement. C&rsquo;est un argument qui fait écho au concept de code
+review que nous avons vu dans le module 4, mais poussé à l&rsquo;échelle d&rsquo;une
+communauté entière.</p><p>L&rsquo;essai de Raymond a eu un impact concret et immédiat, et c&rsquo;est dans le monde
+des navigateurs web qu&rsquo;il s&rsquo;est d&rsquo;abord manifesté. En janvier 1998, Netscape, en
+difficulté face à Internet Explorer de Microsoft dans la &ldquo;guerre des
+navigateurs&rdquo;, a annoncé qu&rsquo;elle allait libérer le code source de son navigateur.
+La décision était directement inspirée par <em>The Cathedral and the Bazaar</em>. C&rsquo;est
+le projet qui deviendra Mozilla, puis Firefox (2004), et qui démontrera qu&rsquo;un
+navigateur open source pouvait rivaliser avec le produit d&rsquo;une des plus grandes
+entreprises au monde. Ce précédent a eu des répercussions durables :
+aujourd&rsquo;hui, pratiquement tous les navigateurs majeurs reposent sur des moteurs
+open source. Chrome utilise Chromium (Google, 2008), qui est lui-même basé sur
+WebKit, un projet issu de KHTML, le moteur du navigateur Konqueror développé par
+la communauté KDE. Edge de Microsoft, après des années à maintenir son propre
+moteur, a adopté Chromium en 2019. Safari utilise WebKit. Seul Firefox, avec son
+moteur Gecko (et plus récemment Servo, écrit en Rust), maintient une base de
+code véritablement indépendante. Cette convergence vers Chromium inquiète
+d&rsquo;ailleurs certains observateurs, qui y voient un risque de monoculture : quand
+un seul moteur domine le web, c&rsquo;est Google qui dicte de facto les standards, une
+tension que nous retrouverons dans la section sur les monopoles.</p><p>Raymond et d&rsquo;autres figures du mouvement ont vu dans la décision de Netscape une
+opportunité de repositionner le logiciel libre pour le rendre plus acceptable
+aux yeux des entreprises. Le problème, selon eux, c&rsquo;était le mot &ldquo;free&rdquo; : il
+effrayait les dirigeants d&rsquo;entreprise, soit parce qu&rsquo;ils l&rsquo;associaient à
+&ldquo;gratuit&rdquo; (donc sans valeur), soit parce que le discours moral de Stallman sur
+les libertés leur semblait radical. En février 1998, lors d&rsquo;une réunion à Palo
+Alto, le terme &ldquo;open source&rdquo; a été proposé par Christine Peterson et rapidement
+adopté par Raymond, Tim O&rsquo;Reilly et d&rsquo;autres. L&rsquo;Open Source Initiative (OSI) a
+été fondée peu après pour promouvoir cette nouvelle étiquette. Pour Stallman, ce
+renommage était une trahison : en évacuant la dimension éthique au profit d&rsquo;un
+argument purement pragmatique (l&rsquo;open source produit du meilleur logiciel), on
+perdait l&rsquo;essentiel. Cette tension entre &ldquo;logiciel libre&rdquo; et &ldquo;open source&rdquo;
+persiste encore aujourd&rsquo;hui, même si dans la pratique quotidienne, la plupart
+des développeurs utilisent &ldquo;open source&rdquo; sans se soucier de la distinction.</p><h2 id=les-licences-open-source>Les licences open source<a class=anchor href=#les-licences-open-source>#</a></h2><p>La philosophie du logiciel libre et de l&rsquo;open source se matérialise concrètement
+dans les licences. C&rsquo;est la licence qui détermine ce qu&rsquo;on a le droit de faire
+avec un logiciel, et c&rsquo;est là que se manifeste la tension entre les deux camps.
+L&rsquo;outil juridique inventé par Stallman pour protéger le logiciel libre est le
+<em>copyleft</em>, incarné par la GNU General Public License (GPL). L&rsquo;idée du copyleft
+est astucieuse : on utilise le droit d&rsquo;auteur, non pas pour restreindre la
+redistribution, mais pour garantir que le code reste libre. Toute personne qui
+modifie un logiciel sous GPL et distribue sa version modifiée doit également la
+distribuer sous GPL, avec le code source. Le copyleft est donc &ldquo;viral&rdquo; : il se
+propage aux œuvres dérivées. Linux est sous GPL, ce qui signifie que toute
+distribution Linux (Ubuntu, Fedora, etc.) doit rendre son code source
+disponible.</p><p>Face à cette approche, les licences dites <em>permissives</em> adoptent une philosophie
+différente : elles imposent très peu de contraintes. La licence MIT, la licence
+BSD et la licence Apache permettent à quiconque d&rsquo;utiliser, de modifier et de
+redistribuer le code, y compris dans un produit propriétaire, à condition de
+conserver la mention de copyright originale. C&rsquo;est ce qui permet à Apple
+d&rsquo;intégrer du code BSD dans macOS, ou à des entreprises d&rsquo;utiliser React
+(licence MIT) dans des applications commerciales sans aucune obligation de
+partager leur propre code. Un épisode révélateur : en 2017, Facebook distribuait
+React sous une licence BSD modifiée qui incluait une clause de brevet
+controversée. Sous la pression de la communauté (et notamment d&rsquo;Apache Foundation
+qui avait interdit cette licence), Facebook a basculé React vers une licence MIT
+standard. Ce genre de décision peut sembler abstrait, mais il a des conséquences
+très concrètes pour quiconque construit un produit qui dépend de ces
+bibliothèques.</p><p>Cette question des licences n&rsquo;est pas qu&rsquo;un sujet juridique abstrait : elle est
+au cœur de tensions récurrentes entre les entreprises et les communautés open
+source. Un pattern s&rsquo;est répété plusieurs fois au cours des dernières années :
+une entreprise construit un produit open source populaire, attire une large
+communauté de contributeurs et d&rsquo;utilisateurs, puis restreint sa licence quand
+des fournisseurs cloud (en particulier AWS) commencent à offrir ce produit comme
+service géré, captant les revenus sans contribuer en retour. MongoDB est passé de
+la licence AGPL à la SSPL en 2018. Elasticsearch a quitté la licence Apache 2.0
+en 2021 pour la même raison, ce qui a poussé AWS à créer un fork nommé
+OpenSearch. HashiCorp a changé la licence de Terraform de MPL à BSL en 2023, et
+la communauté a répondu en créant OpenTofu sous l&rsquo;égide de la Linux Foundation.
+Redis a suivi le même chemin en 2024, menant au fork Valkey. Dans chaque cas, le
+même dilemme : l&rsquo;entreprise estime que les cloud providers exploitent son travail
+sans réciprocité, tandis que la communauté estime que le changement de licence
+trahit la promesse originale de l&rsquo;open source. Ext JS (Sencha) avait illustré ce
+type de tension dès le début des années 2010, en passant progressivement d&rsquo;une
+licence permissive à un modèle commercial. Ces épisodes montrent que la licence
+n&rsquo;est pas un détail technique qu&rsquo;on choisit une fois pour toutes : c&rsquo;est un
+contrat social qui peut devenir un champ de bataille.</p><h2 id=léconomie-de-lopen-source>L&rsquo;économie de l&rsquo;open source<a class=anchor href=#l%c3%a9conomie-de-lopen-source>#</a></h2><p>Si le code est gratuit, comment gagne-t-on sa vie ? Cette question, qui semblait
+naïve dans les années 1990, est devenue l&rsquo;un des problèmes les plus complexes de
+l&rsquo;industrie du logiciel. Stallman avait une réponse simple : on vend des services
+(support, formation, personnalisation), pas le logiciel lui-même. Red Hat,
+fondée en 1993, a été la première grande validation de ce modèle. L&rsquo;entreprise
+distribuait gratuitement sa distribution Linux, mais vendait du support, des
+certifications et des garanties de stabilité aux entreprises. Le modèle a
+fonctionné au point qu&rsquo;IBM a acquis Red Hat pour 34 milliards de dollars en 2019,
+la plus grande acquisition de l&rsquo;histoire du logiciel à l&rsquo;époque.</p><p>D&rsquo;autres modèles ont émergé. Le <em>dual licensing</em> consiste à offrir le logiciel
+sous une licence copyleft (GPL) pour l&rsquo;usage communautaire, et sous une licence
+commerciale pour les entreprises qui ne veulent pas être soumises aux obligations
+du copyleft. MySQL (maintenant détenu par Oracle) a popularisé cette approche. Le
+modèle <em>open core</em> propose un noyau open source gratuit, complété par des
+fonctionnalités premium propriétaires. GitLab, Elastic (avant son changement de
+licence) et Grafana utilisent ce modèle. Enfin, le modèle <em>SaaS</em> (Software as a
+Service) consiste à offrir le logiciel open source comme service hébergé : le
+code est ouvert, mais la commodité de ne pas avoir à le déployer et le maintenir
+soi-même a une valeur que les clients sont prêts à payer. C&rsquo;est le modèle de
+GitHub (avant son rachat par Microsoft), de Automattic (WordPress.com) et de
+nombreuses startups modernes. Nous approfondirons ces modèles économiques dans la
+section suivante sur l&rsquo;économie du logiciel.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>Module 6 - Le logiciel dans le monde</span>
+</a></span><span></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#les-origines-du-logiciel-libre>Les origines du logiciel libre</a></li><li><a href=#de-libre-à-open-source>De &ldquo;libre&rdquo; à &ldquo;open source&rdquo;</a></li><li><a href=#les-licences-open-source>Les licences open source</a></li><li><a href=#léconomie-de-lopen-source>L&rsquo;économie de l&rsquo;open source</a></li></ul></nav></div></aside></main></body></html>
