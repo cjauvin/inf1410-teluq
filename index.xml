@@ -208,6 +208,16 @@ approche systémique des erreurs humaines, fondement de la culture « just
 culture » et des postmortems blameless →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id="essais-et-manifestes"&gt;Essais et manifestes&lt;a class="anchor" href="#essais-et-manifestes"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Eric Raymond, &lt;em&gt;The Cathedral and the Bazaar&lt;/em&gt; (1997) : comparaison des modèles
+de développement cathédrale (GNU) et bazar (Linux), loi de Linus →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/"&gt;Module 6, L&amp;rsquo;open source&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Adam Wiggins, &lt;em&gt;The Twelve-Factor App&lt;/em&gt; (2011) : douze principes pour concevoir
+des applications cloud-native, issus de l&amp;rsquo;expérience de Heroku →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/"&gt;Module 5, Introduction&lt;/a&gt;,
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id="articles-et-essais"&gt;Articles et essais&lt;a class="anchor" href="#articles-et-essais"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Edgar F. Codd, &lt;em&gt;A Relational Model of Data for Large Shared Data Banks&lt;/em&gt; (1970) :
@@ -271,10 +281,6 @@ livre blanc introduisant la blockchain et le consensus distribué →
 critique de la récupération commerciale du mot &amp;ldquo;agile&amp;rdquo; par un des signataires
 du manifeste →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/"&gt;Module 4, L&amp;rsquo;agilité&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Adam Wiggins, &lt;em&gt;The Twelve-Factor App&lt;/em&gt; (2011) : douze principes pour concevoir
-des applications cloud-native, issus de l&amp;rsquo;expérience de Heroku →
-&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/"&gt;Module 5, Introduction&lt;/a&gt;,
-&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Jez Humble et David Farley, &lt;em&gt;Continuous Delivery&lt;/em&gt; (2010) : automatisation
 complète du chemin entre le commit et la production, concept du deployment
 pipeline →
@@ -325,7 +331,19 @@ C&amp;rsquo;est un système &lt;em&gt;à flux tiré&lt;/em&gt; (&lt;em&gt;pull s
 la demande réelle, pas par une planification centrale. Ce principe est au cœur
 du &lt;em&gt;Toyota Production System&lt;/em&gt; (TPS), qui deviendra l&amp;rsquo;une des plus grandes
 innovations de l&amp;rsquo;histoire industrielle du XXe siècle.&lt;/p&gt;</description></item><item><title>L'architecture des applications web</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/</guid><description>&lt;h1 id="larchitecture-des-applications-web"&gt;L&amp;rsquo;architecture des applications web&lt;a class="anchor" href="#larchitecture-des-applications-web"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Le web a été conçu comme un système de documents. Un navigateur envoie une requête HTTP à un serveur, qui répond avec un document HTML. L&amp;rsquo;utilisateur clique sur un lien, le navigateur envoie une nouvelle requête, et reçoit un nouveau document. Ce modèle requête-réponse, simple et élégant, a fonctionné remarquablement bien pour le web documentaire. Mais à mesure que le web s&amp;rsquo;est transformé en plateforme d&amp;rsquo;applications, ce modèle a montré ses limites. Comment construire une boîte de réception Gmail, avec ses messages qui apparaissent en temps réel, dans un système conçu pour afficher des pages statiques ? La réponse à cette question a donné lieu à une succession d&amp;rsquo;architectures, chacune tentant de résoudre les problèmes de la précédente.&lt;/p&gt;</description></item><item><title>Les APIs</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/</guid><description>&lt;h1 id="les-apis"&gt;Les APIs&lt;a class="anchor" href="#les-apis"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Le web a été conçu comme un système de documents. Un navigateur envoie une requête HTTP à un serveur, qui répond avec un document HTML. L&amp;rsquo;utilisateur clique sur un lien, le navigateur envoie une nouvelle requête, et reçoit un nouveau document. Ce modèle requête-réponse, simple et élégant, a fonctionné remarquablement bien pour le web documentaire. Mais à mesure que le web s&amp;rsquo;est transformé en plateforme d&amp;rsquo;applications, ce modèle a montré ses limites. Comment construire une boîte de réception Gmail, avec ses messages qui apparaissent en temps réel, dans un système conçu pour afficher des pages statiques ? La réponse à cette question a donné lieu à une succession d&amp;rsquo;architectures, chacune tentant de résoudre les problèmes de la précédente.&lt;/p&gt;</description></item><item><title>L'économie du logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/</guid><description>&lt;h1 id="léconomie-du-logiciel"&gt;L&amp;rsquo;économie du logiciel&lt;a class="anchor" href="#l%c3%a9conomie-du-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Le logiciel est partout, mais comment génère-t-il de la valeur économique ? La
+question peut sembler simple, mais elle cache une particularité fondamentale : le
+logiciel a un coût de reproduction essentiellement nul. Copier un programme ne
+coûte rien. C&amp;rsquo;est ce qui distingue radicalement l&amp;rsquo;économie du logiciel de celle
+des biens physiques, et c&amp;rsquo;est ce qui explique pourquoi l&amp;rsquo;industrie a passé des
+décennies à chercher le bon modèle. Comment faire payer quelque chose qui se
+copie gratuitement ? Comme nous l&amp;rsquo;avons vu dans la section précédente, l&amp;rsquo;open
+source a proposé une réponse radicale : ne pas faire payer le logiciel lui-même,
+mais les services autour. Mais l&amp;rsquo;open source n&amp;rsquo;est qu&amp;rsquo;un modèle parmi d&amp;rsquo;autres.
+Cette section retrace l&amp;rsquo;évolution des manières de vendre du logiciel, depuis les
+premières licences propriétaires jusqu&amp;rsquo;aux abonnements cloud, en passant par le
+shareware, le freemium et les marketplaces d&amp;rsquo;applications.&lt;/p&gt;</description></item><item><title>Les APIs</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/</guid><description>&lt;h1 id="les-apis"&gt;Les APIs&lt;a class="anchor" href="#les-apis"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Le terme API (&lt;em&gt;Application Programming Interface&lt;/em&gt;) est omniprésent dans le vocabulaire du développement logiciel moderne. Mais ce qu&amp;rsquo;on entend par &amp;ldquo;API&amp;rdquo; aujourd&amp;rsquo;hui n&amp;rsquo;est pas ce qu&amp;rsquo;on entendait il y a trente ans. Le mot a traversé plusieurs incarnations, et chacune reflète un changement profond dans la manière dont on conçoit les systèmes logiciels. Comprendre cette évolution, c&amp;rsquo;est comprendre comment le génie logiciel est passé du programme monolithique au système distribué.&lt;/p&gt;</description></item><item><title>Les bases de données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/</guid><description>&lt;h1 id="lévolution-des-bases-de-données"&gt;L&amp;rsquo;évolution des bases de données&lt;a class="anchor" href="#l%c3%a9volution-des-bases-de-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;La section précédente a montré comment les données sont représentées : encodées
 en bits, sérialisées en formats textuels ou binaires, structurées par des

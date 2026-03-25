@@ -127,6 +127,16 @@ approche systémique des erreurs humaines, fondement de la culture « just
 culture » et des postmortems blameless →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id="essais-et-manifestes"&gt;Essais et manifestes&lt;a class="anchor" href="#essais-et-manifestes"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Eric Raymond, &lt;em&gt;The Cathedral and the Bazaar&lt;/em&gt; (1997) : comparaison des modèles
+de développement cathédrale (GNU) et bazar (Linux), loi de Linus →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/"&gt;Module 6, L&amp;rsquo;open source&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Adam Wiggins, &lt;em&gt;The Twelve-Factor App&lt;/em&gt; (2011) : douze principes pour concevoir
+des applications cloud-native, issus de l&amp;rsquo;expérience de Heroku →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/"&gt;Module 5, Introduction&lt;/a&gt;,
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id="articles-et-essais"&gt;Articles et essais&lt;a class="anchor" href="#articles-et-essais"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Edgar F. Codd, &lt;em&gt;A Relational Model of Data for Large Shared Data Banks&lt;/em&gt; (1970) :
@@ -190,10 +200,6 @@ livre blanc introduisant la blockchain et le consensus distribué →
 critique de la récupération commerciale du mot &amp;ldquo;agile&amp;rdquo; par un des signataires
 du manifeste →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/"&gt;Module 4, L&amp;rsquo;agilité&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Adam Wiggins, &lt;em&gt;The Twelve-Factor App&lt;/em&gt; (2011) : douze principes pour concevoir
-des applications cloud-native, issus de l&amp;rsquo;expérience de Heroku →
-&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/"&gt;Module 5, Introduction&lt;/a&gt;,
-&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/"&gt;Module 5, Comment je le déploie ?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Jez Humble et David Farley, &lt;em&gt;Continuous Delivery&lt;/em&gt; (2010) : automatisation
 complète du chemin entre le commit et la production, concept du deployment
 pipeline →
