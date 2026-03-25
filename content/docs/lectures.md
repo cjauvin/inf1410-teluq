@@ -59,6 +59,16 @@ intégrées dans le cours.)*
   culture » et des postmortems blameless →
   [Module 5, Que faire quand ça casse ?]({{< ref "/docs/module5/40-incidents" >}})
 
+## Essais et manifestes
+
+- Eric Raymond, *The Cathedral and the Bazaar* (1997) : comparaison des modèles
+  de développement cathédrale (GNU) et bazar (Linux), loi de Linus →
+  [Module 6, L'open source]({{< ref "/docs/module6/10-open-source" >}})
+- Adam Wiggins, *The Twelve-Factor App* (2011) : douze principes pour concevoir
+  des applications cloud-native, issus de l'expérience de Heroku →
+  [Module 5, Introduction]({{< ref "/docs/module5" >}}),
+  [Module 5, Comment je le déploie ?]({{< ref "/docs/module5/20-deploiement" >}})
+
 ## Articles et essais
 
 - Edgar F. Codd, *A Relational Model of Data for Large Shared Data Banks* (1970) :
@@ -122,10 +132,6 @@ intégrées dans le cours.)*
   critique de la récupération commerciale du mot "agile" par un des signataires
   du manifeste →
   [Module 4, L'agilité]({{< ref "/docs/module4/20-agile" >}})
-- Adam Wiggins, *The Twelve-Factor App* (2011) : douze principes pour concevoir
-  des applications cloud-native, issus de l'expérience de Heroku →
-  [Module 5, Introduction]({{< ref "/docs/module5" >}}),
-  [Module 5, Comment je le déploie ?]({{< ref "/docs/module5/20-deploiement" >}})
 - Jez Humble et David Farley, *Continuous Delivery* (2010) : automatisation
   complète du chemin entre le commit et la production, concept du deployment
   pipeline →
