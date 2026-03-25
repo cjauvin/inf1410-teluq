@@ -485,33 +485,59 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   - Celery (Python) : tâches en arrière-plan, broker Redis/RabbitMQ
 - Conclusion : scalabilité comme spectre de compromis, YAGNI, citation de Knuth (premature optimization)
 
-# Module 6 - Au-delà du logiciel
+# Module 6 - Le logiciel dans le monde
+
+## L'open source (à développer)
+- Historique : Stallman, GNU (1983), FSF, la distinction libre vs open source
+- *The Cathedral and the Bazaar* (Eric Raymond, 1997)
+- Licences : GPL vs licences permissives (MIT, Apache, BSD), copyleft, compatibilité
+- Le problème du mainteneur épuisé (left-pad 2016, xz backdoor 2024, Heartbleed)
+- Lien avec la chaîne d'approvisionnement (module 2) et la sécurité (module 5)
+
+## L'économie du logiciel (à développer)
+- Business models : SaaS, open core, freemium, dual licensing, marketplace
+- Startups et venture capital : move fast and break things, blitzscaling, la culture de la croissance
+- L'API economy : le logiciel comme service (Stripe, Twilio), lien avec la section APIs (module 3)
+- Shopify comme cas de réussite canadienne
+- Le coût du logiciel : pourquoi les projets coûtent cher (lien avec Brooks, module 1)
+
+## Monopoles et régulation (à développer)
+- L'histoire de la concentration : IBM (consent decree 1956), AT&T (démantèlement 1984),
+  Microsoft (procès antitrust 1998-2001), GAFAM
+- Mécanismes de monopole propres au logiciel : effets de réseau, lock-in, coûts de changement,
+  "winner takes all", acquisition comme stratégie (Instagram, WhatsApp, YouTube)
+- Tentatives de régulation : Digital Markets Act (EU), procès antitrust Google/Apple,
+  App Store et commission 30% (lien avec module 3, section mobile)
+- Protection des données : RGPD (EU, 2018), loi 25 (Québec), PIPEDA (Canada)
+- Questions ouvertes : interopérabilité, portabilité des données, droit à la réparation
+
+## Catastrophes, éthique et responsabilité (à développer)
+- Catastrophes techniques :
+  - Therac-25 (radiothérapie mortelle, 1985-87)
+  - Ariane 5 (explosion au lancement, 1996)
+  - Knight Capital (440M$ en 45 minutes, 2012)
+  - Boeing 737 MAX MCAS (2018-2019)
+- Échecs de grands projets gouvernementaux :
+  - Système de paye Phénix (fédéral, 2016)
+  - SAAQclic (Québec, 2024), boucle avec le module 1
+  - Curam et Santé Québec
+  - Patterns communs : waterfall imposé par contrats, sous-estimation, loi de Brooks
+- Lois de Lehman sur l'évolution du logiciel (1974)
+- Éthique et responsabilité : biais algorithmiques, vie privée, ACM Code of Ethics
+- Boucle avec le module 1 : la crise du logiciel revisitée avec des cas concrets et modernes
+
+## Le métier de développeur (à développer)
+- Le mythe du "10x developer", l'impostor syndrome, le burnout
+- Le débat craft vs engineering : Manifeste du Software Craftsmanship (2009)
+- *Working Effectively with Legacy Code* (Michael Feathers, 2004) : la réalité du code existant
+- Évolution du rôle : programmeur → développeur → full-stack → DevOps → AI-augmented
+- La dette intellectuelle du domaine :
+  - Les idées qui reviennent en cycle (Lisp → fonctionnel moderne, Smalltalk → React, etc.)
+  - Fred Brooks revisité 30 ans plus tard : a-t-on trouvé la silver bullet ?
+  - "Worse is better" (Richard Gabriel, 1989) : pourquoi les solutions imparfaites gagnent souvent
 
 ## Le développement assisté par IA (à développer)
 - Historique : autocomplétion → Copilot (2021) → ChatGPT (2022) → agents (Claude Code, Cursor, etc.)
 - Le "vibe coding" et ses limites
 - Impact sur les pratiques du GL : tests encore plus importants, code review change de nature
 - Questions ouvertes : propriété intellectuelle, fiabilité, dépendance
-
-## Les grandes catastrophes logicielles et leurs leçons (à développer)
-- Therac-25 (radiothérapie mortelle), Ariane 5, Knight Capital (440M$ en 45 minutes), Boeing 737 MAX MCAS
-- Boucle avec le module 1 : la crise du logiciel revisitée avec des cas concrets et modernes
-- Lois de Lehman sur l'évolution du logiciel (1974) : un logiciel qui ne change pas devient progressivement inutile
-- Éthique et responsabilité : biais algorithmiques, vie privée, ACM Code of Ethics
-
-## Le métier de développeur et son évolution (à développer)
-- Le mythe du "10x developer", l'impostor syndrome, le burnout
-- Le débat craft vs engineering : Manifeste du Software Craftsmanship (2009)
-- *Working Effectively with Legacy Code* (Michael Feathers, 2004) : la réalité du code existant
-- Évolution du rôle : programmeur → développeur → full-stack → DevOps → AI-augmented
-
-## La dette intellectuelle du domaine (à développer)
-- Les idées qui reviennent en cycle (Lisp → fonctionnel moderne, Smalltalk → React, etc.)
-- Fred Brooks revisité 30 ans plus tard : a-t-on trouvé la silver bullet ?
-- "Worse is better" (Richard Gabriel, 1989) : pourquoi les solutions imparfaites gagnent souvent
-
-## L'open source (à développer)
-- Historique : Stallman, GNU (1983), FSF, GPL vs licences permissives (MIT, Apache, BSD)
-- *The Cathedral and the Bazaar* (Eric Raymond, 1997)
-- Le problème du mainteneur épuisé (left-pad 2016, xz backdoor 2024, Heartbleed)
-- Business models : support, dual licensing, open core, SaaS
