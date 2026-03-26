@@ -549,30 +549,36 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   enshittification (Cory Doctorow, 2023), serveurs sirènes et valeur des données
   (Jaron Lanier, *Who Owns the Future?*, 2013), rôle des choix techniques des ingénieurs
 
-## Catastrophes, éthique et responsabilité (à développer)
+## Catastrophes, éthique et responsabilité (complété)
 - Catastrophes techniques :
-  - Therac-25 (radiothérapie mortelle, 1985-87)
-  - Ariane 5 (explosion au lancement, 1996)
-  - Knight Capital (440M$ en 45 minutes, 2012)
-  - Boeing 737 MAX MCAS (2018-2019)
-- Échecs de grands projets gouvernementaux :
-  - Système de paye Phénix (fédéral, 2016)
-  - SAAQclic (Québec, 2024), boucle avec le module 1
-  - Curam et Santé Québec
-  - Patterns communs : waterfall imposé par contrats, sous-estimation, loi de Brooks
-- Lois de Lehman sur l'évolution du logiciel (1974)
-- Éthique et responsabilité : biais algorithmiques, vie privée, ACM Code of Ethics
+  - Therac-25 (radiothérapie mortelle, 1985-87, race condition, absence de tests)
+  - Ariane 5 (explosion au lancement, 1996, integer overflow, réutilisation de code)
+  - Knight Capital (440M$ en 45 minutes, 2012, déploiement manuel, code mort)
+  - Boeing 737 MAX MCAS (2018-2019, pression organisationnelle, capteur unique)
+- Échecs de grands projets gouvernementaux canadiens :
+  - Système de paye Phénix (fédéral, 2016, IBM/PeopleSoft, 2,5G$)
+  - SAAQclic (Québec, 2023, SAP/LGS, 458M$, big bang)
+  - Programme MVP/Curam (fédéral, 2025, Merative, 1,75G$ → 6,6G$)
+  - Patterns communs : logiciel commercial adapté, waterfall imposé par contrats,
+    signaux d'alarme ignorés, loi de Brooks
+- Lois de Lehman sur l'évolution du logiciel (1974) : changement continu,
+  complexité croissante, ironie des projets de remplacement
+- Éthique et responsabilité : biais algorithmiques, ACM Code of Ethics (2018),
+  OIQ et asymétrie de la réglementation professionnelle au Québec
 - Boucle avec le module 1 : la crise du logiciel revisitée avec des cas concrets et modernes
 
-## Le métier de développeur (à développer)
-- Le mythe du "10x developer", l'impostor syndrome, le burnout
-- Le débat craft vs engineering : Manifeste du Software Craftsmanship (2009)
-- *Working Effectively with Legacy Code* (Michael Feathers, 2004) : la réalité du code existant
-- Évolution du rôle : programmeur → développeur → full-stack → DevOps → AI-augmented
+## Le métier de développeur (complété)
+- Le mythe du "10x developer" (Sackman, Erikson, Grant, 1968), syndrome de l'imposteur, burnout
+- Craft vs engineering : Manifesto for Software Craftsmanship (2009), complément au Manifeste Agile
+- *Working Effectively with Legacy Code* (Michael Feathers, 2004) : définition du legacy code,
+  lien avec Peter Naur (programmation comme construction d'une théorie)
+- Évolution du rôle : programmeur → développeur → full-stack → DevOps → SWE/SRE (Google, 2003) →
+  AI-augmented
 - La dette intellectuelle du domaine :
-  - Les idées qui reviennent en cycle (Lisp → fonctionnel moderne, Smalltalk → React, etc.)
-  - Fred Brooks revisité 30 ans plus tard : a-t-on trouvé la silver bullet ?
-  - "Worse is better" (Richard Gabriel, 1989) : pourquoi les solutions imparfaites gagnent souvent
+  - Les idées qui reviennent en cycle (Lisp → fonctionnel moderne, Smalltalk MVC → React, etc.)
+  - "Worse is better" (Richard Gabriel, 1989) : Unix/C vs Lisp, JavaScript, PHP
+  - Fred Brooks revisité : "No Silver Bullet" (1986), complexité essentielle vs accidentelle,
+    transition vers la section sur l'IA
 
 ## Le développement assisté par IA (à développer)
 - Historique : autocomplétion → Copilot (2021) → ChatGPT (2022) → agents (Claude Code, Cursor, etc.)
