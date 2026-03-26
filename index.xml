@@ -164,7 +164,8 @@ intégrées dans le cours.)&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id="livres"&gt;Livres&lt;a class="anchor" href="#livres"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Fred Brooks, &lt;em&gt;The Mythical Man-Month&lt;/em&gt; (1975) : réflexions sur la gestion de
-grands projets logiciels, dont la célèbre « loi de Brooks » → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;&lt;/li&gt;
+grands projets logiciels, dont la célèbre « loi de Brooks » → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;,
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/"&gt;Module 6, L&amp;rsquo;économie du logiciel&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Andrew Hunt et David Thomas, &lt;em&gt;The Pragmatic Programmer&lt;/em&gt; (1999) : conseils
 pratiques pour le développeur, origine du principe DRY → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Kent Beck, &lt;em&gt;Extreme Programming Explained&lt;/em&gt; (1999) : manifeste de l&amp;rsquo;XP, origine
@@ -207,6 +208,10 @@ budgets, on-call, postmortems →
 approche systémique des erreurs humaines, fondement de la culture « just
 culture » et des postmortems blameless →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/"&gt;Module 5, Que faire quand ça casse ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Reid Hoffman, &lt;em&gt;Blitzscaling&lt;/em&gt; (2018) : formalisation de la stratégie de
+croissance rapide des startups technologiques, tension entre vitesse et
+qualité →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/"&gt;Module 6, L&amp;rsquo;économie du logiciel&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="essais-et-manifestes"&gt;Essais et manifestes&lt;a class="anchor" href="#essais-et-manifestes"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
