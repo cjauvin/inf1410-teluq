@@ -227,6 +227,8 @@ C/C++, Python et JavaScript. Comprendre pourquoi ces trois-là dominent, c'est
 comprendre une bonne partie de l'histoire et de la structure du monde logiciel
 contemporain.
 
+{{< image src="c-c++.png" alt="" title="" loading="lazy" >}}
+
 C est le langage de la fondation. Créé par Dennis Ritchie aux Bell Labs au début
 des années 1970, précisément pour réécrire Unix dans un langage plus portable
 que l'assembleur, C est devenu le langage dans lequel est construit une grande
@@ -239,6 +241,8 @@ abstraction : les navigateurs web, les moteurs de jeux vidéo, les bases de
 données. C et C++ sont les langages "proches de la machine", ceux qui permettent
 de contrôler finement la mémoire et les ressources matérielles, au prix d'une
 complexité considérable pour le programmeur.
+
+{{< image src="python.png" alt="" title="" loading="lazy" >}}
 
 Python, créé par Guido van Rossum en 1991 (la même année que Linux, par
 coïncidence), représente une philosophie très différente de C. Là où C donne un
@@ -258,6 +262,8 @@ entrailles sont souvent écrites en C ou C++ pour la performance). Le succès de
 Python est un autre cas de "Worse is Better" : un langage techniquement
 "inférieur" en performance brute, mais tellement plus simple à apprendre et à
 utiliser qu'il a fini par s'imposer dans des domaines entiers.
+
+{{< image src="js.png" alt="" title="" loading="lazy" >}}
 
 Le cas de JavaScript est peut-être l'illustration la plus extrême de "Worse is
 Better" dans l'histoire des langages de programmation. En 1995, Brendan Eich, un
