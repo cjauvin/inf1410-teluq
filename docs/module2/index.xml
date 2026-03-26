@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Module 2 - Concevoir un programme correct on INF1410 - Initiation au génie logiciel</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/</link><description>Recent content in Module 2 - Concevoir un programme correct on INF1410 - Initiation au génie logiciel</description><generator>Hugo</generator><language>fr</language><atom:link href="https://cjauvin.github.io/inf1410-teluq/docs/module2/index.xml" rel="self" type="application/rss+xml"/><item><title>Survol rapide de la programmation</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</guid><description>&lt;h1 id="survol-rapide-de-la-programmation"&gt;Survol rapide de la programmation&lt;a class="anchor" href="#survol-rapide-de-la-programmation"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Nous allons faire un survol rapide des idées les plus importantes et
 fondamentales de la programmation logicielle. Pour aller droit au but, nous
-allons utiliser le langage Python, qui est très facile à comprendre, même sans
-aucune expérience explicite.&lt;/p&gt;
+allons utiliser le langage Python, qui est très facile à comprendre, presque
+même sans expérience préalable.&lt;/p&gt;
 &lt;h2 id="structures-de-données-fondamentales"&gt;Structures de données fondamentales&lt;a class="anchor" href="#structures-de-donn%c3%a9es-fondamentales"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Au-delà des types de base, qui sont généralement des nombres de différents types
 (entiers, réels, etc) et les chaines de caractères (strings), nous avons les
-structures de données, qui sont des constructions logiques plus complexe
-(non-atomique) qui impliquent, en général, les types de base, d&amp;rsquo;une manière ou
-d&amp;rsquo;une autre.&lt;/p&gt;</description></item><item><title>Les tests</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</guid><description>&lt;h1 id="les-tests"&gt;Les tests&lt;a class="anchor" href="#les-tests"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
+structures de données, qui sont des constructions logiques plus complexes
+(non-atomiques) qui impliquent, en général, les types de base, d&amp;rsquo;une manière ou
+d&amp;rsquo;une autre (une liste, par exemple, doit être une liste de &lt;em&gt;quelque chose&lt;/em&gt;,
+d&amp;rsquo;entiers, de strings, etc).&lt;/p&gt;</description></item><item><title>Les tests</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</guid><description>&lt;h1 id="les-tests"&gt;Les tests&lt;a class="anchor" href="#les-tests"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dans la section précédente, nous avons vu que la programmation repose sur des
 structures de données, des algorithmes et des systèmes de types. Mais écrire du
 code qui &lt;em&gt;semble&lt;/em&gt; correct ne suffit pas : il faut pouvoir &lt;em&gt;vérifier&lt;/em&gt; qu&amp;rsquo;il se
@@ -17,12 +17,17 @@ comporte comme on le pense. C&amp;rsquo;est exactement ce que Peter Naur décriv
 &lt;em&gt;Programming as Theory Building&lt;/em&gt; : le programmeur construit un modèle mental de
 ce que le programme est censé faire. Les tests sont la manière la plus directe
 de confronter ce modèle mental à la réalité.&lt;/p&gt;</description></item><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Le logiciel (et le code source dont il est constitué) a une particularité
 fondamentale : il change tout le temps. Même un programme simple est rapidement
 modifié - pour corriger un bug, ajouter une fonctionnalité, améliorer la
 performance ou simplement rendre le code plus lisible. Et très vite, une
-question apparaît : comment savoir ce qui a changé, quand, et pourquoi ?&lt;/p&gt;</description></item><item><title>La gestion des dépendances</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</guid><description>&lt;h1 id="la-gestion-des-dépendances"&gt;La gestion des dépendances&lt;a class="anchor" href="#la-gestion-des-d%c3%a9pendances"&gt;#&lt;/a&gt;&lt;/h1&gt;
+question apparaît : comment savoir ce qui a changé, quand, et pourquoi ?&lt;/p&gt;
+&lt;p&gt;Sans système de versioning, le développement logiciel devient fragile. On copie
+des fichiers, on renomme des dossiers (« version2 », « version_finale », «
+version_finale_bis »), on échange du code par courriel ou sur un disque partagé.
+Ces solutions fonctionnent… jusqu’au moment où elles ne fonctionnent plus : on
+perd une modification importante, on ne sait plus quelle version est la bonne,
+ou deux personnes écrasent mutuellement leur travail.&lt;/p&gt;</description></item><item><title>La gestion des dépendances</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</guid><description>&lt;h1 id="la-gestion-des-dépendances"&gt;La gestion des dépendances&lt;a class="anchor" href="#la-gestion-des-d%c3%a9pendances"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dès qu&amp;rsquo;un programme devient un peu plus complexe, deux phénomènes interviennent
 habituellement :&lt;/p&gt;
 &lt;ol&gt;
@@ -36,7 +41,6 @@ nous avons vu, appliqué dans le sens plus large d&amp;rsquo;un écosystème log
 &lt;/ol&gt;
 &lt;p&gt;Dans le cas (2), on nomme parfois les librairies externes des &amp;ldquo;dépendances&amp;rdquo;, ou des
 &amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>L'intégration continue (CI)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</guid><description>&lt;h1 id="lintégration-continue-ci"&gt;L&amp;rsquo;intégration continue (CI)&lt;a class="anchor" href="#lint%c3%a9gration-continue-ci"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Dans les sections précédentes, nous avons vu comment écrire des tests pour
 vérifier qu&amp;rsquo;un programme se comporte correctement, comment utiliser git pour
 gérer l&amp;rsquo;évolution du code, et comment gérer les dépendances d&amp;rsquo;un projet avec uv.

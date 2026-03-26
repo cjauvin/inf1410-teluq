@@ -105,14 +105,15 @@ processus linéaire qu&amp;rsquo;on peut planifier de bout en bout, c&amp;rsquo;
 collectif, adaptatif, où les phases se chevauchent et où l&amp;rsquo;équipe s&amp;rsquo;auto-organise.&lt;/p&gt;</description></item><item><title>Survol rapide de la programmation</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/</guid><description>&lt;h1 id="survol-rapide-de-la-programmation"&gt;Survol rapide de la programmation&lt;a class="anchor" href="#survol-rapide-de-la-programmation"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Nous allons faire un survol rapide des idées les plus importantes et
 fondamentales de la programmation logicielle. Pour aller droit au but, nous
-allons utiliser le langage Python, qui est très facile à comprendre, même sans
-aucune expérience explicite.&lt;/p&gt;
+allons utiliser le langage Python, qui est très facile à comprendre, presque
+même sans expérience préalable.&lt;/p&gt;
 &lt;h2 id="structures-de-données-fondamentales"&gt;Structures de données fondamentales&lt;a class="anchor" href="#structures-de-donn%c3%a9es-fondamentales"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Au-delà des types de base, qui sont généralement des nombres de différents types
 (entiers, réels, etc) et les chaines de caractères (strings), nous avons les
-structures de données, qui sont des constructions logiques plus complexe
-(non-atomique) qui impliquent, en général, les types de base, d&amp;rsquo;une manière ou
-d&amp;rsquo;une autre.&lt;/p&gt;</description></item><item><title>Principes et idées clés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/principes/</guid><description>&lt;h1 id="principes-et-idées-clés-du-génie-logiciel"&gt;Principes et idées clés du génie logiciel&lt;a class="anchor" href="#principes-et-id%c3%a9es-cl%c3%a9s-du-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
+structures de données, qui sont des constructions logiques plus complexes
+(non-atomiques) qui impliquent, en général, les types de base, d&amp;rsquo;une manière ou
+d&amp;rsquo;une autre (une liste, par exemple, doit être une liste de &lt;em&gt;quelque chose&lt;/em&gt;,
+d&amp;rsquo;entiers, de strings, etc).&lt;/p&gt;</description></item><item><title>Principes et idées clés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/principes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/principes/</guid><description>&lt;h1 id="principes-et-idées-clés-du-génie-logiciel"&gt;Principes et idées clés du génie logiciel&lt;a class="anchor" href="#principes-et-id%c3%a9es-cl%c3%a9s-du-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Cette page rassemble les principes et idées importantes qui traversent
 l&amp;rsquo;ensemble du cours. Chaque principe est traité en profondeur dans le module où
 il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.&lt;/p&gt;
@@ -356,7 +357,6 @@ schémas. Mais représenter des données ne suffit pas. Dès qu&amp;rsquo;un sys
 conserver des données au-delà de l&amp;rsquo;exécution d&amp;rsquo;un programme, les retrouver
 efficacement, et garantir leur cohérence même en cas de panne ou d&amp;rsquo;accès
 concurrent, on entre dans le domaine des bases de données.&lt;/p&gt;</description></item><item><title>Les tests</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/</guid><description>&lt;h1 id="les-tests"&gt;Les tests&lt;a class="anchor" href="#les-tests"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Dans la section précédente, nous avons vu que la programmation repose sur des
 structures de données, des algorithmes et des systèmes de types. Mais écrire du
 code qui &lt;em&gt;semble&lt;/em&gt; correct ne suffit pas : il faut pouvoir &lt;em&gt;vérifier&lt;/em&gt; qu&amp;rsquo;il se
@@ -408,12 +408,17 @@ les choix qui ont été faits ? Ces questions relèvent de la coordination au se
 large, et les réponses ne se trouvent pas dans un framework ou un outil, mais
 dans un ensemble de pratiques que les équipes développent, souvent par essais et
 erreurs.&lt;/p&gt;</description></item><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Le logiciel (et le code source dont il est constitué) a une particularité
 fondamentale : il change tout le temps. Même un programme simple est rapidement
 modifié - pour corriger un bug, ajouter une fonctionnalité, améliorer la
 performance ou simplement rendre le code plus lisible. Et très vite, une
-question apparaît : comment savoir ce qui a changé, quand, et pourquoi ?&lt;/p&gt;</description></item><item><title>Les frameworks JavaScript</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/</guid><description>&lt;h1 id="les-frameworks-javascript"&gt;Les frameworks JavaScript&lt;a class="anchor" href="#les-frameworks-javascript"&gt;#&lt;/a&gt;&lt;/h1&gt;
+question apparaît : comment savoir ce qui a changé, quand, et pourquoi ?&lt;/p&gt;
+&lt;p&gt;Sans système de versioning, le développement logiciel devient fragile. On copie
+des fichiers, on renomme des dossiers (« version2 », « version_finale », «
+version_finale_bis »), on échange du code par courriel ou sur un disque partagé.
+Ces solutions fonctionnent… jusqu’au moment où elles ne fonctionnent plus : on
+perd une modification importante, on ne sait plus quelle version est la bonne,
+ou deux personnes écrasent mutuellement leur travail.&lt;/p&gt;</description></item><item><title>Les frameworks JavaScript</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/</guid><description>&lt;h1 id="les-frameworks-javascript"&gt;Les frameworks JavaScript&lt;a class="anchor" href="#les-frameworks-javascript"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;La section précédente a décrit les grandes architectures des applications web : SSR, SPA, hybride. Mais ces architectures ne se construisent pas à la main. Manipuler directement le HTML d&amp;rsquo;une page depuis JavaScript pour créer une application interactive est techniquement possible, mais rapidement ingérable dès que l&amp;rsquo;interface devient complexe. C&amp;rsquo;est pourquoi, depuis le milieu des années 2000, une succession de bibliothèques et de frameworks JavaScript ont émergé pour structurer le développement côté client. Leur histoire est traversée par une tension fondamentale entre deux approches : l&amp;rsquo;approche &lt;em&gt;impérative&lt;/em&gt; (dire au navigateur &lt;em&gt;comment&lt;/em&gt; modifier l&amp;rsquo;interface, étape par étape) et l&amp;rsquo;approche &lt;em&gt;déclarative&lt;/em&gt; (décrire &lt;em&gt;ce que&lt;/em&gt; l&amp;rsquo;interface devrait être, et laisser le framework se charger des modifications). Pour comprendre cette tension, il faut d&amp;rsquo;abord comprendre ce qu&amp;rsquo;est le DOM.&lt;/p&gt;</description></item><item><title>Monopoles et régulation</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/monopoles/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module6/monopoles/</guid><description>&lt;h1 id="monopoles-et-régulation"&gt;Monopoles et régulation&lt;a class="anchor" href="#monopoles-et-r%c3%a9gulation"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Le logiciel possède une propriété économique qui favorise naturellement la
 concentration : les effets de réseau. Plus un produit a d&amp;rsquo;utilisateurs, plus il
@@ -486,7 +491,6 @@ accès à des données qu&amp;rsquo;il n&amp;rsquo;aurait probablement pas dû p
 masse. L&amp;rsquo;incident a mis en lumière l&amp;rsquo;importance du principe du moindre privilège
 et de la surveillance des accès internes, des aspects de la sécurité qui ne se
 règlent pas avec un pare-feu.&lt;/p&gt;</description></item><item><title>L'intégration continue (CI)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</guid><description>&lt;h1 id="lintégration-continue-ci"&gt;L&amp;rsquo;intégration continue (CI)&lt;a class="anchor" href="#lint%c3%a9gration-continue-ci"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="quel-est-le-problème-quon-cherche-à-résoudre"&gt;Quel est le problème qu&amp;rsquo;on cherche à résoudre?&lt;a class="anchor" href="#quel-est-le-probl%c3%a8me-quon-cherche-%c3%a0-r%c3%a9soudre"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Dans les sections précédentes, nous avons vu comment écrire des tests pour
 vérifier qu&amp;rsquo;un programme se comporte correctement, comment utiliser git pour
 gérer l&amp;rsquo;évolution du code, et comment gérer les dépendances d&amp;rsquo;un projet avec uv.

@@ -22,17 +22,27 @@
 programmer et construire du logiciel fiable sont deux choses très différentes.
 Mais avant de parler d&rsquo;architecture, d&rsquo;équipes ou de déploiement, il faut
 s&rsquo;arrêter sur ce que signifie vraiment programmer. En 1985, l&rsquo;informaticien
-danois Peter Naur publie un article au titre provocateur <em>Programming as Theory
-Building</em>. Sa thèse centrale est que programmer n&rsquo;est pas produire du code.
-C&rsquo;est construire une théorie, un modèle mental du problème qu&rsquo;on cherche à
-résoudre. Le code n&rsquo;est qu&rsquo;un artefact secondaire de cette compréhension. Un
-programmeur qui comprend profondément son domaine peut modifier, adapter et
-faire évoluer son logiciel avec assurance. Un autre programmeur, même s&rsquo;il a
-accès au même code source et à toute la documentation du monde, ne pourra pas le
-maintenir aussi efficacement sans avoir reconstruit ce modèle mental pour
-lui-même.</p><label class=book-image for=book-image-toggle-0><input class="hidden toggle" type=checkbox id=book-image-toggle-0>
+danois Peter Naur publie un article au titre provocateur <a href=https://pages.cs.wisc.edu/~remzi/Naur.pdf><em>Programming as Theory
+Building</em></a>. Sa thèse centrale est que
+programmer n&rsquo;est pas produire du code. C&rsquo;est construire une théorie, un modèle
+mental du problème qu&rsquo;on cherche à résoudre. Le code n&rsquo;est qu&rsquo;un artefact
+secondaire de cette compréhension. Un programmeur qui comprend profondément son
+domaine peut modifier, adapter et faire évoluer son logiciel avec assurance. Un
+autre programmeur, même s&rsquo;il a accès au même code source et à toute la
+documentation du monde, ne pourra pas le maintenir aussi efficacement sans avoir
+reconstruit ce modèle mental pour lui-même.</p><label class=book-image for=book-image-toggle-0><input class="hidden toggle" type=checkbox id=book-image-toggle-0>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/naur.jpg alt="Peter Naur" loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-0"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Cette idée a des conséquences profondes. Si la valeur réelle du travail de programmation réside dans le modèle mental plutôt que dans le code, alors les outils du programmeur ne servent pas seulement à produire du code : ils servent à construire, vérifier et préserver ce modèle mental. Les types permettent de formaliser les contraintes qu&rsquo;on a en tête. Les tests vérifient que notre compréhension du problème correspond bien au comportement du programme. Le versioning avec git préserve l&rsquo;historique de nos décisions et de leur évolution. La gestion des dépendances nous permet d&rsquo;intégrer le travail et la compréhension des autres dans notre propre modèle. Et l&rsquo;intégration continue automatise la vérification constante que tout tient ensemble. Ce sont ces outils que nous allons explorer dans ce module.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-0"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Cette idée a des conséquences profondes. Si la valeur réelle du travail de
+programmation réside dans le modèle mental plutôt que dans le code, alors les
+outils du programmeur ne servent pas seulement à produire du code : ils servent
+à construire, vérifier et préserver ce modèle mental. Les types permettent de
+formaliser les contraintes qu&rsquo;on a en tête. Les tests vérifient que notre
+compréhension du problème correspond bien au comportement du programme. Le
+versioning avec git préserve l&rsquo;historique de nos décisions et de leur évolution.
+La gestion des dépendances nous permet d&rsquo;intégrer le travail et la compréhension
+des autres dans notre propre modèle. Et l&rsquo;intégration continue automatise la
+vérification constante que tout tient ensemble. Ce sont ces outils que nous
+allons explorer dans ce module.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
 <span>Historique</span>
 </a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/ class="flex align-center"><span>Survol rapide de la programmation</span>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div></main></body></html>
