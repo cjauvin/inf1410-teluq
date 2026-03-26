@@ -134,3 +134,24 @@ sont nombreuses : pression sur les développeurs, dette technique accumulée
 volontairement, et une tendance à privilégier les métriques de croissance sur la
 qualité du produit. Mais le modèle a aussi produit des entreprises qui ont
 véritablement transformé leur industrie.
+
+## Pourquoi le logiciel coûte cher
+
+Si le logiciel ne coûte rien à copier, pourquoi coûte-t-il si cher à produire ?
+La réponse tient dans une asymétrie fondamentale : le coût du logiciel est
+presque entièrement un coût de conception. Il n'y a pas de matières premières,
+pas de chaîne de montage, pas d'inventaire. Ce qu'on paie, c'est le temps de
+personnes qualifiées qui réfléchissent à des problèmes complexes. C'est ce que
+Fred Brooks avait identifié dès 1975 dans *The Mythical Man-Month* : ajouter des
+développeurs à un projet en retard le retarde davantage, parce que la
+communication entre les personnes croît plus vite que leur nombre. Le Standish
+Group, dans ses rapports CHAOS publiés depuis 1994, a documenté l'ampleur du
+problème : selon leurs données, une proportion importante de projets logiciels
+dépasse leur budget ou leur échéancier, et certains sont purement abandonnés.
+Ces chiffres, bien que contestés méthodologiquement, ont eu un impact durable
+sur la perception de l'industrie. Le coût du logiciel n'est pas un problème
+technique qu'on résout avec de meilleurs outils. C'est un problème humain et
+organisationnel, ce qui explique pourquoi tant de sujets abordés dans ce cours
+(les tests du module 2, l'architecture du module 3, les méthodes agiles du
+module 4, l'automatisation du module 5) sont autant de tentatives de réduire ce
+coût, ou du moins de le rendre plus prévisible.

@@ -512,12 +512,28 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   - xkcd "Dependency" (#2347)
   - Lien avec la chaîne d'approvisionnement (module 2) et la sécurité (module 5)
 
-## L'économie du logiciel (à développer)
-- Business models : SaaS, open core, freemium, dual licensing, marketplace
-- Startups et venture capital : move fast and break things, blitzscaling, la culture de la croissance
-- L'API economy : le logiciel comme service (Stripe, Twilio), lien avec la section APIs (module 3)
-- Shopify comme cas de réussite canadienne
-- Le coût du logiciel : pourquoi les projets coûtent cher (lien avec Brooks, module 1)
+## L'économie du logiciel (complété)
+- Du logiciel en boîte au shareware :
+  - IBM unbundling (1969), naissance de l'industrie logicielle autonome
+  - Licences perpétuelles : SAP (1972), Oracle (1977), Microsoft (shrink-wrap software)
+  - Dimension québécoise : CGI (1976), DMR (1973, acquise par Fujitsu 2002), services sur mesure
+  - Shareware : BBS, CD-ROM, DOOM (id Software, 1993), modèle freemium avant la lettre
+  - Jeu vidéo comme laboratoire économique : WoW (abonnement), Fortnite (free-to-play), Xbox Game Pass (catalogue)
+- Le logiciel comme service :
+  - Salesforce (1999), slogan "No Software", licence perpétuelle → abonnement récurrent
+  - Microsoft 365, Adobe Creative Cloud (2013), transition SaaS
+  - Plateformes et marketplaces : App Store (2008), commission 30 %, Epic v. Apple (2021)
+  - API economy : Stripe, Twilio, Mapbox, lien avec les APIs (module 3)
+  - Shopify (Ottawa, 2006, Tobias Lütke) comme convergence SaaS/marketplace/API
+- La culture startup et le capital de risque :
+  - Venture capital, croissance vs rentabilité
+  - *Blitzscaling* (Reid Hoffman, 2018), "Move fast and break things" (Zuckerberg)
+  - Uber, WeWork, Theranos : levées massives sans viabilité prouvée
+  - Critiques : pression, dette technique volontaire, métriques de croissance vs qualité
+- Pourquoi le logiciel coûte cher :
+  - Coût de conception, pas de reproduction ; loi de Brooks (*Mythical Man-Month*)
+  - Standish Group CHAOS reports (depuis 1994), dépassements et abandons
+  - Boucle avec modules 2 (tests), 3 (architecture), 4 (agilité), 5 (automatisation)
 
 ## Monopoles et régulation (à développer)
 - L'histoire de la concentration : IBM (consent decree 1956), AT&T (démantèlement 1984),

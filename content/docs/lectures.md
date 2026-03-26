@@ -15,7 +15,8 @@ intégrées dans le cours.)*
 ## Livres
 
 - Fred Brooks, *The Mythical Man-Month* (1975) : réflexions sur la gestion de
-  grands projets logiciels, dont la célèbre « loi de Brooks » → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}})
+  grands projets logiciels, dont la célèbre « loi de Brooks » → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}}),
+  [Module 6, L'économie du logiciel]({{< ref "/docs/module6/20-economie" >}})
 - Andrew Hunt et David Thomas, *The Pragmatic Programmer* (1999) : conseils
   pratiques pour le développeur, origine du principe DRY → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Kent Beck, *Extreme Programming Explained* (1999) : manifeste de l'XP, origine
@@ -58,6 +59,10 @@ intégrées dans le cours.)*
   approche systémique des erreurs humaines, fondement de la culture « just
   culture » et des postmortems blameless →
   [Module 5, Que faire quand ça casse ?]({{< ref "/docs/module5/40-incidents" >}})
+- Reid Hoffman, *Blitzscaling* (2018) : formalisation de la stratégie de
+  croissance rapide des startups technologiques, tension entre vitesse et
+  qualité →
+  [Module 6, L'économie du logiciel]({{< ref "/docs/module6/20-economie" >}})
 
 ## Essais et manifestes
 
