@@ -54,4 +54,17 @@ et même pas d&amp;rsquo;accord sur le nom qu&amp;rsquo;on devrait lui donner. P
 développeur, ingénieur logiciel, artisan du code : chaque terme porte une vision
 différente de ce que signifie écrire du logiciel pour gagner sa vie. Cette
 section explore ces tensions, les réalités quotidiennes du métier, et les idées
-qui ont façonné la manière dont la profession se perçoit elle-même.&lt;/p&gt;</description></item></channel></rss>
+qui ont façonné la manière dont la profession se perçoit elle-même.&lt;/p&gt;</description></item><item><title>Le développement assisté par IA</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/</guid><description>&lt;h1 id="le-développement-assisté-par-ia"&gt;Le développement assisté par IA&lt;a class="anchor" href="#le-d%c3%a9veloppement-assist%c3%a9-par-ia"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;La section précédente se terminait sur une question ouverte : l&amp;rsquo;IA générative
+sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La
+question mérite d&amp;rsquo;être posée sérieusement, parce que quelque chose de
+fondamentalement différent est en train de se passer. Depuis 2021, des outils
+capables de générer du code à partir de descriptions en langage naturel ont
+commencé à transformer le quotidien des développeurs. Pas comme une curiosité de
+laboratoire, mais comme un changement concret dans la manière de travailler :
+en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était
+écrit avec l&amp;rsquo;assistance de Copilot. Que l&amp;rsquo;on soit enthousiaste ou sceptique, il
+est difficile de nier que le développement logiciel est en train de vivre sa
+transformation la plus profonde depuis l&amp;rsquo;invention des langages de haut niveau.
+Pour comprendre ce qui se passe, il faut d&amp;rsquo;abord comprendre d&amp;rsquo;où vient cette
+technologie.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,357 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Le développement assisté par IA"><meta property="og:description" content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Le développement assisté par IA"><meta itemprop=description content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta itemprop=wordCount content="4194"><title>Le développement assisté par IA | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - Concevoir un programme correct</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Du programme au système</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
+<label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/>Perspective historique</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>L'architecture des applications web</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/>Les frameworks JavaScript</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/convergences/>Desktop, web et mobile</a></li></ul></li><li><input type=checkbox id=section-e4d51cc3c07f12fea00e9c0cd309e911 class=toggle>
+<label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - Construire en équipe</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=toggle>
+<label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/>Kanban</a></li></ul></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/>Gestion de projet et coordination</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/>Où est-ce que ça tourne ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/>Comment je le déploie ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/>Est-ce que ça marche ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/>Que faire quand ça casse ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/>Est-ce que c'est sécuritaire ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/>Est-ce que ça va tenir la charge ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle checked>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Le logiciel dans le monde</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/>L'open source</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/>L'économie du logiciel</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/monopoles/>Monopoles et régulation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/>Catastrophes, éthique et responsabilité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/>Le métier de développeur</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/ class=active>Le développement assisté par IA</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Le développement assisté par IA</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#doù-vient-lintelligence-artificielle>D&rsquo;où vient l&rsquo;intelligence artificielle</a><ul><li><a href=#lia-symbolique-années-1950-1980>L&rsquo;IA symbolique (années 1950-1980)</a></li><li><a href=#le-machine-learning-années-1990-2000>Le machine learning (années 1990-2000)</a></li><li><a href=#le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)</a></li><li><a href=#des-modèles-de-langage-aux-llm-2003-2023>Des modèles de langage aux LLM (2003-2023)</a></li></ul></li><li><a href=#lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur</a></li><li><a href=#le-vibe-coding>Le vibe coding</a></li><li><a href=#ce-qui-change-dans-les-pratiques-du-génie-logiciel>Ce qui change dans les pratiques du génie logiciel</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=le-développement-assisté-par-ia>Le développement assisté par IA<a class=anchor href=#le-d%c3%a9veloppement-assist%c3%a9-par-ia>#</a></h1><p>La section précédente se terminait sur une question ouverte : l&rsquo;IA générative
+sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La
+question mérite d&rsquo;être posée sérieusement, parce que quelque chose de
+fondamentalement différent est en train de se passer. Depuis 2021, des outils
+capables de générer du code à partir de descriptions en langage naturel ont
+commencé à transformer le quotidien des développeurs. Pas comme une curiosité de
+laboratoire, mais comme un changement concret dans la manière de travailler :
+en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était
+écrit avec l&rsquo;assistance de Copilot. Que l&rsquo;on soit enthousiaste ou sceptique, il
+est difficile de nier que le développement logiciel est en train de vivre sa
+transformation la plus profonde depuis l&rsquo;invention des langages de haut niveau.
+Pour comprendre ce qui se passe, il faut d&rsquo;abord comprendre d&rsquo;où vient cette
+technologie.</p><h2 id=doù-vient-lintelligence-artificielle>D&rsquo;où vient l&rsquo;intelligence artificielle<a class=anchor href=#do%c3%b9-vient-lintelligence-artificielle>#</a></h2><h3 id=lia-symbolique-années-1950-1980>L&rsquo;IA symbolique (années 1950-1980)<a class=anchor href=#lia-symbolique-ann%c3%a9es-1950-1980>#</a></h3><p>L&rsquo;idée de créer des machines capables de &ldquo;penser&rdquo; est aussi vieille que
+l&rsquo;informatique elle-même. En 1950, Alan Turing publiait &ldquo;Computing Machinery
+and Intelligence&rdquo;, l&rsquo;article qui posait la question &ldquo;Can machines think?&rdquo; et
+proposait le fameux test de Turing comme critère opérationnel. Six ans plus tard,
+en 1956, une conférence au Dartmouth College réunissait John McCarthy, Marvin
+Minsky, Claude Shannon et d&rsquo;autres pionniers pour ce qui est considéré comme
+l&rsquo;acte de naissance officiel de l&rsquo;intelligence artificielle comme discipline. Le
+terme lui-même, &ldquo;artificial intelligence&rdquo;, a été inventé par McCarthy pour
+l&rsquo;occasion. L&rsquo;approche dominante de cette époque était symbolique : l&rsquo;idée que
+l&rsquo;intelligence pouvait être reproduite en manipulant des symboles selon des
+règles logiques, comme un programme qui enchaîne des déductions. Les systèmes
+experts des années 1970 et 1980 représentent l&rsquo;aboutissement de cette approche :
+des programmes qui codifiaient les connaissances d&rsquo;un spécialiste humain sous
+forme de règles &ldquo;si&mldr; alors&mldr;&rdquo; pour diagnostiquer des maladies, configurer des
+ordinateurs ou analyser des données géologiques. Certains ont eu un succès
+commercial réel, mais tous partageaient une limitation fondamentale : il fallait
+que des humains programment explicitement chaque règle. Le système ne pouvait
+rien savoir qu&rsquo;on ne lui avait pas dit. Cette approche a connu deux &ldquo;hivers de
+l&rsquo;IA&rdquo; (AI winters), des périodes de désillusion et de coupures de financement,
+quand les promesses initiales se sont heurtées à la réalité : l&rsquo;intelligence
+humaine ne se réduit pas à un ensemble de règles logiques, et les problèmes du
+monde réel résistent à la formalisation complète.</p><p>Il serait toutefois trompeur de conclure que l&rsquo;IA symbolique a échoué. En
+réalité, une grande partie de ses idées se sont fondues dans la programmation
+ordinaire, au point qu&rsquo;on ne les associe plus à l&rsquo;&ldquo;intelligence artificielle&rdquo;.
+Les arbres de décision, la recherche dans des graphes, les algorithmes de
+planification, les moteurs de règles : tout cela vient directement de la
+recherche en IA des années 1960 et 1970. Les compilateurs que nous utilisons
+chaque jour reposent sur des techniques de parsing et d&rsquo;analyse formelle issues
+de cette tradition. Les systèmes de types statiques, la vérification de
+contraintes, même l&rsquo;autocomplétion classique dans un IDE comme Intellisense
+de Microsoft (1996) sont des héritiers de l&rsquo;approche symbolique. L&rsquo;IA symbolique
+n&rsquo;a pas disparu : elle est devenue invisible à force de succès, absorbée dans
+les fondations mêmes de la programmation moderne.</p><h3 id=le-machine-learning-années-1990-2000>Le machine learning (années 1990-2000)<a class=anchor href=#le-machine-learning-ann%c3%a9es-1990-2000>#</a></h3><p>L&rsquo;idée alternative à l&rsquo;IA symbolique existait dès les débuts du domaine, mais
+elle a mis des décennies à porter ses fruits. Plutôt que de programmer
+explicitement des règles, pourquoi ne pas laisser la machine les découvrir
+elle-même à partir d&rsquo;exemples ? C&rsquo;est le principe du machine learning
+(apprentissage automatique) : on fournit au système des données étiquetées (des
+images avec leurs légendes, des courriels marqués comme spam ou non, des
+transactions frauduleuses ou légitimes) et un algorithme ajuste ses paramètres
+internes jusqu&rsquo;à ce qu&rsquo;il parvienne à reproduire les bonnes réponses. Le
+perceptron, un modèle de neurone artificiel proposé par Frank Rosenblatt en
+1958, avait déjà exploré cette voie, mais ses limitations, démontrées par Minsky
+et Papert en 1969, avaient contribué au premier hiver de l&rsquo;IA. Il a fallu
+attendre les années 1980 et 1990 pour que les réseaux de neurones reviennent en
+force, grâce notamment à l&rsquo;algorithme de rétropropagation (backpropagation)
+popularisé par Rumelhart, Hinton et Williams en 1986, qui permettait
+d&rsquo;entraîner des réseaux à plusieurs couches. Les années 1990 et 2000 ont vu le
+machine learning s&rsquo;imposer progressivement dans des applications concrètes :
+filtres anti-spam, systèmes de recommandation, reconnaissance optique de
+caractères, traduction statistique. Mais les réseaux de neurones de cette époque
+restaient modestes en taille, limités par la puissance de calcul disponible, et
+ils étaient souvent surpassés par des méthodes statistiques plus simples comme
+les machines à vecteurs de support (SVM). Le vrai changement allait venir d&rsquo;une
+combinaison de trois facteurs : des données massives (le web), du matériel
+puissant (les GPU, des processeurs graphiques détournés pour le calcul
+scientifique) et des architectures de réseaux de neurones plus profondes. C&rsquo;est
+le deep learning.</p><h3 id=le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)<a class=anchor href=#le-deep-learning-et-montr%c3%a9al-ann%c3%a9es-2010>#</a></h3><p>Le deep learning (apprentissage profond) désigne l&rsquo;utilisation de réseaux de
+neurones comportant de nombreuses couches successives, chacune apprenant des
+représentations de plus en plus abstraites des données. Un réseau de
+reconnaissance d&rsquo;images, par exemple, apprend dans ses premières couches à
+détecter des contours et des textures, puis dans les couches intermédiaires à
+reconnaître des formes (un oeil, une roue), et dans les couches profondes à
+identifier des objets complets (un visage, une voiture). L&rsquo;idée n&rsquo;était pas
+nouvelle, mais pendant longtemps, on ne parvenait pas à entraîner efficacement
+des réseaux profonds : les gradients utilisés pour ajuster les paramètres
+s&rsquo;évanouissaient ou explosaient à mesure qu&rsquo;on ajoutait des couches. Un petit
+groupe de chercheurs a persisté malgré le scepticisme de la communauté, et
+trois d&rsquo;entre eux ont joué un rôle déterminant : Geoffrey Hinton (Université de
+Toronto), Yann LeCun (Bell Labs puis NYU) et Yoshua Bengio (Université de
+Montréal). Ils recevront ensemble le prix Turing en 2018, souvent décrit comme
+le &ldquo;prix Nobel de l&rsquo;informatique&rdquo;, pour leurs travaux sur le deep learning.</p><p>Le rôle de Montréal dans cette histoire mérite d&rsquo;être souligné. Yoshua Bengio
+est arrivé à l&rsquo;Université de Montréal en 1993 et y a fondé ce qui allait
+devenir le MILA (aujourd&rsquo;hui l&rsquo;Institut québécois d&rsquo;intelligence artificielle),
+le plus grand centre de recherche académique en deep learning au monde. Pendant
+les années 2000, alors que la plupart des départements d&rsquo;informatique
+considéraient les réseaux de neurones comme une voie sans issue, Bengio et ses
+étudiants ont continué à publier des travaux fondamentaux. Montréal est devenue
+un pôle d&rsquo;attraction mondiale pour la recherche en IA, attirant des laboratoires
+de Google, Meta, Microsoft et Samsung, et engendrant un écosystème de startups
+spécialisées. Cette concentration de talent n&rsquo;est pas un accident : elle
+résulte directement de la persévérance d&rsquo;un chercheur et de l&rsquo;université qui
+l&rsquo;a soutenu pendant les années de vaches maigres.</p><p>Le moment charnière est arrivé en 2012. Lors de la compétition ImageNet, un
+défi annuel de classification d&rsquo;images, Alex Krizhevsky, un étudiant de Hinton
+à Toronto, a soumis AlexNet, un réseau de neurones profond entraîné sur des
+GPU. AlexNet a écrasé la compétition, réduisant le taux d&rsquo;erreur de 26 % à
+15 %, un bond sans précédent. Ce résultat a forcé le reste de la communauté à
+prendre le deep learning au sérieux. En quelques années, les réseaux profonds
+ont atteint puis dépassé la performance humaine dans des tâches de vision par
+ordinateur, de reconnaissance vocale et de traduction automatique. Google,
+Facebook, Amazon et les autres géants technologiques se sont lancés dans une
+course au recrutement de chercheurs en deep learning, et l&rsquo;IA est passée d&rsquo;un
+champ de recherche marginal à la technologie la plus convoitée de la décennie.</p><h3 id=des-modèles-de-langage-aux-llm-2003-2023>Des modèles de langage aux LLM (2003-2023)<a class=anchor href=#des-mod%c3%a8les-de-langage-aux-llm-2003-2023>#</a></h3><p>Le deep learning a d&rsquo;abord triomphé dans la vision par ordinateur, mais c&rsquo;est
+son application au langage qui allait transformer le développement logiciel. Et
+cette histoire commence, encore une fois, à Montréal. En 2003, Yoshua Bengio et
+ses collègues ont publié &ldquo;A Neural Probabilistic Language Model&rdquo;, un article qui
+proposait une idée en apparence simple mais aux conséquences profondes : plutôt
+que de traiter les mots comme des symboles discrets et arbitraires (l&rsquo;approche
+dominante en linguistique computationnelle), on pouvait représenter chaque mot
+comme un vecteur dans un espace continu, un point dans un espace mathématique
+à plusieurs centaines de dimensions. Dans cet espace, les mots ayant des sens
+similaires se retrouvent proches les uns des autres. Le modèle apprenait ces
+représentations (appelées <em>word embeddings</em>) en même temps qu&rsquo;il apprenait à
+prédire le mot suivant dans une phrase. Cette idée a ouvert la voie à une
+décennie de progrès. En 2013, Tomas Mikolov et son équipe chez Google ont
+publié Word2Vec, une méthode efficace pour apprendre des embeddings à grande
+échelle, et les résultats avaient quelque chose de fascinant : les vecteurs
+capturaient des relations sémantiques. L&rsquo;exemple devenu célèbre est que le
+vecteur &ldquo;roi&rdquo; moins &ldquo;homme&rdquo; plus &ldquo;femme&rdquo; donnait un résultat proche de &ldquo;reine&rdquo;,
+comme si le modèle avait appris, sans supervision explicite, des concepts
+abstraits comme le genre et la royauté.</p><p>L&rsquo;étape suivante est venue, encore une fois, du MILA. En 2014, Dzmitry
+Bahdanau, Kyunghyun Cho et Yoshua Bengio ont publié &ldquo;Neural Machine Translation
+by Jointly Learning to Align and Translate&rdquo;, un article qui introduisait le
+mécanisme d&rsquo;attention dans le contexte de la traduction automatique. Le problème
+était le suivant : les modèles de traduction neuronaux de l&rsquo;époque lisaient
+toute la phrase source et la compressaient en un seul vecteur de taille fixe
+avant de générer la traduction. Pour des phrases longues, ce goulot
+d&rsquo;étranglement faisait perdre de l&rsquo;information. Le mécanisme d&rsquo;attention
+permettait au modèle, à chaque étape de la génération, de &ldquo;porter attention&rdquo; à
+différentes parties de la phrase source, en pondérant dynamiquement l&rsquo;importance
+de chaque mot. Les résultats étaient remarquables, et l&rsquo;idée s&rsquo;est rapidement
+propagée bien au-delà de la traduction.</p><p>C&rsquo;est en généralisant cette idée que Google a produit la vraie révolution
+architecturale, en 2017, avec un article intitulé &ldquo;Attention is All You Need&rdquo;,
+qui introduisait le Transformer.
+Les modèles de langage précédents traitaient le texte de manière séquentielle,
+mot par mot, ce qui les rendait lents à entraîner et incapables de capturer
+efficacement les relations entre des mots éloignés dans une phrase. Le
+mécanisme d&rsquo;attention du Transformer résolvait ce problème en permettant au
+modèle de &ldquo;regarder&rdquo; simultanément tous les mots d&rsquo;une séquence et de pondérer
+leur importance relative. Cette architecture était aussi massivement
+parallélisable, ce qui permettait de l&rsquo;entraîner sur des quantités de texte
+sans précédent en exploitant la puissance des GPU. Le Transformer est devenu la
+brique de base de presque tous les modèles de langage modernes.</p><p>OpenAI a été parmi les premiers à exploiter cette architecture à grande échelle.
+GPT (Generative Pre-trained Transformer), publié en 2018, puis GPT-2 en 2019
+et GPT-3 en 2020, ont montré qu&rsquo;en augmentant la taille du modèle (le nombre
+de paramètres) et la quantité de données d&rsquo;entraînement, on obtenait des
+comportements qualitativement nouveaux. GPT-3, avec ses 175 milliards de
+paramètres entraînés sur une portion massive du web, pouvait rédiger des textes
+cohérents, répondre à des questions, traduire entre langues, et, de manière
+remarquable, écrire du code. Ces comportements n&rsquo;avaient pas été programmés
+explicitement : ils émergeaient de l&rsquo;entraînement sur suffisamment de données.
+C&rsquo;est ce qu&rsquo;on appelle les capacités émergentes des grands modèles de langage
+(large language models, ou LLM). Le code source présent en grande quantité dans
+les données d&rsquo;entraînement (GitHub, Stack Overflow, documentation technique)
+faisait en sorte que ces modèles &ldquo;comprenaient&rdquo; les langages de programmation
+de la même manière qu&rsquo;ils comprenaient l&rsquo;anglais ou le français : comme des
+patterns statistiques dans des séquences de tokens. La frontière entre comprendre
+du texte et comprendre du code s&rsquo;est brouillée, et c&rsquo;est précisément cette
+convergence qui a rendu possible les outils de développement assisté par IA.</p><h2 id=lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur<a class=anchor href=#lia-entre-dans-l%c3%a9diteur>#</a></h2><p>L&rsquo;autocomplétion de code n&rsquo;a pas attendu les LLM. Dès 1996, Intellisense de
+Microsoft proposait dans Visual Basic des suggestions basées sur l&rsquo;analyse
+statique du code : le système connaissait les types, les méthodes disponibles,
+les signatures de fonctions, et pouvait compléter un nom de variable ou proposer
+une liste de méthodes applicables. Cette autocomplétion classique, présente
+aujourd&rsquo;hui dans tous les IDE, est un héritage direct de l&rsquo;IA symbolique : elle
+repose sur un parsing rigoureux du code, des tables de symboles et des règles
+de typage. Elle est fiable et prévisible, mais elle ne peut compléter que ce
+qui est syntaxiquement et sémantiquement déductible du code existant. Elle ne
+peut pas deviner l&rsquo;intention du programmeur.</p><p>Les premiers outils d&rsquo;autocomplétion neuronale, comme Kite (2014) et TabNine
+(2018, renommé Tabnine), ont commencé à utiliser des modèles de machine
+learning pour prédire non seulement le prochain token syntaxiquement valide,
+mais la prochaine ligne ou le prochain bloc de code que le programmeur avait
+probablement l&rsquo;intention d&rsquo;écrire. Les résultats étaient prometteurs mais
+limités : les modèles étaient petits, les suggestions souvent maladroites, et
+l&rsquo;expérience ressemblait davantage à une autocomplétion améliorée qu&rsquo;à une
+véritable assistance.</p><p>Le moment charnière est arrivé en juin 2021 avec le lancement de GitHub Copilot,
+développé en partenariat avec OpenAI. Copilot était alimenté par Codex, un
+modèle dérivé de GPT-3 et spécifiquement entraîné sur des dépôts de code
+publics hébergés sur GitHub. La différence avec les outils précédents était
+qualitative, pas seulement quantitative : Copilot pouvait générer des fonctions
+entières à partir d&rsquo;un commentaire décrivant leur comportement, compléter des
+patterns complexes en s&rsquo;appuyant sur le contexte du fichier, et s&rsquo;adapter au
+style du code environnant. Pour beaucoup de développeurs, c&rsquo;était la première
+fois qu&rsquo;un outil d&rsquo;IA produisait du code réellement utile, pas juste
+impressionnant comme démonstration.</p><p>Puis, en novembre 2022, OpenAI a lancé ChatGPT, et tout a basculé. ChatGPT
+n&rsquo;était pas un outil de développement : c&rsquo;était un agent conversationnel
+généraliste. Mais les développeurs ont immédiatement commencé à l&rsquo;utiliser pour
+écrire du code, déboguer des erreurs, expliquer des algorithmes et générer des
+tests. L&rsquo;interface de conversation rendait l&rsquo;interaction plus naturelle que
+l&rsquo;autocomplétion dans un IDE : on pouvait décrire un problème en langage
+naturel, poser des questions de suivi, demander des modifications. En quelques
+mois, Stack Overflow a vu son trafic chuter significativement, un signal
+révélateur du changement de comportement des développeurs.</p><p>L&rsquo;étape suivante, celle que nous vivons actuellement, est le passage de
+l&rsquo;assistant au copilote vers l&rsquo;agent. Des outils comme Cursor, Claude Code
+(Anthropic) et GitHub Copilot Workspace ne se contentent plus de suggérer du
+code dans un éditeur ou de répondre à des questions dans une fenêtre de chat.
+Ils peuvent naviguer dans un dépôt entier, lire et comprendre des fichiers
+existants, exécuter des commandes, lancer des tests, et itérer sur leur propre
+travail jusqu&rsquo;à ce que le résultat soit satisfaisant. Le développeur n&rsquo;interagit
+plus en tapant du code que l&rsquo;IA complète : il décrit ce qu&rsquo;il veut accomplir, et
+l&rsquo;agent se charge de trouver où intervenir, d&rsquo;écrire le code, et de vérifier
+qu&rsquo;il fonctionne. C&rsquo;est un changement de paradigme dans la relation entre le
+développeur et son outil, et il soulève des questions profondes sur ce que
+signifie &ldquo;programmer&rdquo;.</p><h2 id=le-vibe-coding>Le vibe coding<a class=anchor href=#le-vibe-coding>#</a></h2><p>En février 2025, Andrej Karpathy, ancien directeur de l&rsquo;IA chez Tesla et
+cofondateur d&rsquo;OpenAI, a publié un message qui a cristallisé un phénomène que
+beaucoup de développeurs vivaient déjà sans le nommer : &ldquo;There&rsquo;s a new kind of
+coding I call &lsquo;vibe coding&rsquo;, where you fully give in to the vibes, embrace
+exponentials, and forget that the code even exists.&rdquo; Le vibe coding, c&rsquo;est
+l&rsquo;idée de coder en décrivant ce qu&rsquo;on veut en langage naturel, d&rsquo;accepter le
+code généré par l&rsquo;IA sans nécessairement le lire ou le comprendre en détail, et
+d&rsquo;itérer en décrivant les corrections souhaitées plutôt qu&rsquo;en modifiant le code
+directement. Karpathy décrivait son propre usage pour des projets personnels,
+avec une honnêteté désarmante : &ldquo;I just see stuff, say stuff, run stuff, and
+copy-paste stuff, and it mostly works.&rdquo;</p><p>Le terme a immédiatement déclenché un débat intense dans la communauté des
+développeurs. Pour ses défenseurs, le vibe coding est une démocratisation
+radicale : des personnes qui n&rsquo;auraient jamais appris à programmer peuvent
+désormais créer des applications fonctionnelles. Pour ses critiques, c&rsquo;est une
+recette pour produire du code fragile, incompris, et potentiellement dangereux.
+Le débat est riche parce qu&rsquo;il touche à des questions fondamentales sur la
+nature même de la programmation.</p><p>En 1979, Edsger Dijkstra, l&rsquo;un des pères de la programmation structurée que
+nous avons rencontré dans le module 1, a écrit un texte au titre sans
+équivoque : &ldquo;On the foolishness of &rsquo;natural language programming&rsquo;&rdquo;. Pour
+Dijkstra, l&rsquo;idée de programmer en langage naturel n&rsquo;était pas seulement
+impraticable, elle était fondamentalement mal conçue. Les langages de
+programmation sont précis justement parce qu&rsquo;ils éliminent l&rsquo;ambiguïté
+inhérente au langage naturel. Quand un compilateur reçoit une instruction, il
+n&rsquo;y a qu&rsquo;une seule interprétation possible. Le langage naturel, lui, est
+truffé d&rsquo;ambiguïtés, de sous-entendus, de contexte implicite. Dire à une
+machine &ldquo;trie cette liste de manière intelligente&rdquo; est une instruction
+parfaitement claire pour un humain et parfaitement vague pour un ordinateur.
+Pour Dijkstra, la rigueur formelle des langages de programmation n&rsquo;était pas un
+obstacle à surmonter mais une conquête à préserver, et vouloir programmer en
+langage naturel revenait à abandonner volontairement l&rsquo;outil qui rend le
+raisonnement rigoureux possible. Quarante-cinq ans plus tard, le vibe coding
+ressemble exactement à ce que Dijkstra jugeait insensé.</p><p>Et pourtant, il y a un argument en sens inverse qui mérite d&rsquo;être pris au
+sérieux. Si on regarde l&rsquo;histoire de l&rsquo;informatique avec du recul, le
+développement logiciel a toujours progressé en montant d&rsquo;un niveau
+d&rsquo;abstraction. Les premiers programmeurs écrivaient en code machine, des
+séquences de 0 et de 1 que le processeur exécutait directement. L&rsquo;assembleur a
+introduit un premier niveau d&rsquo;indirection : des mnémoniques lisibles par un
+humain, traduits automatiquement en code machine par un assembleur. Puis les
+langages de haut niveau comme FORTRAN et C ont ajouté un niveau
+supplémentaire : on décrit des opérations (boucles, conditions, fonctions) dans
+un langage plus proche de la pensée humaine, et le compilateur se charge de la
+traduction. Python et les langages interprétés ont monté encore d&rsquo;un cran, en
+éliminant la gestion manuelle de la mémoire et en rapprochant encore le code
+du raisonnement naturel. Vue sous cet angle, l&rsquo;IA générative est simplement le
+prochain étage de cette fusée : on décrit ce qu&rsquo;on veut en langage naturel, et
+le modèle se charge de le traduire en code. Et à chaque étape de cette
+histoire, les programmeurs de la génération précédente ont protesté que le
+nouveau niveau d&rsquo;abstraction était une perte de contrôle inacceptable. Les
+programmeurs en assembleur trouvaient que les compilateurs C produisaient du
+code inefficace. Les développeurs C trouvaient que les langages interprétés
+cachaient trop de détails. L&rsquo;histoire leur a donné partiellement raison à chaque
+fois (on perd effectivement du contrôle), mais elle a aussi montré que le gain
+en productivité et en accessibilité l&rsquo;emportait largement.</p><p>L&rsquo;analogie est séduisante, mais elle a des limites importantes, et c&rsquo;est
+probablement Dijkstra qui a le dernier mot sur ce point précis. Un compilateur
+est déterministe : le même code source produit toujours le même résultat. Un
+LLM est stochastique : la même instruction en langage naturel peut produire du
+code différent à chaque exécution. Un compilateur garantit la correction de sa
+traduction : si le programme compile, la traduction du code source en code
+machine est fidèle à la sémantique du langage. Un LLM ne garantit rien : il
+peut produire du code qui a l&rsquo;air correct, qui passe même certains tests, mais
+qui contient des erreurs subtiles ou des hallucinations. Et surtout, le langage
+naturel reste fondamentalement ambigu, exactement comme Dijkstra l&rsquo;avait
+diagnostiqué. Quand on dit à un compilateur <code>for i in range(10)</code>, il n&rsquo;y a
+aucune ambiguïté. Quand on dit à un LLM &ldquo;parcours les dix premiers éléments&rdquo;,
+le modèle doit inférer de quel type de collection on parle, si l&rsquo;indexation
+commence à 0 ou à 1, et ce qu&rsquo;on entend par &ldquo;parcourir&rdquo;. La plupart du temps,
+il infère correctement, grâce au contexte. Mais &ldquo;la plupart du temps&rdquo; n&rsquo;est pas
+&ldquo;toujours&rdquo;, et en programmation, la différence compte.</p><p>Ce qui nous ramène à Peter Naur. Si programmer, c&rsquo;est construire une théorie du
+programme, une compréhension profonde de pourquoi le code est comme il est et
+comment il devrait évoluer, alors le vibe coding pose un problème fondamental :
+il produit du code sans théorie. Le développeur qui accepte du code généré sans
+le comprendre se retrouve immédiatement dans la situation décrite par Naur quand
+le développeur original quitte le projet : il y a du code, mais la théorie qui
+le sous-tend n&rsquo;existe pas. Par la définition de Michael Feathers, c&rsquo;est du
+legacy code instantané : du code qu&rsquo;on ne peut pas modifier en confiance, non
+pas parce qu&rsquo;il est vieux, mais parce que personne ne le comprend. Et les
+conséquences pratiques dépendent énormément du niveau de compétence du
+développeur. Pour un développeur senior, le vibe coding peut être un
+accélérateur puissant : il génère rapidement du code que le développeur est
+capable de lire, d&rsquo;évaluer et de corriger, parce qu&rsquo;il possède déjà la théorie
+du domaine. Pour un débutant, c&rsquo;est un piège potentiel : le code fonctionne, il
+ne sait pas pourquoi, et quand il cesse de fonctionner, il ne sait pas comment
+le réparer. Ce n&rsquo;est pas un argument contre l&rsquo;utilisation de l&rsquo;IA pour
+apprendre à programmer, bien au contraire, mais c&rsquo;est un argument pour que
+l&rsquo;apprentissage de la programmation reste centré sur la compréhension, pas sur
+la production de code.</p><h2 id=ce-qui-change-dans-les-pratiques-du-génie-logiciel>Ce qui change dans les pratiques du génie logiciel<a class=anchor href=#ce-qui-change-dans-les-pratiques-du-g%c3%a9nie-logiciel>#</a></h2><p>L&rsquo;arrivée de l&rsquo;IA générative ne rend pas obsolètes les pratiques que nous avons
+étudiées dans ce cours. Au contraire, elle les rend plus importantes que jamais,
+tout en transformant la manière dont elles s&rsquo;appliquent.</p><p>Les tests, que nous avons abordés en profondeur dans le module 2, deviennent le
+filet de sécurité indispensable du développement assisté par IA. Quand un
+développeur écrit son propre code, il a une certaine confiance dans sa
+correction parce qu&rsquo;il a construit la théorie du programme en même temps que le
+code. Quand le code est généré par un LLM, cette confiance n&rsquo;existe pas a
+priori : le code a l&rsquo;air correct, mais il pourrait contenir des erreurs subtiles
+que seule l&rsquo;exécution peut révéler. Les tests automatisés deviennent alors le
+mécanisme principal de vérification. Un workflow de développement assisté par IA
+bien conçu ressemble souvent à du TDD inversé : on écrit les tests d&rsquo;abord (ou
+on les fait écrire par l&rsquo;IA et on les valide), puis on demande à l&rsquo;IA de
+générer le code qui les fait passer. Si les tests sont bons, le code généré est
+vérifiable, quelle que soit la manière dont il a été produit. La pyramide des
+tests, le coverage, les tests de propriété avec Hypothesis : tout ce que nous
+avons vu dans le module 2 prend une pertinence nouvelle quand le code n&rsquo;est pas
+écrit par un humain.</p><p>La revue de code (module 4) change de nature elle aussi. Traditionnellement, le
+code review servait à la fois de vérification de qualité et de mécanisme de
+partage de connaissances au sein d&rsquo;une équipe. Avec du code généré par IA, la
+dimension de vérification devient plus critique : le relecteur doit se demander
+non seulement &ldquo;est-ce que ce code est correct et lisible ?&rdquo;, mais aussi &ldquo;est-ce
+que ce code fait bien ce qu&rsquo;on pense qu&rsquo;il fait, même dans les cas limites ?&rdquo;.
+Les hallucinations des LLM sont souvent plausibles : le code a la bonne
+structure, utilise les bons noms de fonctions, mais fait quelque chose de
+subtilement différent de ce qui était demandé. Un oeil humain exercé reste, pour
+l&rsquo;instant, le meilleur détecteur de ces erreurs.</p><p>L&rsquo;architecture et la modularité (module 3) deviennent paradoxalement plus
+importantes dans un monde de code généré. Un LLM travaille mieux sur du code
+bien structuré : des modules avec des responsabilités claires, des interfaces
+bien définies, des fonctions courtes avec des noms descriptifs. Plus le code
+existant est propre et modulaire, plus les suggestions de l&rsquo;IA seront
+pertinentes, parce que le modèle dispose de meilleur contexte pour comprendre
+ce qui est attendu. À l&rsquo;inverse, une base de code mal structurée, avec des
+dépendances enchevêtrées et des responsabilités floues, va produire des
+suggestions incohérentes. Les principes SOLID, le découplage, la séparation des
+préoccupations : tout cela facilite non seulement le travail humain, mais aussi
+le travail de l&rsquo;IA. C&rsquo;est un argument inattendu en faveur du bon design : il
+rend le développement assisté par IA plus efficace.</p><p>Enfin, le débogage et la compréhension du code restent fondamentalement humains.
+Un LLM peut suggérer des pistes quand on lui présente un message d&rsquo;erreur, et
+il le fait souvent remarquablement bien. Mais quand le bug est subtil, quand il
+implique une interaction entre plusieurs composantes du système, quand il ne se
+manifeste que sous certaines conditions de charge ou avec certaines données, la
+capacité de raisonner sur le système dans son ensemble, de formuler des
+hypothèses et de les tester méthodiquement, reste une compétence irremplaçable.
+Le développeur qui comprend les fondamentaux (comment fonctionne la mémoire, ce
+que fait réellement une requête SQL, pourquoi une condition de course se produit)
+sera toujours plus efficace, avec ou sans IA, que celui qui ne fait que
+manipuler des abstractions sans en comprendre les mécanismes sous-jacents.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>Le métier de développeur</span>
+</a></span><span></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#doù-vient-lintelligence-artificielle>D&rsquo;où vient l&rsquo;intelligence artificielle</a><ul><li><a href=#lia-symbolique-années-1950-1980>L&rsquo;IA symbolique (années 1950-1980)</a></li><li><a href=#le-machine-learning-années-1990-2000>Le machine learning (années 1990-2000)</a></li><li><a href=#le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)</a></li><li><a href=#des-modèles-de-langage-aux-llm-2003-2023>Des modèles de langage aux LLM (2003-2023)</a></li></ul></li><li><a href=#lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur</a></li><li><a href=#le-vibe-coding>Le vibe coding</a></li><li><a href=#ce-qui-change-dans-les-pratiques-du-génie-logiciel>Ce qui change dans les pratiques du génie logiciel</a></li></ul></nav></div></aside></main></body></html>
