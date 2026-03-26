@@ -8,33 +8,37 @@ weight: 10
 
 Nous allons faire un survol rapide des idées les plus importantes et
 fondamentales de la programmation logicielle. Pour aller droit au but, nous
-allons utiliser le langage Python, qui est très facile à comprendre, même sans
-aucune expérience explicite.
+allons utiliser le langage Python, qui est très facile à comprendre, presque
+même sans expérience préalable.
 
 ## Structures de données fondamentales
 
 Au-delà des types de base, qui sont généralement des nombres de différents types
 (entiers, réels, etc) et les chaines de caractères (strings), nous avons les
-structures de données, qui sont des constructions logiques plus complexe
-(non-atomique) qui impliquent, en général, les types de base, d'une manière ou
-d'une autre.
+structures de données, qui sont des constructions logiques plus complexes
+(non-atomiques) qui impliquent, en général, les types de base, d'une manière ou
+d'une autre (une liste, par exemple, doit être une liste de _quelque chose_,
+d'entiers, de strings, etc).
 
 Pourquoi commencer par les structures de données ? Rob Pike, l'un des créateurs
 du langage Go (avec Ken Thompson, co-créateur d'Unix), a formulé dans ses
-célèbres "5 règles de programmation" une idée qui mérite d'être gardée en tête
-tout au long de cette section. Sa règle 5 stipule : "Data dominates. If you've
-chosen the right data structures and organized things well, the algorithms will
-almost always be self-evident." (Les données dominent. Si vous avez choisi les
-bonnes structures de données et bien organisé les choses, les algorithmes seront
-presque toujours évidents.) Pike attribue lui-même cette idée à Fred Brooks,
-l'auteur de *The Mythical Man-Month*, un ouvrage fondamental dont nous avons
-parlé dans le module 1. En d'autres mots, les structures de données ne sont pas
-un simple préalable technique : elles sont au coeur de la programmation, et le
-choix de la bonne structure dicte souvent la solution.
+célèbres ["5 règles de
+programmation"](https://www.cs.unc.edu/~stotts/COMP590-059-f24/robsrules.html)
+une idée qui mérite d'être gardée en tête tout au long de cette section. Sa
+règle 5 stipule : "Data dominates. If you've chosen the right data structures
+and organized things well, the algorithms will almost always be self-evident."
+(Les données dominent. Si vous avez choisi les bonnes structures de données et
+bien organisé les choses, les algorithmes seront presque toujours évidents.)
+Pike attribue lui-même cette idée à Fred Brooks, l'auteur de *The Mythical
+Man-Month*, un ouvrage fondamental dont nous avons parlé dans le module 1. En
+d'autres mots, les structures de données ne sont pas un simple préalable
+technique : elles sont au coeur de la programmation, et le choix de la bonne
+structure dicte souvent la solution à un problème.
 
 ### La liste et le `set`
 
-La liste est une structure de données qui est une collection de valeurs :
+La liste est une structure de données qui est une collection de valeurs, par
+exemple en Python, où les listes sont très naturelles et puissantes :
 
 {{< pyodide >}}
 a = [10, 20, 30]
@@ -240,12 +244,14 @@ implémentation ! Étant donné que Python, le langage lui-même, est écrit dan
 langage C, comment écrit-on un `dict` Python, en C? Il existe plusieurs manières
 de le faire, mais l'une d'elles est [table de
 hachage](https://fr.wikipedia.org/wiki/Table_de_hachage) (hash table en
-anglais). En gros, l'idée est d'appliquer une [fonction de
-hachage]({{< ref "/docs/module2/30-versioning#fonction-de-hachage" >}}) à un élément (la clé), ce
+anglais). En gros, l'idée est d'appliquer une [fonction de hachage]({{< ref
+"/docs/module2/30-versioning#fonction-de-hachage" >}}) à un élément (la clé), ce
 qui permet de déterminer l'index dans un tableau, où on pourra mettre la valeur
-associée. Dans certaines implémentations, il est nécessaire de gérer les
-collisions possibles : si deux clés mènent au même index par exemple, il sera
-possible d'utiliser une liste, pour cette clé particulière.
+associée. On constate donc que si on regarde "sous le capot", un dictionnaire
+est fondamentalement une liste, dans ce sens. Dans certaines implémentations, il
+est nécessaire de gérer les collisions possibles : si deux clés mènent au même
+index par exemple, il sera possible d'utiliser une liste, pour cette clé
+particulière.
 
 {{< image src="hashtable.png" alt="" title="" loading="lazy" >}}
 
@@ -253,8 +259,8 @@ possible d'utiliser une liste, pour cette clé particulière.
 
 Une fois que vous avez des modèles mentaux clairs et efficaces par rapport aux
 différences et similarités de ces trois structures de données dont nous avons
-parlées dans cette section, il est utile de considérer leur correspondance avec
-la notation JSON.
+parlées dans cette section (listes, sets et dictionnaires), il est utile de
+considérer leur correspondance assez directe avec la notation JSON.
 
 JSON (JavaScript Object Notation) est un format textuel léger destiné à
 représenter des données structurées de façon simple et lisible, à partir de
@@ -310,7 +316,9 @@ import random
 def get_random_numbers(n):
     return [random.randint(1, n) for _ in range(n)]
 
-print("Fonction 'get_random_numbers' définie.")
+a = get_random_numbers(10)
+
+print(a)
 {{< /pyodide >}}
 
 Imagions ensuite que nous aimerions savoir si une paire de nombres distincts,
@@ -347,8 +355,8 @@ pour décrire la complexité algorithmique d'une fonction, dans ce cas $O(N^2)$.
 
 Si on y pense un peu, une méthode beaucoup plus efficace consisterait à utiliser
 un `set` pour conserver les valeurs qu'on a déjà rencontrées, et à chaque
-nouvelle valeur de la liste (à ne pas confondre avec le `set`!), tester si `K`
-moins la nouvelle valeur se trouve dans le `set` :
+nouvelle valeur de la liste (à ne pas confondre avec le `set`!), tester si "`K`
+moins la nouvelle valeur" se trouve dans le `set` :
 
 {{< image src="two-sum-linear.png" alt="" title="" loading="lazy" >}}
 

@@ -535,15 +535,19 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   - Standish Group CHAOS reports (depuis 1994), dépassements et abandons
   - Boucle avec modules 2 (tests), 3 (architecture), 4 (agilité), 5 (automatisation)
 
-## Monopoles et régulation (à développer)
-- L'histoire de la concentration : IBM (consent decree 1956), AT&T (démantèlement 1984),
-  Microsoft (procès antitrust 1998-2001), GAFAM
-- Mécanismes de monopole propres au logiciel : effets de réseau, lock-in, coûts de changement,
-  "winner takes all", acquisition comme stratégie (Instagram, WhatsApp, YouTube)
-- Tentatives de régulation : Digital Markets Act (EU), procès antitrust Google/Apple,
-  App Store et commission 30% (lien avec module 3, section mobile)
-- Protection des données : RGPD (EU, 2018), loi 25 (Québec), PIPEDA (Canada)
-- Questions ouvertes : interopérabilité, portabilité des données, droit à la réparation
+## Monopoles et régulation (complété)
+- L'histoire de la concentration : IBM (consent decree 1956, unbundling 1969),
+  AT&T (démantèlement 1982, impact sur Unix), Microsoft (procès antitrust 1998-2001),
+  GAFAM (domination multi-marchés, acquisitions comme arme concurrentielle)
+- Mécanismes de monopole propres au logiciel : effets de réseau, marchés bifaces
+  (Tirole/Rochet), lock-in et coûts de changement, coût marginal quasi nul, "winner takes all"
+- Tentatives de régulation : amendes Google (EU), Digital Markets Act (2022),
+  procès antitrust Google (2020-2024)
+- Protection des données : RGPD (EU, 2018), PIPEDA (Canada), Loi 25 (Québec, 2021),
+  conséquences concrètes pour les développeurs
+- Questions ouvertes : interopérabilité, portabilité des données, droit à la réparation,
+  enshittification (Cory Doctorow, 2023), serveurs sirènes et valeur des données
+  (Jaron Lanier, *Who Owns the Future?*, 2013), rôle des choix techniques des ingénieurs
 
 ## Catastrophes, éthique et responsabilité (à développer)
 - Catastrophes techniques :

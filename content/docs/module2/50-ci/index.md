@@ -6,8 +6,6 @@ weight: 50
 
 # L'intégration continue (CI)
 
-## Quel est le problème qu'on cherche à résoudre?
-
 Dans les sections précédentes, nous avons vu comment écrire des tests pour
 vérifier qu'un programme se comporte correctement, comment utiliser git pour
 gérer l'évolution du code, et comment gérer les dépendances d'un projet avec uv.

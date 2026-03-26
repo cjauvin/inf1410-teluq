@@ -6,8 +6,6 @@ weight: 20
 
 # Les tests
 
-## Quel est le problème qu'on cherche à résoudre?
-
 Dans la section précédente, nous avons vu que la programmation repose sur des
 structures de données, des algorithmes et des systèmes de types. Mais écrire du
 code qui *semble* correct ne suffit pas : il faut pouvoir *vérifier* qu'il se
@@ -32,6 +30,10 @@ contexte où une grande quantité de code Python est développée et maintenue p
 une grosse équipe, cette absence de vérification statique rend les tests
 carrément essentiels : sans eux, il devient pratiquement impossible de s'assurer
 que les modifications d'une personne ne cassent pas le travail des autres.
+
+Un test est donc un programme qui teste le code d'un autre programme, en
+appellant ses fonctions de manière isolée, avec des paramètres spécifiques, afin
+de vérifier (valider) que les résultats sont valides.
 
 ## Le mécanisme de base : `assert`
 

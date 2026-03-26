@@ -6,8 +6,6 @@ weight: 30
 
 # Le versioning
 
-## Quel est le problème qu'on cherche à résoudre?
-
 Le logiciel (et le code source dont il est constitué) a une particularité
 fondamentale : il change tout le temps. Même un programme simple est rapidement
 modifié - pour corriger un bug, ajouter une fonctionnalité, améliorer la
