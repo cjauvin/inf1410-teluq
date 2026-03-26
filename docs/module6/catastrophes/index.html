@@ -1,0 +1,266 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Catastrophes, éthique et responsabilité# Les sections précédentes ont exploré les dynamiques économiques et politiques du logiciel. Mais le logiciel n’est pas qu’un enjeu commercial : il contrôle des avions, des appareils médicaux, des marchés financiers, des systèmes de paye. Quand il échoue, les conséquences peuvent être mesurées en vies humaines, en milliards de dollars ou en services publics paralysés pendant des années. Cette section examine des cas où le logiciel a failli, non pas pour le plaisir morbide du catalogue d’horreurs, mais parce que chaque catastrophe révèle quelque chose de profond sur la manière dont on conçoit, teste, déploie et fait évoluer les systèmes logiciels. Les leçons qu’on en tire font écho à pratiquement tout ce que nous avons vu dans ce cours.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Catastrophes, éthique et responsabilité"><meta property="og:description" content="Catastrophes, éthique et responsabilité# Les sections précédentes ont exploré les dynamiques économiques et politiques du logiciel. Mais le logiciel n’est pas qu’un enjeu commercial : il contrôle des avions, des appareils médicaux, des marchés financiers, des systèmes de paye. Quand il échoue, les conséquences peuvent être mesurées en vies humaines, en milliards de dollars ou en services publics paralysés pendant des années. Cette section examine des cas où le logiciel a failli, non pas pour le plaisir morbide du catalogue d’horreurs, mais parce que chaque catastrophe révèle quelque chose de profond sur la manière dont on conçoit, teste, déploie et fait évoluer les systèmes logiciels. Les leçons qu’on en tire font écho à pratiquement tout ce que nous avons vu dans ce cours."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Catastrophes, éthique et responsabilité"><meta itemprop=description content="Catastrophes, éthique et responsabilité# Les sections précédentes ont exploré les dynamiques économiques et politiques du logiciel. Mais le logiciel n’est pas qu’un enjeu commercial : il contrôle des avions, des appareils médicaux, des marchés financiers, des systèmes de paye. Quand il échoue, les conséquences peuvent être mesurées en vies humaines, en milliards de dollars ou en services publics paralysés pendant des années. Cette section examine des cas où le logiciel a failli, non pas pour le plaisir morbide du catalogue d’horreurs, mais parce que chaque catastrophe révèle quelque chose de profond sur la manière dont on conçoit, teste, déploie et fait évoluer les systèmes logiciels. Les leçons qu’on en tire font écho à pratiquement tout ce que nous avons vu dans ce cours."><meta itemprop=wordCount content="3017"><title>Catastrophes, éthique et responsabilité | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/>Module 2 - Concevoir un programme correct</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/>Module 3 - Du programme au système</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
+<label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/>Perspective historique</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>L'architecture des applications web</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/frameworks/>Les frameworks JavaScript</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/convergences/>Desktop, web et mobile</a></li></ul></li><li><input type=checkbox id=section-e4d51cc3c07f12fea00e9c0cd309e911 class=toggle>
+<label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/>Module 4 - Construire en équipe</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=toggle>
+<label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/>Kanban</a></li></ul></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/>Gestion de projet et coordination</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/>Où est-ce que ça tourne ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/>Comment je le déploie ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/>Est-ce que ça marche ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/>Que faire quand ça casse ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/>Est-ce que c'est sécuritaire ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/>Est-ce que ça va tenir la charge ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle checked>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Le logiciel dans le monde</a>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/>L'open source</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/>L'économie du logiciel</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/monopoles/>Monopoles et régulation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/ class=active>Catastrophes, éthique et responsabilité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/>Le métier de développeur</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Catastrophes, éthique et responsabilité</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#catastrophes-techniques>Catastrophes techniques</a></li><li><a href=#échecs-de-grands-projets-gouvernementaux>Échecs de grands projets gouvernementaux</a></li><li><a href=#les-lois-de-lehman>Les lois de Lehman</a></li><li><a href=#éthique-et-responsabilité>Éthique et responsabilité</a></li><li><a href=#la-crise-du-logiciel-revisitée>La crise du logiciel revisitée</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=catastrophes-éthique-et-responsabilité>Catastrophes, éthique et responsabilité<a class=anchor href=#catastrophes-%c3%a9thique-et-responsabilit%c3%a9>#</a></h1><p>Les sections précédentes ont exploré les dynamiques économiques et politiques du
+logiciel. Mais le logiciel n&rsquo;est pas qu&rsquo;un enjeu commercial : il contrôle des
+avions, des appareils médicaux, des marchés financiers, des systèmes de paye.
+Quand il échoue, les conséquences peuvent être mesurées en vies humaines, en
+milliards de dollars ou en services publics paralysés pendant des années. Cette
+section examine des cas où le logiciel a failli, non pas pour le plaisir morbide
+du catalogue d&rsquo;horreurs, mais parce que chaque catastrophe révèle quelque chose
+de profond sur la manière dont on conçoit, teste, déploie et fait évoluer les
+systèmes logiciels. Les leçons qu&rsquo;on en tire font écho à pratiquement tout ce
+que nous avons vu dans ce cours.</p><h2 id=catastrophes-techniques>Catastrophes techniques<a class=anchor href=#catastrophes-techniques>#</a></h2><p>Le cas le plus cité dans l&rsquo;enseignement du génie logiciel est probablement celui
+du Therac-25, un appareil de radiothérapie fabriqué par Atomic Energy of Canada
+Limited (AECL). Entre 1985 et 1987, au moins six patients ont reçu des surdoses
+massives de radiation, causant des décès et des blessures graves. Les versions
+précédentes de la machine (Therac-6 et Therac-20) utilisaient des verrous
+matériels (<em>hardware interlocks</em>) pour empêcher l&rsquo;émission de doses dangereuses.
+Le Therac-25 avait remplacé ces verrous par des contrôles purement logiciels, en
+réutilisant du code des versions précédentes qui n&rsquo;avait jamais été conçu pour
+être la seule ligne de défense. Le bogue était une condition de course (<em>race
+condition</em>) : si l&rsquo;opérateur modifiait les paramètres de traitement trop
+rapidement, le logiciel pouvait configurer la machine pour un faisceau à haute
+énergie tout en affichant les paramètres d&rsquo;un faisceau à faible énergie.
+L&rsquo;enquête a révélé que le logiciel n&rsquo;avait jamais été soumis à une revue de code
+indépendante, qu&rsquo;il n&rsquo;existait pas de tests systématiques, et que les rapports
+d&rsquo;incidents des hôpitaux avaient été ignorés par AECL pendant des mois. C&rsquo;est un
+cas qui illustre simultanément l&rsquo;absence de tests (module 2), les dangers de la
+réutilisation de code sans validation des hypothèses (module 3), et l&rsquo;importance
+d&rsquo;une culture organisationnelle qui prend les signaux d&rsquo;alarme au sérieux.</p><p>Le 4 juin 1996, la fusée Ariane 5 de l&rsquo;Agence spatiale européenne a explosé 37
+secondes après son lancement, détruisant une cargaison de satellites d&rsquo;une
+valeur d&rsquo;environ 370 millions de dollars. La cause était un débordement
+arithmétique (<em>integer overflow</em>) : un nombre à virgule flottante de 64 bits,
+représentant la vitesse horizontale de la fusée, a été converti en un entier
+signé de 16 bits. La valeur dépassait la capacité du type cible, ce qui a
+provoqué une exception non gérée, l&rsquo;arrêt du système de navigation inertiel, et
+la perte de contrôle de la fusée. Le détail le plus frappant est que le code
+fautif provenait du système de référence inertiel d&rsquo;Ariane 4, où il
+fonctionnait parfaitement. Ariane 4 avait une trajectoire de vol différente,
+avec des vitesses horizontales plus faibles qui ne dépassaient jamais la capacité
+d&rsquo;un entier de 16 bits. Le code avait été réutilisé sans vérifier que les
+hypothèses implicites du programme (la plage de valeurs possibles) restaient
+valides dans le nouveau contexte. Pire encore, la conversion problématique
+n&rsquo;était même pas nécessaire au fonctionnement d&rsquo;Ariane 5 : c&rsquo;était du code
+résiduel d&rsquo;un alignement pré-lancement qui n&rsquo;avait plus de raison d&rsquo;être actif
+après le décollage. Le rapport d&rsquo;enquête, rédigé par un comité présidé par
+Jacques-Louis Lions, est devenu un document de référence en génie logiciel. Il
+illustre un thème récurrent : la réutilisation de code est une pratique
+essentielle, mais elle exige de comprendre les hypothèses sous-jacentes, pas
+seulement de copier ce qui a fonctionné ailleurs.</p><p>Le 1er août 2012, la firme de trading Knight Capital a perdu 440 millions de
+dollars en 45 minutes, un montant qui a failli entraîner la faillite de
+l&rsquo;entreprise. La cause était un déploiement bâclé. Knight avait développé un
+nouveau module de trading pour se conformer à un programme de la Bourse de New
+York. Le déploiement devait activer le nouveau code sur huit serveurs. Un
+technicien n&rsquo;a mis à jour que sept des huit serveurs. Le huitième a continué à
+exécuter un ancien module de test, désactivé depuis des années mais jamais
+supprimé du code, qui avait été réactivé accidentellement par un drapeau de
+configuration (<em>feature flag</em>) réutilisé pour le nouveau module. L&rsquo;ancien code,
+conçu pour tester des ordres, s&rsquo;est mis à acheter et vendre des actions à un
+rythme frénétique, sans aucun contrôle de risque. Le temps que les ingénieurs
+identifient le problème et arrêtent le système, les pertes étaient
+irréversibles. Knight Capital a dû être rachetée en urgence quelques jours plus
+tard. L&rsquo;incident est un cas d&rsquo;école en déploiement logiciel : absence de
+déploiement automatisé (le processus était manuel, serveur par serveur), code
+mort laissé dans la base de code, réutilisation dangereuse d&rsquo;un identifiant de
+configuration, et absence de mécanisme de rollback rapide. C&rsquo;est exactement le
+type de catastrophe que les pratiques de CI/CD (module 2) et de DevOps
+(module 5) cherchent à prévenir.</p><p>Les accidents du Boeing 737 MAX, le vol Lion Air 610 en octobre 2018 et le vol
+Ethiopian Airlines 302 en mars 2019, ont causé la mort de 346 personnes. Au
+cœur des deux catastrophes se trouvait le MCAS (Maneuvering Characteristics
+Augmentation System), un logiciel conçu pour corriger automatiquement l&rsquo;angle de
+vol de l&rsquo;avion. Le 737 MAX utilisait des moteurs plus gros que les versions
+précédentes du 737, montés plus en avant sur les ailes, ce qui modifiait les
+caractéristiques aérodynamiques de l&rsquo;appareil. Plutôt que de reconcevoir l&rsquo;avion
+(ce qui aurait exigé une nouvelle certification, un processus long et coûteux),
+Boeing a choisi de compenser le changement par un correctif logiciel. Le MCAS
+s&rsquo;appuyait sur un seul capteur d&rsquo;angle d&rsquo;attaque, sans redondance. Quand ce
+capteur transmettait des données erronées, le MCAS poussait le nez de l&rsquo;avion
+vers le bas de manière répétée, et les pilotes, qui n&rsquo;avaient pas été informés
+de l&rsquo;existence du système ni formés à le désactiver, ne pouvaient pas reprendre
+le contrôle. Les enquêtes ont révélé que des ingénieurs de Boeing avaient
+signalé des préoccupations concernant le MCAS, mais que la pression pour livrer
+l&rsquo;avion à temps et maintenir les coûts de formation au minimum avait primé. La
+FAA (Federal Aviation Administration), qui déléguait une part croissante de la
+certification à Boeing elle-même, n&rsquo;avait pas détecté le problème. Le 737 MAX
+illustre un type de défaillance différent des cas précédents : ce n&rsquo;est pas un
+bogue caché ou une erreur de déploiement, c&rsquo;est une décision organisationnelle
+de traiter un problème matériel par un correctif logiciel minimal, sous pression
+commerciale, en sacrifiant la redondance et la transparence.</p><h2 id=échecs-de-grands-projets-gouvernementaux>Échecs de grands projets gouvernementaux<a class=anchor href=#%c3%a9checs-de-grands-projets-gouvernementaux>#</a></h2><p>Les catastrophes précédentes impliquaient des bogues ou des décisions techniques
+spécifiques. Les échecs de grands projets gouvernementaux relèvent d&rsquo;un problème
+différent, plus systémique : ce sont des projets qui échouent non pas à cause
+d&rsquo;une ligne de code particulière, mais à cause de la manière dont ils sont
+gérés, spécifiés et contractualisés. Le Canada et le Québec offrent
+malheureusement plusieurs exemples récents.</p><p>Le système de paye Phénix, déployé par le gouvernement fédéral en février 2016,
+devait remplacer l&rsquo;ancien système de paye de la fonction publique canadienne.
+Développé par IBM sur la plateforme PeopleSoft, le projet avait été estimé
+initialement à 310 millions de dollars. Dès les premières semaines, des dizaines
+de milliers de fonctionnaires ont été affectés : certains ne recevaient plus de
+paye, d&rsquo;autres recevaient des montants erronés, d&rsquo;autres encore étaient trop
+payés et recevaient des avis de recouvrement des mois plus tard. En 2024, huit
+ans après le déploiement, le problème n&rsquo;était toujours pas résolu, et le coût
+total du projet (incluant les correctifs et les employés embauchés pour traiter
+manuellement les dossiers) dépassait les 2,5 milliards de dollars. Les causes
+identifiées par le vérificateur général du Canada sont un condensé de tout ce
+qu&rsquo;il ne faut pas faire : un échéancier irréaliste (la mise en service a été
+devancée malgré les signaux d&rsquo;alarme), l&rsquo;élimination du personnel de paye
+expérimenté <em>avant</em> que le nouveau système ne fonctionne, des tests insuffisants
+sur des scénarios de paye réels, et un contrat structuré de manière à limiter la
+responsabilité du fournisseur. C&rsquo;est la loi de Brooks incarnée à grande
+échelle : un projet déjà en difficulté où l&rsquo;on a tenté de rattraper le retard en
+ajoutant des ressources, ne faisant qu&rsquo;aggraver la situation.</p><p>Au Québec, le déploiement de SAAQclic en février 2023 a reproduit plusieurs des
+mêmes erreurs. Le système, développé par une alliance de SAP et de LGS (une
+filiale d&rsquo;IBM) pour remplacer les systèmes informatiques vieillissants de la
+Société de l&rsquo;assurance automobile du Québec (SAAQ), devait moderniser l&rsquo;ensemble
+des services : permis de conduire, immatriculation, gestion des dossiers. Le
+contrat, remporté en 2017, était initialement évalué à 458 millions de dollars.
+Dès sa mise en service, le système s&rsquo;est révélé extrêmement lent et instable.
+Les temps d&rsquo;attente dans les points de service ont explosé, passant de quelques
+minutes à plusieurs heures. Des citoyens se sont retrouvés dans l&rsquo;impossibilité
+de renouveler leur permis ou d&rsquo;immatriculer un véhicule. La commission
+d&rsquo;enquête a révélé des problèmes à plusieurs niveaux : SAP avait participé à
+l&rsquo;évaluation des besoins de la SAAQ avant même de remporter le contrat, le
+projet était si vaste qu&rsquo;il n&rsquo;y avait pas suffisamment d&rsquo;informaticiens au
+Québec familiers avec la plateforme SAP, et des développeurs recrutés à
+l&rsquo;étranger ne connaissaient pas le fonctionnement de la SAAQ. Le cas SAAQclic
+illustre un pattern récurrent dans les grands projets gouvernementaux : le
+remplacement complet d&rsquo;un système existant en une seule opération (le <em>big
+bang</em>), plutôt qu&rsquo;une migration progressive. Les méthodes agiles que nous avons
+vues dans le module 4 préconisent exactement l&rsquo;inverse : livrer de la valeur par
+petits incréments, valider chaque étape avec les utilisateurs réels, et ajuster
+en cours de route. Mais les processus d&rsquo;appel d&rsquo;offres gouvernementaux, avec
+leurs cahiers des charges détaillés et leurs contrats à prix fixe, imposent
+souvent une approche waterfall qui est en tension directe avec ces principes.
+Nous avions mentionné SAAQclic dans le module 1 comme exemple contemporain de la
+&ldquo;crise du logiciel&rdquo; : le voici revisité avec les outils conceptuels que nous
+avons accumulés depuis.</p><p>Le programme de Modernisation du versement des prestations (MVP), encore en cours
+au moment d&rsquo;écrire ces lignes, risque de devenir le troisième grand fiasco
+informatique gouvernemental canadien. Présenté comme le plus grand projet de
+modernisation informatique jamais entrepris par le gouvernement fédéral, le
+programme vise à remplacer les vieux systèmes utilisés pour verser les
+prestations de la Sécurité de la vieillesse, de l&rsquo;assurance-emploi et du Régime
+de pensions du Canada. Au cœur du projet se trouve Curam, un logiciel commercial
+développé à l&rsquo;origine par IBM, aujourd&rsquo;hui propriété de Merative. Le coût estimé
+du programme est passé de 1,75 milliard de dollars en 2017 à 6,6 milliards en
+2025, soit presque un quadruplement. Depuis la mise en service du nouveau
+système pour la Sécurité de la vieillesse en mars 2025, des dizaines de
+milliers d&rsquo;aînés ont subi des retards ou des erreurs dans le versement de leurs
+prestations, et les fonctionnaires qui utilisent le système lui attribuent des
+notes désastreuses. Le parallèle avec Phénix est frappant : un logiciel
+commercial adapté aux besoins canadiens plutôt que développé sur mesure, un
+écart massif entre les coûts prévus et réels, et des utilisateurs qui subissent
+les conséquences des problèmes. Une enquête de La Presse a révélé que Curam
+avait causé des problèmes similaires dans d&rsquo;autres pays qui l&rsquo;avaient adopté, ce
+qui soulève une question troublante : pourquoi répéter les mêmes erreurs quand
+les signaux d&rsquo;alarme sont publiquement disponibles ?</p><p>Ces trois fiascos canadiens, malgré leurs différences, partagent des patterns
+troublants. Dans chaque cas, on retrouve le choix d&rsquo;un logiciel commercial
+générique adapté aux besoins spécifiques de l&rsquo;organisation, plutôt qu&rsquo;un
+développement sur mesure ou une migration progressive. Dans chaque cas, les
+coûts ont explosé bien au-delà des estimations initiales. Dans chaque cas, les
+signaux d&rsquo;alarme ont été ignorés ou minimisés par les dirigeants. Et dans chaque
+cas, le processus d&rsquo;approvisionnement gouvernemental, avec ses appels d&rsquo;offres
+rigides, ses contrats à prix fixe et ses cahiers des charges rédigés des années
+avant la livraison, a imposé une approche de type waterfall à des projets dont
+la complexité exigeait exactement l&rsquo;inverse : des itérations courtes, du
+feedback continu, et la capacité de changer de direction en cours de route.
+C&rsquo;est la tension entre l&rsquo;agilité (module 4) et les contraintes
+institutionnelles. La loi de Brooks, que nous avons rencontrée dès le module 1,
+s&rsquo;applique à chacun de ces projets : face aux retards, la réponse a été
+d&rsquo;ajouter des ressources (des consultants, des sous-traitants, des équipes à
+l&rsquo;étranger), ce qui n&rsquo;a fait qu&rsquo;accroître la complexité de coordination sans
+résoudre les problèmes de fond.</p><h2 id=les-lois-de-lehman>Les lois de Lehman<a class=anchor href=#les-lois-de-lehman>#</a></h2><p>Les catastrophes que nous venons d&rsquo;examiner ne sont pas des accidents isolés. En
+1974, Meir &ldquo;Manny&rdquo; Lehman, un informaticien travaillant chez IBM, a formulé un
+ensemble de lois sur l&rsquo;évolution des logiciels, fruit de ses observations sur le
+développement du système d&rsquo;exploitation OS/360. Deux de ces lois sont
+particulièrement éclairantes. La première, la loi du changement continu, stipule
+qu&rsquo;un logiciel utilisé dans le monde réel doit être continuellement adapté, sous
+peine de devenir progressivement moins satisfaisant. Un logiciel n&rsquo;est pas un
+pont ou un bâtiment : le monde autour de lui change (les besoins des
+utilisateurs évoluent, les réglementations changent, les systèmes avec lesquels
+il interagit sont mis à jour), et s&rsquo;il ne suit pas, il se dégrade relativement à
+son environnement. La deuxième, la loi de la complexité croissante, affirme qu&rsquo;à
+mesure qu&rsquo;un logiciel évolue, sa complexité augmente, à moins qu&rsquo;un effort
+délibéré ne soit fait pour la réduire. Chaque correction de bogue, chaque
+fonctionnalité ajoutée, chaque adaptation à un nouveau besoin ajoute une couche
+de complexité. Sans refactoring régulier (module 3), sans tests pour filet de
+sécurité (module 2), sans une architecture qui gère cette complexité (module 3),
+le système devient progressivement incompréhensible, fragile et coûteux à
+maintenir. C&rsquo;est précisément ce qui était arrivé aux vieux systèmes que Phénix,
+SAAQclic et le programme MVP devaient remplacer, et c&rsquo;est l&rsquo;ironie de ces
+projets : les nouveaux systèmes, censés résoudre le problème de la complexité
+accumulée, ont eux-mêmes succombé à une complexité différente, celle de la
+migration.</p><h2 id=éthique-et-responsabilité>Éthique et responsabilité<a class=anchor href=#%c3%a9thique-et-responsabilit%c3%a9>#</a></h2><p>Les cas que nous avons examinés posent une question que le génie logiciel ne peut
+pas éviter : qui est responsable quand le logiciel échoue ? Pour le Therac-25,
+la réponse semble claire : le fabricant, qui n&rsquo;a pas testé son logiciel
+adéquatement. Pour Boeing, c&rsquo;est plus complexe : les ingénieurs qui ont signalé
+les problèmes ont-ils une part de responsabilité pour ne pas avoir insisté
+davantage ? Les gestionnaires qui ont ignoré les alertes ? Le régulateur qui a
+délégué la certification ? La question devient encore plus difficile quand on
+sort des systèmes critiques pour entrer dans le domaine des algorithmes qui
+prennent des décisions affectant la vie quotidienne de millions de personnes.
+Des algorithmes déterminent qui obtient un prêt hypothécaire, qui est convoqué en
+entrevue d&rsquo;embauche, quel contenu apparaît dans votre fil d&rsquo;actualité, et même,
+dans certains systèmes judiciaires américains, quel score de risque de récidive
+est attribué à un accusé. Quand ces algorithmes reproduisent ou amplifient des
+biais présents dans les données sur lesquelles ils ont été entraînés (données
+historiques qui reflètent des décennies de discrimination), la question de la
+responsabilité devient profondément inconfortable. Le développeur qui a écrit le
+code n&rsquo;avait peut-être aucune intention discriminatoire. Les données semblaient
+&ldquo;objectives&rdquo;. Le résultat est pourtant discriminatoire.</p><p>Face à ces enjeux, la profession a tenté de se doter de cadres éthiques.
+L&rsquo;Association for Computing Machinery (ACM), la plus grande organisation
+professionnelle en informatique, a adopté en 2018 une version révisée de son
+Code of Ethics and Professional Conduct. Le code énonce des principes comme
+&ldquo;éviter de causer du tort&rdquo;, &ldquo;être honnête et digne de confiance&rdquo;, &ldquo;respecter la
+vie privée&rdquo;, et &ldquo;contribuer au bien-être de la société&rdquo;. Il stipule explicitement
+qu&rsquo;un professionnel de l&rsquo;informatique devrait &ldquo;évaluer si les résultats des
+systèmes qu&rsquo;il conçoit respectent le bien commun&rdquo; et, quand un système pose un
+risque, &ldquo;signaler le problème aux personnes responsables&rdquo;. Au Québec, le génie
+logiciel n&rsquo;est pas une profession réglementée par un ordre professionnel au même
+titre que le génie civil ou le génie mécanique. L&rsquo;Ordre des ingénieurs du Québec
+(OIQ) encadre les ingénieurs logiciels qui portent le titre, mais la grande
+majorité des développeurs travaillent sans cette accréditation. Cette asymétrie
+est frappante : un ingénieur civil qui conçoit un pont est légalement
+responsable de sa sécurité, mais un développeur qui conçoit un système de santé
+ou un algorithme de décision judiciaire ne l&rsquo;est généralement pas au même degré.
+Le débat sur la professionnalisation du génie logiciel, c&rsquo;est-à-dire
+l&rsquo;obligation d&rsquo;être membre d&rsquo;un ordre pour pratiquer, revient périodiquement,
+mais il se heurte à la réalité d&rsquo;une industrie qui valorise l&rsquo;autodidaxie et la
+flexibilité.</p><h2 id=la-crise-du-logiciel-revisitée>La crise du logiciel revisitée<a class=anchor href=#la-crise-du-logiciel-revisit%c3%a9e>#</a></h2><p>Ces réflexions nous ramènent au point de départ du cours. Dans le module 1, nous
+avions raconté la &ldquo;crise du logiciel&rdquo; telle qu&rsquo;elle avait été formulée à la
+conférence de l&rsquo;OTAN à Garmisch en 1968 : les projets logiciels coûtaient trop
+cher, prenaient trop de temps, et produisaient des systèmes défectueux. Plus
+d&rsquo;un demi-siècle plus tard, les exemples de cette section montrent que la crise
+n&rsquo;a pas été résolue. Phénix, SAAQclic, Curam : les dépassements de coûts et les
+systèmes défaillants sont toujours là. Le Therac-25, Ariane 5, le 737 MAX : les
+défaillances logicielles continuent de coûter des vies. Les biais algorithmiques
+posent des questions éthiques que les pionniers de 1968 n&rsquo;avaient pas imaginées.
+Mais ce serait injuste de ne voir que les échecs. Les outils et les pratiques
+que nous avons étudiés tout au long de ce cours (les tests automatisés, le
+versioning, l&rsquo;intégration continue, l&rsquo;architecture modulaire, les méthodes
+agiles, le DevOps, l&rsquo;observabilité) sont autant de réponses partielles mais
+réelles à cette crise permanente. Le génie logiciel n&rsquo;a pas trouvé de solution
+définitive, et les lois de Lehman suggèrent qu&rsquo;il n&rsquo;en trouvera probablement
+jamais. Mais il a développé un ensemble de pratiques, d&rsquo;outils et de principes
+qui permettent de construire des systèmes d&rsquo;une complexité que les participants à
+Garmisch n&rsquo;auraient pas cru possible. La responsabilité de les appliquer, et de
+le faire avec discernement éthique, revient à chaque développeur.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/monopoles/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+<span>Monopoles et régulation</span>
+</a></span><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/ class="flex align-center"><span>Le métier de développeur</span>
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/forward.svg class=book-icon alt=Forward></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#catastrophes-techniques>Catastrophes techniques</a></li><li><a href=#échecs-de-grands-projets-gouvernementaux>Échecs de grands projets gouvernementaux</a></li><li><a href=#les-lois-de-lehman>Les lois de Lehman</a></li><li><a href=#éthique-et-responsabilité>Éthique et responsabilité</a></li><li><a href=#la-crise-du-logiciel-revisitée>La crise du logiciel revisitée</a></li></ul></nav></div></aside></main></body></html>
