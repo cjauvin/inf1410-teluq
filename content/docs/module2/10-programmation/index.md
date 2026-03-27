@@ -73,7 +73,7 @@ Il est d'une importance **capitale** d'avoir un modèle mental **archi-clair** d
 la différence entre ces deux structures de données à l'apparence si semblable,
 pour la raison fondamentale suivante : **chercher un item dans une liste a un coût
 proportionnel à la taille de la liste, tandis que chercher un item dans un `set`
-a un coût fixe (et très faible)** :
+se fait en temps constant en moyenne** :
 
 {{< pyodide >}}
 print(20 in a)  # coût proportionnel à la taille de `a`
@@ -284,10 +284,12 @@ les applications distribuées.
 ```
 
 La totalité d'un document JSON est souvent un dictionnaire (que l'on reconnaît à
-l'usage des `{}`), mais il existe toutefois d'autres formats (JSONL, NDJSON,
-etc). Ce dictionnaire contient la plupart du temps des champs (clés) dont les
-valeurs peuvent être, elles-mêmes, des dictionnaires, des listes ou des valeurs
-scalaires (nombres, chaines de caractères ou valeurs booléennes).
+l'usage des `{}`), mais un document JSON complet peut aussi être un tableau, une
+chaîne, un nombre, un booléen ou `null`. Il existe aussi des formats apparentés
+(JSONL, NDJSON, etc). Quand le document JSON est un dictionnaire, il contient la
+plupart du temps des champs (clés) dont les valeurs peuvent être, elles-mêmes,
+des dictionnaires, des listes ou des valeurs scalaires (nombres, chaines de
+caractères ou valeurs booléennes).
 
 ## Complexité algorithmique et performance
 
@@ -374,15 +376,15 @@ def two_sum_linear_version(a, k):
 print("Fonction 'two_sum_linear_version' définie.")
 {{< /pyodide >}}
 
-La raison pour laquelle cet algorithme est beaucoup plus efficace est dû au fait
-que tester l'inclusion d'un item dans un `set` (ce qui se fait, dans le code
-ci-haut, à l'aide de l'opérateur `in`, dans la ligne `if target in seen`),
+La raison pour laquelle cet algorithme est beaucoup plus efficace est due au
+fait que tester l'inclusion d'un item dans un `set` (ce qui se fait, dans le
+code ci-haut, à l'aide de l'opérateur `in`, dans la ligne `if target in seen`),
 contrairement au fait de le faire dans une liste, est extrêmement efficace : si
 on utilise la notation "grand O", on dit que chercher un item dans une liste est
-$O(1)$, c'est-à-dire que cela se fait en temps constant. Mais étant donné que
-nous devons tout de même passer à travers tous les items de la liste pour les
-tester, la complexité finale de l'algorithme reste tout de même $O(N)$, ce qu'on
-appelle une complexité linéaire.
+$O(N)$, alors que le faire dans un `set` est en moyenne $O(1)$, c'est-à-dire en
+temps constant. Mais étant donné que nous devons tout de même passer à travers
+tous les items de la liste une seule fois, la complexité finale de l'algorithme
+reste tout de même $O(N)$, ce qu'on appelle une complexité linéaire.
 
 Pour comparer de manière empirique la performance de ces deux algorithmes, nous
 avons besoin de considérer plusieurs résultats (c-à-d plusieurs sommes
@@ -504,16 +506,17 @@ extrêmement avantageux, car la fonction $log(N)$ progresse beaucoup plus
 lentement qu'une fonction linéaire ($O(N)$).
 
 Dans le problème précédent, une difficulté était cachée : comment fait-on pour
-trier une liste, et quel coût ça a? Il s'avère que la méthode la plus rapide
-pour trier une liste est $O(N log N)$, ce qu'on appelle parfois une méthode
-supra-linéaire, et qui se trouve entre $O(N)$ et $O(N^2)$. Il est
-mathématiquement impossible de faire mieux qu'une performance supra-linéaire,
-pour trier une liste de nombres ou d'objets quelconques.
+trier une liste, et quel coût ça a? Pour les algorithmes de tri fondés sur des
+comparaisons, la meilleure performance générale possible est $O(N log N)$, ce
+qu'on appelle parfois une méthode supra-linéaire, et qui se trouve entre $O(N)$
+et $O(N^2)$. Il est mathématiquement impossible de faire mieux qu'une
+performance supra-linéaire dans ce cadre général.
 
 Finalement, certains algorithmes ont des profils de performance encore plus
 coûteux que la classe polynomiale : ils nécessitent un temps exponentiel, par
-exemple $O(2^N)$. Voici certains exemples fameux de problèmes dont les algorithmes
-pour produire une solution optimale sont exponentiels :
+exemple $O(2^N)$. Voici certains exemples fameux de problèmes pour lesquels les
+algorithmes exacts ou les généralisations théoriques les plus naturelles mènent
+à des coûts exponentiels :
 
 {{< image src="tsp.png" alt="" title="" loading="lazy" >}}
 
@@ -798,10 +801,9 @@ def addition(a: int, b: int) -> int:
     return a + b
 ```
 
-Il est important de comprendre que Python lui-même ignore complètement ces
-annotations au moment de l'exécution. Elles servent plutôt de documentation
-formelle, qui peut être vérifiée par un outil externe comme `mypy`, avant
-l'exécution :
+Il est important de comprendre que Python n'impose pas lui-même ces annotations
+au moment de l'exécution. Elles servent plutôt de documentation formelle, qui
+peut être vérifiée par un outil externe comme `mypy`, avant l'exécution :
 
 ```shell
 $ mypy exemple.py
