@@ -196,7 +196,7 @@ naissance à SQL et aux systèmes de gestion de bases de données relationnelles
 qui dominent encore aujourd'hui. On y reviendra en détail dans un module
 ultérieur.
 
-En 1986, Barry Boehm propose le **modèle en spirale**, une alternative au modèle
+En 1988, Barry Boehm propose le **modèle en spirale**, une alternative au modèle
 en cascade qui intègre explicitement la gestion des risques. Plutôt que de
 progresser linéairement, le développement passe par des cycles répétés de
 planification, analyse de risques, développement et évaluation. L'idée d'itérer
@@ -259,7 +259,7 @@ une machine isolée : il commence à communiquer.
 
 ## Les années 90 : la naissance du web
 
-Quand Tim Berners-Lee crée le World Wide Web au CERN en 1991, peu de gens
+Quand Tim Berners-Lee crée le World Wide Web au CERN en 1989, peu de gens
 imaginent l'impact que cela aura. En quelques années, le web passe d'un outil de
 partage de documents scientifiques à une plateforme universelle. Les développeurs
 doivent soudainement penser en termes de client-serveur, de protocoles HTTP et
@@ -374,7 +374,7 @@ majorité du logiciel est développé aujourd'hui.
 
 {{< image src="linus.webp" alt="" title="" loading="lazy" >}}
 
-La même année, **Andrew Hunt** et **David Thomas** publient *The Pragmatic
+En 1999, **Andrew Hunt** et **David Thomas** publient *The Pragmatic
 Programmer*, un ouvrage qui offre des conseils pratiques et terre-à-terre pour le
 métier de développeur. Le livre popularise des principes comme **DRY** (*Don't
 Repeat Yourself*) et insiste sur l'importance d'un apprentissage continu. Son
