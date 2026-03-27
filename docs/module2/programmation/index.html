@@ -2,7 +2,7 @@
 Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexes (non-atomiques) qui impliquent, en général, les types de base, d’une manière ou d’une autre (une liste, par exemple, doit être une liste de quelque chose, d’entiers, de strings, etc).
 "><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Survol rapide de la programmation"><meta property="og:description" content="Survol rapide de la programmation# Nous allons faire un survol rapide des idées les plus importantes et fondamentales de la programmation logicielle. Pour aller droit au but, nous allons utiliser le langage Python, qui est très facile à comprendre, presque même sans expérience préalable.
 Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexes (non-atomiques) qui impliquent, en général, les types de base, d’une manière ou d’une autre (une liste, par exemple, doit être une liste de quelque chose, d’entiers, de strings, etc)."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Survol rapide de la programmation"><meta itemprop=description content="Survol rapide de la programmation# Nous allons faire un survol rapide des idées les plus importantes et fondamentales de la programmation logicielle. Pour aller droit au but, nous allons utiliser le langage Python, qui est très facile à comprendre, presque même sans expérience préalable.
-Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexes (non-atomiques) qui impliquent, en général, les types de base, d’une manière ou d’une autre (une liste, par exemple, doit être une liste de quelque chose, d’entiers, de strings, etc)."><meta itemprop=wordCount content="4876"><title>Survol rapide de la programmation | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexes (non-atomiques) qui impliquent, en général, les types de base, d’une manière ou d’une autre (une liste, par exemple, doit être une liste de quelque chose, d’entiers, de strings, etc)."><meta itemprop=wordCount content="4947"><title>Survol rapide de la programmation | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle checked>
@@ -450,25 +450,53 @@ retienne l&rsquo;idée de messagerie plutôt que celle d&rsquo;objet.</p><p>Les 
 comportements dans un objet, en cachant les détails internes), l&rsquo;<em>héritage</em>
 (créer de nouvelles classes à partir de classes existantes) et le
 <em>polymorphisme</em> (traiter des objets de types différents de manière uniforme).
-Reprenons notre exemple :</p><div class=pyodide-block id=pyodide-31><textarea id=pyodide-31-code>class ListeDeNombres:
-    def __init__(self, nombres):
-        self.nombres = nombres
+Voici un exemple simple qui illustre ces trois concepts :</p><div class=pyodide-block id=pyodide-31><textarea id=pyodide-31-code>class CompteBancaire:
+    def __init__(self, titulaire, solde=0):
+        self.titulaire = titulaire
+        self.solde = solde
 
-    def pairs(self):
-        return ListeDeNombres([n for n in self.nombres if n % 2 == 0])
+    def déposer(self, montant):
+        self.solde &#43;= montant
 
-    def au_carré(self):
-        return ListeDeNombres([n ** 2 for n in self.nombres])
+    def retirer(self, montant):
+        if montant &gt; self.solde:
+            print(&#34;Fonds insuffisants&#34;)
+        else:
+            self.solde -= montant
 
-résultat = ListeDeNombres([1, 2, 3, 4, 5, 6, 7, 8])
-print(résultat.pairs().au_carré().nombres)  # [4, 16, 36, 64]</textarea><div class=pyodide-toolbar><button id=pyodide-31-run onclick='pyodideRun("pyodide-31")'>&#9654; Exécuter</button>
+    def afficher(self):
+        print(f&#34;{self.titulaire} : {self.solde} $&#34;)
+
+class CompteÉpargne(CompteBancaire):
+    def __init__(self, titulaire, solde=0, taux=0.02):
+        super().__init__(titulaire, solde)
+        self.taux = taux
+
+    def appliquer_intérêts(self):
+        self.solde &#43;= self.solde * self.taux
+
+compte1 = CompteBancaire(&#34;Alice&#34;, 1000)
+compte2 = CompteÉpargne(&#34;Bob&#34;, 5000, taux=0.03)
+
+for compte in [compte1, compte2]:
+    compte.déposer(500)
+    compte.afficher()
+# Alice : 1500 $
+# Bob : 5500 $
+
+compte2.appliquer_intérêts()
+compte2.afficher()
+# Bob : 5665.0 $</textarea><div class=pyodide-toolbar><button id=pyodide-31-run onclick='pyodideRun("pyodide-31")'>&#9654; Exécuter</button>
 <button id=pyodide-31-reset onclick='pyodideReset("pyodide-31")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-31-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-31-output></pre></div><p>On voit ici que les données (la liste de nombres) et les opérations (<code>pairs</code>,
-<code>au_carré</code>) sont regroupées dans un même objet. On peut aussi enchaîner les
-appels de méthodes, car chaque méthode retourne un nouvel objet du même type.
-L&rsquo;OOP a dominé le développement logiciel pendant des décennies, notamment à
-travers des langages comme C++ (1985), Java (1995) et C# (2000), et elle reste
-le paradigme dominant dans l&rsquo;industrie aujourd&rsquo;hui.</p><h3 id=le-paradigme-fonctionnel>Le paradigme fonctionnel<a class=anchor href=#le-paradigme-fonctionnel>#</a></h3><p>Le paradigme <em>fonctionnel</em> aborde la programmation sous un angle radicalement
+<span class=pyodide-status id=pyodide-31-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-31-output></pre></div><p>On voit ici les trois piliers de l&rsquo;OOP en action. L&rsquo;<em>encapsulation</em> : chaque
+compte regroupe ses données (<code>titulaire</code>, <code>solde</code>) et ses opérations (<code>déposer</code>,
+<code>retirer</code>). L&rsquo;<em>héritage</em> : <code>CompteÉpargne</code> étend <code>CompteBancaire</code> en ajoutant
+un taux d&rsquo;intérêt, sans réécrire la logique de base. Le <em>polymorphisme</em> : dans
+la boucle <code>for</code>, on traite les deux types de comptes de manière uniforme, car
+ils partagent la même interface. L&rsquo;OOP a dominé le développement logiciel
+pendant des décennies, notamment à travers des langages comme C++ (1985), Java
+(1995) et C# (2000), et elle reste le paradigme dominant dans l&rsquo;industrie
+aujourd&rsquo;hui.</p><h3 id=le-paradigme-fonctionnel>Le paradigme fonctionnel<a class=anchor href=#le-paradigme-fonctionnel>#</a></h3><p>Le paradigme <em>fonctionnel</em> aborde la programmation sous un angle radicalement
 différent : au lieu de décrire une séquence de modifications d&rsquo;état, on exprime
 un programme comme une composition de <em>fonctions pures</em>, c&rsquo;est-à-dire des
 fonctions qui retournent toujours le même résultat pour les mêmes arguments, et
