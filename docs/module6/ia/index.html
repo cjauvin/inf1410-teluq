@@ -1,5 +1,5 @@
 <!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie.
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Le développement assisté par IA"><meta property="og:description" content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Le développement assisté par IA"><meta itemprop=description content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta itemprop=wordCount content="4194"><title>Le développement assisté par IA | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Le développement assisté par IA"><meta property="og:description" content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Le développement assisté par IA"><meta itemprop=description content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta itemprop=wordCount content="7276"><title>Le développement assisté par IA | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
@@ -18,7 +18,7 @@
 <label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/>Module 5 - Faire vivre le logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/>Où est-ce que ça tourne ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/>Comment je le déploie ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/>Est-ce que ça marche ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/>Que faire quand ça casse ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/>Est-ce que c'est sécuritaire ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/>Est-ce que ça va tenir la charge ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle checked>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Le logiciel dans le monde</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/>L'open source</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/>L'économie du logiciel</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/monopoles/>Monopoles et régulation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/>Catastrophes, éthique et responsabilité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/>Le métier de développeur</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/ class=active>Le développement assisté par IA</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Le développement assisté par IA</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#doù-vient-lintelligence-artificielle>D&rsquo;où vient l&rsquo;intelligence artificielle</a><ul><li><a href=#lia-symbolique-années-1950-1980>L&rsquo;IA symbolique (années 1950-1980)</a></li><li><a href=#le-machine-learning-années-1990-2000>Le machine learning (années 1990-2000)</a></li><li><a href=#le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)</a></li><li><a href=#des-modèles-de-langage-aux-llm-2003-2023>Des modèles de langage aux LLM (2003-2023)</a></li></ul></li><li><a href=#lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur</a></li><li><a href=#le-vibe-coding>Le vibe coding</a></li><li><a href=#ce-qui-change-dans-les-pratiques-du-génie-logiciel>Ce qui change dans les pratiques du génie logiciel</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=le-développement-assisté-par-ia>Le développement assisté par IA<a class=anchor href=#le-d%c3%a9veloppement-assist%c3%a9-par-ia>#</a></h1><p>La section précédente se terminait sur une question ouverte : l&rsquo;IA générative
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/>L'open source</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/>L'économie du logiciel</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/monopoles/>Monopoles et régulation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/>Catastrophes, éthique et responsabilité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/>Le métier de développeur</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/ class=active>Le développement assisté par IA</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Le développement assisté par IA</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#doù-vient-lintelligence-artificielle>D&rsquo;où vient l&rsquo;intelligence artificielle</a><ul><li><a href=#lia-symbolique-années-1950-1980>L&rsquo;IA symbolique (années 1950-1980)</a></li><li><a href=#le-machine-learning-années-1990-2000>Le machine learning (années 1990-2000)</a></li><li><a href=#le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)</a></li><li><a href=#des-modèles-de-langage-aux-llm-2003-2023>Des modèles de langage aux LLM (2003-2023)</a></li></ul></li><li><a href=#lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur</a></li><li><a href=#le-vibe-coding>Le vibe coding</a></li><li><a href=#ce-qui-change-dans-les-pratiques-du-génie-logiciel>Ce qui change dans les pratiques du génie logiciel</a></li><li><a href=#démonstrations-avec-claude-code>Démonstrations avec Claude Code</a><ul><li><a href=#explorer-un-codebase--requests>Explorer un codebase : Requests</a></li><li><a href=#créer-une-application--mdcheck>Créer une application : mdcheck</a></li></ul></li><li><a href=#questions-ouvertes>Questions ouvertes</a><ul><li><a href=#propriété-intellectuelle>Propriété intellectuelle</a></li><li><a href=#fiabilité-et-hallucinations>Fiabilité et hallucinations</a></li><li><a href=#dépendance-et-déqualification>Dépendance et déqualification</a></li><li><a href=#la-position-de-yoshua-bengio>La position de Yoshua Bengio</a></li><li><a href=#retour-à-brooks--silver-bullet-ou-pas->Retour à Brooks : silver bullet ou pas ?</a></li></ul></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=le-développement-assisté-par-ia>Le développement assisté par IA<a class=anchor href=#le-d%c3%a9veloppement-assist%c3%a9-par-ia>#</a></h1><p>La section précédente se terminait sur une question ouverte : l&rsquo;IA générative
 sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La
 question mérite d&rsquo;être posée sérieusement, parce que quelque chose de
 fondamentalement différent est en train de se passer. Depuis 2021, des outils
@@ -352,6 +352,267 @@ hypothèses et de les tester méthodiquement, reste une compétence irremplaçab
 Le développeur qui comprend les fondamentaux (comment fonctionne la mémoire, ce
 que fait réellement une requête SQL, pourquoi une condition de course se produit)
 sera toujours plus efficace, avec ou sans IA, que celui qui ne fait que
-manipuler des abstractions sans en comprendre les mécanismes sous-jacents.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
+manipuler des abstractions sans en comprendre les mécanismes sous-jacents.</p><h2 id=démonstrations-avec-claude-code>Démonstrations avec Claude Code<a class=anchor href=#d%c3%a9monstrations-avec-claude-code>#</a></h2><p>Les sections précédentes ont discuté du développement assisté par IA de manière
+conceptuelle. Pour rendre ces idées concrètes, cette section présente deux
+démonstrations réalisées avec Claude Code, un agent de développement en ligne de
+commande développé par Anthropic. Claude Code ne se contente pas de compléter du
+code dans un éditeur : il peut naviguer dans un dépôt, lire des fichiers,
+exécuter des commandes, lancer des tests et itérer sur son travail. Les deux
+démonstrations illustrent des usages très différents mais complémentaires :
+explorer un codebase existant pour en comprendre l&rsquo;architecture, puis créer une
+petite application de zéro.</p><h3 id=explorer-un-codebase--requests>Explorer un codebase : Requests<a class=anchor href=#explorer-un-codebase--requests>#</a></h3><p>L&rsquo;une des situations les plus courantes pour un développeur est d&rsquo;arriver sur
+un projet existant et de devoir en comprendre la structure, les choix de
+conception et le fonctionnement interne. C&rsquo;est exactement la situation décrite
+par Peter Naur : il faut reconstruire la théorie d&rsquo;un programme qu&rsquo;on n&rsquo;a pas
+écrit. Traditionnellement, cela implique de lire le code, la documentation,
+l&rsquo;historique git, et de poser des questions aux collègues qui étaient là avant.
+Un agent IA peut accélérer considérablement ce processus.</p><p>Pour cette démonstration, nous utilisons Requests, la bibliothèque HTTP la plus
+populaire de l&rsquo;écosystème Python. Créée par Kenneth Reitz en 2011, Requests est
+utilisée par pratiquement tous les projets Python qui ont besoin de faire des
+appels HTTP. Sa popularité repose sur une API d&rsquo;une simplicité remarquable :
+<code>requests.get("https://example.com")</code> suffit pour faire une requête. Mais
+derrière cette façade simple se cache une architecture plus complexe, avec la
+gestion des sessions, des cookies, des redirections, de l&rsquo;authentification et
+des adaptateurs de transport. C&rsquo;est un excellent terrain d&rsquo;exploration.</p><p>Voici une session avec Claude Code, où on lui demande d&rsquo;explorer le dépôt de
+Requests comme le ferait un nouveau développeur qui cherche à comprendre le
+projet.</p><p><strong>Première question : la vue d&rsquo;ensemble.</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ claude <span style=color:#e6db74>&#34;Donne-moi un portrait de l&#39;architecture de ce projet.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>         Quels sont les fichiers principaux et leurs responsabilités ?&#34;</span></span></span></code></pre></div><p>Claude Code commence par lister les fichiers source et compter leurs lignes,
+puis produit une analyse :</p><blockquote class=book-hint><p>Le code source de Requests tient dans 18 fichiers Python pour environ 5 600
+lignes au total. L&rsquo;architecture suit un pattern en couches très lisible :</p><ul><li><strong><code>api.py</code></strong> (157 lignes) : la façade publique. C&rsquo;est le fichier le plus
+simple du projet : les fonctions <code>get()</code>, <code>post()</code>, <code>put()</code>, etc. que tout
+le monde utilise. Chaque fonction ne fait que créer une <code>Session</code> et lui
+déléguer le travail.</li><li><strong><code>sessions.py</code></strong> (834 lignes) : le coeur du projet. La classe <code>Session</code>
+gère la persistance des cookies, des headers, de l&rsquo;authentification et des
+proxies entre les requêtes.</li><li><strong><code>models.py</code></strong> (1 041 lignes) : les objets de données. Définit <code>Request</code>,
+<code>PreparedRequest</code> et <code>Response</code>, les trois classes qui modélisent le cycle
+de vie d&rsquo;une requête HTTP.</li><li><strong><code>adapters.py</code></strong> (697 lignes) : la couche de transport. Le <code>HTTPAdapter</code>
+fait le pont entre Requests et urllib3, la bibliothèque qui fait le vrai
+travail de connexion réseau.</li></ul><p>Le reste est constitué de modules utilitaires : <code>cookies.py</code> pour la gestion
+des cookies, <code>auth.py</code> pour l&rsquo;authentification HTTP, <code>utils.py</code> pour des
+fonctions auxiliaires, <code>exceptions.py</code> pour la hiérarchie d&rsquo;exceptions.</p></blockquote><p>Ce premier échange illustre un usage fondamental : obtenir une carte mentale
+d&rsquo;un projet en quelques secondes. Un développeur qui arriverait sur ce dépôt
+sans connaître Requests aurait besoin de plusieurs heures de lecture pour
+construire ce portrait. L&rsquo;agent le produit en lisant et en analysant les
+fichiers automatiquement.</p><p><strong>Deuxième question : suivre le chemin d&rsquo;une requête.</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ claude <span style=color:#e6db74>&#34;Quand j&#39;écris requests.get(&#39;https://example.com&#39;),
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>         que se passe-t-il exactement ? Trace le chemin du code,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>         fichier par fichier.&#34;</span></span></span></code></pre></div><blockquote class=book-hint><p>Voici le chemin complet, étape par étape :</p><ol><li><strong><code>api.py</code>, ligne 73</strong> : <code>get()</code> appelle <code>request("get", url)</code>.</li><li><strong><code>api.py</code>, ligne 58</strong> : <code>request()</code> crée une <code>Session</code> temporaire avec
+<code>with sessions.Session() as session:</code> et appelle <code>session.request()</code>.</li><li><strong><code>sessions.py</code>, <code>Session.request()</code></strong> : la session construit un objet
+<code>Request</code>, le transforme en <code>PreparedRequest</code> via <code>prepare_request()</code> (ce
+qui résout les headers, fusionne les cookies de session, encode l&rsquo;URL),
+puis appelle <code>self.send()</code>.</li><li><strong><code>sessions.py</code>, <code>Session.send()</code></strong> : récupère le bon adaptateur de
+transport en cherchant le préfixe d&rsquo;URL (<code>https://</code> → <code>HTTPAdapter</code>),
+puis appelle <code>adapter.send()</code>.</li><li><strong><code>adapters.py</code>, <code>HTTPAdapter.send()</code></strong> : c&rsquo;est ici que la requête HTTP
+est réellement envoyée, via urllib3. L&rsquo;adaptateur gère le pool de
+connexions, les timeouts, la vérification TLS, et encapsule la réponse
+urllib3 dans un objet <code>Response</code> de Requests.</li></ol><p>Un détail de conception intéressant : chaque appel à <code>requests.get()</code> crée
+et détruit une <code>Session</code>. C&rsquo;est pratique pour des appels isolés, mais si vous
+faites plusieurs requêtes vers le même serveur, utiliser directement un objet
+<code>Session</code> est plus efficace parce qu&rsquo;il réutilise les connexions TCP.</p></blockquote><p>Ce type d&rsquo;analyse serait fastidieux à faire manuellement : il faut ouvrir
+quatre fichiers, trouver les bons points d&rsquo;entrée, suivre les appels de
+méthode en méthode. L&rsquo;agent le fait en quelques secondes et produit une
+explication linéaire qui reconstruit la <em>théorie</em> du programme, au sens de
+Naur.</p><p><strong>Troisième question : un détail architectural surprenant.</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ claude <span style=color:#e6db74>&#34;Quel est le rôle du pattern Adapter ici ?
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>         Pourquoi est-ce qu&#39;on ne fait pas simplement les appels
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>         HTTP directement dans Session ?&#34;</span></span></span></code></pre></div><blockquote class=book-hint><p>Le <code>HTTPAdapter</code> implémente le pattern adaptateur (Adapter) du Gang of Four.
+L&rsquo;idée est de découpler l&rsquo;interface de haut niveau (<code>Session</code>) du mécanisme
+de transport sous-jacent (urllib3). Concrètement, dans le <code>__init__</code> de
+<code>Session</code>, on trouve :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>self<span style=color:#f92672>.</span>adapters <span style=color:#f92672>=</span> OrderedDict()
+</span></span><span style=display:flex><span>self<span style=color:#f92672>.</span>mount(<span style=color:#e6db74>&#34;https://&#34;</span>, HTTPAdapter())
+</span></span><span style=display:flex><span>self<span style=color:#f92672>.</span>mount(<span style=color:#e6db74>&#34;http://&#34;</span>, HTTPAdapter())</span></span></code></pre></div><p>La méthode <code>mount()</code> associe un préfixe d&rsquo;URL à un adaptateur. Quand
+<code>Session.send()</code> doit envoyer une requête, elle cherche l&rsquo;adaptateur dont le
+préfixe correspond à l&rsquo;URL. Ce design a plusieurs avantages :</p><ul><li>On peut remplacer le transport sans modifier <code>Session</code>. Par exemple, la
+bibliothèque <code>requests-mock</code> monte un faux adaptateur pour les tests.</li><li>On peut monter des adaptateurs différents pour des hôtes différents
+(un adaptateur avec des certificats spécifiques pour un serveur interne,
+par exemple).</li><li>La bibliothèque <code>requests-toolbelt</code> fournit des adaptateurs spécialisés
+pour SOCKS, pour les sockets Unix, etc.</li></ul><p>C&rsquo;est un excellent exemple de la séparation des préoccupations et du
+principe d&rsquo;inversion de dépendances (le &ldquo;D&rdquo; de SOLID) : <code>Session</code> dépend
+d&rsquo;une abstraction (l&rsquo;interface d&rsquo;un adaptateur), pas d&rsquo;une implémentation
+concrète.</p></blockquote><p>Cet échange illustre comment l&rsquo;agent peut relier du code concret à des
+concepts théoriques que l&rsquo;étudiant a déjà vus : le pattern adaptateur, SOLID,
+la séparation des préoccupations (module 3). C&rsquo;est exactement le type de lien
+qu&rsquo;un développeur senior ferait naturellement, et que l&rsquo;IA peut aider un
+développeur moins expérimenté à construire.</p><p>L&rsquo;exploration d&rsquo;un codebase avec un agent IA n&rsquo;est pas du vibe coding : on ne
+génère pas de code à l&rsquo;aveugle, on construit activement une compréhension. Le
+développeur pose des questions, évalue les réponses, approfondit les points qui
+l&rsquo;intéressent. L&rsquo;IA accélère la construction de la théorie du programme, mais
+c&rsquo;est toujours le développeur qui la construit.</p><h3 id=créer-une-application--mdcheck>Créer une application : mdcheck<a class=anchor href=#cr%c3%a9er-une-application--mdcheck>#</a></h3><p>La deuxième démonstration illustre l&rsquo;autre usage fondamental : construire
+quelque chose de neuf. L&rsquo;objectif est de créer un petit utilitaire en ligne de
+commande qui vérifie que les liens dans des fichiers Markdown sont valides. Un
+outil simple, utile, et dont le périmètre est assez restreint pour tenir dans
+une démonstration.</p><p><strong>Étape 1 : décrire ce qu&rsquo;on veut.</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ claude <span style=color:#e6db74>&#34;Crée un utilitaire Python appelé mdcheck qui vérifie les liens
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>         HTTP dans des fichiers Markdown. Il doit extraire tous les liens
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>         au format [texte](url), vérifier ceux qui commencent par http://
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>         ou https://, et afficher le résultat. Utilise la bibliothèque
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>         requests. Écris aussi les tests avec pytest.&#34;</span></span></span></code></pre></div><p>Claude Code crée la structure du projet, installe les dépendances avec <code>uv</code>,
+et produit deux fichiers. Le premier, <code>main.py</code>, contient trois fonctions :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>extract_links</span>(text: str) <span style=color:#f92672>-&gt;</span> list[tuple[str, str]]:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;&#34;&#34;Extrait les liens Markdown d&#39;un texte.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    pattern <span style=color:#f92672>=</span> <span style=color:#e6db74>r</span><span style=color:#e6db74>&#34;\[([^\]]+)\]\(([^)]+)\)&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> re<span style=color:#f92672>.</span>findall(pattern, text)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check_url</span>(url: str, timeout: int <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>) <span style=color:#f92672>-&gt;</span> tuple[bool, str]:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;&#34;&#34;Vérifie si une URL est accessible.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span>:
+</span></span><span style=display:flex><span>        response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>head(url, timeout<span style=color:#f92672>=</span>timeout, allow_redirects<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> response<span style=color:#f92672>.</span>status_code <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>400</span>:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>, <span style=color:#e6db74>&#34;OK&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>, <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;HTTP </span><span style=color:#e6db74>{</span>response<span style=color:#f92672>.</span>status_code<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span> requests<span style=color:#f92672>.</span>ConnectionError:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>, <span style=color:#e6db74>&#34;Connexion impossible&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span> requests<span style=color:#f92672>.</span>Timeout:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>, <span style=color:#e6db74>&#34;Timeout&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check_file</span>(path: Path) <span style=color:#f92672>-&gt;</span> list[dict]:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;&#34;&#34;Vérifie tous les liens dans un fichier Markdown.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    text <span style=color:#f92672>=</span> path<span style=color:#f92672>.</span>read_text()
+</span></span><span style=display:flex><span>    links <span style=color:#f92672>=</span> extract_links(text)
+</span></span><span style=display:flex><span>    results <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> label, url <span style=color:#f92672>in</span> links:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;http://&#34;</span>) <span style=color:#f92672>or</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;https://&#34;</span>):
+</span></span><span style=display:flex><span>            ok, message <span style=color:#f92672>=</span> check_url(url)
+</span></span><span style=display:flex><span>            results<span style=color:#f92672>.</span>append({<span style=color:#e6db74>&#34;file&#34;</span>: str(path), <span style=color:#e6db74>&#34;label&#34;</span>: label,
+</span></span><span style=display:flex><span>                            <span style=color:#e6db74>&#34;url&#34;</span>: url, <span style=color:#e6db74>&#34;ok&#34;</span>: ok, <span style=color:#e6db74>&#34;message&#34;</span>: message})
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> results</span></span></code></pre></div><p>Le code est propre, lisible, et fait ce qu&rsquo;on a demandé. Le deuxième fichier,
+<code>test_mdcheck.py</code>, contient des tests pour l&rsquo;extraction de liens (lien simple,
+liens multiples, pas de lien, lien avec ancre) et pour la vérification d&rsquo;URL
+(réponse 200, 404, timeout, erreur de connexion), avec des mocks pour éviter
+de faire de vraies requêtes HTTP pendant les tests.</p><p><strong>Étape 2 : exécuter les tests.</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ uv run pytest test_mdcheck.py -v
+</span></span><span style=display:flex><span>test_mdcheck.py::TestExtractLinks::test_single_link PASSED
+</span></span><span style=display:flex><span>test_mdcheck.py::TestExtractLinks::test_multiple_links PASSED
+</span></span><span style=display:flex><span>test_mdcheck.py::TestExtractLinks::test_no_links PASSED
+</span></span><span style=display:flex><span>test_mdcheck.py::TestExtractLinks::test_link_with_anchor PASSED
+</span></span><span style=display:flex><span>test_mdcheck.py::TestExtractLinks::test_relative_link PASSED
+</span></span><span style=display:flex><span>test_mdcheck.py::TestCheckUrl::test_url_ok PASSED
+</span></span><span style=display:flex><span>test_mdcheck.py::TestCheckUrl::test_url_redirect PASSED
+</span></span><span style=display:flex><span>test_mdcheck.py::TestCheckUrl::test_url_not_found PASSED
+</span></span><span style=display:flex><span>test_mdcheck.py::TestCheckUrl::test_url_timeout PASSED
+</span></span><span style=display:flex><span>test_mdcheck.py::TestCheckUrl::test_url_connection_error PASSED
+</span></span><span style=display:flex><span><span style=color:#f92672>==============================</span> <span style=color:#ae81ff>11</span> passed in 0.52s <span style=color:#f92672>==============================</span></span></span></code></pre></div><p>Tous les tests passent. Le code fonctionne. À ce stade, un développeur en mode
+vibe coding pourrait s&rsquo;arrêter là, satisfait. Mais un développeur qui construit
+une théorie de son programme va se poser des questions.</p><p><strong>Étape 3 : trouver un problème.</strong></p><p>En relisant le code, on remarque quelque chose. La regex
+<code>\[([^\]]+)\]\(([^)]+)\)</code> capture tous les liens Markdown, y compris les images.
+En Markdown, une image s&rsquo;écrit <code>![texte alternatif](url)</code> et un lien s&rsquo;écrit
+<code>[texte](url)</code>. La seule différence est le <code>!</code> devant les crochets. Notre regex
+ne fait pas la distinction : elle va aussi capturer les URLs d&rsquo;images et tenter
+de les vérifier comme des liens. Ce n&rsquo;est pas un bug catastrophique, mais c&rsquo;est
+un comportement incorrect : un vérificateur de liens ne devrait pas signaler
+une image comme un lien cassé si le serveur d&rsquo;images retourne une erreur.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ claude <span style=color:#e6db74>&#34;La regex dans extract_links capture aussi les images Markdown
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>         (![alt](url)). Il faut les exclure. Ajoute un test pour ce cas
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>         et corrige la regex.&#34;</span></span></span></code></pre></div><p>Claude Code modifie la regex en ajoutant un <em>negative lookbehind</em> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>pattern <span style=color:#f92672>=</span> <span style=color:#e6db74>r</span><span style=color:#e6db74>&#34;(?&lt;!!)\[([^\]]+)\]\(([^)]+)\)&#34;</span></span></span></code></pre></div><p>Le <code>(?&lt;!!)</code> signifie &ldquo;pas précédé d&rsquo;un point d&rsquo;exclamation&rdquo;. Il ajoute
+aussi le test correspondant :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_image_not_captured</span>(self):
+</span></span><span style=display:flex><span>    text <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;![Logo](https://example.com/logo.png)&#34;</span>
+</span></span><span style=display:flex><span>    links <span style=color:#f92672>=</span> extract_links(text)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> links <span style=color:#f92672>==</span> []</span></span></code></pre></div><p>Les tests passent à nouveau, et le comportement est maintenant correct.</p><p>Cette séquence illustre exactement pourquoi la compréhension reste essentielle
+dans le développement assisté par IA. L&rsquo;IA a produit du code qui fonctionnait
+et passait tous ses tests, mais elle n&rsquo;avait pas pensé à un cas que la
+spécification initiale ne mentionnait pas. C&rsquo;est le développeur, en relisant
+le code et en réfléchissant au domaine (la syntaxe Markdown), qui a identifié
+le problème. Sans cette relecture critique, le bug serait resté dans le code,
+invisible parce qu&rsquo;aucun test ne le cherchait. C&rsquo;est la différence entre
+produire du code et construire une théorie du programme.</p><h2 id=questions-ouvertes>Questions ouvertes<a class=anchor href=#questions-ouvertes>#</a></h2><p>Le développement assisté par IA soulève des questions qui dépassent la technique
+et qui n&rsquo;ont pas encore de réponses définitives. En voici quelques-unes parmi
+les plus débattues.</p><h3 id=propriété-intellectuelle>Propriété intellectuelle<a class=anchor href=#propri%c3%a9t%c3%a9-intellectuelle>#</a></h3><p>Les LLM qui génèrent du code ont été entraînés sur d&rsquo;immenses corpus de code
+source, dont une grande partie provient de dépôts open source hébergés sur
+GitHub. En 2022, un recours collectif a été déposé contre GitHub, Microsoft et
+OpenAI, alléguant que Copilot reproduisait parfois du code protégé par des
+licences open source sans en respecter les termes (attribution, copyleft). La
+question juridique reste ouverte : le code généré par un LLM est-il une oeuvre
+dérivée du code d&rsquo;entraînement ? Si un modèle produit un bloc de code
+fonctionnellement identique à un extrait sous licence GPL, l&rsquo;utilisateur est-il
+tenu de respecter les termes de cette licence ? Les tribunaux n&rsquo;ont pas encore
+tranché. Pour les développeurs, la prudence recommande de traiter le code
+généré par IA comme on traiterait du code trouvé sur Stack Overflow : utile
+comme point de départ, mais à valider, à comprendre, et à adapter à son propre
+contexte.</p><h3 id=fiabilité-et-hallucinations>Fiabilité et hallucinations<a class=anchor href=#fiabilit%c3%a9-et-hallucinations>#</a></h3><p>Les LLM produisent des réponses statistiquement plausibles, pas
+nécessairement correctes. En génération de texte, on appelle ce phénomène une
+&ldquo;hallucination&rdquo; : le modèle invente des faits avec aplomb. En génération de
+code, les hallucinations prennent des formes spécifiques : des appels à des
+fonctions qui n&rsquo;existent pas dans la bibliothèque utilisée, des paramètres
+inventés, des algorithmes qui semblent corrects mais qui ont des bugs subtils
+dans les cas limites. Le problème est que le code halluciné a l&rsquo;air
+professionnel : il est bien formaté, utilise les bonnes conventions de nommage,
+et peut même être accompagné de commentaires convaincants. C&rsquo;est précisément
+ce qui le rend dangereux pour un développeur qui ne vérifie pas. L&rsquo;analogie
+avec le compilateur trouve ici sa limite la plus nette : un compilateur ne
+peut pas halluciner.</p><h3 id=dépendance-et-déqualification>Dépendance et déqualification<a class=anchor href=#d%c3%a9pendance-et-d%c3%a9qualification>#</a></h3><p>Si les développeurs s&rsquo;habituent à laisser l&rsquo;IA écrire leur code, risquent-ils
+de perdre la capacité de le faire eux-mêmes ? La question n&rsquo;est pas nouvelle :
+on la posait déjà pour les calculatrices en mathématiques, pour les GPS en
+navigation, pour les correcteurs orthographiques en écriture. Le phénomène de
+déqualification (<em>deskilling</em>) est bien documenté dans d&rsquo;autres professions :
+les pilotes d&rsquo;avion qui s&rsquo;appuient trop sur le pilotage automatique peuvent
+avoir des difficultés à reprendre le contrôle manuellement en situation
+d&rsquo;urgence. Pour le développement logiciel, le risque est que des développeurs
+juniors n&rsquo;acquièrent jamais les compétences fondamentales (débogage,
+raisonnement algorithmique, compréhension de l&rsquo;architecture) parce qu&rsquo;ils
+n&rsquo;ont jamais eu à les exercer. Un développeur senior qui utilise l&rsquo;IA comme
+accélérateur garde ses compétences intactes, mais un débutant qui n&rsquo;a jamais
+résolu un bug sans assistance pourrait être démuni le jour où l&rsquo;IA ne peut pas
+l&rsquo;aider. C&rsquo;est un argument fort pour que la formation en informatique continue
+d&rsquo;exiger la maîtrise des fondamentaux, même dans un monde où l&rsquo;IA est
+omniprésente.</p><h3 id=la-position-de-yoshua-bengio>La position de Yoshua Bengio<a class=anchor href=#la-position-de-yoshua-bengio>#</a></h3><p>Depuis 2023, Yoshua Bengio, dont les travaux fondateurs ont rendu les LLM
+possibles, est devenu l&rsquo;une des voix les plus importantes dans le débat sur les
+risques de l&rsquo;IA. En 2023, il a cosigné une lettre ouverte appelant à une
+pause dans le développement des systèmes d&rsquo;IA plus puissants que GPT-4, le
+temps de mettre en place des mécanismes de sécurité adéquats. Sa position n&rsquo;est
+pas celle d&rsquo;un technophobe : c&rsquo;est celle d&rsquo;un scientifique qui comprend
+intimement la technologie et qui estime que la vitesse de développement dépasse
+notre capacité à en comprendre et à en gérer les conséquences. Bengio a
+comparé la situation à celle d&rsquo;un chimiste qui découvrirait une réaction
+permettant de produire une énergie considérable mais aussi de causer des
+dommages immenses : la bonne réponse n&rsquo;est pas d&rsquo;arrêter la recherche, mais
+d&rsquo;exiger de la prudence et des garde-fous avant le déploiement à grande échelle.</p><p>Sa position illustre une tension fondamentale dans l&rsquo;histoire de la technologie.
+Les personnes les mieux placées pour comprendre les risques d&rsquo;une innovation
+sont souvent celles qui l&rsquo;ont créée, mais elles sont rarement celles qui
+décident de la manière dont elle est déployée. Oppenheimer et la bombe
+atomique, les ingénieurs qui ont alerté sur le Therac-25 ou le Boeing 737 MAX
+(section précédente) : l&rsquo;histoire est remplie de cas où l&rsquo;expertise technique
+a été ignorée par les décideurs. Le mérite de Bengio est d&rsquo;utiliser sa
+crédibilité scientifique pour forcer le débat public, quitte à être critiqué
+par une partie de l&rsquo;industrie qui préfère accélérer sans contrainte.</p><h3 id=retour-à-brooks--silver-bullet-ou-pas->Retour à Brooks : silver bullet ou pas ?<a class=anchor href=#retour-%c3%a0-brooks--silver-bullet-ou-pas->#</a></h3><p>Alors, l&rsquo;IA générative est-elle la silver bullet que Brooks jugeait impossible ?
+La réponse honnête est : pas encore, et probablement pas au sens où Brooks
+l&rsquo;entendait. Brooks distinguait la complexité accidentelle (celle des outils et
+des processus) de la complexité essentielle (celle du problème qu&rsquo;on résout).
+L&rsquo;IA générative est remarquablement efficace pour réduire la complexité
+accidentelle : elle élimine le boilerplate, elle accélère les tâches répétitives,
+elle rend accessible ce qui demandait auparavant une expertise technique
+pointue. Mais la complexité essentielle, elle, reste intacte. Comprendre un
+domaine métier, prendre les bonnes décisions d&rsquo;architecture, anticiper les
+conséquences d&rsquo;un choix de conception : ce sont des problèmes fondamentalement
+humains que l&rsquo;IA, pour l&rsquo;instant, ne résout pas.</p><p>Ce qui a changé, et que Brooks n&rsquo;avait probablement pas anticipé, c&rsquo;est que la
+frontière entre complexité accidentelle et complexité essentielle s&rsquo;est
+déplacée. Des tâches qui relevaient autrefois de la complexité essentielle
+(écrire un parser, implémenter un algorithme de tri, configurer un pipeline
+CI/CD) sont devenues de la complexité accidentelle, parce que l&rsquo;IA les
+automatise de manière fiable. Ce déplacement de frontière est peut-être plus
+important que la silver bullet elle-même : il libère le développeur pour se
+concentrer sur les problèmes qui comptent vraiment. Le développeur de demain
+passera moins de temps à écrire du code et plus de temps à décider quel code
+devrait exister, à valider que le code fait ce qu&rsquo;il devrait, et à comprendre
+les systèmes dans lesquels il s&rsquo;insère. C&rsquo;est, paradoxalement, un retour aux
+origines du génie logiciel : non pas la production de code, mais la gestion de
+la complexité.</p><h2 id=conclusion>Conclusion<a class=anchor href=#conclusion>#</a></h2><p>Ce cours a commencé, dans le module 1, par une question simple : pourquoi le
+logiciel est-il si difficile à construire ? Nous avons vu que la réponse de
+Fred Brooks en 1986, la distinction entre complexité essentielle et complexité
+accidentelle, reste le cadre le plus utile pour penser le métier. Puis nous
+avons traversé les outils et les pratiques qui, couche par couche, tentent de
+maîtriser cette complexité : les tests et le versioning pour le développeur
+individuel (module 2), l&rsquo;architecture et les APIs pour structurer les systèmes
+(module 3), les méthodes agiles et la collaboration pour travailler en équipe
+(module 4), le DevOps et l&rsquo;observabilité pour faire vivre un logiciel en
+production (module 5). Ce dernier module a élargi le regard vers le monde dans
+lequel le logiciel existe : son économie, sa régulation, ses catastrophes, et
+maintenant l&rsquo;IA qui transforme la manière même de le construire.</p><p>Le fil conducteur de tout le cours est que le logiciel est une activité
+fondamentalement humaine. Les outils changent, les langages évoluent, les
+méthodes se transforment, mais les problèmes de fond restent les mêmes :
+comprendre ce qu&rsquo;on construit (Naur), gérer la complexité (Brooks), travailler
+avec les autres (le Manifeste Agile), et prendre la responsabilité de ce qu&rsquo;on
+met au monde (l&rsquo;éthique). L&rsquo;IA ne change pas ces problèmes. Elle change la
+vitesse à laquelle on peut produire du code, mais pas la difficulté de décider
+quel code devrait exister.</p><p>Peter Naur écrivait en 1985 que la programmation est avant tout la construction
+d&rsquo;une théorie, un modèle mental du problème et de sa solution. Cette idée,
+vieille de quarante ans, n&rsquo;a jamais été aussi pertinente. Dans un monde où
+n&rsquo;importe qui peut générer du code en décrivant ce qu&rsquo;il veut en langage
+naturel, la valeur du développeur ne réside plus dans sa capacité à écrire des
+lignes de code. Elle réside dans sa capacité à comprendre, à juger et à
+décider. À construire la théorie.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
 <span>Le métier de développeur</span>
-</a></span><span></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#doù-vient-lintelligence-artificielle>D&rsquo;où vient l&rsquo;intelligence artificielle</a><ul><li><a href=#lia-symbolique-années-1950-1980>L&rsquo;IA symbolique (années 1950-1980)</a></li><li><a href=#le-machine-learning-années-1990-2000>Le machine learning (années 1990-2000)</a></li><li><a href=#le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)</a></li><li><a href=#des-modèles-de-langage-aux-llm-2003-2023>Des modèles de langage aux LLM (2003-2023)</a></li></ul></li><li><a href=#lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur</a></li><li><a href=#le-vibe-coding>Le vibe coding</a></li><li><a href=#ce-qui-change-dans-les-pratiques-du-génie-logiciel>Ce qui change dans les pratiques du génie logiciel</a></li></ul></nav></div></aside></main></body></html>
+</a></span><span></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#doù-vient-lintelligence-artificielle>D&rsquo;où vient l&rsquo;intelligence artificielle</a><ul><li><a href=#lia-symbolique-années-1950-1980>L&rsquo;IA symbolique (années 1950-1980)</a></li><li><a href=#le-machine-learning-années-1990-2000>Le machine learning (années 1990-2000)</a></li><li><a href=#le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)</a></li><li><a href=#des-modèles-de-langage-aux-llm-2003-2023>Des modèles de langage aux LLM (2003-2023)</a></li></ul></li><li><a href=#lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur</a></li><li><a href=#le-vibe-coding>Le vibe coding</a></li><li><a href=#ce-qui-change-dans-les-pratiques-du-génie-logiciel>Ce qui change dans les pratiques du génie logiciel</a></li><li><a href=#démonstrations-avec-claude-code>Démonstrations avec Claude Code</a><ul><li><a href=#explorer-un-codebase--requests>Explorer un codebase : Requests</a></li><li><a href=#créer-une-application--mdcheck>Créer une application : mdcheck</a></li></ul></li><li><a href=#questions-ouvertes>Questions ouvertes</a><ul><li><a href=#propriété-intellectuelle>Propriété intellectuelle</a></li><li><a href=#fiabilité-et-hallucinations>Fiabilité et hallucinations</a></li><li><a href=#dépendance-et-déqualification>Dépendance et déqualification</a></li><li><a href=#la-position-de-yoshua-bengio>La position de Yoshua Bengio</a></li><li><a href=#retour-à-brooks--silver-bullet-ou-pas->Retour à Brooks : silver bullet ou pas ?</a></li></ul></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></div></aside></main></body></html>

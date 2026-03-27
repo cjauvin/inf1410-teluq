@@ -121,7 +121,7 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.&lt;/
 développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id="gestion-de-la-complexité"&gt;Gestion de la complexité&lt;a class="anchor" href="#gestion-de-la-complexit%c3%a9"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Complexité essentielle vs accidentelle&lt;/strong&gt; (Fred Brooks, &lt;em&gt;No Silver Bullet&lt;/em&gt;, 1986) → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/"&gt;Module 3, Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Complexité essentielle vs accidentelle&lt;/strong&gt; (Fred Brooks, &lt;em&gt;No Silver Bullet&lt;/em&gt;, 1986) → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/"&gt;Module 3, Introduction&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"&gt;Module 6, Le développement assisté par IA&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="principes-de-conception"&gt;Principes de conception&lt;a class="anchor" href="#principes-de-conception"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
@@ -213,6 +213,10 @@ culture » et des postmortems blameless →
 croissance rapide des startups technologiques, tension entre vitesse et
 qualité →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/"&gt;Module 6, L&amp;rsquo;économie du logiciel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Michael Feathers, &lt;em&gt;Working Effectively with Legacy Code&lt;/em&gt; (2004) : définition
+du legacy code comme code sans tests, techniques pour travailler sur du code
+existant →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/"&gt;Module 6, Le métier de développeur&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="essais-et-manifestes"&gt;Essais et manifestes&lt;a class="anchor" href="#essais-et-manifestes"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
@@ -231,9 +235,11 @@ article fondateur du modèle relationnel → &lt;a href="https://cjauvin.github.
 &lt;li&gt;David Parnas, &lt;em&gt;On the Criteria To Be Used in Decomposing Systems into Modules&lt;/em&gt;
 (1972) : introduction de l&amp;rsquo;information hiding → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Peter Naur, &lt;em&gt;Programming as Theory Building&lt;/em&gt; (1985) : programmer comme
-construction d&amp;rsquo;un modèle mental → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/"&gt;Module 2, Introduction&lt;/a&gt;&lt;/li&gt;
+construction d&amp;rsquo;un modèle mental → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/"&gt;Module 2, Introduction&lt;/a&gt;,
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"&gt;Module 6, Le développement assisté par IA&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Fred Brooks, &lt;em&gt;No Silver Bullet&lt;/em&gt; (1986) : complexité essentielle vs
-accidentelle → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/"&gt;Module 3, Introduction&lt;/a&gt;&lt;/li&gt;
+accidentelle → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/"&gt;Module 3, Introduction&lt;/a&gt;,
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"&gt;Module 6, Le développement assisté par IA&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Melvin Conway, &lt;em&gt;How Do Committees Invent?&lt;/em&gt; (1968) : la structure d&amp;rsquo;un système
 reflète celle de l&amp;rsquo;organisation qui le produit (loi de Conway) →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/architecture/"&gt;Module 3, Architecture et modularité&lt;/a&gt;,
@@ -247,6 +253,10 @@ programmation » de Pike, dont la règle 5 sur la primauté des structures de
 données → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/"&gt;Module 2, Survol rapide de la programmation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Edsger Dijkstra, &lt;em&gt;Go To Statement Considered Harmful&lt;/em&gt; (1968) : plaidoyer pour
 la programmation structurée → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Edsger Dijkstra, &lt;em&gt;On the foolishness of &amp;ldquo;natural language programming&amp;rdquo;&lt;/em&gt;
+(EWD667, 1979) : critique de l&amp;rsquo;idée de programmer en langage naturel,
+l&amp;rsquo;ambiguïté comme problème fondamental →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"&gt;Module 6, Le développement assisté par IA&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Martin Fowler, &lt;em&gt;Continuous Integration&lt;/em&gt; (2006) : article de référence sur
 l&amp;rsquo;intégration continue → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/"&gt;Module 2, L&amp;rsquo;intégration continue&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Roy Fielding, &lt;em&gt;Architectural Styles and the Design of Network-based Software
@@ -272,7 +282,8 @@ article fondateur du stockage orienté colonnes à grande échelle →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"&gt;Module 3, Les données (stockage)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Tomas Mikolov et al., &lt;em&gt;Efficient Estimation of Word Representations in Vector
 Space&lt;/em&gt; (2013) : introduction de Word2Vec et des embeddings de mots →
-&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"&gt;Module 3, Les données (stockage)&lt;/a&gt;&lt;/li&gt;
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"&gt;Module 3, Les données (stockage)&lt;/a&gt;,
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"&gt;Module 6, Le développement assisté par IA&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Marc Shapiro, Nuno Preguiça, Carlos Baquero et Marek Zawirski, &lt;em&gt;Conflict-free
 Replicated Data Types&lt;/em&gt; (2011) : formalisation des CRDTs →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/"&gt;Module 3, Les données (au-delà des BD)&lt;/a&gt;&lt;/li&gt;
@@ -302,6 +313,25 @@ engineering, expériences en production pour tester la résilience →
 formulation du théorème CAP (Consistency, Availability, Partition tolerance),
 prouvé formellement par Seth Gilbert et Nancy Lynch (2002) →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/"&gt;Module 5, Est-ce que ça va tenir la charge ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Alan Turing, &lt;em&gt;Computing Machinery and Intelligence&lt;/em&gt; (1950) : article fondateur
+posant la question &amp;ldquo;Can machines think?&amp;rdquo; et proposant le test de Turing →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"&gt;Module 6, Le développement assisté par IA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Yoshua Bengio, Réjean Ducharme, Pascal Vincent et Christian Jauvin,
+&lt;em&gt;A Neural Probabilistic Language Model&lt;/em&gt; (2003) : introduction des word
+embeddings appris conjointement avec un modèle de langage neuronal, fondation
+des LLM modernes →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"&gt;Module 6, Le développement assisté par IA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dzmitry Bahdanau, Kyunghyun Cho et Yoshua Bengio, &lt;em&gt;Neural Machine Translation
+by Jointly Learning to Align and Translate&lt;/em&gt; (2014) : introduction du mécanisme
+d&amp;rsquo;attention, fondation du Transformer →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"&gt;Module 6, Le développement assisté par IA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Ashish Vaswani et al., &lt;em&gt;Attention is All You Need&lt;/em&gt; (2017) : introduction de
+l&amp;rsquo;architecture Transformer, brique de base de tous les LLM modernes →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"&gt;Module 6, Le développement assisté par IA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Richard Gabriel, &lt;em&gt;Worse is Better&lt;/em&gt; (1989) : essai opposant la philosophie
+&amp;ldquo;the right thing&amp;rdquo; (MIT/Lisp) à &amp;ldquo;worse is better&amp;rdquo; (Unix/C), la simplicité
+d&amp;rsquo;implémentation l&amp;rsquo;emporte sur la perfection →
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/"&gt;Module 6, Le métier de développeur&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Comment je le déploie ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</guid><description>&lt;h1 id="comment-je-le-déploie-"&gt;Comment je le déploie ?&lt;a class="anchor" href="#comment-je-le-d%c3%a9ploie-"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dans le module 2, nous avons mis en place un pipeline d&amp;rsquo;intégration continue
 (CI) : à chaque commit poussé sur GitHub, une série de vérifications
