@@ -600,29 +600,57 @@ Les concepts centraux de l'OOP sont l'*encapsulation* (regrouper données et
 comportements dans un objet, en cachant les détails internes), l'*héritage*
 (créer de nouvelles classes à partir de classes existantes) et le
 *polymorphisme* (traiter des objets de types différents de manière uniforme).
-Reprenons notre exemple :
+Voici un exemple simple qui illustre ces trois concepts :
 
 {{< pyodide >}}
-class ListeDeNombres:
-    def __init__(self, nombres):
-        self.nombres = nombres
+class CompteBancaire:
+    def __init__(self, titulaire, solde=0):
+        self.titulaire = titulaire
+        self.solde = solde
 
-    def pairs(self):
-        return ListeDeNombres([n for n in self.nombres if n % 2 == 0])
+    def déposer(self, montant):
+        self.solde += montant
 
-    def au_carré(self):
-        return ListeDeNombres([n ** 2 for n in self.nombres])
+    def retirer(self, montant):
+        if montant > self.solde:
+            print("Fonds insuffisants")
+        else:
+            self.solde -= montant
 
-résultat = ListeDeNombres([1, 2, 3, 4, 5, 6, 7, 8])
-print(résultat.pairs().au_carré().nombres)  # [4, 16, 36, 64]
+    def afficher(self):
+        print(f"{self.titulaire} : {self.solde} $")
+
+class CompteÉpargne(CompteBancaire):
+    def __init__(self, titulaire, solde=0, taux=0.02):
+        super().__init__(titulaire, solde)
+        self.taux = taux
+
+    def appliquer_intérêts(self):
+        self.solde += self.solde * self.taux
+
+compte1 = CompteBancaire("Alice", 1000)
+compte2 = CompteÉpargne("Bob", 5000, taux=0.03)
+
+for compte in [compte1, compte2]:
+    compte.déposer(500)
+    compte.afficher()
+# Alice : 1500 $
+# Bob : 5500 $
+
+compte2.appliquer_intérêts()
+compte2.afficher()
+# Bob : 5665.0 $
 {{< /pyodide >}}
 
-On voit ici que les données (la liste de nombres) et les opérations (`pairs`,
-`au_carré`) sont regroupées dans un même objet. On peut aussi enchaîner les
-appels de méthodes, car chaque méthode retourne un nouvel objet du même type.
-L'OOP a dominé le développement logiciel pendant des décennies, notamment à
-travers des langages comme C++ (1985), Java (1995) et C# (2000), et elle reste
-le paradigme dominant dans l'industrie aujourd'hui.
+On voit ici les trois piliers de l'OOP en action. L'*encapsulation* : chaque
+compte regroupe ses données (`titulaire`, `solde`) et ses opérations (`déposer`,
+`retirer`). L'*héritage* : `CompteÉpargne` étend `CompteBancaire` en ajoutant
+un taux d'intérêt, sans réécrire la logique de base. Le *polymorphisme* : dans
+la boucle `for`, on traite les deux types de comptes de manière uniforme, car
+ils partagent la même interface. L'OOP a dominé le développement logiciel
+pendant des décennies, notamment à travers des langages comme C++ (1985), Java
+(1995) et C# (2000), et elle reste le paradigme dominant dans l'industrie
+aujourd'hui.
 
 ### Le paradigme fonctionnel
 
