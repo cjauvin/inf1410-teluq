@@ -2,7 +2,7 @@
 Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexes (non-atomiques) qui impliquent, en général, les types de base, d’une manière ou d’une autre (une liste, par exemple, doit être une liste de quelque chose, d’entiers, de strings, etc).
 "><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Survol rapide de la programmation"><meta property="og:description" content="Survol rapide de la programmation# Nous allons faire un survol rapide des idées les plus importantes et fondamentales de la programmation logicielle. Pour aller droit au but, nous allons utiliser le langage Python, qui est très facile à comprendre, presque même sans expérience préalable.
 Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexes (non-atomiques) qui impliquent, en général, les types de base, d’une manière ou d’une autre (une liste, par exemple, doit être une liste de quelque chose, d’entiers, de strings, etc)."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Survol rapide de la programmation"><meta itemprop=description content="Survol rapide de la programmation# Nous allons faire un survol rapide des idées les plus importantes et fondamentales de la programmation logicielle. Pour aller droit au but, nous allons utiliser le langage Python, qui est très facile à comprendre, presque même sans expérience préalable.
-Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexes (non-atomiques) qui impliquent, en général, les types de base, d’une manière ou d’une autre (une liste, par exemple, doit être une liste de quelque chose, d’entiers, de strings, etc)."><meta itemprop=wordCount content="4841"><title>Survol rapide de la programmation | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+Structures de données fondamentales# Au-delà des types de base, qui sont généralement des nombres de différents types (entiers, réels, etc) et les chaines de caractères (strings), nous avons les structures de données, qui sont des constructions logiques plus complexes (non-atomiques) qui impliquent, en général, les types de base, d’une manière ou d’une autre (une liste, par exemple, doit être une liste de quelque chose, d’entiers, de strings, etc)."><meta itemprop=wordCount content="4876"><title>Survol rapide de la programmation | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/intro/>Introduction</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle checked>
@@ -66,7 +66,7 @@ print(s)</textarea><div class=pyodide-toolbar><button id=pyodide-3-run onclick='
 la différence entre ces deux structures de données à l&rsquo;apparence si semblable,
 pour la raison fondamentale suivante : <strong>chercher un item dans une liste a un coût
 proportionnel à la taille de la liste, tandis que chercher un item dans un <code>set</code>
-a un coût fixe (et très faible)</strong> :</p><div class=pyodide-block id=pyodide-4><textarea id=pyodide-4-code>print(20 in a)  # coût proportionnel à la taille de `a`
+se fait en temps constant en moyenne</strong> :</p><div class=pyodide-block id=pyodide-4><textarea id=pyodide-4-code>print(20 in a)  # coût proportionnel à la taille de `a`
 print(20 in s)  # coût fixe, extrêmement faible !</textarea><div class=pyodide-toolbar><button id=pyodide-4-run onclick='pyodideRun("pyodide-4")'>&#9654; Exécuter</button>
 <button id=pyodide-4-reset onclick='pyodideReset("pyodide-4")'>&#8634; Réinitialiser</button>
 <span class=pyodide-status id=pyodide-4-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-4-output></pre></div><label class=book-image for=book-image-toggle-5><input class="hidden toggle" type=checkbox id=book-image-toggle-5>
@@ -222,10 +222,12 @@ les applications distribuées.</p><div class=highlight><pre tabindex=0 style=col
 </span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;pays&#34;</span>: <span style=color:#e6db74>&#34;Canada&#34;</span>
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>}</span></span></code></pre></div><p>La totalité d&rsquo;un document JSON est souvent un dictionnaire (que l&rsquo;on reconnaît à
-l&rsquo;usage des <code>{}</code>), mais il existe toutefois d&rsquo;autres formats (JSONL, NDJSON,
-etc). Ce dictionnaire contient la plupart du temps des champs (clés) dont les
-valeurs peuvent être, elles-mêmes, des dictionnaires, des listes ou des valeurs
-scalaires (nombres, chaines de caractères ou valeurs booléennes).</p><h2 id=complexité-algorithmique-et-performance>Complexité algorithmique et performance<a class=anchor href=#complexit%c3%a9-algorithmique-et-performance>#</a></h2><p>Le sujet de la <a href=https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_la_complexit%C3%A9_%28informatique_th%C3%A9orique%29>complexité
+l&rsquo;usage des <code>{}</code>), mais un document JSON complet peut aussi être un tableau, une
+chaîne, un nombre, un booléen ou <code>null</code>. Il existe aussi des formats apparentés
+(JSONL, NDJSON, etc). Quand le document JSON est un dictionnaire, il contient la
+plupart du temps des champs (clés) dont les valeurs peuvent être, elles-mêmes,
+des dictionnaires, des listes ou des valeurs scalaires (nombres, chaines de
+caractères ou valeurs booléennes).</p><h2 id=complexité-algorithmique-et-performance>Complexité algorithmique et performance<a class=anchor href=#complexit%c3%a9-algorithmique-et-performance>#</a></h2><p>Le sujet de la <a href=https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_la_complexit%C3%A9_%28informatique_th%C3%A9orique%29>complexité
 algorithmique</a>
 est en général présenté et discuté de manière très mathématique (et même parfois
 carrément
@@ -288,15 +290,15 @@ moins la nouvelle valeur&rdquo; se trouve dans le <code>set</code> :</p><label c
 
 print(&#34;Fonction &#39;two_sum_linear_version&#39; définie.&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-18-run onclick='pyodideRun("pyodide-18")'>&#9654; Exécuter</button>
 <button id=pyodide-18-reset onclick='pyodideReset("pyodide-18")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-18-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-18-output></pre></div><p>La raison pour laquelle cet algorithme est beaucoup plus efficace est dû au fait
-que tester l&rsquo;inclusion d&rsquo;un item dans un <code>set</code> (ce qui se fait, dans le code
-ci-haut, à l&rsquo;aide de l&rsquo;opérateur <code>in</code>, dans la ligne <code>if target in seen</code>),
+<span class=pyodide-status id=pyodide-18-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-18-output></pre></div><p>La raison pour laquelle cet algorithme est beaucoup plus efficace est due au
+fait que tester l&rsquo;inclusion d&rsquo;un item dans un <code>set</code> (ce qui se fait, dans le
+code ci-haut, à l&rsquo;aide de l&rsquo;opérateur <code>in</code>, dans la ligne <code>if target in seen</code>),
 contrairement au fait de le faire dans une liste, est extrêmement efficace : si
 on utilise la notation &ldquo;grand O&rdquo;, on dit que chercher un item dans une liste est
-$O(1)$, c&rsquo;est-à-dire que cela se fait en temps constant. Mais étant donné que
-nous devons tout de même passer à travers tous les items de la liste pour les
-tester, la complexité finale de l&rsquo;algorithme reste tout de même $O(N)$, ce qu&rsquo;on
-appelle une complexité linéaire.</p><p>Pour comparer de manière empirique la performance de ces deux algorithmes, nous
+$O(N)$, alors que le faire dans un <code>set</code> est en moyenne $O(1)$, c&rsquo;est-à-dire en
+temps constant. Mais étant donné que nous devons tout de même passer à travers
+tous les items de la liste une seule fois, la complexité finale de l&rsquo;algorithme
+reste tout de même $O(N)$, ce qu&rsquo;on appelle une complexité linéaire.</p><p>Pour comparer de manière empirique la performance de ces deux algorithmes, nous
 avons besoin de considérer plusieurs résultats (c-à-d plusieurs sommes
 possibles), car un seul appel pourrait être &ldquo;chanceux&rdquo; (la première paire
 considérée est tout de suite la bonne). On peut utiliser cette fonction, qui
@@ -386,14 +388,15 @@ maintenant, il s&rsquo;agit donc d&rsquo;une performance intermédiaire, entre $
 $O(N)$. Dans la pratique, si un tel algorithme est possible, c&rsquo;est souvent
 extrêmement avantageux, car la fonction $log(N)$ progresse beaucoup plus
 lentement qu&rsquo;une fonction linéaire ($O(N)$).</p><p>Dans le problème précédent, une difficulté était cachée : comment fait-on pour
-trier une liste, et quel coût ça a? Il s&rsquo;avère que la méthode la plus rapide
-pour trier une liste est $O(N log N)$, ce qu&rsquo;on appelle parfois une méthode
-supra-linéaire, et qui se trouve entre $O(N)$ et $O(N^2)$. Il est
-mathématiquement impossible de faire mieux qu&rsquo;une performance supra-linéaire,
-pour trier une liste de nombres ou d&rsquo;objets quelconques.</p><p>Finalement, certains algorithmes ont des profils de performance encore plus
+trier une liste, et quel coût ça a? Pour les algorithmes de tri fondés sur des
+comparaisons, la meilleure performance générale possible est $O(N log N)$, ce
+qu&rsquo;on appelle parfois une méthode supra-linéaire, et qui se trouve entre $O(N)$
+et $O(N^2)$. Il est mathématiquement impossible de faire mieux qu&rsquo;une
+performance supra-linéaire dans ce cadre général.</p><p>Finalement, certains algorithmes ont des profils de performance encore plus
 coûteux que la classe polynomiale : ils nécessitent un temps exponentiel, par
-exemple $O(2^N)$. Voici certains exemples fameux de problèmes dont les algorithmes
-pour produire une solution optimale sont exponentiels :</p><label class=book-image for=book-image-toggle-27><input class="hidden toggle" type=checkbox id=book-image-toggle-27>
+exemple $O(2^N)$. Voici certains exemples fameux de problèmes pour lesquels les
+algorithmes exacts ou les généralisations théoriques les plus naturelles mènent
+à des coûts exponentiels :</p><label class=book-image for=book-image-toggle-27><input class="hidden toggle" type=checkbox id=book-image-toggle-27>
 <img src=https://cjauvin.github.io/inf1410-teluq/docs/module2/programmation/tsp.png alt loading=lazy title>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-27"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le <a href=https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_voyageur_de_commerce>problème du voyageur de
 commerce</a>,
@@ -567,10 +570,9 @@ d&rsquo;un typage statique optionnel à des langages historiquement dynamiques. 
 introduit les type hints à partir de la version 3.5, et TypeScript est
 essentiellement JavaScript avec un système de types statiques ajouté par-dessus.</p><p>En Python, les type hints permettent d&rsquo;annoter les types des paramètres et des
 valeurs de retour d&rsquo;une fonction :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>addition</span>(a: int, b: int) <span style=color:#f92672>-&gt;</span> int:
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b</span></span></code></pre></div><p>Il est important de comprendre que Python lui-même ignore complètement ces
-annotations au moment de l&rsquo;exécution. Elles servent plutôt de documentation
-formelle, qui peut être vérifiée par un outil externe comme <code>mypy</code>, avant
-l&rsquo;exécution :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ mypy exemple.py
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b</span></span></code></pre></div><p>Il est important de comprendre que Python n&rsquo;impose pas lui-même ces annotations
+au moment de l&rsquo;exécution. Elles servent plutôt de documentation formelle, qui
+peut être vérifiée par un outil externe comme <code>mypy</code>, avant l&rsquo;exécution :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ mypy exemple.py
 </span></span><span style=display:flex><span>exemple.py:4: error: Argument <span style=color:#ae81ff>2</span> to <span style=color:#e6db74>&#34;addition&#34;</span> has incompatible type <span style=color:#e6db74>&#34;str&#34;</span>; expected <span style=color:#e6db74>&#34;int&#34;</span></span></span></code></pre></div><p>On obtient ainsi une partie des avantages du typage statique (la détection
 précoce d&rsquo;erreurs), tout en conservant la flexibilité d&rsquo;un langage dynamique.
 C&rsquo;est un compromis de plus en plus populaire dans l&rsquo;industrie.</p><h3 id=les-types-et-les-schémas>Les types et les schémas<a class=anchor href=#les-types-et-les-sch%c3%a9mas>#</a></h3><p>L&rsquo;idée de contraindre la forme des données ne se limite pas aux langages de
