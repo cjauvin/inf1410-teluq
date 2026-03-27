@@ -580,8 +580,44 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   - Fred Brooks revisité : "No Silver Bullet" (1986), complexité essentielle vs accidentelle,
     transition vers la section sur l'IA
 
-## Le développement assisté par IA (à développer)
-- Historique : autocomplétion → Copilot (2021) → ChatGPT (2022) → agents (Claude Code, Cursor, etc.)
-- Le "vibe coding" et ses limites
-- Impact sur les pratiques du GL : tests encore plus importants, code review change de nature
-- Questions ouvertes : propriété intellectuelle, fiabilité, dépendance
+## Le développement assisté par IA (complété)
+- D'où vient l'intelligence artificielle :
+  - IA symbolique (Turing 1950, Dartmouth 1956, systèmes experts, hivers de l'IA),
+    héritage dans la programmation moderne (compilateurs, parsing, Intellisense)
+  - Machine learning (perceptron 1958, Minsky/Papert 1969, backpropagation
+    Rumelhart/Hinton/Williams 1986, SVM, applications concrètes années 90-2000)
+  - Deep learning et Montréal (Hinton/LeCun/Bengio, prix Turing 2018, MILA,
+    ImageNet/AlexNet 2012)
+  - Modèles de langage : Bengio 2003 (word embeddings), Bahdanau/Cho/Bengio 2014
+    (mécanisme d'attention, MILA), Transformer (Google 2017, "Attention is All You Need"),
+    GPT/GPT-2/GPT-3 (OpenAI 2018-2020), capacités émergentes des LLM
+- L'IA entre dans l'éditeur :
+  - Autocomplétion symbolique (Intellisense 1996) vs neuronale (Kite 2014, Tabnine 2018)
+  - GitHub Copilot (2021, Codex/GPT-3), moment charnière
+  - ChatGPT (novembre 2022), chute du trafic Stack Overflow
+  - Agents : Cursor, Claude Code, passage de l'assistant à l'agent
+- Le vibe coding :
+  - Andrej Karpathy (février 2025), démocratisation vs fragilité
+  - Dijkstra, "On the foolishness of 'natural language programming'" (1979),
+    l'ambiguïté comme problème fondamental
+  - L'analogie compilateur/LLM : chaque génération monte en abstraction,
+    mais différences clés (déterminisme, garanties, ambiguïté)
+  - Naur : code sans théorie = legacy code instantané (Feathers),
+    accélérateur pour seniors, piège pour débutants
+- Ce qui change dans les pratiques du GL :
+  - Tests (module 2) : filet de sécurité indispensable, TDD inversé
+  - Code review (module 4) : hallucinations plausibles
+  - Architecture (module 3) : bon design rend l'IA plus efficace
+  - Débogage : reste fondamentalement humain
+- Démonstrations avec Claude Code :
+  - Exploration d'un codebase (Requests) : architecture en couches, chemin d'une requête,
+    pattern Adapter, reconstruction de la théorie du programme
+  - Création d'une application (mdcheck) : cycle spécifier → générer → tester → corriger,
+    bug de la regex (images Markdown), importance de la relecture critique
+- Questions ouvertes :
+  - Propriété intellectuelle (recours collectif Copilot 2022)
+  - Fiabilité et hallucinations
+  - Dépendance et déqualification (deskilling), parallèle avec les pilotes d'avion
+  - Position de Yoshua Bengio sur les risques de l'IA (2023), parallèle Oppenheimer
+  - Retour à Brooks : déplacement de frontière entre complexité accidentelle et essentielle
+- Conclusion du cours : Naur, la valeur du développeur dans la compréhension, pas la production

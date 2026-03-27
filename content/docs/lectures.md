@@ -63,6 +63,10 @@ intégrées dans le cours.)*
   croissance rapide des startups technologiques, tension entre vitesse et
   qualité →
   [Module 6, L'économie du logiciel]({{< ref "/docs/module6/20-economie" >}})
+- Michael Feathers, *Working Effectively with Legacy Code* (2004) : définition
+  du legacy code comme code sans tests, techniques pour travailler sur du code
+  existant →
+  [Module 6, Le métier de développeur]({{< ref "/docs/module6/50-metier" >}})
 
 ## Essais et manifestes
 
@@ -81,9 +85,11 @@ intégrées dans le cours.)*
 - David Parnas, *On the Criteria To Be Used in Decomposing Systems into Modules*
   (1972) : introduction de l'information hiding → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Peter Naur, *Programming as Theory Building* (1985) : programmer comme
-  construction d'un modèle mental → [Module 2, Introduction]({{< ref "/docs/module2" >}})
+  construction d'un modèle mental → [Module 2, Introduction]({{< ref "/docs/module2" >}}),
+  [Module 6, Le développement assisté par IA]({{< ref "/docs/module6/60-ia" >}})
 - Fred Brooks, *No Silver Bullet* (1986) : complexité essentielle vs
-  accidentelle → [Module 3, Introduction]({{< ref "/docs/module3" >}})
+  accidentelle → [Module 3, Introduction]({{< ref "/docs/module3" >}}),
+  [Module 6, Le développement assisté par IA]({{< ref "/docs/module6/60-ia" >}})
 - Melvin Conway, *How Do Committees Invent?* (1968) : la structure d'un système
   reflète celle de l'organisation qui le produit (loi de Conway) →
   [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}}),
@@ -97,6 +103,10 @@ intégrées dans le cours.)*
   données → [Module 2, Survol rapide de la programmation]({{< ref "/docs/module2/10-programmation" >}})
 - Edsger Dijkstra, *Go To Statement Considered Harmful* (1968) : plaidoyer pour
   la programmation structurée → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}})
+- Edsger Dijkstra, *On the foolishness of "natural language programming"*
+  (EWD667, 1979) : critique de l'idée de programmer en langage naturel,
+  l'ambiguïté comme problème fondamental →
+  [Module 6, Le développement assisté par IA]({{< ref "/docs/module6/60-ia" >}})
 - Martin Fowler, *Continuous Integration* (2006) : article de référence sur
   l'intégration continue → [Module 2, L'intégration continue]({{< ref "/docs/module2/50-ci" >}})
 - Roy Fielding, *Architectural Styles and the Design of Network-based Software
@@ -122,7 +132,8 @@ intégrées dans le cours.)*
   [Module 3, Les données (stockage)]({{< ref "/docs/module3/40-données/20-stockage" >}})
 - Tomas Mikolov et al., *Efficient Estimation of Word Representations in Vector
   Space* (2013) : introduction de Word2Vec et des embeddings de mots →
-  [Module 3, Les données (stockage)]({{< ref "/docs/module3/40-données/20-stockage" >}})
+  [Module 3, Les données (stockage)]({{< ref "/docs/module3/40-données/20-stockage" >}}),
+  [Module 6, Le développement assisté par IA]({{< ref "/docs/module6/60-ia" >}})
 - Marc Shapiro, Nuno Preguiça, Carlos Baquero et Marek Zawirski, *Conflict-free
   Replicated Data Types* (2011) : formalisation des CRDTs →
   [Module 3, Les données (au-delà des BD)]({{< ref "/docs/module3/40-données/30-au-delà" >}})
@@ -152,3 +163,22 @@ intégrées dans le cours.)*
   formulation du théorème CAP (Consistency, Availability, Partition tolerance),
   prouvé formellement par Seth Gilbert et Nancy Lynch (2002) →
   [Module 5, Est-ce que ça va tenir la charge ?]({{< ref "/docs/module5/60-scalabilite" >}})
+- Alan Turing, *Computing Machinery and Intelligence* (1950) : article fondateur
+  posant la question "Can machines think?" et proposant le test de Turing →
+  [Module 6, Le développement assisté par IA]({{< ref "/docs/module6/60-ia" >}})
+- Yoshua Bengio, Réjean Ducharme, Pascal Vincent et Christian Jauvin,
+  *A Neural Probabilistic Language Model* (2003) : introduction des word
+  embeddings appris conjointement avec un modèle de langage neuronal, fondation
+  des LLM modernes →
+  [Module 6, Le développement assisté par IA]({{< ref "/docs/module6/60-ia" >}})
+- Dzmitry Bahdanau, Kyunghyun Cho et Yoshua Bengio, *Neural Machine Translation
+  by Jointly Learning to Align and Translate* (2014) : introduction du mécanisme
+  d'attention, fondation du Transformer →
+  [Module 6, Le développement assisté par IA]({{< ref "/docs/module6/60-ia" >}})
+- Ashish Vaswani et al., *Attention is All You Need* (2017) : introduction de
+  l'architecture Transformer, brique de base de tous les LLM modernes →
+  [Module 6, Le développement assisté par IA]({{< ref "/docs/module6/60-ia" >}})
+- Richard Gabriel, *Worse is Better* (1989) : essai opposant la philosophie
+  "the right thing" (MIT/Lisp) à "worse is better" (Unix/C), la simplicité
+  d'implémentation l'emporte sur la perfection →
+  [Module 6, Le métier de développeur]({{< ref "/docs/module6/50-metier" >}})

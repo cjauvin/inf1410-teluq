@@ -409,3 +409,423 @@ Le développeur qui comprend les fondamentaux (comment fonctionne la mémoire, c
 que fait réellement une requête SQL, pourquoi une condition de course se produit)
 sera toujours plus efficace, avec ou sans IA, que celui qui ne fait que
 manipuler des abstractions sans en comprendre les mécanismes sous-jacents.
+
+## Démonstrations avec Claude Code
+
+Les sections précédentes ont discuté du développement assisté par IA de manière
+conceptuelle. Pour rendre ces idées concrètes, cette section présente deux
+démonstrations réalisées avec Claude Code, un agent de développement en ligne de
+commande développé par Anthropic. Claude Code ne se contente pas de compléter du
+code dans un éditeur : il peut naviguer dans un dépôt, lire des fichiers,
+exécuter des commandes, lancer des tests et itérer sur son travail. Les deux
+démonstrations illustrent des usages très différents mais complémentaires :
+explorer un codebase existant pour en comprendre l'architecture, puis créer une
+petite application de zéro.
+
+### Explorer un codebase : Requests
+
+L'une des situations les plus courantes pour un développeur est d'arriver sur
+un projet existant et de devoir en comprendre la structure, les choix de
+conception et le fonctionnement interne. C'est exactement la situation décrite
+par Peter Naur : il faut reconstruire la théorie d'un programme qu'on n'a pas
+écrit. Traditionnellement, cela implique de lire le code, la documentation,
+l'historique git, et de poser des questions aux collègues qui étaient là avant.
+Un agent IA peut accélérer considérablement ce processus.
+
+Pour cette démonstration, nous utilisons Requests, la bibliothèque HTTP la plus
+populaire de l'écosystème Python. Créée par Kenneth Reitz en 2011, Requests est
+utilisée par pratiquement tous les projets Python qui ont besoin de faire des
+appels HTTP. Sa popularité repose sur une API d'une simplicité remarquable :
+`requests.get("https://example.com")` suffit pour faire une requête. Mais
+derrière cette façade simple se cache une architecture plus complexe, avec la
+gestion des sessions, des cookies, des redirections, de l'authentification et
+des adaptateurs de transport. C'est un excellent terrain d'exploration.
+
+Voici une session avec Claude Code, où on lui demande d'explorer le dépôt de
+Requests comme le ferait un nouveau développeur qui cherche à comprendre le
+projet.
+
+**Première question : la vue d'ensemble.**
+
+```shell
+$ claude "Donne-moi un portrait de l'architecture de ce projet.
+         Quels sont les fichiers principaux et leurs responsabilités ?"
+```
+
+Claude Code commence par lister les fichiers source et compter leurs lignes,
+puis produit une analyse :
+
+> Le code source de Requests tient dans 18 fichiers Python pour environ 5 600
+> lignes au total. L'architecture suit un pattern en couches très lisible :
+>
+> - **`api.py`** (157 lignes) : la façade publique. C'est le fichier le plus
+>   simple du projet : les fonctions `get()`, `post()`, `put()`, etc. que tout
+>   le monde utilise. Chaque fonction ne fait que créer une `Session` et lui
+>   déléguer le travail.
+> - **`sessions.py`** (834 lignes) : le coeur du projet. La classe `Session`
+>   gère la persistance des cookies, des headers, de l'authentification et des
+>   proxies entre les requêtes.
+> - **`models.py`** (1 041 lignes) : les objets de données. Définit `Request`,
+>   `PreparedRequest` et `Response`, les trois classes qui modélisent le cycle
+>   de vie d'une requête HTTP.
+> - **`adapters.py`** (697 lignes) : la couche de transport. Le `HTTPAdapter`
+>   fait le pont entre Requests et urllib3, la bibliothèque qui fait le vrai
+>   travail de connexion réseau.
+>
+> Le reste est constitué de modules utilitaires : `cookies.py` pour la gestion
+> des cookies, `auth.py` pour l'authentification HTTP, `utils.py` pour des
+> fonctions auxiliaires, `exceptions.py` pour la hiérarchie d'exceptions.
+
+Ce premier échange illustre un usage fondamental : obtenir une carte mentale
+d'un projet en quelques secondes. Un développeur qui arriverait sur ce dépôt
+sans connaître Requests aurait besoin de plusieurs heures de lecture pour
+construire ce portrait. L'agent le produit en lisant et en analysant les
+fichiers automatiquement.
+
+**Deuxième question : suivre le chemin d'une requête.**
+
+```shell
+$ claude "Quand j'écris requests.get('https://example.com'),
+         que se passe-t-il exactement ? Trace le chemin du code,
+         fichier par fichier."
+```
+
+> Voici le chemin complet, étape par étape :
+>
+> 1. **`api.py`, ligne 73** : `get()` appelle `request("get", url)`.
+> 2. **`api.py`, ligne 58** : `request()` crée une `Session` temporaire avec
+>    `with sessions.Session() as session:` et appelle `session.request()`.
+> 3. **`sessions.py`, `Session.request()`** : la session construit un objet
+>    `Request`, le transforme en `PreparedRequest` via `prepare_request()` (ce
+>    qui résout les headers, fusionne les cookies de session, encode l'URL),
+>    puis appelle `self.send()`.
+> 4. **`sessions.py`, `Session.send()`** : récupère le bon adaptateur de
+>    transport en cherchant le préfixe d'URL (`https://` → `HTTPAdapter`),
+>    puis appelle `adapter.send()`.
+> 5. **`adapters.py`, `HTTPAdapter.send()`** : c'est ici que la requête HTTP
+>    est réellement envoyée, via urllib3. L'adaptateur gère le pool de
+>    connexions, les timeouts, la vérification TLS, et encapsule la réponse
+>    urllib3 dans un objet `Response` de Requests.
+>
+> Un détail de conception intéressant : chaque appel à `requests.get()` crée
+> et détruit une `Session`. C'est pratique pour des appels isolés, mais si vous
+> faites plusieurs requêtes vers le même serveur, utiliser directement un objet
+> `Session` est plus efficace parce qu'il réutilise les connexions TCP.
+
+Ce type d'analyse serait fastidieux à faire manuellement : il faut ouvrir
+quatre fichiers, trouver les bons points d'entrée, suivre les appels de
+méthode en méthode. L'agent le fait en quelques secondes et produit une
+explication linéaire qui reconstruit la *théorie* du programme, au sens de
+Naur.
+
+**Troisième question : un détail architectural surprenant.**
+
+```shell
+$ claude "Quel est le rôle du pattern Adapter ici ?
+         Pourquoi est-ce qu'on ne fait pas simplement les appels
+         HTTP directement dans Session ?"
+```
+
+> Le `HTTPAdapter` implémente le pattern adaptateur (Adapter) du Gang of Four.
+> L'idée est de découpler l'interface de haut niveau (`Session`) du mécanisme
+> de transport sous-jacent (urllib3). Concrètement, dans le `__init__` de
+> `Session`, on trouve :
+>
+> ```python
+> self.adapters = OrderedDict()
+> self.mount("https://", HTTPAdapter())
+> self.mount("http://", HTTPAdapter())
+> ```
+>
+> La méthode `mount()` associe un préfixe d'URL à un adaptateur. Quand
+> `Session.send()` doit envoyer une requête, elle cherche l'adaptateur dont le
+> préfixe correspond à l'URL. Ce design a plusieurs avantages :
+>
+> - On peut remplacer le transport sans modifier `Session`. Par exemple, la
+>   bibliothèque `requests-mock` monte un faux adaptateur pour les tests.
+> - On peut monter des adaptateurs différents pour des hôtes différents
+>   (un adaptateur avec des certificats spécifiques pour un serveur interne,
+>   par exemple).
+> - La bibliothèque `requests-toolbelt` fournit des adaptateurs spécialisés
+>   pour SOCKS, pour les sockets Unix, etc.
+>
+> C'est un excellent exemple de la séparation des préoccupations et du
+> principe d'inversion de dépendances (le "D" de SOLID) : `Session` dépend
+> d'une abstraction (l'interface d'un adaptateur), pas d'une implémentation
+> concrète.
+
+Cet échange illustre comment l'agent peut relier du code concret à des
+concepts théoriques que l'étudiant a déjà vus : le pattern adaptateur, SOLID,
+la séparation des préoccupations (module 3). C'est exactement le type de lien
+qu'un développeur senior ferait naturellement, et que l'IA peut aider un
+développeur moins expérimenté à construire.
+
+L'exploration d'un codebase avec un agent IA n'est pas du vibe coding : on ne
+génère pas de code à l'aveugle, on construit activement une compréhension. Le
+développeur pose des questions, évalue les réponses, approfondit les points qui
+l'intéressent. L'IA accélère la construction de la théorie du programme, mais
+c'est toujours le développeur qui la construit.
+
+### Créer une application : mdcheck
+
+La deuxième démonstration illustre l'autre usage fondamental : construire
+quelque chose de neuf. L'objectif est de créer un petit utilitaire en ligne de
+commande qui vérifie que les liens dans des fichiers Markdown sont valides. Un
+outil simple, utile, et dont le périmètre est assez restreint pour tenir dans
+une démonstration.
+
+**Étape 1 : décrire ce qu'on veut.**
+
+```shell
+$ claude "Crée un utilitaire Python appelé mdcheck qui vérifie les liens
+         HTTP dans des fichiers Markdown. Il doit extraire tous les liens
+         au format [texte](url), vérifier ceux qui commencent par http://
+         ou https://, et afficher le résultat. Utilise la bibliothèque
+         requests. Écris aussi les tests avec pytest."
+```
+
+Claude Code crée la structure du projet, installe les dépendances avec `uv`,
+et produit deux fichiers. Le premier, `main.py`, contient trois fonctions :
+
+```python
+def extract_links(text: str) -> list[tuple[str, str]]:
+    """Extrait les liens Markdown d'un texte."""
+    pattern = r"\[([^\]]+)\]\(([^)]+)\)"
+    return re.findall(pattern, text)
+
+def check_url(url: str, timeout: int = 10) -> tuple[bool, str]:
+    """Vérifie si une URL est accessible."""
+    try:
+        response = requests.head(url, timeout=timeout, allow_redirects=True)
+        if response.status_code < 400:
+            return True, "OK"
+        return False, f"HTTP {response.status_code}"
+    except requests.ConnectionError:
+        return False, "Connexion impossible"
+    except requests.Timeout:
+        return False, "Timeout"
+
+def check_file(path: Path) -> list[dict]:
+    """Vérifie tous les liens dans un fichier Markdown."""
+    text = path.read_text()
+    links = extract_links(text)
+    results = []
+    for label, url in links:
+        if url.startswith("http://") or url.startswith("https://"):
+            ok, message = check_url(url)
+            results.append({"file": str(path), "label": label,
+                            "url": url, "ok": ok, "message": message})
+    return results
+```
+
+Le code est propre, lisible, et fait ce qu'on a demandé. Le deuxième fichier,
+`test_mdcheck.py`, contient des tests pour l'extraction de liens (lien simple,
+liens multiples, pas de lien, lien avec ancre) et pour la vérification d'URL
+(réponse 200, 404, timeout, erreur de connexion), avec des mocks pour éviter
+de faire de vraies requêtes HTTP pendant les tests.
+
+**Étape 2 : exécuter les tests.**
+
+```shell
+$ uv run pytest test_mdcheck.py -v
+test_mdcheck.py::TestExtractLinks::test_single_link PASSED
+test_mdcheck.py::TestExtractLinks::test_multiple_links PASSED
+test_mdcheck.py::TestExtractLinks::test_no_links PASSED
+test_mdcheck.py::TestExtractLinks::test_link_with_anchor PASSED
+test_mdcheck.py::TestExtractLinks::test_relative_link PASSED
+test_mdcheck.py::TestCheckUrl::test_url_ok PASSED
+test_mdcheck.py::TestCheckUrl::test_url_redirect PASSED
+test_mdcheck.py::TestCheckUrl::test_url_not_found PASSED
+test_mdcheck.py::TestCheckUrl::test_url_timeout PASSED
+test_mdcheck.py::TestCheckUrl::test_url_connection_error PASSED
+============================== 11 passed in 0.52s ==============================
+```
+
+Tous les tests passent. Le code fonctionne. À ce stade, un développeur en mode
+vibe coding pourrait s'arrêter là, satisfait. Mais un développeur qui construit
+une théorie de son programme va se poser des questions.
+
+**Étape 3 : trouver un problème.**
+
+En relisant le code, on remarque quelque chose. La regex
+`\[([^\]]+)\]\(([^)]+)\)` capture tous les liens Markdown, y compris les images.
+En Markdown, une image s'écrit `![texte alternatif](url)` et un lien s'écrit
+`[texte](url)`. La seule différence est le `!` devant les crochets. Notre regex
+ne fait pas la distinction : elle va aussi capturer les URLs d'images et tenter
+de les vérifier comme des liens. Ce n'est pas un bug catastrophique, mais c'est
+un comportement incorrect : un vérificateur de liens ne devrait pas signaler
+une image comme un lien cassé si le serveur d'images retourne une erreur.
+
+```shell
+$ claude "La regex dans extract_links capture aussi les images Markdown
+         (![alt](url)). Il faut les exclure. Ajoute un test pour ce cas
+         et corrige la regex."
+```
+
+Claude Code modifie la regex en ajoutant un *negative lookbehind* :
+
+```python
+pattern = r"(?<!!)\[([^\]]+)\]\(([^)]+)\)"
+```
+
+Le `(?<!!)` signifie "pas précédé d'un point d'exclamation". Il ajoute
+aussi le test correspondant :
+
+```python
+def test_image_not_captured(self):
+    text = "![Logo](https://example.com/logo.png)"
+    links = extract_links(text)
+    assert links == []
+```
+
+Les tests passent à nouveau, et le comportement est maintenant correct.
+
+Cette séquence illustre exactement pourquoi la compréhension reste essentielle
+dans le développement assisté par IA. L'IA a produit du code qui fonctionnait
+et passait tous ses tests, mais elle n'avait pas pensé à un cas que la
+spécification initiale ne mentionnait pas. C'est le développeur, en relisant
+le code et en réfléchissant au domaine (la syntaxe Markdown), qui a identifié
+le problème. Sans cette relecture critique, le bug serait resté dans le code,
+invisible parce qu'aucun test ne le cherchait. C'est la différence entre
+produire du code et construire une théorie du programme.
+
+## Questions ouvertes
+
+Le développement assisté par IA soulève des questions qui dépassent la technique
+et qui n'ont pas encore de réponses définitives. En voici quelques-unes parmi
+les plus débattues.
+
+### Propriété intellectuelle
+
+Les LLM qui génèrent du code ont été entraînés sur d'immenses corpus de code
+source, dont une grande partie provient de dépôts open source hébergés sur
+GitHub. En 2022, un recours collectif a été déposé contre GitHub, Microsoft et
+OpenAI, alléguant que Copilot reproduisait parfois du code protégé par des
+licences open source sans en respecter les termes (attribution, copyleft). La
+question juridique reste ouverte : le code généré par un LLM est-il une oeuvre
+dérivée du code d'entraînement ? Si un modèle produit un bloc de code
+fonctionnellement identique à un extrait sous licence GPL, l'utilisateur est-il
+tenu de respecter les termes de cette licence ? Les tribunaux n'ont pas encore
+tranché. Pour les développeurs, la prudence recommande de traiter le code
+généré par IA comme on traiterait du code trouvé sur Stack Overflow : utile
+comme point de départ, mais à valider, à comprendre, et à adapter à son propre
+contexte.
+
+### Fiabilité et hallucinations
+
+Les LLM produisent des réponses statistiquement plausibles, pas
+nécessairement correctes. En génération de texte, on appelle ce phénomène une
+"hallucination" : le modèle invente des faits avec aplomb. En génération de
+code, les hallucinations prennent des formes spécifiques : des appels à des
+fonctions qui n'existent pas dans la bibliothèque utilisée, des paramètres
+inventés, des algorithmes qui semblent corrects mais qui ont des bugs subtils
+dans les cas limites. Le problème est que le code halluciné a l'air
+professionnel : il est bien formaté, utilise les bonnes conventions de nommage,
+et peut même être accompagné de commentaires convaincants. C'est précisément
+ce qui le rend dangereux pour un développeur qui ne vérifie pas. L'analogie
+avec le compilateur trouve ici sa limite la plus nette : un compilateur ne
+peut pas halluciner.
+
+### Dépendance et déqualification
+
+Si les développeurs s'habituent à laisser l'IA écrire leur code, risquent-ils
+de perdre la capacité de le faire eux-mêmes ? La question n'est pas nouvelle :
+on la posait déjà pour les calculatrices en mathématiques, pour les GPS en
+navigation, pour les correcteurs orthographiques en écriture. Le phénomène de
+déqualification (*deskilling*) est bien documenté dans d'autres professions :
+les pilotes d'avion qui s'appuient trop sur le pilotage automatique peuvent
+avoir des difficultés à reprendre le contrôle manuellement en situation
+d'urgence. Pour le développement logiciel, le risque est que des développeurs
+juniors n'acquièrent jamais les compétences fondamentales (débogage,
+raisonnement algorithmique, compréhension de l'architecture) parce qu'ils
+n'ont jamais eu à les exercer. Un développeur senior qui utilise l'IA comme
+accélérateur garde ses compétences intactes, mais un débutant qui n'a jamais
+résolu un bug sans assistance pourrait être démuni le jour où l'IA ne peut pas
+l'aider. C'est un argument fort pour que la formation en informatique continue
+d'exiger la maîtrise des fondamentaux, même dans un monde où l'IA est
+omniprésente.
+
+### La position de Yoshua Bengio
+
+Depuis 2023, Yoshua Bengio, dont les travaux fondateurs ont rendu les LLM
+possibles, est devenu l'une des voix les plus importantes dans le débat sur les
+risques de l'IA. En 2023, il a cosigné une lettre ouverte appelant à une
+pause dans le développement des systèmes d'IA plus puissants que GPT-4, le
+temps de mettre en place des mécanismes de sécurité adéquats. Sa position n'est
+pas celle d'un technophobe : c'est celle d'un scientifique qui comprend
+intimement la technologie et qui estime que la vitesse de développement dépasse
+notre capacité à en comprendre et à en gérer les conséquences. Bengio a
+comparé la situation à celle d'un chimiste qui découvrirait une réaction
+permettant de produire une énergie considérable mais aussi de causer des
+dommages immenses : la bonne réponse n'est pas d'arrêter la recherche, mais
+d'exiger de la prudence et des garde-fous avant le déploiement à grande échelle.
+
+Sa position illustre une tension fondamentale dans l'histoire de la technologie.
+Les personnes les mieux placées pour comprendre les risques d'une innovation
+sont souvent celles qui l'ont créée, mais elles sont rarement celles qui
+décident de la manière dont elle est déployée. Oppenheimer et la bombe
+atomique, les ingénieurs qui ont alerté sur le Therac-25 ou le Boeing 737 MAX
+(section précédente) : l'histoire est remplie de cas où l'expertise technique
+a été ignorée par les décideurs. Le mérite de Bengio est d'utiliser sa
+crédibilité scientifique pour forcer le débat public, quitte à être critiqué
+par une partie de l'industrie qui préfère accélérer sans contrainte.
+
+### Retour à Brooks : silver bullet ou pas ?
+
+Alors, l'IA générative est-elle la silver bullet que Brooks jugeait impossible ?
+La réponse honnête est : pas encore, et probablement pas au sens où Brooks
+l'entendait. Brooks distinguait la complexité accidentelle (celle des outils et
+des processus) de la complexité essentielle (celle du problème qu'on résout).
+L'IA générative est remarquablement efficace pour réduire la complexité
+accidentelle : elle élimine le boilerplate, elle accélère les tâches répétitives,
+elle rend accessible ce qui demandait auparavant une expertise technique
+pointue. Mais la complexité essentielle, elle, reste intacte. Comprendre un
+domaine métier, prendre les bonnes décisions d'architecture, anticiper les
+conséquences d'un choix de conception : ce sont des problèmes fondamentalement
+humains que l'IA, pour l'instant, ne résout pas.
+
+Ce qui a changé, et que Brooks n'avait probablement pas anticipé, c'est que la
+frontière entre complexité accidentelle et complexité essentielle s'est
+déplacée. Des tâches qui relevaient autrefois de la complexité essentielle
+(écrire un parser, implémenter un algorithme de tri, configurer un pipeline
+CI/CD) sont devenues de la complexité accidentelle, parce que l'IA les
+automatise de manière fiable. Ce déplacement de frontière est peut-être plus
+important que la silver bullet elle-même : il libère le développeur pour se
+concentrer sur les problèmes qui comptent vraiment. Le développeur de demain
+passera moins de temps à écrire du code et plus de temps à décider quel code
+devrait exister, à valider que le code fait ce qu'il devrait, et à comprendre
+les systèmes dans lesquels il s'insère. C'est, paradoxalement, un retour aux
+origines du génie logiciel : non pas la production de code, mais la gestion de
+la complexité.
+
+## Conclusion
+
+Ce cours a commencé, dans le module 1, par une question simple : pourquoi le
+logiciel est-il si difficile à construire ? Nous avons vu que la réponse de
+Fred Brooks en 1986, la distinction entre complexité essentielle et complexité
+accidentelle, reste le cadre le plus utile pour penser le métier. Puis nous
+avons traversé les outils et les pratiques qui, couche par couche, tentent de
+maîtriser cette complexité : les tests et le versioning pour le développeur
+individuel (module 2), l'architecture et les APIs pour structurer les systèmes
+(module 3), les méthodes agiles et la collaboration pour travailler en équipe
+(module 4), le DevOps et l'observabilité pour faire vivre un logiciel en
+production (module 5). Ce dernier module a élargi le regard vers le monde dans
+lequel le logiciel existe : son économie, sa régulation, ses catastrophes, et
+maintenant l'IA qui transforme la manière même de le construire.
+
+Le fil conducteur de tout le cours est que le logiciel est une activité
+fondamentalement humaine. Les outils changent, les langages évoluent, les
+méthodes se transforment, mais les problèmes de fond restent les mêmes :
+comprendre ce qu'on construit (Naur), gérer la complexité (Brooks), travailler
+avec les autres (le Manifeste Agile), et prendre la responsabilité de ce qu'on
+met au monde (l'éthique). L'IA ne change pas ces problèmes. Elle change la
+vitesse à laquelle on peut produire du code, mais pas la difficulté de décider
+quel code devrait exister.
+
+Peter Naur écrivait en 1985 que la programmation est avant tout la construction
+d'une théorie, un modèle mental du problème et de sa solution. Cette idée,
+vieille de quarante ans, n'a jamais été aussi pertinente. Dans un monde où
+n'importe qui peut générer du code en décrivant ce qu'il veut en langage
+naturel, la valeur du développeur ne réside plus dans sa capacité à écrire des
+lignes de code. Elle réside dans sa capacité à comprendre, à juger et à
+décider. À construire la théorie.

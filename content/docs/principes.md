@@ -14,7 +14,7 @@ développés dans leurs sections respectives.)*
 
 ## Gestion de la complexité
 
-- **Complexité essentielle vs accidentelle** (Fred Brooks, *No Silver Bullet*, 1986) → [Module 3, Introduction]({{< ref "/docs/module3" >}})
+- **Complexité essentielle vs accidentelle** (Fred Brooks, *No Silver Bullet*, 1986) → [Module 3, Introduction]({{< ref "/docs/module3" >}}), [Module 6, Le développement assisté par IA]({{< ref "/docs/module6/60-ia" >}})
 
 ## Principes de conception
 
