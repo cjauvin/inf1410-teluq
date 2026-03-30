@@ -23,11 +23,11 @@
 &lt;p&gt;Dans ce cours, nous allons beaucoup utiliser la &lt;a href="https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande"&gt;ligne de
 commande&lt;/a&gt;. La
 ligne de commande est un paradigme ancien, qui survit au passage du temps dans
-le monde du développement informatique en raison de sa versatilité, de sa
+le monde du développement informatique en raison de sa polyvalence, de sa
 souplesse et de son universalité. La ligne de commande (souvent appelée CLI en
-anglais, ou console) est un type d&amp;rsquo;interface usager textuelle (où on manipule du
+anglais, ou console) est un type d&amp;rsquo;interface utilisateur textuelle (où on manipule du
 texte, soit des mots, des commandes, des symboles, des formules, des nombres,
-etc) par opposition au type plus moderne de l&amp;rsquo;&lt;a href="https://fr.wikipedia.org/wiki/Interface_graphique"&gt;interface
+etc.) par opposition au type plus moderne de l&amp;rsquo;&lt;a href="https://fr.wikipedia.org/wiki/Interface_graphique"&gt;interface
 graphique&lt;/a&gt; (GUI en anglais,
 graphical user interface, ou souvent juste UI). Le CLI est plus &amp;ldquo;proche&amp;rdquo; de la
 programmation, qui est elle aussi un média essentiellement textuel (et logique,
@@ -35,8 +35,6 @@ souvent mathématique).&lt;/p&gt;</description></item><item><title>Principes et 
 &lt;p&gt;Cette page rassemble les principes et idées importantes qui traversent
 l&amp;rsquo;ensemble du cours. Chaque principe est traité en profondeur dans le module où
 il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;(Cette page sera enrichie au fur et à mesure que les principes seront
-développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id="gestion-de-la-complexité"&gt;Gestion de la complexité&lt;a class="anchor" href="#gestion-de-la-complexit%c3%a9"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Complexité essentielle vs accidentelle&lt;/strong&gt; (Fred Brooks, &lt;em&gt;No Silver Bullet&lt;/em&gt;, 1986) → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module3/"&gt;Module 3, Introduction&lt;/a&gt;, &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"&gt;Module 6, Le développement assisté par IA&lt;/a&gt;&lt;/li&gt;
@@ -72,9 +70,7 @@ développés dans leurs sections respectives.)&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Refactoring&lt;/strong&gt; (Martin Fowler, &lt;em&gt;Refactoring&lt;/em&gt;, 1999) : modifier la structure interne du code sans changer son comportement observable, mécanisme de remboursement de la dette technique → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Boy Scout Rule&lt;/strong&gt; : &amp;ldquo;Always leave the campground cleaner than you found it.&amp;rdquo;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="lectures-et-publications-de-référence"&gt;Lectures et publications de référence&lt;a class="anchor" href="#lectures-et-publications-de-r%c3%a9f%c3%a9rence"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Voir la page &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/lectures/"&gt;Lectures et publications de référence&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Lectures et publications de référence</title><link>https://cjauvin.github.io/inf1410-teluq/docs/lectures/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/lectures/</guid><description>&lt;h1 id="lectures-et-publications-de-référence"&gt;Lectures et publications de référence&lt;a class="anchor" href="#lectures-et-publications-de-r%c3%a9f%c3%a9rence"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;/ul&gt;</description></item><item><title>Lectures et publications de référence</title><link>https://cjauvin.github.io/inf1410-teluq/docs/lectures/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/lectures/</guid><description>&lt;h1 id="lectures-et-publications-de-référence"&gt;Lectures et publications de référence&lt;a class="anchor" href="#lectures-et-publications-de-r%c3%a9f%c3%a9rence"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Cette page rassemble les livres, articles et publications importants qui sont
 mentionnés à travers l&amp;rsquo;ensemble du cours. Chaque entrée pointe vers la ou les
 sections où elle est discutée.&lt;/p&gt;
