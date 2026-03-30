@@ -70,9 +70,14 @@ code et données font de LISP un langage qui ne ressemble à rien d'autre.
 Cinquante ans plus tard, ces mêmes idées se retrouveront dans des langages comme
 Clojure et dans les fondements de l'intelligence artificielle.
 
-COBOL (1959), développé
-sous l'impulsion de Grace Hopper, ciblait le monde des affaires avec une syntaxe
-qui se voulait proche de l'anglais :
+COBOL (1959) est développé sous l'impulsion de **Grace Hopper**, une pionnière
+de l'informatique qui avait déjà conçu le premier compilateur (A-0, 1952) et
+contribué à populariser l'idée même qu'un programme puisse être écrit dans un
+langage proche de l'anglais plutôt qu'en code machine. Hopper est aussi à
+l'origine du terme « bug » informatique, après avoir trouvé un papillon de nuit
+coincé dans un relais de l'ordinateur Harvard Mark II en 1947. COBOL, son
+héritage le plus durable, ciblait le monde des affaires avec une syntaxe qui se
+voulait proche de l'anglais :
 
 ```cobol
 IDENTIFICATION DIVISION.
@@ -86,6 +91,8 @@ PROCEDURE DIVISION.
 Même sans connaître COBOL, on peut voir l'ambition de rendre le code lisible par
 des non-programmeurs, une préoccupation qui reviendra régulièrement dans
 l'histoire du génie logiciel.
+
+{{< image src="hopper.jpg" alt="" title="" loading="lazy" >}}
 
 Fait remarquable, COBOL est encore utilisé de nos jours dans de nombreux
 systèmes critiques, en particulier dans le secteur bancaire et les
