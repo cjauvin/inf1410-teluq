@@ -6,7 +6,10 @@ bookCollapseSection: true
 
 # Module 1 - Le génie logiciel
 
-Ce premier module pose les fondations du cours. On y définit ce qu'est le génie logiciel, pourquoi cette discipline existe, et quels problèmes elle tente de résoudre. On y retrace ensuite son histoire, des premiers langages de programmation jusqu'à l'ère de l'intelligence artificielle, en passant par les grandes crises, les idées marquantes et les outils qui ont transformé la pratique.
+Ce premier module pose les fondations du cours. On y définit ce qu'est le génie logiciel, pourquoi cette discipline existe, et quels problèmes elle tente de résoudre. On y retrace ensuite son histoire, des premiers langages de programmation jusqu'à l'ère de l'intelligence artificielle, en passant par les
+grandes crises, les idées marquantes et les outils qui ont transformé la pratique.
+
+{{< image src="software-eating-world.png" alt="" title="" loading="lazy" >}}
 
 Le logiciel est partout. Il fait fonctionner les téléphones, les voitures, les hôpitaux, les banques, les avions. Pourtant, malgré des décennies de progrès, construire du logiciel reste une activité notoirement difficile. Les projets dépassent leurs budgets, les délais explosent, les bogues s'accumulent. En 1994, le Standish Group publiait son rapport *CHAOS*, révélant que seulement 16% des projets logiciels étaient livrés à temps et dans les limites du budget. Trente ans plus tard, les échecs spectaculaires continuent de faire les manchettes. Au Québec, le projet SAAQclic de la Société de l'assurance automobile, estimé à 638 millions de dollars en 2017, a fini par coûter plus de 1,1 milliard, et son déploiement en 2023 a été marqué par des pannes majeures et des dépassements de coûts dissimulés pendant des années. Le génie logiciel, en tant que discipline, est né de ce constat : il ne suffit pas de savoir programmer pour construire du logiciel qui fonctionne.
 

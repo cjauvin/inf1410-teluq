@@ -25,11 +25,12 @@ reconstruit ce modèle mental pour lui-même.
 Cette idée a des conséquences profondes. Si la valeur réelle du travail de
 programmation réside dans le modèle mental plutôt que dans le code, alors les
 outils du programmeur ne servent pas seulement à produire du code : ils servent
-à construire, vérifier et préserver ce modèle mental. Les types permettent de
-formaliser les contraintes qu'on a en tête. Les tests vérifient que notre
-compréhension du problème correspond bien au comportement du programme. Le
-versioning avec git préserve l'historique de nos décisions et de leur évolution.
-La gestion des dépendances nous permet d'intégrer le travail et la compréhension
-des autres dans notre propre modèle. Et l'intégration continue automatise la
-vérification constante que tout tient ensemble. Ce sont ces outils que nous
-allons explorer dans ce module.
+à construire, vérifier et préserver ce modèle mental. Les types et les
+structures de données permettent de formaliser les contraintes et les règles
+logiques qu'on a en tête. Les tests vérifient que notre compréhension du
+problème correspond bien au comportement du programme. Le versioning avec git
+préserve l'historique de nos décisions et de leur évolution. La gestion des
+dépendances nous permet d'intégrer le travail et la compréhension des autres
+dans notre propre modèle. Et l'intégration continue automatise la vérification
+constante que tout tient ensemble. Ce sont ces outils que nous allons explorer
+dans ce module.
