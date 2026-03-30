@@ -1,5 +1,5 @@
 ---
-title: "Historique"
+title: "Intro et historique"
 slug: "historique"
 weight: 20
 ---
@@ -24,6 +24,18 @@ programmation, si on peut l'appeler ainsi, était une affaire de quelques
 spécialistes qui travaillaient seuls, en contact direct avec le matériel.
 
 {{< image src="eniac.png" alt="" title="" loading="lazy" >}}
+
+Fait souvent oublié : les personnes qui ont programmé l'ENIAC étaient six femmes,
+recrutées parce qu'elles étaient considérées comme « calculatrices » (*computers*,
+le terme désignait alors des personnes, pas des machines). Kay McNulty, Betty
+Jean Jennings, Betty Snyder, Marlyn Meltzer, Frances Bilas et Ruth Lichterman
+ont dû comprendre le fonctionnement interne de la machine à partir de schémas
+électriques, sans documentation ni langage de programmation, et inventer au
+passage les premières techniques de débogage. Leur contribution a été largement
+invisibilisée pendant des décennies, la photo célèbre de l'ENIAC étant longtemps
+légendée sans même mentionner leurs noms.
+
+{{< image src="eniac6.jpg" alt="" title="" loading="lazy" >}}
 
 Les choses commencent à changer avec l'apparition des premiers langages de
 programmation dans les années 1950. FORTRAN (1957), conçu par John Backus chez
@@ -114,6 +126,33 @@ délibéré : il s'agit d'affirmer que le développement de logiciels doit deven
 une discipline d'ingénierie rigoureuse, avec des méthodes et des processus,
 plutôt que de rester un artisanat improvisé. C'est le début d'une tension qui ne
 se résoudra jamais complètement : combien de formalisme est « juste assez »?
+
+À la même époque, **Margaret Hamilton** dirige l'équipe responsable du logiciel
+de navigation embarqué du programme Apollo au MIT. C'est un projet d'une
+complexité inédite : le logiciel doit fonctionner sans faille dans un
+environnement où la moindre erreur peut coûter des vies. Hamilton et son équipe
+développent des techniques pionnières de détection d'erreurs et de tolérance aux
+pannes. Lors de la mission Apollo 11, en 1969, ces mécanismes sauvent
+littéralement l'alunissage : quelques minutes avant le contact avec la surface
+lunaire, l'ordinateur de bord est saturé par des alarmes, mais le logiciel de
+Hamilton, conçu pour prioriser les tâches critiques, permet à la mission de
+continuer. C'est d'ailleurs Hamilton qui insiste pour utiliser le terme *software
+engineering* afin de donner à son travail la même légitimité que les autres
+disciplines d'ingénierie, à une époque où le développement logiciel n'est pas
+encore pris au sérieux.
+
+{{< image src="hamilton.jpg" alt="" title="" loading="lazy" >}}
+
+{{% hint info %}}
+**Le code source d'Apollo 11 est open source**
+
+Le code du logiciel de guidage d'Apollo 11, écrit en langage assembleur pour
+l'Apollo Guidance Computer (AGC), a été rendu public et est [disponible sur
+GitHub](https://github.com/chrislgarry/apollo-11). On peut y explorer le code
+original écrit par l'équipe de Hamilton, incluant des commentaires d'époque
+parfois humoristiques. C'est un témoignage fascinant de ce à quoi ressemblait la
+programmation dans les années 60.
+{{% /hint %}}
 
 En réponse à la crise, Edsger Dijkstra publie en 1968 sa célèbre lettre « Go To
 Statement Considered Harmful ». Son
@@ -243,6 +282,19 @@ L'idée de gérer la complexité par l'abstraction et l'héritage deviendra la f
 dominante de penser le logiciel pendant les deux décennies suivantes, pour le
 meilleur et pour le pire : on découvrira avec le temps que les hiérarchies
 d'héritage profondes créent autant de problèmes qu'elles en résolvent.
+
+Ces réflexions sur l'abstraction doivent beaucoup aux travaux de **Barbara
+Liskov**. Dès les années 1970, Liskov développe le langage CLU au MIT, qui
+introduit des concepts comme les types abstraits de données, les itérateurs et
+la gestion d'exceptions. Ces idées se retrouveront plus tard dans Python, Java
+et C++. En 1987, elle formule avec Jeannette Wing ce qui deviendra le **principe
+de substitution de Liskov** : un objet d'un type dérivé doit pouvoir remplacer
+un objet du type de base sans altérer le comportement du programme. Ce principe,
+le « L » de l'acronyme SOLID qu'on verra dans un module ultérieur, reste l'une
+des règles les plus fondamentales de la conception orientée objet. Liskov
+recevra le prix Turing en 2008 pour l'ensemble de ses contributions.
+
+{{< image src="liskov.jpg" alt="" title="" loading="lazy" >}}
 
 L'apparition du Macintosh (1984) et plus tard de Windows popularise les
 interfaces graphiques. Ce changement a un impact profond sur la programmation :

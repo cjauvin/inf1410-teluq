@@ -15,12 +15,12 @@ intégrées dans le cours.)*
 ## Livres
 
 - Fred Brooks, *The Mythical Man-Month* (1975) : réflexions sur la gestion de
-  grands projets logiciels, dont la célèbre « loi de Brooks » → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}}),
+  grands projets logiciels, dont la célèbre « loi de Brooks » → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}}),
   [Module 6, L'économie du logiciel]({{< ref "/docs/module6/20-economie" >}})
 - Andrew Hunt et David Thomas, *The Pragmatic Programmer* (1999) : conseils
   pratiques pour le développeur, origine du principe DRY → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Kent Beck, *Extreme Programming Explained* (1999) : manifeste de l'XP, origine
-  de YAGNI et du TDD → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}})
+  de YAGNI et du TDD → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}})
 - Robert C. Martin, *Clean Code* (2008) : principes de conception et SOLID →
   [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Mike Cohn, *Succeeding with Agile* (2009) : la pyramide des tests →
@@ -29,7 +29,7 @@ intégrées dans le cours.)*
   Business* (2010) : formalisation de la méthode Kanban pour le développement
   logiciel → [Module 4, Kanban]({{< ref "/docs/module4/20-agile/20-kanban" >}})
 - Gang of Four (Gamma, Helm, Johnson, Vlissides), *Design Patterns* (1994) :
-  catalogue fondateur des patrons de conception → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}}), [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
+  catalogue fondateur des patrons de conception → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}}), [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Martin Kleppmann, *Designing Data-Intensive Applications* (2017) : référence
   moderne sur les systèmes de données → [Module 3, Les données]({{< ref "/docs/module3/40-données" >}})
 - Martin Fowler, *Refactoring: Improving the Design of Existing Code* (1999) :
@@ -81,7 +81,7 @@ intégrées dans le cours.)*
 ## Articles et essais
 
 - Edgar F. Codd, *A Relational Model of Data for Large Shared Data Banks* (1970) :
-  article fondateur du modèle relationnel → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}}), [Module 3, Les données (stockage)]({{< ref "/docs/module3/40-données/20-stockage" >}})
+  article fondateur du modèle relationnel → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}}), [Module 3, Les données (stockage)]({{< ref "/docs/module3/40-données/20-stockage" >}})
 - David Parnas, *On the Criteria To Be Used in Decomposing Systems into Modules*
   (1972) : introduction de l'information hiding → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Peter Naur, *Programming as Theory Building* (1985) : programmer comme
@@ -102,7 +102,7 @@ intégrées dans le cours.)*
   programmation » de Pike, dont la règle 5 sur la primauté des structures de
   données → [Module 2, Survol rapide de la programmation]({{< ref "/docs/module2/10-programmation" >}})
 - Edsger Dijkstra, *Go To Statement Considered Harmful* (1968) : plaidoyer pour
-  la programmation structurée → [Module 1, Perspective historique]({{< ref "/docs/module1/20-historique" >}})
+  la programmation structurée → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}})
 - Edsger Dijkstra, *On the foolishness of "natural language programming"*
   (EWD667, 1979) : critique de l'idée de programmer en langage naturel,
   l'ambiguïté comme problème fondamental →
