@@ -1,5 +1,5 @@
 ---
-title: "Module 3 - Du programme au système"
+title: "Module 3 - Passer du programme au système"
 weight: 300
 bookCollapseSection: true
 ---

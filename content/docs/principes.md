@@ -9,9 +9,6 @@ Cette page rassemble les principes et idées importantes qui traversent
 l'ensemble du cours. Chaque principe est traité en profondeur dans le module où
 il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
 
-*(Cette page sera enrichie au fur et à mesure que les principes seront
-développés dans leurs sections respectives.)*
-
 ## Gestion de la complexité
 
 - **Complexité essentielle vs accidentelle** (Fred Brooks, *No Silver Bullet*, 1986) → [Module 3, Introduction]({{< ref "/docs/module3" >}}), [Module 6, Le développement assisté par IA]({{< ref "/docs/module6/60-ia" >}})
@@ -47,7 +44,3 @@ développés dans leurs sections respectives.)*
 
 - **Refactoring** (Martin Fowler, *Refactoring*, 1999) : modifier la structure interne du code sans changer son comportement observable, mécanisme de remboursement de la dette technique → [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
 - **Boy Scout Rule** : "Always leave the campground cleaner than you found it."
-
-## Lectures et publications de référence
-
-Voir la page [Lectures et publications de référence]({{< ref "/docs/lectures" >}}).

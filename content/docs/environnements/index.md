@@ -10,17 +10,17 @@ weight: 10
 Dans ce cours, nous allons beaucoup utiliser la [ligne de
 commande](https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande). La
 ligne de commande est un paradigme ancien, qui survit au passage du temps dans
-le monde du développement informatique en raison de sa versatilité, de sa
+le monde du développement informatique en raison de sa polyvalence, de sa
 souplesse et de son universalité. La ligne de commande (souvent appelée CLI en
-anglais, ou console) est un type d'interface usager textuelle (où on manipule du
+anglais, ou console) est un type d'interface utilisateur textuelle (où on manipule du
 texte, soit des mots, des commandes, des symboles, des formules, des nombres,
-etc) par opposition au type plus moderne de l'[interface
+etc.) par opposition au type plus moderne de l'[interface
 graphique](https://fr.wikipedia.org/wiki/Interface_graphique) (GUI en anglais,
 graphical user interface, ou souvent juste UI). Le CLI est plus "proche" de la
 programmation, qui est elle aussi un média essentiellement textuel (et logique,
 souvent mathématique).
 
-Il y a beaucoup de confusion technique et sémantique autour de ce sujet, tentons
+Comme il y a beaucoup de confusion technique et sémantique autour de ce sujet, tentons
 de clarifier un peu les choses. Que veut-on dire exactement par ligne de
 commande? Est-ce qu'il s'agit d'une application particulière? Il s'agit plutôt
 d'un assemblage d'applications imbriquées les unes dans les autres, et faites
@@ -49,14 +49,13 @@ terminal](https://fr.wikipedia.org/wiki/%C3%89mulateur_de_terminal). Selon le
 système d'exploitation que vous utilisez, il existe une multitude d'applications
 de ce genre (moi personnellement j'utilise l'application iTerm2, qui roule sur
 MacOS). Cette application est généralement considérée comme étant "graphique",
-dans le sens qu'elle utilise le système de fenêtrage du OS, et certains éléments
+dans le sens qu'elle utilise le système de fenêtrage de l'OS, et certains éléments
 de son fonctionnement (le menu avec les préférences par exemple) auront un style
 "graphique". Pourtant, son essence est de nature fondamentalement textuelle : la
-quasi totalité de son espace est occupé par une boite dans laquelle on peut
+quasi totalité de son espace est occupé par une boîte dans laquelle on peut
 entrer du texte, généralement ligne par ligne. Ce type d'application est appelé
 "émulateur de terminal" car il modélise des appareils physiques (réels!)
-beaucoup plus anciens, qui servaient autrefois d'interfaces pour les ordinateurs
-:
+beaucoup plus anciens, qui servaient autrefois d'interfaces pour les ordinateurs :
 
 {{< image src="command-line-backgrounder-vt100-terminal.jpg" alt="" title="" loading="lazy" >}}
 
@@ -68,9 +67,9 @@ d'application : un
 a plusieurs possibilités, certaines très anciennes et classiques : Bash, Zsh
 (pour les systèmes Unix) ou Powershell pour Windows. Le shell doit être vu comme
 un autre type d'interface (de nature plus logique et procédurale, par opposition
-à graphique)  entre vous (l'utilisateur) et le système d'exploitation. Les
+à graphique) entre vous (l'utilisateur) et le système d'exploitation. Les
 shells sont en charge d'exécuter des commandes (comme par exemple la commande
-Unix `ls`, pour lister les fichiers d'un répertoire) mais ils ont aussi leur
+Unix `ls`, très fameuse, pour lister les fichiers d'un répertoire) mais ils ont aussi leur
 propre langage de programmation intégré : on parle parfois de Bash en tant que
 langage de scripting. Certaines applications sont entièrement écrites avec le
 langage Bash, par exemple. Pour ma part, j'ai longtemps utilisé Bash, ensuite je
@@ -94,7 +93,16 @@ vous, ce n'est qu'une convention) indique le "prompt", le mécanisme d'entrée
 pour une commande. La ligne qui suit, sans prompt, montre le résultat de la
 commande. Essayez-la dans votre propre environnement ! Et si ça ne fonctionne
 pas, essayez tout d'abord de comprendre pourquoi (ce que dit le message d'erreur
-en particulier, qui parfois, peut être très cryptique, il est vrai).
+en particulier, qui parfois, peut être très cryptique, il est vrai). Il est à noter
+que la notion de "prompt" est très intéressante et profonde en soi, car elle constitue
+dans un sens la représentation quasi idéalisée que l'on se fait de la communication
+avec un ordinateur. Voici deux exemples fameux de prompts :
+
+{{< image src="google-prompt.png" alt="" title="" loading="lazy" >}}
+
+{{< image src="claude-prompt.png" alt="" title="" loading="lazy" >}}
+
+Dans les deux cas, il s'agit clairement d'interfaces de nature textuelle.
 
 ## La philosophie Unix
 
@@ -102,9 +110,9 @@ La philosophie Unix est un ensemble de principes de conception logicielle qui a
 émergé dans les années 1970 aux Bell Labs, en même temps que le système Unix
 lui-même. Ses auteurs principaux, Ken Thompson et Dennis Ritchie (les créateurs
 d'Unix et du langage C), ainsi que Doug McIlroy (l'inventeur du concept de
-pipe), ont formulé une vision qui peut se résumer en quelques idées simples :
+"pipe"), ont formulé une vision qui peut se résumer en quelques idées simples :
 chaque programme devrait faire une seule chose et la faire bien; les programmes
-devraient pouvoir être composés ensemble, la sortie de l'un devenant l'entrée de
+devraient pouvoir être composés (ou assemblés) ensemble, la sortie de l'un devenant l'entrée de
 l'autre; et le texte devrait être le format universel d'échange entre
 programmes. Ces principes peuvent sembler évidents aujourd'hui, mais ils
 représentaient un choix radical à une époque où la tendance dominante était de
@@ -116,8 +124,7 @@ sortie de la commande `echo` à l'entrée du programme `python3`. Chaque composa
 fait son travail de manière indépendante, et c'est leur composition qui produit
 le résultat voulu. Cette idée de composition est au coeur de la philosophie Unix,
 et elle se manifeste partout dans l'écosystème : on peut par exemple compter le
-nombre de fichiers Python dans un répertoire en enchaînant `ls`, `grep` et `wc`
-:
+nombre de fichiers Python dans un répertoire en enchaînant les commandes `ls`, `grep` et `wc` :
 
 ```shell
 $ ls | grep "\.py$" | wc -l
@@ -227,6 +234,8 @@ C/C++, Python et JavaScript. Comprendre pourquoi ces trois-là dominent, c'est
 comprendre une bonne partie de l'histoire et de la structure du monde logiciel
 contemporain.
 
+### C et C++
+
 {{< image src="c-c++.png" alt="" title="" loading="lazy" >}}
 
 C est le langage de la fondation. Créé par Dennis Ritchie aux Bell Labs au début
@@ -242,6 +251,8 @@ données. C et C++ sont les langages "proches de la machine", ceux qui permetten
 de contrôler finement la mémoire et les ressources matérielles, au prix d'une
 complexité considérable pour le programmeur.
 
+### Python
+
 {{< image src="python.png" alt="" title="" loading="lazy" >}}
 
 Python, créé par Guido van Rossum en 1991 (la même année que Linux, par
@@ -250,7 +261,34 @@ contrôle maximal au programmeur au prix de la complexité, Python mise tout sur
 lisibilité et la simplicité. Van Rossum voulait un langage où le code se lit
 presque comme de l'anglais, et où il n'y a idéalement qu'une seule façon
 évidente de faire les choses (c'est le fameux "Zen of Python", accessible en
-tapant `import this` dans un interpréteur Python). Le résultat est un langage
+tapant `import this` dans un interpréteur Python).
+
+```shell
+>>> import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+```
+
+Le résultat est un langage
 objectivement lent par rapport à C, mais d'une productivité remarquable : on
 peut exprimer en quelques lignes de Python ce qui en prendrait des dizaines en
 C. Cette simplicité a fait de Python le langage dominant dans l'enseignement de
@@ -263,6 +301,8 @@ Python est un autre cas de "Worse is Better" : un langage techniquement
 "inférieur" en performance brute, mais tellement plus simple à apprendre et à
 utiliser qu'il a fini par s'imposer dans des domaines entiers.
 
+### JavaScript
+
 {{< image src="js.png" alt="" title="" loading="lazy" >}}
 
 Le cas de JavaScript est peut-être l'illustration la plus extrême de "Worse is
@@ -271,7 +311,13 @@ ingénieur chez Netscape, a créé JavaScript en seulement 10 jours, sous la
 pression de livrer rapidement un langage de scripting pour le navigateur
 Netscape Navigator. Le résultat était un langage truffé d'incohérences et de
 comportements surprenants (les bizarreries de la coercition de types en JS sont
-devenues légendaires). On aurait très bien pu imaginer qu'un autre langage,
+devenues légendaires).
+
+```js
+("b" + "a" + + "a" + "a").toLowerCase() // banana (!!)
+```
+
+On aurait très bien pu imaginer qu'un autre langage,
 mieux conçu, finisse par prendre sa place. Plusieurs ont d'ailleurs essayé :
 Java avec ses applets, Flash avec ActionScript, même Dart de Google visait
 explicitement à remplacer JavaScript dans le navigateur. Mais aucun n'a réussi,
