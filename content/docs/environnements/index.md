@@ -12,7 +12,7 @@ commande](https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande). La
 ligne de commande est un paradigme ancien, qui survit au passage du temps dans
 le monde du développement informatique en raison de sa polyvalence, de sa
 souplesse et de son universalité. La ligne de commande (souvent appelée CLI en
-anglais, ou console) est un type d'interface utilisateur textuelle (où on manipule du
+anglais, ou console, ou encore terminal) est un type d'interface utilisateur textuelle (où on manipule du
 texte, soit des mots, des commandes, des symboles, des formules, des nombres,
 etc.) par opposition au type plus moderne de l'[interface
 graphique](https://fr.wikipedia.org/wiki/Interface_graphique) (GUI en anglais,

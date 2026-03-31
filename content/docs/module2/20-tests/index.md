@@ -139,11 +139,17 @@ def test_factorielle_recursive():
     assert factorielle(5) == 120
 ```
 
-On lance ensuite `pytest` dans le terminal, et il découvre et exécute
+On peut installer `pytest` dans un projet avec `uv`, avec le terminal :
+
+```shell
+$ uv add pytest
+```
+
+On peut ensuite lancer `pytest` dans le terminal, et il découvre et exécute
 automatiquement tous les fichiers `test_*.py` :
 
 ```shell
-$ pytest
+$ uv run pytest
 =================== test session starts ====================
 collected 4 items
 
@@ -165,22 +171,30 @@ pytest produit un rapport détaillé qui montre exactement quelle assertion a
 échoué, avec les valeurs comparées :
 
 ```shell
-$ pytest
-=================== test session starts ====================
-collected 4 items
+=============================== test session starts ===============================
+test_calcul.py ..FF                                                          [100%]
 
-test_calcul.py ..F.                                  [100%]
-
-======================== FAILURES ==========================
-_______________ test_factorielle_base ______________________
+=================================== FAILURES ======================================
+____________________________ test_factorielle_base ________________________________
 
     def test_factorielle_base():
 >       assert factorielle(0) == 1
 E       assert 0 == 1
 E        +  where 0 = factorielle(0)
 
-test_calcul.py:10: AssertionError
-================ 1 failed, 3 passed in 0.02s ==============
+test_calcul.py:14: AssertionError
+__________________________ test_factorielle_recursive _____________________________
+
+    def test_factorielle_recursive():
+>       assert factorielle(5) == 120
+E       assert 0 == 120
+E        +  where 0 = factorielle(5)
+
+test_calcul.py:19: AssertionError
+============================= short test summary info =============================
+FAILED test_calcul.py::test_factorielle_base - assert 0 == 1
+FAILED test_calcul.py::test_factorielle_recursive - assert 0 == 120
+============================ 2 failed, 2 passed in 0.02s ==========================
 ```
 
 C'est un avantage important par rapport à un `assert` brut, qui se contente de
@@ -226,7 +240,7 @@ def test_palindrome_vide():
 ```
 
 ```shell
-$ pytest test_palindrome.py
+$ uv run pytest test_palindrome.py
 E   ModuleNotFoundError: No module named 'palindrome'
 ```
 
@@ -241,7 +255,7 @@ def est_palindrome(s):
 ```
 
 ```shell
-$ pytest test_palindrome.py
+$ uv run pytest test_palindrome.py
 =================== test session starts ====================
 collected 3 items
 
@@ -280,9 +294,14 @@ Une question naturelle se pose : comment savoir si nos tests sont suffisants? La
 proportion du code source est effectivement exécutée par les tests. L'outil de
 référence en Python est **coverage.py**, créé et maintenu par Ned Batchelder
 depuis 2004. L'extension **pytest-cov** est simplement un pont qui permet
-d'utiliser coverage.py directement depuis pytest.
+d'utiliser coverage.py directement depuis pytest. On peut l'installer facilement
+avec `uv` en faisant :
 
-Reprenons notre fichier `calcul.py`, en y ajoutant une fonction `division` :
+```shell
+$ uv add pytest-cov
+```
+
+Reprenons ensuite notre fichier `calcul.py`, en y ajoutant une fonction `division` :
 
 ```python
 # calcul.py
@@ -304,20 +323,29 @@ Si nos tests ne couvrent que `addition` et `factorielle`, la couverture sera
 incomplète :
 
 ```shell
-$ pytest --cov=calcul
+$ uv run pytest --cov=calcul test_calcul.py
+
 =================== test session starts ====================
+platform darwin -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0
+rootdir: .../test-examples
+configfile: pyproject.toml
+plugins: cov-7.1.0
 collected 4 items
 
-test_calcul.py ....                                  [100%]
+test_calcul.py ....                                   [100%]
 
----------- coverage: 80% ----------
+===================== tests coverage =======================
+__ coverage: platform darwin, python 3.13.5-final-0 __
+
 Name        Stmts   Miss  Cover
 -------------------------------
-calcul.py       9      2    78%
+calcul.py      10      3    70%
 -------------------------------
+TOTAL          10      3    70%
+===================== 4 passed in 0.03s ====================
 ```
 
-Les deux lignes manquantes correspondent à la fonction `division`, que nos tests
+Les trois lignes manquantes correspondent à la fonction `division`, que nos tests
 ne touchent pas du tout.
 
 Il est tentant de viser une couverture de 100%, mais c'est un objectif trompeur.

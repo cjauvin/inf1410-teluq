@@ -4,7 +4,7 @@
 {{- $code := .Inner | strings.TrimPrefix "\n" | strings.TrimSuffix "\n" -}}
 
 <div class="pyodide-block" id="{{ $id }}">
-  <textarea id="{{ $id }}-code">{{ $code }}</textarea>
+  <textarea id="{{ $id }}-code" tabindex="-1">{{ $code }}</textarea>
   <div class="pyodide-toolbar">
     <button id="{{ $id }}-run" onclick="pyodideRun('{{ $id }}')">&#9654; Exécuter</button>
     <button id="{{ $id }}-reset" onclick="pyodideReset('{{ $id }}')">&#8634; Réinitialiser</button>

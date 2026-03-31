@@ -22,3 +22,21 @@ p {
 .book-image input:checked + img {
   z-index: 100 !important;
 }
+
+.copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 4px;
+  line-height: 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #888;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #333;
+  }
+}
