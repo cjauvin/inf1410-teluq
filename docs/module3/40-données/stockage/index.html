@@ -1,5 +1,5 @@
 <!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="L’évolution des bases de données# La section précédente a montré comment les données sont représentées : encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données.
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Les bases de données"><meta property="og:description" content="L’évolution des bases de données# La section précédente a montré comment les données sont représentées : encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Les bases de données"><meta itemprop=description content="L’évolution des bases de données# La section précédente a montré comment les données sont représentées : encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données."><meta itemprop=wordCount content="7955"><title>Les bases de données | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d3fc8f45f87a6b613ef9b7bfa55cac10355d05448b9e9cf0b61609a5ad5c3083.css integrity="sha256-0/yPRfh6a2E++be/pVysEDVdBUSLnpzwthYJpa1cMIM=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/sql.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Les bases de données"><meta property="og:description" content="L’évolution des bases de données# La section précédente a montré comment les données sont représentées : encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Les bases de données"><meta itemprop=description content="L’évolution des bases de données# La section précédente a montré comment les données sont représentées : encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données."><meta itemprop=wordCount content="7955"><title>Les bases de données | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d100c9e7255f944fdc9c0c03acdb64b8d7adb1bb511f59b3599d09f2da105dbf.css integrity="sha256-0QDJ5yVflE/cnAwDrNtkuNetsbtRH1mzWZ0J8toQXb8=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/sql.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Intro et historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
@@ -47,7 +47,7 @@ qui contiennent des pièces). Le modèle hiérarchique généralise cette intuit
 toutes les données sont organisées en arbre, où chaque enregistrement a
 exactement un parent (sauf la racine). L&rsquo;accès aux données est navigationnel :
 on descend dans l&rsquo;arbre en suivant les branches.</p><p>Pour comprendre concrètement ce que cela implique, implémentons un modèle
-hiérarchique simplifié en Python.</p><div class=pyodide-block id=pyodide-0><textarea id=pyodide-0-code>
+hiérarchique simplifié en Python.</p><div class=pyodide-block id=pyodide-0><textarea id=pyodide-0-code tabindex=-1>
 &#34;&#34;&#34;
 Modèle hiérarchique — illustration en Python
 ==============================================
@@ -87,7 +87,7 @@ universitaire pour voir comment les données s&rsquo;organisent dans cet arbre :
   └── Département
         ├── Professeur
         └── Cours
-              └── Étudiant</code></pre><div class=pyodide-block id=pyodide-1><textarea id=pyodide-1-code>
+              └── Étudiant</code></pre><div class=pyodide-block id=pyodide-1><textarea id=pyodide-1-code tabindex=-1>
 # Racine
 uqam = Noeud(&#34;Université&#34;, {&#34;nom&#34;: &#34;UQAM&#34;})
 
@@ -115,7 +115,7 @@ stat.ajouter_enfant(&#34;Étudiant&#34;, {&#34;matricule&#34;: &#34;MORB02&#34;,
 <span class=pyodide-status id=pyodide-1-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-1-output></pre></div><p>Pour explorer cette base, il nous faut des outils de navigation. Dans IMS,
 l&rsquo;opération fondamentale était le <em>Get Next</em> (GN) : on parcourait l&rsquo;arbre en
 profondeur, segment par segment. Notre fonction <code>afficher_arbre</code> reproduit cette
-logique :</p><div class=pyodide-block id=pyodide-2><textarea id=pyodide-2-code>
+logique :</p><div class=pyodide-block id=pyodide-2><textarea id=pyodide-2-code tabindex=-1>
 def afficher_arbre(noeud: Noeud, niveau: int = 0):
     &#34;&#34;&#34;Parcours en profondeur — la façon naturelle de lire une base hiérarchique.&#34;&#34;&#34;
     indent = &#34;    &#34; * niveau
@@ -126,7 +126,7 @@ def afficher_arbre(noeud: Noeud, niveau: int = 0):
 afficher_arbre(uqam)</textarea><div class=pyodide-toolbar><button id=pyodide-2-run onclick='pyodideRun("pyodide-2")'>&#9654; Exécuter</button>
 <button id=pyodide-2-reset onclick='pyodideReset("pyodide-2")'>&#8634; Réinitialiser</button>
 <span class=pyodide-status id=pyodide-2-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-2-output></pre></div><p>On peut aussi naviguer vers un type de segment particulier en spécifiant un
-chemin dans l&rsquo;arbre, l&rsquo;équivalent simplifié de la commande GN d&rsquo;IMS :</p><div class=pyodide-block id=pyodide-3><textarea id=pyodide-3-code>
+chemin dans l&rsquo;arbre, l&rsquo;équivalent simplifié de la commande GN d&rsquo;IMS :</p><div class=pyodide-block id=pyodide-3><textarea id=pyodide-3-code tabindex=-1>
 def naviguer(noeud: Noeud, *chemin: str) -&gt; list[Noeud]:
     &#34;&#34;&#34;
     Navigation descendante par types de segments.
@@ -151,7 +151,7 @@ for cours in naviguer(uqam, &#34;Département&#34;, &#34;Cours&#34;):
     print(f&#34;  → {cours.donnees}&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-3-run onclick='pyodideRun("pyodide-3")'>&#9654; Exécuter</button>
 <button id=pyodide-3-reset onclick='pyodideReset("pyodide-3")'>&#8634; Réinitialiser</button>
 <span class=pyodide-status id=pyodide-3-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-3-output></pre></div><p>Et si on veut chercher un enregistrement par sa valeur plutôt que par sa
-position dans l&rsquo;arbre, il faut parcourir toute la structure :</p><div class=pyodide-block id=pyodide-4><textarea id=pyodide-4-code>def chercher(noeud: Noeud, type_segment: str, cle: str, valeur) -&gt; list[Noeud]:
+position dans l&rsquo;arbre, il faut parcourir toute la structure :</p><div class=pyodide-block id=pyodide-4><textarea id=pyodide-4-code tabindex=-1>def chercher(noeud: Noeud, type_segment: str, cle: str, valeur) -&gt; list[Noeud]:
     &#34;&#34;&#34;
     Recherche par type &#43; valeur — toujours en descendant dans l&#39;arbre.
     &#34;&#34;&#34;
@@ -181,7 +181,7 @@ des années 60. Son <em>Data Base Task Group</em> (DBTG) a proposé en 1969 le m
 réseau, qui généralise l&rsquo;arbre en graphe : un enregistrement peut désormais avoir
 plusieurs parents, grâce à des ensembles nommés (<em>sets</em>) qui relient un type
 « propriétaire » (<em>owner</em>) à un type « membre » (<em>member</em>). La duplication
-disparaît, mais l&rsquo;accès aux données reste navigationnel.</p><div class=pyodide-block id=pyodide-5><textarea id=pyodide-5-code>
+disparaît, mais l&rsquo;accès aux données reste navigationnel.</p><div class=pyodide-block id=pyodide-5><textarea id=pyodide-5-code tabindex=-1>
 &#34;&#34;&#34;
 Modèle réseau (CODASYL) — illustration en Python
 ==================================================
@@ -297,7 +297,7 @@ class BaseReseau:
 <button id=pyodide-5-reset onclick='pyodideReset("pyodide-5")'>&#8634; Réinitialiser</button>
 <span class=pyodide-status id=pyodide-5-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-5-output></pre></div><p>Remarquons que les enregistrements existent désormais indépendamment, sans être
 imbriqués dans un arbre. Les liens entre eux sont explicites et nommés.
-Reconstruisons notre scénario universitaire avec ce modèle :</p><div class=pyodide-block id=pyodide-6><textarea id=pyodide-6-code>
+Reconstruisons notre scénario universitaire avec ce modèle :</p><div class=pyodide-block id=pyodide-6><textarea id=pyodide-6-code tabindex=-1>
 # ============================================================
 # 2. Construction de la base — même scénario universitaire
 # ============================================================
@@ -361,7 +361,7 @@ set_inscr_stat.inserer(bob)         # ✅ PAS de duplication !
 <button id=pyodide-6-reset onclick='pyodideReset("pyodide-6")'>&#8634; Réinitialiser</button>
 <span class=pyodide-status id=pyodide-6-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-6-output></pre></div><p>Le résultat ressemble à ce qu&rsquo;on obtenait avec le modèle hiérarchique, mais la
 structure sous-jacente est fondamentalement différente : Alice et Bob n&rsquo;existent
-qu&rsquo;une seule fois dans la base :</p><div class=pyodide-block id=pyodide-7><textarea id=pyodide-7-code>
+qu&rsquo;une seule fois dans la base :</p><div class=pyodide-block id=pyodide-7><textarea id=pyodide-7-code tabindex=-1>
 print(&#34;=&#34; * 60)
 print(&#34;STRUCTURE DE LA BASE RÉSEAU&#34;)
 print(&#34;=&#34; * 60)
@@ -383,7 +383,7 @@ for dept in db.find_records(&#34;Département&#34;, &#34;nom&#34;, &#34;Informat
 </textarea><div class=pyodide-toolbar><button id=pyodide-7-run onclick='pyodideRun("pyodide-7")'>&#9654; Exécuter</button>
 <button id=pyodide-7-reset onclick='pyodideReset("pyodide-7")'>&#8634; Réinitialiser</button>
 <span class=pyodide-status id=pyodide-7-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-7-output></pre></div><p>La navigation avant fonctionne comme avant : trouver les étudiants inscrits à un
-cours donné :</p><div class=pyodide-block id=pyodide-8><textarea id=pyodide-8-code>
+cours donné :</p><div class=pyodide-block id=pyodide-8><textarea id=pyodide-8-code tabindex=-1>
 print(&#34;\n&#34; &#43; &#34;=&#34; * 60)
 print(&#34;NAVIGATION AVANT : étudiants inscrits à INF3080&#34;)
 print(&#34;=&#34; * 60)
@@ -393,7 +393,7 @@ for e in db.find_members(&#34;INSCRIPTION&#34;, bd):
 <button id=pyodide-8-reset onclick='pyodideReset("pyodide-8")'>&#8634; Réinitialiser</button>
 <span class=pyodide-status id=pyodide-8-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-8-output></pre></div><p>Mais la vraie nouveauté, c&rsquo;est la navigation inverse. La question « à quels
 cours Alice est-elle inscrite ? », qui exigeait un parcours complet de l&rsquo;arbre
-dans le modèle hiérarchique, se résout maintenant directement :</p><div class=pyodide-block id=pyodide-9><textarea id=pyodide-9-code>
+dans le modèle hiérarchique, se résout maintenant directement :</p><div class=pyodide-block id=pyodide-9><textarea id=pyodide-9-code tabindex=-1>
 print(&#34;\n&#34; &#43; &#34;=&#34; * 60)
 print(&#34;NAVIGATION INVERSE : cours d&#39;Alice&#34;)
 print(&#34;=&#34; * 60)
@@ -724,7 +724,7 @@ après un délai fixe), le <em>write-through</em> (mise à jour simultanée du c
 la source) et le <em>cache-aside</em> (le code vérifie d&rsquo;abord le cache, puis
 interroge la source en cas d&rsquo;absence). Python offre <code>functools.lru_cache</code>, un
 décorateur qui implémente un cache LRU (<em>Least Recently Used</em>) directement sur
-les appels de fonction :</p><div class=pyodide-block id=pyodide-15><textarea id=pyodide-15-code>import functools
+les appels de fonction :</p><div class=pyodide-block id=pyodide-15><textarea id=pyodide-15-code tabindex=-1>import functools
 import time
 
 # --- Cache LRU intégré à Python ---
@@ -821,7 +821,7 @@ transformées vers un entrepôt orienté colonnes via un processus appelé ETL
 de ralentir le système transactionnel. C&rsquo;est une application directe du principe
 de séparation des préoccupations : les deux charges de travail ont des besoins
 si différents qu&rsquo;il vaut mieux les servir avec des systèmes distincts.</p><p>En Python, on peut illustrer la différence entre les deux approches de
-stockage :</p><div class=pyodide-block id=pyodide-16><textarea id=pyodide-16-code>import random
+stockage :</p><div class=pyodide-block id=pyodide-16><textarea id=pyodide-16-code tabindex=-1>import random
 
 # --- Génération de données de ventes ---
 
@@ -925,7 +925,7 @@ modifier un schéma global, et les requêtes sont déclaratives plutôt que
 procédurales. Neo4j (2007, Emil Eifrem et Johan Svensson) est la plus connue.
 Son langage de requête, Cypher, est au graphe ce que SQL est aux tables.</p><p>En Python, un graphe peut se représenter simplement comme un dictionnaire
 d&rsquo;adjacence. Voici un exemple de traversée en largeur (<em>breadth-first search</em>,
-BFS) qui trouve tous les nœuds accessibles depuis un point de départ :</p><div class=pyodide-block id=pyodide-17><textarea id=pyodide-17-code>from collections import deque
+BFS) qui trouve tous les nœuds accessibles depuis un point de départ :</p><div class=pyodide-block id=pyodide-17><textarea id=pyodide-17-code tabindex=-1>from collections import deque
 
 # Graphe d&#39;adjacence : qui connaît qui ?
 graphe = {
@@ -1009,7 +1009,7 @@ espacés), des fonctions d&rsquo;agrégation temporelle natives (<em>downsample<
 et des politiques de rétention automatiques (supprimer les données de plus de 90
 jours, par exemple).</p><p>En Python, on peut illustrer les opérations fondamentales sur les séries
 temporelles (rééchantillonnage, moyenne mobile, détection d&rsquo;anomalies) avec les
-structures de données de base :</p><div class=pyodide-block id=pyodide-18><textarea id=pyodide-18-code>import random
+structures de données de base :</p><div class=pyodide-block id=pyodide-18><textarea id=pyodide-18-code tabindex=-1>import random
 import math
 from datetime import datetime, timedelta
 
@@ -1115,7 +1115,7 @@ en haute dimension est prohibitivement lente. Des algorithmes comme HNSW
 (<em>Hierarchical Navigable Small World</em>) permettent des recherches quasi
 instantanées même sur des millions de vecteurs, au prix d&rsquo;une approximation
 contrôlée.</p><p>En Python, on peut illustrer les concepts fondamentaux (embedding, distance
-cosinus, recherche par similarité) avec des vecteurs simplifiés :</p><div class=pyodide-block id=pyodide-19><textarea id=pyodide-19-code>import math
+cosinus, recherche par similarité) avec des vecteurs simplifiés :</p><div class=pyodide-block id=pyodide-19><textarea id=pyodide-19-code tabindex=-1>import math
 import random
 
 # --- Similarité cosinus ---
@@ -1207,4 +1207,4 @@ sys.stderr = io.StringIO()
 `);try{e.runPython(i)}catch(o){const i=e.runPython("sys.stderr.getvalue()"),s=e.runPython("sys.stdout.getvalue()");t.innerHTML="",s&&t.appendChild(document.createTextNode(s));const n=document.createElement("span");n.className="pyodide-error",n.textContent=i||o.message,t.appendChild(n);return}finally{const s=e.runPython("sys.stdout.getvalue()"),n=e.runPython("sys.stderr.getvalue()");if(e.runPython(`
 sys.stdout = sys.__stdout__
 sys.stderr = sys.__stderr__
-`),!t.children.length){if(t.textContent=s,n){const e=document.createElement("span");e.className="pyodide-error",e.textContent=n,t.appendChild(e)}!s&&!n&&(t.textContent="(Exécution terminée, aucune sortie)")}}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("span");e.className="pyodide-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function pyodideReset(e){const t=_pyodideEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.textContent=""}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/sql/sql.min.js></script><script>const _sqlEditors={};document.querySelectorAll(".sql-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const s=e.id,o=t.value,n=CodeMirror.fromTextArea(t,{mode:"text/x-sql",theme:"material-darker",indentUnit:2,tabSize:2,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=o,_sqlEditors[s]=n});let _sqlDbReady=null;async function _getSqlDb(){return _sqlDbReady||(_sqlDbReady=(async()=>{await new Promise((e,t)=>{const n=document.createElement("script");n.src="https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.js",n.onload=e,n.onerror=t,document.head.appendChild(n)});const e=await initSqlJs({locateFile:()=>"https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.wasm"});return new e.Database})()),_sqlDbReady}function _sqlResultToTable(e,t){let n="<table><thead><tr>";for(const t of e)n+="<th>"+_sqlEscape(t)+"</th>";n+="</tr></thead><tbody>";for(const e of t){n+="<tr>";for(const t of e)t===null?n+='<td class="sql-null">NULL</td>':n+="<td>"+_sqlEscape(String(t))+"</td>";n+="</tr>"}return n+="</tbody></table>",n}function _sqlEscape(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}async function sqlRun(e){const o=_sqlEditors[e],t=document.getElementById(e+"-output"),s=document.getElementById(e+"-run"),n=document.getElementById(e+"-status"),i=o.getValue();s.disabled=!0,t.innerHTML="",t.classList.remove("sql-output-hidden"),n.textContent="Chargement de SQL.js…";try{const e=await _getSqlDb();n.textContent="Exécution…";const s=e.exec(i);if(s.length===0){const s=e.getRowsModified(),n=document.createElement("div");n.className="sql-message",n.textContent=s>0?s+" ligne(s) modifiée(s).":"Requête exécutée avec succès.",t.appendChild(n)}else for(const e of s){const n=document.createElement("div");n.innerHTML=_sqlResultToTable(e.columns,e.values),t.appendChild(n)}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("div");e.className="sql-message sql-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function sqlReset(e){const t=_sqlEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.innerHTML="",n.classList.add("sql-output-hidden")}</script></body></html>
+`),!t.children.length){if(t.textContent=s,n){const e=document.createElement("span");e.className="pyodide-error",e.textContent=n,t.appendChild(e)}!s&&!n&&(t.textContent="(Exécution terminée, aucune sortie)")}}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("span");e.className="pyodide-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function pyodideReset(e){const t=_pyodideEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.textContent=""}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/sql/sql.min.js></script><script>const _sqlEditors={};document.querySelectorAll(".sql-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const s=e.id,o=t.value,n=CodeMirror.fromTextArea(t,{mode:"text/x-sql",theme:"material-darker",indentUnit:2,tabSize:2,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=o,_sqlEditors[s]=n});let _sqlDbReady=null;async function _getSqlDb(){return _sqlDbReady||(_sqlDbReady=(async()=>{await new Promise((e,t)=>{const n=document.createElement("script");n.src="https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.js",n.onload=e,n.onerror=t,document.head.appendChild(n)});const e=await initSqlJs({locateFile:()=>"https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.wasm"});return new e.Database})()),_sqlDbReady}function _sqlResultToTable(e,t){let n="<table><thead><tr>";for(const t of e)n+="<th>"+_sqlEscape(t)+"</th>";n+="</tr></thead><tbody>";for(const e of t){n+="<tr>";for(const t of e)t===null?n+='<td class="sql-null">NULL</td>':n+="<td>"+_sqlEscape(String(t))+"</td>";n+="</tr>"}return n+="</tbody></table>",n}function _sqlEscape(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}async function sqlRun(e){const o=_sqlEditors[e],t=document.getElementById(e+"-output"),s=document.getElementById(e+"-run"),n=document.getElementById(e+"-status"),i=o.getValue();s.disabled=!0,t.innerHTML="",t.classList.remove("sql-output-hidden"),n.textContent="Chargement de SQL.js…";try{const e=await _getSqlDb();n.textContent="Exécution…";const s=e.exec(i);if(s.length===0){const s=e.getRowsModified(),n=document.createElement("div");n.className="sql-message",n.textContent=s>0?s+" ligne(s) modifiée(s).":"Requête exécutée avec succès.",t.appendChild(n)}else for(const e of s){const n=document.createElement("div");n.innerHTML=_sqlResultToTable(e.columns,e.values),t.appendChild(n)}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("div");e.className="sql-message sql-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function sqlReset(e){const t=_sqlEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.innerHTML="",n.classList.add("sql-output-hidden")}</script><script>document.addEventListener("DOMContentLoaded",()=>{const e='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5"/><path d="M3.5 10.5H2.5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v1"/></svg>',n='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>';function t(t){const s=document.createElement("button");return s.className="copy-btn",s.innerHTML=e,s.addEventListener("click",()=>{navigator.clipboard.writeText(t()).then(()=>{s.innerHTML=n,setTimeout(()=>{s.innerHTML=e},2e3)})}),s}document.querySelectorAll(".highlight pre").forEach(e=>{const n=e.querySelector("code");if(n&&n.getAttribute("data-lang")==="shell")return;e.style.position="relative";const s=t(()=>n?n.textContent:e.textContent);e.appendChild(s)}),document.querySelectorAll(".pyodide-block").forEach(e=>{const s=e.id,n=e.querySelector(".CodeMirror");if(!n)return;n.style.position="relative";const o=t(()=>_pyodideEditors[s].getValue());n.appendChild(o)})})</script></body></html>
