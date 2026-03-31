@@ -32,8 +32,8 @@ carrément essentiels : sans eux, il devient pratiquement impossible de s'assure
 que les modifications d'une personne ne cassent pas le travail des autres.
 
 Un test est donc un programme qui teste le code d'un autre programme, en
-appellant ses fonctions de manière isolée, avec des paramètres spécifiques, afin
-de vérifier (valider) que les résultats sont valides.
+appellant ses fonctions de manière isolée et systématique, avec des paramètres spécifiques, afin
+de vérifier (valider) que les résultats sont exacts et corrects.
 
 ## Le mécanisme de base : `assert`
 
@@ -49,6 +49,7 @@ def addition(a, b):
 assert addition(2, 3) == 5
 assert addition(-1, 1) == 0
 assert addition(0, 0) == 0
+
 print("Tous les tests passent!")
 {{< /pyodide >}}
 
