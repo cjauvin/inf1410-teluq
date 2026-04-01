@@ -442,6 +442,18 @@ def test_contient(inventaire_garni):
     assert not inventaire_garni.contient("oranges")
 ```
 
+{{% hint info %}}
+La fixture `inventaire_garni` est une fonction, et le fait que pytest puisse la
+passer automatiquement en paramètre à une autre fonction (le test) repose sur
+une propriété fondamentale de Python : les fonctions sont des **objets de
+première classe** (*first-class objects*). Cela signifie qu'une fonction peut
+être assignée à une variable, stockée dans une structure de données, ou passée
+en argument à une autre fonction, exactement comme n'importe quelle autre
+valeur. En coulisses, pytest inspecte les paramètres de chaque fonction de test,
+repère ceux qui correspondent à des fixtures déclarées, les appelle, puis
+transmet leurs résultats au test.
+{{% /hint %}}
+
 Le code de préparation n'existe plus qu'à un seul endroit. Si on veut changer
 les données initiales, on modifie la fixture et tous les tests en bénéficient.
 
@@ -501,6 +513,17 @@ def test_lecture(fichier_temp):
     # Même si le test échoue, le fichier sera supprimé
 ```
 
+{{% hint info %}}
+Le mot-clé `yield` utilisé ici repose sur le mécanisme des **générateurs** de
+Python. Un générateur est une fonction qui, au lieu de retourner une valeur
+unique avec `return`, peut *suspendre* son exécution avec `yield` et la
+*reprendre* plus tard exactement là où elle s'était arrêtée. C'est ce
+comportement qui permet à pytest de découper la fixture en deux phases : tout ce
+qui précède `yield` s'exécute avant le test (setup), puis l'exécution est
+suspendue le temps du test, et tout ce qui suit `yield` s'exécute après
+(teardown).
+{{% /hint %}}
+
 Ce mécanisme de setup/teardown garantit que les tests ne laissent pas de traces
 derrière eux, ce qui est particulièrement important quand on manipule des
 fichiers, des connexions réseau ou des bases de données.
@@ -540,6 +563,63 @@ paramètre de leurs fonctions de test, sans l'importer. pytest découvre le
 aussi avoir plusieurs `conftest.py` à différents niveaux de l'arborescence :
 chacun rend ses fixtures disponibles pour son répertoire et ses
 sous-répertoires.
+
+## Les tests paramétrés
+
+Les fixtures éliminent la duplication du code de préparation, mais il existe une
+autre forme de répétition très courante : tester la même logique avec plusieurs
+entrées différentes. Par exemple, imaginons une fonction simple qui valide le
+format d'une adresse courriel :
+
+```python
+def valider_courriel(courriel):
+    """Vérifie qu'une adresse courriel a un format valide (version simplifiée)."""
+    if "@" not in courriel:
+        return False
+    nom, domaine = courriel.split("@", 1)
+    return len(nom) > 0 and "." in domaine
+```
+
+Pour vérifier qu'elle fonctionne avec différentes entrées, on pourrait écrire un
+test par cas :
+
+```python
+def test_valide_normal():
+    assert valider_courriel("alice@exemple.com") == True
+
+def test_valide_sous_domaine():
+    assert valider_courriel("bob@mail.exemple.com") == True
+
+def test_invalide_sans_arobase():
+    assert valider_courriel("alice.exemple.com") == False
+
+def test_invalide_vide():
+    assert valider_courriel("") == False
+```
+
+Chaque test ne diffère que par l'entrée et le résultat attendu, mais la
+structure est identique. Le décorateur `@pytest.mark.parametrize` permet de
+factoriser cette répétition en un seul test qui s'exécute avec chaque
+combinaison de paramètres :
+
+```python
+import pytest
+
+@pytest.mark.parametrize("courriel, attendu", [
+    ("alice@exemple.com", True),
+    ("bob@mail.exemple.com", True),
+    ("alice.exemple.com", False),
+    ("", False),
+])
+def test_valider_courriel(courriel, attendu):
+    assert valider_courriel(courriel) == attendu
+```
+
+pytest génère automatiquement un test distinct pour chaque entrée du tableau. Si
+le troisième cas échoue, pytest rapporte précisément quel jeu de paramètres a
+posé problème, ce qui facilite le diagnostic. On peut aussi facilement ajouter de
+nouveaux cas en ajoutant simplement une ligne au tableau, sans toucher à la
+logique du test.
 
 ## Le mocking
 
@@ -683,6 +763,7 @@ qu'elle devrait être commutative : `addition(a, b)` devrait toujours être éga
 `addition(b, a)`, peu importe les valeurs de `a` et `b`.
 
 ```python
+# test_addition_avec_hypothesis.py
 from hypothesis import given
 from hypothesis.strategies import integers
 from calcul import addition
@@ -702,6 +783,7 @@ intéressante : pour n'importe quelle chaine de caractères `s`, la concaténati
 de `s` avec son inverse (`s + s[::-1]`) devrait *toujours* être un palindrome.
 
 ```python
+# test_palindrome_avec_hypothesis.py
 from hypothesis import given
 from hypothesis.strategies import text
 from palindrome import est_palindrome
