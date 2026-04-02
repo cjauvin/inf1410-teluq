@@ -12,6 +12,15 @@ Ce cours adopte une approche qui se distingue de la présentation traditionnelle
 du génie logiciel, souvent centrée sur les formalismes et les diagrammes. Trois
 idées guident sa conception :
 
+- **La culture générale technologique.** Le génie logiciel est un domaine vaste,
+  et personne ne peut prétendre en maîtriser tous les aspects. Mais nous croyons
+  qu'il est important de se construire un réseau d'idées et de connaissances, et
+  d'avoir au moins un modèle mental de base pour la plupart des grands domaines
+  et des grandes idées. Savoir qu'un concept existe, comprendre à quoi il sert
+  et comment il se relie aux autres, c'est souvent suffisant pour poser les
+  bonnes questions et approfondir au besoin. Ce cours vise à instiller ce goût
+  et cette curiosité pour la culture technologique au sens large.
+
 - **La perspective historique.** Nous croyons que les contextes historiques des
   idées et des innovations en informatique sont fascinants quand on prend le
   temps de s'y attarder : on découvre que certaines idées ont des vies
@@ -21,15 +30,6 @@ idées guident sa conception :
   qui peuvent parfois apparaître assez éloignées, ou séparées dans le temps, et
   de constater que plusieurs thèmes importants reviennent sans cesse, sous
   différentes formes.
-
-- **La culture générale technologique.** Le génie logiciel est un domaine vaste,
-  et personne ne peut prétendre en maîtriser tous les aspects. Mais nous croyons
-  qu'il est important de se construire un réseau d'idées et de connaissances, et
-  d'avoir au moins un modèle mental de base pour la plupart des grands domaines
-  et des grandes idées. Savoir qu'un concept existe, comprendre à quoi il sert
-  et comment il se relie aux autres, c'est souvent suffisant pour poser les
-  bonnes questions et approfondir au besoin. Ce cours vise à instiller ce goût
-  et cette curiosité pour la culture technologique au sens large.
 
 - **L'expérience directe.** Le cours contient de nombreux exemples et tutoriels
   détaillés, car il nous apparaît essentiel de vous donner une expérience
@@ -41,6 +41,8 @@ idées guident sa conception :
   faire vos propres expériences : les outils et les concepts présentés ici ne
   sont qu'un échantillon dans un vaste océan de possibilités, et la curiosité
   autonome est une compétence fondamentale en génie logiciel.
+
+{{< image src="3-pillars.jpg" alt="" title="" loading="lazy" >}}
 
 ## Les modules
 
