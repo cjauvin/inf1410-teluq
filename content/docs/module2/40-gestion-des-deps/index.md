@@ -46,7 +46,7 @@ exemple l'installation de la version 7 de LibreOffice nécessite une version
 particulière de Java, le gestionnaire de paquets gérera les dépendances
 intelligemment, et automatiquement.
 
-Par exemple on peut voir le graphe de dépendances du paquet `sl` sur Ubuntu,
+Par exemple on peut voir le graphe de dépendances du paquet `sl` sur Ubuntu Linux,
 en utilisant l'utilitaire `apt-rdepends` :
 
 ```shell
@@ -72,27 +72,6 @@ libtinfo6
   ```
 
 {{< image src="sl-deps.png" alt="" title="" loading="lazy" >}}
-
-## La sécurité
-
-Les gestionnaires de paquets jouent aujourd’hui un rôle central dans le
-développement logiciel, mais ils introduisent également des enjeux importants de
-sécurité. Lorsqu’un projet déclare une dépendance, il ne fait pas seulement
-confiance à une bibliothèque précise, mais aussi à l’ensemble de ses dépendances
-transitives, parfois très nombreuses, ainsi qu’aux personnes et aux
-infrastructures qui les distribuent. Cette situation élargit considérablement la
-surface d’attaque potentielle : un paquet compromis, un mainteneur malveillant,
-une prise de contrôle d’un compte ou encore une simple faute de frappe dans le
-nom d’une bibliothèque (typosquatting) peuvent entraîner l’intégration de code
-hostile dans un système sans que l’équipe de développement ne s’en aperçoive
-immédiatement. Pour répondre à ces risques, les écosystèmes modernes proposent
-divers mécanismes comme les audits automatiques de vulnérabilités connues, les
-signatures cryptographiques, la vérification d’intégrité et la production
-d’inventaires de composants (SBOM). Comprendre ces mécanismes fait désormais
-partie des compétences essentielles du génie logiciel, car la gestion des
-dépendances n’est plus seulement une question de commodité, mais aussi de
-responsabilité opérationnelle et parfois légale. Les gestionnaires de
-dépendances permettent
 
 ## Le versionnage sémantique (SemVer)
 
@@ -369,7 +348,6 @@ En fait une question reliée serait : qu'est-ce qu'un projet `uv`, au juste?
 Quand j'ajoute une dépendance dans mon projet, quel est l'effet concret, et
 comment puis-le constater? Voyons voir le contenu du répertoire du projet
 dans lequel nous venons d'installer une dépendance :
-:
 
 ```shell
 $ cd my-venv
@@ -468,10 +446,8 @@ installées à répétition, de manière scriptée et automatisée, dans des
 environnements éphémères, comme des containers (docker ou autre), dans un
 système Kubernetes, ou un environnement pour effectuer des tests.
 
-#### Est-ce sécuritaire?
-
-Qu'arriverait-il si, au lieu d'installer la bibliothèque `requests`, nous tentions
-d'installer, par mégarde, `request` (sans `s`)? Voyons voir :
+Mais que se passerait-il si, au lieu d'installer la bibliothèque `requests`,
+nous tentions d'installer, par mégarde, `request` (sans `s`)?
 
 ```shell
 $ uv add request
@@ -483,16 +459,12 @@ $ uv add request
 ```
 
 Dans ce cas, le comportement souhaité est le bon : PyPI ne reconnaît pas le nom
-de cette bibliothèque, et qui plus est, ce qui est le plus important : PyPI ne
-permettrait pas à quelqu'un de publier une bibliothèque dont le nom serait trop
-proche d'une bibliothèque très connue (`requests` est extrêmement populaire). Un
-danger qui nous guette cependant avec les systèmes comme PyPI, est le
-[typosquattage](https://fr.wikipedia.org/wiki/Typosquattage), le fait
-d'exploiter une variante orthographique proche, pour publier du contenu
-malicieux. Il est également possible, dans certains cas, que le compte PyPI
-associé à une bibliothèque soit piraté, et que son contenu soit remplacé par une
-version malicieuse, qui contient un virus, ou encore un mécanisme pour voler des
-données, par exemple.
+de cette bibliothèque, et qui plus est, PyPI ne permettrait pas à quelqu'un de
+publier une bibliothèque dont le nom serait trop proche d'une bibliothèque très
+connue (`requests` est extrêmement populaire). Mais cette protection a ses
+limites, et les registres de paquets restent vulnérables à plusieurs types
+d'attaques. Nous y reviendrons en détail dans la section sur la sécurité, à la
+fin de ce chapitre.
 
 ---
 
@@ -557,7 +529,7 @@ Audited 1 package in 0.28ms
 ```
 
 > [!NOTE]
-Avec `u`v, les contraintes de version servent à indiquer quelles versions d’un paquet peuvent être installées. Les opérateurs classiques `<`, `<=`, `>`, `>=` permettent de fixer des bornes (par exemple `>=1.2.0` signifie « version 1.2.0 ou supérieure »), tandis que `==` impose une version exacte. `uv` suit la spécification PEP 440 de l’écosystème Python : l’opérateur `~=` (compatible release) autorise les mises à jour compatibles selon la version indiquée (par exemple `~=1.4` accepte les versions `1.x` à partir de `1.4`, sans passer à `2.0`). Ces contraintes permettent de contrôler finement la stabilité d’un projet tout en autorisant, si souhaité, certaines mises à jour automatiques lors du verrouillage (uv lock).
+Avec `uv`, les contraintes de version servent à indiquer quelles versions d’un paquet peuvent être installées. Les opérateurs classiques `<`, `<=`, `>`, `>=` permettent de fixer des bornes (par exemple `>=1.2.0` signifie « version 1.2.0 ou supérieure »), tandis que `==` impose une version exacte. `uv` suit la spécification PEP 440 de l’écosystème Python : l’opérateur `~=` (compatible release) autorise les mises à jour compatibles selon la version indiquée (par exemple `~=1.4` accepte les versions `1.x` à partir de `1.4`, sans passer à `2.0`). Ces contraintes permettent de contrôler finement la stabilité d’un projet tout en autorisant, si souhaité, certaines mises à jour automatiques lors du verrouillage (uv lock).
 
 > [!NOTE]
 La commande `uv add "my-lib~=0.1.0"` serait ici équivalent à `uv add "my-lib>=0.1.0,<0.2.0"`.
@@ -581,7 +553,7 @@ no-index = true
 find-links = ["../packages"]
 ```
 
-La version de `my-lib` pour `my-map` est "pinnée" (mot anglais) à `0.1.x`, ce
+La version de `my-lib` pour `my-app` est "pinnée" (mot anglais) à `0.1.x`, ce
 qui veut donc dire que seules les versions avec des "patchs" différents (pour la
 résolution de bogues, en général) seront tolérées : par exemple `0.1.1`,
 `0.1.2`, etc. La version `0.2.0`, si elle en venait à exister, serait
@@ -708,6 +680,97 @@ Dans ce cas étant donné qu'il s'agit d'une application, nous avons choisi de
 changer la version majeure, qui passe donc à `1.0.0`.
 
 {{< image src="myapp2.png" alt="" title="" loading="lazy" >}}
+
+## La sécurité de la chaîne d'approvisionnement
+
+Tout au long de cette section, nous avons vu comment un gestionnaire de
+dépendances permet d'assembler rapidement un projet à partir de composantes
+externes. Mais cette commodité repose sur un acte de confiance implicite :
+lorsqu'on exécute `uv add requests`, on ne fait pas seulement confiance à la
+bibliothèque `requests` elle-même, mais aussi à `certifi`, `charset-normalizer`,
+`idna` et `urllib3`, à leurs propres mainteneurs, et aux infrastructures qui les
+hébergent et les distribuent. Plus un projet accumule de dépendances, plus cet
+arbre de confiance s'élargit, et plus la surface d'attaque potentielle grandit.
+Cette réalité a donné naissance à une catégorie de menaces qu'on appelle les
+attaques de la chaîne d'approvisionnement logicielle (supply chain attacks).
+
+Le principe d'une supply chain attack est d'exploiter la confiance que les
+développeurs accordent à leur chaîne d'approvisionnement logicielle, plutôt que
+d'attaquer directement le système visé. Au lieu de chercher une faille dans
+l'application elle-même, l'attaquant compromet une de ses dépendances, souvent
+plusieurs niveaux en profondeur dans l'arbre de dépendances transitives. Le code
+malicieux est alors installé automatiquement par le gestionnaire de paquets,
+parfois sans que personne ne le remarque pendant des semaines ou des mois. Les
+vecteurs d'attaque les plus courants sont le typosquattage (publier un paquet
+dont le nom ressemble à un paquet populaire), la prise de contrôle du compte
+d'un mainteneur, et l'infiltration progressive d'un projet open source par un
+contributeur qui gagne la confiance de l'équipe avant d'y injecter du code
+hostile.
+
+Plusieurs incidents majeurs ont marqué l'histoire récente du développement
+logiciel et illustrent bien la diversité de ces attaques. En 2018, le paquet npm
+`event-stream`, téléchargé des millions de fois par semaine, a été compromis
+d'une manière particulièrement révélatrice. Le mainteneur original, épuisé par
+des années de travail bénévole sur un projet qu'il n'utilisait même plus, a
+accepté de transférer le contrôle du paquet à un inconnu qui s'était montré
+serviable. Ce nouveau mainteneur a ensuite ajouté une dépendance vers un autre
+paquet, `flatmap-stream`, qui contenait du code obfusqué conçu pour voler les
+portefeuilles de Bitcoin des utilisateurs d'une application spécifique. L'attaque
+est restée invisible pendant plusieurs semaines, car le code malicieux était
+caché dans un paquet transitif et ne se déclenchait que dans un contexte très
+précis.
+
+Un exemple encore plus récent et particulièrement frappant est celui de LiteLLM,
+une bibliothèque Python très populaire (des millions de téléchargements par
+jour) servant de passerelle vers différents modèles d'IA. En mars 2026, un
+groupe appelé TeamPCP a réussi une attaque en cascade d'une sophistication
+remarquable. Ils ont d'abord compromis Trivy, un outil d'analyse de sécurité,
+qui était justement utilisé dans le pipeline CI/CD de LiteLLM. L'ironie est
+frappante : c'est un outil de sécurité qui a servi de vecteur d'attaque. En
+s'exécutant dans le pipeline de compilation de LiteLLM, le Trivy compromis a
+exfiltré le jeton de publication PyPI du projet, permettant aux attaquants de
+publier deux versions malicieuses de LiteLLM sur PyPI. Ces versions installaient
+un mécanisme qui, à chaque démarrage de Python, récoltait silencieusement les
+clés API, les secrets, les identifiants de bases de données et les clés SSH
+présents sur la machine. Les versions compromises n'ont été en ligne que pendant
+environ 40 minutes avant d'être retirées par PyPI, mais étant donné le volume de
+téléchargements, l'impact potentiel était considérable. Fait notable : les
+utilisateurs qui avaient des dépendances verrouillées dans un fichier de type
+lockfile n'ont pas été affectés.
+
+Mais l'attaque de la chaîne d'approvisionnement la plus spectaculaire des
+dernières années est sans doute celle qui a visé xz Utils en 2024, un petit
+utilitaire de compression présent dans pratiquement toutes les distributions
+Linux. Un développeur utilisant le pseudonyme Jia Tan a commencé à contribuer au
+projet en 2021, de manière patiente et méthodique. Pendant plus de deux ans, il
+a soumis des correctifs légitimes, gagné la confiance du mainteneur principal
+(qui, comme dans le cas d'event-stream, était une personne seule et débordée),
+et obtenu progressivement les droits de publication. En février 2024, il a
+injecté une porte dérobée (backdoor) extrêmement sophistiquée, dissimulée dans
+les fichiers de test du projet, qui permettait à un attaquant distant de prendre
+le contrôle de n'importe quel serveur utilisant OpenSSH avec la bibliothèque
+compromise. La backdoor a été découverte par hasard, par un ingénieur de
+Microsoft qui avait remarqué que ses connexions SSH prenaient une demi-seconde de
+plus que d'habitude. Sans cette observation fortuite, la porte dérobée aurait pu
+se retrouver dans des millions de serveurs à travers le monde.
+
+Ces exemples illustrent un thème commun : la sécurité de la chaîne
+d'approvisionnement est autant un problème humain et social que technique. Les
+mainteneurs solitaires et épuisés, les comptes mal protégés et les pipelines
+CI/CD trop permissifs sont des vecteurs d'attaque au moins aussi importants que
+les failles de code. Plusieurs des outils que nous avons vus dans ce chapitre
+jouent un rôle défensif direct : les lockfiles permettent de figer les versions
+exactes des dépendances et d'éviter qu'une mise à jour malicieuse soit installée
+automatiquement, les contraintes de version SemVer limitent l'exposition aux
+changements inattendus, et les registres comme PyPI mettent en place des
+protections contre le typosquattage et exigent de plus en plus l'authentification
+à deux facteurs pour les mainteneurs de paquets populaires. Au-delà de ces
+mécanismes, des pratiques comme l'audit régulier des dépendances (`uv audit`,
+`npm audit`), la production d'inventaires de composants (SBOM, pour Software
+Bill of Materials) et la vérification des signatures cryptographiques font
+aujourd'hui partie des compétences attendues en génie logiciel.
+
+<!-- ILLUSTRATION: schéma montrant les différents vecteurs d'attaque sur la chaîne d'approvisionnement (typosquattage, compte compromis, dépendance transitive malicieuse, pipeline CI/CD infiltré) -->
 
 # Pas seulement pour Python !
 
