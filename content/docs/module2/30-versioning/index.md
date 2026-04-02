@@ -27,71 +27,124 @@ d’expérimenter sans casser ce qui fonctionne.
 
 À mesure que les projets grossissent et que le travail devient collectif, le
 versioning devient indispensable. Il structure la façon dont on travaille, dont
-on collabore, et même dont on réfléchit au code. C’est ce problème — gérer le
-changement — qui a conduit à la création des systèmes de contrôle de versions,
+on collabore, et même dont on réfléchit au code. C’est ce problème, celui de gérer le
+changement, qui a conduit à la création des systèmes de contrôle de versions,
 et en particulier de Git, que nous allons étudier dans ce chapitre.
 
 ## Bref historique des systèmes de gestion de versions
 
 ### Première génération : local et fichier unique
 
-**SCCS** (Source Code Control System, 1972) — Bell Labs
-- Premier système de versioning, créé par Marc Rochkind
-- Stockage par deltas (différences) pour économiser l'espace
-- Un seul fichier à la fois, un seul utilisateur à la fois
-- Verrouillage exclusif pour éviter les conflits
+L'histoire des systèmes de gestion de versions commence en 1972 aux Bell Labs,
+où Marc Rochkind crée SCCS (Source Code Control System). Le problème qu'il
+cherche à résoudre est simple : comment garder une trace des modifications
+apportées à un fichier de code source sans stocker une copie complète à chaque
+changement ? Sa solution repose sur les *deltas*, c'est-à-dire le stockage des
+différences entre versions successives, ce qui économise considérablement
+l'espace disque. Mais SCCS a des limites importantes : il ne gère qu'un seul
+fichier à la fois, et impose un verrouillage exclusif, ce qui signifie qu'un
+seul programmeur peut modifier un fichier donné à un moment donné.
 
-**RCS** (Revision Control System, 1982) — Walter Tichy, Purdue
-- Amélioration de SCCS, plus rapide grâce aux deltas inversés (stocke la version courante en entier, reconstruit les anciennes)
-- Toujours limité à des fichiers individuels
-- Reste local à une machine
+Dix ans plus tard, en 1982, Walter Tichy à l'Université Purdue propose RCS
+(Revision Control System), une amélioration de SCCS. L'idée clé de RCS est
+d'inverser la logique des deltas : plutôt que de stocker la première version en
+entier et de reconstruire les suivantes par accumulation de différences, RCS
+stocke la version *courante* en entier et utilise les deltas pour reconstruire
+les versions plus anciennes. Le résultat est un accès beaucoup plus rapide à la
+version la plus récente, celle dont on a le plus souvent besoin. Malgré cette
+amélioration, RCS reste limité aux fichiers individuels et au travail local sur
+une seule machine.
 
 ### Deuxième génération : centralisé et projets entiers
 
-**CVS** (Concurrent Versions System, 1986–1990) — Dick Grune, puis Brian Berliner
-- Construit au-dessus de RCS mais gère des arborescences de fichiers
-- Premier système vraiment *concurrent* : plusieurs développeurs peuvent modifier simultanément
-- Modèle client-serveur avec un dépôt central
-- Faiblesses notoires : pas de commits atomiques, gestion pénible des renommages et des branches
+Le vrai changement arrive avec CVS (Concurrent Versions System), dont le
+développement commence en 1986 par Dick Grune, avant d'être repris et étendu par
+Brian Berliner. CVS est construit par-dessus RCS, mais il apporte deux
+innovations majeures : il gère des arborescences complètes de fichiers plutôt
+que des fichiers individuels, et surtout il permet à plusieurs développeurs de
+travailler simultanément sur le même code. C'est le premier système
+véritablement *concurrent*. CVS introduit aussi le modèle client-serveur, avec
+un dépôt central auquel les développeurs se connectent pour récupérer le code et
+soumettre leurs modifications. Pour la première fois, une équipe dispersée peut
+collaborer sur un même projet de manière structurée. Cependant, CVS souffre de
+faiblesses qui deviennent de plus en plus pénibles à mesure que les projets
+grossissent : les commits ne sont pas atomiques (une opération qui modifie
+plusieurs fichiers peut échouer à mi-chemin, laissant le dépôt dans un état
+incohérent), les renommages de fichiers sont mal gérés, et les branches sont
+lourdes et difficiles à manipuler.
 
-**Perforce** (1995) — commercial
-- Très performant sur de gros dépôts binaires
-- Encore utilisé dans l'industrie du jeu vidéo et les grandes entreprises
+En parallèle, le monde commercial propose ses propres solutions. Perforce, lancé
+en 1995, se distingue par ses performances exceptionnelles sur de très gros
+dépôts, y compris ceux contenant des fichiers binaires volumineux. C'est ce qui
+explique qu'il reste encore aujourd'hui un outil de choix dans l'industrie du
+jeu vidéo et dans certaines grandes entreprises, où les projets contiennent
+souvent des gigaoctets d'assets graphiques et sonores.
 
-**Subversion (SVN)** (2000) — CollabNet
-- Conçu explicitement pour corriger les défauts de CVS
-- Commits atomiques, versioning des répertoires, renommages suivis
-- Toujours centralisé : le serveur est la source de vérité unique
-- Numérotation linéaire des révisions (r1, r2, r3…)
+En 2000, CollabNet lance Subversion (SVN), un projet explicitement conçu pour
+corriger les défauts de CVS tout en conservant son modèle centralisé. SVN
+apporte les commits atomiques, le versioning des répertoires (et non plus
+seulement des fichiers), et un suivi correct des renommages. Le serveur reste la
+source de vérité unique, et les révisions sont numérotées de manière linéaire
+(r1, r2, r3...), ce qui donne une vision claire et ordonnée de l'historique. SVN
+deviendra rapidement le standard dans de nombreuses organisations, remplaçant
+CVS comme choix par défaut pour le versioning centralisé.
 
 ### Troisième génération : distribué
 
-**BitKeeper** (1998–2000) — Larry McVoy
-- Premier système distribué utilisé à grande échelle (noyau Linux de 2002 à 2005)
-- Licence propriétaire controversée, ce qui a mené à la création de Git
+La troisième génération naît d'un constat : le modèle centralisé, malgré ses
+améliorations successives, impose une dépendance fondamentale envers un serveur
+unique. Si le serveur tombe, personne ne peut travailler. Si la connexion réseau
+est lente ou absente, les opérations deviennent pénibles ou impossibles. Et
+surtout, le serveur central crée un goulot d'étranglement pour les très grands
+projets avec des centaines de contributeurs.
 
-**GNU Arch / Bazaar / Darcs** (début 2000)
-- Expérimentations diverses sur le versioning distribué
-- Darcs introduit une approche par patches commutatifs (théorie des patches)
+Le premier système distribué à être utilisé à grande échelle est BitKeeper,
+développé par Larry McVoy à partir de 1998. Dans un système distribué, chaque
+développeur possède une copie complète du dépôt, avec tout son historique. On
+peut travailler, créer des branches, consulter l'historique et faire des commits
+sans jamais contacter un serveur. La synchronisation entre les copies se fait
+ensuite par échange de modifications. BitKeeper est adopté en 2002 pour le
+développement du noyau Linux, un projet d'une envergure considérable, ce qui
+démontre la viabilité du modèle distribué. Mais BitKeeper est un logiciel
+propriétaire, et sa licence gratuite pour les projets open source est assortie
+de conditions restrictives. Cette tension entre un outil propriétaire et une
+communauté profondément attachée au logiciel libre finira par provoquer une
+rupture.
 
-**Git** (2005) — Linus Torvalds
-- Créé en quelques semaines après la rupture avec BitKeeper
-- Objectifs : vitesse, intégrité des données, support massif des branches
-- Caractéristiques clés :
- - Chaque clone est un dépôt complet avec tout l'historique
- - Stockage par snapshots (pas deltas) avec déduplication via SHA-1
- - Branches ultra-légères (simples pointeurs)
- - Travail hors ligne total
- - Modèle de staging (index) avant commit
-- Devenu le standard de facto grâce à GitHub (2008)
+Pendant ce temps, d'autres projets explorent le versioning distribué sous
+différents angles. GNU Arch, Bazaar et Darcs proposent chacun leur vision.
+Darcs, en particulier, introduit une approche théorique originale basée sur des
+*patches commutatifs* : plutôt que de penser l'historique comme une séquence
+linéaire de modifications, Darcs modélise les changements comme des opérations
+qui peuvent être réordonnées, ce qui simplifie certaines opérations de fusion.
+Ces systèmes resteront relativement marginaux, mais ils contribuent à faire
+mûrir les idées autour du versioning distribué.
 
-**Mercurial** (2005) — Matt Mackall
-- Lancé la même semaine que Git, mêmes motivations
-- Interface plus simple, concepts similaires
-- Utilisé par Facebook, Mozilla (historiquement)
-- Moins dominant aujourd'hui, mais toujours actif
+En 2005, la rupture avec BitKeeper se produit : la licence gratuite est révoquée
+après qu'un développeur associé au noyau Linux tente de faire de l'ingénierie
+inverse sur le protocole de BitKeeper. Linus Torvalds, créateur de Linux, décide
+alors de construire son propre système. En quelques semaines seulement, il
+développe Git, avec des objectifs très clairs : la vitesse, l'intégrité absolue
+des données, et un support massif des branches. Git adopte des choix techniques
+distinctifs. Plutôt que de stocker des deltas comme ses prédécesseurs, il prend
+des *snapshots* complets de l'état du projet à chaque commit, en s'appuyant sur
+la déduplication par hachage SHA-1 pour éviter la redondance. Les branches sont
+réduites à de simples pointeurs vers un commit, ce qui les rend extrêmement
+légères à créer et à manipuler. Le travail hors ligne est total, et le modèle
+de *staging* (l'index) ajoute une étape intermédiaire entre la modification d'un
+fichier et son enregistrement dans l'historique, offrant un contrôle fin sur ce
+qu'on inclut dans chaque commit. Git restera relativement confidentiel pendant
+ses premières années, avant que le lancement de GitHub en 2008 ne le propulse
+comme standard de facto de l'industrie.
 
----
+Par une coïncidence remarquable, Mercurial est lancé la même semaine que Git,
+par Matt Mackall, avec exactement les mêmes motivations : répondre à la perte de
+BitKeeper pour le développement du noyau Linux. Mercurial propose des concepts
+similaires à Git mais avec une interface plus simple et plus accessible. Il sera
+adopté par des organisations majeures comme Facebook et Mozilla. Aujourd'hui,
+Mercurial reste un projet actif mais nettement moins dominant que Git, qui a
+capturé l'essentiel de l'écosystème grâce à la puissance de la plateforme
+GitHub.
 
 ### Tableau récapitulatif
 
@@ -108,17 +161,27 @@ L'évolution suit une logique claire : d'abord résoudre le problème du suivi p
 un fichier, puis pour un projet, puis permettre la collaboration, et enfin
 décentraliser pour la résilience et la flexibilité.
 
-## Un système de gestion des versions moderne et extrêmement populaire : git
+## Git
+
+Git domine aujourd'hui de manière écrasante le monde du versioning. Selon les
+enquêtes annuelles de Stack Overflow, plus de 95% des développeurs l'utilisent
+comme système de contrôle de versions. GitHub, GitLab et Bitbucket, les trois
+grandes plateformes d'hébergement de code, reposent toutes sur Git. L'essentiel
+de l'écosystème open source y vit, et la grande majorité des entreprises l'ont
+adopté, des startups aux géants comme Google et Microsoft (qui a d'ailleurs
+racheté GitHub en 2018). Comprendre Git n'est pas seulement utile, c'est devenu
+un prérequis pour tout développeur professionnel. C'est pourquoi nous allons
+l'étudier en détail dans la suite de ce chapitre.
 
 ### Fonction de hachage
 
 Pour se construire un bon modèle mental du fonctionnement de git, il est essentiel de
 bien comprendre tout d'abord la notion de **fonction de hachage**.
 
-Une fonction de hachage est une fonction mathématique qui prend en entrée un
-nombre, et qui retourne un autre nombre. Une fonction de hachage ne peut pas
-être n'importe quelle fonction par contre (comme par exemple $f(x) = mx + b$),
-elle doit avoir certaines caractéristiques :
+Une fonction de hachage est une fonction mathématique qui prend en entrée des
+données (une séquence d'octets de longueur arbitraire), et qui retourne un
+nombre de taille fixe. Une fonction de hachage ne peut pas être n'importe quelle
+fonction par contre, elle doit avoir certaines caractéristiques :
 
 * Déterminisme : Pour une même donnée en entrée, vous obtiendrez toujours exactement le même hash en sortie.
 
@@ -162,11 +225,11 @@ exemple), la valeur de hash doit être unique (résistance aux collisions), et
 toujours la même, sans exception (déterminisme). Si on ne change ne serait-ce
 qu'un bit d'un fichier, la valeur _doit_ changer (effet d'avalanche).
 L'implémentation de cette fonction (dans un langage comme Python, avec la
-librairie [hashlib](https://docs.python.org/3/library/hashlib.html) par exemple
+librairie [hashlib](https://docs.python.org/3/library/hashlib.html) par exemple)
 doit être suffisamment rapide, parce que git l'utilisera extrêmement souvent,
 étant donné qu'il s'agit d'une de ses opérations fondamentales.
 
-{{% details "Implémentation de SHA-256 en Python pur (sans la libraire `hashlib`), pour les curieux" %}}
+{{% details "Implémentation de SHA-256 en Python pur (sans la librairie `hashlib`), pour les curieux" %}}
 
 ```python
 # Implémentation pédagogique de SHA-256 en Python pur (sans hashlib)
@@ -308,7 +371,7 @@ Une valeur de hash particulière pourrait être par exemple&nbsp;:
 `2123f2435e1dbe255a323c90e97e38f759fe8946`
 
 ce qui correspond à un nombre hexadécimal (en base 16 donc, qui s'exprime avec
-les dix chiffres 0 à 10, ainsi que les 6 premières lettres de l'alphabet, de `a`
+les dix chiffres 0 à 9, ainsi que les 6 premières lettres de l'alphabet, de `a`
 à `f`) de 40 "chiffres". Chaque caractère hexadécimal de cette chaîne étant
 équivalent à 4 bits, nous avons donc un nombre de $40 \times 4 = 160$ bits, qui
 permet d'exprimer donc $2^{160}$ valeurs possibles.
@@ -338,9 +401,9 @@ générale, la notion de chaîne de blocs (blockchain en anglais).
 Git est un outil pour la ligne de commande qui utilise un modèle de données
 particulier pour représenter et manipuler le contenu et l'évolution historique
 de l'ensemble de fichiers d'un projet de développement logiciel. Nous allons
-l'étudier tout en l'utilisant concrètement. Je vous recommande d'entrer les
+l'étudier tout en l'utilisant concrètement. Il vous est recommandé d'entrer les
 commandes qui vont suivre dans votre propre ligne de commande au moment de la
-lecture, afin de rendre plus concrète les notions que nous verrons.
+lecture, afin de rendre plus concrètes les notions que nous verrons.
 
 La première notion importante de git est celle de _dépôt_ (repository en anglais), qui
 correspond à un répertoire particulier, et qui constitue un projet au sens de git. Ce répertoire
@@ -454,7 +517,7 @@ pédagogiques.
 #### Premier type d'objet fondamental git : le blob
 
 Le modèle de données de Git est constitué de quatre types fondamentaux d'objets.
-Le premier type est le _blob_, qui correspond aux données données binaires
+Le premier type est le _blob_, qui correspond aux données binaires
 compressées d'un fichier donné (ici `toto.txt`) :
 
 ```shell
@@ -479,10 +542,10 @@ est possible.
 
 Si on entre la valeur `allo!` dans l'applet interactif ci-haut, on n'obtient pas
 cette valeur particulière de hash pourtant (essayez-le, avec la fonction
-`SHA1`).. pourquoi donc? Parce que git hache en fait un peu plus que simplement
+`SHA1`)... pourquoi donc? Parce que git hache en fait un peu plus que simplement
 le contenu du fichier : il hache la valeur `blob <taille>\0<contenu>`, où
 `<contenu>` correspond dans notre cas à `allo!\n` (le `\n` est un caractère
-spécial pour le retour de chariat, newline en anglais) et la `<taille>`, en
+spécial pour le retour de chariot, newline en anglais) et la `<taille>`, en
 nombre de caractères, est donc 6. Donc si on entre la valeur `blob 6\0allo!\n`
 dans l'applet, le même hash que celui calculé par git devrait apparaître.
 
@@ -552,7 +615,7 @@ index 4c7d057..48bed0c 100644
 Que se passerait-il si on tentait de committer notre changement à ce point?
 
 ```shell
-$ git commit -m "Dexuième commit"
+$ git commit -m "Deuxième commit"
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -628,7 +691,7 @@ xK��OR04aH���W�J����/-�O⏎
 
 Mais ce qu'il est fondamental de remarquer et de comprendre, c'est que notre
 blob précédent (`4c7d057645ac149446d1289aaa6f9fd74e91ce13`) est toujours là, il
-n'a pas disparu ! Ceci veut donc dire que tous les stages de transformation d'un
+n'a pas disparu ! Ceci veut donc dire que tous les stades de transformation d'un
 fichier sont sauvegardés **en tant que fichiers complets et indépendants**. Git
 ne gère donc pas les "différences" entre les fichiers, mais conserve plutôt
 l'état complet de chaque version (en anglais on parle souvent de "snapshot",
@@ -652,16 +715,16 @@ Le fait d'avoir un mécanisme comme la fonction de hachage permet à git de
 rapidement répondre à la question : est-ce qu'un fichier a changé ou non? Si le
 hash d'un fichier est identique aujourd'hui à ce qu'il était hier, nous avons la
 certitude, par définition, que le fichier n'a pas changé. Car le moindre
-changement (ne serait-ce que l'ajout dune virgule) produit une valeur de hash
+changement (ne serait-ce que l'ajout d'une virgule) produit une valeur de hash
 complètement différente. Par contre, cette différence, au niveau des valeurs du
 hash, ne disent rien au sujet de ce qui a changé ! Elle dit SEULEMENT que
 quelque chose a changé. Si git veut savoir exactement ce qui a changé (pour par
 exemple le fournir à l'utilisateur de la commande `git diff`), il doit le
 calculer en temps réel, au moment du besoin. On pourrait penser que ceci est
-coûteux et inefficaces, mais dans les faits ça ne l'est pas, car un algorithme
+coûteux et inefficace, mais dans les faits ça ne l'est pas, car un algorithme
 pour déterminer la différence entre deux fichiers textes peut être exécuté très
-rapidement. Le modèle de donnés de git est entièrement conçu de manière à
-optimiser les cas s'usage les plus courants.
+rapidement. Le modèle de données de git est entièrement conçu de manière à
+optimiser les cas d'usage les plus courants.
 
 Poursuivons notre analyse du modèle de données de git en nous demandant ensuite :
 qu'est-ce qu'un commit, au juste? Jusqu'à maintenant, nous avons créé deux commits,
@@ -849,10 +912,10 @@ $ git commit -am "Quatrième commit"
 ```
 
 > [!NOTE]
-Il est intéressant de noter en passant que l'arbre de Merkle est la
-structure de données qui est au coeur de la cryptomonnaie (comme Bitcoin) et de
-la chaîne de blocs (blockchain). Git et les cryptomonnaies constituent donc deux
-exemples fameux et extrêmement influents de cette technologie particulière.
+L'arbre de Merkle est aussi la structure de données au coeur des cryptomonnaies
+et de la chaîne de blocs, comme mentionné dans la section sur le hachage
+ci-dessus. Git et les cryptomonnaies constituent deux exemples fameux et
+extrêmement influents de cette technologie.
 
 Notons tout d'abord le hash du commit qu'on vient de produire :
 
@@ -884,7 +947,7 @@ $ git ls-tree -r -t 6954
 100644 blob 48bed0c35d92c60539832929142859e3f5ae6eda    toto.txt
 ```
 
-On peut constater le fait intéressant que seuls les arbres `6954fc` et `4d74086` ont changés,
+On peut constater le fait intéressant que seuls les arbres `6954fc` et `4d74086` ont changé,
 parce qu'ils sont les ancêtres du blob `76aa73`, que notre commit a changé. On constate
 donc clairement qu'un arbre git est un arbre de Merkle au sens classique.
 
@@ -931,7 +994,7 @@ avec git : les commits forment une chaîne :
 {{< image src="git-chain.png" alt="" title="" loading="lazy" >}}
 
 Chaque commit a donc un hash qui "pointe" vers son commit prédécesseur (nous
-verrons plus loin qu'il est possible pour un commit d'avoir plus d'un parents,
+verrons plus loin qu'il est possible pour un commit d'avoir plus d'un parent,
 et en quoi c'est utile), pour former une chaîne.
 
 Jusqu'ici, git ne nous permet que d'évoluer de manière linéaire, étant donné que
@@ -941,7 +1004,7 @@ peuvent être nécessaires dans le processus d'évolution du code source. Pour
 illustrer cela, imaginons que les 4 commits que nous avons jusqu'à maintenant
 correspondent à la version 1 (v1) d'une application qu'on a mise en ligne, et
 qui est utilisée par le grand public. Mais étant donné qu'on perd rarement
-rarement du temps en développement logiciel, le travail a déjà commencé pour
+du temps en développement logiciel, le travail a déjà commencé pour
 concevoir la version 2 du même logiciel (qu'on prévoit mettre en ligne plus
 tard). Deux commits ont donc été ajoutés à notre chaîne, qui constituent le
 début du travail sur la version 2. Notez qu'à partir d'ici, nous allons utiliser
@@ -1010,7 +1073,7 @@ l'état suivant :
 
 Si nous ajoutons un nouveau commit dans cet état, comment git fera pour savoir dans
 quelle branche l'ajouter? Nous devons donc introduire un nouveau concept : `HEAD`, qui
-est un fichier qui "pointe" vers la branche active, celle dont nous voulous nous servir :
+est un fichier qui "pointe" vers la branche active, celle dont nous voulons nous servir :
 
 ```shell
 $ cat .git/HEAD
@@ -1284,16 +1347,78 @@ Ce commit a donc deux pointeurs parents (`C6` et `C7`) ! Ceci est dû au fait
 qu'il est un commit de merge. Sur le diagramme, ceci correspond au fait que deux
 flèches partent de `C8`, au lieu d'une seule, comme les autres commits.
 
+#### Quatrième type d'objet git fondamental : le tag
+
+Le dernier type d'objet fondamental de git est le *tag* (étiquette). Un tag
+ressemble à une branche en ce sens qu'il pointe vers un commit particulier, mais
+contrairement à une branche, il est immuable : il ne se déplace pas quand de
+nouveaux commits sont ajoutés. Un tag sert à marquer un moment précis dans
+l'historique d'un projet, typiquement une version publiée.
+
+Dans le contexte de notre scénario, il aurait été judicieux de marquer le commit
+`C4` comme étant la version 1.0 de notre application, au moment où elle a été
+mise en ligne :
+
+```shell
+$ git tag v1.0 3dd7
+```
+
+On peut vérifier que le tag existe et pointe bien vers le bon commit :
+
+```shell
+$ git tag
+v1.0
+$
+$ git show v1.0
+commit 3dd71fb4950c1be35ec335cd0ac40f3b5807303b
+[...]
+```
+
+Comme une branche, un tag est techniquement très simple : c'est un fichier dans
+le répertoire `.git/refs/tags/` qui contient le hash du commit ciblé :
+
+```shell
+$ cat .git/refs/tags/v1.0
+3dd71fb4950c1be35ec335cd0ac40f3b5807303b
+```
+
+Git distingue en fait deux types de tags. Ce que nous venons de créer est un tag
+*léger* (lightweight tag), qui n'est qu'un simple pointeur. Il existe aussi des
+tags *annotés*, créés avec l'option `-a`, qui sont de véritables objets git
+stockés dans la base de données, avec un message, un auteur et une date, un peu
+comme un commit :
+
+```shell
+$ git tag -a v2.0 -m "Version 2.0 : merge de la branche v2"
+```
+
+Les tags annotés sont généralement préférés pour marquer des versions
+officielles, car ils conservent davantage de contexte sur le moment et la raison
+du marquage.
+
 > [!NOTE]
 Il est utile de savoir que cet aspect structural de l'évolution des commits d'un
 dépôt git forme un [graphe orienté
 acyclique](https://fr.wikipedia.org/wiki/Graphe_orient%C3%A9_acyclique) (ou plus
 communément un DAG, en anglais). Ceci est une structure intermédiaire entre un
-arbre (dont les noeuds ne peuvent avoir qu'un seul parent) et une graphe
+arbre (dont les noeuds ne peuvent avoir qu'un seul parent) et un graphe
 général, où les noeuds peuvent avoir plusieurs parents et plusieurs enfants). Un
 DAG ne permet donc pas les "circuits".
 
 <!--
 {{< applet src="/html/applets/git.html" width="140%" scale="1.0" >}}
 -->
+
+## Conclusion
+
+Dans ce chapitre, nous avons exploré les fondements de git : son modèle de
+données reposant sur quatre types d'objets (blobs, trees, commits et tags), le
+rôle central du hachage pour garantir l'intégrité de chaque élément, et les
+mécanismes de branches et de merge qui permettent de gérer des lignes de
+développement parallèles. Ces concepts forment le socle sur lequel repose
+l'utilisation quotidienne de git. Nous avons volontairement travaillé ici dans
+un contexte local, avec un seul développeur. Dans le
+[module 4]({{< relref "/docs/module4" >}}), nous verrons comment git prend toute
+sa dimension lorsqu'il est utilisé avec GitHub, dans un contexte de
+collaboration en équipe.
 
