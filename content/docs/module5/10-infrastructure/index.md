@@ -184,7 +184,7 @@ est nécessaire.
 Une application moderne repose sur un assemblage impressionnant de composantes
 logicielles qu'il est pratiquement impossible de contrôler dans ses moindres
 détails : votre environnement Conda a beau contenir exactement les mêmes
-versions des librairies Python que celui de votre collègue, il est possible
+versions des bibliothèques Python que celui de votre collègue, il est possible
 qu'une différence subtile subsiste dans une des composantes se trouvant dans les
 profondeurs du système d'exploitation, susceptible de causer des problèmes
 difficiles à diagnostiquer. Docker permet de résoudre ce problème d'une manière
@@ -348,8 +348,8 @@ ModuleNotFoundError: No module named 'cowsay'
 
 Cette erreur démontre que le container est un environnement complètement isolé,
 dont l'état dépend entièrement de l'image dont il provient. Étant donné nous
-n'avons pas installé de librairies supplémentaires au moment de la création de
-l'image, la librairie `cowsay` est introuvable. Pour l'ajouter nous devons donc
+n'avons pas installé de bibliothèques supplémentaires au moment de la création de
+l'image, la bibliothèque `cowsay` est introuvable. Pour l'ajouter nous devons donc
 modifier le `Dockerfile` :
 
 ```dockerfile
@@ -365,7 +365,7 @@ ENTRYPOINT ["python", "say_hello.py"]
 ```
 
 La nouvelle version de notre `Dockerfile` ajoute une commande `RUN`, qui
-effectue l'installation avec `pip` de la librairie `cowsay`. On peut ensuite
+effectue l'installation avec `pip` de la bibliothèque `cowsay`. On peut ensuite
 créer une nouvelle image, que l'on nommera `hello-cow` pour la distinguer de la
 précédente :
 
@@ -409,14 +409,14 @@ $ docker run hello-cow Leila
 #### Partager un répertoire (volume) avec l'hôte
 
 Dans l'exemple précédent, comme la modification à notre programme impliquait
-l'ajout d'une librairie, la modification de l'image était inévitable. Dans le
+l'ajout d'une bibliothèque, la modification de l'image était inévitable. Dans le
 processus de développement d'une application par contre, la plupart des
 modifications impliquent seulement le code source, et il serait donc intéressant
 de ne pas avoir à payer le coût de la reconstruction de l'image à chaque fois.
 Docker permet à un container de partager un répertoire (sous la forme d'un
 *volume*) avec le système hôte avec le mécanisme de "bind mount". Pour en faire
 l'essai, modifions encore une fois notre programme, cette fois-ci d'une manière
-qui ne demande pas l'ajout d'une nouvelle librairie :
+qui ne demande pas l'ajout d'une nouvelle bibliothèque :
 
 ```python
 import sys

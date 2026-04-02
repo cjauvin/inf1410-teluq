@@ -225,11 +225,11 @@ exemple), la valeur de hash doit être unique (résistance aux collisions), et
 toujours la même, sans exception (déterminisme). Si on ne change ne serait-ce
 qu'un bit d'un fichier, la valeur _doit_ changer (effet d'avalanche).
 L'implémentation de cette fonction (dans un langage comme Python, avec la
-librairie [hashlib](https://docs.python.org/3/library/hashlib.html) par exemple)
+bibliothèque [hashlib](https://docs.python.org/3/library/hashlib.html) par exemple)
 doit être suffisamment rapide, parce que git l'utilisera extrêmement souvent,
 étant donné qu'il s'agit d'une de ses opérations fondamentales.
 
-{{% details "Implémentation de SHA-256 en Python pur (sans la librairie `hashlib`), pour les curieux" %}}
+{{% details "Implémentation de SHA-256 en Python pur (sans la bibliothèque `hashlib`), pour les curieux" %}}
 
 ```python
 # Implémentation pédagogique de SHA-256 en Python pur (sans hashlib)

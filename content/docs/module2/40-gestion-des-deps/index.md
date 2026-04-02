@@ -11,13 +11,13 @@ habituellement&nbsp;:
 
 1. Le programme doit être décomposé en plusieurs modules
 2. Certaines fonctionnalités du programmes, pouvant être accomplies par des
-   programmes (ou des librairies) externes, doivent être détachées en des
-   composantes ou des librairies distinctes, qu'il est possible de réutiliser
+   programmes (ou des bibliothèques) externes, doivent être détachées en des
+   composantes ou des bibliothèques distinctes, qu'il est possible de réutiliser
    (c'est un peu le [principe
    DRY]({{< ref "/docs/principes#dry-dont-repeat-yourself-ne-vous-répétez-pas" >}}) que
    nous avons vu, appliqué dans le sens plus large d'un écosystème logiciel)
 
-Dans le cas (2), on nomme parfois les librairies externes des "dépendances", ou des
+Dans le cas (2), on nomme parfois les bibliothèques externes des "dépendances", ou des
 "paquets" (packages en anglais, plus communément).
 
 Dans les débuts de l'ingénierie logicielle, ces dépendances étaient gérées à la
@@ -30,7 +30,7 @@ distributions Debian et Ubuntu de Linux, et
 [RPM](https://fr.wikipedia.org/wiki/RPM_Package_Manager) pour d'autres
 distributions comme Red Hat, Fedora, etc.
 
-Ces paquets sont en général des programmes et des librairies qui sont
+Ces paquets sont en général des programmes et des bibliothèques qui sont
 compatibles avec une version particulière de Linux et des sous-systèmes qui sont
 présents dans une distribution particulière. Par exemple si on utilise Ubuntu
 24.04, une version particulière d'une distribution particulière de Linux basée
@@ -41,7 +41,7 @@ isolées : en général une dépendance est liée à une autre, ce qui forme un 
 de dépendances, qu'on dit transitives, ou récursives (si `X` dépend de `Y` qui
 dépend de `Z`, alors `X` dépend de `Z`, de manière transitive). Donc non
 seulement la compatibilité des versions est gérée au niveau du système global,
-mais aussi entre les paquets (programmes ou librairies, entre eux). Si par
+mais aussi entre les paquets (programmes ou bibliothèques, entre eux). Si par
 exemple l'installation de la version 7 de LibreOffice nécessite une version
 particulière de Java, le gestionnaire de paquets gérera les dépendances
 intelligemment, et automatiquement.
@@ -83,7 +83,7 @@ transitives, parfois très nombreuses, ainsi qu’aux personnes et aux
 infrastructures qui les distribuent. Cette situation élargit considérablement la
 surface d’attaque potentielle : un paquet compromis, un mainteneur malveillant,
 une prise de contrôle d’un compte ou encore une simple faute de frappe dans le
-nom d’une librairie (typosquatting) peuvent entraîner l’intégration de code
+nom d’une bibliothèque (typosquatting) peuvent entraîner l’intégration de code
 hostile dans un système sans que l’équipe de développement ne s’en aperçoive
 immédiatement. Pour répondre à ces risques, les écosystèmes modernes proposent
 divers mécanismes comme les audits automatiques de vulnérabilités connues, les
@@ -98,14 +98,14 @@ dépendances permettent
 
 Au fil du temps et de l'évolution de la culture du développement logiciel, le
 versionnage dit _sémantique_ (SemVer) s'est imposé en tant que convention pour
-numéroter les versions d'un logiciel, que ce soit un programme ou une librairie.
+numéroter les versions d'un logiciel, que ce soit un programme ou une bibliothèque.
 
 {{< image src="semver.png" alt="" title="" loading="lazy" >}}
 
 Bien que l'interprétation ne soit pas toujours identique, en général on
 s'accorde pour dire que la composante "majeure" du numéro de version correspond
 à un changement important, qui "brise" la compatibilité avec les versions
-précédentes (s'il y en a). S'il s'agit d'une librairie logicielle par exemple,
+précédentes (s'il y en a). S'il s'agit d'une bibliothèque logicielle par exemple,
 la mise à jour demandera probablement un travail assez important, non-trivial.
 
 Le deuxième nombre, la version mineure, indique l’ajout de nouvelles
@@ -136,14 +136,14 @@ d'autres : Ubuntu par exemple utilise des numéros de version qui correspondent 
 l'année et au mois de livraison d'une certaine version.
 
 Il y a aussi une notion assez populaire, qui consiste à considérer qu'un
-logiciel ou une librairie ne peut pas être considérée _stable_ tant qu'elle n'a
+logiciel ou une bibliothèque ne peut pas être considérée _stable_ tant qu'elle n'a
 pas atteint au moins la version `1.0.0`. Certains projets restent d'ailleurs
 indéfiniment dans un schéma de versions `0.x.y`, afin d'échapper à une certaine
 pression sociale, et ainsi pouvoir conserver une certaine liberté créative et
 d'action.
 
 Il est à noter que pour les langages de programmation (qui sont à la fois des
-programmes et des librairies), la question du numéro de version est
+programmes et des bibliothèques), la question du numéro de version est
 particulièrement cruciale et parfois même controversée. Un cas fameux est la
 transition de la version 2 du langage Python, à la version 3, qui était prévue
 devoir être relativement simple et rapide, mais qui a pris au moins 10 ans à
@@ -163,7 +163,7 @@ plus des "évolutions culturelles et technologiques".
 ## Le gestionnaire `uv` pour Python
 
 Pour explorer concrètement ces idées, nous allons utiliser le gestionnaire de
-librairies `uv`, pour Python. `uv` est un outil très intéressant, car il est
+bibliothèques `uv`, pour Python. `uv` est un outil très intéressant, car il est
 apparu relativement tard dans l'histoire de Python (en 2024), à la suite d'une
 longue lignée d'outils du même genre : `pipenv`, `poetry`, etc. Ces outils ne
 doivent pas être confondus avec `pip`, qui est l'outil de base dans la
@@ -176,9 +176,9 @@ maturer. Pendant de nombreuses années, la gestion du packaging en Python était
 considéré un sujet pénible et beaucoup de controverse existait. L'apparition de
 `uv` a introduit une certaine sérénité dans la culture de Python.
 
-### La librairie `my-lib`
+### La bibliothèque `my-lib`
 
-Nous allons tout d'abord créer, avec `uv`, une petite librairie simple, qui
+Nous allons tout d'abord créer, avec `uv`, une petite bibliothèque simple, qui
 n'offrira qu'une seule fonction&nbsp;:
 
 ```shell
@@ -186,7 +186,7 @@ $ uv init --lib my-lib
 Initialized project `my-lib` at `.../uv-demo2/my-lib`
 ```
 
-La structure initiale de notre nouveau projet de librairie devrait ressembler à
+La structure initiale de notre nouveau projet de bibliothèque devrait ressembler à
 ceci :
 
 ```
@@ -197,7 +197,7 @@ my-lib/
 │       └── __init__.py
 ```
 
-`uv` a créé la structure de notre librairie, mais il n'a évidemment pas fourni
+`uv` a créé la structure de notre bibliothèque, mais il n'a évidemment pas fourni
 le code qu'on veut y offrir, qu'il nous faut définir nous-même, dans le fichier
 `src/my_lib/secret.py` (qui doit être créé) :
 
@@ -217,7 +217,7 @@ my-lib/
 │       └── secret.py      ← contient notre fonction get_secret_number
 ```
 
-On peut tout d'abord tester notre librairie avec cette commande :
+On peut tout d'abord tester notre bibliothèque avec cette commande :
 
 ```shell
 $ cd my-lib
@@ -226,7 +226,7 @@ $ uv run python -c 'from my_lib.secret import get_secret_number; print(get_secre
 ```
 
 On doit ensuite produire un artefact de type `wheel`, qui va contenir la totalité
-de notre librairie, en un seul fichier `.whl` (qu'il sera possible d'installer dans un
+de notre bibliothèque, en un seul fichier `.whl` (qu'il sera possible d'installer dans un
 autre projet)&nbsp;:
 
 ```shell
@@ -263,7 +263,7 @@ $ tree
 
 {{< image src="mylib.png" alt="" title="" loading="lazy" >}}
 
-### L'application `my-app` (qui utilise la librairie `my-lib`)
+### L'application `my-app` (qui utilise la bibliothèque `my-lib`)
 
 Créons maintenant un nouveau projet avec `uv`, d'une application cette fois, que
 nous appellerons `my-app` :
@@ -274,8 +274,8 @@ $ uv init my-app
 Initialized project `my-app` at `.../uv-demo2/my-app`
 ```
 
-Étant donné que `my-app` devra utiliser le code de la librairie `my-lib`, nous
-voudrons y ajouter une dépendance vers notre librairie `my-lib`. Mais tout
+Étant donné que `my-app` devra utiliser le code de la bibliothèque `my-lib`, nous
+voudrons y ajouter une dépendance vers notre bibliothèque `my-lib`. Mais tout
 d'abord, étant donné que ceci est un exercice d'apprentissage, nous devons
 modifier notre configuration quelque peu, en ajoutant le bloc `[tool.uv]` qui
 contient deux lignes supplémentaires, à notre fichier `my-app/pyproject.toml` :
@@ -296,8 +296,8 @@ find-links = ["../packages"]
 
 Ces deux lignes sont très importantes dans notre contexte :
 
-1. `no-index` empêche `uv` d'aller chercher `my-lib` sur registre de paquets public [PyPI](https://pypi.org), qui contient déjà apparemment une [librairie avec ce nom](https://pypi.org/project/my-lib/). Nous voulons que `uv` utilise notre version locale de `my-lib`, que nous avons sur notre propre disque
-2. `find-links` indique le lieu où `uv` devra trouver les fichiers "wheels", qui sont des sortes de "zip" d'une librairie entière, optimisée pour un système particulier
+1. `no-index` empêche `uv` d'aller chercher `my-lib` sur registre de paquets public [PyPI](https://pypi.org), qui contient déjà apparemment une [bibliothèque avec ce nom](https://pypi.org/project/my-lib/). Nous voulons que `uv` utilise notre version locale de `my-lib`, que nous avons sur notre propre disque
+2. `find-links` indique le lieu où `uv` devra trouver les fichiers "wheels", qui sont des sortes de "zip" d'une bibliothèque entière, optimisée pour un système particulier
 
 Une fois cette configuration effectuée, on peut ajouter notre dépendance avec `uv add` :
 
@@ -324,7 +324,7 @@ my-app v0.1.0
 #### La notion de registre de paquets (PyPI)
 
 Nous avons brièvement mentionné ci-haut la notion de _registre de paquets_.
-Étant donné que nous voulions utiliser notre propre librairie `my-lib`, et non
+Étant donné que nous voulions utiliser notre propre bibliothèque `my-lib`, et non
 celle qui se trouve en ligne, nous avons dû spécifier `no-index = true` dans la
 configuration `pyproject.toml` de notre projet. Que se serait-il passé, sans
 cette instruction particulière? `uv` est configuré, par défaut, pour fonctionner
@@ -338,7 +338,7 @@ $ uv init my-venv
 Initialized project `my-venv` at `/Users/cjauvin/gh/inf1410-teluq/content/docs/module3/gestion-des-deps/uv-demo3/my-venv`
 ```
 
-Ajoutons une dépendance vers la librairie [requests](https://pypi.org/project/requests/),
+Ajoutons une dépendance vers la bibliothèque [requests](https://pypi.org/project/requests/),
 qui permet de faire des requêtes HTTP (web) en python :
 
 ```shell
@@ -357,8 +357,8 @@ Installed 5 packages in 4ms
 
 On constate trois choses :
 
-1. `uv` a téléchargé automatiquement la librairie `requests` de PyPI, sans que l'ait rien configuré
-2. La librairie `requests` elle-même nécessite quelques dépendances additionnelles (des dépendances transitives donc) : `certifi`, `charset-normalizer`, etc.
+1. `uv` a téléchargé automatiquement la bibliothèque `requests` de PyPI, sans que l'ait rien configuré
+2. La bibliothèque `requests` elle-même nécessite quelques dépendances additionnelles (des dépendances transitives donc) : `certifi`, `charset-normalizer`, etc.
 3. Apparemment un "environnement virtuel" a été créé, dans le répertoire `.venv` de notre projet
 
 Qu'est-ce qu'un environnement virtuel donc?
@@ -470,7 +470,7 @@ système Kubernetes, ou un environnement pour effectuer des tests.
 
 #### Est-ce sécuritaire?
 
-Qu'arriverait-il si, au lieu d'installer la librairie `requests`, nous tentions
+Qu'arriverait-il si, au lieu d'installer la bibliothèque `requests`, nous tentions
 d'installer, par mégarde, `request` (sans `s`)? Voyons voir :
 
 ```shell
@@ -483,21 +483,21 @@ $ uv add request
 ```
 
 Dans ce cas, le comportement souhaité est le bon : PyPI ne reconnaît pas le nom
-de cette librairie, et qui plus est, ce qui est le plus important : PyPI ne
-permettrait pas à quelqu'un de publier une librairie dont le nom serait trop
-proche d'une librairie très connue (`requests` est extrêmement populaire). Un
+de cette bibliothèque, et qui plus est, ce qui est le plus important : PyPI ne
+permettrait pas à quelqu'un de publier une bibliothèque dont le nom serait trop
+proche d'une bibliothèque très connue (`requests` est extrêmement populaire). Un
 danger qui nous guette cependant avec les systèmes comme PyPI, est le
 [typosquattage](https://fr.wikipedia.org/wiki/Typosquattage), le fait
 d'exploiter une variante orthographique proche, pour publier du contenu
 malicieux. Il est également possible, dans certains cas, que le compte PyPI
-associé à une librairie soit piraté, et que son contenu soit remplacé par une
+associé à une bibliothèque soit piraté, et que son contenu soit remplacé par une
 version malicieuse, qui contient un virus, ou encore un mécanisme pour voler des
 données, par exemple.
 
 ---
 
 Après ces détours, revenons maintenant à notre application `my-app` : tout comme
-nous l'avons fait pour la librairie `my-lib`, c'est à nous qu'incombe la
+nous l'avons fait pour la bibliothèque `my-lib`, c'est à nous qu'incombe la
 responsabilité de fournir le code source pour l'application, qui sera très
 simple. Dans le fichier `my-app/main.py` (qui a été créé automatiquement par
 `uv` puisqu'il s'agissait d'une application), nous devons remplacer le contenu
@@ -588,9 +588,9 @@ résolution de bogues, en général) seront tolérées : par exemple `0.1.1`,
 "interdite" par le gestionnaire `uv` (remarquez bien l'usage de `<0.2.0`, et
 non `<=0.2.0`).
 
-### La librairie `my-lib` évolue
+### La bibliothèque `my-lib` évolue
 
-Imaginons maintenant que la librairie `my-lib` évolue, et que la fonction
+Imaginons maintenant que la bibliothèque `my-lib` évolue, et que la fonction
 offerte change : par exemple, au lieu d'être 42, le nombre magique devient 99.
 Modifions tout d'abord le code de `my-lib/src/secret.py` :
 
@@ -634,7 +634,7 @@ requires = ["uv_build>=0.8.22,<0.9.0"]
 build-backend = "uv_build"
 ```
 
-On peut maintenant "builder" notre librairie afin d'en produire un artefact de type
+On peut maintenant "builder" notre bibliothèque afin d'en produire un artefact de type
 "wheel" pour la nouvelle version `0.2.0`, comme nous avons fait pour la précédente
 version `0.1.0` :
 
@@ -647,7 +647,7 @@ Successfully built ../packages/my_lib-0.2.0-py3-none-any.whl
 ```
 
 On constate donc la présence du fichier `../packages/my_lib-0.2.0-py3-none-any.whl`, qui
-contient la totalité de notre librairie, prête à être installée dans le contexte de
+contient la totalité de notre bibliothèque, prête à être installée dans le contexte de
 n'importe quel projet, par `uv`.
 
 ### L'application `my-app` devrait donc évoluer elle aussi !
@@ -726,7 +726,7 @@ Pour votre culture personnelle, je vous suggère d'explorer une ou plusieurs de 
 et de tenter de répondre aux questions suivantes :
 
 1. Est-ce qu'il y a une notion d'environnement virtuel?
-2. Est-ce qu'il y a un dépôt centralisé de librairies et de packages (comme PyPI)?
+2. Est-ce qu'il y a un dépôt centralisé de bibliothèques et de packages (comme PyPI)?
 3. Est-ce qu'il y a un mécanisme de lockfile (comme `uv.lock`)?
 4. Est-ce que SemVer y est utilisé de la même manière?
 5. Est-ce les contraintes au niveau des dépendances sont exprimées de la même
