@@ -22,19 +22,25 @@ idées guident sa conception :
   de constater que plusieurs thèmes importants reviennent sans cesse, sous
   différentes formes.
 
+- **La culture générale technologique.** Le génie logiciel est un domaine vaste,
+  et personne ne peut prétendre en maîtriser tous les aspects. Mais nous croyons
+  qu'il est important de se construire un réseau d'idées et de connaissances, et
+  d'avoir au moins un modèle mental de base pour la plupart des grands domaines
+  et des grandes idées. Savoir qu'un concept existe, comprendre à quoi il sert
+  et comment il se relie aux autres, c'est souvent suffisant pour poser les
+  bonnes questions et approfondir au besoin. Ce cours vise à instiller ce goût
+  et cette curiosité pour la culture technologique au sens large.
+
 - **L'expérience directe.** Le cours contient de nombreux exemples et tutoriels
   détaillés, car il nous apparaît essentiel de vous donner une expérience
   directe des outils et des techniques importants, plutôt que de simplement les
-  décrire. Le tutoriel, en particular, est une forme d'apprentissage
-  omniprésente dans la culture de l'internet, et ce cours se réclame
-  particulièrement de cette culture, où le partage de connaissances pratiques
-  est une valeur centrale.
-
-- **L'exploration autonome.** Nous vous encourageons fortement à explorer par
-  vous-mêmes et à faire vos propres expériences, tout au long du cours : les
-  outils et les concepts présentés ici ne sont qu'un échantillon dans un vaste
-  océan de possibilités, et la curiosité autonome est une compétence
-  fondamentale en génie logiciel.
+  décrire. Le tutoriel est une forme d'apprentissage omniprésente dans la
+  culture de l'internet, et ce cours se réclame particulièrement de cette
+  culture, où le partage de connaissances pratiques est une valeur centrale.
+  Nous vous encourageons d'ailleurs fortement à explorer par vous-mêmes et à
+  faire vos propres expériences : les outils et les concepts présentés ici ne
+  sont qu'un échantillon dans un vaste océan de possibilités, et la curiosité
+  autonome est une compétence fondamentale en génie logiciel.
 
 ## Les modules
 

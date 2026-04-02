@@ -792,8 +792,6 @@ mécanismes, des pratiques comme l'audit régulier des dépendances (`uv audit`,
 Bill of Materials) et la vérification des signatures cryptographiques font
 aujourd'hui partie des compétences attendues en génie logiciel.
 
-<!-- ILLUSTRATION: schéma montrant les différents vecteurs d'attaque sur la chaîne d'approvisionnement (typosquattage, compte compromis, dépendance transitive malicieuse, pipeline CI/CD infiltré) -->
-
 {{< image src="4-attack-vectors.png" alt="" title="" loading="lazy" >}}
 
 # Pas seulement pour Python !
