@@ -43,4 +43,6 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
 ## Principes de pratique
 
 - **Refactoring** (Martin Fowler, *Refactoring*, 1999) : modifier la structure interne du code sans changer son comportement observable, mécanisme de remboursement de la dette technique → [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})
+- **Egoless programming** (Gerald Weinberg, *The Psychology of Computer Programming*, 1971) : dissocier son ego de son code, accueillir les critiques comme des contributions → [Module 2, Introduction]({{< ref "/docs/module2" >}})
+- **Shift left** : déplacer les vérifications de qualité le plus tôt possible dans le processus de développement, plutôt que de les confier à une équipe séparée en aval → [Module 2, L'intégration continue]({{< ref "/docs/module2/50-ci" >}})
 - **Boy Scout Rule** : "Always leave the campground cleaner than you found it."

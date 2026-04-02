@@ -43,6 +43,29 @@ travail. Il n'y a pas de chef d'équipe, pas de répartition des tâches par un
 gestionnaire. Cette distinction entre le *quoi* (Product Owner) et le *comment*
 (équipe) est au cœur de la philosophie Scrum.
 
+Il est notable que Scrum ne définit que trois rôles, et que l'équipe de
+développement est explicitement décrite comme *cross-fonctionnelle* : elle
+contient toutes les compétences nécessaires pour livrer le produit, sans
+distinction de titre entre ses membres. C'est un contraste marqué avec
+l'organisation traditionnelle des équipes logicielles, qui distinguait des rôles
+spécialisés : développeurs, testeurs, analystes, architectes. Le rôle de testeur
+QA (*quality assurance*), en particulier, était l'un des plus courants. Dans le
+modèle classique, une équipe QA distincte recevait le logiciel une fois le
+développement terminé et le soumettait à des plans de test manuels, souvent
+exhaustifs, avant de le déclarer prêt pour la mise en production. Ce modèle
+avait sa logique dans un contexte waterfall, où les livraisons étaient espacées
+de plusieurs mois. Mais dans un contexte agile, où l'équipe livre toutes les
+deux semaines, une phase de test séparée devient un goulot d'étranglement. C'est
+pourquoi Scrum intègre la responsabilité de la qualité à l'intérieur de l'équipe
+elle-même : chaque membre est responsable de la qualité de ce qu'il livre, et
+les tests automatisés (que nous avons vus au
+[module 2]({{< relref "/docs/module2/20-tests" >}})) remplacent en grande partie
+l'inspection manuelle. Le rôle de testeur QA n'a pas disparu pour autant, mais
+il s'est transformé : dans beaucoup d'équipes modernes, les spécialistes QA se
+concentrent sur les tests exploratoires (chercher les cas limites que les tests
+automatisés ne couvrent pas), sur la qualité de l'expérience utilisateur, ou sur
+l'automatisation des tests elle-même.
+
 Cette structure d'équipe n'est pas anodine. Rappelons la loi de Conway, que nous
 avons introduite dans l'[introduction de ce module]({{< relref "/docs/module4" >}}) :
 la structure d'une organisation tend à se refléter dans l'architecture de ses

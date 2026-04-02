@@ -14,6 +14,11 @@ intégrées dans le cours.)*
 
 ## Livres
 
+- Gerald Weinberg, *The Psychology of Computer Programming* (1971) : approche
+  psychologique du développement logiciel, introduction de l'*egoless
+  programming* → [Module 2, Introduction]({{< ref "/docs/module2" >}}),
+  [Module 2, L'intégration continue]({{< ref "/docs/module2/50-ci" >}}),
+  [Module 4, Scrum]({{< ref "/docs/module4/20-agile/10-scrum" >}})
 - Fred Brooks, *The Mythical Man-Month* (1975) : réflexions sur la gestion de
   grands projets logiciels, dont la célèbre « loi de Brooks » → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}}),
   [Module 6, L'économie du logiciel]({{< ref "/docs/module6/20-economie" >}})

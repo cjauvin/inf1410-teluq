@@ -36,6 +36,24 @@ principal était que plus on attend avant d'intégrer, plus les conflits sont
 difficiles à résoudre, et que l'automatisation des vérifications est la clé pour
 rendre l'intégration fréquente viable.
 
+Cette idée d'automatiser les vérifications le plus tôt possible dans le processus
+de développement s'inscrit dans un mouvement plus large, souvent appelé "shift
+left". Historiquement, la vérification de la qualité d'un logiciel était une
+activité séparée, confiée à des équipes de QA (*quality assurance*) qui
+testaient le produit manuellement une fois le développement terminé. Ce modèle,
+importé du monde manufacturier (où des inspecteurs vérifient les produits en bout
+de chaîne), avait un défaut fondamental : les problèmes étaient découverts tard,
+quand ils étaient coûteux à corriger. Le "shift left" consiste à déplacer ces
+vérifications vers la gauche de la ligne du temps, c'est-à-dire le plus tôt
+possible. Les tests unitaires écrits par le développeur, la CI qui les exécute à
+chaque push, la revue de code par les pairs : ce sont toutes des manifestations
+de cette philosophie. Dès 1971, Gerald Weinberg avait posé les bases de cette
+réflexion dans *The Psychology of Computer Programming*, en argumentant que la
+qualité logicielle est d'abord un problème humain et psychologique, pas
+seulement technique. Son idée centrale était que les programmeurs doivent
+développer une attitude d'ouverture face aux erreurs (*egoless programming*),
+plutôt que de déléguer la détection des problèmes à quelqu'un d'autre.
+
 ## YAML
 
 Avant d'aborder GitHub Actions, il faut dire un mot sur YAML, le format utilisé

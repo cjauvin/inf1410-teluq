@@ -22,6 +22,23 @@ reconstruit ce modèle mental pour lui-même.
 
 {{< image src="naur.jpg" alt="Peter Naur" title="" loading="lazy" >}}
 
+Cette vision de la programmation comme activité intellectuelle plutôt que
+mécanique n'est pas isolée. En 1971, Gerald Weinberg publie *The Psychology of
+Computer Programming*, un livre pionnier qui aborde le développement logiciel
+sous l'angle de la psychologie humaine. Son argument central est que la qualité
+d'un logiciel dépend moins des outils ou des méthodes que de l'attitude des
+personnes qui le construisent. Weinberg introduit la notion d'*egoless
+programming* : l'idée que les programmeurs doivent apprendre à dissocier leur ego
+de leur code, à accueillir les critiques et les corrections comme des
+contributions plutôt que comme des attaques personnelles. Un programmeur qui
+cache ses erreurs ou qui refuse qu'on relise son code produit un logiciel moins
+fiable qu'un programmeur qui expose son travail et cherche activement les failles
+dans son propre raisonnement. Cette idée, radicale pour l'époque, annonce des
+pratiques qui sont devenues centrales dans le développement moderne : la revue de
+code, les tests comme filet de sécurité, et plus largement l'idée que la qualité
+est la responsabilité de chaque programmeur, pas celle d'une équipe d'inspection
+séparée.
+
 Cette idée a des conséquences profondes. Si la valeur réelle du travail de
 programmation réside dans le modèle mental plutôt que dans le code, alors les
 outils du programmeur ne servent pas seulement à produire du code : ils servent
