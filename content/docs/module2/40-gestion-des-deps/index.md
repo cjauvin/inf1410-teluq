@@ -10,7 +10,7 @@ Dès qu'un programme devient un peu plus complexe, deux phénomènes intervienne
 habituellement&nbsp;:
 
 1. Le programme doit être décomposé en plusieurs modules
-2. Certaines fonctionnalités du programmes, pouvant être accomplies par des
+2. Certaines fonctionnalités du programme, pouvant être accomplies par des
    programmes (ou des bibliothèques) externes, doivent être détachées en des
    composantes ou des bibliothèques distinctes, qu'il est possible de réutiliser
    (c'est un peu le [principe
@@ -24,7 +24,7 @@ Dans les débuts de l'ingénierie logicielle, ces dépendances étaient gérées
 main, en copiant et échangeant des fichiers.
 
 Avec l'apparition de Linux au début des années 90, une innovation importante
-allait vite apparaître : les gestionnaire de paquets. Des exemples fameux sont
+allait vite apparaître : les gestionnaires de paquets. Des exemples fameux sont
 [APT](https://fr.wikipedia.org/wiki/Advanced_Packaging_Tool) pour les
 distributions Debian et Ubuntu de Linux, et
 [RPM](https://fr.wikipedia.org/wiki/RPM_Package_Manager) pour d'autres
@@ -152,7 +152,7 @@ bonnes caractéristiques : extrêmement rapide (il est écrit lui-même dans le
 langage Rust), avec une implémentation très complète et flexible des standards
 de l'écosystème de packaging pour Python, qui ont pris un long moment avant de
 maturer. Pendant de nombreuses années, la gestion du packaging en Python était
-considéré un sujet pénible et beaucoup de controverse existait. L'apparition de
+considérée un sujet pénible et beaucoup de controverse existait. L'apparition de
 `uv` a introduit une certaine sérénité dans la culture de Python.
 
 ### La bibliothèque `my-lib`
@@ -707,59 +707,81 @@ d'un mainteneur, et l'infiltration progressive d'un projet open source par un
 contributeur qui gagne la confiance de l'équipe avant d'y injecter du code
 hostile.
 
-Plusieurs incidents majeurs ont marqué l'histoire récente du développement
-logiciel et illustrent bien la diversité de ces attaques. En 2018, le paquet npm
-`event-stream`, téléchargé des millions de fois par semaine, a été compromis
-d'une manière particulièrement révélatrice. Le mainteneur original, épuisé par
-des années de travail bénévole sur un projet qu'il n'utilisait même plus, a
-accepté de transférer le contrôle du paquet à un inconnu qui s'était montré
-serviable. Ce nouveau mainteneur a ensuite ajouté une dépendance vers un autre
-paquet, `flatmap-stream`, qui contenait du code obfusqué conçu pour voler les
-portefeuilles de Bitcoin des utilisateurs d'une application spécifique. L'attaque
-est restée invisible pendant plusieurs semaines, car le code malicieux était
-caché dans un paquet transitif et ne se déclenchait que dans un contexte très
-précis.
+Même sans intention malicieuse, la dépendance excessive peut être dangereuse. En
+2016, le retrait du registre npm d'un paquet appelé `left-pad`, une bibliothèque
+de 11 lignes de JavaScript qui ajoutait des espaces à gauche d'une chaîne de
+caractères, a instantanément cassé le build de milliers de projets à travers le
+monde. Voici la totalité du code de cette bibliothèque :
 
-Un exemple encore plus récent et particulièrement frappant est celui de LiteLLM,
-une bibliothèque Python très populaire (des millions de téléchargements par
-jour) servant de passerelle vers différents modèles d'IA. En mars 2026, un
-groupe appelé TeamPCP a réussi une attaque en cascade d'une sophistication
-remarquable. Ils ont d'abord compromis Trivy, un outil d'analyse de sécurité,
-qui était justement utilisé dans le pipeline CI/CD de LiteLLM. L'ironie est
-frappante : c'est un outil de sécurité qui a servi de vecteur d'attaque. En
-s'exécutant dans le pipeline de compilation de LiteLLM, le Trivy compromis a
-exfiltré le jeton de publication PyPI du projet, permettant aux attaquants de
-publier deux versions malicieuses de LiteLLM sur PyPI. Ces versions installaient
-un mécanisme qui, à chaque démarrage de Python, récoltait silencieusement les
-clés API, les secrets, les identifiants de bases de données et les clés SSH
-présents sur la machine. Les versions compromises n'ont été en ligne que pendant
-environ 40 minutes avant d'être retirées par PyPI, mais étant donné le volume de
-téléchargements, l'impact potentiel était considérable. Fait notable : les
-utilisateurs qui avaient des dépendances verrouillées dans un fichier de type
-lockfile n'ont pas été affectés.
+```javascript
+module.exports = leftpad;
 
-Mais l'attaque de la chaîne d'approvisionnement la plus spectaculaire des
-dernières années est sans doute celle qui a visé xz Utils en 2024, un petit
-utilitaire de compression présent dans pratiquement toutes les distributions
-Linux. Un développeur utilisant le pseudonyme Jia Tan a commencé à contribuer au
-projet en 2021, de manière patiente et méthodique. Pendant plus de deux ans, il
-a soumis des correctifs légitimes, gagné la confiance du mainteneur principal
-(qui, comme dans le cas d'event-stream, était une personne seule et débordée),
-et obtenu progressivement les droits de publication. En février 2024, il a
-injecté une porte dérobée (backdoor) extrêmement sophistiquée, dissimulée dans
-les fichiers de test du projet, qui permettait à un attaquant distant de prendre
-le contrôle de n'importe quel serveur utilisant OpenSSH avec la bibliothèque
-compromise. La backdoor a été découverte par hasard, par un ingénieur de
-Microsoft qui avait remarqué que ses connexions SSH prenaient une demi-seconde de
-plus que d'habitude. Sans cette observation fortuite, la porte dérobée aurait pu
-se retrouver dans des millions de serveurs à travers le monde.
+function leftpad(str, len, ch) {
+  str = String(str);
+  var i = -1;
+  ch || (ch = ' ');
+  len = len - str.length;
+  while (++i < len) {
+    str = ch + str;
+  }
+  return str;
+}
+```
 
-Ces exemples illustrent un thème commun : la sécurité de la chaîne
-d'approvisionnement est autant un problème humain et social que technique. Les
-mainteneurs solitaires et épuisés, les comptes mal protégés et les pipelines
-CI/CD trop permissifs sont des vecteurs d'attaque au moins aussi importants que
-les failles de code. Plusieurs des outils que nous avons vus dans ce chapitre
-jouent un rôle défensif direct : les lockfiles permettent de figer les versions
+Le fait que des milliers de projets dépendaient d'une bibliothèque externe pour
+une fonction aussi triviale illustre bien les excès de la granularité des
+dépendances. Chaque dépendance ajoutée, aussi petite soit-elle, est un point de
+rupture potentiel. Nous reviendrons sur les dimensions sociales et économiques de
+cet épisode dans le [module 6]({{< ref "/docs/module6/10-open-source" >}}).
+
+Et quand l'intention est malicieuse, les conséquences peuvent être bien pires.
+Plusieurs incidents majeurs ont marqué l'histoire récente et illustrent la
+diversité de ces attaques. En 2018, le paquet npm `event-stream`, téléchargé des
+millions de fois par semaine, a été compromis d'une manière particulièrement
+révélatrice. Le mainteneur original, épuisé par des années de travail bénévole
+sur un projet qu'il n'utilisait même plus, a accepté de transférer le contrôle
+du paquet à un inconnu qui s'était montré serviable. Ce nouveau mainteneur a
+ensuite ajouté une dépendance vers un autre paquet, `flatmap-stream`, qui
+contenait du code obfusqué conçu pour voler les portefeuilles de Bitcoin des
+utilisateurs d'une application spécifique. L'attaque est restée invisible
+pendant plusieurs semaines, car le code malicieux était caché dans un paquet
+transitif et ne se déclenchait que dans un contexte très précis.
+
+L'attaque la plus spectaculaire des dernières années est sans doute celle qui a
+visé xz Utils en 2024, un petit utilitaire de compression présent dans
+pratiquement toutes les distributions Linux. Un développeur utilisant le
+pseudonyme Jia Tan a commencé à contribuer au projet en 2021, de manière
+patiente et méthodique. Pendant plus de deux ans, il a soumis des correctifs
+légitimes, gagné la confiance du mainteneur principal (qui, comme dans le cas
+d'event-stream, était une personne seule et débordée), et obtenu progressivement
+les droits de publication. En février 2024, il a injecté une porte dérobée
+(backdoor) extrêmement sophistiquée, dissimulée dans les fichiers de test du
+projet, qui permettait à un attaquant distant de prendre le contrôle de
+n'importe quel serveur utilisant OpenSSH avec la bibliothèque compromise. La
+backdoor a été découverte par hasard, par un ingénieur de Microsoft qui avait
+remarqué que ses connexions SSH prenaient une demi-seconde de plus que
+d'habitude. Sans cette observation fortuite, la porte dérobée aurait pu se
+retrouver dans des millions de serveurs à travers le monde.
+
+Un exemple encore plus récent est celui de LiteLLM, une bibliothèque Python très
+populaire (des millions de téléchargements par jour) servant de passerelle vers
+différents modèles d'IA. En mars 2026, un groupe appelé TeamPCP a réussi une
+attaque en cascade d'une sophistication remarquable. Ils ont d'abord compromis
+Trivy, un outil d'analyse de sécurité, qui était justement utilisé dans le
+pipeline CI/CD de LiteLLM. L'ironie est frappante : c'est un outil de sécurité
+qui a servi de vecteur d'attaque. En s'exécutant dans le pipeline de compilation
+de LiteLLM, le Trivy compromis a exfiltré le jeton de publication PyPI du
+projet, permettant aux attaquants de publier deux versions malicieuses de LiteLLM
+sur PyPI. Ces versions installaient un mécanisme qui, à chaque démarrage de
+Python, récoltait silencieusement les clés API, les secrets, les identifiants de
+bases de données et les clés SSH présents sur la machine. Les versions
+compromises n'ont été en ligne que pendant environ 40 minutes avant d'être
+retirées par PyPI, mais étant donné le volume de téléchargements, l'impact
+potentiel était considérable. Fait notable : les utilisateurs qui avaient des
+dépendances verrouillées dans un fichier de type lockfile n'ont pas été affectés.
+
+Plusieurs des outils que nous avons vus dans ce chapitre jouent un rôle défensif
+direct contre ces menaces : les lockfiles permettent de figer les versions
 exactes des dépendances et d'éviter qu'une mise à jour malicieuse soit installée
 automatiquement, les contraintes de version SemVer limitent l'exposition aux
 changements inattendus, et les registres comme PyPI mettent en place des
