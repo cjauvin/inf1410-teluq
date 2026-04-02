@@ -1,8 +1,8 @@
 <!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="La gestion des dépendances# Dès qu’un programme devient un peu plus complexe, deux phénomènes interviennent habituellement :
-Le programme doit être décomposé en plusieurs modules Certaines fonctionnalités du programmes, pouvant être accomplies par des programmes (ou des bibliothèques) externes, doivent être détachées en des composantes ou des bibliothèques distinctes, qu’il est possible de réutiliser (c’est un peu le principe DRY que nous avons vu, appliqué dans le sens plus large d’un écosystème logiciel) Dans le cas (2), on nomme parfois les bibliothèques externes des “dépendances”, ou des “paquets” (packages en anglais, plus communément).
+Le programme doit être décomposé en plusieurs modules Certaines fonctionnalités du programme, pouvant être accomplies par des programmes (ou des bibliothèques) externes, doivent être détachées en des composantes ou des bibliothèques distinctes, qu’il est possible de réutiliser (c’est un peu le principe DRY que nous avons vu, appliqué dans le sens plus large d’un écosystème logiciel) Dans le cas (2), on nomme parfois les bibliothèques externes des “dépendances”, ou des “paquets” (packages en anglais, plus communément).
 "><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="La gestion des dépendances"><meta property="og:description" content="La gestion des dépendances# Dès qu’un programme devient un peu plus complexe, deux phénomènes interviennent habituellement :
-Le programme doit être décomposé en plusieurs modules Certaines fonctionnalités du programmes, pouvant être accomplies par des programmes (ou des bibliothèques) externes, doivent être détachées en des composantes ou des bibliothèques distinctes, qu’il est possible de réutiliser (c’est un peu le principe DRY que nous avons vu, appliqué dans le sens plus large d’un écosystème logiciel) Dans le cas (2), on nomme parfois les bibliothèques externes des “dépendances”, ou des “paquets” (packages en anglais, plus communément)."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="La gestion des dépendances"><meta itemprop=description content="La gestion des dépendances# Dès qu’un programme devient un peu plus complexe, deux phénomènes interviennent habituellement :
-Le programme doit être décomposé en plusieurs modules Certaines fonctionnalités du programmes, pouvant être accomplies par des programmes (ou des bibliothèques) externes, doivent être détachées en des composantes ou des bibliothèques distinctes, qu’il est possible de réutiliser (c’est un peu le principe DRY que nous avons vu, appliqué dans le sens plus large d’un écosystème logiciel) Dans le cas (2), on nomme parfois les bibliothèques externes des “dépendances”, ou des “paquets” (packages en anglais, plus communément)."><meta itemprop=wordCount content="4728"><title>La gestion des dépendances | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d100c9e7255f944fdc9c0c03acdb64b8d7adb1bb511f59b3599d09f2da105dbf.css integrity="sha256-0QDJ5yVflE/cnAwDrNtkuNetsbtRH1mzWZ0J8toQXb8=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+Le programme doit être décomposé en plusieurs modules Certaines fonctionnalités du programme, pouvant être accomplies par des programmes (ou des bibliothèques) externes, doivent être détachées en des composantes ou des bibliothèques distinctes, qu’il est possible de réutiliser (c’est un peu le principe DRY que nous avons vu, appliqué dans le sens plus large d’un écosystème logiciel) Dans le cas (2), on nomme parfois les bibliothèques externes des “dépendances”, ou des “paquets” (packages en anglais, plus communément)."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="La gestion des dépendances"><meta itemprop=description content="La gestion des dépendances# Dès qu’un programme devient un peu plus complexe, deux phénomènes interviennent habituellement :
+Le programme doit être décomposé en plusieurs modules Certaines fonctionnalités du programme, pouvant être accomplies par des programmes (ou des bibliothèques) externes, doivent être détachées en des composantes ou des bibliothèques distinctes, qu’il est possible de réutiliser (c’est un peu le principe DRY que nous avons vu, appliqué dans le sens plus large d’un écosystème logiciel) Dans le cas (2), on nomme parfois les bibliothèques externes des “dépendances”, ou des “paquets” (packages en anglais, plus communément)."><meta itemprop=wordCount content="4831"><title>La gestion des dépendances | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d100c9e7255f944fdc9c0c03acdb64b8d7adb1bb511f59b3599d09f2da105dbf.css integrity="sha256-0QDJ5yVflE/cnAwDrNtkuNetsbtRH1mzWZ0J8toQXb8=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Intro et historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle checked>
@@ -22,7 +22,7 @@ Le programme doit être décomposé en plusieurs modules Certaines fonctionnalit
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/>Où est-ce que ça tourne ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/>Comment je le déploie ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/>Est-ce que ça marche ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/>Que faire quand ça casse ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/>Est-ce que c'est sécuritaire ?</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/>Est-ce que ça va tenir la charge ?</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Le logiciel dans le monde</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/>L'open source</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/>L'économie du logiciel</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/monopoles/>Monopoles et régulation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/>Catastrophes, éthique et responsabilité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/>Le métier de développeur</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/>Le développement assisté par IA</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>La gestion des dépendances</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#le-versionnage-sémantique-semver>Le versionnage sémantique (SemVer)</a></li><li><a href=#le-gestionnaire-uv-pour-python>Le gestionnaire <code>uv</code> pour Python</a><ul><li><a href=#la-bibliothèque-my-lib>La bibliothèque <code>my-lib</code></a></li><li><a href=#lapplication-my-app-qui-utilise-la-bibliothèque-my-lib>L’application <code>my-app</code> (qui utilise la bibliothèque <code>my-lib</code>)</a><ul><li><a href=#la-notion-de-registre-de-paquets-pypi>La notion de registre de paquets (PyPI)</a></li><li><a href=#la-notion-denvironnement-virtuel-virtual-env-ou-venv>La notion d’environnement virtuel (virtual env, ou <code>venv</code>)</a></li><li><a href=#la-notion-de-reproductibilité-uvlock>La notion de reproductibilité (<code>uv.lock</code>)</a></li></ul></li><li><a href=#la-bibliothèque-my-lib-évolue>La bibliothèque <code>my-lib</code> évolue</a></li><li><a href=#lapplication-my-app-devrait-donc-évoluer-elle-aussi->L’application <code>my-app</code> devrait donc évoluer elle aussi !</a></li></ul></li><li><a href=#la-sécurité-de-la-chaîne-dapprovisionnement>La sécurité de la chaîne d&rsquo;approvisionnement</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=la-gestion-des-dépendances>La gestion des dépendances<a class=anchor href=#la-gestion-des-d%c3%a9pendances>#</a></h1><p>Dès qu&rsquo;un programme devient un peu plus complexe, deux phénomènes interviennent
-habituellement :</p><ol><li>Le programme doit être décomposé en plusieurs modules</li><li>Certaines fonctionnalités du programmes, pouvant être accomplies par des
+habituellement :</p><ol><li>Le programme doit être décomposé en plusieurs modules</li><li>Certaines fonctionnalités du programme, pouvant être accomplies par des
 programmes (ou des bibliothèques) externes, doivent être détachées en des
 composantes ou des bibliothèques distinctes, qu&rsquo;il est possible de réutiliser
 (c&rsquo;est un peu le <a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/#dry-dont-repeat-yourself-ne-vous-répétez-pas>principe
@@ -30,7 +30,7 @@ DRY</a> que
 nous avons vu, appliqué dans le sens plus large d&rsquo;un écosystème logiciel)</li></ol><p>Dans le cas (2), on nomme parfois les bibliothèques externes des &ldquo;dépendances&rdquo;, ou des
 &ldquo;paquets&rdquo; (packages en anglais, plus communément).</p><p>Dans les débuts de l&rsquo;ingénierie logicielle, ces dépendances étaient gérées à la
 main, en copiant et échangeant des fichiers.</p><p>Avec l&rsquo;apparition de Linux au début des années 90, une innovation importante
-allait vite apparaître : les gestionnaire de paquets. Des exemples fameux sont
+allait vite apparaître : les gestionnaires de paquets. Des exemples fameux sont
 <a href=https://fr.wikipedia.org/wiki/Advanced_Packaging_Tool>APT</a> pour les
 distributions Debian et Ubuntu de Linux, et
 <a href=https://fr.wikipedia.org/wiki/RPM_Package_Manager>RPM</a> pour d&rsquo;autres
@@ -126,7 +126,7 @@ bonnes caractéristiques : extrêmement rapide (il est écrit lui-même dans le
 langage Rust), avec une implémentation très complète et flexible des standards
 de l&rsquo;écosystème de packaging pour Python, qui ont pris un long moment avant de
 maturer. Pendant de nombreuses années, la gestion du packaging en Python était
-considéré un sujet pénible et beaucoup de controverse existait. L&rsquo;apparition de
+considérée un sujet pénible et beaucoup de controverse existait. L&rsquo;apparition de
 <code>uv</code> a introduit une certaine sérénité dans la culture de Python.</p><h3 id=la-bibliothèque-my-lib>La bibliothèque <code>my-lib</code><a class=anchor href=#la-biblioth%c3%a8que-my-lib>#</a></h3><p>Nous allons tout d&rsquo;abord créer, avec <code>uv</code>, une petite bibliothèque simple, qui
 n&rsquo;offrira qu&rsquo;une seule fonction :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ uv init --lib my-lib
 </span></span><span style=display:flex><span>Initialized project <span style=color:#e6db74>`</span>my-lib<span style=color:#e6db74>`</span> at <span style=color:#e6db74>`</span>.../uv-demo2/my-lib<span style=color:#e6db74>`</span></span></span></code></pre></div><p>La structure initiale de notre nouveau projet de bibliothèque devrait ressembler à
@@ -433,53 +433,67 @@ vecteurs d&rsquo;attaque les plus courants sont le typosquattage (publier un paq
 dont le nom ressemble à un paquet populaire), la prise de contrôle du compte
 d&rsquo;un mainteneur, et l&rsquo;infiltration progressive d&rsquo;un projet open source par un
 contributeur qui gagne la confiance de l&rsquo;équipe avant d&rsquo;y injecter du code
-hostile.</p><p>Plusieurs incidents majeurs ont marqué l&rsquo;histoire récente du développement
-logiciel et illustrent bien la diversité de ces attaques. En 2018, le paquet npm
-<code>event-stream</code>, téléchargé des millions de fois par semaine, a été compromis
-d&rsquo;une manière particulièrement révélatrice. Le mainteneur original, épuisé par
-des années de travail bénévole sur un projet qu&rsquo;il n&rsquo;utilisait même plus, a
-accepté de transférer le contrôle du paquet à un inconnu qui s&rsquo;était montré
-serviable. Ce nouveau mainteneur a ensuite ajouté une dépendance vers un autre
-paquet, <code>flatmap-stream</code>, qui contenait du code obfusqué conçu pour voler les
-portefeuilles de Bitcoin des utilisateurs d&rsquo;une application spécifique. L&rsquo;attaque
-est restée invisible pendant plusieurs semaines, car le code malicieux était
-caché dans un paquet transitif et ne se déclenchait que dans un contexte très
-précis.</p><p>Un exemple encore plus récent et particulièrement frappant est celui de LiteLLM,
-une bibliothèque Python très populaire (des millions de téléchargements par
-jour) servant de passerelle vers différents modèles d&rsquo;IA. En mars 2026, un
-groupe appelé TeamPCP a réussi une attaque en cascade d&rsquo;une sophistication
-remarquable. Ils ont d&rsquo;abord compromis Trivy, un outil d&rsquo;analyse de sécurité,
-qui était justement utilisé dans le pipeline CI/CD de LiteLLM. L&rsquo;ironie est
-frappante : c&rsquo;est un outil de sécurité qui a servi de vecteur d&rsquo;attaque. En
-s&rsquo;exécutant dans le pipeline de compilation de LiteLLM, le Trivy compromis a
-exfiltré le jeton de publication PyPI du projet, permettant aux attaquants de
-publier deux versions malicieuses de LiteLLM sur PyPI. Ces versions installaient
-un mécanisme qui, à chaque démarrage de Python, récoltait silencieusement les
-clés API, les secrets, les identifiants de bases de données et les clés SSH
-présents sur la machine. Les versions compromises n&rsquo;ont été en ligne que pendant
-environ 40 minutes avant d&rsquo;être retirées par PyPI, mais étant donné le volume de
-téléchargements, l&rsquo;impact potentiel était considérable. Fait notable : les
-utilisateurs qui avaient des dépendances verrouillées dans un fichier de type
-lockfile n&rsquo;ont pas été affectés.</p><p>Mais l&rsquo;attaque de la chaîne d&rsquo;approvisionnement la plus spectaculaire des
-dernières années est sans doute celle qui a visé xz Utils en 2024, un petit
-utilitaire de compression présent dans pratiquement toutes les distributions
-Linux. Un développeur utilisant le pseudonyme Jia Tan a commencé à contribuer au
-projet en 2021, de manière patiente et méthodique. Pendant plus de deux ans, il
-a soumis des correctifs légitimes, gagné la confiance du mainteneur principal
-(qui, comme dans le cas d&rsquo;event-stream, était une personne seule et débordée),
-et obtenu progressivement les droits de publication. En février 2024, il a
-injecté une porte dérobée (backdoor) extrêmement sophistiquée, dissimulée dans
-les fichiers de test du projet, qui permettait à un attaquant distant de prendre
-le contrôle de n&rsquo;importe quel serveur utilisant OpenSSH avec la bibliothèque
-compromise. La backdoor a été découverte par hasard, par un ingénieur de
-Microsoft qui avait remarqué que ses connexions SSH prenaient une demi-seconde de
-plus que d&rsquo;habitude. Sans cette observation fortuite, la porte dérobée aurait pu
-se retrouver dans des millions de serveurs à travers le monde.</p><p>Ces exemples illustrent un thème commun : la sécurité de la chaîne
-d&rsquo;approvisionnement est autant un problème humain et social que technique. Les
-mainteneurs solitaires et épuisés, les comptes mal protégés et les pipelines
-CI/CD trop permissifs sont des vecteurs d&rsquo;attaque au moins aussi importants que
-les failles de code. Plusieurs des outils que nous avons vus dans ce chapitre
-jouent un rôle défensif direct : les lockfiles permettent de figer les versions
+hostile.</p><p>Même sans intention malicieuse, la dépendance excessive peut être dangereuse. En
+2016, le retrait du registre npm d&rsquo;un paquet appelé <code>left-pad</code>, une bibliothèque
+de 11 lignes de JavaScript qui ajoutait des espaces à gauche d&rsquo;une chaîne de
+caractères, a instantanément cassé le build de milliers de projets à travers le
+monde. Voici la totalité du code de cette bibliothèque :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>leftpad</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>leftpad</span>(<span style=color:#a6e22e>str</span>, <span style=color:#a6e22e>len</span>, <span style=color:#a6e22e>ch</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>str</span> <span style=color:#f92672>=</span> String(<span style=color:#a6e22e>str</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ch</span> <span style=color:#f92672>||</span> (<span style=color:#a6e22e>ch</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39; &#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>len</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>len</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>str</span>.<span style=color:#a6e22e>length</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>while</span> (<span style=color:#f92672>++</span><span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>len</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>str</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ch</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>str</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>str</span>;
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><p>Le fait que des milliers de projets dépendaient d&rsquo;une bibliothèque externe pour
+une fonction aussi triviale illustre bien les excès de la granularité des
+dépendances. Chaque dépendance ajoutée, aussi petite soit-elle, est un point de
+rupture potentiel. Nous reviendrons sur les dimensions sociales et économiques de
+cet épisode dans le <a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/>module 6</a>.</p><p>Et quand l&rsquo;intention est malicieuse, les conséquences peuvent être bien pires.
+Plusieurs incidents majeurs ont marqué l&rsquo;histoire récente et illustrent la
+diversité de ces attaques. En 2018, le paquet npm <code>event-stream</code>, téléchargé des
+millions de fois par semaine, a été compromis d&rsquo;une manière particulièrement
+révélatrice. Le mainteneur original, épuisé par des années de travail bénévole
+sur un projet qu&rsquo;il n&rsquo;utilisait même plus, a accepté de transférer le contrôle
+du paquet à un inconnu qui s&rsquo;était montré serviable. Ce nouveau mainteneur a
+ensuite ajouté une dépendance vers un autre paquet, <code>flatmap-stream</code>, qui
+contenait du code obfusqué conçu pour voler les portefeuilles de Bitcoin des
+utilisateurs d&rsquo;une application spécifique. L&rsquo;attaque est restée invisible
+pendant plusieurs semaines, car le code malicieux était caché dans un paquet
+transitif et ne se déclenchait que dans un contexte très précis.</p><p>L&rsquo;attaque la plus spectaculaire des dernières années est sans doute celle qui a
+visé xz Utils en 2024, un petit utilitaire de compression présent dans
+pratiquement toutes les distributions Linux. Un développeur utilisant le
+pseudonyme Jia Tan a commencé à contribuer au projet en 2021, de manière
+patiente et méthodique. Pendant plus de deux ans, il a soumis des correctifs
+légitimes, gagné la confiance du mainteneur principal (qui, comme dans le cas
+d&rsquo;event-stream, était une personne seule et débordée), et obtenu progressivement
+les droits de publication. En février 2024, il a injecté une porte dérobée
+(backdoor) extrêmement sophistiquée, dissimulée dans les fichiers de test du
+projet, qui permettait à un attaquant distant de prendre le contrôle de
+n&rsquo;importe quel serveur utilisant OpenSSH avec la bibliothèque compromise. La
+backdoor a été découverte par hasard, par un ingénieur de Microsoft qui avait
+remarqué que ses connexions SSH prenaient une demi-seconde de plus que
+d&rsquo;habitude. Sans cette observation fortuite, la porte dérobée aurait pu se
+retrouver dans des millions de serveurs à travers le monde.</p><p>Un exemple encore plus récent est celui de LiteLLM, une bibliothèque Python très
+populaire (des millions de téléchargements par jour) servant de passerelle vers
+différents modèles d&rsquo;IA. En mars 2026, un groupe appelé TeamPCP a réussi une
+attaque en cascade d&rsquo;une sophistication remarquable. Ils ont d&rsquo;abord compromis
+Trivy, un outil d&rsquo;analyse de sécurité, qui était justement utilisé dans le
+pipeline CI/CD de LiteLLM. L&rsquo;ironie est frappante : c&rsquo;est un outil de sécurité
+qui a servi de vecteur d&rsquo;attaque. En s&rsquo;exécutant dans le pipeline de compilation
+de LiteLLM, le Trivy compromis a exfiltré le jeton de publication PyPI du
+projet, permettant aux attaquants de publier deux versions malicieuses de LiteLLM
+sur PyPI. Ces versions installaient un mécanisme qui, à chaque démarrage de
+Python, récoltait silencieusement les clés API, les secrets, les identifiants de
+bases de données et les clés SSH présents sur la machine. Les versions
+compromises n&rsquo;ont été en ligne que pendant environ 40 minutes avant d&rsquo;être
+retirées par PyPI, mais étant donné le volume de téléchargements, l&rsquo;impact
+potentiel était considérable. Fait notable : les utilisateurs qui avaient des
+dépendances verrouillées dans un fichier de type lockfile n&rsquo;ont pas été affectés.</p><p>Plusieurs des outils que nous avons vus dans ce chapitre jouent un rôle défensif
+direct contre ces menaces : les lockfiles permettent de figer les versions
 exactes des dépendances et d&rsquo;éviter qu&rsquo;une mise à jour malicieuse soit installée
 automatiquement, les contraintes de version SemVer limitent l&rsquo;exposition aux
 changements inattendus, et les registres comme PyPI mettent en place des

@@ -32,7 +32,7 @@ ou deux personnes écrasent mutuellement leur travail.&lt;/p&gt;</description></
 habituellement :&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Le programme doit être décomposé en plusieurs modules&lt;/li&gt;
-&lt;li&gt;Certaines fonctionnalités du programmes, pouvant être accomplies par des
+&lt;li&gt;Certaines fonctionnalités du programme, pouvant être accomplies par des
 programmes (ou des bibliothèques) externes, doivent être détachées en des
 composantes ou des bibliothèques distinctes, qu&amp;rsquo;il est possible de réutiliser
 (c&amp;rsquo;est un peu le &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/principes/#dry-dont-repeat-yourself-ne-vous-répétez-pas"&gt;principe
