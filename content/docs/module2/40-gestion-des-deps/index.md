@@ -794,6 +794,8 @@ aujourd'hui partie des compétences attendues en génie logiciel.
 
 <!-- ILLUSTRATION: schéma montrant les différents vecteurs d'attaque sur la chaîne d'approvisionnement (typosquattage, compte compromis, dépendance transitive malicieuse, pipeline CI/CD infiltré) -->
 
+{{< image src="4-attack-vectors.png" alt="" title="" loading="lazy" >}}
+
 # Pas seulement pour Python !
 
 Tout ce que nous avons dit et expliqué à propos de `uv` et python s'applique
