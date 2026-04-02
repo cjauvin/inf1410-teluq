@@ -154,7 +154,7 @@ typiquement), tandis que sous MacOS, une couche de virtualisation supplémentair
 est nécessaire.</p><h3 id=quel-problème-ça-résout->Quel problème ça résout ?<a class=anchor href=#quel-probl%c3%a8me-%c3%a7a-r%c3%a9sout->#</a></h3><p>Une application moderne repose sur un assemblage impressionnant de composantes
 logicielles qu&rsquo;il est pratiquement impossible de contrôler dans ses moindres
 détails : votre environnement Conda a beau contenir exactement les mêmes
-versions des librairies Python que celui de votre collègue, il est possible
+versions des bibliothèques Python que celui de votre collègue, il est possible
 qu&rsquo;une différence subtile subsiste dans une des composantes se trouvant dans les
 profondeurs du système d&rsquo;exploitation, susceptible de causer des problèmes
 difficiles à diagnostiquer. Docker permet de résoudre ce problème d&rsquo;une manière
@@ -241,8 +241,8 @@ l&rsquo;image :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;back
 </span></span><span style=display:flex><span>    import cowsay
 </span></span><span style=display:flex><span>ModuleNotFoundError: No module named <span style=color:#e6db74>&#39;cowsay&#39;</span></span></span></code></pre></div><p>Cette erreur démontre que le container est un environnement complètement isolé,
 dont l&rsquo;état dépend entièrement de l&rsquo;image dont il provient. Étant donné nous
-n&rsquo;avons pas installé de librairies supplémentaires au moment de la création de
-l&rsquo;image, la librairie <code>cowsay</code> est introuvable. Pour l&rsquo;ajouter nous devons donc
+n&rsquo;avons pas installé de bibliothèques supplémentaires au moment de la création de
+l&rsquo;image, la bibliothèque <code>cowsay</code> est introuvable. Pour l&rsquo;ajouter nous devons donc
 modifier le <code>Dockerfile</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python</span><span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> pip install cowsay<span style=color:#960050;background-color:#1e0010>
@@ -252,7 +252,7 @@ modifier le <code>Dockerfile</code> :</p><div class=highlight><pre tabindex=0 st
 </span></span></span><span style=display:flex><span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/inside_container</span><span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#66d9ef>ENTRYPOINT</span> [<span style=color:#e6db74>&#34;python&#34;</span>, <span style=color:#e6db74>&#34;say_hello.py&#34;</span>]</span></span></code></pre></div><p>La nouvelle version de notre <code>Dockerfile</code> ajoute une commande <code>RUN</code>, qui
-effectue l&rsquo;installation avec <code>pip</code> de la librairie <code>cowsay</code>. On peut ensuite
+effectue l&rsquo;installation avec <code>pip</code> de la bibliothèque <code>cowsay</code>. On peut ensuite
 créer une nouvelle image, que l&rsquo;on nommera <code>hello-cow</code> pour la distinguer de la
 précédente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ docker build . -t hello-cow
 </span></span><span style=display:flex><span>Sending build context to Docker daemon  3.072kB
@@ -282,14 +282,14 @@ précédente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;backg
 </span></span><span style=display:flex><span>                 <span style=color:#f92672>(</span>__<span style=color:#f92672>)</span><span style=color:#ae81ff>\ </span>      <span style=color:#f92672>)</span><span style=color:#ae81ff>\/\
 </span></span></span><span style=display:flex><span>                     <span style=color:#f92672>||</span>----w |
 </span></span><span style=display:flex><span>                     <span style=color:#f92672>||</span>     <span style=color:#f92672>||</span></span></span></code></pre></div><h4 id=partager-un-répertoire-volume-avec-lhôte>Partager un répertoire (volume) avec l&rsquo;hôte<a class=anchor href=#partager-un-r%c3%a9pertoire-volume-avec-lh%c3%b4te>#</a></h4><p>Dans l&rsquo;exemple précédent, comme la modification à notre programme impliquait
-l&rsquo;ajout d&rsquo;une librairie, la modification de l&rsquo;image était inévitable. Dans le
+l&rsquo;ajout d&rsquo;une bibliothèque, la modification de l&rsquo;image était inévitable. Dans le
 processus de développement d&rsquo;une application par contre, la plupart des
 modifications impliquent seulement le code source, et il serait donc intéressant
 de ne pas avoir à payer le coût de la reconstruction de l&rsquo;image à chaque fois.
 Docker permet à un container de partager un répertoire (sous la forme d&rsquo;un
 <em>volume</em>) avec le système hôte avec le mécanisme de &ldquo;bind mount&rdquo;. Pour en faire
 l&rsquo;essai, modifions encore une fois notre programme, cette fois-ci d&rsquo;une manière
-qui ne demande pas l&rsquo;ajout d&rsquo;une nouvelle librairie :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> sys
+qui ne demande pas l&rsquo;ajout d&rsquo;une nouvelle bibliothèque :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> sys
 </span></span><span style=display:flex><span><span style=color:#f92672>import</span> datetime <span style=color:#66d9ef>as</span> dt
 </span></span><span style=display:flex><span><span style=color:#f92672>import</span> cowsay
 </span></span><span style=display:flex><span>
