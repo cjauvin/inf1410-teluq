@@ -150,6 +150,8 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.&lt;/
 &lt;h2 id="principes-de-pratique"&gt;Principes de pratique&lt;a class="anchor" href="#principes-de-pratique"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Refactoring&lt;/strong&gt; (Martin Fowler, &lt;em&gt;Refactoring&lt;/em&gt;, 1999) : modifier la structure interne du code sans changer son comportement observable, mécanisme de remboursement de la dette technique → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/"&gt;Module 4, Gestion de projet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Egoless programming&lt;/strong&gt; (Gerald Weinberg, &lt;em&gt;The Psychology of Computer Programming&lt;/em&gt;, 1971) : dissocier son ego de son code, accueillir les critiques comme des contributions → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/"&gt;Module 2, Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Shift left&lt;/strong&gt; : déplacer les vérifications de qualité le plus tôt possible dans le processus de développement, plutôt que de les confier à une équipe séparée en aval → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/"&gt;Module 2, L&amp;rsquo;intégration continue&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Boy Scout Rule&lt;/strong&gt; : &amp;ldquo;Always leave the campground cleaner than you found it.&amp;rdquo;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Lectures et publications de référence</title><link>https://cjauvin.github.io/inf1410-teluq/docs/lectures/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/lectures/</guid><description>&lt;h1 id="lectures-et-publications-de-référence"&gt;Lectures et publications de référence&lt;a class="anchor" href="#lectures-et-publications-de-r%c3%a9f%c3%a9rence"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Cette page rassemble les livres, articles et publications importants qui sont
@@ -159,6 +161,11 @@ sections où elle est discutée.&lt;/p&gt;
 intégrées dans le cours.)&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id="livres"&gt;Livres&lt;a class="anchor" href="#livres"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;Gerald Weinberg, &lt;em&gt;The Psychology of Computer Programming&lt;/em&gt; (1971) : approche
+psychologique du développement logiciel, introduction de l&amp;rsquo;&lt;em&gt;egoless
+programming&lt;/em&gt; → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/"&gt;Module 2, Introduction&lt;/a&gt;,
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/"&gt;Module 2, L&amp;rsquo;intégration continue&lt;/a&gt;,
+&lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/"&gt;Module 4, Scrum&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Fred Brooks, &lt;em&gt;The Mythical Man-Month&lt;/em&gt; (1975) : réflexions sur la gestion de
 grands projets logiciels, dont la célèbre « loi de Brooks » → &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/"&gt;Module 1, Perspective historique&lt;/a&gt;,
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/"&gt;Module 6, L&amp;rsquo;économie du logiciel&lt;/a&gt;&lt;/li&gt;
