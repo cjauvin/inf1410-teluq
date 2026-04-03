@@ -43,7 +43,7 @@ nous avons vu, appliqué dans le sens plus large d&amp;rsquo;un écosystème log
 &amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>L'intégration continue (CI)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</guid><description>&lt;h1 id="lintégration-continue-ci"&gt;L&amp;rsquo;intégration continue (CI)&lt;a class="anchor" href="#lint%c3%a9gration-continue-ci"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dans les sections précédentes, nous avons vu comment écrire des tests pour
 vérifier qu&amp;rsquo;un programme se comporte correctement, comment utiliser git pour
-gérer l&amp;rsquo;évolution du code, et comment gérer les dépendances d&amp;rsquo;un projet avec uv.
+gérer l&amp;rsquo;évolution du code, et comment gérer les dépendances d&amp;rsquo;un projet Python avec uv.
 Mais il reste un problème important : toutes ces vérifications dépendent de la
 discipline individuelle du programmeur. Rien ne garantit qu&amp;rsquo;un développeur va
 exécuter les tests avant de pousser son code. Rien ne garantit non plus que son
