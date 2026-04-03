@@ -23,7 +23,7 @@ changer le comportement de la machine. Il n'existait pas encore de notion de
 programmation, si on peut l'appeler ainsi, était une affaire de quelques
 spécialistes qui travaillaient seuls, en contact direct avec le matériel.
 
-{{< image src="eniac.png" alt="" title="" loading="lazy" >}}
+{{< image src="eniac.png" alt="L'ordinateur ENIAC" title="L'Ordinateur ENIAC" loading="lazy" >}}
 
 Fait souvent oublié : les personnes qui ont programmé l'ENIAC étaient six femmes,
 recrutées parce qu'elles étaient considérées comme « calculatrices » (*computers*,

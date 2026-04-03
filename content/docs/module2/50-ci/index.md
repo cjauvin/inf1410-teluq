@@ -8,7 +8,7 @@ weight: 50
 
 Dans les sections précédentes, nous avons vu comment écrire des tests pour
 vérifier qu'un programme se comporte correctement, comment utiliser git pour
-gérer l'évolution du code, et comment gérer les dépendances d'un projet avec uv.
+gérer l'évolution du code, et comment gérer les dépendances d'un projet Python avec uv.
 Mais il reste un problème important : toutes ces vérifications dépendent de la
 discipline individuelle du programmeur. Rien ne garantit qu'un développeur va
 exécuter les tests avant de pousser son code. Rien ne garantit non plus que son
@@ -36,6 +36,8 @@ principal était que plus on attend avant d'intégrer, plus les conflits sont
 difficiles à résoudre, et que l'automatisation des vérifications est la clé pour
 rendre l'intégration fréquente viable.
 
+{{< image src="shift-left.png" alt="" title="" loading="lazy" >}}
+
 Cette idée d'automatiser les vérifications le plus tôt possible dans le processus
 de développement s'inscrit dans un mouvement plus large, souvent appelé "shift
 left". Historiquement, la vérification de la qualité d'un logiciel était une
@@ -43,7 +45,7 @@ activité séparée, confiée à des équipes de QA (*quality assurance*) qui
 testaient le produit manuellement une fois le développement terminé. Ce modèle,
 importé du monde manufacturier (où des inspecteurs vérifient les produits en bout
 de chaîne), avait un défaut fondamental : les problèmes étaient découverts tard,
-quand ils étaient coûteux à corriger. Le "shift left" consiste à déplacer ces
+quand ils étaient devenus coûteux à corriger. Le "shift left" consiste à déplacer ces
 vérifications vers la gauche de la ligne du temps, c'est-à-dire le plus tôt
 possible. Les tests unitaires écrits par le développeur, la CI qui les exécute à
 chaque push, la revue de code par les pairs : ce sont toutes des manifestations
@@ -60,7 +62,8 @@ Avant d'aborder GitHub Actions, il faut dire un mot sur YAML, le format utilisé
 pour décrire les workflows de CI. YAML (*YAML Ain't Markup Language*) est un
 format de données conçu pour être lisible par les humains. Il joue le même rôle
 que JSON (décrire des structures de données), mais avec une syntaxe plus légère,
-basée sur l'indentation plutôt que sur les accolades et les crochets. Voici un
+basée sur l'indentation plutôt que sur les accolades et les crochets, ce qui le rend
+plus facile à lire pour les humains (malgré que ceci est parfois contesté). Voici un
 exemple qui illustre les éléments de base :
 
 ```yaml
@@ -163,18 +166,19 @@ automatiquement.
 Commençons par créer un petit projet Python avec uv :
 
 ```shell
-mkdir ci-demo
-cd ci-demo
-uv init
+$ mkdir ci-demo
+$ cd ci-demo
+$ uv init
 ```
 
-Ajoutons pytest comme dépendance de développement :
+Ajoutons pytest comme dépendance de développement (une dépendance de développement est une dépendance qui sera seulement utilisée dans un contexte où on travaillera sur le code source du
+projet, et non si on fait juste l'installer pour l'utiliser) :
 
 ```shell
-uv add --dev pytest
+$ uv add --dev pytest
 ```
 
-Créons un fichier `main.py` avec une fonction simple :
+Remplaçons le contenu du fichier `main.py` (qui a été automatiquement par `uv init`) avec une fonction simple :
 
 ```python
 def est_palindrome(mot):
@@ -202,14 +206,14 @@ def test_non_palindrome():
 Vérifions que les tests passent localement :
 
 ```shell
-uv run pytest
+$ uv run pytest
 ```
 
 Maintenant, créons le workflow GitHub Actions. Il faut d'abord créer le
 répertoire :
 
 ```shell
-mkdir -p .github/workflows
+$ mkdir -p .github/workflows
 ```
 
 Puis créer le fichier `.github/workflows/ci.yml` :
@@ -324,16 +328,21 @@ Il ne reste qu'à initialiser un dépôt git, faire un commit et pousser le tout
 vers GitHub :
 
 ```shell
-git init
-git add .
-git commit -m "Initial commit"
-gh repo create ci-demo --public --source=. --push
+$ git init
+$ git add .
+$ git commit -m "Premier commit"
+$ gh repo create ci-demo --public --source=. --push
 ```
 
-Une fois le push complété, allez dans l'onglet **Actions** de votre dépôt sur
-GitHub. Vous devriez voir le workflow "CI" qui s'est déclenché automatiquement.
-Après quelques secondes, si tout va bien, vous verrez un check vert indiquant que
-les tests ont passé.
+Notons que la dernière commande, avec l'outil `gh`, pourrait être fait de
+manière plus manuelle, avec l'interface de GitHub. Une fois le push complété,
+allez dans l'onglet **Actions** de votre dépôt sur GitHub. Vous devriez voir le
+workflow "CI" qui s'est déclenché automatiquement. Après quelques secondes, si
+tout va bien, vous verrez un check vert indiquant que les tests ont passé.
+
+{{< image src="gh-action-1.png" alt="" title="" loading="lazy" >}}
+
+{{< image src="gh-action-2.png" alt="" title="" loading="lazy" >}}
 
 ## Au-delà des tests
 
