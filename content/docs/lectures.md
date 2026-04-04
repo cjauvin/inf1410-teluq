@@ -26,8 +26,11 @@ intégrées dans le cours.)*
   pratiques pour le développeur, origine du principe DRY → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Kent Beck, *Extreme Programming Explained* (1999) : manifeste de l'XP, origine
   de YAGNI et du TDD → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}})
-- Robert C. Martin, *Clean Code* (2008) : principes de conception et SOLID →
-  [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
+- Robert C. Martin, *Agile Software Development: Principles, Patterns, and
+  Practices* (2003) : formalisation des principes SOLID, acronyme suggéré par
+  Michael Feathers → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
+- Robert C. Martin, *Clean Code* (2008) : principes de conception et de
+  lisibilité du code → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Mike Cohn, *Succeeding with Agile* (2009) : la pyramide des tests →
   [Module 2, Les tests]({{< ref "/docs/module2/20-tests" >}})
 - David Anderson, *Kanban: Successful Evolutionary Change for Your Technology

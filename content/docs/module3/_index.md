@@ -15,6 +15,8 @@ système de cache, une file de messages, des services qui communiquent entre eux
 Le passage du programme au système est l'un des sauts conceptuels les plus
 importants en génie logiciel, et c'est le sujet de ce module.
 
+{{< image src="prog-vs-system.png" alt="" title="" loading="lazy" >}}
+
 En 1986, Fred Brooks publie son célèbre essai *No Silver Bullet*, dans lequel il
 distingue deux types de difficulté en développement logiciel. La difficulté
 *accidentelle* vient des outils imparfaits : un langage verbeux, un compilateur

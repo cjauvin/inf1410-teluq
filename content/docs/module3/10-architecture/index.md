@@ -21,8 +21,8 @@ subtile qu'elle n'y paraît.
 En 1972, l'informaticien américain David Parnas publie un court article qui va
 devenir l'un des plus influents de l'histoire du génie logiciel : *On the
 Criteria To Be Used in Decomposing Systems into Modules*. Le titre est direct :
-quels critères devrait-on utiliser pour découper un système en modules ? Pour
-répondre, Parnas prend un exemple concret, un programme appelé KWIC (Key Word In
+quels critères devrait-on utiliser pour découper un système en modules ? Chez Parnas, un *module* désigne toute unité de découpage qui cache une décision de conception, que ce soit une fonction, une classe ou un sous-système. Pour
+répondre à cette question, Parnas prend un exemple concret, un programme appelé KWIC (Key Word In
 Context). Le principe de KWIC est simple : on lui donne une liste de titres, et
 il produit un index de tous les mots-clés significatifs, chacun présenté dans
 son contexte original. Par exemple, à partir du titre "The Pragmatic
@@ -61,7 +61,7 @@ en premier, et les entrées sont triées alphabétiquement. Le résultat est un
 index compact qui permet de retrouver un titre à partir de n'importe lequel de
 ses mots significatifs.
 
-{{< hint info >}}
+{{% hint info %}}
 **L'utilitaire `ptx`**
 
 L'idée de l'index KWIC a été suffisamment importante pour qu'un utilitaire Unix
@@ -84,7 +84,7 @@ Chaque ligne est formatée de manière à ce que le mot-clé apparaisse aligné 
 début de la colonne de droite, avec son contexte à gauche. C'est un petit
 vestige d'une époque où l'indexation automatique des textes était une
 préoccupation centrale de l'informatique.
-{{< /hint >}}
+{{% /hint %}}
 
 ### Décomposition 1 : par flux de traitement
 
@@ -138,7 +138,7 @@ sort_rotations()
 display_output()
 ```
 
-Le problème de cette décomposition est que tous les modules partagent les mêmes
+Le problème de cette décomposition est que tous les modules (fonctions) partagent les mêmes
 données globales (`lines`, `rotations`, `sorted_rotations`). Si on décide de
 changer la manière dont les lignes sont stockées, par exemple en passant d'une
 liste à un fichier, il faut modifier *tous* les modules. Le découpage par flux
@@ -148,7 +148,7 @@ données.
 ### Décomposition 2 : par information hiding (Parnas)
 
 Parnas propose une autre décomposition, fondée sur un principe différent :
-chaque module doit cacher une *décision de conception* susceptible de changer.
+chaque module (ici ce sont des classes) doit cacher une *décision de conception* susceptible de changer.
 Au lieu de découper par étapes de traitement, on découpe par *responsabilité*.
 Le module de stockage des lignes ne sait rien du tri ; le module de rotation ne
 sait rien de la manière dont les lignes sont stockées. Chaque module expose une
@@ -238,6 +238,8 @@ couplage est fort : tous les modules dépendent des mêmes données globales. Da
 la deuxième, le couplage est faible : chaque module interagit avec les autres
 uniquement à travers une interface étroite.
 
+{{< image src="couplage-et-cohésion.png" alt="" title="" loading="lazy" >}}
+
 Ces deux axes sont faciles à illustrer. Prenons un exemple simple : un système
 qui envoie des notifications aux utilisateurs.
 
@@ -268,26 +270,26 @@ d'email ou de système de logging, il faut modifier cette classe.
 ```python
 # Couplage faible, cohésion forte
 class UserRepository:
-    def __init__(self, db):
-        self.db = db
+    def __init__(self, db: sqlite3.Connection):
+        self.db: sqlite3.Connection = db
 
-    def create(self, name, email):
+    def create(self, name: str, email: str):
         self.db.execute("INSERT INTO users (name, email) VALUES (?, ?)", (name, email))
 
 class NotificationService:
-    def __init__(self, sender):
-        self.sender = sender
+    def __init__(self, sender: smtplib.SMTP):
+        self.sender: smtplib.SMTP = sender
 
-    def welcome(self, name):
+    def welcome(self, name: str):
         self.sender.send(f"Bienvenue {name} !")
 
 class UserManager:
-    def __init__(self, repo, notifications, logger):
-        self.repo = repo
-        self.notifications = notifications
-        self.logger = logger
+    def __init__(self, repo: UserRepository, notifications: NotificationService, logger: logging.Logger):
+        self.repo: UserRepository = repo
+        self.notifications: NotificationService = notifications
+        self.logger: logging.Logger = logger
 
-    def create_user(self, name, email):
+    def create_user(self, name: str, email: str):
         self.repo.create(name, email)
         self.notifications.welcome(name)
         self.logger.info(f"Utilisateur {name} créé")
@@ -317,8 +319,7 @@ propriétaire dans mon système ?"
 
 ## Les principes SOLID
 
-L'acronyme SOLID, popularisé par Robert C. Martin (*Clean Code*, 2008), regroupe
-cinq principes de conception orientée objet. Ils ne sont pas tous également
+L'acronyme SOLID regroupe cinq principes de conception orientée objet formulés par Robert C. Martin à partir des années 1990. L'acronyme lui-même a été suggéré par Michael Feathers vers 2004, et les principes sont rassemblés dans *Agile Software Development: Principles, Patterns, and Practices* (Martin, 2003). Ils ne sont pas tous également
 importants dans la pratique. Le **S** (Single Responsibility) et le **D**
 (Dependency Inversion) sont de loin les plus influents et les plus utiles au
 quotidien. Les trois autres (Open/Closed, Liskov Substitution, Interface
@@ -375,6 +376,12 @@ fournisseur de paiement est utilisé. On peut lui passer un client Stripe en
 production, un client PayPal dans un autre contexte, ou un mock dans les tests.
 La direction de la dépendance est *inversée* : c'est le code appelant qui décide
 de l'implémentation, pas le module lui-même.
+
+{{% hint info %}}
+**Stripe**
+
+Stripe est une entreprise américaine fondée en 2010 par les frères Patrick et John Collison (originaires d'Irlande). Elle fournit une API de paiement en ligne utilisée par des millions d'entreprises, de la startup au géant comme Shopify ou Amazon. Stripe est un exemple de *SaaS* (Software as a Service) : un logiciel accessible via le web sous forme d'abonnement, plutôt qu'installé localement. Au lieu de développer et maintenir son propre système de paiement, une entreprise utilise celui de Stripe à travers son API. Stripe est souvent citée comme référence en matière de qualité d'API et de documentation pour développeurs.
+{{% /hint %}}
 
 ### O : Open/Closed Principle
 
@@ -526,6 +533,61 @@ que je me prépare à un problème imaginaire ?" Parnas nous rappelle que le bon
 critère de découpage est "quelle décision pourrait changer". Si la réponse est
 "aucune, pour l'instant", alors YAGNI l'emporte.
 
+{{< image src="solid-vs-yagni.png" alt="" title="" loading="lazy" >}}
+
+## Les design patterns
+
+Le principe de *composition over inheritance* fait partie d'un vocabulaire plus large que le livre *Design Patterns* du Gang of Four (1994) a cherché à codifier. L'idée du livre était de cataloguer des solutions récurrentes à des problèmes de conception courants, et de leur donner des noms. Quand un développeur parle d'un "Observer", d'un "Strategy" ou d'un "Adapter", il invoque un patron reconnu qui évite d'avoir à réexpliquer la structure à chaque fois. C'est la contribution la plus durable du GoF : non pas les 23 patrons eux-mêmes, mais le fait d'avoir établi qu'un vocabulaire partagé de conception est précieux pour la communication en équipe.
+
+Il faut cependant remettre ces patrons dans leur contexte. Le livre du GoF a été écrit à une époque où C++ et Smalltalk dominaient, et où les langages imposaient des contraintes rigides. Plusieurs patrons classiques sont en réalité des contournements de ces limitations. En Python, par exemple, le patron Strategy (encapsuler un algorithme dans un objet interchangeable) se réduit souvent à passer une fonction en argument. Le patron Iterator est intégré directement dans le langage avec le protocole `for`/`__iter__`. Le patron Singleton devient un simple module. Ce n'est pas que ces patrons sont inutiles, c'est que les langages modernes en ont absorbé les bonnes idées, rendant le mécanisme explicite superflu. L'important est de comprendre le *problème* que chaque patron résout, pas de mémoriser sa structure de classes. Prenons le patron Strategy, qui consiste à encapsuler un algorithme pour le rendre interchangeable :
+
+```python
+# Strategy "classique" (style GoF)
+class PricingStrategy:
+    def compute(self, price: float) -> float:
+        raise NotImplementedError
+
+class RegularPricing(PricingStrategy):
+    def compute(self, price: float) -> float:
+        return price
+
+class StudentDiscount(PricingStrategy):
+    def compute(self, price: float) -> float:
+        return price * 0.8
+
+class Order:
+    def __init__(self, price: float, strategy: PricingStrategy):
+        self.price = price
+        self.strategy = strategy
+
+    def total(self) -> float:
+        return self.strategy.compute(self.price)
+
+order = Order(100, StudentDiscount())
+print(order.total())  # 80.0
+```
+
+```python
+# La même chose en Python idiomatique
+def student_discount(price: float) -> float:
+    return price * 0.8
+
+def order_total(price: float, pricing=None) -> float:
+    if pricing is None:
+        return price
+    return pricing(price)
+
+print(order_total(100, student_discount))  # 80.0
+```
+
+Le premier exemple nécessite une classe abstraite, deux implémentations concrètes et une injection. Le deuxième fait exactement la même chose avec une simple fonction passée en argument. Le patron n'a pas disparu, il a été absorbé par le langage.
+
+{{% hint info %}}
+**Pythonique**
+
+La communauté Python utilise le terme *pythonique* (ou *Pythonic* en anglais) pour décrire du code qui exploite les idiomes naturels du langage plutôt que de reproduire les conventions d'un autre langage. Un code pythonique privilégie la lisibilité, la simplicité et les mécanismes intégrés de Python (fonctions comme objets, compréhensions de listes, protocoles comme `__iter__`, etc.). Tim Peters a condensé cette philosophie dans le *Zen of Python*, accessible en tapant `import this` dans un interpréteur Python. Le deuxième exemple ci-dessus est pythonique : plutôt que de reproduire la hiérarchie de classes du GoF, il utilise le fait qu'en Python, une fonction est un objet qu'on peut passer en argument.
+{{% /hint %}}
+
 ## Les couches (layers)
 
 Les principes qu'on vient de voir (information hiding, couplage/cohésion, SOLID) nous disent *comment* découper un système en modules. Mais ils ne disent pas *selon quelle logique* organiser ces modules entre eux. En pratique, un pattern d'organisation revient constamment : le découpage en couches. L'idée est simple : on empile des niveaux d'abstraction, chaque couche ne communiquant qu'avec celle qui est directement en dessous. Ce pattern est si répandu qu'on le retrouve partout, du modèle OSI des réseaux (7 couches) aux applications web modernes. Dans le contexte d'une application, la forme la plus courante est le découpage en trois couches : présentation, logique métier (*business logic*) et accès aux données.
@@ -593,9 +655,11 @@ Jusqu'ici, on a parlé de découpage *interne* : comment organiser les modules �
 
 L'intuition naturelle, surtout quand on a appris les vertus du découpage, est de vouloir tout séparer dès le départ. Mais l'expérience de l'industrie montre le contraire. Un monolithe bien structuré (avec des couches claires, des modules cohésifs et un couplage faible) est presque toujours le meilleur point de départ. Martin Fowler résume cette idée par la formule *monolith first* : commencer par un monolithe, et ne découper en services que lorsque la douleur le justifie. La raison est simple : les microservices résolvent des problèmes d'organisation et de passage à l'échelle, mais ils en créent d'autres. Chaque service a besoin de sa propre infrastructure de déploiement, de monitoring, de gestion des erreurs. La communication entre services passe par le réseau, ce qui introduit de la latence, des pannes partielles et des problèmes de cohérence des données. Déboguer un problème qui traverse cinq services est incomparablement plus difficile que de déboguer un appel de fonction dans un monolithe.
 
-<!-- ILLUSTRATION: monolithe (un seul bloc avec modules internes) vs microservices (plusieurs blocs reliés par des flèches réseau) -->
+{{< image src="monolith-vs-microservices.png" alt="" title="" loading="lazy" >}}
 
 Quand est-ce que le découpage en services devient pertinent ? Typiquement quand l'organisation grandit. Si plusieurs équipes travaillent sur le même monolithe et se marchent constamment sur les pieds, si les cycles de déploiement deviennent trop lents parce qu'il faut tout retester à chaque changement, ou si certaines parties du système ont des besoins de passage à l'échelle très différents (le moteur de recherche doit gérer 10 000 requêtes par seconde, mais le module de facturation n'en traite que 100), alors il peut être judicieux d'extraire certains composants en services indépendants.
+
+Une manière concrète de penser cette distinction est en termes de dépôts git. Un monolithe vit typiquement dans un seul dépôt (un *monorepo*) : tout le code, tous les tests, toute la configuration dans un même endroit. Quand on passe aux microservices, chaque service a généralement son propre dépôt, avec son propre historique, ses propres pipelines de CI, et ses propres cycles de déploiement. Cette séparation est à la fois un avantage (chaque équipe est autonome sur son dépôt) et un coût (coordonner un changement qui touche plusieurs services signifie ouvrir des pull requests dans plusieurs dépôts). Certaines grandes entreprises, comme Google et Meta, font le choix inverse : un monorepo géant qui contient tout le code de l'entreprise, avec des outils spécialisés pour gérer l'échelle. Il n'y a pas de réponse universelle, mais penser en termes de dépôts aide à rendre la distinction monolithe/microservices plus tangible.
 
 Cette observation rejoint une idée formulée dès 1968 par Melvin Conway : "les organisations qui conçoivent des systèmes sont contraintes de produire des architectures qui sont des copies de leurs structures de communication." C'est la *loi de Conway*. Si trois équipes travaillent sur un projet, le système aura tendance à se structurer en trois composants, peu importe ce que dicterait la logique technique. Cette loi a une conséquence pratique importante : l'architecture d'un système ne peut pas être décidée indépendamment de l'organisation humaine qui le construit. C'est pourquoi la question du monolithe vs microservices n'est pas seulement technique, elle est aussi organisationnelle. On reviendra sur ces dimensions humaines et collaboratives dans le module 4.
 
@@ -607,11 +671,11 @@ Le pattern le plus fondamental est probablement le **client-server**. L'idée es
 
 Dans le contexte des applications web, le pattern le plus courant est le **MVC** (Model-View-Controller). Il a été conçu à l'origine par Trygve Reenskaug en 1979 pour les interfaces graphiques de Smalltalk, où il séparait les données (Model), leur affichage à l'écran (View) et la gestion des interactions souris et clavier (Controller). Les frameworks web modernes ont adopté le vocabulaire de MVC, mais en le réinterprétant : le "Model" représente les données et la logique métier, la "View" génère du HTML (ou du JSON), et le "Controller" route les requêtes HTTP vers la bonne logique. En pratique, ce découpage est une variante du pattern trois couches qu'on a vu plus haut, adapté aux spécificités du cycle requête-réponse du web.
 
-{{< hint info >}}
+{{% hint info %}}
 **Frameworks web**
 
 Un *framework* web est une bibliothèque qui fournit une structure prête à l'emploi pour construire des applications web : routage des requêtes HTTP, connexion à la base de données, rendu des pages, et organisation du code selon un pattern comme MVC. Parmi les plus connus, on trouve Ruby on Rails (Ruby), Django et Flask (Python), Laravel (PHP), et Express (JavaScript/Node.js). Django se décrit d'ailleurs comme MTV (Model-Template-View) plutôt que MVC, ce qui illustre bien le fait que le vocabulaire varie d'un framework à l'autre, mais que l'idée sous-jacente reste la même.
-{{< /hint >}}
+{{% /hint %}}
 
 Le pattern **pipes and filters** organise le traitement comme une chaîne d'étapes indépendantes. Chaque filtre (*filter*) reçoit des données en entrée, les transforme, et les passe au filtre suivant via un canal (*pipe*). Ce pattern est au coeur de la philosophie Unix, où de petits utilitaires spécialisés se combinent en pipelines :
 

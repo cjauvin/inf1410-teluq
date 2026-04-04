@@ -20,7 +20,8 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
 - **KISS** (Keep It Simple Stupid)
 - **YAGNI** (You Ain't Gonna Need It, Kent Beck, Extreme Programming) : ne construis pas d'abstraction pour un besoin qui n'existe pas encore → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - **Separation of Concerns** : diviser un système en parties qui traitent chacune un aspect distinct du problème → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}}), [Module 3, Les données (OLTP vs OLAP)]({{< ref "/docs/module3/40-données/20-stockage" >}})
-- **SOLID** (Robert C. Martin, *Clean Code*, 2008) : cinq principes de conception OO (S, O, L, I, D) → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
+- **SOLID** (Robert C. Martin, *Agile Software Development*, 2003) : cinq principes de conception OO (S, O, L, I, D) → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
+- **Design patterns** (Gang of Four, *Design Patterns*, 1994) : vocabulaire partagé de solutions récurrentes à des problèmes de conception ; plusieurs patrons classiques sont absorbés par les langages modernes → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - **Law of Demeter**
 - **Composition over inheritance** (Gang of Four, *Design Patterns*, 1994) : favoriser l'assemblage d'objets plutôt que l'héritage de classes → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - **Loi de Conway** (Melvin Conway, 1967) : la structure d'un système reflète la structure de communication de l'organisation qui le produit → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}}), [Module 4, Scrum]({{< ref "/docs/module4/20-agile/10-scrum" >}}), [Module 4, Gestion de projet]({{< ref "/docs/module4/30-gestion-projet" >}})

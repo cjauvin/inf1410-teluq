@@ -153,6 +153,10 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   - Le monolithe comme point de départ raisonnable
   - Quand et pourquoi découper
   - Loi de Conway (pont vers module 4)
+- Design patterns (GoF, 1994)
+  - Vocabulaire partagé comme contribution principale
+  - Patterns absorbés par les langages modernes (Strategy, Iterator, Singleton en Python)
+  - Exemple : Strategy en style GoF vs Python idiomatique
 - Patterns architecturaux
   - Client-server
   - MVC (Reenskaug, 1979) et frameworks web (Rails, Django, Flask, etc.)
