@@ -39,6 +39,10 @@ Chacune de ces "erreurs de raisonnement" (*fallacies*) est une source de bugs su
 
 En 2000, Roy Fielding publie sa thèse de doctorat à l'Université de Californie à Irvine. Fielding n'est pas un inconnu : il est l'un des auteurs principaux de la spécification HTTP/1.1 et un co-fondateur du serveur web Apache. Dans sa thèse, il propose un style architectural pour les systèmes distribués qu'il appelle REST (*Representational State Transfer*). L'idée centrale est une rupture avec la philosophie RPC. Au lieu de concevoir des APIs comme des collections de fonctions qu'on appelle à distance (`getUser`, `createOrder`, `deleteProduct`), REST propose de concevoir des APIs comme des collections de *ressources* qu'on manipule avec un vocabulaire uniforme. Une ressource, c'est n'importe quoi qui peut être nommé : un utilisateur, une commande, un produit, un article de blog. Chaque ressource est identifiée par une URL, et on interagit avec elle en utilisant les verbes standard du protocole HTTP.
 
+Mais avant d'aller plus loin, il vaut la peine de s'arrêter sur ce protocole HTTP que REST utilise comme fondation, car on ne peut pas comprendre REST sans comprendre la couche sur laquelle il repose. Les communications sur Internet fonctionnent en couches superposées, chacune avec une responsabilité précise. À la base, le protocole IP (*Internet Protocol*) s'occupe d'acheminer des paquets de données d'une machine à une autre, en utilisant des adresses numériques (les fameuses adresses IP comme `142.112.5.42`). Au-dessus, TCP (*Transmission Control Protocol*) ajoute la fiabilité : il garantit que les paquets arrivent dans le bon ordre, sans perte, en redemandant ceux qui se perdent en chemin. Le DNS (*Domain Name System*) fait le lien entre les noms lisibles par les humains (`www.teluq.ca`) et les adresses IP. Ensemble, ces couches fournissent un tuyau fiable entre deux machines. Mais un tuyau fiable ne suffit pas : il faut encore un langage commun pour que les deux machines se comprennent. C'est le rôle de HTTP (*Hypertext Transfer Protocol*), un protocole de la couche *application* qui donne un sens aux échanges : "je veux obtenir cette ressource", "voici une nouvelle donnée à créer", "cette ressource n'existe pas". HTTP ne transporte pas simplement des octets, il structure la conversation.
+
+HTTP a été inventé par Tim Berners-Lee au CERN en 1991, comme l'un des trois piliers du World Wide Web, avec HTML (le format des pages) et les URLs (les adresses des ressources). Dans sa première version, HTTP était d'une simplicité extrême : le client envoyait une ligne `GET /page.html`, et le serveur retournait le contenu du fichier. Pas d'en-têtes, pas de codes de statut, pas de négociation de format. Mais cette simplicité cachait une idée puissante : chaque ressource sur le web possède une adresse unique (son URL), et on y accède avec un vocabulaire standardisé. Au fil des versions (HTTP/1.0 en 1996, HTTP/1.1 en 1997, HTTP/2 en 2015, HTTP/3 en 2022), le protocole s'est enrichi considérablement : des verbes pour distinguer les intentions (`GET` pour lire, `POST` pour créer, `DELETE` pour supprimer), des codes de statut pour signaler le résultat (`200 OK`, `404 Not Found`, `500 Internal Server Error`), des en-têtes pour négocier le format des données, gérer le cache, l'authentification, et bien d'autres choses. HTTP est devenu tellement omniprésent que même les applications qui n'ont rien à voir avec des pages web (des APIs entre microservices, des applications mobiles, des objets connectés) l'utilisent comme protocole de communication. C'est cette omniprésence qui rend REST possible : en s'appuyant sur un protocole que tout le monde comprend déjà, REST n'a pas besoin d'inventer sa propre infrastructure.
+
 Ce qui rend REST particulier, c'est que Fielding n'a presque rien inventé. Les verbes HTTP (`GET`, `POST`, `PUT`, `DELETE`) et les codes de statut (`200 OK`, `404 Not Found`, `500 Internal Server Error`) existaient déjà dans la spécification HTTP/1.1, que Fielding avait lui-même co-écrite. Mais personne ne les utilisait comme prévu. SOAP, par exemple, envoyait toutes ses requêtes par `POST`, retournait toujours un code `200`, et enfouissait toute la sémantique dans des enveloppes XML. HTTP était traité comme un simple tuyau de transport, un câble réseau glorifié. La contribution de Fielding a été de rappeler que HTTP est un protocole *applicatif*, conçu dès le départ avec un vocabulaire riche pour manipuler des ressources. REST n'ajoute pas une couche par-dessus HTTP : il dit simplement d'utiliser HTTP comme il a été conçu.
 
 En pratique, cela signifie qu'une API REST utilise les verbes HTTP pour exprimer l'intention de chaque requête :
@@ -92,6 +96,8 @@ Mais toutes les APIs qui se disent "REST" ne le sont pas au même degré. Leonar
 }
 ```
 
+L'idée est que le client n'a jamais besoin de construire une URL lui-même ni de deviner quelles opérations sont possibles : il se contente de suivre les liens fournis par le serveur, exactement comme un utilisateur qui navigue sur un site web en cliquant sur des hyperliens plutôt qu'en tapant des URLs dans la barre d'adresse. Mieux encore, les liens disponibles peuvent changer selon l'état de la ressource : une commande en attente pourrait offrir un lien "cancel", tandis qu'une commande déjà expédiée ne le proposerait pas. L'API encode ainsi ses règles métier directement dans ses réponses, ce qui la rend à la fois auto-documentée et adaptative.
+
 Le niveau 3 est la vision originale de Fielding : une API qui se comporte comme le web lui-même, où chaque réponse contient les liens nécessaires pour naviguer vers les actions suivantes. Fielding a d'ailleurs publié un billet de blog assez cinglant en 2008, intitulé *REST APIs must be hypertext-driven*, dans lequel il se plaignait que la plupart des APIs qui se disaient "REST" n'implémentaient pas HATEOAS et ne méritaient donc pas cette appellation. En pratique, le niveau 3 reste rare. La plupart des développeurs jugent que le niveau 2 est suffisant pour leurs besoins, et que la complexité supplémentaire de HATEOAS ne se justifie pas. C'est un cas où YAGNI l'emporte sur la pureté théorique.
 
 Pour rendre ces concepts concrets, voici une API REST complète implémentée avec FastAPI, un framework Python moderne. L'exemple gère une collection de livres :
@@ -139,7 +145,7 @@ def delete_book(book_id: int):
     del books[book_id]
 ```
 
-Pour lancer ce serveur, on peut utiliser `uv` pour installer les dépendances et exécuter le tout sans configuration préalable :
+Pour lancer ce serveur, il faut comprendre que FastAPI et Uvicorn jouent des rôles complémentaires. FastAPI est un *framework* : il fournit les outils pour définir des endpoints, valider les données et générer la documentation. Mais FastAPI ne sait pas, par lui-même, écouter sur un port réseau et recevoir des requêtes HTTP. C'est le rôle d'Uvicorn, un *serveur ASGI* (Asynchronous Server Gateway Interface) : il écoute les connexions entrantes, reçoit les requêtes HTTP, les transmet à FastAPI pour traitement, puis renvoie les réponses au client. L'analogie serait celle d'un restaurant : Uvicorn est le maître d'hôtel qui accueille les clients et prend les commandes, FastAPI est la cuisine qui prépare les plats. On peut utiliser `uv` pour installer les deux dépendances et lancer le tout sans configuration préalable :
 
 ```shell
 # Installer les dépendances et lancer le serveur en une seule commande
@@ -175,6 +181,8 @@ $ curl -X DELETE http://localhost:8000/books/2
 
 Quelques points méritent d'être soulignés. D'abord, FastAPI utilise les type hints de Python (et le modèle Pydantic `Book`) pour valider automatiquement les données entrantes : si on envoie un JSON sans le champ `year`, le serveur retourne un `422 Unprocessable Entity` sans qu'on ait écrit une seule ligne de validation. C'est un lien direct avec la notion de schéma qu'on a vue dans la section sur les données. Ensuite, chaque endpoint correspond à une combinaison verbe + ressource, exactement comme le prescrit REST au niveau 2 du modèle de Richardson. Enfin, FastAPI génère automatiquement une documentation interactive (accessible à `http://localhost:8000/docs`) qui décrit tous les endpoints, leurs paramètres et leurs réponses possibles. On reviendra sur cette documentation générée quand on parlera d'OpenAPI dans la section sur le design d'API.
 
+{{< image src="fastapi-docs.png" alt="" title="" loading="lazy" >}}
+
 ### GraphQL
 
 En 2015, Facebook rend public GraphQL, un langage de requêtes pour APIs qu'ils utilisaient en interne depuis 2012. GraphQL est né d'un problème concret : l'application mobile de Facebook devait afficher des données provenant de dizaines de sources différentes (profil utilisateur, fil d'actualité, amis, photos, notifications), et les APIs REST existantes n'étaient pas adaptées. Le problème tient en deux mots : *over-fetching* et *under-fetching*.
@@ -195,6 +203,8 @@ GraphQL résout ce problème en laissant le *client* décider de la forme exacte
 }
 ```
 
+La syntaxe de cette requête ressemble à du JSON, et ce n'est pas un hasard : elle décrit la *forme* de la réponse souhaitée, comme un gabarit à remplir. Mais ce n'est pas du JSON. Il n'y a pas de guillemets autour des noms de champs, pas de deux-points pour séparer clés et valeurs, et la syntaxe `author(id: 1)` pour passer des arguments n'existe pas en JSON. C'est un langage de requêtes à part entière, avec sa propre grammaire, conçu pour être concis et lisible.
+
 Et le serveur répond avec exactement cette structure, rien de plus :
 
 ```json
@@ -214,12 +224,12 @@ Un seul appel, exactement les données nécessaires. Si une autre page a besoin 
 
 Le nom "GraphQL" et sa syntaxe déclarative peuvent évoquer SQL, et la comparaison est instructive. En SQL, le code serveur envoie une requête directement à la base de données : `SELECT name FROM authors WHERE id = 1`. La base de données fouille ses tables et retourne le résultat. En GraphQL, c'est le client (le navigateur, l'application mobile) qui envoie une requête au serveur, décrivant la *forme* souhaitée de la réponse. Mais le serveur est libre de satisfaire cette requête comme il veut : en exécutant du SQL, en appelant un autre service, en lisant un cache, ou les trois à la fois. SQL est un langage de requêtes sur les *données*, GraphQL est un langage de requêtes sur l'*API*. Les deux opèrent à des niveaux différents de l'architecture, et GraphQL n'expose jamais la base de données directement au client.
 
-GraphQL offre aussi quelque chose que HATEOAS promettait mais que REST en pratique n'a jamais vraiment livré : la découvrabilité. Le schéma GraphQL est *introspectable* : on peut interroger le serveur pour lui demander quels types de données il expose, quels champs chaque type possède, et quelles requêtes sont possibles. Des outils comme GraphiQL exploitent cette propriété pour offrir un explorateur interactif avec autocomplétion, ce qui facilite considérablement le travail des développeurs qui consomment l'API.
+GraphQL offre aussi quelque chose que HATEOAS promettait mais que REST en pratique n'a jamais vraiment livré : la découvrabilité. Le schéma GraphQL est *introspectable* : on peut interroger le serveur pour lui demander quels types de données il expose, quels champs chaque type possède, et quelles requêtes sont possibles. Des outils comme Graph*i*QL (à ne pas confondre avec GraphQL lui-même : le "i" supplémentaire signifie *interactive*, et désigne un outil d'exploration, pas le langage de requêtes) exploitent cette propriété pour offrir un explorateur interactif avec autocomplétion, ce qui facilite considérablement le travail des développeurs qui consomment l'API.
 
 Pour rendre ces concepts concrets, voici un serveur GraphQL complet implémenté avec Strawberry, un framework GraphQL pour Python qui s'intègre naturellement avec FastAPI. On réutilise le même domaine des livres que dans l'exemple REST, ce qui permet de comparer directement les deux approches :
 
 ```python
-# graphql_main.py
+# main.py
 import strawberry
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
@@ -264,7 +274,7 @@ app.include_router(GraphQLRouter(schema), prefix="/graphql")
 
 ```shell
 # Lancer le serveur
-$ uv run --with 'strawberry-graphql[fastapi]' --with uvicorn uvicorn graphql_main:app
+$ uv run --with 'strawberry-graphql[fastapi]' --with uvicorn uvicorn main:app
 INFO:     Uvicorn running on http://127.0.0.1:8000
 ```
 
@@ -291,6 +301,8 @@ $ curl -X POST http://localhost:8000/graphql \
 ```
 
 Les trois requêtes vont au même endpoint (`/graphql`), mais chacune retourne une structure de données différente, dictée par le client. Avec REST, il aurait fallu soit trois endpoints différents, soit un seul endpoint qui retourne tout et laisse le client ignorer ce dont il n'a pas besoin. Strawberry génère aussi une interface interactive (accessible à `http://localhost:8000/graphql`) qui exploite l'introspection du schéma pour offrir autocomplétion et documentation, exactement comme GraphiQL.
+
+{{< image src="strawberry-docs.png" alt="" title="" loading="lazy" >}}
 
 ### gRPC
 
@@ -375,7 +387,7 @@ L'**idempotence** est une propriété subtile mais fondamentale dans le contexte
 
 Ces principes de design s'incarnent concrètement dans les **schémas**, qui formalisent le contrat d'une API de manière lisible par les machines autant que par les humains. Chaque paradigme a son propre format de schéma, mais l'idée fondamentale est la même : une description formelle de ce que l'API accepte et de ce qu'elle retourne.
 
-Pour REST, le standard dominant est OpenAPI (anciennement connu sous le nom de Swagger). Un fichier OpenAPI décrit chaque endpoint, ses paramètres, ses corps de requête et de réponse, ses codes d'erreur possibles, le tout dans un format YAML ou JSON. Mais OpenAPI va au-delà de la simple documentation statique : des outils comme Swagger UI (celui que FastAPI intègre automatiquement à `/docs`) génèrent une interface interactive où le développeur peut non seulement lire la documentation, mais aussi envoyer des requêtes directement depuis le navigateur, avec des formulaires pré-remplis pour les paramètres et une visualisation immédiate des réponses. On a vu que FastAPI génère cette spécification automatiquement à partir du code Python et des modèles Pydantic, sans qu'on ait besoin d'écrire ou de maintenir un fichier OpenAPI séparé. C'est un exemple parfait du principe DRY appliqué au design d'API : le schéma est dérivé du code, pas maintenu séparément.
+Pour REST, le standard dominant est OpenAPI (anciennement connu sous le nom de Swagger). Un fichier OpenAPI décrit chaque endpoint, ses paramètres, ses corps de requête et de réponse, ses codes d'erreur possibles, le tout dans un format YAML ou JSON. Mais OpenAPI va au-delà de la simple documentation statique : des outils comme Swagger UI (celui que FastAPI intègre automatiquement à `/docs`, comme nous l'avons déjà vu plus haut) génèrent une interface interactive où le développeur peut non seulement lire la documentation, mais aussi envoyer des requêtes directement depuis le navigateur, avec des formulaires pré-remplis pour les paramètres et une visualisation immédiate des réponses. On a vu que FastAPI génère cette spécification automatiquement à partir du code Python et des modèles Pydantic, sans qu'on ait besoin d'écrire ou de maintenir un fichier OpenAPI séparé. C'est un exemple parfait du principe DRY appliqué au design d'API : le schéma est dérivé du code, pas maintenu séparément.
 
 Pour gRPC, le fichier `.proto` joue exactement le même rôle : il décrit les services, les méthodes et les structures de données, et le code client et serveur est généré à partir de ce fichier. Pour GraphQL, le schéma est intrinsèque au framework : il est défini par les types et les *resolvers* du serveur, et il est interrogeable par introspection.
 
