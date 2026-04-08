@@ -9,7 +9,7 @@ bookCollapseSection: true
 
 Dans les sections précédentes, on a vu comment un système se structure en
 modules et comment ces modules communiquent entre eux par des APIs. Mais un
-système logiciel n'existe pas dans le vide : il est construit pour être utilisé
+système logiciel n'existe pas dans le vide&nbsp;: il est construit pour être utilisé
 par des humains. L'interface utilisateur est la surface de contact entre le
 système et la personne qui s'en sert. C'est la partie la plus visible d'un
 logiciel, et paradoxalement, c'est aussi celle dont la conception a le plus
