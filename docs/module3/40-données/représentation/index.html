@@ -2,7 +2,7 @@
 Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en relation avec autre chose.
 "><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="La représentation des données"><meta property="og:description" content="La représentation des données# Données vs information vs connaissances# C’est une distinction classique et fondamentale en sciences de l’information. Martin Kleppmann consacre une partie importante de Designing Data-Intensive Applications à ces questions de représentation, en montrant que le choix d’un format d’encodage et d’un schéma sont parmi les premières décisions architecturales qu’on prend quand on conçoit un système distribué. Voici comment ces trois niveaux s’articulent :
 Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en relation avec autre chose."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="La représentation des données"><meta itemprop=description content="La représentation des données# Données vs information vs connaissances# C’est une distinction classique et fondamentale en sciences de l’information. Martin Kleppmann consacre une partie importante de Designing Data-Intensive Applications à ces questions de représentation, en montrant que le choix d’un format d’encodage et d’un schéma sont parmi les premières décisions architecturales qu’on prend quand on conçoit un système distribué. Voici comment ces trois niveaux s’articulent :
-Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en relation avec autre chose."><meta itemprop=wordCount content="2233"><title>La représentation des données | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d100c9e7255f944fdc9c0c03acdb64b8d7adb1bb511f59b3599d09f2da105dbf.css integrity="sha256-0QDJ5yVflE/cnAwDrNtkuNetsbtRH1mzWZ0J8toQXb8=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en relation avec autre chose."><meta itemprop=wordCount content="2340"><title>La représentation des données | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.d100c9e7255f944fdc9c0c03acdb64b8d7adb1bb511f59b3599d09f2da105dbf.css integrity="sha256-0QDJ5yVflE/cnAwDrNtkuNetsbtRH1mzWZ0J8toQXb8=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/pyodide.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Intro et historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
@@ -26,31 +26,33 @@ Martin Kleppmann consacre une partie importante de <em>Designing Data-Intensive
 Applications</em> à ces questions de représentation, en montrant que le choix d&rsquo;un
 format d&rsquo;encodage et d&rsquo;un schéma sont parmi les premières décisions
 architecturales qu&rsquo;on prend quand on conçoit un système distribué. Voici
-comment ces trois niveaux s&rsquo;articulent :</p><p>Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des
+comment ces trois niveaux s&rsquo;articulent :</p><p>Les <strong>données</strong> sont des <strong>faits</strong> bruts, sans contexte ni interprétation. Ce sont des
 symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
 », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en
-relation avec autre chose.</p><p>L&rsquo;information émerge lorsqu&rsquo;on organise et contextualise des données pour leur
+relation avec autre chose.</p><p>L&rsquo;<strong>information</strong> émerge lorsqu&rsquo;on organise et contextualise des données pour leur
 donner un sens. « La température du patient était de 38,5 °C ce matin » est de
 l&rsquo;information : on sait maintenant quoi, où, quand. L&rsquo;information répond à une
-question et peut être communiquée de manière structurée.</p><p>La connaissance, elle, naît quand un être humain (ou un système) intègre
+question et peut être communiquée de manière structurée.</p><p>La <strong>connaissance</strong>, elle, naît quand un être humain (ou un système) intègre
 l&rsquo;information à son expérience, ses modèles mentaux et son jugement. Par
 exemple, un médecin qui lit cette température sait que c&rsquo;est une fièvre légère,
 qu&rsquo;il faut surveiller l&rsquo;évolution, et quelles causes sont probables selon le
 contexte clinique. La connaissance permet d&rsquo;interpréter, de décider et d&rsquo;agir.</p><p>On résume souvent cette hiérarchie ainsi — parfois appelée la <a href=https://fr.wikipedia.org/wiki/Pyramide_DICS>pyramide
-DIKW</a> (Données → Information →
+DICS</a> (Données → Information →
 Connaissances → Sagesse) :</p><ul><li>Donnée → « le quoi brut » (symboles sans contexte)</li><li>Information → « le quoi structuré » (données + contexte + sens)</li><li>Connaissance → « le comment et le pourquoi » (information + expérience +
 jugement)</li></ul><p>La sagesse (wisdom), parfois ajoutée au sommet, serait la capacité de porter un
-jugement éclairé sur quand et pourquoi appliquer ses connaissances.</p><h2 id=lencodage-et-la-sérialisation-et-leur-inverse>L&rsquo;encodage et la sérialisation (et leur inverse)<a class=anchor href=#lencodage-et-la-s%c3%a9rialisation-et-leur-inverse>#</a></h2><p>Un ordinateur ne manipule que des bits (0 et 1). Tout le reste (lettres,
+jugement éclairé sur quand et pourquoi appliquer ses connaissances.</p><label class=book-image for=book-image-toggle-0><input class="hidden toggle" type=checkbox id=book-image-toggle-0>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/pyramide-dics.png alt="Pyramide DICS" loading=lazy title="Pyramide DICS">
+</label><script>(function(){const e=document.getElementById("book-image-toggle-0"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h2 id=lencodage-et-la-sérialisation-et-leur-inverse>L&rsquo;encodage et la sérialisation (et leur inverse)<a class=anchor href=#lencodage-et-la-s%c3%a9rialisation-et-leur-inverse>#</a></h2><p>Un ordinateur ne manipule que des bits (0 et 1). Tout le reste (lettres,
 nombres, images, structures de données) doit être encodé, c&rsquo;est-à-dire traduit
 en séquences de bits selon des règles convenues. L&rsquo;encodage est donc un contrat
 de représentation entre celui qui écrit et celui qui lit. On peut distinguer
 plusieurs couches d&rsquo;encodage, chacune répondant à un besoin différent.</p><h3 id=lencodage-des-nombres--le-binaire>L&rsquo;encodage des nombres : le binaire<a class=anchor href=#lencodage-des-nombres--le-binaire>#</a></h3><p>C&rsquo;est la couche la plus basse. Un entier comme 42 se représente en base 2 :
-<code>00101010</code>.</p><div class=pyodide-block id=pyodide-0><textarea id=pyodide-0-code tabindex=-1>
+<code>00101010</code>.</p><div class=pyodide-block id=pyodide-1><textarea id=pyodide-1-code tabindex=-1>
 n = 42
 print(f&#34;{n:08b}&#34;)
-</textarea><div class=pyodide-toolbar><button id=pyodide-0-run onclick='pyodideRun("pyodide-0")'>&#9654; Exécuter</button>
-<button id=pyodide-0-reset onclick='pyodideReset("pyodide-0")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-0-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-0-output></pre></div><p>Pour les nombres négatifs, on utilise le <a href=https://fr.wikipedia.org/wiki/Compl%C3%A9ment_%C3%A0_deux>complément à
+</textarea><div class=pyodide-toolbar><button id=pyodide-1-run onclick='pyodideRun("pyodide-1")'>&#9654; Exécuter</button>
+<button id=pyodide-1-reset onclick='pyodideReset("pyodide-1")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-1-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-1-output></pre></div><p>Pour les nombres négatifs, on utilise le <a href=https://fr.wikipedia.org/wiki/Compl%C3%A9ment_%C3%A0_deux>complément à
 deux</a>. Pour les
 nombres à virgule, la norme IEEE 754 définit comment encoder le signe,
 l&rsquo;exposant et la mantisse en 32 ou 64 bits. L&rsquo;essentiel ici : le même paquet de
@@ -67,11 +69,13 @@ caractère ASCII tient sur 1 octet, un accent sur 2, un idéogramme sur 3,
 certains emojis sur 4. Son génie est d&rsquo;être rétrocompatible avec ASCII : tout
 fichier ASCII est déjà du UTF-8 valide.</li></ul><p>La confusion classique qu&rsquo;on retrouve partout : voir des <code>Ã©</code> au lieu de <code>é</code>,
 c&rsquo;est presque toujours un fichier UTF-8 lu comme s&rsquo;il était en Latin-1 (ou
-l&rsquo;inverse). Comprendre l&rsquo;encodage, c&rsquo;est comprendre pourquoi ça arrive.</p><h3 id=la-sérialisation-des-données-structurées--json-xml-csv>La sérialisation des données structurées : JSON, XML, CSV…<a class=anchor href=#la-s%c3%a9rialisation-des-donn%c3%a9es-structur%c3%a9es--json-xml-csv>#</a></h3><p>Une fois qu&rsquo;on sait représenter du texte, on peut s&rsquo;en servir pour encoder des
+l&rsquo;inverse). Comprendre l&rsquo;encodage, c&rsquo;est comprendre pourquoi ça arrive.</p><label class=book-image for=book-image-toggle-2><input class="hidden toggle" type=checkbox id=book-image-toggle-2>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/encodage-d%C3%A9codage.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-2"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h3 id=la-sérialisation-des-données-structurées--json-xml-csv>La sérialisation des données structurées : JSON, XML, CSV…<a class=anchor href=#la-s%c3%a9rialisation-des-donn%c3%a9es-structur%c3%a9es--json-xml-csv>#</a></h3><p>Une fois qu&rsquo;on sait représenter du texte, on peut s&rsquo;en servir pour encoder des
 structures : objets, listes, relations. Ce sont des formats de sérialisation
 textuelle :</p><ul><li>CSV : simple, tabulaire, mais fragile (pas de types, ambiguïtés sur les délimiteurs).</li><li>XML : hiérarchique, très explicite avec ses balises, mais verbeux.</li><li>JSON : léger, lisible, naturellement aligné avec les structures des langages
 de programmation (dictionnaires, listes). C&rsquo;est devenu le standard de facto
-pour les API web.</li></ul><div class=pyodide-block id=pyodide-1><textarea id=pyodide-1-code tabindex=-1>
+pour les API web.</li></ul><div class=pyodide-block id=pyodide-3><textarea id=pyodide-3-code tabindex=-1>
 # Structure en mémoire
 import json
 
@@ -89,9 +93,9 @@ print(donnees_serie)
 # Désérialisation → retour en dictionnaire Python
 etudiant_copie = json.loads(donnees_serie)
 print(etudiant_copie[&#39;nom&#39;])
-</textarea><div class=pyodide-toolbar><button id=pyodide-1-run onclick='pyodideRun("pyodide-1")'>&#9654; Exécuter</button>
-<button id=pyodide-1-reset onclick='pyodideReset("pyodide-1")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-1-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-1-output></pre></div><p>Leur avantage commun : ils sont lisibles par un humain (human-readable). Leur
+</textarea><div class=pyodide-toolbar><button id=pyodide-3-run onclick='pyodideRun("pyodide-3")'>&#9654; Exécuter</button>
+<button id=pyodide-3-reset onclick='pyodideReset("pyodide-3")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-3-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-3-output></pre></div><p>Leur avantage commun : ils sont lisibles par un humain (human-readable). Leur
 inconvénient : ils sont volumineux et lents à parser.</p><h3 id=sérialisation-binaire-structurée--protobuf-messagepack-avro>Sérialisation binaire structurée : Protobuf, MessagePack, Avro…<a class=anchor href=#s%c3%a9rialisation-binaire-structur%c3%a9e--protobuf-messagepack-avro>#</a></h3><p>Quand la performance compte (microservices à haut débit, stockage massif), on
 passe à des formats de sérialisation binaire :</p><ul><li>Protocol Buffers (Protobuf) de Google : on définit un schéma (fichier
 <code>.proto</code>), puis un compilateur génère du code pour encoder/décoder. Les
@@ -99,7 +103,58 @@ données sont compactes et rapides à traiter, mais illisibles sans le schéma.<
 de schéma.</li><li>Avro (écosystème Hadoop) : le schéma voyage avec les données, ce qui facilite
 l&rsquo;évolution.</li></ul><p>Le compromis est toujours le même : lisibilité humaine vs efficacité machine.</p><h3 id=autres-encodages-spécialisés>Autres encodages spécialisés<a class=anchor href=#autres-encodages-sp%c3%a9cialis%c3%a9s>#</a></h3><ul><li>Base64 : encoder des données binaires (images, fichiers) en texte ASCII, pour
 les transporter dans des contextes qui n&rsquo;acceptent que du texte (emails,
-JSON).</li><li>Encodage URL : remplacer les caractères spéciaux dans une URL (espace → %20).</li><li>Compression (gzip, zstd) : un encodage qui réduit la taille en exploitant la redondance.</li><li>Encodage multimédia (JPEG, MP3, H.264) : représentations optimisées pour les
+JSON).</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> base64<span style=color:#f92672>,</span> textwrap
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>with</span> open(<span style=color:#e6db74>&#34;image.png&#34;</span>, <span style=color:#e6db74>&#34;rb&#34;</span>) <span style=color:#66d9ef>as</span> f:
+</span></span><span style=display:flex><span>    donnees <span style=color:#f92672>=</span> f<span style=color:#f92672>.</span>read()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>encoded <span style=color:#f92672>=</span> base64<span style=color:#f92672>.</span>b64encode(donnees)<span style=color:#f92672>.</span>decode(<span style=color:#e6db74>&#34;utf-8&#34;</span>)
+</span></span><span style=display:flex><span>print(textwrap<span style=color:#f92672>.</span>fill(encoded, width<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>))</span></span></code></pre></div><p>Par exemple l&rsquo;encodage base64 de cette image :</p><label class=book-image for=book-image-toggle-4><input class="hidden toggle" type=checkbox id=book-image-toggle-4>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/arrow.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-4"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>est :</p><pre tabindex=0><code>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
+v6IQAAAAAElFTkSuQmCC</code></pre><ul><li>Encodage URL : remplacer les caractères spéciaux dans une URL (espace → <code>%20</code>).</li></ul><div class=pyodide-block id=pyodide-5><textarea id=pyodide-5-code tabindex=-1>from urllib.parse import urlencode
+
+base = &#34;https://www.teluq.ca/recherche&#34;
+params = {&#34;q&#34;: &#34;génie logiciel&#34;, &#34;page&#34;: 2, &#34;lang&#34;: &#34;fr&#34;}
+
+url = base &#43; &#34;?&#34; &#43; urlencode(params)
+print(url)
+# https://www.teluq.ca/recherche?q=g%C3%A9nie&#43;logiciel&amp;page=2&amp;lang=fr</textarea><div class=pyodide-toolbar><button id=pyodide-5-run onclick='pyodideRun("pyodide-5")'>&#9654; Exécuter</button>
+<button id=pyodide-5-reset onclick='pyodideReset("pyodide-5")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-5-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-5-output></pre></div><ul><li>Compression (gzip, zstd) : un encodage qui réduit la taille en exploitant la redondance.</li><li>Encodage multimédia (JPEG, MP3, H.264) : représentations optimisées pour les
 images, le son et la vidéo, souvent avec perte.</li></ul><h3 id=la-vision-densemble>La vision d&rsquo;ensemble<a class=anchor href=#la-vision-densemble>#</a></h3><p>On peut voir ces couches comme un empilement :</p><pre tabindex=0><code>┌──────────────────────────────────┐
 │  Sémantique (schémas, ontologies)│  ← le sens, l&#39;information
 ├──────────────────────────────────┤
@@ -141,7 +196,8 @@ schéma les connaît déjà. C&rsquo;est ce qui rend Protobuf beaucoup plus comp
 JSON.</li><li>Évolution contrôlée. Un schéma versionné permet de faire évoluer une structure
 (ajouter un champ, en déprécier un autre) tout en gardant la compatibilité
 avec les données existantes.</li></ul><h3 id=les-schémas-dans-différents-contextes>Les schémas dans différents contextes<a class=anchor href=#les-sch%c3%a9mas-dans-diff%c3%a9rents-contextes>#</a></h3><p>La notion de schéma apparaît partout en informatique, sous des formes
-différentes mais avec la même idée fondamentale.</p><h4 id=bases-de-données-relationnelles--ddl>Bases de données relationnelles — DDL<a class=anchor href=#bases-de-donn%c3%a9es-relationnelles--ddl>#</a></h4><p>C&rsquo;est le schéma le plus classique. En SQL, le <code>CREATE TABLE</code> définit la structure :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> etudiants (
+différentes mais avec la même idée fondamentale.</p><h4 id=bases-de-données-relationnelles--ddl>Bases de données relationnelles — DDL<a class=anchor href=#bases-de-donn%c3%a9es-relationnelles--ddl>#</a></h4><p>C&rsquo;est le schéma le plus classique. En SQL, le <code>CREATE TABLE</code> définit la structure (comme nous allons le voir plus en profondeur dans la prochaine section, sur les bases de
+données) :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> etudiants (
 </span></span><span style=display:flex><span>    matricule  CHAR(<span style=color:#ae81ff>8</span>)      <span style=color:#66d9ef>PRIMARY</span> <span style=color:#66d9ef>KEY</span>,
 </span></span><span style=display:flex><span>    nom        VARCHAR(<span style=color:#ae81ff>100</span>)  <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>NULL</span>,
 </span></span><span style=display:flex><span>    courriel   VARCHAR(<span style=color:#ae81ff>255</span>)  <span style=color:#66d9ef>UNIQUE</span>,
@@ -153,7 +209,7 @@ Le SGBD refuse toute donnée non conforme — le schéma est appliqué stricteme
 (schema-on-write).</p><h4 id=types-dans-les-langages-de-programmation>Types dans les langages de programmation<a class=anchor href=#types-dans-les-langages-de-programmation>#</a></h4><p>La notion de type dans un langage de programmation (dont la variation la plus
 forte est pour les langages orientés-objet) est étroitement reliée à la notion
 de schéma.</p><p>En Python par exemple on peut utiliser des type hints avec une classe, pour
-créer un type <code>Etudiant</code> :</p><div class=pyodide-block id=pyodide-2><textarea id=pyodide-2-code tabindex=-1>from dataclasses import dataclass
+créer un type <code>Etudiant</code> :</p><div class=pyodide-block id=pyodide-6><textarea id=pyodide-6-code tabindex=-1>from dataclasses import dataclass
 
 @dataclass
 class Etudiant:
@@ -161,9 +217,9 @@ class Etudiant:
     nom: str
     cours: list[str]
     actif: bool = True
-</textarea><div class=pyodide-toolbar><button id=pyodide-2-run onclick='pyodideRun("pyodide-2")'>&#9654; Exécuter</button>
-<button id=pyodide-2-reset onclick='pyodideReset("pyodide-2")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-2-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-2-output></pre></div><h4 id=api>API<a class=anchor href=#api>#</a></h4><p>Au niveau d&rsquo;une API complète, le schéma décrit non seulement les structures de
+</textarea><div class=pyodide-toolbar><button id=pyodide-6-run onclick='pyodideRun("pyodide-6")'>&#9654; Exécuter</button>
+<button id=pyodide-6-reset onclick='pyodideReset("pyodide-6")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-6-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-6-output></pre></div><h4 id=api>API<a class=anchor href=#api>#</a></h4><p>Au niveau d&rsquo;une API complète, le schéma décrit non seulement les structures de
 données mais aussi les opérations disponibles. Un fichier OpenAPI (anciennement
 Swagger) spécifie les endpoints, les paramètres, les corps de requête et de
 réponse, les codes d&rsquo;erreur. Un schéma GraphQL décrit les types, les requêtes et

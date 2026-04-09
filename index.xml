@@ -74,7 +74,7 @@ Applications&lt;/em&gt; à ces questions de représentation, en montrant que le 
 format d&amp;rsquo;encodage et d&amp;rsquo;un schéma sont parmi les premières décisions
 architecturales qu&amp;rsquo;on prend quand on conçoit un système distribué. Voici
 comment ces trois niveaux s&amp;rsquo;articulent :&lt;/p&gt;
-&lt;p&gt;Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des
+&lt;p&gt;Les &lt;strong&gt;données&lt;/strong&gt; sont des &lt;strong&gt;faits&lt;/strong&gt; bruts, sans contexte ni interprétation. Ce sont des
 symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
 », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en
 relation avec autre chose.&lt;/p&gt;</description></item><item><title>Où est-ce que ça tourne ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/</guid><description>&lt;h1 id="où-est-ce-que-ça-tourne-"&gt;Où est-ce que ça tourne ?&lt;a class="anchor" href="#o%c3%b9-est-ce-que-%c3%a7a-tourne-"&gt;#&lt;/a&gt;&lt;/h1&gt;
