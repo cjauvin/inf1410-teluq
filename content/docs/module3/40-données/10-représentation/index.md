@@ -15,24 +15,24 @@ format d'encodage et d'un schéma sont parmi les premières décisions
 architecturales qu'on prend quand on conçoit un système distribué. Voici
 comment ces trois niveaux s'articulent :
 
-Les données sont des faits bruts, sans contexte ni interprétation. Ce sont des
+Les **données** sont des **faits** bruts, sans contexte ni interprétation. Ce sont des
 symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
 », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en
 relation avec autre chose.
 
-L'information émerge lorsqu'on organise et contextualise des données pour leur
+L'**information** émerge lorsqu'on organise et contextualise des données pour leur
 donner un sens. « La température du patient était de 38,5 °C ce matin » est de
 l'information : on sait maintenant quoi, où, quand. L'information répond à une
 question et peut être communiquée de manière structurée.
 
-La connaissance, elle, naît quand un être humain (ou un système) intègre
+La **connaissance**, elle, naît quand un être humain (ou un système) intègre
 l'information à son expérience, ses modèles mentaux et son jugement. Par
 exemple, un médecin qui lit cette température sait que c'est une fièvre légère,
 qu'il faut surveiller l'évolution, et quelles causes sont probables selon le
 contexte clinique. La connaissance permet d'interpréter, de décider et d'agir.
 
 On résume souvent cette hiérarchie ainsi — parfois appelée la [pyramide
-DIKW](https://fr.wikipedia.org/wiki/Pyramide_DICS) (Données → Information →
+DICS](https://fr.wikipedia.org/wiki/Pyramide_DICS) (Données → Information →
 Connaissances → Sagesse) :
 
 * Donnée → « le quoi brut » (symboles sans contexte)
@@ -42,6 +42,8 @@ Connaissances → Sagesse) :
 
 La sagesse (wisdom), parfois ajoutée au sommet, serait la capacité de porter un
 jugement éclairé sur quand et pourquoi appliquer ses connaissances.
+
+{{< image src="pyramide-dics.png" alt="Pyramide DICS" title="Pyramide DICS" loading="lazy" >}}
 
 ## L'encodage et la sérialisation (et leur inverse)
 
@@ -92,6 +94,8 @@ caractères et des nombres.
 La confusion classique qu'on retrouve partout : voir des `Ã©` au lieu de `é`,
 c'est presque toujours un fichier UTF-8 lu comme s'il était en Latin-1 (ou
 l'inverse). Comprendre l'encodage, c'est comprendre pourquoi ça arrive.
+
+{{< image src="encodage-décodage.png" alt="" title="" loading="lazy" >}}
 
 ### La sérialisation des données structurées : JSON, XML, CSV…
 
@@ -150,7 +154,74 @@ Le compromis est toujours le même : lisibilité humaine vs efficacité machine.
 * Base64 : encoder des données binaires (images, fichiers) en texte ASCII, pour
   les transporter dans des contextes qui n'acceptent que du texte (emails,
   JSON).
-* Encodage URL : remplacer les caractères spéciaux dans une URL (espace → %20).
+
+```python
+import base64, textwrap
+
+with open("image.png", "rb") as f:
+    donnees = f.read()
+
+encoded = base64.b64encode(donnees).decode("utf-8")
+print(textwrap.fill(encoded, width=64))
+```
+
+Par exemple l'encodage base64 de cette image&nbsp;:
+
+{{< image src="arrow.png" alt="" title="" loading="lazy" >}}
+
+est&nbsp;:
+
+```
+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
+v6IQAAAAAElFTkSuQmCC
+```
+
+* Encodage URL : remplacer les caractères spéciaux dans une URL (espace → `%20`).
+
+{{< pyodide >}}
+from urllib.parse import urlencode
+
+base = "https://www.teluq.ca/recherche"
+params = {"q": "génie logiciel", "page": 2, "lang": "fr"}
+
+url = base + "?" + urlencode(params)
+print(url)
+# https://www.teluq.ca/recherche?q=g%C3%A9nie+logiciel&page=2&lang=fr
+{{< /pyodide >}}
+
 * Compression (gzip, zstd) : un encodage qui réduit la taille en exploitant la redondance.
 * Encodage multimédia (JPEG, MP3, H.264) : représentations optimisées pour les
   images, le son et la vidéo, souvent avec perte.
@@ -239,7 +310,8 @@ différentes mais avec la même idée fondamentale.
 
 #### Bases de données relationnelles — DDL
 
-C'est le schéma le plus classique. En SQL, le `CREATE TABLE` définit la structure :
+C'est le schéma le plus classique. En SQL, le `CREATE TABLE` définit la structure (comme nous allons le voir plus en profondeur dans la prochaine section, sur les bases de
+données) :
 ```sql
 CREATE TABLE etudiants (
     matricule  CHAR(8)      PRIMARY KEY,
