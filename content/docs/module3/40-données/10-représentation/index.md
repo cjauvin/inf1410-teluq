@@ -13,16 +13,16 @@ Martin Kleppmann consacre une partie importante de *Designing Data-Intensive
 Applications* à ces questions de représentation, en montrant que le choix d'un
 format d'encodage et d'un schéma sont parmi les premières décisions
 architecturales qu'on prend quand on conçoit un système distribué. Voici
-comment ces trois niveaux s'articulent :
+comment ces trois niveaux s'articulent&nbsp;:
 
 Les **données** sont des **faits** bruts, sans contexte ni interprétation. Ce sont des
-symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
+symboles, des chiffres, des mesures isolées. Par exemple&nbsp;: « 38,5 », « Montréal
 », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en
 relation avec autre chose.
 
 L'**information** émerge lorsqu'on organise et contextualise des données pour leur
 donner un sens. « La température du patient était de 38,5 °C ce matin » est de
-l'information : on sait maintenant quoi, où, quand. L'information répond à une
+l'information&nbsp;: on sait maintenant quoi, où, quand. L'information répond à une
 question et peut être communiquée de manière structurée.
 
 La **connaissance**, elle, naît quand un être humain (ou un système) intègre
@@ -33,7 +33,7 @@ contexte clinique. La connaissance permet d'interpréter, de décider et d'agir.
 
 On résume souvent cette hiérarchie ainsi — parfois appelée la [pyramide
 DICS](https://fr.wikipedia.org/wiki/Pyramide_DICS) (Données → Information →
-Connaissances → Sagesse) :
+Connaissances → Sagesse)&nbsp;:
 
 * Donnée → « le quoi brut » (symboles sans contexte)
 * Information → « le quoi structuré » (données + contexte + sens)
@@ -53,9 +53,9 @@ en séquences de bits selon des règles convenues. L'encodage est donc un contra
 de représentation entre celui qui écrit et celui qui lit. On peut distinguer
 plusieurs couches d'encodage, chacune répondant à un besoin différent.
 
-### L'encodage des nombres : le binaire
+### L'encodage des nombres&nbsp;: le binaire
 
-C'est la couche la plus basse. Un entier comme 42 se représente en base 2 :
+C'est la couche la plus basse. Un entier comme 42 se représente en base 2&nbsp;:
 `00101010`.
 
 {{< pyodide >}}
@@ -68,44 +68,44 @@ print(f"{n:08b}")
 Pour les nombres négatifs, on utilise le [complément à
 deux](https://fr.wikipedia.org/wiki/Compl%C3%A9ment_%C3%A0_deux). Pour les
 nombres à virgule, la norme IEEE 754 définit comment encoder le signe,
-l'exposant et la mantisse en 32 ou 64 bits. L'essentiel ici : le même paquet de
+l'exposant et la mantisse en 32 ou 64 bits. L'essentiel ici&nbsp;: le même paquet de
 bits peut signifier des choses complètement différentes selon l'interprétation
 qu'on en fait. `01000001` peut être l'entier 65, le caractère `A`, ou une partie
 d'un nombre flottant, tout dépend du contexte d'interprétation.
 
-### L'encodage des caractères : ASCII, Latin-1, UTF-8…
+### L'encodage des caractères&nbsp;: ASCII, Latin-1, UTF-8…
 
 Comment représenter du texte ? Il faut une table de correspondance entre des
 caractères et des nombres.
 
-* ASCII (1963) : 7 bits, 128 caractères. Suffisant pour l'anglais, mais pas pour
+* ASCII (1963)&nbsp;: 7 bits, 128 caractères. Suffisant pour l'anglais, mais pas pour
   "é", "ñ" ou "漢".
-* Latin-1 / ISO 8859-1 : 8 bits, 256 caractères. Couvre les langues d'Europe
+* Latin-1 / ISO 8859-1&nbsp;: 8 bits, 256 caractères. Couvre les langues d'Europe
   occidentale, mais chaque région du monde avait sa propre table — d'où des
   problèmes d'interopérabilité constants.
-* Unicode : un répertoire universel qui attribue un code point unique à chaque
-  caractère de toutes les écritures (ex. : `U+00E9` = "é", `U+4E16` = "世").
+* Unicode&nbsp;: un répertoire universel qui attribue un code point unique à chaque
+  caractère de toutes les écritures (ex.&nbsp;: `U+00E9` = "é", `U+4E16` = "世").
   Mais Unicode n'est pas un encodage en soi, c'est un catalogue.
-* UTF-8 : l'encodage le plus répandu d'Unicode. Il est à longueur variable — un
+* UTF-8&nbsp;: l'encodage le plus répandu d'Unicode. Il est à longueur variable — un
   caractère ASCII tient sur 1 octet, un accent sur 2, un idéogramme sur 3,
-  certains emojis sur 4. Son génie est d'être rétrocompatible avec ASCII : tout
+  certains emojis sur 4. Son génie est d'être rétrocompatible avec ASCII&nbsp;: tout
   fichier ASCII est déjà du UTF-8 valide.
 
-La confusion classique qu'on retrouve partout : voir des `Ã©` au lieu de `é`,
+La confusion classique qu'on retrouve partout&nbsp;: voir des `Ã©` au lieu de `é`,
 c'est presque toujours un fichier UTF-8 lu comme s'il était en Latin-1 (ou
 l'inverse). Comprendre l'encodage, c'est comprendre pourquoi ça arrive.
 
 {{< image src="encodage-décodage.png" alt="" title="" loading="lazy" >}}
 
-### La sérialisation des données structurées : JSON, XML, CSV…
+### La sérialisation des données structurées&nbsp;: JSON, XML, CSV…
 
 Une fois qu'on sait représenter du texte, on peut s'en servir pour encoder des
-structures : objets, listes, relations. Ce sont des formats de sérialisation
-textuelle :
+structures&nbsp;: objets, listes, relations. Ce sont des formats de sérialisation
+textuelle&nbsp;:
 
-* CSV : simple, tabulaire, mais fragile (pas de types, ambiguïtés sur les délimiteurs).
-* XML : hiérarchique, très explicite avec ses balises, mais verbeux.
-* JSON : léger, lisible, naturellement aligné avec les structures des langages
+* CSV&nbsp;: simple, tabulaire, mais fragile (pas de types, ambiguïtés sur les délimiteurs).
+* XML&nbsp;: hiérarchique, très explicite avec ses balises, mais verbeux.
+* JSON&nbsp;: léger, lisible, naturellement aligné avec les structures des langages
   de programmation (dictionnaires, listes). C'est devenu le standard de facto
   pour les API web.
 
@@ -131,27 +131,27 @@ print(etudiant_copie['nom'])
 
 {{< /pyodide >}}
 
-Leur avantage commun : ils sont lisibles par un humain (human-readable). Leur
-inconvénient : ils sont volumineux et lents à parser.
+Leur avantage commun&nbsp;: ils sont lisibles par un humain (human-readable). Leur
+inconvénient&nbsp;: ils sont volumineux et lents à parser.
 
-### Sérialisation binaire structurée : Protobuf, MessagePack, Avro…
+### Sérialisation binaire structurée&nbsp;: Protobuf, MessagePack, Avro…
 
 Quand la performance compte (microservices à haut débit, stockage massif), on
-passe à des formats de sérialisation binaire :
+passe à des formats de sérialisation binaire&nbsp;:
 
-* Protocol Buffers (Protobuf) de Google : on définit un schéma (fichier
+* Protocol Buffers (Protobuf) de Google&nbsp;: on définit un schéma (fichier
   `.proto`), puis un compilateur génère du code pour encoder/décoder. Les
   données sont compactes et rapides à traiter, mais illisibles sans le schéma.
-* MessagePack : comme du JSON, mais encodé en binaire. Plus compact, pas besoin
+* MessagePack&nbsp;: comme du JSON, mais encodé en binaire. Plus compact, pas besoin
   de schéma.
-* Avro (écosystème Hadoop) : le schéma voyage avec les données, ce qui facilite
+* Avro (écosystème Hadoop)&nbsp;: le schéma voyage avec les données, ce qui facilite
   l'évolution.
 
-Le compromis est toujours le même : lisibilité humaine vs efficacité machine.
+Le compromis est toujours le même&nbsp;: lisibilité humaine vs efficacité machine.
 
 ### Autres encodages spécialisés
 
-* Base64 : encoder des données binaires (images, fichiers) en texte ASCII, pour
+* Base64&nbsp;: encoder des données binaires (images, fichiers) en texte ASCII, pour
   les transporter dans des contextes qui n'acceptent que du texte (emails,
   JSON).
 
@@ -209,7 +209,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7Nj/AQj8BuJe
 v6IQAAAAAElFTkSuQmCC
 ```
 
-* Encodage URL : remplacer les caractères spéciaux dans une URL (espace → `%20`).
+* Encodage URL&nbsp;: remplacer les caractères spéciaux dans une URL (espace → `%20`).
 
 {{< pyodide >}}
 from urllib.parse import urlencode
@@ -222,13 +222,13 @@ print(url)
 # https://www.teluq.ca/recherche?q=g%C3%A9nie+logiciel&page=2&lang=fr
 {{< /pyodide >}}
 
-* Compression (gzip, zstd) : un encodage qui réduit la taille en exploitant la redondance.
-* Encodage multimédia (JPEG, MP3, H.264) : représentations optimisées pour les
+* Compression (gzip, zstd)&nbsp;: un encodage qui réduit la taille en exploitant la redondance.
+* Encodage multimédia (JPEG, MP3, H.264)&nbsp;: représentations optimisées pour les
   images, le son et la vidéo, souvent avec perte.
 
 ### La vision d'ensemble
 
-On peut voir ces couches comme un empilement :
+On peut voir ces couches comme un empilement&nbsp;:
 
 ```
 ┌──────────────────────────────────┐
@@ -254,18 +254,24 @@ en pratique, la source d'une quantité impressionnante de bugs.
 
 On a vu qu'encoder c'est choisir une convention de représentation, et que
 sérialiser c'est transformer une structure vivante en séquence linéaire. Le
-schéma, c'est la pièce manquante : la description formelle de la structure
+schéma, c'est la pièce manquante&nbsp;: la description formelle de la structure
 elle-même — quels champs existent, de quels types ils sont, quels sont
 obligatoires, quelles relations les lient.
 
-Un schéma, c'est un contrat sur la forme des données. Il dit : « voici ce à quoi
+Un schéma, c'est un contrat sur la forme des données. Il dit&nbsp;: « voici ce à quoi
 une donnée valide ressemble ».
 
-Imaginez qu'on vous fournisse ce JSON sans aucune explication :
+Imaginez qu'on vous fournisse ce JSON sans aucune explication&nbsp;:
 
 ```json
-{"n": "Tremblay", "c": [1, 2], "a": true, "x": null}
+{
+  "n": "Tremblay",
+  "c": [1, 2],
+  "a": true,
+  "x": null
+}
 ```
+
 
 Il est possible de le désérialiser sans problème, car JSON est auto-descriptif
 au niveau syntaxique. Mais on ne sait pas ce que ces champs signifient, si `c`
@@ -278,10 +284,10 @@ sur les données, indépendamment des données elles-mêmes.
 
 ### Les rôles d'un schéma
 
-Un schéma remplit plusieurs fonctions simultanément :
+Un schéma remplit plusieurs fonctions simultanément&nbsp;:
 
 * Validation. C'est le rôle le plus immédiat. Le schéma permet de vérifier
-  automatiquement qu'une donnée est conforme : les champs requis sont présents,
+  automatiquement qu'une donnée est conforme&nbsp;: les champs requis sont présents,
   les types sont respectés, les valeurs sont dans les bornes acceptables. Sans
   schéma, la validation est ad hoc, éparpillée dans le code sous forme de "if"
   défensifs.
@@ -311,7 +317,7 @@ différentes mais avec la même idée fondamentale.
 #### Bases de données relationnelles — DDL
 
 C'est le schéma le plus classique. En SQL, le `CREATE TABLE` définit la structure (comme nous allons le voir plus en profondeur dans la prochaine section, sur les bases de
-données) :
+données)&nbsp;:
 ```sql
 CREATE TABLE etudiants (
     matricule  CHAR(8)      PRIMARY KEY,
@@ -334,7 +340,7 @@ forte est pour les langages orientés-objet) est étroitement reliée à la noti
 de schéma.
 
 En Python par exemple on peut utiliser des type hints avec une classe, pour
-créer un type `Etudiant` :
+créer un type `Etudiant`&nbsp;:
 
 {{< pyodide >}}
 from dataclasses import dataclass
@@ -359,7 +365,7 @@ d'interface du service.
 
 #### Sérialisation — Protobuf, Avro, Thrift
 
-Ici le schéma est défini dans un fichier séparé. En Protobuf :
+Ici le schéma est défini dans un fichier séparé. En Protobuf&nbsp;:
 ```protobuf
 
 message Etudiant {
@@ -371,13 +377,13 @@ message Etudiant {
 ```
 
 Chaque champ a un numéro de tag (1, 2, 3…) qui est utilisé dans l'encodage
-binaire à la place du nom. C'est ce qui permet la compacité et l'évolution : on
+binaire à la place du nom. C'est ce qui permet la compacité et l'évolution&nbsp;: on
 peut ajouter un champ 5 sans casser les anciens consommateurs qui ne le
 connaissent pas.
 
 #### Validation de données — JSON Schema
 
-Pour les API REST et les échanges en JSON, JSON Schema permet de décrire formellement la structure attendue :
+Pour les API REST et les échanges en JSON, JSON Schema permet de décrire formellement la structure attendue&nbsp;:
 ```json
 {
   "type": "object",
@@ -392,12 +398,12 @@ Pour les API REST et les échanges en JSON, JSON Schema permet de décrire forme
 ```
 
 On retrouve le même principe que le DDL relationnel, mais appliqué au monde des
-échanges JSON : types, contraintes, champs requis, motifs de validation.
+échanges JSON&nbsp;: types, contraintes, champs requis, motifs de validation.
 
 ### L'évolution des schémas
 
 C'est un des problèmes les plus concrets et les plus sous-estimés en ingénierie
-logicielle, et un exemple concret de complexité essentielle au sens de Brooks :
+logicielle, et un exemple concret de complexité essentielle au sens de Brooks&nbsp;:
 le changement est inévitable, et le schéma doit l'accommoder sans briser ce qui
 existe déjà. Les structures de données changent — on ajoute un champ, on
 renomme une colonne, on change un type. Mais les anciennes données (en base, en
@@ -406,10 +412,41 @@ cache, en transit) existent toujours sous l'ancien schéma.
 On parle de **compatibilité ascendante** (*backward compatibility*) quand le
 nouveau code peut lire les anciennes données, et de **compatibilité
 descendante** (*forward compatibility*) quand l'ancien code peut lire les
-nouvelles données. Les systèmes comme Protobuf et Avro ont des règles explicites
-pour ça : ne jamais réutiliser un numéro de champ supprimé, toujours donner une
-valeur par défaut aux nouveaux champs, ne jamais rendre obligatoire un champ qui
-était optionnel.
+nouvelles données.
+
+Prenons un exemple concret. Voici un enregistrement produit par la version 1 d'un service&nbsp;:
+
+```json
+{
+  "matricule": "TREM1234",
+  "nom": "Tremblay",
+  "actif": true
+}
+```
+
+La version 2 ajoute un champ `courriel`. Un enregistrement v2 ressemble à ceci&nbsp;:
+
+```json
+{
+  "matricule": "TREM1234",
+  "nom": "Tremblay",
+  "actif": true,
+  "courriel": "tremblay@teluq.ca"
+}
+```
+
+La **compatibilité ascendante** est assurée si le code v2 sait lire les anciens
+enregistrements v1 — c'est-à-dire s'il tolère l'absence de `courriel` (en lui
+donnant une valeur par défaut ou en l'acceptant comme optionnel). La
+**compatibilité descendante** est assurée si le code v1 sait lire les nouveaux
+enregistrements v2 — c'est-à-dire s'il ignore simplement le champ `courriel`
+qu'il ne connaît pas. En revanche, si la v2 renomme `nom` en `nom_complet` ou
+rend `courriel` obligatoire, l'une ou l'autre des compatibilités est brisée.
+
+Les systèmes comme Protobuf et Avro ont des règles explicites pour maintenir ces
+compatibilités&nbsp;: ne jamais réutiliser un numéro de champ supprimé, toujours
+donner une valeur par défaut aux nouveaux champs, ne jamais rendre obligatoire
+un champ qui était optionnel.
 
 En SQL, l'évolution passe par les migrations (`ALTER TABLE`), souvent gérées par
 des outils comme Alembic ou Flyway. Le défi est de modifier le schéma sans
@@ -417,7 +454,7 @@ interrompre le service ni perdre de données.
 
 ### La vision d'ensemble
 
-Le schéma se situe au sommet de notre pile conceptuelle :
+Le schéma se situe au sommet de notre pile conceptuelle&nbsp;:
 ```
   Schéma           ← « quelle forme doivent avoir les données ? »
      │
@@ -429,10 +466,10 @@ Le schéma se situe au sommet de notre pile conceptuelle :
 ```
 
 Sans schéma, on a des octets qu'on sait décoder en texte et en structures, mais
-on ne sait pas si ce qu'on a reçu est correct. Le schéma ferme la boucle : il
+on ne sait pas si ce qu'on a reçu est correct. Le schéma ferme la boucle&nbsp;: il
 donne une sémantique structurelle aux données et permet de distinguer une donnée
 valide d'une donnée corrompue ou incomplète.
 
-C'est aussi ce qui relie cette discussion à la toute première : les données
+C'est aussi ce qui relie cette discussion à la toute première&nbsp;: les données
 deviennent de l'information quand elles sont structurées selon un schéma qui
 leur donne un sens.
