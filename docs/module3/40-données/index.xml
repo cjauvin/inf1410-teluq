@@ -5,9 +5,9 @@ Martin Kleppmann consacre une partie importante de &lt;em&gt;Designing Data-Inte
 Applications&lt;/em&gt; à ces questions de représentation, en montrant que le choix d&amp;rsquo;un
 format d&amp;rsquo;encodage et d&amp;rsquo;un schéma sont parmi les premières décisions
 architecturales qu&amp;rsquo;on prend quand on conçoit un système distribué. Voici
-comment ces trois niveaux s&amp;rsquo;articulent :&lt;/p&gt;
+comment ces trois niveaux s&amp;rsquo;articulent :&lt;/p&gt;
 &lt;p&gt;Les &lt;strong&gt;données&lt;/strong&gt; sont des &lt;strong&gt;faits&lt;/strong&gt; bruts, sans contexte ni interprétation. Ce sont des
-symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
+symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
 », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en
 relation avec autre chose.&lt;/p&gt;</description></item><item><title>Les bases de données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/</guid><description>&lt;h1 id="lévolution-des-bases-de-données"&gt;L&amp;rsquo;évolution des bases de données&lt;a class="anchor" href="#l%c3%a9volution-des-bases-de-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;La section précédente a montré comment les données sont représentées : encodées
