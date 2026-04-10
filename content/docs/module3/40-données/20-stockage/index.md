@@ -4,9 +4,9 @@ slug: "stockage"
 weight: 20
 ---
 
-# L'évolution des bases de données
+# Les bases de données
 
-La section précédente a montré comment les données sont représentées : encodées
+La section précédente a montré comment les données sont représentées, encodées
 en bits, sérialisées en formats textuels ou binaires, structurées par des
 schémas. Mais représenter des données ne suffit pas. Dès qu'un système doit
 conserver des données au-delà de l'exécution d'un programme, les retrouver
@@ -15,34 +15,38 @@ concurrent, on entre dans le domaine des bases de données.
 
 L'histoire des bases de données est une des plus riches de l'informatique. Elle
 s'étend sur plus de soixante ans et reflète, à chaque étape, les tensions
-fondamentales du génie logiciel : simplicité contre expressivité, performance
+fondamentales du génie logiciel&nbsp;: simplicité contre expressivité, performance
 contre flexibilité, cohérence contre disponibilité. Martin Kleppmann, dans
 *Designing Data-Intensive Applications*, montre que comprendre cette histoire
-n'est pas un exercice académique : les compromis qui ont guidé la conception
+n'est pas un exercice académique. Les compromis qui ont guidé la conception
 d'IMS en 1966 sont les mêmes qui orientent aujourd'hui le choix entre une base
-relationnelle et une base NoSQL.
+relationnelle et un système dit NoSQL.
 
-Nous allons parcourir cette évolution d'une manière un peu particulière : au
-lieu de décrire chaque modèle de manière abstraite, nous allons les
-implémenter. Le même scénario universitaire (départements, professeurs, cours,
-étudiants) sera modélisé successivement dans le modèle hiérarchique, le modèle
-en réseau, puis le modèle relationnel, ce qui permettra de voir concrètement ce
-que chaque paradigme gagne et ce qu'il perd par rapport au précédent. On
-poursuivra ensuite avec les transactions, les ORMs, la révolution NoSQL et les
-bases spécialisées.
+Nous allons parcourir cette évolution d'une manière un peu particulière. Plutôt
+que de décrire chaque modèle de manière abstraite, nous allons les implémenter. Le même scénario universitaire (départements, professeurs, cours,
+étudiants) sera modélisé successivement dans les trois grands sauts évolutifs
+qui ont été faits, successivement :
+
+1. Le modèle hiérarchique tout d'abord
+2. Le modèle en réseau ensuite
+3. Puis le modèle relationnel
+
+ce qui permettra de voir concrètement ce que chaque paradigme gagne et ce qu'il
+perd par rapport au précédent. On poursuivra ensuite avec les transactions, les
+ORMs, la révolution NoSQL et les bases spécialisées.
 
 ## Le modèle hiérarchique (IBM, années 60)
 
 Le modèle hiérarchique est le premier modèle de base de données à avoir été
 formalisé. Son incarnation la plus célèbre, IMS (*Information Management
 System*) d'IBM, a été développée à partir de 1966 pour le programme Apollo de
-la NASA : il fallait gérer la nomenclature de millions de pièces qui composaient
-le vaisseau spatial, et cette nomenclature avait naturellement une structure
-d'arbre (un module contient des sous-systèmes, qui contiennent des composants,
-qui contiennent des pièces). Le modèle hiérarchique généralise cette intuition :
-toutes les données sont organisées en arbre, où chaque enregistrement a
-exactement un parent (sauf la racine). L'accès aux données est navigationnel :
-on descend dans l'arbre en suivant les branches.
+la NASA, car il fallait gérer la nomenclature de millions de pièces qui
+composaient le vaisseau spatial, et cette nomenclature avait naturellement une
+structure d'arbre (un module contient des sous-systèmes, qui contiennent des
+composants, qui contiennent des pièces). Le modèle hiérarchique généralise cette
+intuition&nbsp;: toutes les données sont organisées en arbre, où chaque enregistrement
+a exactement un parent (sauf la racine). L'accès aux données est navigationnel,
+en descendant dans l'arbre en suivant les branches.
 
 Pour comprendre concrètement ce que cela implique, implémentons un modèle
 hiérarchique simplifié en Python.
@@ -82,10 +86,10 @@ class Noeud:
 
 {{< /pyodide >}}
 
-La structure est simple : un noeud contient un type, des données et une liste
-d'enfants. C'est précisément cette simplicité qui a rendu le modèle hiérarchique
-attrayant dans les années 60. Créons maintenant une petite base de données
-universitaire pour voir comment les données s'organisent dans cet arbre :
+Un noeud contient un type, des données et une liste d'enfants. C'est précisément
+cette simplicité qui a rendu le modèle hiérarchique attrayant dans les années 60.
+Créons maintenant une petite base de données universitaire pour voir comment les
+données s'organisent dans cet arbre&nbsp;:
 
 ```
 Université
@@ -123,9 +127,9 @@ stat.ajouter_enfant("Étudiant", {"matricule": "MORB02", "nom": "Bob"})    # ⚠
 {{< /pyodide >}}
 
 Pour explorer cette base, il nous faut des outils de navigation. Dans IMS,
-l'opération fondamentale était le *Get Next* (GN) : on parcourait l'arbre en
+l'opération fondamentale était le *Get Next* (GN), qui parcourait l'arbre en
 profondeur, segment par segment. Notre fonction `afficher_arbre` reproduit cette
-logique :
+logique&nbsp;:
 
 {{< pyodide >}}
 
@@ -140,7 +144,7 @@ afficher_arbre(uqam)
 {{< /pyodide >}}
 
 On peut aussi naviguer vers un type de segment particulier en spécifiant un
-chemin dans l'arbre, l'équivalent simplifié de la commande GN d'IMS :
+chemin dans l'arbre, ce qui est l'équivalent simplifié de la commande GN d'IMS&nbsp;:
 
 {{< pyodide >}}
 
@@ -169,7 +173,7 @@ for cours in naviguer(uqam, "Département", "Cours"):
 {{< /pyodide >}}
 
 Et si on veut chercher un enregistrement par sa valeur plutôt que par sa
-position dans l'arbre, il faut parcourir toute la structure :
+position dans l'arbre, il faut parcourir toute la structure en profondeur&nbsp;:
 
 {{< pyodide >}}
 def chercher(noeud: Noeud, type_segment: str, cle: str, valeur) -> list[Noeud]:
@@ -199,21 +203,21 @@ nœud a UN SEUL parent, donc Alice doit apparaître DEUX FOIS dans l'arbre :
     └── Étudiant Alice  ← copie 2
 ```
 
-Conséquences :
+Conséquences&nbsp;:
 * Gaspillage d'espace
 * Risque d'incohérence si on met à jour une copie mais pas l'autre
-* Pas de moyen simple de poser la question :
+* Pas de moyen simple de poser la question&nbsp;:
     « À quels cours Alice est-elle inscrite ? »
     (il faut parcourir TOUT l'arbre)
 
 ## Le modèle en réseau (CODASYL, fin des années 60)
 
-Le modèle hiérarchique avait un défaut structurel : la contrainte d'un seul
+Le modèle hiérarchique avait un défaut structurel&nbsp;: la contrainte d'un seul
 parent par enregistrement rendait les relations plusieurs-à-plusieurs impossibles
 sans duplication. Le comité CODASYL (*Conference on Data Systems Languages*), le
 même organisme qui avait standardisé COBOL, s'est attaqué à ce problème à la fin
 des années 60. Son *Data Base Task Group* (DBTG) a proposé en 1969 le modèle en
-réseau, qui généralise l'arbre en graphe : un enregistrement peut désormais avoir
+réseau, qui généralise l'arbre en graphe&nbsp;: un enregistrement peut désormais avoir
 plusieurs parents, grâce à des ensembles nommés (*sets*) qui relient un type
 « propriétaire » (*owner*) à un type « membre » (*member*). La duplication
 disparaît, mais l'accès aux données reste navigationnel.
@@ -403,8 +407,8 @@ set_inscr_stat.inserer(bob)         # ✅ PAS de duplication !
 {{< /pyodide >}}
 
 Le résultat ressemble à ce qu'on obtenait avec le modèle hiérarchique, mais la
-structure sous-jacente est fondamentalement différente : Alice et Bob n'existent
-qu'une seule fois dans la base :
+structure sous-jacente est fondamentalement différente. Alice et Bob n'existent
+qu'une seule fois dans la base&nbsp;:
 
 {{< pyodide >}}
 
@@ -429,8 +433,8 @@ for dept in db.find_records("Département", "nom", "Informatique") + \
 
 {{< /pyodide >}}
 
-La navigation avant fonctionne comme avant : trouver les étudiants inscrits à un
-cours donné :
+La navigation avant fonctionne comme avant. Pour trouver les étudiants inscrits
+à un cours donné&nbsp;:
 
 {{< pyodide >}}
 
@@ -444,7 +448,7 @@ for e in db.find_members("INSCRIPTION", bd):
 
 Mais la vraie nouveauté, c'est la navigation inverse. La question « à quels
 cours Alice est-elle inscrite ? », qui exigeait un parcours complet de l'arbre
-dans le modèle hiérarchique, se résout maintenant directement :
+dans le modèle hiérarchique, se résout maintenant directement&nbsp;:
 
 {{< pyodide >}}
 
@@ -464,43 +468,43 @@ deux sets INSCRIPTION (un par cours).
 * La question « quels cours suit Alice ? » se résout
 par navigation inverse (FIND OWNER WITHIN SET).
 
-Mais il reste des problèmes :
-* L'accès est toujours NAVIGATIONNEL : le programmeur doit connaître le schéma
+Mais il reste des problèmes&nbsp;:
+* L'accès est toujours NAVIGATIONNEL&nbsp;: le programmeur doit connaître le schéma
     des sets et écrire des boucles pour traverser les liens.
 * Ajouter un nouveau type de lien exige de modifier le schéma et le code de
     navigation.
-* Pas de langage déclaratif : on dit COMMENT chercher, pas CE QU'ON cherche.
+* Pas de langage déclaratif&nbsp;: on dit COMMENT chercher, pas CE QU'ON cherche.
 
 ## Le modèle relationnel et SQL
 
 En 1970, Edgar F. Codd, un mathématicien britannique travaillant chez IBM, publie
-un article qui va transformer le domaine : *A Relational Model of Data for Large
-Shared Data Banks*. Sa proposition est radicale : abandonner complètement la
+un article qui va transformer le domaine, *A Relational Model of Data for Large
+Shared Data Banks*. Sa proposition est radicale&nbsp;: abandonner complètement la
 navigation. Au lieu de dire au système *comment* trouver les données (en
 descendant dans un arbre ou en suivant des liens), on lui dit *ce qu'on cherche*,
 et c'est le système qui détermine la meilleure façon de l'obtenir. Les données
 sont organisées en tables (que Codd appelle « relations », d'où le nom), et les
-requêtes s'expriment dans un langage déclaratif : SQL. SQL est d'ailleurs souvent
+requêtes s'expriment dans un langage déclaratif, SQL. SQL est d'ailleurs souvent
 considéré comme l'exemple le plus abouti d'un langage de quatrième génération
-(4GL) : un langage où le programmeur décrit ce qu'il veut obtenir, pas comment y
+(4GL), un langage où le programmeur décrit ce qu'il veut obtenir, pas comment y
 arriver.
 
 {{% hint info %}}
 **Les générations de langages de programmation**
 
 La classification des langages en « générations » est une grille de lecture
-historique qui a été très influente dans les années 80 et 90 :
+historique qui a été très influente dans les années 80 et 90&nbsp;:
 
-- **1GL** : le code machine, des séquences de 0 et de 1 directement exécutées
+- **1GL**&nbsp;: le code machine, des séquences de 0 et de 1 directement exécutées
   par le processeur.
-- **2GL** : l'assembleur, qui remplace les codes binaires par des mnémoniques
+- **2GL**&nbsp;: l'assembleur, qui remplace les codes binaires par des mnémoniques
   lisibles (`MOV`, `ADD`, `JMP`), mais reste lié à une architecture matérielle
   spécifique.
-- **3GL** : les langages procéduraux de haut niveau (FORTRAN, C, COBOL, Java,
+- **3GL**&nbsp;: les langages procéduraux de haut niveau (FORTRAN, C, COBOL, Java,
   Python), où le programmeur écrit des algorithmes qui décrivent *comment*
   résoudre un problème, de manière indépendante du matériel.
-- **4GL** : les langages déclaratifs spécialisés, où le programmeur décrit *ce
-  qu'il veut* sans spécifier la procédure. SQL en est l'exemple canonique : on
+- **4GL**&nbsp;: les langages déclaratifs spécialisés, où le programmeur décrit *ce
+  qu'il veut* sans spécifier la procédure. SQL en est l'exemple canonique&nbsp;: on
   écrit `SELECT ... WHERE ...` et c'est l'optimiseur de requêtes qui choisit le
   plan d'exécution.
 
@@ -576,10 +580,9 @@ CREATE TABLE inscription (
 
 {{< /sql >}}
 
-Remarquons la différence fondamentale : plus d'arbre, plus de sets. Chaque
-entité a sa propre table, et les relations plusieurs-à-plusieurs passent par une
-table de jointure. Le schéma est déclaré une fois, et le SGBD se charge de
-l'appliquer. Ajoutons nos données :
+Plus d'arbre, plus de sets. Chaque entité a sa propre table, et les relations
+plusieurs-à-plusieurs passent par une table de jointure. Le schéma est déclaré
+une fois, et le SGBD se charge de l'appliquer. Ajoutons nos données&nbsp;:
 
 {{< sql >}}
 
@@ -611,7 +614,7 @@ INSERT INTO inscription VALUES ('MORB02', 'MAT2080');   -- Bob   -> Stat
 C'est dans les requêtes que la puissance du modèle relationnel se révèle. Chaque
 requête décrit *ce qu'on veut*, pas *comment le trouver*. Reprenons les mêmes
 questions que dans les modèles précédents, plus une nouvelle qui aurait été quasi
-impossible à formuler avant :
+impossible à formuler avant&nbsp;:
 
 {{< sql >}}
 
@@ -662,10 +665,10 @@ SELECT DISTINCT e.nom
 ### Les transactions
 
 Les exemples précédents montrent comment stocker et interroger des données, mais
-ils passent sous silence un problème fondamental : que se passe-t-il quand
-plusieurs opérations doivent réussir ou échouer ensemble ? Prenons un cas
-concret : inscrire Alice à un cours implique au minimum deux vérifications (le
-cours existe-t-il ? l'étudiante est-elle déjà inscrite ?) et une insertion. Si
+ils passent sous silence un problème fondamental. Que se passe-t-il quand
+plusieurs opérations doivent réussir ou échouer ensemble ? Inscrire Alice à un
+cours implique au minimum deux vérifications (le cours existe-t-il ? l'étudiante
+est-elle déjà inscrite ?) et une insertion. Si
 le système tombe entre la vérification et l'insertion, ou si deux processus
 tentent la même inscription simultanément, les données peuvent se retrouver dans
 un état incohérent. Dans un programme simple, on gère ça avec des conditions et
@@ -674,18 +677,18 @@ des verrous. Dans un SGBD, on utilise une *transaction*.
 Jim Gray, chercheur chez IBM puis chez Microsoft Research, a formalisé dans les
 années 70 et 80 les propriétés fondamentales des transactions, un travail qui
 lui a valu le prix Turing en 1998. Ces propriétés sont connues sous l'acronyme
-ACID :
+ACID&nbsp;:
 
-- **Atomicité** (*Atomicity*) : une transaction est tout ou rien. Soit toutes
+- **Atomicité** (*Atomicity*)&nbsp;: une transaction est tout ou rien. Soit toutes
   ses opérations réussissent (`COMMIT`), soit aucune n'a d'effet (`ROLLBACK`).
   Il n'y a pas d'état intermédiaire visible.
-- **Cohérence** (*Consistency*) : une transaction amène la base d'un état valide
+- **Cohérence** (*Consistency*)&nbsp;: une transaction amène la base d'un état valide
   à un autre état valide. Toutes les contraintes du schéma (clés primaires, clés
   étrangères, unicité) sont respectées à la fin de la transaction.
-- **Isolation** (*Isolation*) : les transactions concurrentes ne se voient pas
+- **Isolation** (*Isolation*)&nbsp;: les transactions concurrentes ne se voient pas
   mutuellement. Tout se passe *comme si* elles s'exécutaient l'une après
   l'autre, même si en pratique le SGBD les entrelace pour la performance.
-- **Durabilité** (*Durability*) : une fois qu'une transaction est validée
+- **Durabilité** (*Durability*)&nbsp;: une fois qu'une transaction est validée
   (`COMMIT`), ses effets survivent aux pannes, même un crash immédiat du
   serveur.
 
@@ -727,10 +730,10 @@ toujours le cas.
 Le modèle relationnel organise les données en tables, avec des lignes et des
 colonnes. Les langages de programmation, eux, manipulent des objets, des classes,
 des dictionnaires. Entre les deux, il y a un décalage structurel que la
-communauté a baptisé l'*impedance mismatch*, par analogie avec l'électronique :
-deux systèmes qui ne « parlent pas le même langage » perdent de l'énergie à
-l'interface. En pratique, cela se traduit par du code de conversion répétitif :
-transformer les lignes d'un résultat SQL en objets Python, et inversement,
+communauté a baptisé l'*impedance mismatch*, par analogie avec l'électronique,
+où deux systèmes qui ne « parlent pas le même langage » perdent de l'énergie à
+l'interface. En pratique, cela se traduit par du code de conversion répétitif,
+pour transformer les lignes d'un résultat SQL en objets Python, et inversement
 convertir des objets en requêtes `INSERT` ou `UPDATE`.
 
 Les ORMs (*Object-Relational Mappers*) tentent de résoudre ce problème en créant
@@ -738,9 +741,9 @@ une correspondance automatique entre les classes d'un langage et les tables d'un
 base de données. L'idée a émergé progressivement dans les années 90, mais c'est
 avec Hibernate (Java, 2001) puis ActiveRecord (Ruby on Rails, 2004) qu'elle
 s'est imposée dans la pratique courante. En Python, SQLAlchemy, créé par Mike
-Bayer en 2006, est devenu la référence. Il offre deux niveaux d'abstraction : un
-*Core* qui fournit une API Python pour construire des requêtes SQL sans écrire de
-SQL brut, et un ORM complet qui permet de définir des classes Python mappées
+Bayer en 2006, est devenu la référence. Il offre deux niveaux d'abstraction. Un
+*Core* fournit une API Python pour construire des requêtes SQL sans écrire de
+SQL brut, et un ORM complet permet de définir des classes Python mappées
 directement sur des tables.
 
 ```python
@@ -788,15 +791,95 @@ with Session(engine) as session:
         print(f"  {cours.sigle} — {cours.titre}")
 ```
 
-Le contraste avec le SQL brut est frappant : on ne voit plus aucune requête SQL,
+Le contraste avec le SQL brut est frappant. On ne voit plus aucune requête SQL,
 et les relations entre entités se manipulent comme des listes Python ordinaires.
 Mais cette abstraction a un coût. L'ORM génère du SQL en coulisse, et ce SQL
-n'est pas toujours celui qu'un développeur expérimenté écrirait. Le problème
-classique est le *N+1 query* : charger une liste d'étudiants puis accéder aux
-cours de chacun peut déclencher une requête par étudiant, au lieu d'une seule
-jointure. C'est un compromis récurrent en génie logiciel : l'abstraction
-simplifie le cas courant, mais elle peut masquer des inefficacités que seule la
-compréhension de la couche sous-jacente permet de diagnostiquer.
+n'est pas toujours celui qu'un développeur expérimenté écrirait. Le problème classique est le *N+1 query*&nbsp;: charger une liste d'étudiants puis
+accéder aux cours de chacun peut déclencher une requête par étudiant, au lieu
+d'une seule jointure. C'est un compromis récurrent en génie logiciel, car
+l'abstraction simplifie le cas courant tout en masquant des inefficacités que
+seule la compréhension de la couche sous-jacente permet de diagnostiquer.
+
+#### Les migrations
+
+Les ORMs introduisent un autre problème connexe&nbsp;: si le schéma est défini
+dans des classes Python, que se passe-t-il quand il doit évoluer ? Ajouter une
+colonne, renommer une table, modifier une contrainte, ces opérations doivent
+être appliquées sur toutes les instances, sans perdre les données existantes.
+Nous avons évoqué ce défi brièvement dans la [section sur la représentation des
+données]({{< relref "10-représentation" >}}), à propos de l'évolution des schémas
+JSON et Protobuf. C'est le problème des **migrations de schéma**.
+
+L'idée de gérer les migrations comme du code versionné a été popularisée par
+Ruby on Rails en 2004, avec ActiveRecord Migrations. Plutôt que d'appliquer
+manuellement des commandes `ALTER TABLE` sur chaque environnement, Rails
+proposait d'écrire chaque changement de schéma sous forme de fichier numéroté
+(`001_create_users.rb`, `002_add_email_to_users.rb`) et d'une commande unique
+(`rake db:migrate`) pour les appliquer dans l'ordre. L'idée est simple mais
+puissante&nbsp;: l'état du schéma devient reproductible, versionné dans le même
+dépôt que le code. Dans l'écosystème Python, deux outils dominent. Django
+intègre nativement un système de migrations&nbsp;: quand on modifie un modèle,
+la commande `python manage.py makemigrations` détecte automatiquement les
+changements et génère les fichiers correspondants. Pour les projets qui utilisent
+SQLAlchemy sans Django, c'est Alembic, créé par Mike Bayer en 2011, qui joue ce
+rôle, avec une approche plus explicite où le développeur écrit lui-même les
+migrations.
+
+Le fonctionnement concret d'Alembic illustre bien le principe. Supposons qu'on
+veuille ajouter un champ `courriel` à la table `etudiant`. On commence par
+modifier la classe SQLAlchemy, puis on génère une migration&nbsp;:
+
+```shell
+alembic revision --autogenerate -m "ajout courriel etudiant"
+```
+
+Alembic compare l'état actuel de la base avec les modèles Python et génère un
+fichier de migration numéroté, par exemple
+`a3f1c8d2_ajout_courriel_etudiant.py`, avec deux fonctions&nbsp;:
+
+```python
+def upgrade():
+    op.add_column('etudiant', sa.Column('courriel', sa.String(), nullable=True))
+
+def downgrade():
+    op.drop_column('etudiant', 'courriel')
+```
+
+Ces deux fonctions correspondent aux instructions SQL suivantes&nbsp;:
+
+```sql
+-- upgrade
+ALTER TABLE etudiant ADD COLUMN courriel VARCHAR;
+
+-- downgrade
+ALTER TABLE etudiant DROP COLUMN courriel;
+```
+
+On applique la migration avec `alembic upgrade head`, et on peut revenir en
+arrière avec `alembic downgrade -1`. Alembic maintient une table
+`alembic_version` dans la base de données pour savoir quelle migration a été
+appliquée en dernier. Ce mécanisme simple garantit que tous les environnements
+(développement, tests, production) restent synchronisés avec le code.
+
+Il faut noter que toutes les migrations ne sont pas aussi facilement réversibles
+que dans notre exemple. Ajouter ou supprimer une colonne se défait proprement.
+Mais une migration qui transforme des données pose un problème différent&nbsp;:
+si on fusionne les colonnes `prenom` et `nom` en une seule colonne `nom_complet`
+en concaténant les valeurs existantes, la fonction `downgrade()` ne peut pas
+reconstituer les données originales, qui ont été perdues. On peut écrire la
+migration, mais pas l'annuler sans perte. Cette distinction entre migrations
+structurelles (changements de schéma purs) et migrations de données
+(transformations de contenu) est importante en pratique&nbsp;: elle oblige à
+réfléchir à la réversibilité avant d'appliquer un changement en production.
+
+Les migrations s'intègrent naturellement dans le pipeline de déploiement. En
+pratique, `alembic upgrade head` fait partie du script de déploiement, juste
+avant le démarrage de l'application, ce qui garantit que le schéma de production
+évolue en même temps que le code. Nous verrons dans la section sur l'intégration
+continue comment ce type d'étape s'insère dans un pipeline automatisé. Ce lien
+illustre une idée plus large&nbsp;: versionner le schéma avec le code, c'est
+traiter la base de données comme n'importe quel autre artefact du système,
+soumis aux mêmes exigences de reproductibilité et de traçabilité.
 
 ## La révolution NoSQL
 
@@ -812,27 +895,27 @@ données dont la structure évoluait rapidement ou ne se prêtait pas naturellem
 aux tables.
 
 Le terme « NoSQL » a été popularisé en 2009, lors d'un meetup organisé à San
-Francisco par Johan Oskarsson. Le nom est un peu trompeur : il ne signifie pas
-« pas de SQL » mais plutôt « Not Only SQL », l'idée étant que le modèle
+Francisco par Johan Oskarsson. Le nom est un peu trompeur, car il ne signifie
+pas « pas de SQL » mais plutôt « Not Only SQL », l'idée étant que le modèle
 relationnel n'est pas la seule réponse à tous les problèmes de stockage.
 Kleppmann, dans *Designing Data-Intensive Applications*, montre que derrière ce
-label se cachent des motivations très différentes : le besoin de scalabilité
+label se cachent des motivations très différentes&nbsp;: le besoin de scalabilité
 horizontale (répartir les données sur plusieurs machines), le désir de schémas
 plus flexibles, ou la recherche de modèles de données mieux adaptés à certains
 cas d'usage.
 
 En pratique, le mouvement NoSQL a donné naissance à plusieurs familles de bases
-de données, chacune optimisée pour un type de problème particulier :
+de données, chacune optimisée pour un type de problème particulier&nbsp;:
 
-- Les bases **clé-valeur** (Redis, Memcached) : le modèle le plus simple, un
+- Les bases **clé-valeur** (Redis, Memcached)&nbsp;: le modèle le plus simple, un
   dictionnaire distribué. Idéal pour le caching et les sessions.
-- Les bases **orientées documents** (MongoDB, CouchDB) : chaque enregistrement est un
+- Les bases **orientées documents** (MongoDB, CouchDB)&nbsp;: chaque enregistrement est un
   document (typiquement JSON) avec une structure libre. Naturel pour des données
   hétérogènes ou des schémas qui évoluent vite.
-- Les bases **orientées colonnes** (Cassandra, HBase) : optimisées pour
+- Les bases **orientées colonnes** (Cassandra, HBase)&nbsp;: optimisées pour
   l'écriture massive et les requêtes analytiques sur de grands volumes. Inspirées
   de Bigtable de Google (2006).
-- Les bases **orientées graphes** (Neo4j, Amazon Neptune) : conçues pour les
+- Les bases **orientées graphes** (Neo4j, Amazon Neptune)&nbsp;: conçues pour les
   données fortement interconnectées, où les relations entre entités sont aussi
   importantes que les entités elles-mêmes.
 
@@ -844,31 +927,30 @@ faisait CODASYL en 1969. L'histoire ne se répète pas, mais elle rime.
 
 ### Les bases clé-valeur
 
-La base clé-valeur est le modèle NoSQL le plus simple : elle associe une clé
+La base clé-valeur est le modèle NoSQL le plus simple. Elle associe une clé
 unique à une valeur opaque, exactement comme un dictionnaire Python ou une table
 de hachage. Le système ne connaît pas la structure de la valeur ; il sait
-seulement la stocker, la retrouver et la supprimer par sa clé. Cette simplicité
-radicale est aussi sa force : en renonçant aux jointures, aux schémas et aux
-requêtes complexes, une base clé-valeur peut offrir des performances et une
-scalabilité que le modèle relationnel atteint difficilement.
+seulement la stocker, la retrouver et la supprimer par sa clé. Cette simplicité radicale est aussi sa force, car en renonçant aux jointures,
+aux schémas et aux requêtes complexes, une base clé-valeur peut offrir des
+performances et une scalabilité que le modèle relationnel atteint difficilement.
 
 L'exemple le plus emblématique est Redis, créé en 2009 par Salvatore Sanfilippo.
 Redis stocke toutes ses données en mémoire vive, ce qui lui permet des temps de
 réponse de l'ordre de la microseconde. Mais il va au-delà du simple
-dictionnaire : il supporte des structures de données riches (listes, ensembles,
+dictionnaire et supporte des structures de données riches (listes, ensembles,
 hachages, compteurs), ce qui en fait un outil polyvalent utilisé aussi bien
 comme cache que comme file de messages ou comme base de sessions utilisateur.
 
-Le cas d'usage le plus courant des bases clé-valeur est le *caching* : stocker
-temporairement des résultats coûteux à calculer pour éviter de les recalculer à
-chaque requête. Le principe est simple, mais le défi principal est
-l'**invalidation** : s'assurer que le cache reste cohérent avec la source de
-vérité. Les stratégies courantes incluent le TTL (*time-to-live*, expiration
+Le cas d'usage le plus courant des bases clé-valeur est le *caching*, qui
+consiste à stocker temporairement des résultats coûteux pour éviter de les
+recalculer à chaque requête. Le principe est simple, mais le défi principal est
+l'**invalidation**, c'est-à-dire s'assurer que le cache reste cohérent avec la
+source de vérité. Les stratégies courantes incluent le TTL (*time-to-live*, expiration
 après un délai fixe), le *write-through* (mise à jour simultanée du cache et de
 la source) et le *cache-aside* (le code vérifie d'abord le cache, puis
 interroge la source en cas d'absence). Python offre `functools.lru_cache`, un
 décorateur qui implémente un cache LRU (*Least Recently Used*) directement sur
-les appels de fonction :
+les appels de fonction&nbsp;:
 
 {{< pyodide >}}
 import functools
@@ -910,12 +992,12 @@ print(f"  Cache vidé. Nouvelle taille : {requete_couteuse.cache_info().currsize
 ### Les bases orientées documents
 
 Les bases orientées documents poussent l'idée un cran plus loin que les bases
-clé-valeur : la valeur n'est plus opaque, c'est un document structuré
+clé-valeur. La valeur n'est plus opaque, c'est un document structuré
 (généralement en JSON) que la base sait interroger. On peut chercher par
 n'importe quel champ à l'intérieur du document, sans avoir besoin de connaître
-sa structure à l'avance. C'est un modèle naturel pour des données hétérogènes :
-un catalogue de produits où chaque catégorie a des attributs différents, des
-profils utilisateur dont les champs varient, des événements avec des charges
+sa structure à l'avance. C'est un modèle naturel pour des données hétérogènes,
+comme un catalogue de produits où chaque catégorie a des attributs différents,
+des profils utilisateur dont les champs varient, des événements avec des charges
 utiles variables.
 
 MongoDB, créé en 2009 par Dwight Merriman et Eliot Horowitz, est devenu le
@@ -923,7 +1005,7 @@ représentant le plus connu de cette famille. Son modèle est celui de
 « collections » de documents JSON (techniquement BSON, une variante binaire).
 Là où une base relationnelle aurait besoin de plusieurs tables liées par des clés
 étrangères, MongoDB permet d'imbriquer directement les données dans un seul
-document :
+document&nbsp;:
 
 ```json
 {
@@ -937,9 +1019,9 @@ document :
 ```
 
 On retrouve ici une structure d'arbre, exactement comme dans le modèle
-hiérarchique d'IMS. L'avantage est la localité des données : tout ce qui
+hiérarchique d'IMS. L'avantage est la localité des données, puisque tout ce qui
 concerne Alice est au même endroit, ce qui rend les lectures rapides. Le
-désavantage est le même qu'en 1966 : si Bob et Alice partagent le même cours,
+désavantage est le même qu'en 1966&nbsp;: si Bob et Alice partagent le même cours,
 l'information du cours est dupliquée. Le modèle orienté documents fait le pari
 que cette duplication est acceptable pour la plupart des cas d'usage, en échange
 de la simplicité et de la performance en lecture.
@@ -954,21 +1036,22 @@ plusieurs-à-plusieurs omniprésentes), le modèle relationnel reste plus adapt�
 ### Les bases orientées colonnes
 
 Les bases de données que l'on a vues jusqu'ici (relationnelles, clé-valeur,
-orientées documents) sont optimisées pour le traitement transactionnel : insérer
-une commande, mettre à jour un profil, lire un enregistrement par sa clé. On
-parle de charges de travail OLTP (*Online Transaction Processing*). Mais il
-existe une autre catégorie de besoins, fondamentalement différente : l'analyse.
+orientées documents) sont optimisées pour le traitement transactionnel, c'est-à-dire
+insérer une commande, mettre à jour un profil, lire un enregistrement par sa
+clé. On parle de charges de travail OLTP (*Online Transaction Processing*). Mais
+il existe une autre catégorie de besoins, fondamentalement différente, tournée
+vers l'analyse.
 « Quel est le chiffre d'affaires par région et par trimestre ? », « Quels
 produits ont vu leurs ventes baisser de plus de 10 % ce mois-ci ? ». Ce sont
 des requêtes OLAP (*Online Analytical Processing*), qui balaient des millions de
 lignes mais ne consultent que quelques colonnes.
 
 Dans une base relationnelle classique, les données sont stockées ligne par
-ligne : toutes les colonnes d'un enregistrement sont physiquement côte à côte
-sur le disque. C'est idéal pour lire ou écrire un enregistrement complet, mais
+ligne, toutes les colonnes d'un enregistrement physiquement côte à côte sur le
+disque. C'est idéal pour lire ou écrire un enregistrement complet, mais
 inefficace pour une requête analytique qui ne s'intéresse qu'à deux colonnes sur
-vingt. L'idée du stockage orienté colonnes est d'inverser l'organisation : on
-stocke ensemble toutes les valeurs d'une même colonne. Pour une requête « somme
+vingt. L'idée du stockage orienté colonnes est d'inverser l'organisation en
+regroupant ensemble toutes les valeurs d'une même colonne. Pour une requête « somme
 des montants par région », le moteur ne lit que les colonnes `region` et
 `montant`, en ignorant complètement toutes les autres. En plus de réduire les
 lectures disque, ce regroupement permet une compression spectaculaire, car les
@@ -983,17 +1066,17 @@ colonnes à grande échelle. Aujourd'hui, des moteurs comme ClickHouse, Apache
 Parquet (un format de fichier orienté colonnes) et DuckDB rendent cette
 approche accessible même pour des analyses locales.
 
-Cette distinction OLTP / OLAP a donné naissance à une architecture classique :
+Cette distinction OLTP / OLAP a donné naissance à une architecture classique,
 le *data warehouse* (entrepôt de données). Les données transactionnelles vivent
 dans une base OLTP (PostgreSQL, MySQL), puis sont périodiquement copiées et
 transformées vers un entrepôt orienté colonnes via un processus appelé ETL
 (*Extract, Transform, Load*). Les analystes interrogent l'entrepôt sans risquer
-de ralentir le système transactionnel. C'est une application directe du principe
-de séparation des préoccupations : les deux charges de travail ont des besoins
-si différents qu'il vaut mieux les servir avec des systèmes distincts.
+de ralentir le système transactionnel. C'est une application directe du principe de séparation des préoccupations,
+puisque les deux charges de travail ont des besoins si différents qu'il vaut
+mieux les servir avec des systèmes distincts.
 
 En Python, on peut illustrer la différence entre les deux approches de
-stockage :
+stockage&nbsp;:
 
 {{< pyodide >}}
 import random
@@ -1096,11 +1179,11 @@ traversée augmente. Les bases orientées graphes sont conçues précisément po
 ce type de navigation.
 
 Le modèle réseau CODASYL des années 1970 permettait exactement ce genre de
-navigation, mais avec une rigidité qui l'a condamné : il fallait déclarer à
+navigation, mais avec une rigidité qui l'a condamné. Il fallait déclarer à
 l'avance tous les types de relations et naviguer de manière procédurale, pointeur
 par pointeur. Les bases orientées graphes modernes reprennent l'intuition de
 CODASYL (les données forment un réseau navigable) mais avec la flexibilité du
-monde NoSQL : on peut ajouter de nouveaux types de nœuds et de relations sans
+monde NoSQL. On peut ajouter de nouveaux types de nœuds et de relations sans
 modifier un schéma global, et les requêtes sont déclaratives plutôt que
 procédurales. Neo4j (2007, Emil Eifrem et Johan Svensson) est la plus connue.
 Son langage de requête, Cypher, est au graphe ce que SQL est aux tables.
@@ -1184,14 +1267,14 @@ et la forme des données qui fait la force des langages de graphe.
 ## Les bases de données de séries temporelles
 
 Les séries temporelles (*time series*) sont des séquences de points de données
-indexés par le temps : température toutes les minutes, cours boursier toutes les
-secondes, nombre de requêtes par heure sur un serveur, fréquence cardiaque d'un
-patient. Ce type de données est omniprésent dans la surveillance
+indexés par le temps, comme la température toutes les minutes, le cours boursier
+toutes les secondes, le nombre de requêtes par heure sur un serveur, ou la
+fréquence cardiaque d'un patient. Ce type de données est omniprésent dans la surveillance
 d'infrastructure (monitoring), l'Internet des objets (IoT), la finance et les
 sciences. Le concept de série temporelle est ancien, il remonte aux travaux
 fondateurs de l'économétrie et des statistiques dans les années 1920 (Yule,
 Slutsky). Mais les bases de données spécialisées pour ce type de données sont
-récentes : Prometheus (2012, développé chez SoundCloud par Matt Proud et Julius
+récentes. Prometheus (2012, développé chez SoundCloud par Matt Proud et Julius
 Volz) a montré que le monitoring d'infrastructure nécessitait un modèle de
 données dédié, suivi d'InfluxDB (2013) et de TimescaleDB (2017, une extension
 de PostgreSQL).
@@ -1301,14 +1384,14 @@ d'apprentissage automatique pour encoder le « sens » d'un texte, d'une image,
 d'un son ou de toute autre donnée. Le concept de *word embedding* remonte à
 Word2Vec (Mikolov et al., Google, 2013), qui a montré qu'on pouvait représenter
 des mots comme des vecteurs dans un espace où les relations sémantiques
-deviennent des opérations géométriques (le fameux exemple : « roi » - « homme »
+deviennent des opérations géométriques (le fameux exemple où « roi » - « homme »
 \+ « femme » ≈ « reine »). Mais c'est l'explosion des grands modèles de langage
 en 2022-2023 qui a créé un besoin massif de bases vectorielles dédiées, car le
 pattern RAG (*Retrieval-Augmented Generation*), qui consiste à chercher des
 documents pertinents pour enrichir le contexte d'un LLM, repose entièrement sur
 la recherche vectorielle.
 
-L'opération fondamentale est la recherche par similarité : plutôt que de
+L'opération fondamentale est la recherche par similarité. Plutôt que de
 chercher une correspondance exacte (comme en SQL avec `WHERE nom = 'Alice'`), on
 cherche les vecteurs les plus *proches* d'un vecteur requête selon une mesure de
 distance (cosinus, euclidienne, produit scalaire). C'est cette capacité qui rend

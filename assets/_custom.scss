@@ -18,6 +18,12 @@ p {
   margin: 0 auto;
 }
 
+// Centrage des images
+.book-image {
+  display: block;
+  text-align: center;
+}
+
 // Ensure zoomed images appear above applets
 .book-image input:checked + img {
   z-index: 100 !important;

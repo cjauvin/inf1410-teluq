@@ -450,7 +450,8 @@ un champ qui était optionnel.
 
 En SQL, l'évolution passe par les migrations (`ALTER TABLE`), souvent gérées par
 des outils comme Alembic ou Flyway. Le défi est de modifier le schéma sans
-interrompre le service ni perdre de données.
+interrompre le service ni perdre de données. Nous verrons en détail comment les
+ORMs prennent en charge ce processus dans la [section sur les bases de données]({{< relref "20-stockage" >}}).
 
 ### La vision d'ensemble
 
