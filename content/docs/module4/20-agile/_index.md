@@ -138,12 +138,18 @@ résultat est un "cargo cult" agile : on reproduit les rituels observés chez le
 équipes performantes sans comprendre les principes qui les rendent efficaces. On
 fait des daily standups de quarante-cinq minutes. On rédige des user stories
 mécaniquement, sans réflexion sur la valeur. On fait des rétrospectives où
-personne n'ose rien dire parce que le manager est dans la salle. Le terme "cargo
-cult" vient de l'anthropologie : après la Seconde Guerre mondiale, des
-populations du Pacifique Sud construisaient des pistes d'atterrissage en bambou
-dans l'espoir de faire revenir les avions de ravitaillement. La forme était
-parfaite, mais la substance manquait. C'est exactement ce qui arrive quand une
-organisation adopte les pratiques agiles sans en adopter les valeurs.
+personne n'ose rien dire parce que le manager est dans la salle.
+
+{{% hint info %}}
+
+Le terme "cargo cult" vient de l'anthropologie : après la Seconde Guerre
+mondiale, des populations du Pacifique Sud construisaient des pistes
+d'atterrissage en bambou dans l'espoir de faire revenir les avions de
+ravitaillement. La forme était parfaite, mais la substance manquait. C'est
+exactement ce qui arrive quand une organisation adopte les pratiques agiles sans
+en adopter les valeurs.
+
+{{% /hint %}}
 
 Malgré ces dérives, il serait excessif de rejeter l'agilité en bloc. Les
 principes fondamentaux du manifeste restent pertinents : livrer fréquemment,
@@ -153,5 +159,5 @@ certification, ni consultant, ni outil spécialisé. La leçon est peut-être qu
 les méthodes agiles fonctionnent mieux quand elles sont redécouvertes par
 l'équipe elle-même, à partir de ses propres problèmes, plutôt qu'imposées de
 l'extérieur comme une solution clé en main. C'est d'ailleurs ce que Dave Thomas
-recommande : oublier le nom "Agile" et revenir au verbe. Trouver où on en est.
+recommande : oublier le _nom_ "Agile" et revenir au verbe. Trouver où on en est.
 Faire un petit pas vers où on veut aller. Évaluer le résultat. Ajuster. Répéter.
