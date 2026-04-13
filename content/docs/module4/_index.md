@@ -24,7 +24,7 @@ autres, comprendre le contexte, s'aligner sur les décisions déjà prises. Le
 travail de coordination finit par consommer une part significative de l'effort
 total, parfois plus que le travail productif lui-même.
 
-<!-- ILLUSTRATION: canaux de communication quadratiques (2, 3, 5, 10 personnes) -->
+{{< image src="brooks-teams.png" alt="" title="" loading="lazy" >}}
 
 Une deuxième idée fondatrice pour ce module vient de Melvin Conway, qui a
 observé en 1968 que la structure d'un logiciel tend à refléter la structure de
@@ -35,6 +35,8 @@ d'architecture logicielle sont souvent, au fond, des problèmes d'organisation
 humaine. On ne peut pas concevoir un système modulaire avec une équipe
 monolithique, ni un système intégré avec des équipes cloisonnées.
 L'architecture et l'organisation co-évoluent, qu'on le veuille ou non.
+
+{{< image src="conway-teams.png" alt="" title="" loading="lazy" >}}
 
 Ce module explore les différentes facettes de cette coordination. Nous
 commencerons par étendre notre connaissance de git vers son usage distribué avec
