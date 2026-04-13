@@ -21,7 +21,7 @@ source majeurs, où se discutent les décisions techniques, où se construisent 
 réputations professionnelles. Comprendre GitHub, c'est comprendre comment les
 développeurs collaborent.
 
-Jusqu'ici nous avons utilisé git en mode local, c'est-à-dire que la totalité des
+Jusqu'ici nous avons utilisé [git en mode local]({{< ref "/docs/module2/30-versioning/index.md" >}}), c'est-à-dire que la totalité des
 opérations que nous avons effectuées sont confinées dans le contexte particulier
 de notre dépôt local, dans un endroit particulier de notre disque, sur un
 ordinateur particulier. Mais le modèle de git est beaucoup plus puissant et
@@ -37,7 +37,7 @@ depot, qui se trouve "ailleurs" :
 
 {{< image src="git-4-places.png" alt="" title="" loading="lazy" >}}
 
-Il est important de comprendre que cet "ailleurs" peut être en fait plusieurs types d'endroit :
+Il est important de comprendre que cet "ailleurs" (item 4 dans le schéma ci-haut) peut être en fait plusieurs types d'endroit :
 
 1. Un autre répertoire sur le même ordinateur
 2. Un autre ordinateur (par exemple un serveur en ligne)
@@ -398,6 +398,8 @@ de branches à gérer et trop de cérémonies de merge. Driessen lui-même a ajo
 une note à son billet original, reconnaissant que ce modèle n'est pas adapté aux
 équipes qui pratiquent le déploiement continu.
 
+{{< image src="git-flow.png" alt="" title="" loading="lazy" >}}
+
 En réaction à cette complexité, GitHub a proposé un modèle beaucoup plus simple,
 connu sous le nom de **GitHub Flow**. Le principe tient en quelques règles : la
 branche `main` est toujours déployable, chaque travail commence par la création
@@ -407,6 +409,8 @@ C'est essentiellement ce que nous avons fait avec Leila et Sara. La simplicité
 de ce modèle le rend adapté à la majorité des projets, en particulier ceux qui
 pratiquent le déploiement continu, où chaque merge dans `main` déclenche
 automatiquement une mise en production.
+
+{{< image src="github-flow.png" alt="" title="" loading="lazy" >}}
 
 Le **trunk-based development** pousse cette simplicité encore plus loin. Dans ce
 modèle, les développeurs travaillent directement sur la branche principale (le
@@ -418,7 +422,7 @@ souvent l'usage de "feature flags" pour masquer les fonctionnalités en cours de
 développement dans le code déployé. C'est le modèle utilisé par Google et
 d'autres grandes entreprises technologiques.
 
-<!-- ILLUSTRATION: comparaison visuelle des trois workflows git (Git Flow, GitHub Flow, trunk-based) -->
+{{< image src="trunk-based-flow.png" alt="" title="" loading="lazy" >}}
 
 ## Les code reviews
 
