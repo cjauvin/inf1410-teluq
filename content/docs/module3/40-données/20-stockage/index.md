@@ -27,9 +27,9 @@ que de décrire chaque modèle de manière abstraite, nous allons les implément
 étudiants) sera modélisé successivement dans les trois grands sauts évolutifs
 qui ont été faits, successivement :
 
-1. Le modèle hiérarchique tout d'abord
-2. Le modèle en réseau ensuite
-3. Puis le modèle relationnel
+1. Le modèle hiérarchique tout d'abord (le plus ancien)
+2. Le modèle en réseau (qui est venu ensuite)
+3. Puis le modèle relationnel (celui qui a perduré, toujours présent de nos jours)
 
 ce qui permettra de voir concrètement ce que chaque paradigme gagne et ce qu'il
 perd par rapport au précédent. On poursuivra ensuite avec les transactions, les
@@ -47,6 +47,10 @@ composants, qui contiennent des pièces). Le modèle hiérarchique généralise 
 intuition&nbsp;: toutes les données sont organisées en arbre, où chaque enregistrement
 a exactement un parent (sauf la racine). L'accès aux données est navigationnel,
 en descendant dans l'arbre en suivant les branches.
+
+Cette structure d'arbre sera familière à quiconque a déjà navigué dans un système de fichiers. Un répertoire contient des sous-répertoires, qui contiennent eux-mêmes des fichiers, et chaque élément a exactement un répertoire parent. Ce n'est pas une coïncidence. Les systèmes de fichiers et le modèle hiérarchique partagent la même intuition fondamentale, celle que la hiérarchie est la façon la plus naturelle d'organiser des données qui ont une relation de contenance.
+
+{{< image src="files-and-folders.png" alt="" title="" loading="lazy" >}}
 
 Pour comprendre concrètement ce que cela implique, implémentons un modèle
 hiérarchique simplifié en Python.
@@ -221,6 +225,15 @@ réseau, qui généralise l'arbre en graphe&nbsp;: un enregistrement peut désor
 plusieurs parents, grâce à des ensembles nommés (*sets*) qui relient un type
 « propriétaire » (*owner*) à un type « membre » (*member*). La duplication
 disparaît, mais l'accès aux données reste navigationnel.
+
+Si le modèle hiérarchique correspondait à un système de fichiers, le modèle
+en réseau correspond à un système d'étiquettes (tags) que certains programmes utilisent,
+par exemple Gmail&nbsp;:
+
+{{< image src="gmail-tags.jpg" alt="" title="" loading="lazy" >}}
+
+Encore une fois, examinons une version simplifiée d'une base en réseau, à
+l'aide d'un petit programme python simple&nbsp;:
 
 {{< pyodide >}}
 
@@ -461,8 +474,8 @@ for c in cours_alice:
 
 {{< /pyodide >}}
 
-Alice n'existe qu'UNE SEULE FOIS dans la base de données. Elle est membre de
-deux sets INSCRIPTION (un par cours).
+Alice n'existe qu'une seule fois dans la base de données. Elle est membre de
+deux sets `inscription` (un par cours).
 
 * Plus de duplication !
 * La question « quels cours suit Alice ? » se résout
@@ -520,6 +533,8 @@ physique des données et d'écrire des boucles de navigation. Le modèle relatio
 sépare la structure logique de l'implémentation physique, une application directe
 du principe d'*information hiding* de Parnas que nous avons vu dans la section
 sur l'architecture.
+
+La notion centrale du modèle relationnel est la **table** (ou *relation*, dans le vocabulaire de Codd). Une table est une structure bidimensionnelle très simple : des lignes et des colonnes. Chaque colonne a un nom et un type (texte, entier, date...), et chaque ligne représente un enregistrement. Une colonne particulière, la **clé primaire**, identifie chaque ligne de façon unique. Ce qui est frappant, c'est que cette structure plate suffit à tout représenter. On ne déclare pas des arbres, ni des liens, ni des owners : on déclare des tables indépendantes, et les relations entre elles s'expriment par des **clés étrangères**, des colonnes qui font référence à la clé primaire d'une autre table. Le schéma suivant reprend le même scénario universitaire que les exemples précédents, mais cette fois entièrement en SQL.
 
 {{< sql >}}
 
@@ -830,7 +845,7 @@ veuille ajouter un champ `courriel` à la table `etudiant`. On commence par
 modifier la classe SQLAlchemy, puis on génère une migration&nbsp;:
 
 ```shell
-alembic revision --autogenerate -m "ajout courriel etudiant"
+$ alembic revision --autogene$rate -m "ajout courriel etudiant"
 ```
 
 Alembic compare l'état actuel de la base avec les modèles Python et génère un
@@ -942,7 +957,7 @@ hachages, compteurs), ce qui en fait un outil polyvalent utilisé aussi bien
 comme cache que comme file de messages ou comme base de sessions utilisateur.
 
 Le cas d'usage le plus courant des bases clé-valeur est le *caching*, qui
-consiste à stocker temporairement des résultats coûteux pour éviter de les
+consiste à stocker temporairement des résultats coûteux (en calcul) pour éviter de les
 recalculer à chaque requête. Le principe est simple, mais le défi principal est
 l'**invalidation**, c'est-à-dire s'assurer que le cache reste cohérent avec la
 source de vérité. Les stratégies courantes incluent le TTL (*time-to-live*, expiration
@@ -1236,7 +1251,7 @@ les relations par des flèches, ce qui donne des requêtes dont la forme épouse
 celle des données. Reprenons notre exemple universitaire pour comparer avec les
 requêtes SQL vues plus haut :
 
-```cypher
+```javascript
 // Créer des nœuds et des relations
 CREATE (alice:Etudiant {matricule: "TRAA01", nom: "Alice"})
 CREATE (bob:Etudiant {matricule: "MORB02", nom: "Bob"})
@@ -1279,6 +1294,8 @@ Volz) a montré que le monitoring d'infrastructure nécessitait un modèle de
 données dédié, suivi d'InfluxDB (2013) et de TimescaleDB (2017, une extension
 de PostgreSQL).
 
+{{< image src="time-series.png" alt="" title="" loading="lazy" >}}
+
 Les bases relationnelles classiques peuvent stocker des séries temporelles, mais
 elles ne sont pas optimisées pour leurs particularités. Les données arrivent
 principalement en mode *append* (on ajoute sans modifier), les requêtes portent
@@ -1292,7 +1309,7 @@ jours, par exemple).
 
 En Python, on peut illustrer les opérations fondamentales sur les séries
 temporelles (rééchantillonnage, moyenne mobile, détection d'anomalies) avec les
-structures de données de base :
+structures de données de base&nbsp;:
 
 {{< pyodide >}}
 import random
