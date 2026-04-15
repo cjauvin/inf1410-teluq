@@ -30,7 +30,9 @@ pièces, il envoie un kanban au poste en amont, qui lance alors la production.
 C&rsquo;est un système <em>à flux tiré</em> (<em>pull system</em>) : le travail est déclenché par
 la demande réelle, pas par une planification centrale. Ce principe est au cœur
 du <em>Toyota Production System</em> (TPS), qui deviendra l&rsquo;une des plus grandes
-innovations de l&rsquo;histoire industrielle du XXe siècle.</p><p>C&rsquo;est en 2010 que David Anderson publie <em>Kanban: Successful Evolutionary Change
+innovations de l&rsquo;histoire industrielle du XXe siècle.</p><label class=book-image for=book-image-toggle-0><input class="hidden toggle" type=checkbox id=book-image-toggle-0>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/kanban-japan.jpg alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-0"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>C&rsquo;est en 2010 que David Anderson publie <em>Kanban: Successful Evolutionary Change
 for Your Technology Business</em>, qui formalise l&rsquo;adaptation de ces idées au
 développement logiciel. Anderson ne propose pas de révolutionner la manière de
 travailler d&rsquo;une équipe du jour au lendemain. Au contraire, son approche est
@@ -64,13 +66,17 @@ trop de voitures, tout le monde ralentit, et au-delà d&rsquo;un certain seuil, 
 l&rsquo;embouteillage : le débit réel (le nombre de voitures qui arrivent à
 destination par heure) diminue alors même que le nombre de voitures sur la route
 augmente. Limiter le WIP revient à réguler l&rsquo;accès à l&rsquo;autoroute pour maintenir
-un débit optimal.</p><p>Le troisième principe est le <em>flux continu</em>. Contrairement à Scrum, Kanban ne
+un débit optimal.</p><label class=book-image for=book-image-toggle-2><input class="hidden toggle" type=checkbox id=book-image-toggle-2>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/highway.jpg alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-2"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le troisième principe est le <em>flux continu</em>. Contrairement à Scrum, Kanban ne
 découpe pas le temps en sprints. Il n&rsquo;y a pas de sprint planning, pas de date de
 fin fixe, pas d&rsquo;engagement sur un lot de tâches. Le travail entre dans le
 système de manière continue (quand une tâche est terminée, on en tire une
 nouvelle du backlog) et en sort de manière continue. Le rythme n&rsquo;est pas donné
 par un calendrier, mais par la capacité réelle de l&rsquo;équipe, telle que révélée
-par les limites de WIP et le flux observable sur le tableau.</p><h2 id=mesurer-le-flux>Mesurer le flux<a class=anchor href=#mesurer-le-flux>#</a></h2><p>En Scrum, la performance de l&rsquo;équipe se mesure principalement par la vélocité :
+par les limites de WIP et le flux observable sur le tableau.</p><label class=book-image for=book-image-toggle-3><input class="hidden toggle" type=checkbox id=book-image-toggle-3>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/kanban-ideas.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-3"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h2 id=mesurer-le-flux>Mesurer le flux<a class=anchor href=#mesurer-le-flux>#</a></h2><p>En Scrum, la performance de l&rsquo;équipe se mesure principalement par la vélocité :
 le nombre de story points complétés par sprint. Kanban utilise des métriques
 différentes, centrées sur le temps plutôt que sur le volume. Les deux plus
 importantes sont le <em>cycle time</em> et le <em>lead time</em>.</p><p>Le cycle time mesure le temps qu&rsquo;une tâche passe dans le système actif,
@@ -102,7 +108,9 @@ par exemple une limite de 2 pour <em>In Progress</em> et de 2 pour <em>In Review
 limites ne sont pas bloquantes dans GitHub Projects (l&rsquo;outil affiche un
 avertissement visuel quand la limite est dépassée, mais n&rsquo;empêche pas d&rsquo;ajouter
 une carte), ce qui correspond bien à l&rsquo;esprit de Kanban : la limite est une
-convention d&rsquo;équipe, pas une contrainte technique.</p><p>Le flux de travail quotidien ressemble à celui de Scrum, mais sans la cadence
+convention d&rsquo;équipe, pas une contrainte technique.</p><label class=book-image for=book-image-toggle-4><input class="hidden toggle" type=checkbox id=book-image-toggle-4>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/kanban/kanban-limits.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-4"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le flux de travail quotidien ressemble à celui de Scrum, mais sans la cadence
 imposée par les sprints. L&rsquo;équipe consulte le tableau chaque matin et applique
 une règle simple : avant de commencer une nouvelle tâche, vérifier s&rsquo;il y a
 quelque chose à débloquer en aval. Si la colonne <em>In Review</em> contient deux
