@@ -54,7 +54,17 @@ milliards de dollars témoigne de cette centralité. Aujourd&amp;rsquo;hui, GitH
 seulement un hébergeur de code : c&amp;rsquo;est le lieu où se trouvent les projets open
 source majeurs, où se discutent les décisions techniques, où se construisent les
 réputations professionnelles. Comprendre GitHub, c&amp;rsquo;est comprendre comment les
-développeurs collaborent.&lt;/p&gt;</description></item><item><title>L'open source</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/</guid><description>&lt;h1 id="lopen-source"&gt;L&amp;rsquo;open source&lt;a class="anchor" href="#lopen-source"&gt;#&lt;/a&gt;&lt;/h1&gt;
+développeurs collaborent.&lt;/p&gt;</description></item><item><title>L'infrastructure</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/</guid><description>&lt;h1 id="où-est-ce-que-ça-tourne-"&gt;Où est-ce que ça tourne ?&lt;a class="anchor" href="#o%c3%b9-est-ce-que-%c3%a7a-tourne-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Pour qu&amp;rsquo;un logiciel soit accessible à ses utilisateurs, il doit s&amp;rsquo;exécuter
+quelque part. Cette question, en apparence triviale, a donné lieu à l&amp;rsquo;une des
+transformations les plus profondes de l&amp;rsquo;histoire du génie logiciel. En l&amp;rsquo;espace
+de deux décennies, nous sommes passés de serveurs physiques installés dans des
+placards à des plateformes cloud capables de provisionner des milliers de
+machines virtuelles en quelques secondes. Cette évolution n&amp;rsquo;est pas seulement
+technique : elle a fondamentalement changé la manière dont on conçoit, déploie et
+opère les applications. Comprendre cette trajectoire, des machines physiques
+jusqu&amp;rsquo;aux containers et à l&amp;rsquo;orchestration, est essentiel pour saisir le contexte
+dans lequel les pratiques DevOps modernes ont émergé.&lt;/p&gt;</description></item><item><title>L'open source</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/</guid><description>&lt;h1 id="lopen-source"&gt;L&amp;rsquo;open source&lt;a class="anchor" href="#lopen-source"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Pratiquement tout le logiciel moderne repose sur de l&amp;rsquo;open source. Le noyau
 Linux fait tourner la grande majorité des serveurs web, des téléphones Android et
 des superordinateurs. Python, JavaScript, React, PostgreSQL, Docker,
@@ -77,17 +87,7 @@ comment ces trois niveaux s&amp;rsquo;articulent :&lt;/p&gt;
 &lt;p&gt;Les &lt;strong&gt;données&lt;/strong&gt; sont des &lt;strong&gt;faits&lt;/strong&gt; bruts, sans contexte ni interprétation. Ce sont des
 symboles, des chiffres, des mesures isolées. Par exemple : « 38,5 », « Montréal
 », « 2026-02-27 ». En soi, une donnée ne veut rien dire, elle doit être mise en
-relation avec autre chose.&lt;/p&gt;</description></item><item><title>Où est-ce que ça tourne ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/</guid><description>&lt;h1 id="où-est-ce-que-ça-tourne-"&gt;Où est-ce que ça tourne ?&lt;a class="anchor" href="#o%c3%b9-est-ce-que-%c3%a7a-tourne-"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Pour qu&amp;rsquo;un logiciel soit accessible à ses utilisateurs, il doit s&amp;rsquo;exécuter
-quelque part. Cette question, en apparence triviale, a donné lieu à l&amp;rsquo;une des
-transformations les plus profondes de l&amp;rsquo;histoire du génie logiciel. En l&amp;rsquo;espace
-de deux décennies, nous sommes passés de serveurs physiques installés dans des
-placards à des plateformes cloud capables de provisionner des milliers de
-machines virtuelles en quelques secondes. Cette évolution n&amp;rsquo;est pas seulement
-technique : elle a fondamentalement changé la manière dont on conçoit, déploie et
-opère les applications. Comprendre cette trajectoire, des machines physiques
-jusqu&amp;rsquo;aux containers et à l&amp;rsquo;orchestration, est essentiel pour saisir le contexte
-dans lequel les pratiques DevOps modernes ont émergé.&lt;/p&gt;</description></item><item><title>Perspective historique</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/</guid><description>&lt;h1 id="perspective-historique-des-interfaces-utilisateur"&gt;Perspective historique des interfaces utilisateur&lt;a class="anchor" href="#perspective-historique-des-interfaces-utilisateur"&gt;#&lt;/a&gt;&lt;/h1&gt;
+relation avec autre chose.&lt;/p&gt;</description></item><item><title>Perspective historique</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/historique/</guid><description>&lt;h1 id="perspective-historique-des-interfaces-utilisateur"&gt;Perspective historique des interfaces utilisateur&lt;a class="anchor" href="#perspective-historique-des-interfaces-utilisateur"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;L&amp;rsquo;interface utilisateur est le point de contact entre un humain et un logiciel. C&amp;rsquo;est la partie visible, celle que l&amp;rsquo;utilisateur touche, voit et manipule. On distingue aujourd&amp;rsquo;hui l&amp;rsquo;&lt;strong&gt;UI&lt;/strong&gt; (&lt;em&gt;User Interface&lt;/em&gt;) de l&amp;rsquo;&lt;strong&gt;UX&lt;/strong&gt; (&lt;em&gt;User Experience&lt;/em&gt;) : l&amp;rsquo;UI désigne l&amp;rsquo;ensemble des éléments visuels et interactifs (boutons, menus, formulaires), tandis que l&amp;rsquo;UX désigne l&amp;rsquo;expérience globale de l&amp;rsquo;utilisateur, qui englobe non seulement l&amp;rsquo;aspect visuel mais aussi la facilité d&amp;rsquo;apprentissage, la fluidité de navigation et la satisfaction à l&amp;rsquo;usage. Un produit peut avoir une belle UI et une mauvaise UX si, par exemple, les menus sont visuellement soignés mais difficiles à trouver. Pourtant, la manière dont on conçoit cette interaction a radicalement changé au fil des décennies. Les premiers programmeurs interagissaient avec leurs machines par des cartes perforées et des imprimantes ; aujourd&amp;rsquo;hui, on glisse du doigt sur des écrans tactiles ou on parle à des assistants vocaux. Cette évolution n&amp;rsquo;est pas qu&amp;rsquo;une question de technologie, elle reflète des changements profonds dans notre conception de ce qu&amp;rsquo;un ordinateur peut et devrait être. Comprendre cette histoire permet de mieux saisir pourquoi les interfaces modernes sont construites comme elles le sont, et quelles tensions fondamentales continuent de les façonner.&lt;/p&gt;</description></item><item><title>Scrum</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/20-agile/scrum/</guid><description>&lt;h1 id="la-méthode-scrum"&gt;La méthode Scrum&lt;a class="anchor" href="#la-m%c3%a9thode-scrum"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;En 1986, les professeurs Hirotaka Takeuchi et Ikujiro Nonaka publient dans la
 &lt;em&gt;Harvard Business Review&lt;/em&gt; un article intitulé &amp;ldquo;The New New Product Development
@@ -339,14 +339,7 @@ l&amp;rsquo;architecture Transformer, brique de base de tous les LLM modernes �
 &amp;ldquo;the right thing&amp;rdquo; (MIT/Lisp) à &amp;ldquo;worse is better&amp;rdquo; (Unix/C), la simplicité
 d&amp;rsquo;implémentation l&amp;rsquo;emporte sur la perfection →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/"&gt;Module 6, Le métier de développeur&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Comment je le déploie ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</guid><description>&lt;h1 id="comment-je-le-déploie-"&gt;Comment je le déploie ?&lt;a class="anchor" href="#comment-je-le-d%c3%a9ploie-"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Dans le module 2, nous avons mis en place un pipeline d&amp;rsquo;intégration continue
-(CI) : à chaque commit poussé sur GitHub, une série de vérifications
-automatiques (tests, linting, typage) s&amp;rsquo;exécutent pour détecter les problèmes le
-plus tôt possible. Mais la CI s&amp;rsquo;arrête à la vérification. Elle répond à la
-question &amp;ldquo;est-ce que ce code est correct ?&amp;rdquo;, pas à la question &amp;ldquo;comment est-ce
-que ce code arrive en production ?&amp;rdquo;. Ce passage de la vérification au
-déploiement est le sujet de cette section.&lt;/p&gt;</description></item><item><title>Intro et historique</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</guid><description>&lt;h1 id="historique-du-génie-logiciel"&gt;Historique du génie logiciel&lt;a class="anchor" href="#historique-du-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;/ul&gt;</description></item><item><title>Intro et historique</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/</guid><description>&lt;h1 id="historique-du-génie-logiciel"&gt;Historique du génie logiciel&lt;a class="anchor" href="#historique-du-g%c3%a9nie-logiciel"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;L&amp;rsquo;histoire du génie logiciel n&amp;rsquo;est pas qu&amp;rsquo;une suite d&amp;rsquo;inventions techniques :
 c&amp;rsquo;est aussi l&amp;rsquo;histoire de problèmes récurrents, de solutions qui créent de
 nouveaux problèmes, et de débats qui traversent les décennies. Les tensions
@@ -386,7 +379,14 @@ source a proposé une réponse radicale : ne pas faire payer le logiciel lui-mê
 mais les services autour. Mais l&amp;rsquo;open source n&amp;rsquo;est qu&amp;rsquo;un modèle parmi d&amp;rsquo;autres.
 Cette section retrace l&amp;rsquo;évolution des manières de vendre du logiciel, depuis les
 premières licences propriétaires jusqu&amp;rsquo;aux abonnements cloud, en passant par le
-shareware, le freemium et les marketplaces d&amp;rsquo;applications.&lt;/p&gt;</description></item><item><title>Les APIs</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/</guid><description>&lt;h1 id="les-apis"&gt;Les APIs&lt;a class="anchor" href="#les-apis"&gt;#&lt;/a&gt;&lt;/h1&gt;
+shareware, le freemium et les marketplaces d&amp;rsquo;applications.&lt;/p&gt;</description></item><item><title>Le déploiement continu (CD)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</guid><description>&lt;h1 id="comment-je-le-déploie-"&gt;Comment je le déploie ?&lt;a class="anchor" href="#comment-je-le-d%c3%a9ploie-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Dans le module 2, nous avons mis en place un pipeline d&amp;rsquo;intégration continue
+(CI) : à chaque commit poussé sur GitHub, une série de vérifications
+automatiques (tests, linting, typage) s&amp;rsquo;exécutent pour détecter les problèmes le
+plus tôt possible. Mais la CI s&amp;rsquo;arrête à la vérification. Elle répond à la
+question &amp;ldquo;est-ce que ce code est correct ?&amp;rdquo;, pas à la question &amp;ldquo;comment est-ce
+que ce code arrive en production ?&amp;rdquo;. Ce passage de la vérification au
+déploiement est le sujet de cette section.&lt;/p&gt;</description></item><item><title>Les APIs</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/apis/</guid><description>&lt;h1 id="les-apis"&gt;Les APIs&lt;a class="anchor" href="#les-apis"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Le terme API (&lt;em&gt;Application Programming Interface&lt;/em&gt;) est omniprésent dans le vocabulaire du développement logiciel moderne. Mais ce qu&amp;rsquo;on entend par &amp;ldquo;API&amp;rdquo; aujourd&amp;rsquo;hui n&amp;rsquo;est pas ce qu&amp;rsquo;on entendait il y a trente ans. Le mot a traversé plusieurs incarnations, et chacune reflète un changement profond dans la manière dont on conçoit les systèmes logiciels. Comprendre cette évolution, c&amp;rsquo;est comprendre comment le génie logiciel est passé du programme monolithique au système distribué.&lt;/p&gt;</description></item><item><title>Les bases de données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/</guid><description>&lt;h1 id="les-bases-de-données"&gt;Les bases de données&lt;a class="anchor" href="#les-bases-de-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;La section précédente a montré comment les données sont représentées, encodées
 en bits, sérialisées en formats textuels ou binaires, structurées par des
@@ -411,7 +411,17 @@ données sous forme d&amp;rsquo;objets, répliquées entre appareils qui ne sont
 connectés, ou inscrites dans des registres immuables où chaque modification est
 tracée à jamais. Ces paradigmes ne remplacent pas les bases de données : ils les
 complètent, chacun répondant à un besoin que les bases traditionnelles servent
-mal.&lt;/p&gt;</description></item><item><title>Est-ce que ça marche ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/</guid><description>&lt;h1 id="est-ce-que-ça-marche-"&gt;Est-ce que ça marche ?&lt;a class="anchor" href="#est-ce-que-%c3%a7a-marche-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+mal.&lt;/p&gt;</description></item><item><title>Gestion de projet et coordination</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/</guid><description>&lt;h1 id="gestion-de-projet-et-coordination"&gt;Gestion de projet et coordination&lt;a class="anchor" href="#gestion-de-projet-et-coordination"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Les méthodes agiles comme Scrum et Kanban fournissent un cadre pour organiser le
+travail d&amp;rsquo;une équipe. Mais au quotidien, une équipe de développement doit aussi
+résoudre des problèmes plus terre-à-terre : comment partager les décisions
+techniques importantes ? Comment communiquer efficacement quand tout le monde
+n&amp;rsquo;est pas dans la même pièce ? Comment s&amp;rsquo;assurer qu&amp;rsquo;un nouveau membre de
+l&amp;rsquo;équipe peut comprendre non seulement le code, mais aussi les raisons derrière
+les choix qui ont été faits ? Ces questions relèvent de la coordination au sens
+large, et les réponses ne se trouvent pas dans un framework ou un outil, mais
+dans un ensemble de pratiques que les équipes développent, souvent par essais et
+erreurs.&lt;/p&gt;</description></item><item><title>L'observabilité</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/</guid><description>&lt;h1 id="est-ce-que-ça-marche-"&gt;Est-ce que ça marche ?&lt;a class="anchor" href="#est-ce-que-%c3%a7a-marche-"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dans les sections précédentes, nous avons vu où déployer un logiciel et comment
 l&amp;rsquo;y amener de manière automatisée. Mais une fois le déploiement terminé, une
 question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des
@@ -424,17 +434,7 @@ développeur, ces questions ne se posent pas vraiment. On a un debugger, des
 tourne sur des machines distantes, traite des milliers de requêtes simultanées,
 et les problèmes qui surviennent sont souvent des problèmes qu&amp;rsquo;on n&amp;rsquo;avait pas
 anticipés. L&amp;rsquo;observabilité, c&amp;rsquo;est l&amp;rsquo;art de reconstruire cette visibilité à
-distance.&lt;/p&gt;</description></item><item><title>Gestion de projet et coordination</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module4/gestion-projet/</guid><description>&lt;h1 id="gestion-de-projet-et-coordination"&gt;Gestion de projet et coordination&lt;a class="anchor" href="#gestion-de-projet-et-coordination"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Les méthodes agiles comme Scrum et Kanban fournissent un cadre pour organiser le
-travail d&amp;rsquo;une équipe. Mais au quotidien, une équipe de développement doit aussi
-résoudre des problèmes plus terre-à-terre : comment partager les décisions
-techniques importantes ? Comment communiquer efficacement quand tout le monde
-n&amp;rsquo;est pas dans la même pièce ? Comment s&amp;rsquo;assurer qu&amp;rsquo;un nouveau membre de
-l&amp;rsquo;équipe peut comprendre non seulement le code, mais aussi les raisons derrière
-les choix qui ont été faits ? Ces questions relèvent de la coordination au sens
-large, et les réponses ne se trouvent pas dans un framework ou un outil, mais
-dans un ensemble de pratiques que les équipes développent, souvent par essais et
-erreurs.&lt;/p&gt;</description></item><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
+distance.&lt;/p&gt;</description></item><item><title>Le versioning avec git</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/versioning/</guid><description>&lt;h1 id="le-versioning"&gt;Le versioning&lt;a class="anchor" href="#le-versioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Le logiciel (et le code source dont il est constitué) a une particularité
 fondamentale : il change tout le temps. Même un programme simple est rapidement
 modifié - pour corriger un bug, ajouter une fonctionnalité, améliorer la
@@ -471,20 +471,7 @@ du catalogue d&amp;rsquo;horreurs, mais parce que chaque catastrophe révèle qu
 de profond sur la manière dont on conçoit, teste, déploie et fait évoluer les
 systèmes logiciels. Les leçons qu&amp;rsquo;on en tire font écho à pratiquement tout ce
 que nous avons vu dans ce cours.&lt;/p&gt;</description></item><item><title>Desktop, web et mobile</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/convergences/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/30-interfaces/convergences/</guid><description>&lt;h1 id="desktop-web-et-mobile-tensions-et-convergences"&gt;Desktop, web et mobile : tensions et convergences&lt;a class="anchor" href="#desktop-web-et-mobile-tensions-et-convergences"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Les sections précédentes ont retracé comment le web est devenu la plateforme dominante pour les interfaces utilisateur, portée par des frameworks de plus en plus sophistiqués. Mais le web n&amp;rsquo;est pas la seule plateforme. Les applications desktop natives continuent d&amp;rsquo;exister pour les cas qui exigent des performances maximales ou un accès direct au matériel (éditeurs vidéo, jeux, outils de développement). Les applications mobiles, apparues avec l&amp;rsquo;iPhone en 2007 et l&amp;rsquo;Android Market en 2008, ont créé un nouvel écosystème avec ses propres langages (Swift pour iOS, Kotlin pour Android), ses propres conventions d&amp;rsquo;interface, et ses propres canaux de distribution (les app stores). Le résultat est un paysage fragmenté où un même service doit souvent exister sous plusieurs formes : un site web, une application iOS, une application Android, parfois une application desktop. Cette fragmentation relance, à une échelle bien plus grande, la tension qu&amp;rsquo;on a identifiée dans la section historique à propos des toolkits desktop : faut-il écrire du code natif pour chaque plateforme, au prix de la duplication, ou chercher une solution universelle, au prix de compromis sur l&amp;rsquo;expérience utilisateur ?&lt;/p&gt;</description></item><item><title>La gestion des dépendances</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</guid><description>&lt;h1 id="la-gestion-des-dépendances"&gt;La gestion des dépendances&lt;a class="anchor" href="#la-gestion-des-d%c3%a9pendances"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Dès qu&amp;rsquo;un programme devient un peu plus complexe, deux phénomènes interviennent
-habituellement :&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Le programme doit être décomposé en plusieurs modules&lt;/li&gt;
-&lt;li&gt;Certaines fonctionnalités du programme, pouvant être accomplies par des
-programmes (ou des bibliothèques) externes, doivent être détachées en des
-composantes ou des bibliothèques distinctes, qu&amp;rsquo;il est possible de réutiliser
-(c&amp;rsquo;est un peu le &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/principes/#dry-dont-repeat-yourself-ne-vous-répétez-pas"&gt;principe
-DRY&lt;/a&gt; que
-nous avons vu, appliqué dans le sens plus large d&amp;rsquo;un écosystème logiciel)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Dans le cas (2), on nomme parfois les bibliothèques externes des &amp;ldquo;dépendances&amp;rdquo;, ou des
-&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>Que faire quand ça casse ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/</guid><description>&lt;h1 id="que-faire-quand-ça-casse-"&gt;Que faire quand ça casse ?&lt;a class="anchor" href="#que-faire-quand-%c3%a7a-casse-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Les sections précédentes ont retracé comment le web est devenu la plateforme dominante pour les interfaces utilisateur, portée par des frameworks de plus en plus sophistiqués. Mais le web n&amp;rsquo;est pas la seule plateforme. Les applications desktop natives continuent d&amp;rsquo;exister pour les cas qui exigent des performances maximales ou un accès direct au matériel (éditeurs vidéo, jeux, outils de développement). Les applications mobiles, apparues avec l&amp;rsquo;iPhone en 2007 et l&amp;rsquo;Android Market en 2008, ont créé un nouvel écosystème avec ses propres langages (Swift pour iOS, Kotlin pour Android), ses propres conventions d&amp;rsquo;interface, et ses propres canaux de distribution (les app stores). Le résultat est un paysage fragmenté où un même service doit souvent exister sous plusieurs formes : un site web, une application iOS, une application Android, parfois une application desktop. Cette fragmentation relance, à une échelle bien plus grande, la tension qu&amp;rsquo;on a identifiée dans la section historique à propos des toolkits desktop : faut-il écrire du code natif pour chaque plateforme, au prix de la duplication, ou chercher une solution universelle, au prix de compromis sur l&amp;rsquo;expérience utilisateur ?&lt;/p&gt;</description></item><item><title>La fiabilité et les incidents</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/</guid><description>&lt;h1 id="que-faire-quand-ça-casse-"&gt;Que faire quand ça casse ?&lt;a class="anchor" href="#que-faire-quand-%c3%a7a-casse-"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dans les sections précédentes, nous avons construit un pipeline qui amène le
 code en production et des outils pour observer ce qui s&amp;rsquo;y passe. Mais tôt ou
 tard, quelque chose va casser. Ce n&amp;rsquo;est pas une question de &amp;ldquo;si&amp;rdquo;, mais de
@@ -502,7 +489,31 @@ logicielle. Ces incidents ne sont pas des aberrations causées par des
 incompétents : ils se produisent dans les organisations les plus sophistiquées du
 monde. La question centrale de cette section n&amp;rsquo;est donc pas &amp;ldquo;comment éviter
 toute panne&amp;rdquo; — c&amp;rsquo;est impossible — mais plutôt : comment s&amp;rsquo;organiser pour
-détecter vite, réagir bien, et surtout apprendre de chaque incident ?&lt;/p&gt;</description></item><item><title>Est-ce que c'est sécuritaire ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/</guid><description>&lt;h1 id="est-ce-que-cest-sécuritaire-"&gt;Est-ce que c&amp;rsquo;est sécuritaire ?&lt;a class="anchor" href="#est-ce-que-cest-s%c3%a9curitaire-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+détecter vite, réagir bien, et surtout apprendre de chaque incident ?&lt;/p&gt;</description></item><item><title>La gestion des dépendances</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/gestion-des-deps/</guid><description>&lt;h1 id="la-gestion-des-dépendances"&gt;La gestion des dépendances&lt;a class="anchor" href="#la-gestion-des-d%c3%a9pendances"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Dès qu&amp;rsquo;un programme devient un peu plus complexe, deux phénomènes interviennent
+habituellement :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Le programme doit être décomposé en plusieurs modules&lt;/li&gt;
+&lt;li&gt;Certaines fonctionnalités du programme, pouvant être accomplies par des
+programmes (ou des bibliothèques) externes, doivent être détachées en des
+composantes ou des bibliothèques distinctes, qu&amp;rsquo;il est possible de réutiliser
+(c&amp;rsquo;est un peu le &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/principes/#dry-dont-repeat-yourself-ne-vous-répétez-pas"&gt;principe
+DRY&lt;/a&gt; que
+nous avons vu, appliqué dans le sens plus large d&amp;rsquo;un écosystème logiciel)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Dans le cas (2), on nomme parfois les bibliothèques externes des &amp;ldquo;dépendances&amp;rdquo;, ou des
+&amp;ldquo;paquets&amp;rdquo; (packages en anglais, plus communément).&lt;/p&gt;</description></item><item><title>L'intégration continue (CI)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</guid><description>&lt;h1 id="lintégration-continue-ci"&gt;L&amp;rsquo;intégration continue (CI)&lt;a class="anchor" href="#lint%c3%a9gration-continue-ci"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Dans les sections précédentes, nous avons vu comment écrire des tests pour
+vérifier qu&amp;rsquo;un programme se comporte correctement, comment utiliser git pour
+gérer l&amp;rsquo;évolution du code, et comment gérer les dépendances d&amp;rsquo;un projet Python avec uv.
+Mais il reste un problème important : toutes ces vérifications dépendent de la
+discipline individuelle du programmeur. Rien ne garantit qu&amp;rsquo;un développeur va
+exécuter les tests avant de pousser son code. Rien ne garantit non plus que son
+environnement local est représentatif de l&amp;rsquo;environnement réel : peut-être que
+les tests passent sur sa machine parce qu&amp;rsquo;il a une dépendance installée
+globalement, ou une version de Python légèrement différente. Le fameux &amp;ldquo;ça marche
+sur ma machine&amp;rdquo; est l&amp;rsquo;un des problèmes les plus classiques du développement
+logiciel.&lt;/p&gt;</description></item><item><title>La sécurité</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/</guid><description>&lt;h1 id="est-ce-que-cest-sécuritaire-"&gt;Est-ce que c&amp;rsquo;est sécuritaire ?&lt;a class="anchor" href="#est-ce-que-cest-s%c3%a9curitaire-"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;La sécurité informatique est souvent traitée comme une préoccupation secondaire
 dans le développement logiciel. On construit d&amp;rsquo;abord les fonctionnalités, on
 déploie, et on se dit qu&amp;rsquo;on &amp;ldquo;ajoutera la sécurité plus tard&amp;rdquo;. Cette approche a
@@ -527,18 +538,7 @@ de l&amp;rsquo;extérieur, mais d&amp;rsquo;une menace interne : un utilisateur 
 accès à des données qu&amp;rsquo;il n&amp;rsquo;aurait probablement pas dû pouvoir extraire en
 masse. L&amp;rsquo;incident a mis en lumière l&amp;rsquo;importance du principe du moindre privilège
 et de la surveillance des accès internes, des aspects de la sécurité qui ne se
-règlent pas avec un pare-feu.&lt;/p&gt;</description></item><item><title>L'intégration continue (CI)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module2/ci/</guid><description>&lt;h1 id="lintégration-continue-ci"&gt;L&amp;rsquo;intégration continue (CI)&lt;a class="anchor" href="#lint%c3%a9gration-continue-ci"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Dans les sections précédentes, nous avons vu comment écrire des tests pour
-vérifier qu&amp;rsquo;un programme se comporte correctement, comment utiliser git pour
-gérer l&amp;rsquo;évolution du code, et comment gérer les dépendances d&amp;rsquo;un projet Python avec uv.
-Mais il reste un problème important : toutes ces vérifications dépendent de la
-discipline individuelle du programmeur. Rien ne garantit qu&amp;rsquo;un développeur va
-exécuter les tests avant de pousser son code. Rien ne garantit non plus que son
-environnement local est représentatif de l&amp;rsquo;environnement réel : peut-être que
-les tests passent sur sa machine parce qu&amp;rsquo;il a une dépendance installée
-globalement, ou une version de Python légèrement différente. Le fameux &amp;ldquo;ça marche
-sur ma machine&amp;rdquo; est l&amp;rsquo;un des problèmes les plus classiques du développement
-logiciel.&lt;/p&gt;</description></item><item><title>Le métier de développeur</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/</guid><description>&lt;h1 id="le-métier-de-développeur"&gt;Le métier de développeur&lt;a class="anchor" href="#le-m%c3%a9tier-de-d%c3%a9veloppeur"&gt;#&lt;/a&gt;&lt;/h1&gt;
+règlent pas avec un pare-feu.&lt;/p&gt;</description></item><item><title>Le métier de développeur</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/</guid><description>&lt;h1 id="le-métier-de-développeur"&gt;Le métier de développeur&lt;a class="anchor" href="#le-m%c3%a9tier-de-d%c3%a9veloppeur"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Les sections précédentes de ce module ont porté un regard large sur le logiciel :
 son économie, sa régulation, ses catastrophes. Cette section change de
 perspective pour s&amp;rsquo;intéresser aux personnes qui le construisent. Le métier de
@@ -548,7 +548,7 @@ et même pas d&amp;rsquo;accord sur le nom qu&amp;rsquo;on devrait lui donner. P
 développeur, ingénieur logiciel, artisan du code : chaque terme porte une vision
 différente de ce que signifie écrire du logiciel pour gagner sa vie. Cette
 section explore ces tensions, les réalités quotidiennes du métier, et les idées
-qui ont façonné la manière dont la profession se perçoit elle-même.&lt;/p&gt;</description></item><item><title>Est-ce que ça va tenir la charge ?</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/</guid><description>&lt;h1 id="est-ce-que-ça-va-tenir-la-charge-"&gt;Est-ce que ça va tenir la charge ?&lt;a class="anchor" href="#est-ce-que-%c3%a7a-va-tenir-la-charge-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+qui ont façonné la manière dont la profession se perçoit elle-même.&lt;/p&gt;</description></item><item><title>La scalabilité</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/</guid><description>&lt;h1 id="est-ce-que-ça-va-tenir-la-charge-"&gt;Est-ce que ça va tenir la charge ?&lt;a class="anchor" href="#est-ce-que-%c3%a7a-va-tenir-la-charge-"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Les cinq sections précédentes de ce module ont abordé des questions fondamentales
 de l&amp;rsquo;exploitation d&amp;rsquo;un logiciel : où il tourne, comment le déployer, comment
 savoir s&amp;rsquo;il fonctionne, quoi faire quand il casse, et comment le protéger. Mais
