@@ -1,5 +1,5 @@
 ---
-title: "Est-ce que c'est sécuritaire ?"
+title: "La sécurité"
 weight: 50
 slug: "securite"
 ---

@@ -37,6 +37,8 @@ raisons (protéger l'intégrité des données), illustrait parfaitement le coût
 séparation rigide entre ceux qui écrivent le code et ceux qui gèrent
 l'infrastructure.
 
+## Le mouvement DevOps
+
 C'est en réaction à cette séparation que le mouvement DevOps a émergé à la fin
 des années 2000. Le terme lui-même, une contraction de "development" et
 "operations", a été popularisé lors des premières conférences DevOpsDays,
@@ -51,6 +53,8 @@ parallèle est frappant : de la même manière qu'une usine doit optimiser le fl
 de production de bout en bout plutôt que de maximiser l'efficacité de chaque
 poste individuellement, une organisation logicielle doit penser le flux du code
 depuis le commit du développeur jusqu'à l'utilisateur en production.
+
+{{< image src="phoenix-project.jpg" alt="" title="" loading="lazy" >}}
 
 Gene Kim, dans *The Phoenix Project* puis de manière plus formelle dans *The
 DevOps Handbook* (2016, co-écrit avec Jez Humble, Patrick Debois et John Willis),
@@ -83,17 +87,15 @@ aveuglément, la Twelve-Factor App est un ensemble d'heuristiques qui, comme les
 principes SOLID ou DRY, encapsulent des leçons durement apprises par des
 praticiens confrontés aux réalités de la production.
 
-Ce module s'articule autour de six questions concrètes que pose l'exploitation
-d'un logiciel. D'abord, **"où est-ce que ça tourne ?"** : l'évolution de
-l'infrastructure, des serveurs physiques au cloud en passant par la
-conteneurisation et l'orchestration. Ensuite, **"comment je le déploie ?"** : les
-pipelines de déploiement continu et les stratégies pour livrer du code en
-production de manière fiable. Puis, **"est-ce que ça marche ?"** :
-l'observabilité, c'est-à-dire la capacité à comprendre ce qui se passe à
-l'intérieur d'un système en production. Suivie de **"que faire quand ça
-casse ?"** : la gestion des incidents, la fiabilité, et la culture
-d'apprentissage qui permet de s'améliorer après chaque panne. Ensuite, **"est-ce
-que c'est sécuritaire ?"** : les menaces auxquelles un logiciel en production est
-exposé et les pratiques pour s'en protéger. Enfin, **"est-ce que ça va tenir la
-charge ?"** : la scalabilité, le caching, et les compromis architecturaux qui
-permettent à un système de servir un nombre croissant d'utilisateurs.
+Ce module s'articule autour de six thèmes qui structurent l'exploitation d'un
+logiciel. D'abord, **l'infrastructure** : l'évolution des serveurs physiques au
+cloud en passant par la conteneurisation et l'orchestration. Ensuite, **le
+déploiement continu** : les pipelines et les stratégies pour livrer du code en
+production de manière fiable. Puis, **l'observabilité** : la capacité à
+comprendre ce qui se passe à l'intérieur d'un système en production. Suivie de
+**la fiabilité et les incidents** : la gestion des pannes et la culture
+d'apprentissage qui permet de s'améliorer après chaque incident. Ensuite, **la
+sécurité** : les menaces auxquelles un logiciel en production est exposé et les
+pratiques pour s'en protéger. Enfin, **la scalabilité** : le caching et les
+compromis architecturaux qui permettent à un système de servir un nombre
+croissant d'utilisateurs.

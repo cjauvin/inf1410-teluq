@@ -1,5 +1,5 @@
 ---
-title: "Comment je le déploie ?"
+title: "Le déploiement continu (CD)"
 weight: 20
 slug: "deploiement"
 ---

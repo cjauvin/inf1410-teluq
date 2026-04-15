@@ -1,5 +1,5 @@
 ---
-title: "Où est-ce que ça tourne ?"
+title: "L'infrastructure"
 weight: 10
 slug: "infrastructure"
 ---

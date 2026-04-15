@@ -1,5 +1,5 @@
 ---
-title: "Est-ce que ça marche ?"
+title: "L'observabilité"
 weight: 30
 slug: "observabilite"
 ---
