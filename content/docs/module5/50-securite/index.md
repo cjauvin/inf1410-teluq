@@ -4,7 +4,7 @@ weight: 50
 slug: "securite"
 ---
 
-# Est-ce que c'est sécuritaire ?
+# La sécurité
 
 La sécurité informatique est souvent traitée comme une préoccupation secondaire
 dans le développement logiciel. On construit d'abord les fonctionnalités, on

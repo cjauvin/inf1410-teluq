@@ -4,7 +4,7 @@ weight: 60
 slug: "scalabilite"
 ---
 
-# Est-ce que ça va tenir la charge ?
+# La scalabilité
 
 Les cinq sections précédentes de ce module ont abordé des questions fondamentales
 de l'exploitation d'un logiciel : où il tourne, comment le déployer, comment

@@ -4,7 +4,7 @@ weight: 20
 slug: "deploiement"
 ---
 
-# Comment je le déploie ?
+# Le déploiement continu
 
 Dans le module 2, nous avons mis en place un pipeline d'intégration continue
 (CI) : à chaque commit poussé sur GitHub, une série de vérifications

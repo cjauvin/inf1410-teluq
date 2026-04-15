@@ -4,7 +4,7 @@ weight: 40
 slug: "incidents"
 ---
 
-# Que faire quand ça casse ?
+# La fiabilité et les incidents
 
 Dans les sections précédentes, nous avons construit un pipeline qui amène le
 code en production et des outils pour observer ce qui s'y passe. Mais tôt ou

@@ -4,7 +4,7 @@ weight: 30
 slug: "observabilite"
 ---
 
-# Est-ce que ça marche ?
+# L'observabilité
 
 Dans les sections précédentes, nous avons vu où déployer un logiciel et comment
 l'y amener de manière automatisée. Mais une fois le déploiement terminé, une

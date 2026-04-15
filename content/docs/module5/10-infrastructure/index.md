@@ -4,7 +4,7 @@ weight: 10
 slug: "infrastructure"
 ---
 
-# Où est-ce que ça tourne ?
+# L'infrastructure
 
 Pour qu'un logiciel soit accessible à ses utilisateurs, il doit s'exécuter
 quelque part. Cette question, en apparence triviale, a donné lieu à l'une des
