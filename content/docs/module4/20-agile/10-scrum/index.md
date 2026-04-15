@@ -82,35 +82,24 @@ l'authentification, on obtiendra deux sous-systèmes avec une API entre eux. Ce
 n'est ni bien ni mal en soi, mais il faut en être conscient : quand on décide de
 la composition d'une équipe, on prend implicitement une décision architecturale.
 
-## Le sprint
+## Le sprint et les cérémonies
 
-Le sprint est l'unité de temps fondamentale de Scrum : une période fixe,
+Le sprint est l'unité de temps fondamentale de Scrum&nbsp;: une période fixe,
 généralement de deux semaines, pendant laquelle l'équipe s'engage à livrer un
-incrément fonctionnel du produit. Chaque sprint commence par une séance de
-planification (*sprint planning*) où l'équipe sélectionne des éléments du
-product backlog et définit un objectif pour le sprint. Pendant le sprint,
-l'équipe tient une courte réunion quotidienne (*daily standup*) d'environ quinze
-minutes, souvent debout, où chaque membre répond à trois questions : qu'est-ce
-que j'ai fait hier, qu'est-ce que je fais aujourd'hui, est-ce que quelque chose
-me bloque? À la fin du sprint, deux événements se succèdent : la *sprint
-review*, où l'équipe présente ce qui a été accompli aux parties prenantes et
-recueille leurs commentaires, et la *rétrospective*, où l'équipe réfléchit à son
-propre fonctionnement et identifie des améliorations pour le prochain sprint.
+incrément fonctionnel du produit. Scrum structure le déroulement de chaque
+sprint autour de quatre réunions qu'on appelle les *cérémonies* (le Scrum Guide
+utilise le terme *événements*). Ce ne sont pas des réunions au sens
+bureaucratique&nbsp;: chacune a un objectif précis, une durée limitée, et un
+résultat attendu. Le sprint commence par le *sprint planning*, où l'équipe
+sélectionne des éléments du product backlog et définit un objectif. Pendant le
+sprint, le *daily standup* synchronise l'équipe chaque matin en quinze
+minutes&nbsp;: chaque membre dit ce qu'il a fait la veille, ce qu'il fait
+aujourd'hui, et s'il est bloqué. Le sprint se termine par deux
+cérémonies&nbsp;: la *sprint review*, où l'équipe présente ce qui a été accompli
+aux parties prenantes, et la *rétrospective*, où elle réfléchit à son propre
+fonctionnement et identifie des améliorations pour le prochain sprint.
 
 {{< image src="sprint.jpg" alt="" title="" loading="lazy" >}}
-
-Avant de passer à un exemple concret, il faut clarifier une confusion
-fréquente. Quand on pense à Scrum (ou à l'agilité en général), on visualise
-souvent un tableau avec des colonnes ("À faire", "En cours", "Terminé") et des
-cartes qu'on déplace de gauche à droite. Ce tableau est un outil de
-visualisation qu'on appelle un *tableau Kanban*. Mais Kanban est aussi le nom
-d'une méthode de gestion à part entière, que nous verrons dans la
-[prochaine section]({{< relref "/docs/module4/20-agile/20-kanban" >}}). Le tableau
-et la méthode ne sont pas la même chose. Le tableau Kanban est un outil
-générique que pratiquement toutes les équipes utilisent, quelle que soit leur
-méthode. Dans la pratique, une équipe Scrum organise typiquement son sprint
-autour d'un tel tableau, et c'est exactement ce que nous allons faire dans la
-démonstration qui suit.
 
 ## Démonstration avec GitHub Projects
 
@@ -120,120 +109,53 @@ Sara, que nous avons rencontrées dans la
 [section sur GitHub]({{< relref "/docs/module4/10-github" >}}). Elles travaillent
 maintenant au sein d'une équipe de quatre personnes qui développe *RéservaSalle*,
 une application web permettant de réserver des salles dans un espace de
-coworking. Leila joue le rôle de Product Owner : c'est elle qui a la vision du
-produit et qui décide des priorités. Sara et Marco sont développeurs. Nadia est
-Scrum Master : elle facilite le processus et s'assure que l'équipe n'est pas
-bloquée. Pour mettre en place et suivre leur sprint, l'équipe utilise GitHub
+coworking. Leila joue le rôle de Product Owner&nbsp;: c'est elle qui a la vision
+du produit et qui décide des priorités. Sara et Marco sont développeurs. Nadia
+est Scrum Master&nbsp;: elle facilite le processus et s'assure que l'équipe n'est
+pas bloquée. Pour mettre en place et suivre leur sprint, l'équipe utilise GitHub
 Projects, l'outil de gestion de projet intégré à GitHub.
 
 ### Mise en place du projet
 
-La première étape est de créer un projet GitHub Projects, en sélectionnant le
-template *Board* depuis l'onglet *Projects* du profil ou de l'organisation. Le
-projet est nommé « RéservaSalle ».
+La première étape est de créer un projet GitHub Projects depuis l'onglet
+*Projects* du profil ou de l'organisation. Le projet est nommé « RéservaSalle ».
+Par défaut, GitHub Projects affiche les éléments du projet sous forme de **vue
+Table**&nbsp;: chaque ligne est une tâche, chaque colonne un champ (titre,
+statut, responsable, etc.). C'est la vue la plus simple, et aussi la plus
+naturelle pour commencer&nbsp;: on est en train de construire un backlog,
+c'est-à-dire une liste ordonnée de travail à faire, et un tableau ressemble
+exactement à ça.
 
-GitHub Projects offre trois types de vues pour visualiser le contenu d'un
-projet, chacune adaptée à un usage différent. La vue *Table* présente les
-éléments sous forme de tableau, semblable à un tableur : chaque ligne est une
-tâche, chaque colonne un champ (titre, statut, assigné, etc.). C'est la vue la
-plus pratique pour éditer rapidement les propriétés de plusieurs tâches à la
-fois. La vue *Board* organise les tâches en colonnes, chaque colonne
-correspondant à une valeur d'un champ donné (typiquement le statut). C'est le
-tableau Kanban dont nous avons parlé plus haut : on y visualise le flux de
-travail et on déplace les cartes de gauche à droite au fil de leur progression.
-Enfin, la vue *Roadmap* affiche les tâches sur un axe temporel, ce qui est utile
-pour visualiser la planification à plus long terme. Un même projet peut avoir
-plusieurs vues, et on peut passer de l'une à l'autre sans perdre d'information :
-ce sont simplement des façons différentes de regarder les mêmes données. Pour
-notre démonstration, nous allons principalement utiliser la vue *Board*, qui est
-la plus naturelle pour suivre un sprint Scrum au quotidien.
+{{< image src="project-create.png" alt="" title="" loading="lazy" >}}
 
-<!-- ILLUSTRATION: les trois types de vues côte à côte ou en séquence -->
+Les éléments qui peuplent ce tableau ne sont pas des objets propres à GitHub
+Projects&nbsp;: ce sont des **issues** GitHub, c'est-à-dire les mêmes issues que
+nous avons vues dans la
+[section sur GitHub]({{< relref "/docs/module4/10-github" >}}). C'est un choix de
+conception important&nbsp;: le backlog n'est pas une liste séparée du reste du
+projet, il est ancré directement dans le dépôt. Une issue peut représenter une
+fonctionnalité à développer, un bug à corriger, ou une tâche technique. On peut
+créer une issue directement depuis la vue Table, ou depuis l'onglet *Issues* du
+dépôt, et l'ajouter ensuite au projet.
 
-Lorsqu'on crée un projet avec le template *Board*, le tableau contient par
-défaut trois colonnes : *Todo* (le travail qui reste à faire), *In Progress* (ce
-sur quoi quelqu'un travaille en ce moment) et *Done* (ce qui est terminé). Ces
-colonnes correspondent aux valeurs d'un champ appelé *Status* : déplacer une
-carte d'une colonne à une autre revient à changer la valeur de ce champ. On peut
-ajouter, renommer ou réordonner ces colonnes en modifiant les valeurs du champ
-Status dans les paramètres du projet.
-
-<!-- ILLUSTRATION: tableau GitHub Projects vide avec les 3 colonnes par défaut -->
-
-Pour notre projet, on ajoute une quatrième colonne : *In Review*, insérée entre
-*In Progress* et *Done*. Cette colonne représente le moment où un développeur a
-terminé son travail et ouvert une pull request qui attend la revue d'un
-coéquipier. C'est un ajout simple, mais il reflète un aspect fondamental du
-travail en équipe : le code ne passe pas directement de « en cours » à
-« terminé ». Il transite par une étape de validation par les pairs, celle-là
-même que nous avons vue dans la
-[section sur GitHub]({{< relref "/docs/module4/10-github" >}}).
-
-<!-- ILLUSTRATION: tableau avec les 4 colonnes : Todo, In Progress, In Review, Done -->
-
-En plus du statut, GitHub Projects permet d'ajouter des champs personnalisés à
-chaque tâche. Les champs sont typés : on peut créer des champs de texte, de
-nombre, de date, de sélection unique, et quelques types spécialisés. Deux champs
-supplémentaires seront essentiels pour le sprint.
-
-Le premier est un champ numérique nommé *Story Points*. Les story points sont
-une unité d'estimation utilisée par beaucoup d'équipes Scrum pour évaluer
-l'effort relatif que représente chaque tâche. L'idée n'est pas de mesurer le
-temps en heures ou en jours, mais de comparer les tâches entre elles : si
-l'équipe estime qu'une tâche vaut 2 points et qu'une autre en vaut 5, elle
-exprime que la seconde est environ deux fois et demie plus complexe que la
-première. Les valeurs utilisées suivent généralement la suite de Fibonacci (1, 2,
-3, 5, 8, 13...), ce qui force l'équipe à faire des choix tranchés plutôt que de
-se perdre dans des distinctions trop fines entre des tâches de taille similaire.
-Il faut noter que les story points ne font pas partie du Scrum Guide officiel :
-c'est une pratique complémentaire qui s'y est greffée au fil du temps, et
-certaines équipes expérimentées préfèrent des approches plus simples, comme
-découper le travail en tâches de taille à peu près équivalente et simplement les
-compter. Mais le concept reste largement répandu et les étudiants le
-rencontreront presque certainement en milieu professionnel.
-
-Le second champ est de type *Iteration*. Une itération dans GitHub Projects
-correspond exactement à un sprint : c'est une période de temps fixe (ici
-configurée à deux semaines) à laquelle on associe des tâches. Ce champ permettra
-de filtrer le tableau pour ne voir que les tâches du sprint en cours, et plus
-tard de comparer la charge de travail d'un sprint à l'autre.
-
-<!-- ILLUSTRATION: paramètres du projet montrant les champs ajoutés (Story Points et Iteration) -->
-
-### Le product backlog
-
-Le product backlog est la liste ordonnée de tout ce qui pourrait être développé
-dans le produit. C'est le Product Owner qui en est responsable : c'est lui qui
-décide quels éléments y figurent et dans quel ordre de priorité. Dans GitHub,
-chaque élément du backlog prend naturellement la forme d'une *issue* dans le
-dépôt du projet.
+### Le product backlog (tableau des issues / stories)
 
 Les éléments du backlog sont souvent formulés sous forme de *user stories*. Le
-format classique est : « En tant que [rôle], je veux [action] afin de
-[bénéfice] ». À première vue, cette formulation peut sembler inutilement
-verbeuse. Pourquoi ne pas simplement écrire « Page d'affichage des salles » et
-passer à autre chose ?
+format classique est&nbsp;: « En tant que [rôle], je veux [action] afin de
+[bénéfice] ». Cette formulation peut sembler inutilement verbeuse à première vue,
+mais elle force à répondre à trois questions que les équipes oublient
+souvent&nbsp;: *qui* a besoin de cette fonctionnalité, *quoi* exactement, et
+*pourquoi*. Un titre comme « Gérer les salles » est ambigu, car il ne précise pas
+si c'est pour l'utilisateur qui cherche une salle ou pour l'administrateur qui en
+ajoute une nouvelle. Le format user story dissipe cette ambiguïté. Et si l'équipe
+n'arrive pas à formuler le « afin de », c'est souvent le signe que la
+fonctionnalité est mal comprise ou inutile.
 
-La réponse tient dans ce que le format force à expliciter. La partie « en tant
-que » oblige à identifier *qui* a besoin de la fonctionnalité. Ce n'est pas
-toujours évident : dans un système comme RéservaSalle, les utilisateurs qui
-réservent des salles, les administrateurs qui les gèrent et les développeurs qui
-maintiennent le code ont des besoins différents. Un titre comme « Gérer les
-salles » est ambigu : est-ce pour l'utilisateur qui cherche une salle, ou pour
-l'administrateur qui en ajoute une nouvelle ? La partie « afin de » force à
-énoncer le *pourquoi*, ce qui est souvent la partie la plus révélatrice. Si
-l'équipe n'arrive pas à formuler le bénéfice d'une fonctionnalité, c'est
-peut-être que cette fonctionnalité n'est pas nécessaire, ou qu'elle est mal
-comprise. Le format agit comme un filtre : il pousse l'équipe à se demander si
-chaque élément du backlog apporte réellement de la valeur, et à qui.
-
-Cette pratique s'inscrit dans un changement de perspective plus large apporté par
-l'agilité. Dans les approches traditionnelles, les exigences étaient souvent
-formulées du point de vue du système (« le système doit permettre de... »). La
-user story renverse cette perspective en partant de l'humain qui utilise le
-logiciel. C'est un choix délibéré, pas juste une convention stylistique.
-
-Pour RéservaSalle, le backlog initial contient les issues suivantes :
+Pour RéservaSalle, le backlog initial contient six issues. Quatre sont des
+fonctionnalités destinées aux utilisateurs finaux, deux sont des tâches techniques
+sans valeur directe pour l'utilisateur mais nécessaires au bon fonctionnement du
+projet. On distingue ces types à l'aide de *labels* GitHub&nbsp;: `story` pour
+les user stories, `tech` pour les tâches techniques.
 
 | # | Titre | User story |
 |---|-------|-----------|
@@ -244,28 +166,12 @@ Pour RéservaSalle, le backlog initial contient les issues suivantes :
 | 5 | Authentification | En tant qu'utilisateur, je veux m'authentifier afin que mes réservations soient associées à mon compte |
 | 6 | CI avec GitHub Actions | En tant que développeur, je veux un pipeline de CI afin que les tests soient exécutés automatiquement à chaque push |
 
-On remarque que certaines issues sont des fonctionnalités destinées aux
-utilisateurs finaux (2, 3, 4, 5) tandis que d'autres sont des tâches techniques
-qui n'apportent pas de valeur directe à l'utilisateur mais sont nécessaires au
-bon fonctionnement du projet (1, 6). Dans un projet mature, le backlog
-contiendrait aussi des rapports de bugs et des tâches de maintenance
-(refactoring, mise à jour de dépendances, etc.). On peut distinguer ces types à
-l'aide de *labels* GitHub, par exemple `story`, `tech`, `bug`.
-
-Créer six issues via l'interface web est un processus répétitif. C'est
-l'occasion d'introduire `gh`, l'outil en ligne de commande officiel de GitHub.
-Il ne faut pas confondre `gh` et `git` : `git` est l'outil de versioning que
-nous avons vu dans le
-[module 2]({{< relref "/docs/module2/30-versioning" >}}), il gère les commits,
-les branches et l'historique d'un dépôt. `gh`, lui, interagit avec GitHub en
-tant que plateforme : il permet de créer des issues, ouvrir des pull requests,
-gérer des projets, consulter les résultats de CI, bref, d'effectuer depuis le
-terminal la plupart des opérations qu'on ferait normalement dans le navigateur.
-Les deux outils sont complémentaires : on utilise `git` pour travailler sur son
-code, et `gh` pour interagir avec les services de GitHub autour de ce code.
-
-Pour ceux qui souhaitent reproduire les manipulations de cette démonstration,
-voici comment créer les issues du backlog d'un seul coup :
+Créer six issues via l'interface web est un processus répétitif. C'est l'occasion
+d'introduire `gh`, l'outil en ligne de commande officiel de GitHub. Il ne faut
+pas confondre `gh` et `git`&nbsp;: `git` gère les commits, les branches et
+l'historique local, tandis que `gh` interagit avec GitHub en tant que
+plateforme — créer des issues, ouvrir des pull requests, gérer des projets. Les
+deux sont complémentaires.
 
 ```shell
 $ gh issue create -R cjauvin/reservasalle \
@@ -294,45 +200,46 @@ $ gh issue create -R cjauvin/reservasalle \
   --label tech
 ```
 
-Une fois les issues créées et ajoutées au projet, elles apparaissent dans la vue
-par défaut du projet, qui est de type *Table*. Cette vue tabulaire correspond
-exactement au product backlog : c'est la liste de toutes les tâches du projet,
-avec leurs propriétés (statut, story points, itération, labels, etc.) affichées
-en colonnes. C'est dans cette vue qu'on peut le plus facilement trier le backlog
-par priorité, modifier les champs de plusieurs issues à la fois, ou avoir une
-vue d'ensemble de tout ce qui reste à faire. En basculant vers la vue *Board*,
-on retrouve ces mêmes issues organisées visuellement par statut. Pour l'instant,
-elles se trouvent toutes dans la colonne *Todo*.
+{{< image src="table-view-with-issues.png" alt="" title="" loading="lazy" >}}
 
-<!-- ILLUSTRATION: vue Table montrant les 6 issues avec leurs champs, puis vue Board avec les mêmes issues dans Todo -->
+Une fois les issues créées, elles apparaissent dans la vue Table. C'est aussi le
+moment d'enrichir le projet avec deux champs supplémentaires. GitHub Projects
+permet d'ajouter des champs personnalisés typés&nbsp;: texte, nombre, date,
+sélection, et quelques types spécialisés. Le premier est un champ numérique nommé
+*Story Points*. Les story points sont une unité d'estimation utilisée par
+beaucoup d'équipes Scrum pour évaluer l'effort relatif de chaque tâche. L'idée
+n'est pas de mesurer le temps en heures, mais de comparer les tâches entre
+elles&nbsp;: si une tâche vaut 2 points et une autre en vaut 5, la seconde est
+environ deux fois et demie plus complexe. Les valeurs suivent généralement la
+suite de Fibonacci (1, 2, 3, 5, 8, 13...), ce qui force des choix tranchés
+plutôt que des distinctions trop fines. Il faut noter que les story points ne
+font pas partie du Scrum Guide officiel&nbsp;: c'est une pratique complémentaire
+largement répandue, mais certaines équipes préfèrent simplement découper le
+travail en tâches de taille équivalente et les compter.
 
-### Les cérémonies du sprint
+Le second champ est de type *Iteration*. Une itération dans GitHub Projects
+correspond exactement à un sprint&nbsp;: c'est une période de temps fixe, ici
+configurée à deux semaines, à laquelle on associe des tâches. Ce champ a deux
+utilités concrètes&nbsp;: filtrer la vue pour ne voir que les tâches du sprint en
+cours, et comparer la charge de travail d'un sprint à l'autre au fil du temps.
+Une fois les deux champs ajoutés, la vue Table du backlog affiche maintenant plusieurs
+colonnes&nbsp;: titre, statut (nous verrons cela plus loin), responsable (le programmeur qui sera attitré à la tâche), story points et itération, ainsi que d'autres colonnes possibles, dont nous ne parlerons pas.
 
-Scrum structure le travail autour d'un ensemble de réunions qu'on appelle les
-*cérémonies* (le Scrum Guide utilise le terme *événements*). Ce ne sont pas des
-réunions au sens bureaucratique : chacune a un objectif précis, une durée
-limitée, et un résultat attendu. Il y en a quatre : le *sprint planning* lance
-le sprint en définissant ce que l'équipe va accomplir. Le *daily standup*
-synchronise l'équipe chaque matin. La *sprint review* présente le travail
-accompli aux parties prenantes. La *rétrospective* permet à l'équipe de
-réfléchir à son propre fonctionnement. Ces quatre cérémonies forment un cycle
-qui se répète à chaque sprint, et c'est ce cycle régulier qui donne son rythme
-au projet. Voyons-les en action à travers notre premier sprint.
+### La première cérémonie : le sprint planning
 
-### Le sprint planning
-
-Le sprint planning est la réunion qui lance chaque sprint. C'est le moment où
+Le sprint planning est la première cérémonie du sprint. C'est le moment où
 l'équipe décide collectivement de ce qu'elle s'engage à livrer pendant les deux
-prochaines semaines. La réunion se déroule en trois temps : le Product Owner
-présente les éléments les plus prioritaires du backlog, l'équipe les estime en
-story points, puis elle sélectionne ceux qu'elle pense pouvoir compléter pendant
-le sprint.
+prochaines semaines. La cérémonie se déroule en trois temps&nbsp;: le Product
+Owner présente les éléments les plus prioritaires du backlog, l'équipe les estime
+en story points, puis elle sélectionne ceux qu'elle pense pouvoir compléter
+pendant le sprint. La discussion autour de l'estimation est souvent plus
+révélatrice que le chiffre lui-même&nbsp;: c'est en débattant de la complexité
+d'une tâche qu'on découvre des ambiguïtés, des dépendances cachées ou des risques
+techniques que personne n'avait anticipés.
 
-Pour l'estimation, l'équipe de RéservaSalle passe en revue chaque issue du
-backlog. La discussion est souvent plus révélatrice que le chiffre lui-même :
-c'est en débattant de la complexité d'une tâche qu'on découvre des ambiguïtés,
-des dépendances cachées ou des risques techniques que personne n'avait anticipés.
-Après discussion, l'équipe attribue les story points suivants :
+Pour RéservaSalle, l'équipe passe en revue chaque issue et remplit le champ
+*Story Points* directement dans la vue Table. Après discussion, voici les
+estimations retenues&nbsp;:
 
 | # | Titre | Story Points |
 |---|-------|:------------:|
@@ -344,124 +251,157 @@ Après discussion, l'équipe attribue les story points suivants :
 | 6 | CI avec GitHub Actions | 2 |
 
 Le total du backlog est de 26 points. Comme c'est le premier sprint, l'équipe
-n'a pas encore de vélocité de référence (c'est-à-dire le nombre de points
-qu'elle est capable de compléter en un sprint). Elle doit donc faire une
-estimation prudente. Avec deux développeurs sur deux semaines, l'équipe décide de
-prendre les issues #1, #2, #3 et #6, pour un total de 13 points. L'issue #1
-(modèle de données) est un prérequis pour les deux APIs, et l'issue #6 (CI) est
-une tâche d'infrastructure qu'il vaut mieux mettre en place tôt. L'issue #3
-(page d'affichage) dépend de l'API #2, mais l'équipe estime que les deux peuvent
-avancer en parallèle si le contrat d'API est défini à l'avance.
+n'a pas encore de vélocité de référence&nbsp;: elle ne sait pas encore combien de
+points elle est capable de compléter en deux semaines. Elle doit donc faire une
+estimation prudente. Avec deux développeurs, elle choisit les issues #1, #2, #3
+et #6, pour un total de 13 points. L'issue #1 (modèle de données) est un
+prérequis pour les deux APIs. L'issue #6 (CI) est une tâche d'infrastructure
+qu'il vaut mieux mettre en place tôt. L'issue #3 (page d'affichage) dépend de
+l'API #2, mais les deux peuvent avancer en parallèle si le contrat d'API est
+défini à l'avance.
 
-Leila, en tant que Product Owner, propose un objectif de sprint : « À la fin du
-sprint, un utilisateur peut voir la liste des salles disponibles dans le
+Leila, en tant que Product Owner, formule un objectif de sprint&nbsp;: « À la
+fin du sprint, un utilisateur peut voir la liste des salles disponibles dans le
 navigateur, et le pipeline de CI valide automatiquement chaque push. » L'objectif
-de sprint n'est pas une liste de tâches, c'est une phrase qui décrit le résultat
-attendu en termes de valeur. Il donne une direction à l'équipe et permet de
-trancher les décisions en cours de sprint : si une tâche ne contribue pas à
-l'objectif, elle peut probablement attendre.
+de sprint n'est pas une liste de tâches&nbsp;: c'est une phrase qui décrit le
+résultat attendu en termes de valeur. Il donne une direction à l'équipe et permet
+de trancher les décisions en cours de sprint&nbsp;: si une tâche ne contribue pas
+à cet objectif, elle peut probablement attendre.
 
-Dans GitHub Projects, les issues sélectionnées pour le sprint sont associées à
-l'itération « Sprint 1 » via le champ *Iteration*. On peut ensuite filtrer la
-vue Board pour n'afficher que les issues du sprint en cours, ce qui donne un
-tableau épuré qui reflète exactement le travail en cours.
+Dans la vue Table, les quatre issues sélectionnées reçoivent la valeur
+« Itération 1 » dans le champ *Iteration* (notez qu'il faut tout d'abord créer l'itération, dans l'interface appropriée). C'est aussi le bon moment pour basculer
+vers la **vue Board** (on peut créer une nouvelle vue de type "board", si elle n'existe pas). Maintenant que le sprint est planifié et que les tâches
+sont assignées, on veut suivre leur progression à travers les étapes du
+travail&nbsp;: c'est exactement ce pour quoi cette vue est conçue. En basculant
+vers le Board, on retrouve les quatre issues du sprint dans la colonne *Todo*,
+prêtes à être travaillées.
 
-<!-- ILLUSTRATION: vue Board filtrée sur Sprint 1, avec les 4 issues sélectionnées dans la colonne Todo -->
+{{< image src="selected-issues-iter1.png" alt="" title="" loading="lazy" >}}
+
+{{% hint warning %}}
+
+Avant de commencer à déplacer des cartes, il faut clarifier une confusion
+fréquente. Cette vue Board est ce qu'on appelle un *tableau Kanban*&nbsp;: un
+tableau avec des colonnes représentant les étapes du travail, et des cartes
+qu'on déplace de gauche à droite au fil de leur progression. Mais Kanban est
+aussi le nom d'une méthode de gestion à part entière, que nous verrons dans la
+[prochaine section]({{< relref "/docs/module4/20-agile/20-kanban" >}}). Le tableau
+et la méthode ne sont pas la même chose&nbsp;: le tableau Kanban est un outil
+générique que pratiquement toutes les équipes utilisent, quelle que soit leur
+méthode.
+
+{{% /hint %}}
+
+Le tableau par défaut a trois colonnes, mais le flux de travail réel de l'équipe
+en comporte quatre. Une tâche terminée ne passe pas directement de « en cours »
+à « terminé »&nbsp;: elle transite d'abord par une étape de revue de code, celle
+que nous avons vue dans la
+[section sur GitHub]({{< relref "/docs/module4/10-github" >}}). On ajoute donc
+une colonne *In Review* entre *In Progress* et *Done*, en ajoutant simplement
+une valeur au champ *Status* dans les paramètres du projet. Ensuite, la vue
+board doit être filtrée en fonction du critère `itération:"itération 1"`, afin
+de ne laisser apparaître que nos 4 issues du sprint courant. Notez qu'une vue
+peut être sauvegardée, afin d'être plus facilement réutilisée et partagée.
+
+{{< image src="board-view.png" alt="" title="" loading="lazy" >}}
 
 ### Le déroulement du sprint
 
-Le sprint est lancé. Chaque matin, l'équipe se réunit brièvement pour le *daily
-standup* : chaque membre dit ce qu'il a fait la veille, ce qu'il compte faire
-aujourd'hui, et s'il est bloqué par quelque chose. Cette réunion dure environ
-quinze minutes et se fait souvent debout, justement pour décourager les
+Le sprint est lancé. Chaque matin, l'équipe se réunit pour le *daily standup*,
+la deuxième cérémonie&nbsp;: chaque membre dit ce qu'il a fait la veille, ce
+qu'il compte faire aujourd'hui, et s'il est bloqué par quelque chose. Cette
+cérémonie dure environ quinze minutes, souvent debout pour décourager les
 discussions qui s'éternisent. L'objectif n'est pas de rendre des comptes, mais
 de synchroniser l'équipe et de détecter les problèmes rapidement. Si Marco
-mentionne qu'il est bloqué en attendant une décision sur le schéma de la base de
-données, c'est à Nadia, en tant que Scrum Master, de s'assurer que l'obstacle
-est levé dans la journée.
+mentionne qu'il attend une décision sur le schéma de la base de données, c'est à
+Nadia, en tant que Scrum Master, de s'assurer que l'obstacle est levé dans la
+journée.
 
-Suivons le parcours d'une issue à travers le tableau pour comprendre le flux de
-travail concret. Sara prend l'issue #1 (modèle de données) et se l'assigne dans
-GitHub. Elle déplace la carte de *Todo* vers *In Progress*. Comme nous l'avons
-vu dans la [section sur GitHub]({{< relref "/docs/module4/10-github" >}}), elle
-crée une branche dédiée à cette issue, y fait ses commits, puis ouvre une pull
-request lorsque son travail est prêt. À ce moment, elle déplace la carte vers
-*In Review* : le code est écrit, mais il attend la relecture d'un coéquipier.
-Marco fait la revue, laisse quelques commentaires, Sara apporte les corrections,
-et Marco approuve la PR. Une fois la pull request fusionnée, la carte passe dans
-*Done*.
+{{% hint warning %}}
 
-<!-- ILLUSTRATION: séquence montrant une carte qui traverse les 4 colonnes, avec en parallèle le flux Git (branche → PR → review → merge) -->
+Dans les faits, il est très difficile de faire en sorte que la cérémonie
+du daily standup soit correctement effectuée, et qu'elle reste utile, au fil
+du temps. Jour après jour, elle a tendance à évoluer vers des conversations
+répétitives et vides, qui sont de moins en moins utiles. Le fait d'insister
+pour la garder courte est donc une bonne stratégie, en général.
 
-Ce va-et-vient entre le tableau et Git n'est pas une coïncidence : les deux
-outils reflètent le même processus vu sous des angles différents. Le tableau
-montre *où en est* chaque tâche dans le flux de travail. Git et les pull
-requests montrent *comment* le travail est réalisé techniquement. GitHub Projects
-permet d'ailleurs d'automatiser une partie de ce lien : on peut configurer le
-projet pour qu'une issue soit automatiquement déplacée vers *In Review* lorsqu'une
-pull request liée est ouverte, et vers *Done* lorsque la PR est fusionnée. Dans
-la pratique, ce genre d'automatisation réduit le travail manuel et garantit que
-le tableau reste à jour, même quand l'équipe oublie de déplacer ses cartes.
+{{% /hint %}}
 
-Pendant ce temps, le tableau évolue jour après jour. Voici à quoi il pourrait
-ressembler en milieu de sprint :
+Suivons le parcours de l'issue #1 (modèle de données) à travers le tableau. Sara
+se l'assigne et déplace la carte de *Todo* vers *In Progress*. Elle crée une
+branche dédiée, y fait ses commits, puis ouvre une pull request lorsque son
+travail est prêt. La carte passe alors dans *In Review*&nbsp;: le code est écrit,
+mais il attend la relecture de Marco. Marco laisse des commentaires, Sara apporte
+les corrections, Marco approuve la PR. Une fois la pull request fusionnée, la
+carte passe dans *Done*. Ce va-et-vient entre le tableau et Git n'est pas une
+coïncidence&nbsp;: les deux outils reflètent le même processus vu sous des angles
+différents. Le tableau montre *où en est* chaque tâche dans le flux de
+travail&nbsp;; Git et les pull requests montrent *comment* le travail est réalisé
+techniquement. GitHub Projects permet d'ailleurs d'automatiser une partie de ce
+lien&nbsp;: on peut configurer le projet pour qu'une issue se déplace
+automatiquement vers *In Review* lorsqu'une pull request liée est ouverte, et
+vers *Done* lorsque la PR est fusionnée.
 
-<!-- ILLUSTRATION: tableau en milieu de sprint, par exemple : Todo (#3), In Progress (#2 assignée à Marco, #6 assignée à Sara), In Review (#1), Done (vide) -->
+Pendant ce temps, le reste du sprint avance en parallèle. Voici à quoi pourrait
+ressembler le tableau vers le milieu de la deuxième semaine&nbsp;:
 
-Vers la fin de la deuxième semaine, l'équipe a complété les issues #1, #2 et #6.
-L'issue #3 (page d'affichage des salles) est en cours de revue. Le tableau final
-du sprint ressemble à ceci :
+{{< image src="sprint-mid.png" alt="" title="" loading="lazy" >}}
 
-<!-- ILLUSTRATION: tableau en fin de sprint : Todo (vide), In Progress (vide), In Review (#3), Done (#1, #2, #6) -->
+Vers la fin du sprint, l'équipe a complété les issues #1, #2 et #6. L'issue #3
+(page d'affichage des salles) est en cours de revue. Le tableau final du sprint
+ressemble à ceci&nbsp;:
+
+{{< image src="sprint-fin.png" alt="" title="" loading="lazy" >}}
 
 ### La fin du sprint
 
-Le sprint se termine par deux événements distincts : la *sprint review* et la
-*rétrospective*.
+Le sprint se termine par deux cérémonies distinctes&nbsp;: la *sprint review* et
+la *rétrospective*.
 
 La sprint review est tournée vers le produit. L'équipe présente ce qui a été
-accompli pendant le sprint aux parties prenantes (dans le cas de RéservaSalle,
-ce pourrait être le responsable de l'espace de coworking, ou d'autres collègues
-intéressés par le projet). L'important est de montrer un logiciel fonctionnel,
-pas des diapositives : l'équipe fait une démonstration en direct du modèle de
-données en place, de l'API qui retourne la liste des salles, et du pipeline de
-CI qui exécute les tests automatiquement. L'issue #3 (page d'affichage) n'est
-pas encore terminée, elle est toujours en revue. C'est normal : Scrum n'exige
-pas que tout soit complété, mais que l'équipe soit transparente sur ce qui l'est
-et ce qui ne l'est pas. L'issue #3 sera reportée au sprint suivant. Les parties
-prenantes peuvent aussi profiter de cette réunion pour donner du feedback qui
-influencera les priorités du prochain sprint : peut-être que la fonctionnalité de
-réservation (#4) est plus urgente que prévu, ou qu'une nouvelle idée a émergé.
+accompli aux parties prenantes — dans le cas de RéservaSalle, le responsable de
+l'espace de coworking. L'important est de montrer un logiciel fonctionnel, pas
+des diapositives&nbsp;: l'équipe fait une démonstration en direct du modèle de
+données en place, de l'API qui retourne la liste des salles, et du pipeline de CI
+qui exécute les tests automatiquement. L'issue #3 (page d'affichage) n'est pas
+encore terminée, elle est toujours en revue. Ce n'est pas un échec, c'est une
+information&nbsp;: Scrum n'exige pas que tout soit complété, mais que l'équipe
+soit transparente sur ce qui l'est et ce qui ne l'est pas. L'issue #3 sera
+reportée au sprint suivant. Les parties prenantes peuvent aussi profiter de cette
+réunion pour donner du feedback qui influencera les priorités du prochain sprint.
 
-La vélocité de ce premier sprint est de 8 points (les issues #1, #2 et #6, à
-3 + 3 + 2 points). Ce chiffre servira de référence pour le prochain sprint
-planning : l'équipe sait maintenant qu'elle peut raisonnablement s'engager sur
-environ 8 points de travail par sprint. Au fil des sprints, cette vélocité se
-stabilisera et deviendra un outil de planification de plus en plus fiable.
-
-La rétrospective, elle, est tournée vers l'équipe et son fonctionnement. Ce
-n'est pas une réunion sur le code ou les fonctionnalités, c'est une réunion sur
-la manière de travailler ensemble. Chaque membre est invité à répondre à trois
-questions : qu'est-ce qui a bien fonctionné ? Qu'est-ce qui pourrait être
+La rétrospective, elle, est tournée vers l'équipe plutôt que vers le produit. Ce
+n'est pas une réunion sur le code ou les fonctionnalités, c'est une cérémonie
+sur la manière de travailler ensemble. Chaque membre répond à trois
+questions&nbsp;: qu'est-ce qui a bien fonctionné ? Qu'est-ce qui pourrait être
 amélioré ? Quelles actions concrètes l'équipe s'engage-t-elle à prendre pour le
 prochain sprint ? Par exemple, l'équipe pourrait constater que les revues de code
 ont pris plus de temps que prévu parce que les PR étaient trop volumineuses, et
-décider de faire des PR plus petites et plus fréquentes au prochain sprint. Ou
-que le daily standup avait tendance à dépasser les quinze minutes, et convenir
-d'un format plus strict. La rétrospective est le mécanisme par lequel Scrum
-s'améliore de sprint en sprint : sans elle, l'équipe répète les mêmes erreurs
-indéfiniment.
+décider d'en faire des plus petites au prochain sprint. La rétrospective est le
+mécanisme par lequel Scrum s'améliore de sprint en sprint&nbsp;: sans elle,
+l'équipe répète les mêmes erreurs indéfiniment.
 
-Ce premier sprint illustre un principe fondamental de Scrum : le processus
+La vélocité de ce premier sprint est de 8 points (les issues #1, #2 et #6, à
+3 + 3 + 2 points). Il reste 18 points au backlog&nbsp;: l'issue #3 reportée du
+sprint 1 (5 points), plus les issues #4 (5 points) et #5 (8 points). C'est ici
+que la **vue Roadmap** devient utile. Elle affiche les itérations sur un axe
+temporel, ce qui permet de visualiser d'un coup d'oeil comment le travail
+restant pourrait se répartir sur les prochains sprints. On peut esquisser que le
+Sprint 2 contiendra les issues #3 et #4 (10 points), et le Sprint 3 l'issue #5
+(8 points). Ce n'est pas une prédiction ferme&nbsp;: la vélocité va se raffiner
+au fil des sprints, mais c'est une première approximation utile pour communiquer
+une direction aux parties prenantes.
+
+<!-- ILLUSTRATION: vue Roadmap avec Sprint 1 terminé, Sprint 2 et Sprint 3 esquissés sur la timeline -->
+
+Ce premier sprint illustre un principe fondamental de Scrum&nbsp;: le processus
 s'auto-calibre au fil du temps. Au départ, l'équipe ne savait pas combien de
 travail elle pouvait accomplir en deux semaines. Elle a fait une estimation
 prudente, a livré 8 points, et dispose maintenant d'une donnée concrète pour
-planifier le sprint suivant. Si au sprint 2 elle complète 11 points, puis 10 au
-sprint 3, sa vélocité moyenne se stabilise et les prédictions deviennent de plus
-en plus fiables. Le même mécanisme opère pour la qualité du travail d'équipe :
-chaque rétrospective identifie un ou deux ajustements concrets, qui sont mis en
-pratique au sprint suivant, puis réévalués à la rétrospective d'après. Scrum ne
-demande pas de tout faire parfaitement dès le départ. Il demande de boucler le
-cycle, d'observer ce qui s'est passé, et d'ajuster. C'est cette boucle de
-rétroaction courte et régulière qui fait sa force, bien plus que n'importe quel
-artefact ou cérémonie pris isolément.
+planifier le sprint suivant. Le même mécanisme opère pour la qualité du travail
+d'équipe&nbsp;: chaque rétrospective identifie un ou deux ajustements concrets,
+mis en pratique au sprint suivant, puis réévalués à la rétrospective d'après.
+Scrum ne demande pas de tout faire parfaitement dès le départ. Il demande de
+boucler le cycle, d'observer ce qui s'est passé, et d'ajuster. C'est cette
+boucle de rétroaction courte et régulière qui fait sa force, bien plus que
+n'importe quel artefact ou cérémonie pris isolément.
