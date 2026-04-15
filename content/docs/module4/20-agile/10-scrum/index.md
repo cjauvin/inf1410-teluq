@@ -20,6 +20,8 @@ capture une idée profonde : le développement de produits complexes n'est pas u
 processus linéaire qu'on peut planifier de bout en bout, c'est un effort
 collectif, adaptatif, où les phases se chevauchent et où l'équipe s'auto-organise.
 
+{{< image src="rugby-scrum.jpg" alt="" title="" loading="lazy" >}}
+
 C'est dans les années 1990 que Jeff Sutherland et Ken Schwaber s'emparent de ces
 idées et les transposent au développement logiciel. Sutherland, qui travaille
 alors chez Easel Corporation, s'inspire directement de l'article de Takeuchi et
@@ -30,6 +32,8 @@ Guide*, un document volontairement court (une vingtaine de pages) qui définit l
 rôles, les événements et les artefacts de la méthode. Ce guide a été révisé
 plusieurs fois depuis, mais son esprit reste le même : fournir un cadre léger
 pour gérer la complexité, pas une recette rigide à suivre à la lettre.
+
+## Les rôles
 
 Scrum définit trois rôles. Le *Product Owner* est responsable de déterminer
 *quoi* construire : il maintient une liste ordonnée de fonctionnalités à
@@ -78,6 +82,8 @@ l'authentification, on obtiendra deux sous-systèmes avec une API entre eux. Ce
 n'est ni bien ni mal en soi, mais il faut en être conscient : quand on décide de
 la composition d'une équipe, on prend implicitement une décision architecturale.
 
+## Le sprint
+
 Le sprint est l'unité de temps fondamentale de Scrum : une période fixe,
 généralement de deux semaines, pendant laquelle l'équipe s'engage à livrer un
 incrément fonctionnel du produit. Chaque sprint commence par une séance de
@@ -90,6 +96,8 @@ me bloque? À la fin du sprint, deux événements se succèdent : la *sprint
 review*, où l'équipe présente ce qui a été accompli aux parties prenantes et
 recueille leurs commentaires, et la *rétrospective*, où l'équipe réfléchit à son
 propre fonctionnement et identifie des améliorations pour le prochain sprint.
+
+{{< image src="sprint.jpg" alt="" title="" loading="lazy" >}}
 
 Avant de passer à un exemple concret, il faut clarifier une confusion
 fréquente. Quand on pense à Scrum (ou à l'agilité en général), on visualise
@@ -260,27 +268,27 @@ Pour ceux qui souhaitent reproduire les manipulations de cette démonstration,
 voici comment créer les issues du backlog d'un seul coup :
 
 ```shell
-gh issue create -R cjauvin/reservasalle \
+$ gh issue create -R cjauvin/reservasalle \
   --title "Modèle de données pour les salles et réservations" \
   --body "En tant que développeur, je veux un modèle de données pour les salles et les réservations afin de pouvoir stocker les informations du système" \
   --label tech
-gh issue create -R cjauvin/reservasalle \
+$ gh issue create -R cjauvin/reservasalle \
   --title "API pour lister les salles disponibles" \
   --body "En tant qu'utilisateur, je veux voir les salles disponibles afin de choisir celle qui me convient" \
   --label story
-gh issue create -R cjauvin/reservasalle \
+$ gh issue create -R cjauvin/reservasalle \
   --title "Page d'affichage des salles" \
   --body "En tant qu'utilisateur, je veux une page qui affiche les salles afin de naviguer visuellement dans l'offre" \
   --label story
-gh issue create -R cjauvin/reservasalle \
+$ gh issue create -R cjauvin/reservasalle \
   --title "API de réservation d'une salle" \
   --body "En tant qu'utilisateur, je veux pouvoir réserver une salle afin de garantir ma place" \
   --label story
-gh issue create -R cjauvin/reservasalle \
+$ gh issue create -R cjauvin/reservasalle \
   --title "Authentification des utilisateurs" \
   --body "En tant qu'utilisateur, je veux m'authentifier afin que mes réservations soient associées à mon compte" \
   --label story
-gh issue create -R cjauvin/reservasalle \
+$ gh issue create -R cjauvin/reservasalle \
   --title "CI avec GitHub Actions" \
   --body "En tant que développeur, je veux un pipeline de CI afin que les tests soient exécutés automatiquement à chaque push" \
   --label tech
