@@ -259,17 +259,7 @@ l&amp;rsquo;architecture Transformer, brique de base de tous les LLM modernes �
 d&amp;rsquo;implémentation l&amp;rsquo;emporte sur la perfection →
 &lt;a href="https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/"&gt;Module 6, Le métier de développeur&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Travaux notés</title><link>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/</guid><description>&lt;h1 id="les-travaux-notés"&gt;Les travaux notés&lt;a class="anchor" href="#les-travaux-not%c3%a9s"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Étant donné qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;un cours de génie logiciel, nous avons cherché à
-faire en sorte que les travaux soient cohérents et évolutifs. Nous avons donc
-choisi un modèle de développement d&amp;rsquo;application qui comportera différents volets
-reliés aux grands sujets du cours.&lt;/p&gt;
-&lt;p&gt;Nous allons vous demander de développer une application (web) d&amp;rsquo;affaire
-commerciale et transactionnelle (possiblement style SaaS).&lt;/p&gt;
-&lt;p&gt;Dans un premier temps, il vous faudra imaginer la nature exacte de cette
-application, pour ensuite simuler une rencontre du client imaginaire, afin d&amp;rsquo;en
-extraire les spécifications et le fonctionnement exacts. Vous devrez ensuite
-produire un document de conception, en utilisant une technique de modélisation
-de votre choix, afin de tenter de penser d&amp;rsquo;avance au fonctionnement de votre
-application, avant de vous lancer dans le développement à proprement parler.&lt;/p&gt;</description></item><item><title>Serveur Discord</title><link>https://cjauvin.github.io/inf1410-teluq/docs/discord/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/discord/</guid><description>&lt;h1 id="venez-discuter-de-gl-sur-discord-"&gt;Venez discuter de GL sur Discord !&lt;a class="anchor" href="#venez-discuter-de-gl-sur-discord-"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="le-projet-fil-rouge"&gt;Le projet fil rouge&lt;a class="anchor" href="#le-projet-fil-rouge"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Ce cours est structuré autour d&amp;rsquo;un projet de développement logiciel unique, que vous ferez évoluer d&amp;rsquo;un bout à l&amp;rsquo;autre de la session. L&amp;rsquo;idée est simple : plutôt que de produire des travaux déconnectés les uns des autres, vous allez construire quelque chose de concret, en appliquant progressivement les outils et les pratiques vus dans chaque module. Ce projet est donc à la fois un fil conducteur pédagogique et une occasion de vivre, de l&amp;rsquo;intérieur, les défis réels du génie logiciel moderne. Il n&amp;rsquo;est pas attendu de vous que vous maîtrisiez ou utilisiez la totalité des techniques et des outils abordés dans le cours — l&amp;rsquo;objectif est plutôt que vous fassiez des choix éclairés, et que vous soyez capables de les justifier.&lt;/p&gt;</description></item><item><title>Serveur Discord</title><link>https://cjauvin.github.io/inf1410-teluq/docs/discord/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/discord/</guid><description>&lt;h1 id="venez-discuter-de-gl-sur-discord-"&gt;Venez discuter de GL sur Discord !&lt;a class="anchor" href="#venez-discuter-de-gl-sur-discord-"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Venez..&lt;/p&gt;
 &lt;iframe src="https://discord.com/widget?id=1448801083991396450&amp;theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"&gt;&lt;/iframe&gt;</description></item></channel></rss>
