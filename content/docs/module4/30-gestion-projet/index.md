@@ -87,6 +87,8 @@ ses concurrents comme Microsoft Teams et Discord) est devenu le centre nerveux
 des équipes de développement, le lieu où circulent les questions rapides, les
 alertes automatisées, les liens vers les pull requests.
 
+{{< image src="slack.webp" alt="" title="" loading="lazy" >}}
+
 La pandémie de 2020 a accéléré brutalement cette tendance. Du jour au lendemain,
 des millions de développeurs sont passés du bureau à leur domicile, et les
 outils de visioconférence comme Zoom (fondé en 2011 par Eric Yuan, mais devenu
@@ -103,6 +105,8 @@ de concentration que le développement logiciel exige. La communication
 propriétés inverses : elle est persistante, réfléchie, et respecte le rythme de
 chacun, mais elle est plus lente et plus sujette aux malentendus.
 
+{{< image src="zoom.png" alt="" title="" loading="lazy" >}}
+
 La transition vers le travail à distance a aussi mis en lumière ce qu'on
 perdait. Dans un bureau, une part significative de la coordination se fait de
 manière informelle : la conversation devant la machine à café (ce qu'on appelle
@@ -117,6 +121,8 @@ coffee" programmés aléatoirement entre membres de l'équipe, ou des sessions d
 pair programming qui recréent une forme de proximité. Mais ces substituts
 restent imparfaits, et la tension entre efficacité du travail à distance et
 richesse de la communication en personne n'est pas résolue.
+
+{{< image src="watercooler.webp" alt="" title="" loading="lazy" >}}
 
 Les équipes distribuées les plus efficaces ont développé des pratiques pour tirer
 le meilleur des deux modes. GitLab, une entreprise entièrement distribuée depuis
