@@ -11,7 +11,7 @@ Ce cours est structuré autour d'un projet de développement logiciel unique, qu
 
 ## Équipes
 
-Vous pouvez travailler seul ou en équipe de deux ou trois personnes. La coordination et la communication entre équipiers se font sur la plateforme Discord du cours. Si vous travaillez seul, vous devrez simuler au moins deux rôles distincts dans votre processus : celui de chef de projet et celui de développeur. Si vous travaillez en équipe, vous pouvez vous distribuer ces rôles naturellement, ou adopter toute autre organisation qui vous semblera raisonnable.
+Vous pouvez travailler seul ou en équipe de deux ou trois personnes. La coordination et la communication entre équipiers se font sur la plateforme Discord du cours (chaque équipe aura son propre canal). Si vous travaillez seul, vous devrez simuler au moins deux rôles distincts dans votre processus : celui de chef de projet et celui de développeur. Si vous travaillez en équipe, vous pouvez vous distribuer ces rôles naturellement, ou adopter toute autre organisation qui vous semblera raisonnable.
 
 ## Le projet
 

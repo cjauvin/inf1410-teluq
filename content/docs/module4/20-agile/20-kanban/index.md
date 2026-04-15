@@ -20,6 +20,8 @@ la demande réelle, pas par une planification centrale. Ce principe est au cœur
 du *Toyota Production System* (TPS), qui deviendra l'une des plus grandes
 innovations de l'histoire industrielle du XXe siècle.
 
+{{< image src="kanban-japan.jpg" alt="" title="" loading="lazy" >}}
+
 C'est en 2010 que David Anderson publie *Kanban: Successful Evolutionary Change
 for Your Technology Business*, qui formalise l'adaptation de ces idées au
 développement logiciel. Anderson ne propose pas de révolutionner la manière de
@@ -70,6 +72,8 @@ un débit optimal.
 
 <!-- ILLUSTRATION: deux tableaux Kanban côte à côte — un sans limites de WIP (cartes accumulées partout, chaos) et un avec limites (flux propre, peu de cartes par colonne) -->
 
+{{< image src="highway.jpg" alt="" title="" loading="lazy" >}}
+
 Le troisième principe est le *flux continu*. Contrairement à Scrum, Kanban ne
 découpe pas le temps en sprints. Il n'y a pas de sprint planning, pas de date de
 fin fixe, pas d'engagement sur un lot de tâches. Le travail entre dans le
@@ -77,6 +81,8 @@ système de manière continue (quand une tâche est terminée, on en tire une
 nouvelle du backlog) et en sort de manière continue. Le rythme n'est pas donné
 par un calendrier, mais par la capacité réelle de l'équipe, telle que révélée
 par les limites de WIP et le flux observable sur le tableau.
+
+{{< image src="kanban-ideas.png" alt="" title="" loading="lazy" >}}
 
 ## Mesurer le flux
 
@@ -125,6 +131,8 @@ une carte), ce qui correspond bien à l'esprit de Kanban : la limite est une
 convention d'équipe, pas une contrainte technique.
 
 <!-- ILLUSTRATION: tableau Kanban dans GitHub Projects avec les limites de WIP visibles sur les colonnes In Progress (2) et In Review (2) -->
+
+{{< image src="kanban-limits.png" alt="" title="" loading="lazy" >}}
 
 Le flux de travail quotidien ressemble à celui de Scrum, mais sans la cadence
 imposée par les sprints. L'équipe consulte le tableau chaque matin et applique
