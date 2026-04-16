@@ -1,10 +1,10 @@
 ---
-title: "L'infrastructure comme code"
+title: "L'infrastructure comme code (Terraform)"
 weight: 30
 slug: "iac"
 ---
 
-# L'infrastructure comme code
+# L'infrastructure comme code (Terraform)
 
 Jusqu'ici, nous avons traité l'infrastructure comme une donnée : le cluster
 Kubernetes existe, les serveurs tournent, le réseau fonctionne. Mais d'où vient

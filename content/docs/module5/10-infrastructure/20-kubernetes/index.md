@@ -1,10 +1,10 @@
 ---
-title: "L'orchestration"
+title: "L'orchestration (Kubernetes)"
 weight: 20
 slug: "kubernetes"
 ---
 
-# L'orchestration
+# L'orchestration (Kubernetes)
 
 Docker compose, que nous venons de voir, permet de gérer un groupe de containers
 sur une seule machine. Mais que se passe-t-il quand une application doit tourner
