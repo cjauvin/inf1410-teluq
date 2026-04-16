@@ -26,6 +26,8 @@ ressources. Docker a également popularisé le concept d'*image* comme artefact
 reproductible et distribuable, résolvant de manière élégante le fameux problème
 "ça marche sur ma machine".
 
+{{< image src="docker.jpg" alt="" title="" loading="lazy" >}}
+
 Voyons concrètement comment Docker fonctionne.
 
 ## Qu'est-ce que c'est ?

@@ -16,11 +16,13 @@ l'*orchestration*.
 
 Google a été confronté à ce problème très tôt. En interne, l'entreprise
 utilisait depuis le milieu des années 2000 un système appelé Borg pour gérer des
-millions de containers à travers ses datacenters. En 2014, Google a décidé de
+millions de containers à travers ses centre de données. En 2014, Google a décidé de
 publier une version open source des idées de Borg sous le nom de Kubernetes (du
 grec "pilote" ou "timonier", souvent abrégé K8s). Le projet a rapidement été
 adopté par l'industrie et est aujourd'hui le standard de facto pour
 l'orchestration de containers.
+
+{{< image src="k8s.png" alt="" title="" loading="lazy" >}}
 
 Les concepts fondamentaux de Kubernetes sont relativement peu nombreux, même si
 leur combinaison peut devenir complexe. Un *pod* est la plus petite unité
@@ -44,7 +46,7 @@ s'en charge). Cette convergence n'est pas un hasard : le paradigme déclaratif
 s'avère particulièrement puissant quand le système sous-jacent est complexe et
 que les chemins pour atteindre un état donné sont multiples.
 
-## Tutoriel : de docker compose à Kubernetes
+## De docker compose à Kubernetes
 
 Nous avons décrit les concepts fondamentaux de Kubernetes de manière abstraite.
 Pour les rendre concrets, nous allons transposer l'application Flask+Redis que
