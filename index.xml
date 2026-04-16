@@ -54,17 +54,7 @@ milliards de dollars témoigne de cette centralité. Aujourd&amp;rsquo;hui, GitH
 seulement un hébergeur de code : c&amp;rsquo;est le lieu où se trouvent les projets open
 source majeurs, où se discutent les décisions techniques, où se construisent les
 réputations professionnelles. Comprendre GitHub, c&amp;rsquo;est comprendre comment les
-développeurs collaborent.&lt;/p&gt;</description></item><item><title>L'infrastructure</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/infrastructure/</guid><description>&lt;h1 id="linfrastructure"&gt;L&amp;rsquo;infrastructure&lt;a class="anchor" href="#linfrastructure"&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Pour qu&amp;rsquo;un logiciel soit accessible à ses utilisateurs, il doit s&amp;rsquo;exécuter
-quelque part. Cette question, en apparence triviale, a donné lieu à l&amp;rsquo;une des
-transformations les plus profondes de l&amp;rsquo;histoire du génie logiciel. En l&amp;rsquo;espace
-de deux décennies, nous sommes passés de serveurs physiques installés dans des
-placards à des plateformes cloud capables de provisionner des milliers de
-machines virtuelles en quelques secondes. Cette évolution n&amp;rsquo;est pas seulement
-technique : elle a fondamentalement changé la manière dont on conçoit, déploie et
-opère les applications. Comprendre cette trajectoire, des machines physiques
-jusqu&amp;rsquo;aux containers et à l&amp;rsquo;orchestration, est essentiel pour saisir le contexte
-dans lequel les pratiques DevOps modernes ont émergé.&lt;/p&gt;</description></item><item><title>L'open source</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/</guid><description>&lt;h1 id="lopen-source"&gt;L&amp;rsquo;open source&lt;a class="anchor" href="#lopen-source"&gt;#&lt;/a&gt;&lt;/h1&gt;
+développeurs collaborent.&lt;/p&gt;</description></item><item><title>L'open source</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/</guid><description>&lt;h1 id="lopen-source"&gt;L&amp;rsquo;open source&lt;a class="anchor" href="#lopen-source"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Pratiquement tout le logiciel moderne repose sur de l&amp;rsquo;open source. Le noyau
 Linux fait tourner la grande majorité des serveurs web, des téléphones Android et
 des superordinateurs. Python, JavaScript, React, PostgreSQL, Docker,
@@ -76,7 +66,26 @@ ouvertes. Cette réalité est tellement omniprésente qu&amp;rsquo;on peut facil
 qu&amp;rsquo;elle n&amp;rsquo;a rien de naturel. Elle est le résultat d&amp;rsquo;un mouvement qui a émergé
 dans les années 1980, porté par des convictions idéologiques fortes, et qui a
 profondément transformé non seulement la manière dont on produit du logiciel,
-mais aussi son économie.&lt;/p&gt;</description></item><item><title>La représentation des données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/</guid><description>&lt;h1 id="la-représentation-des-données"&gt;La représentation des données&lt;a class="anchor" href="#la-repr%c3%a9sentation-des-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
+mais aussi son économie.&lt;/p&gt;</description></item><item><title>La conteneurisation</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/10-infrastructure/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/10-infrastructure/docker/</guid><description>&lt;h1 id="la-conteneurisation"&gt;La conteneurisation&lt;a class="anchor" href="#la-conteneurisation"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Parallèlement à l&amp;rsquo;essor du cloud, une autre approche de l&amp;rsquo;isolation a émergé,
+plus légère que la virtualisation classique. L&amp;rsquo;idée de base est ancienne : la
+commande &lt;code&gt;chroot&lt;/code&gt; d&amp;rsquo;Unix, disponible depuis 1979, permettait déjà de restreindre
+la vision du système de fichiers d&amp;rsquo;un processus. Au fil des années, le noyau
+Linux a développé des mécanismes d&amp;rsquo;isolation de plus en plus sophistiqués : les
+&lt;em&gt;cgroups&lt;/em&gt; (control groups, 2006), qui permettent de limiter les ressources (CPU,
+mémoire) allouées à un groupe de processus, et les &lt;em&gt;namespaces&lt;/em&gt; (2002-2013), qui
+isolent différents aspects du système (réseau, identifiants de processus, système
+de fichiers). Ces primitives existaient, mais restaient difficiles à utiliser
+directement. En 2013, Solomon Hykes et son entreprise dotCloud (qui deviendra
+Docker Inc) ont lancé Docker, un outil qui rend ces mécanismes accessibles à
+travers une interface simple et élégante. Au lieu de virtualiser une machine
+complète avec son propre noyau (comme le fait une VM), un container partage le
+noyau du système hôte tout en maintenant une isolation quasi complète de
+l&amp;rsquo;environnement applicatif. Le résultat est beaucoup plus léger qu&amp;rsquo;une VM : un
+container démarre en secondes plutôt qu&amp;rsquo;en minutes, et consomme une fraction des
+ressources. Docker a également popularisé le concept d&amp;rsquo;&lt;em&gt;image&lt;/em&gt; comme artefact
+reproductible et distribuable, résolvant de manière élégante le fameux problème
+&amp;ldquo;ça marche sur ma machine&amp;rdquo;.&lt;/p&gt;</description></item><item><title>La représentation des données</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/</guid><description>&lt;h1 id="la-représentation-des-données"&gt;La représentation des données&lt;a class="anchor" href="#la-repr%c3%a9sentation-des-donn%c3%a9es"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="données-vs-information-vs-connaissances"&gt;Données vs information vs connaissances&lt;a class="anchor" href="#donn%c3%a9es-vs-information-vs-connaissances"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;C&amp;rsquo;est une distinction classique et fondamentale en sciences de l&amp;rsquo;information.
 Martin Kleppmann consacre une partie importante de &lt;em&gt;Designing Data-Intensive
@@ -379,7 +388,14 @@ source a proposé une réponse radicale : ne pas faire payer le logiciel lui-mê
 mais les services autour. Mais l&amp;rsquo;open source n&amp;rsquo;est qu&amp;rsquo;un modèle parmi d&amp;rsquo;autres.
 Cette section retrace l&amp;rsquo;évolution des manières de vendre du logiciel, depuis les
 premières licences propriétaires jusqu&amp;rsquo;aux abonnements cloud, en passant par le
-shareware, le freemium et les marketplaces d&amp;rsquo;applications.&lt;/p&gt;</description></item><item><title>Le déploiement continu (CD)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</guid><description>&lt;h1 id="le-déploiement-continu"&gt;Le déploiement continu&lt;a class="anchor" href="#le-d%c3%a9ploiement-continu"&gt;#&lt;/a&gt;&lt;/h1&gt;
+shareware, le freemium et les marketplaces d&amp;rsquo;applications.&lt;/p&gt;</description></item><item><title>L'orchestration</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/10-infrastructure/kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/10-infrastructure/kubernetes/</guid><description>&lt;h1 id="lorchestration"&gt;L&amp;rsquo;orchestration&lt;a class="anchor" href="#lorchestration"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Docker compose, que nous venons de voir, permet de gérer un groupe de containers
+sur une seule machine. Mais que se passe-t-il quand une application doit tourner
+sur des dizaines ou des centaines de machines, avec des exigences de haute
+disponibilité ? Si un container tombe, qui le redémarre ? Si la charge augmente,
+qui décide de créer de nouvelles instances ? Comment répartir le trafic entre les
+containers disponibles ? Ces questions définissent le problème de
+l&amp;rsquo;&lt;em&gt;orchestration&lt;/em&gt;.&lt;/p&gt;</description></item><item><title>Le déploiement continu (CD)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</guid><description>&lt;h1 id="le-déploiement-continu"&gt;Le déploiement continu&lt;a class="anchor" href="#le-d%c3%a9ploiement-continu"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dans le module 2, nous avons mis en place un pipeline d&amp;rsquo;intégration continue
 (CI) : à chaque commit poussé sur GitHub, une série de vérifications
 automatiques (tests, linting, typage) s&amp;rsquo;exécutent pour détecter les problèmes le
@@ -421,7 +437,20 @@ l&amp;rsquo;équipe peut comprendre non seulement le code, mais aussi les raison
 les choix qui ont été faits ? Ces questions relèvent de la coordination au sens
 large, et les réponses ne se trouvent pas dans un framework ou un outil, mais
 dans un ensemble de pratiques que les équipes développent, souvent par essais et
-erreurs.&lt;/p&gt;</description></item><item><title>L'observabilité</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/</guid><description>&lt;h1 id="lobservabilité"&gt;L&amp;rsquo;observabilité&lt;a class="anchor" href="#lobservabilit%c3%a9"&gt;#&lt;/a&gt;&lt;/h1&gt;
+erreurs.&lt;/p&gt;</description></item><item><title>L'infrastructure comme code</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/10-infrastructure/iac/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/10-infrastructure/iac/</guid><description>&lt;h1 id="linfrastructure-comme-code"&gt;L&amp;rsquo;infrastructure comme code&lt;a class="anchor" href="#linfrastructure-comme-code"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Jusqu&amp;rsquo;ici, nous avons traité l&amp;rsquo;infrastructure comme une donnée : le cluster
+Kubernetes existe, les serveurs tournent, le réseau fonctionne. Mais d&amp;rsquo;où vient
+cette infrastructure ? Concrètement, l&amp;rsquo;infrastructure d&amp;rsquo;un système logiciel,
+c&amp;rsquo;est tout ce qui doit exister &lt;em&gt;avant&lt;/em&gt; que le code puisse s&amp;rsquo;exécuter : les
+serveurs (physiques ou virtuels), les réseaux (sous-réseaux, règles de
+pare-feu, load balancers), le stockage (disques, espaces de stockage cloud),
+les bases de données, les certificats SSL, les entrées DNS. Pendant longtemps,
+cette infrastructure était créée et configurée manuellement : un administrateur
+se connectait à une console cloud pour créer un serveur, puis en SSH pour
+installer des paquets et modifier des fichiers de configuration. Le résultat
+était ce qu&amp;rsquo;on appelle un &lt;em&gt;snowflake server&lt;/em&gt; : une machine unique, configurée à
+la main au fil du temps, dont personne ne sait exactement reproduire l&amp;rsquo;état. Si
+elle tombe en panne, la reconstruire à l&amp;rsquo;identique relève de l&amp;rsquo;archéologie.&lt;/p&gt;</description></item><item><title>L'observabilité</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/</guid><description>&lt;h1 id="lobservabilité"&gt;L&amp;rsquo;observabilité&lt;a class="anchor" href="#lobservabilit%c3%a9"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dans les sections précédentes, nous avons vu où déployer un logiciel et comment
 l&amp;rsquo;y amener de manière automatisée. Mais une fois le déploiement terminé, une
 question fondamentale se pose : est-ce que ça fonctionne ? Non pas au sens des
