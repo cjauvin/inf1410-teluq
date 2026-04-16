@@ -64,7 +64,7 @@ manière beaucoup plus fluide que la ligne de commande. Nous aurons aussi besoin
 de `kubectl`, l'outil CLI standard de Kubernetes, pour appliquer nos fichiers
 de configuration.
 
-### Préparation
+## Préparation
 
 Avant de commencer, adaptons légèrement notre application Flask. Kubernetes
 attribue automatiquement un nom unique à chaque pod, accessible via la variable
@@ -74,6 +74,8 @@ le comportement du cluster quand plusieurs instances de notre application
 tournent en parallèle :
 
 ```python
+# main.py
+
 from flask import Flask
 import redis
 import os
@@ -109,6 +111,8 @@ Créons maintenant le cluster k3d :
 $ k3d cluster create demo -p "8080:80@loadbalancer"
 ```
 
+Une fois le cluster créé on peut constater qu'il fonctionne :
+
 ```shell
 $ kubectl cluster-info
 Kubernetes control plane is running at https://0.0.0.0:6443
@@ -122,7 +126,7 @@ C'est l'équivalent de la directive `ports` dans notre fichier docker compose,
 mais avec une couche supplémentaire : le load balancer, qui sera capable de
 répartir le trafic entre plusieurs instances de notre application.
 
-### Le deployment Redis
+## Le deployment Redis
 
 Commençons par déployer Redis. Dans Kubernetes, chaque composant de notre
 application est décrit par un ou plusieurs fichiers YAML qu'on appelle des
@@ -183,7 +187,7 @@ utilise dans `redis.Redis("redis")`. Le service joue le même rôle que le rése
 interne créé automatiquement par docker compose, mais de manière explicite et
 configurable.
 
-### Le deployment Flask
+## Le deployment Flask
 
 Notre application Flask nécessite une image Docker personnalisée. Avec k3d, la
 manière la plus simple de rendre une image locale disponible au cluster est de
@@ -277,7 +281,7 @@ spec:
                   number: 5000
 ```
 
-### Déploiement et vérification
+## Déploiement et vérification
 
 On peut maintenant déployer l'ensemble de notre application avec
 `kubectl apply` :
@@ -301,7 +305,48 @@ constate que l'état actuel correspond déjà à l'état désiré et ne fait rie
 C'est ce qu'on appelle l'*idempotence*, une propriété fondamentale qui rend les
 déploiements reproductibles et sûrs.
 
-On peut vérifier que l'application fonctionne :
+Avant de tester l'application, vérifions que les pods sont bien en état
+`Running` avec `kubectl get pods`. Si un pod reste bloqué en
+`ContainerCreating`, la commande `kubectl describe` permet d'inspecter ses
+événements et d'identifier le problème&nbsp;:
+
+```shell
+$ kubectl get pods
+NAME                     READY   STATUS    RESTARTS   AGE
+redis-6d5dcfd66b-8sk59   1/1     Running   0          46s
+web-79d54d9df8-9xjs4     1/1     Running   0          45s
+
+$ kubectl describe pod -l app=web
+```
+
+{{% hint warning %}}
+Si les événements de `kubectl describe` indiquent une erreur du type
+`failed to resolve reference "docker.io/rancher/mirrored-pause:..."`, votre
+démon Docker utilise un serveur DNS qui ne répond pas aux requêtes provenant
+des containers. La solution est de configurer Docker pour utiliser un serveur
+DNS public.
+
+Avec Colima, ajoutez la ligne suivante dans `~/.colima/default/colima.yaml`,
+dans la section `network`&nbsp;:
+
+```yaml
+dns: [8.8.8.8, 8.8.4.4]
+```
+
+Avec Docker Desktop, allez dans **Settings > Docker Engine** et ajoutez la
+clé `"dns"` à la configuration JSON&nbsp;:
+
+```json
+{
+  "dns": ["8.8.8.8", "8.8.4.4"]
+}
+```
+
+Dans les deux cas, redémarrez Docker (`colima restart` ou **Apply & Restart**
+dans Docker Desktop), puis supprimez et recréez le cluster k3d.
+{{% /hint %}}
+
+On peut maintenant vérifier que l'application fonctionne&nbsp;:
 
 ```shell
 $ curl localhost:8080/set/hello
@@ -316,7 +361,7 @@ La différence visible est le préfixe entre crochets : `web-79d54d9df8-fsq6j`
 est le nom unique que Kubernetes a attribué au pod. Ce nom deviendra intéressant
 dans un instant, quand nous aurons plusieurs instances.
 
-### Résilience : le moment Kubernetes
+## Résilience : le moment Kubernetes
 
 Jusqu'ici, notre déploiement Kubernetes produit le même résultat que docker
 compose. La différence fondamentale apparait quand quelque chose tourne mal.
@@ -332,14 +377,17 @@ $ k9s
 ```
 
 k9s est une interface textuelle interactive (TUI) qui permet de naviguer dans
-les ressources du cluster en temps réel. Par défaut, la vue affiche les pods.
-On y voit nos deux pods (`redis` et `web`) en état `Running`. On peut naviguer
-entre différentes vues avec les raccourcis clavier : `:deploy` pour voir les
-deployments, `:svc` pour les services, `:ingress` pour les ingress. La touche
-`d` affiche les détails d'une ressource, `l` ses logs, et `Escape` permet de
-revenir en arrière.
+les ressources du cluster en temps réel. Les commandes s'entrent en tapant `:`
+suivi du nom du type de ressource — k9s ouvre alors un prompt de commande en
+bas de l'écran. Par exemple, `:pod` affiche les pods, `:deploy` les
+deployments, `:svc` les services, `:ingress` les ingress. La touche `d`
+affiche les détails d'une ressource, `l` ses logs, et `Escape` permet de
+revenir en arrière. Commençons par naviguer vers la vue des pods avec `:pod`. Par défaut, k9s
+affiche les pods de tous les namespaces — pour ne voir que ceux du namespace
+`default` (les nôtres), on appuie sur `1`. On y voit alors nos deux pods
+(`redis` et `web`) en état `Running`.
 
-<!-- ILLUSTRATION: capture d'écran de k9s montrant les pods redis et web en état Running -->
+{{< image src="k9s-pods.png" alt="" title="" loading="lazy" >}}
 
 Sélectionnons le pod `web` et appuyons sur `Ctrl-k` pour le supprimer (*kill*).
 Le pod disparait... et réapparait presque instantanément, avec un nouveau nom.
@@ -351,7 +399,7 @@ pod défaillant, il le remplace. C'est le même principe que l'*immutable
 infrastructure* que nous avons évoqué plus haut : plutôt que de corriger, on
 reconstruit.
 
-### Scaling
+## Scaling
 
 L'autre avantage fondamental de Kubernetes est la facilité avec laquelle on
 peut ajuster le nombre d'instances d'un service. Dans k9s, naviguons vers la
@@ -363,6 +411,8 @@ On peut aussi le faire en ligne de commande :
 ```shell
 $ kubectl scale deployment web --replicas=3
 ```
+
+{{< image src="k9s-3-web-pods.png" alt="" title="" loading="lazy" >}}
 
 En revenant à la vue des pods (`:pod` dans k9s), on voit maintenant trois pods
 `web` en état `Running`, chacun avec un nom unique. Notre service et notre
@@ -380,13 +430,14 @@ $ curl -s localhost:8080/get
 [web-79d54d9df8-k9n4r] Your stored value is b'hello'
 ```
 
-Le nom du pod change entre les requêtes : le load balancer (Traefik) répartit
-le trafic entre nos trois instances. Chacune accède au même service Redis, donc
-les données restent cohérentes. C'est exactement le type de *scaling horizontal*
-que les architectures cloud-native sont conçues pour faciliter : plutôt que de
-donner plus de ressources à une seule machine (scaling vertical), on ajoute des
-instances identiques derrière un load balancer. Et grâce au modèle déclaratif,
-cette opération est triviale : un seul chiffre à changer.
+On constate que le nom du pod change entre les requêtes : le load balancer
+(Traefik) répartit le trafic entre nos trois instances. Chacune accède au même
+service Redis, donc les données restent cohérentes. C'est exactement le type de
+*scaling horizontal* que les architectures cloud-native sont conçues pour
+faciliter : plutôt que de donner plus de ressources à une seule machine (scaling
+vertical), on ajoute des instances identiques derrière un load balancer. Et
+grâce au modèle déclaratif, cette opération est triviale : un seul chiffre à
+changer.
 
 Ce tutoriel ne fait qu'effleurer les capacités de Kubernetes. Nous avons
 travaillé sur un cluster à un seul *node* (une seule machine), ce qui suffit
@@ -404,3 +455,10 @@ en fonction de la charge. Mais l'essentiel est là : un modèle déclaratif où
 l'on décrit l'état souhaité, et un système qui converge en permanence vers cet
 état. C'est cette philosophie, plus que les détails techniques, qui fait de
 Kubernetes la plateforme dominante pour l'orchestration de containers.
+
+Une fois l'exploration terminée, on peut détruire le cluster pour libérer les
+ressources :
+
+```shell
+$ k3d cluster delete demo
+```
