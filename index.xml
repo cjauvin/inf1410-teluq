@@ -395,9 +395,9 @@ sur des dizaines ou des centaines de machines, avec des exigences de haute
 disponibilité ? Si un container tombe, qui le redémarre ? Si la charge augmente,
 qui décide de créer de nouvelles instances ? Comment répartir le trafic entre les
 containers disponibles ? Ces questions définissent le problème de
-l&amp;rsquo;&lt;em&gt;orchestration&lt;/em&gt;.&lt;/p&gt;</description></item><item><title>Le déploiement continu (CD)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</guid><description>&lt;h1 id="le-déploiement-continu"&gt;Le déploiement continu&lt;a class="anchor" href="#le-d%c3%a9ploiement-continu"&gt;#&lt;/a&gt;&lt;/h1&gt;
+l&amp;rsquo;&lt;em&gt;orchestration&lt;/em&gt;.&lt;/p&gt;</description></item><item><title>Le déploiement continu (CD)</title><link>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/</guid><description>&lt;h1 id="le-déploiement-continu-cd"&gt;Le déploiement continu (CD)&lt;a class="anchor" href="#le-d%c3%a9ploiement-continu-cd"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Dans le module 2, nous avons mis en place un pipeline d&amp;rsquo;intégration continue
-(CI) : à chaque commit poussé sur GitHub, une série de vérifications
+(CI). À chaque commit poussé sur GitHub, une série de vérifications
 automatiques (tests, linting, typage) s&amp;rsquo;exécutent pour détecter les problèmes le
 plus tôt possible. Mais la CI s&amp;rsquo;arrête à la vérification. Elle répond à la
 question &amp;ldquo;est-ce que ce code est correct ?&amp;rdquo;, pas à la question &amp;ldquo;comment est-ce
