@@ -25,6 +25,8 @@ monde. La question centrale de cette section n'est donc pas "comment éviter
 toute panne" — c'est impossible — mais plutôt : comment s'organiser pour
 détecter vite, réagir bien, et surtout apprendre de chaque incident ?
 
+{{< image src="accident.jpg" alt="" title="" loading="lazy" >}}
+
 Cette philosophie — accepter la faillibilité et s'organiser en conséquence — a
 trouvé sa formalisation la plus influente chez Google, sous le nom de *Site
 Reliability Engineering* (SRE). Le terme a été inventé par Ben Treynor Sloss,
@@ -36,7 +38,7 @@ problèmes de code ? Un SRE écrit des outils d'automatisation, des systèmes de
 monitoring, des scripts de déploiement — il traite la fiabilité comme une
 fonctionnalité du système, pas comme une responsabilité extérieure. Google a
 formalisé cette approche dans le livre *Site Reliability Engineering* (2016),
-disponible gratuitement en ligne, qui est devenu une référence incontournable.
+[disponible gratuitement en ligne](https://sre.google/books/), qui est devenu une référence incontournable.
 Le SRE n'est pas en opposition avec DevOps : c'est plutôt une implémentation
 concrète et opiniâtrée de ses principes. Là où DevOps est une philosophie
 (abattre le mur entre dev et ops), le SRE est un ensemble de pratiques

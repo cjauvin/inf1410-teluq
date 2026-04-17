@@ -32,6 +32,8 @@ masse. L'incident a mis en lumière l'importance du principe du moindre privilè
 et de la surveillance des accès internes, des aspects de la sécurité qui ne se
 règlent pas avec un pare-feu.
 
+{{< image src="hacker.jpg" alt="" title="" loading="lazy" >}}
+
 Ces deux incidents illustrent une leçon que l'industrie a mis du temps à
 intégrer : la sécurité ne peut pas être une couche ajoutée après coup. C'est
 l'idée du *shift left* en sécurité, une expression empruntée au mouvement
@@ -105,6 +107,13 @@ introduire accidentellement. C'est un excellent exemple d'un principe récurrent
 en sécurité : les bons outils et les bonnes abstractions protègent le
 développeur de lui-même.
 
+{{< image src="xkcd.png" alt="" title="" loading="lazy" >}}
+
+Dans la [documentation de la librairie psycopg2](https://www.psycopg.org/docs/usage.html#the-problem-with-the-query-parameters), pour Python, on trouve d'ailleurs
+cette mise en garde assez claire :
+
+{{< image src="gunpoint.png" alt="" title="" loading="lazy" >}}
+
 ## Cross-Site Scripting (XSS)
 
 Le cross-site scripting, ou XSS, est une vulnérabilité qui exploite la confiance
@@ -133,6 +142,8 @@ le code malicieux fait un aller-retour via le serveur dans la réponse HTTP. Il
 existe aussi le XSS « stocké » (*stored*), plus dangereux, où le code malicieux
 est sauvegardé dans la base de données (par exemple dans un commentaire de
 forum) et exécuté à chaque fois qu'un utilisateur consulte la page.
+
+{{< image src="xss.png" alt="" title="" loading="lazy" >}}
 
 La défense contre le XSS repose sur un principe fondamental :
 l'**échappement** (*escaping*) des données utilisateur avant de les insérer
@@ -197,7 +208,16 @@ qui se soumet automatiquement :
 
 Si la victime visite cette page pendant qu'elle est connectée à sa banque, le
 navigateur envoie la requête de transfert avec ses cookies de session valides.
-Du point de vue du serveur, la requête est parfaitement légitime. La défense
+Du point de vue du serveur, la requête est parfaitement légitime. Il est
+important de noter que le cookie n'est pas envoyé à `evil.com` : il est envoyé
+à `banque.com`, qui est la destination du formulaire. Le navigateur respecte
+la politique des cookies par domaine, et attache automatiquement les cookies de
+`banque.com` à toute requête qui lui est destinée, quelle que soit la page qui
+a déclenché cette requête. C'est ce qui distingue le CSRF du XSS : dans une
+attaque XSS, un script malicieux s'exécute dans le contexte de `banque.com` et
+peut lire `document.cookie` pour l'envoyer explicitement à `evil.com`. Dans le
+CSRF, `evil.com` n'a jamais besoin de lire le cookie, il lui suffit d'amener le
+navigateur à faire une requête vers `banque.com`. La défense
 standard est le **jeton CSRF** (*CSRF token*). Le principe : le serveur génère
 un jeton aléatoire unique pour chaque session et l'inclut comme champ caché
 dans le HTML du formulaire. À la soumission, le serveur vérifie que le jeton
@@ -241,6 +261,8 @@ provient du formulaire invisible sur `evil.com`, elle n'inclura pas ce jeton, et
 le serveur la rejettera avec une erreur 400. Encore une fois, le même schéma se
 répète : la protection est intégrée dans le framework, et le développeur en
 bénéficie sans effort supplémentaire à condition d'utiliser les bons outils.
+
+{{< image src="csrf.png" alt="" title="" loading="lazy" >}}
 
 ## Au-delà du code applicatif
 
