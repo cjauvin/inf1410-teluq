@@ -4,10 +4,10 @@ weight: 20
 slug: "deploiement"
 ---
 
-# Le déploiement continu
+# Le déploiement continu (CD)
 
 Dans le module 2, nous avons mis en place un pipeline d'intégration continue
-(CI) : à chaque commit poussé sur GitHub, une série de vérifications
+(CI). À chaque commit poussé sur GitHub, une série de vérifications
 automatiques (tests, linting, typage) s'exécutent pour détecter les problèmes le
 plus tôt possible. Mais la CI s'arrête à la vérification. Elle répond à la
 question "est-ce que ce code est correct ?", pas à la question "comment est-ce
@@ -19,11 +19,11 @@ d'organisations, il avait lieu une fois par mois, voire une fois par trimestre,
 selon un calendrier rigide. Il impliquait des procédures manuelles, des listes
 de vérification sur papier, et souvent une fenêtre de maintenance nocturne
 pendant laquelle l'application était indisponible. Les déploiements étaient
-stressants précisément parce qu'ils étaient rares : chaque release accumulait des
+stressants précisément parce qu'ils étaient rares. Chaque release accumulait des
 semaines de changements, ce qui rendait le diagnostic des problèmes difficile
 quand quelque chose tournait mal. Le livre *Continuous Delivery* de Jez Humble et
 David Farley (2010) a proposé une inversion radicale de cette logique. Leur
-argument central : si les déploiements sont douloureux, la solution n'est pas de
+argument central est que si les déploiements sont douloureux, la solution n'est pas de
 les faire moins souvent, mais *plus souvent*. Un déploiement qui contient un seul
 changement est facile à comprendre, facile à tester, et facile à annuler si
 quelque chose ne va pas. La clé est l'automatisation complète du chemin entre le
@@ -36,7 +36,7 @@ confusion. Le sigle "CD" désigne en fait deux pratiques distinctes. Le
 un état déployable : chaque commit qui passe le pipeline de vérification produit
 un artefact prêt à être mis en production, mais le déploiement lui-même est
 déclenché manuellement, par un humain qui appuie sur un bouton. Le *continuous
-deployment* (déploiement continu) va un cran plus loin : chaque commit qui passe
+deployment* (déploiement continu) va un cran plus loin. Chaque commit qui passe
 les vérifications est automatiquement déployé en production, sans intervention
 humaine. La différence est subtile mais importante. En continuous delivery, le
 dernier rempart est une décision humaine ("on déploie maintenant"). En continuous
@@ -110,13 +110,13 @@ Le job `tests` devrait être familier : c'est essentiellement le même workflow 
 celui du module 2, avec les mêmes commandes (`uv sync` pour installer les
 dépendances, `uv run pytest` pour exécuter les tests). La nouveauté est le job
 `deploy`, qui enchaîne trois commandes que nous connaissons déjà de la section
-précédente : `docker build` pour construire l'image de notre application,
+précédente. `docker build` construit l'image de notre application,
 `docker push` pour la pousser vers un registre d'images (l'équivalent distant de
 ce que faisait `k3d image import` dans notre tutoriel local), et `kubectl set
 image` pour dire à Kubernetes d'utiliser cette nouvelle version.
 
 Plusieurs éléments nouveaux méritent qu'on s'y attarde. D'abord, la directive
-`needs: tests` sur le job `deploy` crée une dépendance explicite : le
+`needs: tests` sur le job `deploy` crée une dépendance explicite. Le
 déploiement ne s'exécute que si les tests ont réussi. C'est le mécanisme
 fondamental qui connecte la CI au CD dans un même workflow. Sans cette directive,
 les deux jobs s'exécuteraient en parallèle, ce qui n'aurait aucun sens (on ne
@@ -132,7 +132,7 @@ continuous delivery (avec approbation humaine) plutôt qu'en continuous deployme
 droit de déployer vers un environment donné.
 
 La syntaxe `${{ secrets.REGISTRY_PASSWORD }}` fait référence aux *secrets*
-GitHub : des variables chiffrées, configurées dans les paramètres du dépôt, qui
+GitHub. Ce sont des variables chiffrées, configurées dans les paramètres du dépôt, qui
 ne sont jamais visibles dans les logs ni dans le code source. C'est le mécanisme
 qui permet au pipeline d'accéder à des informations sensibles (mots de passe,
 clés d'API, certificats) sans les exposer. Ce principe rejoint directement le
@@ -144,7 +144,7 @@ En l'utilisant comme tag de l'image Docker (`flask-app:abc123def...`), on crée
 un lien direct et traçable entre un commit précis dans git et l'image qui tourne
 en production. Si quelque chose ne va pas après un déploiement, on peut
 immédiatement identifier quel commit est en cause. C'est une pratique
-fondamentale du CD : chaque artefact déployé doit être traçable jusqu'à son
+fondamentale du CD. Chaque artefact déployé doit être traçable jusqu'à son
 code source.
 
 ## Stratégies de déploiement
@@ -152,7 +152,7 @@ code source.
 Avoir un pipeline automatisé, c'est bien. Mais *comment* le déploiement
 lui-même se déroule-t-il ? Quand on met à jour une application qui est en train
 de servir des utilisateurs, on ne peut pas simplement arrêter l'ancienne version
-et démarrer la nouvelle : pendant la transition, les utilisateurs verraient des
+et démarrer la nouvelle, car pendant la transition, les utilisateurs verraient des
 erreurs. Et si la nouvelle version contient un bug, on voudrait pouvoir revenir
 en arrière rapidement, sans que tous les utilisateurs aient été affectés.
 Plusieurs stratégies existent pour résoudre ce problème, chacune avec ses
@@ -177,7 +177,7 @@ deployment. La commande `kubectl set image` de notre pipeline CI/CD déclenche u
 rolling update : Kubernetes crée un nouveau pod avec la nouvelle image, attend
 qu'il soit prêt, puis termine un ancien pod, et répète jusqu'à ce que toutes les
 instances soient à jour. On peut contrôler la vitesse de cette transition avec
-deux paramètres : `maxUnavailable` (combien d'instances peuvent être
+deux paramètres, `maxUnavailable` (combien d'instances peuvent être
 indisponibles simultanément) et `maxSurge` (combien d'instances supplémentaires
 peuvent être créées temporairement). Le rolling update est la stratégie par
 défaut parce qu'elle est simple et ne nécessite pas de ressources
@@ -254,7 +254,7 @@ $ kubectl set image deployment/web web=flask-app:v2
 Dans le terminal où tourne notre boucle, on voit progressivement les réponses
 changer :
 
-```
+```shell
 404 Not Found
 404 Not Found
 [web-6f8b9d4c7-x2k9m] v2
@@ -278,7 +278,7 @@ en `Running`.
 ### Blue-green deployment
 
 Le *blue-green deployment* est une stratégie qui élimine complètement la période
-de coexistence entre les deux versions. Le principe : on maintient deux
+de coexistence entre les deux versions. Le principe est de maintenir deux
 environnements de production identiques, appelés par convention "blue" et
 "green". À tout moment, un seul des deux environnements reçoit le trafic réel
 (disons blue). Pour déployer une nouvelle version, on la déploie sur
@@ -310,9 +310,11 @@ des canaris que les mineurs emportaient dans les mines de charbon : si le canari
 mourait, c'était le signe que l'air était toxique, et les mineurs rebroussaient
 chemin avant d'être affectés eux-mêmes.
 
+{{< image src="canary.webp" alt="" title="" loading="lazy" >}}
+
 <!-- ILLUSTRATION: schéma canary avec 1 instance v2 parmi 9 instances v1, avec une flèche montrant l'augmentation progressive -->
 
-Concrètement, un canary deployment fonctionne ainsi : on déploie la nouvelle
+Concrètement, un canary deployment se déroule de la façon suivante. On déploie la nouvelle
 version sur une ou quelques instances, le load balancer y dirige une fraction du
 trafic, et on surveille attentivement les métriques (taux d'erreurs, latence,
 utilisation mémoire). Si tout va bien, on augmente progressivement la proportion
@@ -324,9 +326,9 @@ utilisateurs qui ont été routés vers le canary sont affectés.
 Le canary est particulièrement utile pour les changements qui sont difficiles à
 tester complètement en pré-production. Les tests automatisés et les
 environnements de staging peuvent attraper beaucoup de bugs, mais certains
-problèmes n'apparaissent qu'avec du vrai trafic, à vraie échelle : des
-problèmes de performance sous charge, des cas limites dans les données réelles,
-des interactions avec d'autres services en production. Le canary permet
+problèmes n'apparaissent qu'avec du vrai trafic, à vraie échelle, comme des
+problèmes de performance sous charge, des cas limites dans les données réelles
+ou des interactions avec d'autres services en production. Le canary permet
 d'exposer la nouvelle version à ces conditions réelles tout en limitant le
 risque. Netflix, avec ses centaines de millions d'utilisateurs, a été un
 pionnier de cette approche : il serait impensable d'exposer tous les
@@ -335,7 +337,7 @@ utilisateurs simultanément à une version non testée en production.
 Ces trois stratégies ne sont pas mutuellement exclusives. On peut combiner un
 canary avec un blue-green : déployer la nouvelle version dans l'environnement
 inactif, y diriger une fraction du trafic pour validation, puis basculer
-complètement. Le choix dépend du contexte : le rolling update convient à la
+complètement. Le choix dépend du contexte. Le rolling update convient à la
 plupart des cas, le blue-green est préférable quand on ne peut pas tolérer la
 coexistence de versions, et le canary est indiqué quand le risque d'un
 déploiement est élevé et qu'on veut le mitiger progressivement.
@@ -343,9 +345,9 @@ déploiement est élevé et qu'on veut le mitiger progressivement.
 ## Feature flags
 
 Les stratégies de déploiement que nous venons de voir opèrent au niveau de
-l'infrastructure : on contrôle *quelles instances* reçoivent le trafic. Les
+l'infrastructure, en contrôlant *quelles instances* reçoivent le trafic. Les
 *feature flags* (aussi appelés *feature toggles*) abordent le problème sous un
-angle différent : on contrôle *quel code s'exécute* à l'intérieur d'une même
+angle différent, en contrôlant *quel code s'exécute* à l'intérieur d'une même
 version déployée. L'idée est de découpler le déploiement du code et l'activation
 d'une fonctionnalité. On peut déployer du code en production sans que les
 utilisateurs en voient les effets, puis l'activer (ou le désactiver) à volonté,
@@ -387,10 +389,10 @@ que les utilisateurs en voient les résultats.
 
 Au-delà du simple `if` avec une variable d'environnement, des plateformes
 spécialisées comme LaunchDarkly, Unleash ou Flagsmith permettent de gérer les
-feature flags de manière plus sophistiquée : activation par pourcentage
-d'utilisateurs (comme un canary, mais au niveau applicatif), ciblage par
+feature flags de manière plus sophistiquée, notamment l'activation par pourcentage
+d'utilisateurs (comme un canary, mais au niveau applicatif), le ciblage par
 attributs (activer la fonctionnalité seulement pour les utilisateurs d'un
-certain pays, ou les membres d'une équipe beta), et désactivation instantanée
+certain pays, ou les membres d'une équipe beta) et la désactivation instantanée
 (*kill switch*) en cas de problème. Ces outils offrent une interface web qui
 permet aux équipes produit, et pas seulement aux développeurs, de contrôler
 quelles fonctionnalités sont visibles.
@@ -410,7 +412,7 @@ ne modifie pas ce qui est en production, on le remplace. Quand Kubernetes fait
 un rolling update, il ne met pas à jour le code à l'intérieur d'un pod existant :
 il crée un nouveau pod et détruit l'ancien. Quand on fait un blue-green
 deployment, on ne modifie pas l'environnement actif : on en prépare un nouveau
-et on bascule. Cette philosophie porte un nom : l'*immutable infrastructure*
+et on bascule. Cette philosophie porte un nom, l'*immutable infrastructure*
 (infrastructure immuable).
 
 Le principe est simple : une fois qu'un artefact est construit (une image
