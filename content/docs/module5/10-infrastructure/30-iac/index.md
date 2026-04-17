@@ -6,31 +6,31 @@ slug: "iac"
 
 # L'infrastructure comme code (Terraform)
 
-Jusqu'ici, nous avons traité l'infrastructure comme une donnée : le cluster
+Jusqu'ici, nous avons traité l'infrastructure comme une donnée acquise. Le cluster
 Kubernetes existe, les serveurs tournent, le réseau fonctionne. Mais d'où vient
-cette infrastructure ? Concrètement, l'infrastructure d'un système logiciel,
-c'est tout ce qui doit exister *avant* que le code puisse s'exécuter : les
-serveurs (physiques ou virtuels), les réseaux (sous-réseaux, règles de
+cette infrastructure ? Concrètement, l'infrastructure d'un système logiciel
+comprend tout ce qui doit exister *avant* que le code puisse s'exécuter. On y
+trouve les serveurs (physiques ou virtuels), les réseaux (sous-réseaux, règles de
 pare-feu, load balancers), le stockage (disques, espaces de stockage cloud),
-les bases de données, les certificats SSL, les entrées DNS. Pendant longtemps,
-cette infrastructure était créée et configurée manuellement : un administrateur
+les bases de données, les certificats SSL et les entrées DNS. Pendant longtemps,
+cette infrastructure était créée et configurée manuellement. Un administrateur
 se connectait à une console cloud pour créer un serveur, puis en SSH pour
 installer des paquets et modifier des fichiers de configuration. Le résultat
 était ce qu'on appelle un *snowflake server* : une machine unique, configurée à
 la main au fil du temps, dont personne ne sait exactement reproduire l'état. Si
 elle tombe en panne, la reconstruire à l'identique relève de l'archéologie.
 
-L'*infrastructure as code* (IaC) est la réponse à ce problème : décrire toute
-l'infrastructure dans des fichiers de configuration versionnés, et laisser un
+L'*infrastructure as code* (IaC) répond à ce problème en décrivant toute
+l'infrastructure dans des fichiers de configuration versionnés, et en laissant un
 outil se charger de créer ou de modifier les ressources pour correspondre à
-cette description. Le paradigme devrait nous être familier à ce stade du cours :
-c'est exactement le modèle déclaratif que nous avons rencontré dans SQL
+cette description. Le paradigme devrait nous être familier à ce stade du cours.
+C'est exactement le modèle déclaratif que nous avons rencontré dans SQL
 (décrire les données souhaitées, pas comment les chercher), dans les fichiers
 YAML de Kubernetes (décrire l'état souhaité du cluster, pas les étapes pour y
 arriver), et même dans le Dockerfile (décrire l'image souhaitée, pas comment la
-construire pas à pas). À chaque fois, le même patron se répète : on décrit
+construire pas à pas). À chaque fois, le même patron se répète. On décrit
 *quoi*, pas *comment*, et un moteur se charge de la convergence. Et à chaque
-fois, la même propriété en découle : l'idempotence. On peut réappliquer la même
+fois, la même propriété en découle, l'idempotence. On peut réappliquer la même
 description autant de fois qu'on veut, et si l'état réel correspond déjà à
 l'état souhaité, rien ne se passe.
 
@@ -61,7 +61,7 @@ commande `terraform apply` effectue ces changements. Si on relance
 réel correspond déjà à l'état souhaité. Pour rendre cette comparaison possible,
 Terraform maintient un fichier d'*état* (*state*) qui enregistre la
 correspondance entre les ressources décrites dans le code et les ressources
-réelles chez le fournisseur cloud. Ce fichier d'état est essentiel : sans lui,
+réelles chez le fournisseur cloud. Ce fichier d'état est essentiel, car sans lui,
 Terraform ne saurait pas si le serveur `web` existe déjà ou s'il doit être
 créé.
 
@@ -101,8 +101,8 @@ de la machine, et Kubernetes *est* le provisioning de l'application.
 
 Le mot "code" dans "infrastructure as code" n'est pas anodin. Puisque
 l'infrastructure est décrite dans des fichiers texte, elle bénéficie de tous
-les outils que nous avons étudiés dans ce cours : versioning avec git, revue
-par les pairs via pull requests, tests automatisés dans un pipeline CI. On peut
+les outils que nous avons étudiés dans ce cours, notamment le versioning avec git, la revue
+par les pairs via pull requests et les tests automatisés dans un pipeline CI. On peut
 voir l'historique complet des changements d'infrastructure, revenir à un état
 antérieur, et reproduire un environnement identique à partir de zéro. C'est la
 même idée que le Dockerfile qui rend un environnement de développement
