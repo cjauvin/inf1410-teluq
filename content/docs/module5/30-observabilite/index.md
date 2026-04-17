@@ -41,6 +41,8 @@ utilisateur signale que "c'est lent depuis ce matin", un bon système
 d'observabilité permet de creuser la question en temps réel, en corrélant des
 signaux de différentes sources, sans avoir à déployer de nouvelles sondes.
 
+{{< image src="kalman.webp" alt="" title="" loading="lazy" >}}
+
 Cette capacité à comprendre un système en production correspond directement à la
 deuxième voie de DevOps identifiée par Gene Kim : celle du *feedback*. La
 première voie (le *flow*) accélère le mouvement du code vers la production,
@@ -149,7 +151,7 @@ passage au **log structuré**.
 L'idée est simple : au lieu d'émettre une ligne de texte formatée pour un
 humain, on émet un objet JSON contenant des champs nommés. Plutôt que :
 
-```
+```shell
 2025-03-15 14:23:01 INFO Promo PRINTEMPS20 appliquée, rabais de 20%
 ```
 
@@ -189,6 +191,8 @@ secondes un événement spécifique parmi des millions de lignes de logs.
 Aujourd'hui, des alternatives commerciales et open source existent (Datadog,
 Grafana Loki, Splunk), mais le principe reste le même : les logs sont collectés,
 indexés et rendus cherchables depuis une interface centralisée.
+
+{{< image src="elk.png" alt="" title="" loading="lazy" >}}
 
 Cette idée de centralisation rejoint directement le **facteur XI** de la
 Twelve-Factor App : *"Logs — Treat logs as event streams"*. Le principe est que
@@ -335,6 +339,8 @@ de facto dans l'écosystème cloud-native, au point que la plupart des tutoriels
 Kubernetes incluent leur installation comme étape de base. Nous les utiliserons
 ensemble dans le tutoriel pratique à la fin de cette section.
 
+{{< image src="grafana-prometheus.png" alt="" title="" loading="lazy" >}}
+
 ## Le tracing distribué
 
 Les logs racontent ce qui s'est passé à un endroit précis du système. Les
@@ -386,6 +392,8 @@ des langages, avec un format de données commun et un protocole d'export unifié
 OpenTelemetry, et peut ensuite envoyer les données vers Jaeger, Prometheus,
 Grafana, Datadog ou n'importe quel autre backend, sans modifier le code
 d'instrumentation.
+
+{{< image src="tracing.png" alt="" title="" loading="lazy" >}}
 
 <!-- ILLUSTRATION: diagramme montrant une trace distribuée avec plusieurs spans imbriqués (API → inventaire, API → paiement → banque, API → notification), avec le trace ID qui se propage, et une timeline montrant la durée de chaque span -->
 
@@ -441,6 +449,8 @@ l'immédiat : un disque qui se remplit lentement, un certificat TLS qui expire
 dans deux semaines. Les **logs** suffisent pour tout le reste : les anomalies
 mineures qu'il est utile de pouvoir retrouver lors d'une investigation, mais qui
 ne justifient pas d'interrompre quelqu'un.
+
+{{< image src="alerts.png" alt="" title="" loading="lazy" >}}
 
 En pratique, une bonne alerte repose sur quelques principes. D'abord, alerter
 sur les **symptômes** plutôt que sur les **causes**. Alerter quand le taux
@@ -521,8 +531,6 @@ nous avons utilisé dans la section sur l'infrastructure), et visualiser ses
 métriques en temps réel dans un dashboard Grafana. L'objectif est de voir, de
 bout en bout, comment le code d'une application se transforme en courbes sur un
 écran.
-
-### L'application
 
 Notre application est un petit service de citations aléatoires, avec trois
 endpoints :
@@ -830,9 +838,17 @@ $ kubectl apply -f prometheus-config.yaml -f prometheus-deployment.yaml \
 
 Pour accéder à l'interface web de Prometheus, on utilise `kubectl port-forward`,
 qui crée un tunnel entre notre machine locale et le service à l'intérieur du
-cluster :
+cluster. Il faut d'abord attendre que le pod Prometheus soit en état `Running`
+(ce qui peut prendre une minute ou deux, le temps que l'image soit téléchargée)
+avant de lancer la commande, sans quoi elle échouera avec un message d'erreur. On
+peut vérifier l'état des pods avec `kubectl get pods` :
 
 ```shell
+$ kubectl get pods
+NAME                          READY   STATUS    RESTARTS   AGE
+prometheus-5bb4d6f644-r5lc6   1/1     Running   0          87s
+quotes-api-58fbd564bb-h5pk9   1/1     Running   0          2m1s
+...
 $ kubectl port-forward svc/prometheus 9090:9090
 ```
 
@@ -840,7 +856,7 @@ En ouvrant `http://localhost:9090/targets` dans le navigateur, on peut vérifier
 que Prometheus scrape bien notre application. La cible `quotes-api` devrait
 apparaître en état "UP", avec la date du dernier scrape.
 
-<!-- ILLUSTRATION: capture d'écran de l'interface Prometheus montrant la cible quotes-api en état UP -->
+{{< image src="obs-demo-prometheus.png" alt="" title="" loading="lazy" >}}
 
 ### Visualiser avec Grafana
 
@@ -973,7 +989,7 @@ $ kubectl apply -f grafana-datasource.yaml -f grafana-dashboard.yaml \
     -f grafana-deployment.yaml -f grafana-service.yaml
 ```
 
-Puis ouvrons un tunnel vers Grafana :
+Puis, une fois le pod Grafana en état `Running`, ouvrons un tunnel vers Grafana :
 
 ```shell
 $ kubectl port-forward svc/grafana 3000:3000
@@ -983,10 +999,24 @@ En ouvrant `http://localhost:3000` dans le navigateur, puis en naviguant vers
 Dashboards, on trouve le dashboard "Quotes API" préconfiguré. Pour l'instant,
 les graphiques sont vides : il n'y a pas encore de trafic.
 
+{{< image src="obs-demo-grafana.png" alt="" title="" loading="lazy" >}}
+
 ### Générer du trafic et observer
 
 Pour alimenter les métriques, un petit script shell envoie des requêtes en boucle
-vers les trois endpoints :
+vers les trois endpoints. On le sauvegarde dans un fichier `traffic.sh`, on le
+rend exécutable, et on le lance dans un terminal séparé (puisque le
+`port-forward` vers Grafana occupe déjà le terminal courant) :
+
+```shell
+$ chmod +x traffic.sh
+$ ./traffic.sh
+Génération de trafic vers l'API...
+Appuyez sur Ctrl+C pour arrêter.
+```
+
+Le script contient une boucle infinie qui appelle les trois endpoints toutes les
+500 ms :
 
 ```shell
 #!/bin/bash
@@ -1000,10 +1030,11 @@ while true; do
 done
 ```
 
-Après quelques minutes de trafic, le dashboard Grafana prend vie. On y observe
-les quatre golden signals en temps réel :
+Après quelques minutes de trafic, les graphiques du dashboard Grafana, qui
+étaient vides, commencent à se remplir. On y observe les quatre golden signals
+en temps réel :
 
-<!-- ILLUSTRATION: capture d'écran du dashboard Grafana "Quotes API" avec les quatre panneaux montrant des courbes actives -->
+{{< image src="obs-demo-grafana-with-data.png" alt="" title="" loading="lazy" >}}
 
 - **Requêtes par seconde** : les trois endpoints apparaissent avec leur trafic
   respectif. On voit aussi la distinction par code de statut : l'endpoint
