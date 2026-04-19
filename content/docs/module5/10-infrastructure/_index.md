@@ -2,6 +2,7 @@
 title: "L'infrastructure"
 weight: 10
 slug: "infrastructure"
+bookCollapseSection: true
 ---
 
 # L'infrastructure

@@ -23,7 +23,7 @@ Twitter, dans ses premières années, était tristement célèbre pour son « fa
 whale », une illustration de baleine qui s'affichait quand le site s'écroulait
 sous la charge, ce qui arrivait régulièrement lors d'événements populaires.
 
-<!-- ILLUSTRATION: Le "fail whale" de Twitter, image iconique des problèmes de scalabilité -->
+{{< image src="twitter-whale.webp" alt="" title="" loading="lazy" >}}
 
 Le site, initialement construit comme une application Ruby on Rails monolithique,
 n'avait tout simplement pas été conçu pour supporter des millions de tweets
@@ -39,6 +39,8 @@ Monday. Cet exploit ne repose pas sur un seul truc magique, mais sur l'ensemble
 des techniques que nous allons explorer dans cette section : caching agressif,
 load balancing, files d'attente, et une infrastructure capable de s'étirer et de
 se contracter selon la demande.
+
+{{< image src="black-friday.webp" alt="" title="" loading="lazy" >}}
 
 ## Scalabilité verticale vs horizontale
 
@@ -71,7 +73,7 @@ d'une seule machine contre la complexité de la coordination entre plusieurs.
 C'est un compromis fondamental, et chaque technique que nous allons examiner
 dans cette section est une manière de gérer un aspect de cette complexité.
 
-<!-- ILLUSTRATION: Diagramme comparant scaling vertical (une machine qui grossit) vs scaling horizontal (plusieurs machines côte à côte) -->
+{{< image src="scalabilité-horiz-vert.png" alt="" title="" loading="lazy" >}}
 
 ## Load balancing
 
@@ -98,6 +100,8 @@ existent : le **weighted round-robin**, qui donne plus de requêtes aux serveurs
 plus puissants, ou le **IP hash**, qui envoie toujours les requêtes d'un même
 client au même serveur, ce qui peut être utile quand le serveur maintient un
 état en mémoire (comme une session).
+
+{{< image src="round-robin.png" alt="" title="" loading="lazy" >}}
 
 Un load balancer ne se contente pas de distribuer les requêtes : il doit aussi
 savoir quand un serveur ne fonctionne plus. C'est le rôle des **health checks**,
@@ -156,6 +160,8 @@ si trois serveurs tournent en parallèle, chacun a son propre cache indépendant
 C'est pourquoi on utilise un service de cache partagé comme Redis ou Memcached,
 accessible par tous les serveurs, persistant au-delà de la vie d'un processus
 individuel.
+
+{{< image src="fibo-cache.png" alt="" title="" loading="lazy" >}}
 
 Le caching opère à plusieurs niveaux dans l'architecture d'un système web. La
 première couche est le **cache du navigateur** : quand un serveur envoie une
@@ -245,6 +251,8 @@ Des services comme cdnjs, jsDelivr et unpkg se sont spécialisés dans
 l'hébergement de bibliothèques open source sur CDN, servant collectivement des
 milliards de requêtes par jour.
 
+{{< image src="cdn.png" alt="" title="" loading="lazy" >}}
+
 Les CDN sont particulièrement efficaces pour les contenus statiques : images,
 fichiers CSS et JavaScript, vidéos, documents PDF. Ces ressources ne changent
 pas entre les utilisateurs et se prêtent naturellement à la mise en cache
@@ -299,6 +307,8 @@ distribuer les données uniformément. Chaque shard ne contient qu'une fraction
 des données et ne traite qu'une fraction des requêtes, ce qui permet de passer à
 l'échelle aussi bien en lecture qu'en écriture.
 
+{{< image src="replication-vs-sharding.webp" alt="" title="" loading="lazy" >}}
+
 Le prix du sharding est la complexité. Les requêtes qui touchent un seul shard
 restent simples et rapides, mais les requêtes qui doivent combiner des données
 de plusieurs shards deviennent beaucoup plus coûteuses. Si les utilisateurs A-M
@@ -337,14 +347,14 @@ garantir simultanément que deux des trois propriétés suivantes :
 
 Pour comprendre intuitivement pourquoi ces trois propriétés ne peuvent pas
 coexister, imaginons un scénario simple. Une application bancaire réplique ses
-données sur deux serveurs, A et B. Alice a un solde de 1 000 $ visible sur les
+données sur deux serveurs, A et B. Alice a un solde de 1 000 dollars visible sur les
 deux serveurs. Maintenant, une partition réseau survient : A et B ne peuvent
 plus communiquer entre eux. Alice envoie une requête au serveur A pour retirer
-500 $. Le serveur A met à jour le solde localement : 500 $. Mais il ne peut pas
+500 dollars. Le serveur A met à jour le solde localement : 500 dollars. Mais il ne peut pas
 informer le serveur B, puisque la connexion est coupée. À ce moment, si Bob
 consulte le solde d'Alice sur le serveur B, que se passe-t-il ? Le système a
 deux options. Première option : le serveur B répond avec l'ancienne valeur,
-1 000 $. Le système est disponible (B a répondu) mais incohérent (B retourne
+1 000 dollars. Le système est disponible (B a répondu) mais incohérent (B retourne
 une donnée périmée). C'est le choix AP. Deuxième option : le serveur B refuse
 de répondre, parce qu'il sait qu'il n'est peut-être pas à jour. Le système est
 cohérent (on ne retourne jamais de donnée périmée) mais indisponible (B n'a pas
@@ -357,6 +367,8 @@ est techniquement CA : elle est cohérente et disponible, mais si le réseau ent
 l'application et la base tombe, tout s'arrête. Dès qu'on distribue les données
 sur plusieurs nœuds, les partitions deviennent une réalité inévitable, et le
 choix se réduit à CP ou AP.
+
+{{< image src="cap-theorem.png" alt="" title="" loading="lazy" >}}
 
 Le théorème peut sembler abstrait, mais il a une implication très concrète. Dans
 un système distribué, les partitions réseau ne sont pas un cas théorique : elles
