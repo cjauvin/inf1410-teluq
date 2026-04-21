@@ -36,6 +36,8 @@ séparant la tarification du matériel et du logiciel, IBM a involontairement cr
 les conditions d'une industrie logicielle indépendante, ouvrant la porte à des
 entreprises comme SAP, Oracle et Microsoft.
 
+{{< image src="ibm.jpg" alt="" title="" loading="lazy" >}}
+
 Le cas d'AT&T est peut-être encore plus révélateur de l'impact qu'un
 démantèlement peut avoir sur l'innovation. AT&T détenait un monopole sur les
 télécommunications aux États-Unis depuis le début du 20e siècle. Ses Bell Labs,
@@ -52,6 +54,8 @@ entrer sur le marché de l'informatique, mais elle a aussi commencé à
 commercialiser Unix de manière plus agressive, ce qui a paradoxalement fragmenté
 l'écosystème Unix (les fameuses "Unix wars" entre différentes versions
 incompatibles) et ouvert un espace que Linux allait finir par occuper.
+
+{{< image src="att.png" alt="" title="" loading="lazy" >}}
 
 Le monopole le plus marquant pour l'industrie du logiciel est sans doute celui
 de Microsoft dans les années 1990. Windows équipait plus de 90 % des ordinateurs
@@ -73,6 +77,8 @@ que Google, Firefox et d'autres puissent émerger. D'autres soutiennent que c'es
 le web lui-même, en déplaçant la valeur du système d'exploitation vers le
 navigateur et les services en ligne, qui a véritablement brisé le monopole de
 Microsoft.
+
+{{< image src="ns-vs-ie.webp" alt="" title="" loading="lazy" >}}
 
 Si les monopoles précédents étaient relativement simples à identifier (une
 entreprise, un marché), la concentration actuelle est plus diffuse et plus
@@ -168,6 +174,8 @@ Apple pour cette position dans Safari). Un juge a statué en 2024 que Google
 détenait un monopole illégal dans la recherche, une décision dont les
 conséquences concrètes restent à déterminer.
 
+{{< image src="ue.png" alt="" title="" loading="lazy" >}}
+
 ## La protection des données
 
 Parallèlement à la régulation de la concurrence, une autre forme de régulation a
@@ -195,6 +203,8 @@ consentement explicite pour la collecte. Pour les développeurs, ces lois ont de
 conséquences très concrètes : la manière dont on conçoit une base de données,
 dont on gère les sessions utilisateur, dont on implémente un formulaire
 d'inscription, tout cela est désormais encadré par la loi.
+
+{{< image src="snowden.jpg" alt="" title="" loading="lazy" >}}
 
 ## Questions ouvertes
 
@@ -226,6 +236,8 @@ pas parce que le service reste bon. Pour Doctorow, la solution passe par
 l'interopérabilité obligatoire et le démantèlement des verrous numériques, des
 positions qu'il défend activement au sein de l'Electronic Frontier Foundation.
 
+{{< image src="enshittification.png" alt="" title="" loading="lazy" >}}
+
 L'informaticien et philosophe Jaron Lanier, pionnier de la réalité virtuelle
 dans les années 1980, porte une critique encore plus fondamentale. Dans *Who
 Owns the Future?* (2013), Lanier soutient que le modèle économique dominant du
@@ -241,6 +253,8 @@ micro-paiements qui rémunérerait les individus pour l'usage de leurs données,
 reste controversée et difficile à implémenter, mais elle pose une question que la
 simple régulation de la concurrence ne résout pas : qui devrait bénéficier de la
 valeur créée par les données collectives ?
+
+{{< image src="jaron-lanier.jpg" alt="" title="" loading="lazy" >}}
 
 Ces débats montrent que la régulation du logiciel est un chantier en cours, où
 les réponses législatives peinent à suivre le rythme de l'innovation
