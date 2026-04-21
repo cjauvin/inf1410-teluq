@@ -46,7 +46,9 @@ indépendante, qu&rsquo;il n&rsquo;existait pas de tests systématiques, et que 
 d&rsquo;incidents des hôpitaux avaient été ignorés par AECL pendant des mois. C&rsquo;est un
 cas qui illustre simultanément l&rsquo;absence de tests (module 2), les dangers de la
 réutilisation de code sans validation des hypothèses (module 3), et l&rsquo;importance
-d&rsquo;une culture organisationnelle qui prend les signaux d&rsquo;alarme au sérieux.</p><p>Le 4 juin 1996, la fusée Ariane 5 de l&rsquo;Agence spatiale européenne a explosé 37
+d&rsquo;une culture organisationnelle qui prend les signaux d&rsquo;alarme au sérieux.</p><label class=book-image for=book-image-toggle-0><input class="hidden toggle" type=checkbox id=book-image-toggle-0>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/therac.webp alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-0"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le 4 juin 1996, la fusée Ariane 5 de l&rsquo;Agence spatiale européenne a explosé 37
 secondes après son lancement, détruisant une cargaison de satellites d&rsquo;une
 valeur d&rsquo;environ 370 millions de dollars. La cause était un débordement
 arithmétique (<em>integer overflow</em>) : un nombre à virgule flottante de 64 bits,
@@ -66,7 +68,9 @@ après le décollage. Le rapport d&rsquo;enquête, rédigé par un comité prés
 Jacques-Louis Lions, est devenu un document de référence en génie logiciel. Il
 illustre un thème récurrent : la réutilisation de code est une pratique
 essentielle, mais elle exige de comprendre les hypothèses sous-jacentes, pas
-seulement de copier ce qui a fonctionné ailleurs.</p><p>Le 1er août 2012, la firme de trading Knight Capital a perdu 440 millions de
+seulement de copier ce qui a fonctionné ailleurs.</p><label class=book-image for=book-image-toggle-1><input class="hidden toggle" type=checkbox id=book-image-toggle-1>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/ariane5.jpg alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-1"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le 1er août 2012, la firme de trading Knight Capital a perdu 440 millions de
 dollars en 45 minutes, un montant qui a failli entraîner la faillite de
 l&rsquo;entreprise. La cause était un déploiement bâclé. Knight avait développé un
 nouveau module de trading pour se conformer à un programme de la Bourse de New
@@ -84,7 +88,9 @@ déploiement automatisé (le processus était manuel, serveur par serveur), code
 mort laissé dans la base de code, réutilisation dangereuse d&rsquo;un identifiant de
 configuration, et absence de mécanisme de rollback rapide. C&rsquo;est exactement le
 type de catastrophe que les pratiques de CI/CD (module 2) et de DevOps
-(module 5) cherchent à prévenir.</p><p>Les accidents du Boeing 737 MAX, le vol Lion Air 610 en octobre 2018 et le vol
+(module 5) cherchent à prévenir.</p><label class=book-image for=book-image-toggle-2><input class="hidden toggle" type=checkbox id=book-image-toggle-2>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/stock-market-crash.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-2"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Les accidents du Boeing 737 MAX, le vol Lion Air 610 en octobre 2018 et le vol
 Ethiopian Airlines 302 en mars 2019, ont causé la mort de 346 personnes. Au
 cœur des deux catastrophes se trouvait le MCAS (Maneuvering Characteristics
 Augmentation System), un logiciel conçu pour corriger automatiquement l&rsquo;angle de
@@ -105,7 +111,9 @@ certification à Boeing elle-même, n&rsquo;avait pas détecté le problème. Le
 illustre un type de défaillance différent des cas précédents : ce n&rsquo;est pas un
 bogue caché ou une erreur de déploiement, c&rsquo;est une décision organisationnelle
 de traiter un problème matériel par un correctif logiciel minimal, sous pression
-commerciale, en sacrifiant la redondance et la transparence.</p><h2 id=échecs-de-grands-projets-gouvernementaux>Échecs de grands projets gouvernementaux<a class=anchor href=#%c3%a9checs-de-grands-projets-gouvernementaux>#</a></h2><p>Les catastrophes précédentes impliquaient des bogues ou des décisions techniques
+commerciale, en sacrifiant la redondance et la transparence.</p><label class=book-image for=book-image-toggle-3><input class="hidden toggle" type=checkbox id=book-image-toggle-3>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/plane-crash.jpg alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-3"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h2 id=échecs-de-grands-projets-gouvernementaux>Échecs de grands projets gouvernementaux<a class=anchor href=#%c3%a9checs-de-grands-projets-gouvernementaux>#</a></h2><p>Les catastrophes précédentes impliquaient des bogues ou des décisions techniques
 spécifiques. Les échecs de grands projets gouvernementaux relèvent d&rsquo;un problème
 différent, plus systémique : ce sont des projets qui échouent non pas à cause
 d&rsquo;une ligne de code particulière, mais à cause de la manière dont ils sont
@@ -127,7 +135,9 @@ expérimenté <em>avant</em> que le nouveau système ne fonctionne, des tests in
 sur des scénarios de paye réels, et un contrat structuré de manière à limiter la
 responsabilité du fournisseur. C&rsquo;est la loi de Brooks incarnée à grande
 échelle : un projet déjà en difficulté où l&rsquo;on a tenté de rattraper le retard en
-ajoutant des ressources, ne faisant qu&rsquo;aggraver la situation.</p><p>Au Québec, le déploiement de SAAQclic en février 2023 a reproduit plusieurs des
+ajoutant des ressources, ne faisant qu&rsquo;aggraver la situation.</p><label class=book-image for=book-image-toggle-4><input class="hidden toggle" type=checkbox id=book-image-toggle-4>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/phoenix.avif alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-4"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Au Québec, le déploiement de SAAQclic en février 2023 a reproduit plusieurs des
 mêmes erreurs. Le système, développé par une alliance de SAP et de LGS (une
 filiale d&rsquo;IBM) pour remplacer les systèmes informatiques vieillissants de la
 Société de l&rsquo;assurance automobile du Québec (SAAQ), devait moderniser l&rsquo;ensemble
@@ -152,7 +162,9 @@ leurs cahiers des charges détaillés et leurs contrats à prix fixe, imposent
 souvent une approche waterfall qui est en tension directe avec ces principes.
 Nous avions mentionné SAAQclic dans le module 1 comme exemple contemporain de la
 &ldquo;crise du logiciel&rdquo; : le voici revisité avec les outils conceptuels que nous
-avons accumulés depuis.</p><p>Le programme de Modernisation du versement des prestations (MVP), encore en cours
+avons accumulés depuis.</p><label class=book-image for=book-image-toggle-5><input class="hidden toggle" type=checkbox id=book-image-toggle-5>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/saaqclic.webp alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-5"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le programme de Modernisation du versement des prestations (MVP), encore en cours
 au moment d&rsquo;écrire ces lignes, risque de devenir le troisième grand fiasco
 informatique gouvernemental canadien. Présenté comme le plus grand projet de
 modernisation informatique jamais entrepris par le gouvernement fédéral, le
