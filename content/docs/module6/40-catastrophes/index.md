@@ -38,6 +38,8 @@ cas qui illustre simultanément l'absence de tests (module 2), les dangers de la
 réutilisation de code sans validation des hypothèses (module 3), et l'importance
 d'une culture organisationnelle qui prend les signaux d'alarme au sérieux.
 
+{{< image src="therac.webp" alt="" title="" loading="lazy" >}}
+
 Le 4 juin 1996, la fusée Ariane 5 de l'Agence spatiale européenne a explosé 37
 secondes après son lancement, détruisant une cargaison de satellites d'une
 valeur d'environ 370 millions de dollars. La cause était un débordement
@@ -60,6 +62,8 @@ illustre un thème récurrent : la réutilisation de code est une pratique
 essentielle, mais elle exige de comprendre les hypothèses sous-jacentes, pas
 seulement de copier ce qui a fonctionné ailleurs.
 
+{{< image src="ariane5.jpg" alt="" title="" loading="lazy" >}}
+
 Le 1er août 2012, la firme de trading Knight Capital a perdu 440 millions de
 dollars en 45 minutes, un montant qui a failli entraîner la faillite de
 l'entreprise. La cause était un déploiement bâclé. Knight avait développé un
@@ -79,6 +83,8 @@ mort laissé dans la base de code, réutilisation dangereuse d'un identifiant de
 configuration, et absence de mécanisme de rollback rapide. C'est exactement le
 type de catastrophe que les pratiques de CI/CD (module 2) et de DevOps
 (module 5) cherchent à prévenir.
+
+{{< image src="stock-market-crash.png" alt="" title="" loading="lazy" >}}
 
 Les accidents du Boeing 737 MAX, le vol Lion Air 610 en octobre 2018 et le vol
 Ethiopian Airlines 302 en mars 2019, ont causé la mort de 346 personnes. Au
@@ -102,6 +108,8 @@ illustre un type de défaillance différent des cas précédents : ce n'est pas 
 bogue caché ou une erreur de déploiement, c'est une décision organisationnelle
 de traiter un problème matériel par un correctif logiciel minimal, sous pression
 commerciale, en sacrifiant la redondance et la transparence.
+
+{{< image src="plane-crash.jpg" alt="" title="" loading="lazy" >}}
 
 ## Échecs de grands projets gouvernementaux
 
@@ -131,6 +139,8 @@ responsabilité du fournisseur. C'est la loi de Brooks incarnée à grande
 échelle : un projet déjà en difficulté où l'on a tenté de rattraper le retard en
 ajoutant des ressources, ne faisant qu'aggraver la situation.
 
+{{< image src="phoenix.avif" alt="" title="" loading="lazy" >}}
+
 Au Québec, le déploiement de SAAQclic en février 2023 a reproduit plusieurs des
 mêmes erreurs. Le système, développé par une alliance de SAP et de LGS (une
 filiale d'IBM) pour remplacer les systèmes informatiques vieillissants de la
@@ -157,6 +167,8 @@ souvent une approche waterfall qui est en tension directe avec ces principes.
 Nous avions mentionné SAAQclic dans le module 1 comme exemple contemporain de la
 "crise du logiciel" : le voici revisité avec les outils conceptuels que nous
 avons accumulés depuis.
+
+{{< image src="saaqclic.webp" alt="" title="" loading="lazy" >}}
 
 Le programme de Modernisation du versement des prestations (MVP), encore en cours
 au moment d'écrire ces lignes, risque de devenir le troisième grand fiasco
