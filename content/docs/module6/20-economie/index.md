@@ -67,7 +67,7 @@ transition reflétait un changement technologique : l'arrivée du haut débit a
 rendu le jeu en ligne viable, et les smartphones ont créé un marché de masse
 pour les jeux gratuits.
 
-{{< image src="doom.webp" alt="" title="" loading="lazy" >}}
+{{< image src="doom.jpg" alt="" title="" loading="lazy" >}}
 
 ## Le logiciel comme service
 
