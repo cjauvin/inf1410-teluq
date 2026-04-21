@@ -49,6 +49,8 @@ préoccupations éthiques que nous avons abordées dans la section précédente 
 quel point est-il acceptable de sacrifier la santé des personnes qui construisent
 le logiciel ?
 
+{{< image src="10x.jpg" alt="" title="" loading="lazy" >}}
+
 ## Craft vs engineering
 
 Le développement logiciel est-il un métier d'ingénieur ou un métier d'artisan ?
@@ -76,6 +78,8 @@ une attention renouvelée au *clean code*. Mais il a aussi été critiqué : le 
 "artisan" peut devenir une forme d'élitisme déguisé, et l'insistance sur la
 qualité du code peut parfois perdre de vue que le but du logiciel est de résoudre
 un problème pour des utilisateurs, pas d'être élégant pour les développeurs.
+
+{{< image src="artisan.jpg" alt="" title="" loading="lazy" >}}
 
 ## La réalité du code existant
 
