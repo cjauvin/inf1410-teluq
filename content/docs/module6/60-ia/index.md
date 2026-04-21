@@ -438,15 +438,51 @@ manipuler des abstractions sans en comprendre les mécanismes sous-jacents.
 
 ## Démonstrations avec Claude Code
 
-Les sections précédentes ont discuté du développement assisté par IA de manière
-conceptuelle. Pour rendre ces idées concrètes, cette section présente deux
-démonstrations réalisées avec Claude Code, un agent de développement en ligne de
-commande développé par Anthropic. Claude Code ne se contente pas de compléter du
-code dans un éditeur : il peut naviguer dans un dépôt, lire des fichiers,
-exécuter des commandes, lancer des tests et itérer sur son travail. Les deux
-démonstrations illustrent des usages très différents mais complémentaires :
-explorer un codebase existant pour en comprendre l'architecture, puis créer une
-petite application de zéro.
+Une note sur la conception de cette section : les deux démonstrations qui suivent
+ont elles-mêmes été conçues avec Claude Code. Il y a quelque chose de
+délibérément récursif dans cette démarche : utiliser l'outil pour enseigner
+l'outil. Mais il serait facile de mal comprendre ce que cela signifie. L'agent
+n'a pas simplement généré des exemples tout faits que l'auteur a copiés-collés
+dans le cours. La méthode adoptée a été différente : demander à Claude Code
+d'expliquer quoi faire étape par étape, puis exécuter chaque étape manuellement,
+vérifier que le résultat est correct, et seulement ensuite intégrer l'exemple
+dans le cours. Cette distinction est fondamentale. Un exemple généré sans
+vérification peut contenir des erreurs invisibles, des commandes qui ne
+fonctionnent pas dans un contexte légèrement différent, ou des comportements
+qui dépendent d'une version spécifique d'un outil. Un exemple exécuté et
+validé par un humain est fiable. Cette méthodologie — demander à l'IA de
+proposer, puis vérifier soi-même avant d'accepter — devrait être au coeur de
+tout développement assisté par IA. Elle ne ralentit pas le travail de manière
+significative, mais elle réduit considérablement le risque d'introduire des
+erreurs qu'on ne comprend pas et qu'on ne saurait pas corriger.
+
+{{< image src="inception.avif" alt="" title="" loading="lazy" >}}
+
+Les deux démonstrations qui suivent rendent ces idées concrètes. Elles ont été
+réalisées avec Claude Code, un agent de développement développé par Anthropic
+qui peut naviguer dans un dépôt, lire des fichiers, exécuter des commandes,
+lancer des tests et itérer sur son travail.
+
+{{< image src="claude-alien.png" alt="" title="" loading="lazy" >}}
+
+Claude Code est disponible sous plusieurs formes. La plus dépouillée est le CLI
+(interface en ligne de commande) : on installe l'outil, on tape `claude` dans
+un terminal, et on interagit directement avec l'agent. Il existe aussi des
+extensions pour VS Code et les IDE JetBrains, qui intègrent Claude Code
+directement dans l'éditeur avec une visualisation des diffs et une interface de
+chat dans le panneau latéral. Pour ceux qui préfèrent une interface graphique
+autonome, une application desktop (macOS et Windows) permet de gérer plusieurs
+sessions en parallèle. Enfin, une version web accessible depuis `claude.ai/code`
+ne nécessite aucune installation et fonctionne même depuis un téléphone. Dans
+tous les cas, c'est le même moteur qui tourne en arrière-plan. Les deux
+démonstrations qui suivent illustrent des usages différents, et chacune utilise
+une interface différente : la première utilise le CLI pour explorer un codebase
+existant, la seconde utilise l'extension VS Code pour créer une petite
+application de zéro. Ce choix n'est pas arbitraire : le CLI convient bien à
+l'exploration pure, où on pose des questions en mode conversationnel sans
+modifier de fichiers ; l'extension VS Code est plus naturelle pour la
+construction, parce qu'elle permet de voir les diffs et d'accepter ou rejeter
+les modifications directement dans l'éditeur.
 
 ### Explorer un codebase : Requests
 
@@ -472,55 +508,143 @@ exactement comme le ferait un nouveau développeur qui rejoint le projet. On se
 retrouve alors avec un répertoire `requests/` contenant le code source, et on
 peut lancer Claude Code directement dans ce contexte.
 
-{{< image src="requests-explore-1.png" alt="" title="" loading="lazy" >}}
+```shell
+$ git clone git@github.com:psf/requests.git
+$ cd requests
+$ claude
+```
+
+Une fois l'agent démarré, on peut lui adresser des messages en langage naturel,
+mais Claude Code offre aussi des *commandes slash* : des instructions spéciales
+préfixées d'un `/` qui contrôlent le comportement de l'agent plutôt que de lui
+poser une question. Par exemple, `/help` affiche la liste des commandes
+disponibles, `/compact` demande à l'agent de résumer la conversation pour
+libérer de la mémoire, `/usage` affiche la consommation de la session en cours
+et la facturation hebdomadaire, et `/quit` termine la session. La première commande
+utile quand on arrive sur un nouveau projet est `/init` : elle demande à
+l'agent d'analyser le dépôt courant et de générer automatiquement un fichier
+`CLAUDE.md` à sa racine.
+
+Ce fichier `CLAUDE.md` est le mécanisme principal pour donner des instructions
+persistantes à Claude Code sur un projet. On peut y décrire l'architecture du
+projet, les conventions de code adoptées par l'équipe, les commandes à
+connaître pour lancer les tests ou le serveur de développement, ou tout autre
+contexte que l'agent devrait avoir en tête à chaque session. Contrairement à
+une question posée dans la conversation (qui disparaît quand on ferme le
+terminal), le contenu de `CLAUDE.md` est relu automatiquement à chaque
+démarrage. C'est une forme de mémoire externe pour l'agent, ancrée dans le
+dépôt lui-même, et donc partagée avec toute l'équipe si le fichier est versionné
+avec git. Quand `/init` génère ce fichier, il produit un premier portrait du
+projet qu'on peut ensuite compléter et affiner manuellement.
+
+{{< image src="cc1.png" alt="" title="" loading="lazy" >}}
+
+Avant d'écrire le fichier `CLAUDE.md`, l'agent s'arrête et demande la
+permission. Ce comportement est au coeur du modèle de confiance de Claude Code :
+l'agent ne modifie jamais un fichier, n'exécute jamais une commande shell, et
+n'appelle jamais un outil externe sans avoir d'abord demandé l'autorisation.
+Quand une telle action est sur le point d'être effectuée, Claude Code affiche
+une description de ce qu'il s'apprête à faire et attend une réponse. On peut
+approuver l'action pour cette fois, la refuser, ou choisir de toujours
+l'autoriser pour la session courante (ce qui évite d'avoir à confirmer à chaque
+fois des actions répétitives comme l'exécution des tests). Ce système de
+permissions existe pour une raison simple : un agent qui peut lire des fichiers,
+écrire du code et exécuter des commandes shell a un pouvoir considérable sur
+l'environnement dans lequel il tourne. La supervision humaine n'est pas une
+contrainte artificielle, c'est une pratique saine, surtout quand on commence à
+travailler avec un outil qu'on ne connaît pas encore bien.
+
+{{< image src="cc2.png" alt="" title="" loading="lazy" >}}
 
 **Première question : la vue d'ensemble.**
 
 On commence par demander à Claude Code un portrait général de l'architecture du
-projet. L'agent parcourt les fichiers source, compte les lignes, et produit une
-synthèse : le coeur du projet tient dans une poignée de fichiers bien délimités,
-avec `api.py` comme façade publique, `sessions.py` comme moteur central,
-`models.py` pour les objets de données, et `adapters.py` pour la couche de
-transport. Ce premier échange illustre un usage fondamental : obtenir une carte
-mentale d'un projet en quelques secondes. Un développeur qui arriverait sur ce
-dépôt sans connaître Requests aurait besoin de plusieurs heures de lecture pour
-construire ce portrait. L'agent le produit en lisant et en analysant les
-fichiers automatiquement.
+projet.
 
-{{< image src="requests-explore-2.png" alt="" title="" loading="lazy" >}}
+```
+Peux-tu me donner une vue d'ensemble de l'organisation et
+du fonctionnement de ce projet
+```
+
+La réponse est structurée en plusieurs niveaux. D'abord, une description
+de ce qu'est Requests en une phrase : une bibliothèque qui enveloppe urllib3,
+qui enveloppe elle-même `http.client` de la bibliothèque standard, pour offrir
+une API simple qualifiée par son auteur d'"HTTP for Humans". Ensuite, un
+diagramme textuel montrant le cycle de vie d'une requête à travers les couches :
+de `requests.get()` dans `api.py` jusqu'à urllib3, en passant par `Session`
+dans `sessions.py`, `PreparedRequest` dans `models.py`, et `HTTPAdapter` dans
+`adapters.py`. Enfin, un tableau récapitulatif des modules de support
+(`auth.py`, `cookies.py`, `exceptions.py`, etc.) avec le rôle de chacun. Ce
+premier échange illustre un usage fondamental : obtenir une carte mentale
+complète d'un projet en quelques secondes, avec une profondeur qu'il faudrait
+plusieurs heures de lecture pour construire manuellement.
+
+{{< image src="cc3.png" alt="" title="" loading="lazy" >}}
 
 **Deuxième question : suivre le chemin d'une requête.**
 
-On demande ensuite à l'agent de tracer, fichier par fichier, ce qui se passe
-exactement quand on écrit `requests.get("https://example.com")`. L'agent suit
-la chaîne d'appels à travers `api.py`, `sessions.py` et `adapters.py`, en
-relevant au passage un détail de conception intéressant : chaque appel à
-`requests.get()` crée et détruit une `Session` temporaire. C'est pratique pour
-des appels isolés, mais si on fait plusieurs requêtes vers le même serveur,
-utiliser directement un objet `Session` est plus efficace parce qu'il réutilise
-les connexions TCP. Ce type d'analyse serait fastidieux à faire manuellement :
-il faut ouvrir plusieurs fichiers, trouver les bons points d'entrée, suivre les
-appels de méthode en méthode. L'agent le fait en quelques secondes et produit
-une explication linéaire qui reconstruit la *théorie* du programme, au sens de
+On demande ensuite à l'agent :
+
+```
+Peux-tu tracer et expliquer clairement et brièvement ce qui se passe
+quand on exécute requests.get("https://example.com")
+```
+
+Avant de répondre, l'agent lit de sa propre initiative les trois fichiers clés pour
+pouvoir citer des références précises. La réponse prend la forme de six étapes
+numérotées, chacune ancrée dans le code réel avec des numéros de ligne : de
+`api.get()` en `api.py:73` jusqu'à `build_response()` qui enveloppe la réponse
+brute d'urllib3 dans un objet `Response`. Deux détails ressortent de cette
+trace. D'abord, l'étape 2 montre que `api.request()` crée une `Session` via un
+bloc `with`, ce qui garantit que les sockets sont libérés à la fin — mais aussi
+que chaque appel à `requests.get()` ouvre et ferme une session complète ; pour
+des appels répétés vers le même serveur, créer une `Session` manuellement est
+plus efficace parce qu'elle réutilise les connexions TCP. Ensuite, l'étape 4
+révèle un mécanisme peu documenté&nbsp;: après avoir envoyé la requête,
+`Session.send()` déclenche un système de *hooks* qui permet d'exécuter des
+fonctions arbitraires sur la réponse avant qu'elle soit retournée. La réponse
+se termine par un schéma textuel en arbre qui résume toute la chaîne d'un coup
+d'oeil. Ce type d'analyse serait fastidieux à faire manuellement : il faut
+ouvrir plusieurs fichiers, trouver les bons points d'entrée, suivre les appels
+de méthode en méthode. L'agent le fait en quelques secondes et produit une
+explication linéaire qui reconstruit la *théorie* du programme, au sens de
 Naur.
 
-{{< image src="requests-explore-3.png" alt="" title="" loading="lazy" >}}
+{{< image src="cc4.png" alt="" title="" loading="lazy" >}}
 
 **Troisième question : un détail architectural surprenant.**
 
-On demande finalement à l'agent d'expliquer le rôle du pattern Adapter et
-pourquoi les appels HTTP ne sont pas faits directement dans `Session`. L'agent
-explique que le `HTTPAdapter` implémente le pattern adaptateur du Gang of Four :
-la méthode `mount()` associe un préfixe d'URL à un adaptateur, ce qui permet de
-remplacer le transport sans modifier `Session` (c'est ainsi que `requests-mock`
-monte un faux adaptateur pour les tests), ou de monter des adaptateurs
-différents pour des hôtes différents. C'est un excellent exemple du principe
-d'inversion de dépendances (le "D" de SOLID) : `Session` dépend d'une
-abstraction, pas d'une implémentation concrète. Cet échange illustre comment
-l'agent peut relier du code concret à des concepts théoriques que l'étudiant a
-déjà vus dans le module 3.
+On demande finalement à l'agent d'expliquer le rôle du pattern Adapter dans
+Requests. La réponse commence par identifier le problème que ce pattern résout :
+`Session` a deux responsabilités bien distinctes, gérer l'état (cookies, auth,
+headers, redirections) et assurer le transport (ouvrir une socket, gérer TLS,
+envoyer les octets). Si ces deux responsabilités étaient mélangées dans la même
+classe, changer de backend de transport (remplacer urllib3 par `httpx`, ou par un
+mock pour les tests) impliquerait de modifier `Session` elle-même, un objet
+déjà complexe. Le pattern Adapter isole le transport derrière une interface
+minimale, `BaseAdapter`, dont la seule méthode obligatoire est `send()`. Les
+adaptateurs sont montés par préfixe d'URL dans le constructeur de `Session` :
+`https://` et `http://` sont associés par défaut à `HTTPAdapter`. L'agent
+énumère ensuite trois usages concrets que ce design rend possibles&nbsp;: les
+tests avec un faux adaptateur monté à la place du vrai, les protocoles custom
+(un adaptateur pour `ftp://` ou pour des sockets Unix), et des configurations
+différentes par hôte. La réponse se conclut sur un résumé qui rappelle
+l'essentiel : `Session` orchestre, urllib3 transporte, et les deux s'ignorent
+mutuellement. Cet échange illustre comment l'agent peut relier du code concret
+à des concepts théoriques que l'étudiant a déjà vus dans le module 3 : le
+pattern adaptateur, la séparation des responsabilités, l'inversion de
+dépendances.
 
-{{< image src="requests-explore-4.png" alt="" title="" loading="lazy" >}}
+{{< image src="cc5.png" alt="" title="" loading="lazy" >}}
+
+En fin de session, la commande `/usage` donne une vue sur la consommation :
+la portion du contexte de la session courante utilisée, la consommation
+hebdomadaire tous modèles confondus, et le montant facturé depuis le début du
+cycle de facturation. C'est un rappel utile que l'agent n'est pas gratuit, et
+que des sessions longues ou des dépôts volumineux coûtent plus que de courtes
+interactions.
+
+{{< image src="cc6.png" alt="" title="" loading="lazy" >}}
 
 L'exploration d'un codebase avec un agent IA n'est pas du vibe coding : on ne
 génère pas de code à l'aveugle, on construit activement une compréhension. Le
@@ -528,128 +652,168 @@ développeur pose des questions, évalue les réponses, approfondit les points q
 l'intéressent. L'IA accélère la construction de la théorie du programme, mais
 c'est toujours le développeur qui la construit.
 
-### Créer une application : mdcheck
+### Créer un utilitaire : md-link-check
 
 La deuxième démonstration illustre l'autre usage fondamental : construire
-quelque chose de neuf. L'objectif est de créer un petit utilitaire en ligne de
-commande qui vérifie que les liens dans des fichiers Markdown sont valides. Un
-outil simple, utile, et dont le périmètre est assez restreint pour tenir dans
-une démonstration.
+quelque chose de neuf. On utilise ici l'extension VS Code, qui change
+sensiblement l'expérience. Claude Code s'intègre dans le panneau latéral de
+l'éditeur, et quand l'agent propose des modifications à un fichier, elles
+apparaissent directement dans l'éditeur sous forme de diff : les lignes ajoutées
+en vert, les lignes supprimées en rouge, avec des boutons pour accepter ou
+rejeter chaque modification. C'est plus interactif que le CLI, et plus naturel
+quand on est en train de construire quelque chose.
 
-**Étape 1 : décrire ce qu'on veut.**
+L'objectif est de créer un petit utilitaire en ligne de commande qui vérifie
+que les liens dans des fichiers Markdown sont valides. Un outil simple, utile,
+et dont le périmètre est assez restreint pour tenir dans une démonstration.
 
-```shell
-$ claude "Crée un utilitaire Python appelé mdcheck qui vérifie les liens
-         HTTP dans des fichiers Markdown. Il doit extraire tous les liens
-         au format [texte](url), vérifier ceux qui commencent par http://
-         ou https://, et afficher le résultat. Utilise la bibliothèque
-         requests. Écris aussi les tests avec pytest."
-```
-
-Claude Code crée la structure du projet, installe les dépendances avec `uv`,
-et produit deux fichiers. Le premier, `main.py`, contient trois fonctions :
-
-```python
-def extract_links(text: str) -> list[tuple[str, str]]:
-    """Extrait les liens Markdown d'un texte."""
-    pattern = r"\[([^\]]+)\]\(([^)]+)\)"
-    return re.findall(pattern, text)
-
-def check_url(url: str, timeout: int = 10) -> tuple[bool, str]:
-    """Vérifie si une URL est accessible."""
-    try:
-        response = requests.head(url, timeout=timeout, allow_redirects=True)
-        if response.status_code < 400:
-            return True, "OK"
-        return False, f"HTTP {response.status_code}"
-    except requests.ConnectionError:
-        return False, "Connexion impossible"
-    except requests.Timeout:
-        return False, "Timeout"
-
-def check_file(path: Path) -> list[dict]:
-    """Vérifie tous les liens dans un fichier Markdown."""
-    text = path.read_text()
-    links = extract_links(text)
-    results = []
-    for label, url in links:
-        if url.startswith("http://") or url.startswith("https://"):
-            ok, message = check_url(url)
-            results.append({"file": str(path), "label": label,
-                            "url": url, "ok": ok, "message": message})
-    return results
-```
-
-Le code est propre, lisible, et fait ce qu'on a demandé. Le deuxième fichier,
-`test_mdcheck.py`, contient des tests pour l'extraction de liens (lien simple,
-liens multiples, pas de lien, lien avec ancre) et pour la vérification d'URL
-(réponse 200, 404, timeout, erreur de connexion), avec des mocks pour éviter
-de faire de vraies requêtes HTTP pendant les tests.
-
-**Étape 2 : exécuter les tests.**
+La première étape n'implique pas encore Claude Code. On initialise le projet
+avec `uv`, l'outil de gestion de projets Python que nous avons vu dans le
+module 2 :
 
 ```shell
-$ uv run pytest test_mdcheck.py -v
-test_mdcheck.py::TestExtractLinks::test_single_link PASSED
-test_mdcheck.py::TestExtractLinks::test_multiple_links PASSED
-test_mdcheck.py::TestExtractLinks::test_no_links PASSED
-test_mdcheck.py::TestExtractLinks::test_link_with_anchor PASSED
-test_mdcheck.py::TestExtractLinks::test_relative_link PASSED
-test_mdcheck.py::TestCheckUrl::test_url_ok PASSED
-test_mdcheck.py::TestCheckUrl::test_url_redirect PASSED
-test_mdcheck.py::TestCheckUrl::test_url_not_found PASSED
-test_mdcheck.py::TestCheckUrl::test_url_timeout PASSED
-test_mdcheck.py::TestCheckUrl::test_url_connection_error PASSED
-============================== 11 passed in 0.52s ==============================
+$ uv init md-link-check
+$ cd md-link-check
 ```
 
-Tous les tests passent. Le code fonctionne. À ce stade, un développeur en mode
-vibe coding pourrait s'arrêter là, satisfait. Mais un développeur qui construit
-une théorie de son programme va se poser des questions.
+Cette commande crée la structure de base : un fichier `pyproject.toml` pour les
+métadonnées et les dépendances, un `README.md`, et un `hello.py` de
+démarrage. C'est à partir de ce squelette qu'on va ouvrir VS Code et lancer
+Claude Code.
 
-**Étape 3 : trouver un problème.**
+**Étape 1 : initialiser et décrire l'intention.**
 
-En relisant le code, on remarque quelque chose. La regex
-`\[([^\]]+)\]\(([^)]+)\)` capture tous les liens Markdown, y compris les images.
-En Markdown, une image s'écrit `![texte alternatif](url)` et un lien s'écrit
-`[texte](url)`. La seule différence est le `!` devant les crochets. Notre regex
-ne fait pas la distinction : elle va aussi capturer les URLs d'images et tenter
-de les vérifier comme des liens. Ce n'est pas un bug catastrophique, mais c'est
-un comportement incorrect : un vérificateur de liens ne devrait pas signaler
-une image comme un lien cassé si le serveur d'images retourne une erreur.
+La première chose à faire dans l'extension VS Code est la même que dans la démo
+CLI : taper `/init`. L'agent analyse le squelette du projet et génère un
+`CLAUDE.md` initial. Avant d'écrire le fichier, il demande la permission,
+exactement comme on l'a vu avec Requests. On choisit "Yes, allow all edits this
+session" pour ne pas avoir à confirmer chaque modification pendant le reste de
+la démonstration.
+
+{{< image src="cc-md-1.png" alt="" title="" loading="lazy" >}}
+
+Le `CLAUDE.md` généré est minimal : il décrit la structure de base du projet.
+C'est maintenant qu'on l'édite manuellement pour y ajouter l'intention de
+l'outil : ce qu'il doit faire, les choix techniques (bibliothèque `requests`,
+tests avec `pytest`), le format de sortie attendu. Cette étape est importante :
+on écrit la spécification dans le dépôt, versionnée avec git, plutôt que de
+tout expliquer dans le chat à chaque session. La section ajoutée est mise en
+évidence dans le screenshot — quatre points qui décrivent précisément le
+comportement attendu, plus une ligne sur les choix techniques.
+
+{{< image src="cc-md-2.png" alt="" title="" loading="lazy" >}}
+
+**Étape 2 : planifier avant d'implémenter.**
+
+Avant d'envoyer la demande d'implémentation, on bascule en **Plan mode** via le
+menu des modes dans le panneau Claude Code. Ce mode a un comportement distinct
+des deux autres options disponibles : "Ask before edits" demande une approbation
+avant chaque modification individuelle, "Edit automatically" applique les
+changements sans confirmation, et "Plan mode" ne touche à aucun fichier — il
+se contente d'explorer le code et de produire un plan complet avant d'agir.
+C'est l'équivalent de demander à un développeur de réfléchir à voix haute avant
+de commencer à taper.
+
+{{< image src="cc-md-3.png" alt="" title="" loading="lazy" >}}
+
+Une fois le mode activé, on envoie simplement :
+
+```
+Implémente le projet tel que décrit dans CLAUDE.md
+```
+
+L'agent relit `CLAUDE.md` et produit un plan complet — sans toucher à aucun fichier.
+
+{{< image src="cc-md-4.png" alt="" title="" loading="lazy" >}}
+
+Le plan est structuré en trois sections. D'abord le contexte : l'agent confirme
+sa compréhension du projet en résumant ce qu'il a lu dans `CLAUDE.md`. Ensuite
+les fichiers concernés : `main.py` à créer avec les fonctions `extract_links()`,
+`check_url()` et `check_file()`, un fichier de tests `test_main.py`, et
+`pyproject.toml` à mettre à jour pour ajouter `requests` et `pytest` comme
+dépendances. Enfin la vérification : comment lancer les tests après
+l'implémentation. La boîte en bas de l'écran demande si on accepte ce plan,
+avec trois options — accepter et continuer automatiquement, accepter et
+demander confirmation avant chaque modification, ou ne pas retenir le plan.
+C'est un deuxième niveau de contrôle : on a validé le plan de haut niveau, et
+on peut encore choisir le degré de supervision pour l'exécution. On choisit
+"Yes, and auto-accept" : le plan a été relu et approuvé, on peut maintenant
+faire confiance à l'agent pour l'exécuter.
+
+Même avec ce choix, l'agent ne peut pas exécuter une commande shell sans
+demander la permission. Avant d'installer les dépendances, il s'arrête et
+affiche la commande exacte qu'il s'apprête à lancer :
+`uv add requests && uv add --dev pytest`. On peut l'approuver, l'autoriser
+pour toutes les commandes `uv add` du projet, ou la refuser. Cette distinction
+est importante : les modifications de fichiers (écriture de code) et
+l'exécution de commandes shell sont deux niveaux de permissions séparés. Écrire
+du code dans un fichier est réversible avec git ; exécuter une commande shell
+peut avoir des effets plus larges sur l'environnement.
+
+{{< image src="cc-md-5.png" alt="" title="" loading="lazy" >}}
+
+L'agent exécute ensuite le plan étape par étape : il crée `main.py` avec les
+trois fonctions, crée le fichier de tests, met à jour `pyproject.toml` pour
+ajouter les dépendances. Pour chaque modification de fichier, le diff apparaît
+directement dans l'éditeur. Une fois les fichiers écrits, l'agent demande à
+lancer les tests avec `uv run pytest tests/ -v` — on choisit d'autoriser toutes
+les commandes `uv run` pour le projet, et l'agent conclut en vérifiant que tout
+passe.
+
+{{< image src="cc-md-6.png" alt="" title="" loading="lazy" >}}
+
+Une fois la permission accordée, l'agent installe les dépendances, écrit les
+fichiers et lance les tests. Le screenshot suivant montre le résumé complet de
+la session : les commandes exécutées, le diff de `pyproject.toml` avec les
+nouvelles dépendances en vert, et en bas la confirmation que tous les tests
+passent.
+
+{{< image src="cc-md-7.png" alt="" title="" loading="lazy" >}}
+
+**Étape 3 : vérifier par soi-même.**
+
+L'agent a lancé les tests de son côté, mais rien n'empêche de les relancer
+indépendamment dans le terminal intégré de VS Code — hors de Claude Code,
+directement dans le shell. C'est un geste simple mais important : il rappelle
+que l'agent et le développeur partagent le même environnement. Les tests ne
+sont pas "les tests de l'IA", ils sont les tests du projet, et le développeur
+peut (et devrait) les exécuter lui-même. On voit ici à la fois le code généré
+dans l'éditeur et la sortie de `uv run pytest` dans le terminal — tous les
+tests passent.
+
+{{< image src="cc-md-8.png" alt="" title="" loading="lazy" >}}
+
+**Étape 4 : tester et valider les choix de l'agent.**
+
+Avant de relire le code, on teste l'outil sur un fichier Markdown minimal
+qui contient un lien valide, un lien cassé et une image :
 
 ```shell
-$ claude "La regex dans extract_links capture aussi les images Markdown
-         (![alt](url)). Il faut les exclure. Ajoute un test pour ce cas
-         et corrige la regex."
+$ echo "Voici [Google](https://google.com) et [un lien cassé](https://exemple-inexistant-xyz.com) et ![logo](https://google.com/logo.png)" > test.md
+$ uv run main.py test.md
+[OK    ] test.md | Google | https://google.com | 200
+[BROKEN] test.md | un lien cassé | https://exemple-inexistant-xyz.com | HTTPSConnectionPool(host='exemple-inexistant-xyz.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='exemple-inexistant-xyz.com', port=443): Failed to resolve 'exemple-inexistant-xyz.com' ([Errno 8] nodename nor servname provided, or not known)"))
 ```
 
-Claude Code modifie la regex en ajoutant un *negative lookbehind* :
+{{< image src="cc-md-9.png" alt="" title="" loading="lazy" >}}
 
-```python
-pattern = r"(?<!!)\[([^\]]+)\]\(([^)]+)\)"
-```
+En relisant `main.py`, on remarque quelque chose d'intéressant. La regex
+utilisée pour extraire les liens est `(?<!!)\[([^\]]+)\]\((https?://[^)]+)\)`.
+Le préfixe `(?<!!)` est un *negative lookbehind* qui signifie "pas précédé d'un
+point d'exclamation" — ce qui exclut précisément les images Markdown, qui
+s'écrivent `![texte alternatif](url)`. L'agent a anticipé ce cas sans qu'on le
+lui demande explicitement : il a lu "exclure les images" dans `CLAUDE.md` et a
+su comment l'implémenter. Le test de l'application le confirme : le fichier
+`test.md` contient une image `![logo](https://google.com/logo.png)`, et cette
+URL n'apparaît pas dans la sortie.
 
-Le `(?<!!)` signifie "pas précédé d'un point d'exclamation". Il ajoute
-aussi le test correspondant :
-
-```python
-def test_image_not_captured(self):
-    text = "![Logo](https://example.com/logo.png)"
-    links = extract_links(text)
-    assert links == []
-```
-
-Les tests passent à nouveau, et le comportement est maintenant correct.
-
-Cette séquence illustre exactement pourquoi la compréhension reste essentielle
-dans le développement assisté par IA. L'IA a produit du code qui fonctionnait
-et passait tous ses tests, mais elle n'avait pas pensé à un cas que la
-spécification initiale ne mentionnait pas. C'est le développeur, en relisant
-le code et en réfléchissant au domaine (la syntaxe Markdown), qui a identifié
-le problème. Sans cette relecture critique, le bug serait resté dans le code,
-invisible parce qu'aucun test ne le cherchait. C'est la différence entre
-produire du code et construire une théorie du programme.
+Cette relecture illustre une leçon importante. La relecture du code généré
+n'est pas uniquement défensive (chercher des bugs) : c'est aussi le moyen de
+comprendre ce que l'agent a fait et pourquoi. Un développeur qui accepte le
+code sans le lire ne sait pas si l'agent a bien compris l'intention, même
+quand tous les tests passent. Ici, l'agent a fait le bon choix — mais c'est
+la relecture qui le révèle. C'est la différence entre produire du code et
+construire une théorie du programme.
 
 ## Questions ouvertes
 
