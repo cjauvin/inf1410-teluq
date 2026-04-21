@@ -752,6 +752,23 @@ peut avoir des effets plus larges sur l'environnement.
 
 {{< image src="cc-md-5.png" alt="" title="" loading="lazy" >}}
 
+C'est aussi le bon moment pour penser à git. Dans un workflow assisté par IA,
+git joue un rôle de mécanisme de contrôle supplémentaire : il rend les
+changements de l'agent explicites et traçables, permet de voir exactement ce
+qui a été modifié via `git diff`, et offre un filet de sécurité complet — si
+l'agent fait quelque chose d'inattendu, un `git checkout` ou un `git reset`
+suffit à revenir à l'état précédent. Plusieurs workflows sont possibles. On
+peut gérer git entièrement soi-même : committer avant de laisser l'agent agir,
+puis committer après avoir relu le diff, ce qui donne un historique propre où
+chaque commit représente un changement compris et validé. On peut aussi laisser
+l'agent gérer les commits lui-même, en lui demandant de committer après chaque
+étape. Ou encore adopter un mix des deux, selon le contexte : laisser l'agent
+plus d'autonomie pour une tâche bien délimitée, reprendre le contrôle pour des
+modifications sensibles. Le bon workflow dépend du degré de supervision qu'on
+cherche à maintenir, mais le principe reste le même : git est ce qui transforme
+"l'IA a modifié des fichiers" en "voici exactement ce qui a changé, et
+pourquoi".
+
 L'agent exécute ensuite le plan étape par étape : il crée `main.py` avec les
 trois fonctions, crée le fichier de tests, met à jour `pyproject.toml` pour
 ajouter les dépendances. Pour chaque modification de fichier, le diff apparaît
@@ -774,10 +791,14 @@ passent.
 
 L'agent a lancé les tests de son côté, mais rien n'empêche de les relancer
 indépendamment dans le terminal intégré de VS Code — hors de Claude Code,
-directement dans le shell. C'est un geste simple mais important : il rappelle
-que l'agent et le développeur partagent le même environnement. Les tests ne
-sont pas "les tests de l'IA", ils sont les tests du projet, et le développeur
-peut (et devrait) les exécuter lui-même. On voit ici à la fois le code généré
+directement dans le shell. C'est un geste simple mais important, à plusieurs titres. D'abord, il rappelle
+que l'agent et le développeur partagent le même environnement : les tests ne
+sont pas "les tests de l'IA", ils sont les tests du projet. Ensuite, et c'est
+peut-être plus subtil, ce geste préserve la sensation de contrôle. Dans un
+flux où l'agent écrit les fichiers, installe les dépendances et lance les tests
+à votre place, il est facile d'avoir l'impression de ne faire que regarder.
+Relancer les tests soi-même, même si le résultat est identique, change la
+posture : on vérifie, on valide, on reste acteur. On voit ici à la fois le code généré
 dans l'éditeur et la sortie de `uv run pytest` dans le terminal — tous les
 tests passent.
 
