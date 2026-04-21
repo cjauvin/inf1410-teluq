@@ -1,5 +1,5 @@
 <!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie.
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Le développement assisté par IA"><meta property="og:description" content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Le développement assisté par IA"><meta itemprop=description content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta itemprop=wordCount content="7764"><title>Le développement assisté par IA | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.ed629b2fc028279d3443883e8ce65c8c7c8f165f3678a92e1c70a51852eea2f7.css integrity="sha256-7WKbL8AoJ500Q4g+jOZcjHyPFl82eKkuHHClGFLuovc=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Le développement assisté par IA"><meta property="og:description" content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Le développement assisté par IA"><meta itemprop=description content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta itemprop=wordCount content="9455"><title>Le développement assisté par IA | INF1410 - Initiation au génie logiciel</title><link rel=icon href=https://cjauvin.github.io/inf1410-teluq/images/2gears.png><link rel=manifest href=https://cjauvin.github.io/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/book.min.ed629b2fc028279d3443883e8ce65c8c7c8f165f3678a92e1c70a51852eea2f7.css integrity="sha256-7WKbL8AoJ500Q4g+jOZcjHyPFl82eKkuHHClGFLuovc=" crossorigin=anonymous><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=https://cjauvin.github.io/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://cjauvin.github.io/inf1410-teluq/><img src=https://cjauvin.github.io/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/>Module 1 - Le génie logiciel</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module1/historique/>Intro et historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
@@ -20,7 +20,7 @@
 <label for=section-69c4d37a525484fe9a3045731c1a6b13 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/10-infrastructure/>L'infrastructure</a>
 <img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/10-infrastructure/docker/>La conteneurisation (Docker)</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/10-infrastructure/kubernetes/>L'orchestration (Kubernetes)</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/10-infrastructure/iac/>L'infrastructure comme code (Terraform)</a></li></ul></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/deploiement/>Le déploiement continu (CD)</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/observabilite/>L'observabilité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/incidents/>La fiabilité et les incidents</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/securite/>La sécurité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module5/scalabilite/>La scalabilité</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle checked>
 <label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/>Module 6 - Le logiciel dans le monde</a>
-<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/>L'open source</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/>L'économie du logiciel</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/monopoles/>Monopoles et régulation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/>Catastrophes, éthique et responsabilité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/>Le métier de développeur</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/ class=active>Le développement assisté par IA</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Le développement assisté par IA</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#doù-vient-lintelligence-artificielle>D&rsquo;où vient l&rsquo;intelligence artificielle</a><ul><li><a href=#lia-symbolique-années-1950-1980>L&rsquo;IA symbolique (années 1950-1980)</a></li><li><a href=#le-machine-learning-années-1990-2000>Le machine learning (années 1990-2000)</a></li><li><a href=#le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)</a></li><li><a href=#des-modèles-de-langage-aux-llm-2003-2023>Des modèles de langage aux LLM (2003-2023)</a></li></ul></li><li><a href=#lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur</a></li><li><a href=#la-confusion-autour-du-terme--agent->La confusion autour du terme « agent »</a></li><li><a href=#le-vibe-coding>Le vibe coding</a></li><li><a href=#ce-qui-change-dans-les-pratiques-du-génie-logiciel>Ce qui change dans les pratiques du génie logiciel</a></li><li><a href=#démonstrations-avec-claude-code>Démonstrations avec Claude Code</a><ul><li><a href=#explorer-un-codebase--requests>Explorer un codebase : Requests</a></li><li><a href=#créer-une-application--mdcheck>Créer une application : mdcheck</a></li></ul></li><li><a href=#questions-ouvertes>Questions ouvertes</a><ul><li><a href=#propriété-intellectuelle>Propriété intellectuelle</a></li><li><a href=#fiabilité-et-hallucinations>Fiabilité et hallucinations</a></li><li><a href=#dépendance-et-déqualification>Dépendance et déqualification</a></li><li><a href=#le-slop-et-la-dégradation-des-communs>Le slop et la dégradation des communs</a></li><li><a href=#la-position-de-yoshua-bengio>La position de Yoshua Bengio</a></li><li><a href=#retour-à-brooks--silver-bullet-ou-pas->Retour à Brooks : silver bullet ou pas ?</a></li></ul></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=le-développement-assisté-par-ia>Le développement assisté par IA<a class=anchor href=#le-d%c3%a9veloppement-assist%c3%a9-par-ia>#</a></h1><p>La section précédente se terminait sur une question ouverte : l&rsquo;IA générative
+<img src=https://cjauvin.github.io/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/open-source/>L'open source</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/economie/>L'économie du logiciel</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/monopoles/>Monopoles et régulation</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/catastrophes/>Catastrophes, éthique et responsabilité</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/>Le métier de développeur</a></li><li><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/ class=active>Le développement assisté par IA</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Le développement assisté par IA</h3><label for=toc-control><img src=https://cjauvin.github.io/inf1410-teluq/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#doù-vient-lintelligence-artificielle>D&rsquo;où vient l&rsquo;intelligence artificielle</a><ul><li><a href=#lia-symbolique-années-1950-1980>L&rsquo;IA symbolique (années 1950-1980)</a></li><li><a href=#le-machine-learning-années-1990-2000>Le machine learning (années 1990-2000)</a></li><li><a href=#le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)</a></li><li><a href=#des-modèles-de-langage-aux-llm-2003-2023>Des modèles de langage aux LLM (2003-2023)</a></li></ul></li><li><a href=#lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur</a></li><li><a href=#la-confusion-autour-du-terme--agent->La confusion autour du terme « agent »</a></li><li><a href=#le-vibe-coding>Le vibe coding</a></li><li><a href=#ce-qui-change-dans-les-pratiques-du-génie-logiciel>Ce qui change dans les pratiques du génie logiciel</a></li><li><a href=#démonstrations-avec-claude-code>Démonstrations avec Claude Code</a><ul><li><a href=#explorer-un-codebase--requests>Explorer un codebase : Requests</a></li><li><a href=#créer-un-utilitaire--md-link-check>Créer un utilitaire : md-link-check</a></li></ul></li><li><a href=#questions-ouvertes>Questions ouvertes</a><ul><li><a href=#propriété-intellectuelle>Propriété intellectuelle</a></li><li><a href=#fiabilité-et-hallucinations>Fiabilité et hallucinations</a></li><li><a href=#dépendance-et-déqualification>Dépendance et déqualification</a></li><li><a href=#le-slop-et-la-dégradation-des-communs>Le slop et la dégradation des communs</a></li><li><a href=#la-position-de-yoshua-bengio>La position de Yoshua Bengio</a></li><li><a href=#retour-à-brooks--silver-bullet-ou-pas->Retour à Brooks : silver bullet ou pas ?</a></li></ul></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=le-développement-assisté-par-ia>Le développement assisté par IA<a class=anchor href=#le-d%c3%a9veloppement-assist%c3%a9-par-ia>#</a></h1><p>La section précédente se terminait sur une question ouverte : l&rsquo;IA générative
 sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La
 question mérite d&rsquo;être posée sérieusement, parce que quelque chose de
 fondamentalement différent est en train de se passer. Depuis 2021, des outils
@@ -372,15 +372,47 @@ hypothèses et de les tester méthodiquement, reste une compétence irremplaçab
 Le développeur qui comprend les fondamentaux (comment fonctionne la mémoire, ce
 que fait réellement une requête SQL, pourquoi une condition de course se produit)
 sera toujours plus efficace, avec ou sans IA, que celui qui ne fait que
-manipuler des abstractions sans en comprendre les mécanismes sous-jacents.</p><h2 id=démonstrations-avec-claude-code>Démonstrations avec Claude Code<a class=anchor href=#d%c3%a9monstrations-avec-claude-code>#</a></h2><p>Les sections précédentes ont discuté du développement assisté par IA de manière
-conceptuelle. Pour rendre ces idées concrètes, cette section présente deux
-démonstrations réalisées avec Claude Code, un agent de développement en ligne de
-commande développé par Anthropic. Claude Code ne se contente pas de compléter du
-code dans un éditeur : il peut naviguer dans un dépôt, lire des fichiers,
-exécuter des commandes, lancer des tests et itérer sur son travail. Les deux
-démonstrations illustrent des usages très différents mais complémentaires :
-explorer un codebase existant pour en comprendre l&rsquo;architecture, puis créer une
-petite application de zéro.</p><h3 id=explorer-un-codebase--requests>Explorer un codebase : Requests<a class=anchor href=#explorer-un-codebase--requests>#</a></h3><p>L&rsquo;une des situations les plus courantes pour un développeur est d&rsquo;arriver sur
+manipuler des abstractions sans en comprendre les mécanismes sous-jacents.</p><h2 id=démonstrations-avec-claude-code>Démonstrations avec Claude Code<a class=anchor href=#d%c3%a9monstrations-avec-claude-code>#</a></h2><p>Une note sur la conception de cette section : les deux démonstrations qui suivent
+ont elles-mêmes été conçues avec Claude Code. Il y a quelque chose de
+délibérément récursif dans cette démarche : utiliser l&rsquo;outil pour enseigner
+l&rsquo;outil. Mais il serait facile de mal comprendre ce que cela signifie. L&rsquo;agent
+n&rsquo;a pas simplement généré des exemples tout faits que l&rsquo;auteur a copiés-collés
+dans le cours. La méthode adoptée a été différente : demander à Claude Code
+d&rsquo;expliquer quoi faire étape par étape, puis exécuter chaque étape manuellement,
+vérifier que le résultat est correct, et seulement ensuite intégrer l&rsquo;exemple
+dans le cours. Cette distinction est fondamentale. Un exemple généré sans
+vérification peut contenir des erreurs invisibles, des commandes qui ne
+fonctionnent pas dans un contexte légèrement différent, ou des comportements
+qui dépendent d&rsquo;une version spécifique d&rsquo;un outil. Un exemple exécuté et
+validé par un humain est fiable. Cette méthodologie — demander à l&rsquo;IA de
+proposer, puis vérifier soi-même avant d&rsquo;accepter — devrait être au coeur de
+tout développement assisté par IA. Elle ne ralentit pas le travail de manière
+significative, mais elle réduit considérablement le risque d&rsquo;introduire des
+erreurs qu&rsquo;on ne comprend pas et qu&rsquo;on ne saurait pas corriger.</p><label class=book-image for=book-image-toggle-9><input class="hidden toggle" type=checkbox id=book-image-toggle-9>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/inception.avif alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-9"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Les deux démonstrations qui suivent rendent ces idées concrètes. Elles ont été
+réalisées avec Claude Code, un agent de développement développé par Anthropic
+qui peut naviguer dans un dépôt, lire des fichiers, exécuter des commandes,
+lancer des tests et itérer sur son travail.</p><label class=book-image for=book-image-toggle-10><input class="hidden toggle" type=checkbox id=book-image-toggle-10>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/claude-alien.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-10"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Claude Code est disponible sous plusieurs formes. La plus dépouillée est le CLI
+(interface en ligne de commande) : on installe l&rsquo;outil, on tape <code>claude</code> dans
+un terminal, et on interagit directement avec l&rsquo;agent. Il existe aussi des
+extensions pour VS Code et les IDE JetBrains, qui intègrent Claude Code
+directement dans l&rsquo;éditeur avec une visualisation des diffs et une interface de
+chat dans le panneau latéral. Pour ceux qui préfèrent une interface graphique
+autonome, une application desktop (macOS et Windows) permet de gérer plusieurs
+sessions en parallèle. Enfin, une version web accessible depuis <code>claude.ai/code</code>
+ne nécessite aucune installation et fonctionne même depuis un téléphone. Dans
+tous les cas, c&rsquo;est le même moteur qui tourne en arrière-plan. Les deux
+démonstrations qui suivent illustrent des usages différents, et chacune utilise
+une interface différente : la première utilise le CLI pour explorer un codebase
+existant, la seconde utilise l&rsquo;extension VS Code pour créer une petite
+application de zéro. Ce choix n&rsquo;est pas arbitraire : le CLI convient bien à
+l&rsquo;exploration pure, où on pose des questions en mode conversationnel sans
+modifier de fichiers ; l&rsquo;extension VS Code est plus naturelle pour la
+construction, parce qu&rsquo;elle permet de voir les diffs et d&rsquo;accepter ou rejeter
+les modifications directement dans l&rsquo;éditeur.</p><h3 id=explorer-un-codebase--requests>Explorer un codebase : Requests<a class=anchor href=#explorer-un-codebase--requests>#</a></h3><p>L&rsquo;une des situations les plus courantes pour un développeur est d&rsquo;arriver sur
 un projet existant et de devoir en comprendre la structure, les choix de
 conception et le fonctionnement interne. C&rsquo;est exactement la situation décrite
 par Peter Naur : il faut reconstruire la théorie d&rsquo;un programme qu&rsquo;on n&rsquo;a pas
@@ -396,122 +428,220 @@ gestion des sessions, des cookies, des redirections, de l&rsquo;authentification
 des adaptateurs de transport. C&rsquo;est un excellent terrain d&rsquo;exploration.</p><p>La première chose à faire est de cloner le dépôt de Requests depuis GitHub,
 exactement comme le ferait un nouveau développeur qui rejoint le projet. On se
 retrouve alors avec un répertoire <code>requests/</code> contenant le code source, et on
-peut lancer Claude Code directement dans ce contexte.</p><label class=book-image for=book-image-toggle-9><input class="hidden toggle" type=checkbox id=book-image-toggle-9>
-<img src=requests-explore-1.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-9"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Première question : la vue d&rsquo;ensemble.</strong></p><p>On commence par demander à Claude Code un portrait général de l&rsquo;architecture du
-projet. L&rsquo;agent parcourt les fichiers source, compte les lignes, et produit une
-synthèse : le coeur du projet tient dans une poignée de fichiers bien délimités,
-avec <code>api.py</code> comme façade publique, <code>sessions.py</code> comme moteur central,
-<code>models.py</code> pour les objets de données, et <code>adapters.py</code> pour la couche de
-transport. Ce premier échange illustre un usage fondamental : obtenir une carte
-mentale d&rsquo;un projet en quelques secondes. Un développeur qui arriverait sur ce
-dépôt sans connaître Requests aurait besoin de plusieurs heures de lecture pour
-construire ce portrait. L&rsquo;agent le produit en lisant et en analysant les
-fichiers automatiquement.</p><label class=book-image for=book-image-toggle-10><input class="hidden toggle" type=checkbox id=book-image-toggle-10>
-<img src=requests-explore-2.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-10"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Deuxième question : suivre le chemin d&rsquo;une requête.</strong></p><p>On demande ensuite à l&rsquo;agent de tracer, fichier par fichier, ce qui se passe
-exactement quand on écrit <code>requests.get("https://example.com")</code>. L&rsquo;agent suit
-la chaîne d&rsquo;appels à travers <code>api.py</code>, <code>sessions.py</code> et <code>adapters.py</code>, en
-relevant au passage un détail de conception intéressant : chaque appel à
-<code>requests.get()</code> crée et détruit une <code>Session</code> temporaire. C&rsquo;est pratique pour
-des appels isolés, mais si on fait plusieurs requêtes vers le même serveur,
-utiliser directement un objet <code>Session</code> est plus efficace parce qu&rsquo;il réutilise
-les connexions TCP. Ce type d&rsquo;analyse serait fastidieux à faire manuellement :
-il faut ouvrir plusieurs fichiers, trouver les bons points d&rsquo;entrée, suivre les
-appels de méthode en méthode. L&rsquo;agent le fait en quelques secondes et produit
-une explication linéaire qui reconstruit la <em>théorie</em> du programme, au sens de
-Naur.</p><label class=book-image for=book-image-toggle-11><input class="hidden toggle" type=checkbox id=book-image-toggle-11>
-<img src=requests-explore-3.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-11"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Troisième question : un détail architectural surprenant.</strong></p><p>On demande finalement à l&rsquo;agent d&rsquo;expliquer le rôle du pattern Adapter et
-pourquoi les appels HTTP ne sont pas faits directement dans <code>Session</code>. L&rsquo;agent
-explique que le <code>HTTPAdapter</code> implémente le pattern adaptateur du Gang of Four :
-la méthode <code>mount()</code> associe un préfixe d&rsquo;URL à un adaptateur, ce qui permet de
-remplacer le transport sans modifier <code>Session</code> (c&rsquo;est ainsi que <code>requests-mock</code>
-monte un faux adaptateur pour les tests), ou de monter des adaptateurs
-différents pour des hôtes différents. C&rsquo;est un excellent exemple du principe
-d&rsquo;inversion de dépendances (le &ldquo;D&rdquo; de SOLID) : <code>Session</code> dépend d&rsquo;une
-abstraction, pas d&rsquo;une implémentation concrète. Cet échange illustre comment
-l&rsquo;agent peut relier du code concret à des concepts théoriques que l&rsquo;étudiant a
-déjà vus dans le module 3.</p><label class=book-image for=book-image-toggle-12><input class="hidden toggle" type=checkbox id=book-image-toggle-12>
-<img src=requests-explore-4.png alt loading=lazy title>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-12"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>L&rsquo;exploration d&rsquo;un codebase avec un agent IA n&rsquo;est pas du vibe coding : on ne
+peut lancer Claude Code directement dans ce contexte.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ git clone git@github.com:psf/requests.git
+</span></span><span style=display:flex><span>$ cd requests
+</span></span><span style=display:flex><span>$ claude</span></span></code></pre></div><p>Une fois l&rsquo;agent démarré, on peut lui adresser des messages en langage naturel,
+mais Claude Code offre aussi des <em>commandes slash</em> : des instructions spéciales
+préfixées d&rsquo;un <code>/</code> qui contrôlent le comportement de l&rsquo;agent plutôt que de lui
+poser une question. Par exemple, <code>/help</code> affiche la liste des commandes
+disponibles, <code>/compact</code> demande à l&rsquo;agent de résumer la conversation pour
+libérer de la mémoire, <code>/usage</code> affiche la consommation de la session en cours
+et la facturation hebdomadaire, et <code>/quit</code> termine la session. La première commande
+utile quand on arrive sur un nouveau projet est <code>/init</code> : elle demande à
+l&rsquo;agent d&rsquo;analyser le dépôt courant et de générer automatiquement un fichier
+<code>CLAUDE.md</code> à sa racine.</p><p>Ce fichier <code>CLAUDE.md</code> est le mécanisme principal pour donner des instructions
+persistantes à Claude Code sur un projet. On peut y décrire l&rsquo;architecture du
+projet, les conventions de code adoptées par l&rsquo;équipe, les commandes à
+connaître pour lancer les tests ou le serveur de développement, ou tout autre
+contexte que l&rsquo;agent devrait avoir en tête à chaque session. Contrairement à
+une question posée dans la conversation (qui disparaît quand on ferme le
+terminal), le contenu de <code>CLAUDE.md</code> est relu automatiquement à chaque
+démarrage. C&rsquo;est une forme de mémoire externe pour l&rsquo;agent, ancrée dans le
+dépôt lui-même, et donc partagée avec toute l&rsquo;équipe si le fichier est versionné
+avec git. Quand <code>/init</code> génère ce fichier, il produit un premier portrait du
+projet qu&rsquo;on peut ensuite compléter et affiner manuellement.</p><label class=book-image for=book-image-toggle-11><input class="hidden toggle" type=checkbox id=book-image-toggle-11>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc1.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-11"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Avant d&rsquo;écrire le fichier <code>CLAUDE.md</code>, l&rsquo;agent s&rsquo;arrête et demande la
+permission. Ce comportement est au coeur du modèle de confiance de Claude Code :
+l&rsquo;agent ne modifie jamais un fichier, n&rsquo;exécute jamais une commande shell, et
+n&rsquo;appelle jamais un outil externe sans avoir d&rsquo;abord demandé l&rsquo;autorisation.
+Quand une telle action est sur le point d&rsquo;être effectuée, Claude Code affiche
+une description de ce qu&rsquo;il s&rsquo;apprête à faire et attend une réponse. On peut
+approuver l&rsquo;action pour cette fois, la refuser, ou choisir de toujours
+l&rsquo;autoriser pour la session courante (ce qui évite d&rsquo;avoir à confirmer à chaque
+fois des actions répétitives comme l&rsquo;exécution des tests). Ce système de
+permissions existe pour une raison simple : un agent qui peut lire des fichiers,
+écrire du code et exécuter des commandes shell a un pouvoir considérable sur
+l&rsquo;environnement dans lequel il tourne. La supervision humaine n&rsquo;est pas une
+contrainte artificielle, c&rsquo;est une pratique saine, surtout quand on commence à
+travailler avec un outil qu&rsquo;on ne connaît pas encore bien.</p><label class=book-image for=book-image-toggle-12><input class="hidden toggle" type=checkbox id=book-image-toggle-12>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc2.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-12"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Première question : la vue d&rsquo;ensemble.</strong></p><p>On commence par demander à Claude Code un portrait général de l&rsquo;architecture du
+projet.</p><pre tabindex=0><code>Peux-tu me donner une vue d&#39;ensemble de l&#39;organisation et
+du fonctionnement de ce projet</code></pre><p>La réponse est structurée en plusieurs niveaux. D&rsquo;abord, une description
+de ce qu&rsquo;est Requests en une phrase : une bibliothèque qui enveloppe urllib3,
+qui enveloppe elle-même <code>http.client</code> de la bibliothèque standard, pour offrir
+une API simple qualifiée par son auteur d&rsquo;&ldquo;HTTP for Humans&rdquo;. Ensuite, un
+diagramme textuel montrant le cycle de vie d&rsquo;une requête à travers les couches :
+de <code>requests.get()</code> dans <code>api.py</code> jusqu&rsquo;à urllib3, en passant par <code>Session</code>
+dans <code>sessions.py</code>, <code>PreparedRequest</code> dans <code>models.py</code>, et <code>HTTPAdapter</code> dans
+<code>adapters.py</code>. Enfin, un tableau récapitulatif des modules de support
+(<code>auth.py</code>, <code>cookies.py</code>, <code>exceptions.py</code>, etc.) avec le rôle de chacun. Ce
+premier échange illustre un usage fondamental : obtenir une carte mentale
+complète d&rsquo;un projet en quelques secondes, avec une profondeur qu&rsquo;il faudrait
+plusieurs heures de lecture pour construire manuellement.</p><label class=book-image for=book-image-toggle-13><input class="hidden toggle" type=checkbox id=book-image-toggle-13>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc3.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-13"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Deuxième question : suivre le chemin d&rsquo;une requête.</strong></p><p>On demande ensuite à l&rsquo;agent :</p><pre tabindex=0><code>Peux-tu tracer et expliquer clairement et brièvement ce qui se passe
+quand on exécute requests.get(&#34;https://example.com&#34;)</code></pre><p>Avant de répondre, l&rsquo;agent lit de sa propre initiative les trois fichiers clés pour
+pouvoir citer des références précises. La réponse prend la forme de six étapes
+numérotées, chacune ancrée dans le code réel avec des numéros de ligne : de
+<code>api.get()</code> en <code>api.py:73</code> jusqu&rsquo;à <code>build_response()</code> qui enveloppe la réponse
+brute d&rsquo;urllib3 dans un objet <code>Response</code>. Deux détails ressortent de cette
+trace. D&rsquo;abord, l&rsquo;étape 2 montre que <code>api.request()</code> crée une <code>Session</code> via un
+bloc <code>with</code>, ce qui garantit que les sockets sont libérés à la fin — mais aussi
+que chaque appel à <code>requests.get()</code> ouvre et ferme une session complète ; pour
+des appels répétés vers le même serveur, créer une <code>Session</code> manuellement est
+plus efficace parce qu&rsquo;elle réutilise les connexions TCP. Ensuite, l&rsquo;étape 4
+révèle un mécanisme peu documenté : après avoir envoyé la requête,
+<code>Session.send()</code> déclenche un système de <em>hooks</em> qui permet d&rsquo;exécuter des
+fonctions arbitraires sur la réponse avant qu&rsquo;elle soit retournée. La réponse
+se termine par un schéma textuel en arbre qui résume toute la chaîne d&rsquo;un coup
+d&rsquo;oeil. Ce type d&rsquo;analyse serait fastidieux à faire manuellement : il faut
+ouvrir plusieurs fichiers, trouver les bons points d&rsquo;entrée, suivre les appels
+de méthode en méthode. L&rsquo;agent le fait en quelques secondes et produit une
+explication linéaire qui reconstruit la <em>théorie</em> du programme, au sens de
+Naur.</p><label class=book-image for=book-image-toggle-14><input class="hidden toggle" type=checkbox id=book-image-toggle-14>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc4.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-14"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Troisième question : un détail architectural surprenant.</strong></p><p>On demande finalement à l&rsquo;agent d&rsquo;expliquer le rôle du pattern Adapter dans
+Requests. La réponse commence par identifier le problème que ce pattern résout :
+<code>Session</code> a deux responsabilités bien distinctes, gérer l&rsquo;état (cookies, auth,
+headers, redirections) et assurer le transport (ouvrir une socket, gérer TLS,
+envoyer les octets). Si ces deux responsabilités étaient mélangées dans la même
+classe, changer de backend de transport (remplacer urllib3 par <code>httpx</code>, ou par un
+mock pour les tests) impliquerait de modifier <code>Session</code> elle-même, un objet
+déjà complexe. Le pattern Adapter isole le transport derrière une interface
+minimale, <code>BaseAdapter</code>, dont la seule méthode obligatoire est <code>send()</code>. Les
+adaptateurs sont montés par préfixe d&rsquo;URL dans le constructeur de <code>Session</code> :
+<code>https://</code> et <code>http://</code> sont associés par défaut à <code>HTTPAdapter</code>. L&rsquo;agent
+énumère ensuite trois usages concrets que ce design rend possibles : les
+tests avec un faux adaptateur monté à la place du vrai, les protocoles custom
+(un adaptateur pour <code>ftp://</code> ou pour des sockets Unix), et des configurations
+différentes par hôte. La réponse se conclut sur un résumé qui rappelle
+l&rsquo;essentiel : <code>Session</code> orchestre, urllib3 transporte, et les deux s&rsquo;ignorent
+mutuellement. Cet échange illustre comment l&rsquo;agent peut relier du code concret
+à des concepts théoriques que l&rsquo;étudiant a déjà vus dans le module 3 : le
+pattern adaptateur, la séparation des responsabilités, l&rsquo;inversion de
+dépendances.</p><label class=book-image for=book-image-toggle-15><input class="hidden toggle" type=checkbox id=book-image-toggle-15>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc5.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-15"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>En fin de session, la commande <code>/usage</code> donne une vue sur la consommation :
+la portion du contexte de la session courante utilisée, la consommation
+hebdomadaire tous modèles confondus, et le montant facturé depuis le début du
+cycle de facturation. C&rsquo;est un rappel utile que l&rsquo;agent n&rsquo;est pas gratuit, et
+que des sessions longues ou des dépôts volumineux coûtent plus que de courtes
+interactions.</p><label class=book-image for=book-image-toggle-16><input class="hidden toggle" type=checkbox id=book-image-toggle-16>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc6.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-16"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>L&rsquo;exploration d&rsquo;un codebase avec un agent IA n&rsquo;est pas du vibe coding : on ne
 génère pas de code à l&rsquo;aveugle, on construit activement une compréhension. Le
 développeur pose des questions, évalue les réponses, approfondit les points qui
 l&rsquo;intéressent. L&rsquo;IA accélère la construction de la théorie du programme, mais
-c&rsquo;est toujours le développeur qui la construit.</p><h3 id=créer-une-application--mdcheck>Créer une application : mdcheck<a class=anchor href=#cr%c3%a9er-une-application--mdcheck>#</a></h3><p>La deuxième démonstration illustre l&rsquo;autre usage fondamental : construire
-quelque chose de neuf. L&rsquo;objectif est de créer un petit utilitaire en ligne de
-commande qui vérifie que les liens dans des fichiers Markdown sont valides. Un
-outil simple, utile, et dont le périmètre est assez restreint pour tenir dans
-une démonstration.</p><p><strong>Étape 1 : décrire ce qu&rsquo;on veut.</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ claude <span style=color:#e6db74>&#34;Crée un utilitaire Python appelé mdcheck qui vérifie les liens
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>         HTTP dans des fichiers Markdown. Il doit extraire tous les liens
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>         au format [texte](url), vérifier ceux qui commencent par http://
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>         ou https://, et afficher le résultat. Utilise la bibliothèque
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>         requests. Écris aussi les tests avec pytest.&#34;</span></span></span></code></pre></div><p>Claude Code crée la structure du projet, installe les dépendances avec <code>uv</code>,
-et produit deux fichiers. Le premier, <code>main.py</code>, contient trois fonctions :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>extract_links</span>(text: str) <span style=color:#f92672>-&gt;</span> list[tuple[str, str]]:
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;&#34;&#34;Extrait les liens Markdown d&#39;un texte.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    pattern <span style=color:#f92672>=</span> <span style=color:#e6db74>r</span><span style=color:#e6db74>&#34;\[([^\]]+)\]\(([^)]+)\)&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> re<span style=color:#f92672>.</span>findall(pattern, text)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check_url</span>(url: str, timeout: int <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>) <span style=color:#f92672>-&gt;</span> tuple[bool, str]:
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;&#34;&#34;Vérifie si une URL est accessible.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span>:
-</span></span><span style=display:flex><span>        response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>head(url, timeout<span style=color:#f92672>=</span>timeout, allow_redirects<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> response<span style=color:#f92672>.</span>status_code <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>400</span>:
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>, <span style=color:#e6db74>&#34;OK&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>, <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;HTTP </span><span style=color:#e6db74>{</span>response<span style=color:#f92672>.</span>status_code<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span> requests<span style=color:#f92672>.</span>ConnectionError:
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>, <span style=color:#e6db74>&#34;Connexion impossible&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span> requests<span style=color:#f92672>.</span>Timeout:
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>, <span style=color:#e6db74>&#34;Timeout&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check_file</span>(path: Path) <span style=color:#f92672>-&gt;</span> list[dict]:
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;&#34;&#34;Vérifie tous les liens dans un fichier Markdown.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    text <span style=color:#f92672>=</span> path<span style=color:#f92672>.</span>read_text()
-</span></span><span style=display:flex><span>    links <span style=color:#f92672>=</span> extract_links(text)
-</span></span><span style=display:flex><span>    results <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> label, url <span style=color:#f92672>in</span> links:
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;http://&#34;</span>) <span style=color:#f92672>or</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;https://&#34;</span>):
-</span></span><span style=display:flex><span>            ok, message <span style=color:#f92672>=</span> check_url(url)
-</span></span><span style=display:flex><span>            results<span style=color:#f92672>.</span>append({<span style=color:#e6db74>&#34;file&#34;</span>: str(path), <span style=color:#e6db74>&#34;label&#34;</span>: label,
-</span></span><span style=display:flex><span>                            <span style=color:#e6db74>&#34;url&#34;</span>: url, <span style=color:#e6db74>&#34;ok&#34;</span>: ok, <span style=color:#e6db74>&#34;message&#34;</span>: message})
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> results</span></span></code></pre></div><p>Le code est propre, lisible, et fait ce qu&rsquo;on a demandé. Le deuxième fichier,
-<code>test_mdcheck.py</code>, contient des tests pour l&rsquo;extraction de liens (lien simple,
-liens multiples, pas de lien, lien avec ancre) et pour la vérification d&rsquo;URL
-(réponse 200, 404, timeout, erreur de connexion), avec des mocks pour éviter
-de faire de vraies requêtes HTTP pendant les tests.</p><p><strong>Étape 2 : exécuter les tests.</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ uv run pytest test_mdcheck.py -v
-</span></span><span style=display:flex><span>test_mdcheck.py::TestExtractLinks::test_single_link PASSED
-</span></span><span style=display:flex><span>test_mdcheck.py::TestExtractLinks::test_multiple_links PASSED
-</span></span><span style=display:flex><span>test_mdcheck.py::TestExtractLinks::test_no_links PASSED
-</span></span><span style=display:flex><span>test_mdcheck.py::TestExtractLinks::test_link_with_anchor PASSED
-</span></span><span style=display:flex><span>test_mdcheck.py::TestExtractLinks::test_relative_link PASSED
-</span></span><span style=display:flex><span>test_mdcheck.py::TestCheckUrl::test_url_ok PASSED
-</span></span><span style=display:flex><span>test_mdcheck.py::TestCheckUrl::test_url_redirect PASSED
-</span></span><span style=display:flex><span>test_mdcheck.py::TestCheckUrl::test_url_not_found PASSED
-</span></span><span style=display:flex><span>test_mdcheck.py::TestCheckUrl::test_url_timeout PASSED
-</span></span><span style=display:flex><span>test_mdcheck.py::TestCheckUrl::test_url_connection_error PASSED
-</span></span><span style=display:flex><span><span style=color:#f92672>==============================</span> <span style=color:#ae81ff>11</span> passed in 0.52s <span style=color:#f92672>==============================</span></span></span></code></pre></div><p>Tous les tests passent. Le code fonctionne. À ce stade, un développeur en mode
-vibe coding pourrait s&rsquo;arrêter là, satisfait. Mais un développeur qui construit
-une théorie de son programme va se poser des questions.</p><p><strong>Étape 3 : trouver un problème.</strong></p><p>En relisant le code, on remarque quelque chose. La regex
-<code>\[([^\]]+)\]\(([^)]+)\)</code> capture tous les liens Markdown, y compris les images.
-En Markdown, une image s&rsquo;écrit <code>![texte alternatif](url)</code> et un lien s&rsquo;écrit
-<code>[texte](url)</code>. La seule différence est le <code>!</code> devant les crochets. Notre regex
-ne fait pas la distinction : elle va aussi capturer les URLs d&rsquo;images et tenter
-de les vérifier comme des liens. Ce n&rsquo;est pas un bug catastrophique, mais c&rsquo;est
-un comportement incorrect : un vérificateur de liens ne devrait pas signaler
-une image comme un lien cassé si le serveur d&rsquo;images retourne une erreur.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ claude <span style=color:#e6db74>&#34;La regex dans extract_links capture aussi les images Markdown
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>         (![alt](url)). Il faut les exclure. Ajoute un test pour ce cas
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>         et corrige la regex.&#34;</span></span></span></code></pre></div><p>Claude Code modifie la regex en ajoutant un <em>negative lookbehind</em> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>pattern <span style=color:#f92672>=</span> <span style=color:#e6db74>r</span><span style=color:#e6db74>&#34;(?&lt;!!)\[([^\]]+)\]\(([^)]+)\)&#34;</span></span></span></code></pre></div><p>Le <code>(?&lt;!!)</code> signifie &ldquo;pas précédé d&rsquo;un point d&rsquo;exclamation&rdquo;. Il ajoute
-aussi le test correspondant :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_image_not_captured</span>(self):
-</span></span><span style=display:flex><span>    text <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;![Logo](https://example.com/logo.png)&#34;</span>
-</span></span><span style=display:flex><span>    links <span style=color:#f92672>=</span> extract_links(text)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> links <span style=color:#f92672>==</span> []</span></span></code></pre></div><p>Les tests passent à nouveau, et le comportement est maintenant correct.</p><p>Cette séquence illustre exactement pourquoi la compréhension reste essentielle
-dans le développement assisté par IA. L&rsquo;IA a produit du code qui fonctionnait
-et passait tous ses tests, mais elle n&rsquo;avait pas pensé à un cas que la
-spécification initiale ne mentionnait pas. C&rsquo;est le développeur, en relisant
-le code et en réfléchissant au domaine (la syntaxe Markdown), qui a identifié
-le problème. Sans cette relecture critique, le bug serait resté dans le code,
-invisible parce qu&rsquo;aucun test ne le cherchait. C&rsquo;est la différence entre
-produire du code et construire une théorie du programme.</p><h2 id=questions-ouvertes>Questions ouvertes<a class=anchor href=#questions-ouvertes>#</a></h2><p>Le développement assisté par IA soulève des questions qui dépassent la technique
+c&rsquo;est toujours le développeur qui la construit.</p><h3 id=créer-un-utilitaire--md-link-check>Créer un utilitaire : md-link-check<a class=anchor href=#cr%c3%a9er-un-utilitaire--md-link-check>#</a></h3><p>La deuxième démonstration illustre l&rsquo;autre usage fondamental : construire
+quelque chose de neuf. On utilise ici l&rsquo;extension VS Code, qui change
+sensiblement l&rsquo;expérience. Claude Code s&rsquo;intègre dans le panneau latéral de
+l&rsquo;éditeur, et quand l&rsquo;agent propose des modifications à un fichier, elles
+apparaissent directement dans l&rsquo;éditeur sous forme de diff : les lignes ajoutées
+en vert, les lignes supprimées en rouge, avec des boutons pour accepter ou
+rejeter chaque modification. C&rsquo;est plus interactif que le CLI, et plus naturel
+quand on est en train de construire quelque chose.</p><p>L&rsquo;objectif est de créer un petit utilitaire en ligne de commande qui vérifie
+que les liens dans des fichiers Markdown sont valides. Un outil simple, utile,
+et dont le périmètre est assez restreint pour tenir dans une démonstration.</p><p>La première étape n&rsquo;implique pas encore Claude Code. On initialise le projet
+avec <code>uv</code>, l&rsquo;outil de gestion de projets Python que nous avons vu dans le
+module 2 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ uv init md-link-check
+</span></span><span style=display:flex><span>$ cd md-link-check</span></span></code></pre></div><p>Cette commande crée la structure de base : un fichier <code>pyproject.toml</code> pour les
+métadonnées et les dépendances, un <code>README.md</code>, et un <code>hello.py</code> de
+démarrage. C&rsquo;est à partir de ce squelette qu&rsquo;on va ouvrir VS Code et lancer
+Claude Code.</p><p><strong>Étape 1 : initialiser et décrire l&rsquo;intention.</strong></p><p>La première chose à faire dans l&rsquo;extension VS Code est la même que dans la démo
+CLI : taper <code>/init</code>. L&rsquo;agent analyse le squelette du projet et génère un
+<code>CLAUDE.md</code> initial. Avant d&rsquo;écrire le fichier, il demande la permission,
+exactement comme on l&rsquo;a vu avec Requests. On choisit &ldquo;Yes, allow all edits this
+session&rdquo; pour ne pas avoir à confirmer chaque modification pendant le reste de
+la démonstration.</p><label class=book-image for=book-image-toggle-17><input class="hidden toggle" type=checkbox id=book-image-toggle-17>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc-md-1.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-17"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le <code>CLAUDE.md</code> généré est minimal : il décrit la structure de base du projet.
+C&rsquo;est maintenant qu&rsquo;on l&rsquo;édite manuellement pour y ajouter l&rsquo;intention de
+l&rsquo;outil : ce qu&rsquo;il doit faire, les choix techniques (bibliothèque <code>requests</code>,
+tests avec <code>pytest</code>), le format de sortie attendu. Cette étape est importante :
+on écrit la spécification dans le dépôt, versionnée avec git, plutôt que de
+tout expliquer dans le chat à chaque session. La section ajoutée est mise en
+évidence dans le screenshot — quatre points qui décrivent précisément le
+comportement attendu, plus une ligne sur les choix techniques.</p><label class=book-image for=book-image-toggle-18><input class="hidden toggle" type=checkbox id=book-image-toggle-18>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc-md-2.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-18"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Étape 2 : planifier avant d&rsquo;implémenter.</strong></p><p>Avant d&rsquo;envoyer la demande d&rsquo;implémentation, on bascule en <strong>Plan mode</strong> via le
+menu des modes dans le panneau Claude Code. Ce mode a un comportement distinct
+des deux autres options disponibles : &ldquo;Ask before edits&rdquo; demande une approbation
+avant chaque modification individuelle, &ldquo;Edit automatically&rdquo; applique les
+changements sans confirmation, et &ldquo;Plan mode&rdquo; ne touche à aucun fichier — il
+se contente d&rsquo;explorer le code et de produire un plan complet avant d&rsquo;agir.
+C&rsquo;est l&rsquo;équivalent de demander à un développeur de réfléchir à voix haute avant
+de commencer à taper.</p><label class=book-image for=book-image-toggle-19><input class="hidden toggle" type=checkbox id=book-image-toggle-19>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc-md-3.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-19"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Une fois le mode activé, on envoie simplement :</p><pre tabindex=0><code>Implémente le projet tel que décrit dans CLAUDE.md</code></pre><p>L&rsquo;agent relit <code>CLAUDE.md</code> et produit un plan complet — sans toucher à aucun fichier.</p><label class=book-image for=book-image-toggle-20><input class="hidden toggle" type=checkbox id=book-image-toggle-20>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc-md-4.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-20"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le plan est structuré en trois sections. D&rsquo;abord le contexte : l&rsquo;agent confirme
+sa compréhension du projet en résumant ce qu&rsquo;il a lu dans <code>CLAUDE.md</code>. Ensuite
+les fichiers concernés : <code>main.py</code> à créer avec les fonctions <code>extract_links()</code>,
+<code>check_url()</code> et <code>check_file()</code>, un fichier de tests <code>test_main.py</code>, et
+<code>pyproject.toml</code> à mettre à jour pour ajouter <code>requests</code> et <code>pytest</code> comme
+dépendances. Enfin la vérification : comment lancer les tests après
+l&rsquo;implémentation. La boîte en bas de l&rsquo;écran demande si on accepte ce plan,
+avec trois options — accepter et continuer automatiquement, accepter et
+demander confirmation avant chaque modification, ou ne pas retenir le plan.
+C&rsquo;est un deuxième niveau de contrôle : on a validé le plan de haut niveau, et
+on peut encore choisir le degré de supervision pour l&rsquo;exécution. On choisit
+&ldquo;Yes, and auto-accept&rdquo; : le plan a été relu et approuvé, on peut maintenant
+faire confiance à l&rsquo;agent pour l&rsquo;exécuter.</p><p>Même avec ce choix, l&rsquo;agent ne peut pas exécuter une commande shell sans
+demander la permission. Avant d&rsquo;installer les dépendances, il s&rsquo;arrête et
+affiche la commande exacte qu&rsquo;il s&rsquo;apprête à lancer :
+<code>uv add requests && uv add --dev pytest</code>. On peut l&rsquo;approuver, l&rsquo;autoriser
+pour toutes les commandes <code>uv add</code> du projet, ou la refuser. Cette distinction
+est importante : les modifications de fichiers (écriture de code) et
+l&rsquo;exécution de commandes shell sont deux niveaux de permissions séparés. Écrire
+du code dans un fichier est réversible avec git ; exécuter une commande shell
+peut avoir des effets plus larges sur l&rsquo;environnement.</p><label class=book-image for=book-image-toggle-21><input class="hidden toggle" type=checkbox id=book-image-toggle-21>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc-md-5.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-21"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>L&rsquo;agent exécute ensuite le plan étape par étape : il crée <code>main.py</code> avec les
+trois fonctions, crée le fichier de tests, met à jour <code>pyproject.toml</code> pour
+ajouter les dépendances. Pour chaque modification de fichier, le diff apparaît
+directement dans l&rsquo;éditeur. Une fois les fichiers écrits, l&rsquo;agent demande à
+lancer les tests avec <code>uv run pytest tests/ -v</code> — on choisit d&rsquo;autoriser toutes
+les commandes <code>uv run</code> pour le projet, et l&rsquo;agent conclut en vérifiant que tout
+passe.</p><label class=book-image for=book-image-toggle-22><input class="hidden toggle" type=checkbox id=book-image-toggle-22>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc-md-6.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-22"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Une fois la permission accordée, l&rsquo;agent installe les dépendances, écrit les
+fichiers et lance les tests. Le screenshot suivant montre le résumé complet de
+la session : les commandes exécutées, le diff de <code>pyproject.toml</code> avec les
+nouvelles dépendances en vert, et en bas la confirmation que tous les tests
+passent.</p><label class=book-image for=book-image-toggle-23><input class="hidden toggle" type=checkbox id=book-image-toggle-23>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc-md-7.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-23"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Étape 3 : vérifier par soi-même.</strong></p><p>L&rsquo;agent a lancé les tests de son côté, mais rien n&rsquo;empêche de les relancer
+indépendamment dans le terminal intégré de VS Code — hors de Claude Code,
+directement dans le shell. C&rsquo;est un geste simple mais important : il rappelle
+que l&rsquo;agent et le développeur partagent le même environnement. Les tests ne
+sont pas &ldquo;les tests de l&rsquo;IA&rdquo;, ils sont les tests du projet, et le développeur
+peut (et devrait) les exécuter lui-même. On voit ici à la fois le code généré
+dans l&rsquo;éditeur et la sortie de <code>uv run pytest</code> dans le terminal — tous les
+tests passent.</p><label class=book-image for=book-image-toggle-24><input class="hidden toggle" type=checkbox id=book-image-toggle-24>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc-md-8.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-24"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Étape 4 : tester et valider les choix de l&rsquo;agent.</strong></p><p>Avant de relire le code, on teste l&rsquo;outil sur un fichier Markdown minimal
+qui contient un lien valide, un lien cassé et une image :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ echo <span style=color:#e6db74>&#34;Voici [Google](https://google.com) et [un lien cassé](https://exemple-inexistant-xyz.com) et ![logo](https://google.com/logo.png)&#34;</span> &gt; test.md
+</span></span><span style=display:flex><span>$ uv run main.py test.md
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>OK    <span style=color:#f92672>]</span> test.md | Google | https://google.com | <span style=color:#ae81ff>200</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>BROKEN<span style=color:#f92672>]</span> test.md | un lien cassé | https://exemple-inexistant-xyz.com | HTTPSConnectionPool<span style=color:#f92672>(</span>host<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;exemple-inexistant-xyz.com&#39;</span>, port<span style=color:#f92672>=</span>443<span style=color:#f92672>)</span>: Max retries exceeded with url: / <span style=color:#f92672>(</span>Caused by NameResolutionError<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;HTTPSConnection(host=&#39;exemple-inexistant-xyz.com&#39;, port=443): Failed to resolve &#39;exemple-inexistant-xyz.com&#39; ([Errno 8] nodename nor servname provided, or not known)&#34;</span><span style=color:#f92672>))</span></span></span></code></pre></div><label class=book-image for=book-image-toggle-25><input class="hidden toggle" type=checkbox id=book-image-toggle-25>
+<img src=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/cc-md-9.png alt loading=lazy title>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-25"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>En relisant <code>main.py</code>, on remarque quelque chose d&rsquo;intéressant. La regex
+utilisée pour extraire les liens est <code>(?&lt;!!)\[([^\]]+)\]\((https?://[^)]+)\)</code>.
+Le préfixe <code>(?&lt;!!)</code> est un <em>negative lookbehind</em> qui signifie &ldquo;pas précédé d&rsquo;un
+point d&rsquo;exclamation&rdquo; — ce qui exclut précisément les images Markdown, qui
+s&rsquo;écrivent <code>![texte alternatif](url)</code>. L&rsquo;agent a anticipé ce cas sans qu&rsquo;on le
+lui demande explicitement : il a lu &ldquo;exclure les images&rdquo; dans <code>CLAUDE.md</code> et a
+su comment l&rsquo;implémenter. Le test de l&rsquo;application le confirme : le fichier
+<code>test.md</code> contient une image <code>![logo](https://google.com/logo.png)</code>, et cette
+URL n&rsquo;apparaît pas dans la sortie.</p><p>Cette relecture illustre une leçon importante. La relecture du code généré
+n&rsquo;est pas uniquement défensive (chercher des bugs) : c&rsquo;est aussi le moyen de
+comprendre ce que l&rsquo;agent a fait et pourquoi. Un développeur qui accepte le
+code sans le lire ne sait pas si l&rsquo;agent a bien compris l&rsquo;intention, même
+quand tous les tests passent. Ici, l&rsquo;agent a fait le bon choix — mais c&rsquo;est
+la relecture qui le révèle. C&rsquo;est la différence entre produire du code et
+construire une théorie du programme.</p><h2 id=questions-ouvertes>Questions ouvertes<a class=anchor href=#questions-ouvertes>#</a></h2><p>Le développement assisté par IA soulève des questions qui dépassent la technique
 et qui n&rsquo;ont pas encore de réponses définitives. En voici quelques-unes parmi
 les plus débattues.</p><h3 id=propriété-intellectuelle>Propriété intellectuelle<a class=anchor href=#propri%c3%a9t%c3%a9-intellectuelle>#</a></h3><p>Les LLM qui génèrent du code ont été entraînés sur d&rsquo;immenses corpus de code
 source, dont une grande partie provient de dépôts open source hébergés sur
@@ -618,4 +748,4 @@ naturel, la valeur du développeur ne réside plus dans sa capacité à écrire 
 lignes de code. Elle réside dans sa capacité à comprendre, à juger et à
 décider. À construire la théorie.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=https://cjauvin.github.io/inf1410-teluq/docs/module6/metier/ class="flex align-center"><img src=https://cjauvin.github.io/inf1410-teluq/icons/backward.svg class=book-icon alt=Backward>
 <span>Le métier de développeur</span>
-</a></span><span></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#doù-vient-lintelligence-artificielle>D&rsquo;où vient l&rsquo;intelligence artificielle</a><ul><li><a href=#lia-symbolique-années-1950-1980>L&rsquo;IA symbolique (années 1950-1980)</a></li><li><a href=#le-machine-learning-années-1990-2000>Le machine learning (années 1990-2000)</a></li><li><a href=#le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)</a></li><li><a href=#des-modèles-de-langage-aux-llm-2003-2023>Des modèles de langage aux LLM (2003-2023)</a></li></ul></li><li><a href=#lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur</a></li><li><a href=#la-confusion-autour-du-terme--agent->La confusion autour du terme « agent »</a></li><li><a href=#le-vibe-coding>Le vibe coding</a></li><li><a href=#ce-qui-change-dans-les-pratiques-du-génie-logiciel>Ce qui change dans les pratiques du génie logiciel</a></li><li><a href=#démonstrations-avec-claude-code>Démonstrations avec Claude Code</a><ul><li><a href=#explorer-un-codebase--requests>Explorer un codebase : Requests</a></li><li><a href=#créer-une-application--mdcheck>Créer une application : mdcheck</a></li></ul></li><li><a href=#questions-ouvertes>Questions ouvertes</a><ul><li><a href=#propriété-intellectuelle>Propriété intellectuelle</a></li><li><a href=#fiabilité-et-hallucinations>Fiabilité et hallucinations</a></li><li><a href=#dépendance-et-déqualification>Dépendance et déqualification</a></li><li><a href=#le-slop-et-la-dégradation-des-communs>Le slop et la dégradation des communs</a></li><li><a href=#la-position-de-yoshua-bengio>La position de Yoshua Bengio</a></li><li><a href=#retour-à-brooks--silver-bullet-ou-pas->Retour à Brooks : silver bullet ou pas ?</a></li></ul></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></div></aside></main><script>document.addEventListener("DOMContentLoaded",()=>{const e='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5"/><path d="M3.5 10.5H2.5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v1"/></svg>',n='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>';function t(t){const s=document.createElement("button");return s.className="copy-btn",s.innerHTML=e,s.addEventListener("click",()=>{navigator.clipboard.writeText(t()).then(()=>{s.innerHTML=n,setTimeout(()=>{s.innerHTML=e},2e3)})}),s}document.querySelectorAll(".highlight pre").forEach(e=>{const n=e.querySelector("code");if(n&&n.getAttribute("data-lang")==="shell")return;e.style.position="relative";const s=t(()=>n?n.textContent:e.textContent);e.appendChild(s)}),document.querySelectorAll(".pyodide-block").forEach(e=>{const s=e.id,n=e.querySelector(".CodeMirror");if(!n)return;n.style.position="relative";const o=t(()=>_pyodideEditors[s].getValue());n.appendChild(o)})})</script></body></html>
+</a></span><span></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#doù-vient-lintelligence-artificielle>D&rsquo;où vient l&rsquo;intelligence artificielle</a><ul><li><a href=#lia-symbolique-années-1950-1980>L&rsquo;IA symbolique (années 1950-1980)</a></li><li><a href=#le-machine-learning-années-1990-2000>Le machine learning (années 1990-2000)</a></li><li><a href=#le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)</a></li><li><a href=#des-modèles-de-langage-aux-llm-2003-2023>Des modèles de langage aux LLM (2003-2023)</a></li></ul></li><li><a href=#lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur</a></li><li><a href=#la-confusion-autour-du-terme--agent->La confusion autour du terme « agent »</a></li><li><a href=#le-vibe-coding>Le vibe coding</a></li><li><a href=#ce-qui-change-dans-les-pratiques-du-génie-logiciel>Ce qui change dans les pratiques du génie logiciel</a></li><li><a href=#démonstrations-avec-claude-code>Démonstrations avec Claude Code</a><ul><li><a href=#explorer-un-codebase--requests>Explorer un codebase : Requests</a></li><li><a href=#créer-un-utilitaire--md-link-check>Créer un utilitaire : md-link-check</a></li></ul></li><li><a href=#questions-ouvertes>Questions ouvertes</a><ul><li><a href=#propriété-intellectuelle>Propriété intellectuelle</a></li><li><a href=#fiabilité-et-hallucinations>Fiabilité et hallucinations</a></li><li><a href=#dépendance-et-déqualification>Dépendance et déqualification</a></li><li><a href=#le-slop-et-la-dégradation-des-communs>Le slop et la dégradation des communs</a></li><li><a href=#la-position-de-yoshua-bengio>La position de Yoshua Bengio</a></li><li><a href=#retour-à-brooks--silver-bullet-ou-pas->Retour à Brooks : silver bullet ou pas ?</a></li></ul></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></div></aside></main><script>document.addEventListener("DOMContentLoaded",()=>{const e='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5"/><path d="M3.5 10.5H2.5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v1"/></svg>',n='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>';function t(t){const s=document.createElement("button");return s.className="copy-btn",s.innerHTML=e,s.addEventListener("click",()=>{navigator.clipboard.writeText(t()).then(()=>{s.innerHTML=n,setTimeout(()=>{s.innerHTML=e},2e3)})}),s}document.querySelectorAll(".highlight pre").forEach(e=>{const n=e.querySelector("code");if(n&&n.getAttribute("data-lang")==="shell")return;e.style.position="relative";const s=t(()=>n?n.textContent:e.textContent);e.appendChild(s)}),document.querySelectorAll(".pyodide-block").forEach(e=>{const s=e.id,n=e.querySelector(".CodeMirror");if(!n)return;n.style.position="relative";const o=t(()=>_pyodideEditors[s].getValue());n.appendChild(o)})})</script></body></html>
