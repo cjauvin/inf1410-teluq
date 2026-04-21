@@ -40,6 +40,8 @@ créneau complémentaire : plutôt que de vendre des produits logiciels, elles
 vendaient des services de développement sur mesure et de consultation, un modèle
 qui reste dominant dans le secteur des TI au Québec.
 
+{{< image src="cgi.jpg" alt="" title="" loading="lazy" >}}
+
 Parallèlement au logiciel propriétaire vendu en boîte, le shareware a représenté
 une expérimentation économique fascinante. Comme nous l'avons mentionné dans la
 section sur l'open source, le shareware distribuait le programme gratuitement,
@@ -64,6 +66,8 @@ of Legends), et enfin aux abonnements de type catalogue (Xbox Game Pass). Chaque
 transition reflétait un changement technologique : l'arrivée du haut débit a
 rendu le jeu en ligne viable, et les smartphones ont créé un marché de masse
 pour les jeux gratuits.
+
+{{< image src="doom.webp" alt="" title="" loading="lazy" >}}
 
 ## Le logiciel comme service
 
@@ -111,6 +115,8 @@ ses propres besoins), illustre parfaitement cette convergence : l'entreprise est
 d'applications pour les développeurs tiers, et un fournisseur d'APIs pour
 l'écosystème e-commerce. Son succès en a fait l'une des plus grandes entreprises
 technologiques canadiennes.
+
+{{< image src="shopify.webp" alt="" title="" loading="lazy" >}}
 
 ## La culture startup et le capital de risque
 

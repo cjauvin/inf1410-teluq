@@ -9,7 +9,7 @@ bookCollapseSection: true
 Ce premier module pose les fondations du cours. On y définit ce qu'est le génie logiciel, pourquoi cette discipline existe, et quels problèmes elle tente de résoudre. On y retrace ensuite son histoire, des premiers langages de programmation jusqu'à l'ère de l'intelligence artificielle, en passant par les
 grandes crises, les idées marquantes et les outils qui ont transformé la pratique.
 
-{{< image src="software-eating-world.png" alt="" title="" loading="lazy" >}}
+{{< image src="montreal.jpg" alt="" title="" loading="lazy" >}}
 
 Le logiciel est partout. Il fait fonctionner les téléphones, les voitures, les hôpitaux, les banques, les avions. Pourtant, malgré des décennies de progrès, construire du logiciel reste une activité notoirement difficile. Les projets dépassent leurs budgets, les délais explosent, les bogues s'accumulent. En 1994, le Standish Group publiait son rapport *CHAOS*, révélant que seulement 16% des projets logiciels étaient livrés à temps et dans les limites du budget. Trente ans plus tard, les échecs spectaculaires continuent de faire les manchettes. Au Québec, le projet SAAQclic de la Société de l'assurance automobile, estimé à 638 millions de dollars en 2017, a fini par coûter plus de 1,1 milliard, et son déploiement en 2023 a été marqué par des pannes majeures et des dépassements de coûts dissimulés pendant des années. Le génie logiciel, en tant que discipline, est né de ce constat : il ne suffit pas de savoir programmer pour construire du logiciel qui fonctionne.
 
@@ -26,5 +26,7 @@ def calculer_prix(items, rabais_pct, taux_taxe):
 ```
 
 La logique elle-même (sous-total, rabais, taxe) est de la complexité essentielle. Mais si cette fonction de cinq lignes se retrouve enfouie dans un *framework* (cadriciel) de mille lignes de configuration, de couches d'abstraction et de patrons de conception superflus, on a ajouté de la complexité accidentelle. Une bonne partie du génie logiciel consiste justement à minimiser cette complexité accidentelle, tout en gérant efficacement la complexité essentielle.
+
+{{< image src="complexité.png" alt="" title="" loading="lazy" >}}
 
 Ce cours propose d'explorer le génie logiciel à travers six modules qui suivent une progression naturelle. On commence par le présent module, qui pose les bases historiques et conceptuelles de la discipline. On passe ensuite aux pratiques du développeur individuel : le contrôle de version, la gestion des dépendances, les tests. Puis on élargit la perspective au logiciel comme système, avec ses composantes architecturales, ses données et ses interfaces. On aborde ensuite la dimension collective du développement, avec les méthodes de travail en équipe et la collaboration. Le cinquième module traite de la vie opérationnelle du logiciel : comment le déployer, le surveiller, le faire fonctionner de manière fiable. Enfin, on termine par un regard sur l'écosystème plus large du logiciel, incluant la culture de l'open source et l'impact croissant de l'intelligence artificielle sur la pratique du développement.
