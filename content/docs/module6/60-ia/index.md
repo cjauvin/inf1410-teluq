@@ -47,6 +47,8 @@ quand les promesses initiales se sont heurtées à la réalité : l'intelligence
 humaine ne se réduit pas à un ensemble de règles logiques, et les problèmes du
 monde réel résistent à la formalisation complète.
 
+{{< image src="turing.jpg" alt="" title="" loading="lazy" >}}
+
 Il serait toutefois trompeur de conclure que l'IA symbolique a échoué. En
 réalité, une grande partie de ses idées se sont fondues dans la programmation
 ordinaire, au point qu'on ne les associe plus à l'"intelligence artificielle".
@@ -88,6 +90,8 @@ puissant (les GPU, des processeurs graphiques détournés pour le calcul
 scientifique) et des architectures de réseaux de neurones plus profondes. C'est
 le deep learning.
 
+{{< image src="neuron.webp" alt="" title="" loading="lazy" >}}
+
 ### Le deep learning et Montréal (années 2010)
 
 Le deep learning (apprentissage profond) désigne l'utilisation de réseaux de
@@ -106,6 +110,8 @@ Toronto), Yann LeCun (Bell Labs puis NYU) et Yoshua Bengio (Université de
 Montréal). Ils recevront ensemble le prix Turing en 2018, souvent décrit comme
 le "prix Nobel de l'informatique", pour leurs travaux sur le deep learning.
 
+{{< image src="bengio.jpg" alt="" title="" loading="lazy" >}}
+
 Le rôle de Montréal dans cette histoire mérite d'être souligné. Yoshua Bengio
 est arrivé à l'Université de Montréal en 1993 et y a fondé ce qui allait
 devenir le MILA (aujourd'hui l'Institut québécois d'intelligence artificielle),
@@ -118,6 +124,8 @@ de Google, Meta, Microsoft et Samsung, et engendrant un écosystème de startups
 spécialisées. Cette concentration de talent n'est pas un accident : elle
 résulte directement de la persévérance d'un chercheur et de l'université qui
 l'a soutenu pendant les années de vaches maigres.
+
+{{< image src="mila.webp" alt="" title="" loading="lazy" >}}
 
 Le moment charnière est arrivé en 2012. Lors de la compétition ImageNet, un
 défi annuel de classification d'images, Alex Krizhevsky, un étudiant de Hinton
@@ -136,7 +144,7 @@ champ de recherche marginal à la technologie la plus convoitée de la décennie
 Le deep learning a d'abord triomphé dans la vision par ordinateur, mais c'est
 son application au langage qui allait transformer le développement logiciel. Et
 cette histoire commence, encore une fois, à Montréal. En 2003, Yoshua Bengio et
-ses collègues ont publié "A Neural Probabilistic Language Model", un article qui
+ses collègues (dont l'auteur de ce cours) ont publié "A Neural Probabilistic Language Model", un article qui
 proposait une idée en apparence simple mais aux conséquences profondes : plutôt
 que de traiter les mots comme des symboles discrets et arbitraires (l'approche
 dominante en linguistique computationnelle), on pouvait représenter chaque mot
@@ -152,6 +160,8 @@ capturaient des relations sémantiques. L'exemple devenu célèbre est que le
 vecteur "roi" moins "homme" plus "femme" donnait un résultat proche de "reine",
 comme si le modèle avait appris, sans supervision explicite, des concepts
 abstraits comme le genre et la royauté.
+
+{{< image src="embeddings.webp" alt="" title="" loading="lazy" >}}
 
 L'étape suivante est venue, encore une fois, du MILA. En 2014, Dzmitry
 Bahdanau, Kyunghyun Cho et Yoshua Bengio ont publié "Neural Machine Translation
@@ -179,6 +189,8 @@ parallélisable, ce qui permettait de l'entraîner sur des quantités de texte
 sans précédent en exploitant la puissance des GPU. Le Transformer est devenu la
 brique de base de presque tous les modèles de langage modernes.
 
+{{< image src="transformer.png" alt="" title="" loading="lazy" >}}
+
 OpenAI a été parmi les premiers à exploiter cette architecture à grande échelle.
 GPT (Generative Pre-trained Transformer), publié en 2018, puis GPT-2 en 2019
 et GPT-3 en 2020, ont montré qu'en augmentant la taille du modèle (le nombre
@@ -196,6 +208,8 @@ de la même manière qu'ils comprenaient l'anglais ou le français : comme des
 patterns statistiques dans des séquences de tokens. La frontière entre comprendre
 du texte et comprendre du code s'est brouillée, et c'est précisément cette
 convergence qui a rendu possible les outils de développement assisté par IA.
+
+{{< image src="chatgpt.webp" alt="" title="" loading="lazy" >}}
 
 ## L'IA entre dans l'éditeur
 
@@ -230,6 +244,8 @@ style du code environnant. Pour beaucoup de développeurs, c'était la première
 fois qu'un outil d'IA produisait du code réellement utile, pas juste
 impressionnant comme démonstration.
 
+{{< image src="vsc-ai.jpg" alt="" title="" loading="lazy" >}}
+
 Puis, en novembre 2022, OpenAI a lancé ChatGPT, et tout a basculé. ChatGPT
 n'était pas un outil de développement : c'était un agent conversationnel
 généraliste. Mais les développeurs ont immédiatement commencé à l'utiliser pour
@@ -239,6 +255,14 @@ l'autocomplétion dans un IDE : on pouvait décrire un problème en langage
 naturel, poser des questions de suivi, demander des modifications. En quelques
 mois, Stack Overflow a vu son trafic chuter significativement, un signal
 révélateur du changement de comportement des développeurs.
+
+## La confusion autour du terme « agent »
+
+L'annonce de ChatGPT en novembre 2022 avait ouvert une boîte de Pandore conceptuelle. En quelques mois, un nouveau vocabulaire envahissait les conversations sur l'IA : *agent*, *agentic*, *autonomous AI*. Le désir était là, palpable : passer de l'assistant qui répond à l'agent qui agit. Mais dès qu'on essayait de définir ce que "agent" voulait dire concrètement, la discussion se brouillait. Voulait-on dire un modèle capable de raisonner en plusieurs étapes ? Un système qui peut appeler des outils externes ? Un programme qui s'exécute de manière autonome sans intervention humaine ? Un LLM doté d'une mémoire persistante ? En 2023, chaque entreprise, chaque chercheur, chaque blog tech avait sa propre définition, et elles ne se recoupaient qu'en partie.
+
+C'est d'ailleurs de ce flou qu'est née, paradoxalement, l'une des contributions techniques les plus concrètes de cette période. En novembre 2024, Anthropic a publié le protocole MCP (Model Context Protocol), une spécification ouverte qui définit une interface standard entre un LLM et des "outils" externes : des serveurs qui peuvent fournir des données, exécuter des commandes, lire des fichiers, interroger des bases de données. MCP ne prétendait pas définir ce qu'est un "agent" en général; il répondait à une question plus précise&nbsp;: comment un modèle de langage peut-il interagir de manière fiable et sécurisée avec son environnement ? Le protocole a rapidement été adopté par d'autres acteurs de l'industrie, et est devenu une brique de base de l'écosystème agentique, un peu comme HTTP l'avait été pour le web.
+
+Au fil de ces expérimentations, une définition s'est progressivement imposée dans la pratique, moins par consensus théorique que par l'usage. Un agent, c'est un LLM qui peut manipuler des outils locaux : lire et écrire des fichiers, exécuter des commandes shell, lancer des tests, appeler des APIs. La boucle est simple : le modèle reçoit une instruction, choisit un outil, observe le résultat, et itère jusqu'à ce que la tâche soit accomplie. Ce que cette définition perd en généralité, elle le gagne en clarté opérationnelle. Et c'est le succès d'outils comme Claude Code, lancé par Anthropic en 2025, qui a contribué à ancrer cette vision : un agent de développement qui vit dans le terminal, qui lit votre dépôt, exécute vos tests, et itère sur son propre travail, sans interface graphique, sans magie apparente, juste un modèle de langage avec accès à bash.
 
 L'étape suivante, celle que nous vivons actuellement, est le passage de
 l'assistant au copilote vers l'agent. Des outils comme Cursor, Claude Code
@@ -274,6 +298,8 @@ désormais créer des applications fonctionnelles. Pour ses critiques, c'est une
 recette pour produire du code fragile, incompris, et potentiellement dangereux.
 Le débat est riche parce qu'il touche à des questions fondamentales sur la
 nature même de la programmation.
+
+{{< image src="vibe-coding.png" alt="" title="" loading="lazy" >}}
 
 En 1979, Edsger Dijkstra, l'un des pères de la programmation structurée que
 nous avons rencontré dans le module 1, a écrit un texte au titre sans
@@ -441,124 +467,60 @@ derrière cette façade simple se cache une architecture plus complexe, avec la
 gestion des sessions, des cookies, des redirections, de l'authentification et
 des adaptateurs de transport. C'est un excellent terrain d'exploration.
 
-Voici une session avec Claude Code, où on lui demande d'explorer le dépôt de
-Requests comme le ferait un nouveau développeur qui cherche à comprendre le
-projet.
+La première chose à faire est de cloner le dépôt de Requests depuis GitHub,
+exactement comme le ferait un nouveau développeur qui rejoint le projet. On se
+retrouve alors avec un répertoire `requests/` contenant le code source, et on
+peut lancer Claude Code directement dans ce contexte.
+
+{{< image src="requests-explore-1.png" alt="" title="" loading="lazy" >}}
 
 **Première question : la vue d'ensemble.**
 
-```shell
-$ claude "Donne-moi un portrait de l'architecture de ce projet.
-         Quels sont les fichiers principaux et leurs responsabilités ?"
-```
-
-Claude Code commence par lister les fichiers source et compter leurs lignes,
-puis produit une analyse :
-
-> Le code source de Requests tient dans 18 fichiers Python pour environ 5 600
-> lignes au total. L'architecture suit un pattern en couches très lisible :
->
-> - **`api.py`** (157 lignes) : la façade publique. C'est le fichier le plus
->   simple du projet : les fonctions `get()`, `post()`, `put()`, etc. que tout
->   le monde utilise. Chaque fonction ne fait que créer une `Session` et lui
->   déléguer le travail.
-> - **`sessions.py`** (834 lignes) : le coeur du projet. La classe `Session`
->   gère la persistance des cookies, des headers, de l'authentification et des
->   proxies entre les requêtes.
-> - **`models.py`** (1 041 lignes) : les objets de données. Définit `Request`,
->   `PreparedRequest` et `Response`, les trois classes qui modélisent le cycle
->   de vie d'une requête HTTP.
-> - **`adapters.py`** (697 lignes) : la couche de transport. Le `HTTPAdapter`
->   fait le pont entre Requests et urllib3, la bibliothèque qui fait le vrai
->   travail de connexion réseau.
->
-> Le reste est constitué de modules utilitaires : `cookies.py` pour la gestion
-> des cookies, `auth.py` pour l'authentification HTTP, `utils.py` pour des
-> fonctions auxiliaires, `exceptions.py` pour la hiérarchie d'exceptions.
-
-Ce premier échange illustre un usage fondamental : obtenir une carte mentale
-d'un projet en quelques secondes. Un développeur qui arriverait sur ce dépôt
-sans connaître Requests aurait besoin de plusieurs heures de lecture pour
+On commence par demander à Claude Code un portrait général de l'architecture du
+projet. L'agent parcourt les fichiers source, compte les lignes, et produit une
+synthèse : le coeur du projet tient dans une poignée de fichiers bien délimités,
+avec `api.py` comme façade publique, `sessions.py` comme moteur central,
+`models.py` pour les objets de données, et `adapters.py` pour la couche de
+transport. Ce premier échange illustre un usage fondamental : obtenir une carte
+mentale d'un projet en quelques secondes. Un développeur qui arriverait sur ce
+dépôt sans connaître Requests aurait besoin de plusieurs heures de lecture pour
 construire ce portrait. L'agent le produit en lisant et en analysant les
 fichiers automatiquement.
 
+{{< image src="requests-explore-2.png" alt="" title="" loading="lazy" >}}
+
 **Deuxième question : suivre le chemin d'une requête.**
 
-```shell
-$ claude "Quand j'écris requests.get('https://example.com'),
-         que se passe-t-il exactement ? Trace le chemin du code,
-         fichier par fichier."
-```
-
-> Voici le chemin complet, étape par étape :
->
-> 1. **`api.py`, ligne 73** : `get()` appelle `request("get", url)`.
-> 2. **`api.py`, ligne 58** : `request()` crée une `Session` temporaire avec
->    `with sessions.Session() as session:` et appelle `session.request()`.
-> 3. **`sessions.py`, `Session.request()`** : la session construit un objet
->    `Request`, le transforme en `PreparedRequest` via `prepare_request()` (ce
->    qui résout les headers, fusionne les cookies de session, encode l'URL),
->    puis appelle `self.send()`.
-> 4. **`sessions.py`, `Session.send()`** : récupère le bon adaptateur de
->    transport en cherchant le préfixe d'URL (`https://` → `HTTPAdapter`),
->    puis appelle `adapter.send()`.
-> 5. **`adapters.py`, `HTTPAdapter.send()`** : c'est ici que la requête HTTP
->    est réellement envoyée, via urllib3. L'adaptateur gère le pool de
->    connexions, les timeouts, la vérification TLS, et encapsule la réponse
->    urllib3 dans un objet `Response` de Requests.
->
-> Un détail de conception intéressant : chaque appel à `requests.get()` crée
-> et détruit une `Session`. C'est pratique pour des appels isolés, mais si vous
-> faites plusieurs requêtes vers le même serveur, utiliser directement un objet
-> `Session` est plus efficace parce qu'il réutilise les connexions TCP.
-
-Ce type d'analyse serait fastidieux à faire manuellement : il faut ouvrir
-quatre fichiers, trouver les bons points d'entrée, suivre les appels de
-méthode en méthode. L'agent le fait en quelques secondes et produit une
-explication linéaire qui reconstruit la *théorie* du programme, au sens de
+On demande ensuite à l'agent de tracer, fichier par fichier, ce qui se passe
+exactement quand on écrit `requests.get("https://example.com")`. L'agent suit
+la chaîne d'appels à travers `api.py`, `sessions.py` et `adapters.py`, en
+relevant au passage un détail de conception intéressant : chaque appel à
+`requests.get()` crée et détruit une `Session` temporaire. C'est pratique pour
+des appels isolés, mais si on fait plusieurs requêtes vers le même serveur,
+utiliser directement un objet `Session` est plus efficace parce qu'il réutilise
+les connexions TCP. Ce type d'analyse serait fastidieux à faire manuellement :
+il faut ouvrir plusieurs fichiers, trouver les bons points d'entrée, suivre les
+appels de méthode en méthode. L'agent le fait en quelques secondes et produit
+une explication linéaire qui reconstruit la *théorie* du programme, au sens de
 Naur.
+
+{{< image src="requests-explore-3.png" alt="" title="" loading="lazy" >}}
 
 **Troisième question : un détail architectural surprenant.**
 
-```shell
-$ claude "Quel est le rôle du pattern Adapter ici ?
-         Pourquoi est-ce qu'on ne fait pas simplement les appels
-         HTTP directement dans Session ?"
-```
+On demande finalement à l'agent d'expliquer le rôle du pattern Adapter et
+pourquoi les appels HTTP ne sont pas faits directement dans `Session`. L'agent
+explique que le `HTTPAdapter` implémente le pattern adaptateur du Gang of Four :
+la méthode `mount()` associe un préfixe d'URL à un adaptateur, ce qui permet de
+remplacer le transport sans modifier `Session` (c'est ainsi que `requests-mock`
+monte un faux adaptateur pour les tests), ou de monter des adaptateurs
+différents pour des hôtes différents. C'est un excellent exemple du principe
+d'inversion de dépendances (le "D" de SOLID) : `Session` dépend d'une
+abstraction, pas d'une implémentation concrète. Cet échange illustre comment
+l'agent peut relier du code concret à des concepts théoriques que l'étudiant a
+déjà vus dans le module 3.
 
-> Le `HTTPAdapter` implémente le pattern adaptateur (Adapter) du Gang of Four.
-> L'idée est de découpler l'interface de haut niveau (`Session`) du mécanisme
-> de transport sous-jacent (urllib3). Concrètement, dans le `__init__` de
-> `Session`, on trouve :
->
-> ```python
-> self.adapters = OrderedDict()
-> self.mount("https://", HTTPAdapter())
-> self.mount("http://", HTTPAdapter())
-> ```
->
-> La méthode `mount()` associe un préfixe d'URL à un adaptateur. Quand
-> `Session.send()` doit envoyer une requête, elle cherche l'adaptateur dont le
-> préfixe correspond à l'URL. Ce design a plusieurs avantages :
->
-> - On peut remplacer le transport sans modifier `Session`. Par exemple, la
->   bibliothèque `requests-mock` monte un faux adaptateur pour les tests.
-> - On peut monter des adaptateurs différents pour des hôtes différents
->   (un adaptateur avec des certificats spécifiques pour un serveur interne,
->   par exemple).
-> - La bibliothèque `requests-toolbelt` fournit des adaptateurs spécialisés
->   pour SOCKS, pour les sockets Unix, etc.
->
-> C'est un excellent exemple de la séparation des préoccupations et du
-> principe d'inversion de dépendances (le "D" de SOLID) : `Session` dépend
-> d'une abstraction (l'interface d'un adaptateur), pas d'une implémentation
-> concrète.
-
-Cet échange illustre comment l'agent peut relier du code concret à des
-concepts théoriques que l'étudiant a déjà vus : le pattern adaptateur, SOLID,
-la séparation des préoccupations (module 3). C'est exactement le type de lien
-qu'un développeur senior ferait naturellement, et que l'IA peut aider un
-développeur moins expérimenté à construire.
+{{< image src="requests-explore-4.png" alt="" title="" loading="lazy" >}}
 
 L'exploration d'un codebase avec un agent IA n'est pas du vibe coding : on ne
 génère pas de code à l'aveugle, on construit activement une compréhension. Le
@@ -744,6 +706,14 @@ résolu un bug sans assistance pourrait être démuni le jour où l'IA ne peut p
 l'aider. C'est un argument fort pour que la formation en informatique continue
 d'exiger la maîtrise des fondamentaux, même dans un monde où l'IA est
 omniprésente.
+
+### Le slop et la dégradation des communs
+
+L'expression *AI slop* est apparue autour de 2024 pour désigner un phénomène devenu difficile à ignorer : la prolifération de contenu généré par IA, de mauvaise qualité, qui inonde les espaces numériques. Des articles de blog écrits sans relecture, des réponses de forums copiées-collées sans vérification, des images génériques qui remplacent la photographie originale, des vidéos YouTube de formation technique produites à la chaîne sans expertise réelle. Le terme est délibérément péjoratif : il évoque la pâtée industrielle, quelque chose de produit en masse, sans soin, destiné à remplir un espace plutôt qu'à apporter de la valeur. Le problème n'est pas que l'IA génère du contenu, c'est que le coût marginal de production est devenu si faible que le rapport signal/bruit s'est effondré sur de nombreuses plateformes.
+
+L'écosystème open source est l'un des environnements les plus touchés par ce phénomène. Des outils comme Claude Code, Copilot ou Cursor permettent de générer des pull requests en quelques minutes, sans nécessairement comprendre le projet cible. Les mainteneurs de projets populaires ont commencé à signaler un afflux de contributions générées par IA : des issues qui décrivent un "bug" déjà documenté ou inexistant, des pull requests qui corrigent un problème superficiel sans comprendre l'architecture sous-jacente, des propositions de fonctionnalités copiées-collées sans tenir compte de la philosophie du projet. Le travail de triage de ces contributions, souvent effectué bénévolement par des mainteneurs déjà surchargés, est devenu une charge supplémentaire significative. Il y a une ironie cruelle dans cette situation : une grande partie du code qui a servi à entraîner les modèles responsables de ce flot provient précisément de ces dépôts open source.
+
+Face à cette situation, certains projets ont commencé à adapter leurs politiques de contribution. Des mainteneurs ont ajouté des clauses explicites dans leurs fichiers CONTRIBUTING.md demandant aux contributeurs de certifier qu'ils ont lu et compris le code qu'ils soumettent, que celui-ci soit écrit par un humain ou par une IA. D'autres ont simplement fermé les issues et les pull requests dont la provenance automatisée était évidente, parfois avec un message lapidaire. La plateforme PyPI, le dépôt central des paquets Python, a dû renforcer ses mécanismes de détection face à une vague de paquets générés automatiquement, dont certains contenaient du code malveillant camouflé dans du slop bénin. Ces réactions illustrent une tension fondamentale : l'open source repose sur le principe que la participation est ouverte à tous, mais ce modèle suppose implicitement que chaque contribution représente un investissement humain réel. Quand ce coût d'entrée disparaît, le modèle lui-même est mis sous pression.
 
 ### La position de Yoshua Bengio
 
