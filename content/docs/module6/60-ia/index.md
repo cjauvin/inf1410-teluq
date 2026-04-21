@@ -798,7 +798,12 @@ $ uv run main.py test.md
 {{< image src="cc-md-9.png" alt="" title="" loading="lazy" >}}
 
 En relisant `main.py`, on remarque quelque chose d'intéressant. La regex
-utilisée pour extraire les liens est `(?<!!)\[([^\]]+)\]\((https?://[^)]+)\)`.
+utilisée pour extraire les liens est :
+
+```python
+pattern = r"(?<!!)\[([^\]]+)\]\((https?://[^)]+)\)"
+```
+
 Le préfixe `(?<!!)` est un *negative lookbehind* qui signifie "pas précédé d'un
 point d'exclamation" — ce qui exclut précisément les images Markdown, qui
 s'écrivent `![texte alternatif](url)`. L'agent a anticipé ce cas sans qu'on le
