@@ -2,7 +2,7 @@
 title: "Accueil"
 ---
 
-![](open-space.png)
+{{< image src="open-space.png" alt="" title="" loading="lazy" >}}
 
 # Bienvenue
 
