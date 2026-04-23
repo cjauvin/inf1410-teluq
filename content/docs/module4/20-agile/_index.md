@@ -151,6 +151,8 @@ en adopter les valeurs.
 
 {{% /hint %}}
 
+{{< image src="cargo-cult.webp" alt="" title="" loading="lazy" >}}
+
 Malgré ces dérives, il serait excessif de rejeter l'agilité en bloc. Les
 principes fondamentaux du manifeste restent pertinents : livrer fréquemment,
 s'adapter au changement, collaborer étroitement, réfléchir régulièrement à son
