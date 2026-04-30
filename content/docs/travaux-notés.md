@@ -64,6 +64,12 @@ Les questions posées dans chaque jalon servent de point de départ, pas de plaf
 
 Ce qui distingue un bon blogue d'un rapport générique, c'est la spécificité. Écrire « nous avons choisi PostgreSQL » n'apporte rien. Écrire « lors de la modélisation du panier, on a réalisé que notre schéma initial ne supportait pas les items avec des variantes, ce qui nous a forcés à restructurer la relation entre `orders` et `products` »&nbsp;: voilà ce qui démontre une réflexion authentique. Pour vous guider dans cette direction, chaque jalon précise les questions auxquelles votre entrée de blogue devra répondre.
 
+## La philosophie du flux continu
+
+Les jalons qui structurent ce cours sont une nécessité organisationnelle, pas un modèle de travail. La philosophie qui devrait guider votre progression tout au long de la session est plutôt celle du [CI/CD]({{< relref "module2/50-ci/index.md" >}})&nbsp;: un flux de travail et d'apprentissage le plus continu et régulier possible, où chaque avancée est intégrée, testée et documentée au moment où elle se produit, plutôt qu'accumulée en rafale à l'approche d'une échéance.
+
+En pratique, cela signifie committer régulièrement, alimenter le blogue technique au fil des décisions, et traiter chaque jalon non pas comme une échéance à atteindre, mais comme un point de contrôle dans un développement qui n'a jamais vraiment cessé d'avancer. Les jalons décrivent ce que vous devrez avoir produit à un moment donné&nbsp;; la philosophie du flux continu décrit comment vous devriez y arriver.
+
 ## Les jalons
 
 Le projet est évalué à travers quatre jalons et deux entretiens de suivi, répartis sur la session. La pondération totale est de 100%, répartie comme suit&nbsp;: J1 (10%), J2 (15%), entretien mi-parcours (10%), J3 (15%), J4 (25%), entretien final (25%).
