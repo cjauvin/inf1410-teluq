@@ -1,0 +1,69 @@
+{{/* Sélecteur de thème, partie 2 sur 2 (voir inject/head.html).
+
+     Le thème hugo-book pilote ses couleurs par l'attribut data-theme sur
+     <html>, posé par baseof.html à partir du paramètre BookTheme :
+       auto  → clair, et sombre si le système est en sombre
+       light → clair
+       dark  → sombre (palette Nord)
+     Il suffit donc de réécrire cet attribut, et de mémoriser le choix.
+
+     "Système" est l'état par défaut : tant que rien n'est mémorisé, on ne
+     stocke rien et la page suit prefers-color-scheme. */}}
+
+<div class="theme-switch" role="group" aria-label="Thème de la page">
+  <button type="button" data-theme-value="auto" data-tooltip="Thème du système" aria-label="Thème du système">
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <rect x="1.5" y="2.5" width="13" height="9" rx="1.5" />
+      <path d="M5.5 14h5" />
+    </svg>
+  </button>
+  <button type="button" data-theme-value="light" data-tooltip="Thème clair" aria-label="Thème clair">
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <circle cx="8" cy="8" r="3.25" />
+      <path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.05 3.05l1.06 1.06M11.89 11.89l1.06 1.06M12.95 3.05l-1.06 1.06M4.11 11.89l-1.06 1.06" />
+    </svg>
+  </button>
+  <button type="button" data-theme-value="dark" data-tooltip="Thème sombre" aria-label="Thème sombre">
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path d="M13.5 9.7A5.8 5.8 0 0 1 6.3 2.5a5.8 5.8 0 1 0 7.2 7.2z" />
+    </svg>
+  </button>
+</div>
+
+<script>
+(function () {
+  var KEY = "book-theme";
+  var VALID = ["auto", "light", "dark"];
+  var root = document.documentElement;
+  var buttons = Array.prototype.slice.call(
+    document.querySelectorAll(".theme-switch [data-theme-value]")
+  );
+
+  function stored() {
+    try {
+      var v = localStorage.getItem(KEY);
+      if (VALID.indexOf(v) !== -1) return v;
+    } catch (e) {}
+    return "auto";
+  }
+
+  function apply(value) {
+    root.dataset.theme = value;
+    buttons.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.themeValue === value));
+    });
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var value = b.dataset.themeValue;
+      try {
+        localStorage.setItem(KEY, value);
+      } catch (e) {}
+      apply(value);
+    });
+  });
+
+  apply(stored());
+})();
+</script>

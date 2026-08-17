@@ -1,3 +1,20 @@
+{{/* Sélecteur de thème, partie 1 sur 2 (voir inject/menu-before.html).
+     Ce script doit rester synchrone et le plus haut possible dans <head> :
+     il applique le choix mémorisé avant le premier rendu, sinon la page
+     scintille en passant du thème par défaut au thème choisi.
+     Sans choix mémorisé, on ne touche à rien et data-theme garde la valeur
+     de BookTheme ("auto"), donc le réglage du système s'applique. */}}
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem("book-theme");
+    if (t === "light" || t === "dark" || t === "auto") {
+      document.documentElement.dataset.theme = t;
+    }
+  } catch (e) {}
+})();
+</script>
+
 <script>
 MathJax = {
   tex: {

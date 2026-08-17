@@ -1,0 +1,152 @@
+/*
+  Porté de assets/_custom.scss en août 2026 : hugo-book a abandonné le SASS
+  au profit du CSS (commit 162c806). Les variables SCSS sont remplacées par
+  les variables CSS de assets/styles/variables.css, sauf $mobile-breakpoint,
+  qui vaut $menu-width + $body-min-width * 1.2 + $toc-width, soit 56rem, et
+  qui doit rester une valeur littérale car une media query ne peut pas lire
+  une variable CSS.
+*/
+
+p {
+  text-align: justify;
+}
+
+/* Largeur de contenu identique qu'il y ait une table des matières ou non :
+   en son absence, on ajoute un espaceur flex de la même largeur.
+   Uniquement hors mobile, pour ne pas créer de vide en mode responsive. */
+@media screen and (min-width: 56rem) {
+  .container.flex:not(:has(.book-toc))::after {
+    content: "";
+    flex: 0 0 var(--toc-width);
+  }
+}
+
+.markdown table {
+  display: table;
+  margin: 0 auto;
+}
+
+/* Centrage des images */
+.book-image {
+  display: block;
+  text-align: center;
+}
+
+/* Les images zoomées doivent passer au-dessus des applets */
+.book-image input:checked + img {
+  z-index: 100 !important;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 4px;
+  line-height: 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.copy-btn:hover {
+  color: #333;
+}
+
+/* Sélecteur de thème (voir layouts/partials/docs/inject/menu-before.html) */
+.theme-switch {
+  display: flex;
+  gap: 2px;
+  margin: 0 var(--space-16) var(--space-16);
+  padding: 2px;
+  border-radius: var(--border-radius);
+  background: var(--gray-100);
+}
+
+.theme-switch button {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4) 0;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--border-radius);
+  background: transparent;
+  color: var(--body-font-color);
+  opacity: 0.55;
+  transition: opacity 0.15s, background-color 0.15s;
+}
+
+.theme-switch button:hover {
+  opacity: 0.9;
+}
+
+.theme-switch button[aria-pressed="true"] {
+  opacity: 1;
+  background: var(--body-background);
+}
+
+.theme-switch svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* La lune est pleine, pas un contour ouvert */
+.theme-switch button[data-theme-value="dark"] svg path {
+  fill: currentColor;
+}
+
+/* Infobulles.
+
+   La barre latérale a overflow-x: hidden, donc une infobulle centrée sous les
+   boutons de bord serait tronquée. On centre celle du bouton du milieu, et on
+   aligne les deux autres sur le bord correspondant pour qu'elles restent dans
+   la largeur du menu. */
+.theme-switch button {
+  position: relative;
+}
+
+.theme-switch button::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 3px 7px;
+  border-radius: var(--border-radius);
+  background: var(--body-font-color);
+  color: var(--body-background);
+  font-size: var(--font-size-smallest);
+  line-height: 1.4;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.12s ease, visibility 0.12s;
+}
+
+.theme-switch button:first-child::after {
+  left: 0;
+  transform: none;
+}
+
+.theme-switch button:last-child::after {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+.theme-switch button:hover::after,
+.theme-switch button:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
