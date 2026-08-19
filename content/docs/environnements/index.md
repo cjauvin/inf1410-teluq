@@ -12,7 +12,7 @@ commande](https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande). La
 ligne de commande est un paradigme ancien, qui survit au passage du temps dans
 le monde du développement informatique en raison de sa polyvalence, de sa
 souplesse et de son universalité. La ligne de commande (souvent appelée CLI en
-anglais, ou console, ou encore terminal) est un type d'interface utilisateur textuelle (où on manipule du
+anglais, pour command line interface, ou encore console, ou terminal) est un type d'interface utilisateur textuelle (où on manipule du
 texte, soit des mots, des commandes, des symboles, des formules, des nombres,
 etc.) par opposition au type plus moderne de l'[interface
 graphique](https://fr.wikipedia.org/wiki/Interface_graphique) (GUI en anglais,
@@ -263,7 +263,7 @@ presque comme de l'anglais, et où il n'y a idéalement qu'une seule façon
 évidente de faire les choses (c'est le fameux "Zen of Python", accessible en
 tapant `import this` dans un interpréteur Python).
 
-```shell
+```pycon
 >>> import this
 The Zen of Python, by Tim Peters
 
@@ -313,9 +313,9 @@ Netscape Navigator. Le résultat était un langage truffé d'incohérences et de
 comportements surprenants (les bizarreries de la coercition de types en JS sont
 devenues légendaires).
 
-```js
+{{< js >}}
 ("b" + "a" + + "a" + "a").toLowerCase() // banana (!!)
-```
+{{< /js >}}
 
 On aurait très bien pu imaginer qu'un autre langage,
 mieux conçu, finisse par prendre sa place. Plusieurs ont d'ailleurs essayé :

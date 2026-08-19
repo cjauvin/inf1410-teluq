@@ -150,3 +150,74 @@ p {
   opacity: 1;
   visibility: visible;
 }
+
+/* Infobulles sur les images.
+
+   Le texte vient de l'attribut title du shortcode image, sinon de alt (voir
+   layouts/shortcodes/image.html). Seules les images qui portent réellement un
+   texte reçoivent l'attribut, donc aucune bulle vide n'apparaît. */
+.book-image[data-tooltip] {
+  position: relative;
+}
+
+.book-image[data-tooltip]::after {
+  content: attr(data-tooltip);
+  /* Position fixe suivant le curseur : les images font souvent plusieurs
+     centaines de pixels de haut, et une bulle ancrée sous l'image se
+     retrouverait loin du pointeur, voire hors écran. Les coordonnées sont
+     posées par le gestionnaire de inject/body.html. */
+  position: fixed;
+  left: var(--tip-x, 50%);
+  top: calc(var(--tip-y, 50%) + 18px);
+  transform: translateX(-50%);
+  z-index: 20;
+  max-width: min(30ch, 90%);
+  padding: 4px 8px;
+  border-radius: var(--border-radius);
+  background: var(--body-font-color);
+  color: var(--body-background);
+  font-size: var(--font-size-smallest);
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.12s ease, visibility 0.12s;
+}
+
+.book-image[data-tooltip][data-tip-visible]::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Pas d'infobulle quand l'image est agrandie au clic */
+.book-image[data-tooltip]:has(input:checked)::after {
+  content: none;
+}
+
+/* Hauteur maximale des images.
+
+   La contrainte du thème porte sur la largeur (max-width: 100%), donc une
+   image en format portrait s'étale sur toute la colonne et devient plus haute
+   qu'un écran : jusqu'à 1450 px pour une couverture de livre.
+
+   Le problème est concentré dans 27 images sur 227. Les 200 images en format
+   paysage font 560 px de haut en moyenne et n'ont jamais posé problème ; les
+   27 portraits en font 1182. Un plafond de 700 px les ramène toutes à une
+   taille raisonnable, et ne touche par ailleurs que 37 images paysage, celles
+   qui sont presque carrées et donc déjà très imposantes.
+
+   En pixels et non en vh : avec une unité relative à la fenêtre, l'effet
+   disparaissait presque sur un grand écran, au point de donner l'impression
+   que la règle ne fonctionnait plus.
+
+   Le sélecteur exclut délibérément l'état agrandi au clic (input:checked), que
+   le thème passe en position fixe avec height: 100% et qui doit rester plein
+   écran. La règle est limitée à l'écran pour ne pas perturber l'impression ni
+   le mode page unique. */
+@media screen {
+  .book-image input:not(:checked) + img {
+    max-height: 700px;
+    width: auto;
+  }
+}
