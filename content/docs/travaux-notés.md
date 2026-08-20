@@ -41,6 +41,10 @@ Vous pouvez travailler seul ou en équipe de deux ou trois personnes. Les deux o
 
 La principale différence porte sur la gestion de projet. Le travail en équipe implique une dimension organisationnelle que le travail solo n'a pas, notamment l'attribution des tâches, la coordination et le suivi des priorités. Pour refléter cet effort, l'utilisation de **GitHub Projects** (tableau de bord, suivi des issues, progression visible) est **requise pour les équipes**. Elle est **optionnelle pour les personnes travaillant seules**. Là où les jalons mentionnent GitHub Projects, la mention *(équipe)* indique que ce livrable ne s'applique qu'aux équipes.
 
+Une équipe est par ailleurs attendue sur un projet **proportionnellement plus ambitieux**. À deux ou trois, la capacité de travail est plus grande, et l'évaluation en tient compte. Un projet d'équipe qui ressemble à ce qu'une personne seule aurait pu livrer sera jugé en deçà des attentes. L'ambition dont il est question plus loin, dans la section sur le projet, se mesure donc à l'aune de la taille de l'équipe.
+
+Il vous revient aussi de vous assurer que le travail est **raisonnablement distribué** entre les membres. Deux approches fonctionnent bien. Vous pouvez attribuer des **rôles fixes**, chacun devenant responsable d'un domaine comme la base de données, l'interface ou le pipeline de déploiement, ce qui donne de la profondeur mais crée des angles morts. Vous pouvez aussi **faire alterner les rôles** d'un jalon à l'autre, ce qui exige plus de coordination mais garantit que chacun touche à tout. Dans les deux cas, la répartition doit rester visible dans l'historique du dépôt et dans le tableau GitHub Projects, et un déséquilibre marqué se remarquera.
+
 ## Le dépôt GitHub
 
 Le dépôt GitHub de votre projet est le mécanisme central de remise et de suivi du cours. Tous les livrables qui ne sont pas du code — ADRs, schémas de données, documentation — doivent être rédigés en texte brut (Markdown de préférence) ou en PDF. Aucun document au format MS Office (Word, Excel, PowerPoint) n'est accepté.
