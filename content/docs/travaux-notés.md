@@ -108,6 +108,12 @@ Livrables&nbsp;:
 - Un ensemble de **[tests automatisés]({{< relref "module2/20-tests/index.md" >}})** couvrant les fonctionnalités déjà implantées
 - Une première entrée dans votre **blogue technique**, répondant aux questions suivantes&nbsp;: qui sont vos utilisateurs et quel problème résolvez-vous ? Quels sont vos premiers choix techniques (langage, [framework]({{< relref "module3/30-interfaces/30-frameworks/index.md" >}}), hébergement) et quelles alternatives avez-vous considérées ? Qu'est-ce qui est encore incertain à ce stade ?
 
+{{% hint warning %}}
+
+**Le projet doit être approuvé au jalon 1 pour que la session puisse se poursuivre.** Si la vision proposée n'est pas assez ambitieuse, si son ampleur est mal calibrée dans un sens ou dans l'autre, ou si elle se prête mal aux exigences techniques du cours, il faudra la retravailler et la resoumettre jusqu'à ce qu'elle soit jugée satisfaisante. Ce n'est pas une formalité administrative. Tous les jalons suivants s'appuient sur ces fondations, et un projet mal cadré au départ devient très coûteux à corriger une fois le développement engagé. Une itération de plus au début de la session vaut mieux qu'une impasse à la fin.
+
+{{% /hint %}}
+
 ### Jalon 2 — Architecture et données (15%)
 
 *À remettre après le module 3*
