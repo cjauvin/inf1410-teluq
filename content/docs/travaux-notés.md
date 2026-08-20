@@ -168,3 +168,13 @@ Livrables&nbsp;:
 L'entretien final est une rencontre individuelle (ou par équipe) de 25 à 30 minutes sur Microsoft Teams. Il porte sur l'ensemble du projet : ses choix techniques, son architecture, son évolution dans le temps, et votre compréhension de ce qui a été produit. Des questions comme « Pourquoi avez-vous structuré vos données de cette façon ? », « Que se passerait-il si votre application devait [gérer dix fois plus d'utilisateurs]({{< relref "module5/60-scalabilite/index.md" >}}) ? » ou « À quel endroit dans votre code l'IA a-t-elle produit quelque chose que vous avez dû corriger ou adapter ? » sont typiques de ce qui sera discuté.
 
 À une époque où les outils d'IA permettent de générer du code fonctionnel sans nécessairement le comprendre, cet entretien est le moyen le plus direct de démontrer que vous avez développé une expertise authentique à travers ce projet.
+
+## Un dernier mot
+
+{{% hint info %}}
+
+Ces travaux devraient être, avant tout, un moment d'expérimentation. C'est l'occasion de construire quelque chose qui vous tient réellement à coeur, d'essayer une technologie que vous ne maîtrisez pas encore, de vous tromper et de recommencer. Un projet qui prend des risques et qui porte quelques cicatrices en dira toujours plus long sur ce que vous avez appris qu'un projet impeccable mais sans surprise. La curiosité et la créativité ne sont pas des écarts par rapport aux attentes, elles en font partie.
+
+L'IA a toute sa place dans cette aventure, mais la façon dont vous vous en servez change tout. Comme tutrice, elle vous rend plus compétent&nbsp;: elle explique, elle propose des pistes, elle vous fait découvrir des idées que vous n'auriez pas cherchées. Comme coéquipière à qui l'on refile le gros du travail, elle produit du code dont vous n'êtes que le destinataire. La différence tient souvent à la question posée. « Pourquoi cette requête est-elle si lente ? » vous laisse quelque chose. « Écris-moi cette fonction » vous laisse une fonction.
+
+{{% /hint %}}
