@@ -144,6 +144,12 @@ Livrables&nbsp;:
 - De nouveaux **ADRs** documentant les décisions prises depuis le jalon 2
 - Une entrée dans votre **blogue**, répondant aux questions suivantes&nbsp;: qu'est-ce qui a bien fonctionné depuis le jalon 2 ? Décrivez un moment difficile (un bug, une mauvaise décision initiale, une friction dans l'équipe) et comment vous l'avez résolu. Qu'est-ce que vous feriez différemment si vous recommenciez depuis le début ?
 
+{{% hint warning %}}
+
+**Attention&nbsp;: au jalon 3, l'historique git n'est pas une trace du travail, c'est le livrable.** Le dépôt sera inspecté dans le détail, et pas seulement dans son état final. La distribution des commits dans le temps, leur taille et leur cohérence, la qualité des messages, le découpage en branches et le contenu des pull requests seront examinés pour y chercher la preuve d'une progression graduelle et structurée, et d'un travail en équipe bien balancé et équitable, le cas échéant. Un historique où tout arrive en quelques commits massifs à la veille de la remise raconte une autre histoire que celui d'un projet mené semaine après semaine, et cette différence se lit sans ambiguïté. C'est exactement ce que vise la [philosophie du flux continu](#la-philosophie-du-flux-continu) décrite plus haut.
+
+{{% /hint %}}
+
 ### Jalon 4 — Livraison finale (25%)
 
 *À remettre après le module 6*
