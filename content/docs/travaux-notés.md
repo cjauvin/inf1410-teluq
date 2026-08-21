@@ -169,9 +169,9 @@ L'entretien final est une rencontre individuelle (ou par équipe) de 25 à 30 mi
 
 À une époque où les outils d'IA permettent de générer du code fonctionnel sans nécessairement le comprendre, cet entretien est le moyen le plus direct de démontrer que vous avez développé une expertise authentique à travers ce projet.
 
-## Un dernier mot
-
 {{% hint info %}}
+
+## Un dernier mot : 🎉🎉🎉
 
 Ces travaux devraient être, avant tout, un moment d'expérimentation. C'est l'occasion de construire quelque chose qui vous tient réellement à coeur, d'essayer une technologie que vous ne maîtrisez pas encore, de vous tromper et de recommencer. Un projet qui prend des risques et qui porte quelques cicatrices en dira toujours plus long sur ce que vous avez appris qu'un projet impeccable mais sans surprise. La curiosité et la créativité ne sont pas des écarts par rapport aux attentes, elles en font partie.
 

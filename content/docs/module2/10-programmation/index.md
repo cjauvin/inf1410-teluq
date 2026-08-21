@@ -91,6 +91,18 @@ Préférez-vous que votre botte de foin soit :
 1. Une liste
 2. Un `set`
 
+... ?
+
+{{% hint warning %}}
+
+Arrêtez-vous un instant et tentez réellement de répondre à cette question. Si la
+réponse n'est pas intuitivement claire pour vous, vous devriez vous assurer de
+faire en sorte qu'elle le devienne, coûte que coûte. Harcelez, s'il le faut, une
+IA (🤖), jusqu'à ce que vous ayez obtenu d'elle un modèle mental parfaitement clair de cette
+différence, et du concept sur lequel elle repose.
+
+{{% /hint %}}
+
 ### Le dictionnaire (table associative, etc)
 
 La notion de "table associative" a plusieurs noms, selon les langages et les

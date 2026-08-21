@@ -20,7 +20,7 @@ Bengio, sur la modélisation statistique du langage. En 2003, nous avons publié
 *A Neural Probabilistic Language Model*, un article qui proposait de représenter
 les mots non plus comme des symboles arbitraires, mais comme des points dans un
 espace continu appris par un réseau de neurones. Le [module 6]({{< ref "/docs/module6/60-ia" >}})
-raconte cette histoire en détail, parce qu'elle est l'ancêtre direct des outils
+raconte cette histoire en détail, parce qu'elle est l'ancêtre direct des outils d'IA
 que vous utiliserez dans ce cours.
 
 Ce que j'en retiens surtout, avec le recul, c'est le contexte. À l'époque, les
