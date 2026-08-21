@@ -247,3 +247,26 @@ p {
   float: none;
   max-width: none;
 }
+
+/* Nuage de mots de la page d'accueil (voir scripts/wordcloud.py).
+
+   Le SVG est inséré dans la page et dessiné en currentColor, donc il suit
+   automatiquement le thème. On atténue légèrement l'ensemble pour qu'il se
+   lise comme une illustration et non comme du texte à lire. */
+.wordcloud-wrap {
+  margin: var(--space-16) 0;
+  text-align: center;
+}
+
+.wordcloud-wrap .wordcloud {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0.85;
+}
+
+.wordcloud-wrap figcaption {
+  margin-top: var(--space-8);
+  font-size: var(--font-size-smaller);
+  opacity: 0.7;
+}

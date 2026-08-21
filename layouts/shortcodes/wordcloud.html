@@ -1,0 +1,17 @@
+{{/* layouts/shortcodes/wordcloud.html
+
+     Insère assets/wordcloud.svg directement dans la page plutôt que de le
+     référencer par <img>. C'est nécessaire pour que le SVG hérite de la
+     couleur du texte (il est dessiné en currentColor) et suive donc la
+     bascule entre les thèmes clair et sombre.
+
+     Le fichier est produit par scripts/wordcloud.py, à relancer quand le
+     contenu du cours a suffisamment évolué. */}}
+{{- with resources.Get "wordcloud.svg" -}}
+<figure class="wordcloud-wrap">
+  {{ .Content | safeHTML }}
+  {{- with $.Get "legende" }}<figcaption>{{ . }}</figcaption>{{ end -}}
+</figure>
+{{- else -}}
+  {{- warnf "wordcloud : assets/wordcloud.svg introuvable, lancer scripts/wordcloud.py" -}}
+{{- end -}}

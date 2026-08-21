@@ -81,3 +81,5 @@ données, authentification, paiement en ligne (optionnel) et déploiement
 automatisé sur une plateforme d'infonuagique. Le travail peut se faire
 individuellement ou en petites équipes. Les détails complets se trouvent dans la
 section [Travaux notés](docs/travaux-notés).
+
+{{< wordcloud legende="Les 60 mots les plus fréquents du cours, toutes pages confondues." >}}
