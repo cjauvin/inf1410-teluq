@@ -69,6 +69,13 @@ logiciel :
 6. **Le logiciel dans le monde** : la culture de l'open source, l'économie du
    logiciel, et le développement assisté par l'IA.
 
+Le nuage ci-dessous rassemble les mots les plus fréquents de l'ensemble du
+cours, tous modules confondus, la taille de chacun étant proportionnelle au
+nombre de ses occurrences. C'est un portrait grossier, mais assez fidèle, de ce
+dont il sera question.
+
+{{< wordcloud >}}
+
 ## Les travaux
 
 Tout au long du cours, vous serez amenés à développer une application web
@@ -81,5 +88,3 @@ données, authentification, paiement en ligne (optionnel) et déploiement
 automatisé sur une plateforme d'infonuagique. Le travail peut se faire
 individuellement ou en petites équipes. Les détails complets se trouvent dans la
 section [Travaux notés](docs/travaux-notés).
-
-{{< wordcloud legende="Les 60 mots les plus fréquents du cours, toutes pages confondues." >}}
