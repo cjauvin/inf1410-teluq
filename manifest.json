@@ -1,8 +1,8 @@
 {
   "name": "INF1410 - Initiation au génie logiciel",
   "short_name": "INF1410 - Initiation au génie logiciel",
-  "start_url": "/./",
-  "scope": "/./",
+  "start_url": "/inf1410-teluq/",
+  "scope": "/inf1410-teluq/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
