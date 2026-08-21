@@ -1,9 +1,19 @@
 {{- $destination := partial "docs/links/portable-image" (dict "Page" .Page "Destination" (.Get "src")) -}}
+
+{{/* Infobulle : on prend "title" s'il est renseigné, sinon "alt". Le texte
+     est porté par le <label> et affiché en CSS (voir assets/styles/custom.css).
+     "title" est volontairement retiré des attributs du <img> : le navigateur
+     en ferait une infobulle native, lente et non stylable, qui doublerait
+     la nôtre. "alt" reste sur le <img>, il sert aux lecteurs d'écran. */}}
+{{- $title := trim (.Get "title" | default "") " " -}}
+{{- $alt   := trim (.Get "alt"   | default "") " " -}}
+{{- $tip   := cond (ne $title "") $title $alt -}}
+
 {{- $attributes := partial "docs/text/mapper" (dict
   "attributes" (cond .IsNamedParams .Params dict)
-  "keep" (slice "id" "class" "tabindex" "alt" "title" "loading")
+  "keep" (slice "id" "class" "tabindex" "alt" "loading")
 ) -}}
-<label class="book-image" for="book-image-toggle-{{ .Ordinal }}">
+<label class="book-image" for="book-image-toggle-{{ .Ordinal }}"{{ with $tip }} data-tooltip="{{ . }}"{{ end }}>
   <input class="hidden toggle" type="checkbox" id="book-image-toggle-{{ .Ordinal }}" />
   <img src="{{ $destination | safeURL }}" {{ partial "docs/html-attrs" $attributes | safeHTMLAttr }} />
 </label>

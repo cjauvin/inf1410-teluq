@@ -1,10 +1,23 @@
 baseURL = 'https://cjauvin.github.io/inf1410-teluq/'
-languageCode = 'fr'
+locale = 'fr'
 defaultContentLanguage = 'fr'
-canonifyURLs = true
+
+# canonifyURLs (option héritée, déconseillée par Hugo) a été retirée en août
+# 2026 : elle cassait la résolution de relURL dans le search.js du thème, donc
+# la recherche. Elle ne servait qu'à rattraper les chemins absolus du shortcode
+# applet, qui passent désormais explicitement par relURL.
 
 title = "INF1410 - Initiation au génie logiciel"
 theme = 'hugo-book'
+
+# Dépôts clonés et environnements virtuels servant d'exemples : Hugo n'a
+# aucune raison de les scanner, et depuis 0.158 leurs fichiers .html font
+# échouer le build (politique security.allowContent).
+ignoreFiles = [
+  '/\.venv/',
+  '/60-ia/requests/',
+  '/60-ia/requests-explore/',
+]
 
 # --- Paramètres du thème hugo-book ---
 [params]

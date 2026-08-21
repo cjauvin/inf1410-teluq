@@ -15,13 +15,19 @@ Ce cours est structuré autour d'un projet de développement logiciel unique, qu
 
 L'usage de l'IA est non seulement permis dans ce cours, il est activement encouragé. Savoir formuler de bonnes questions, évaluer les réponses et intégrer les suggestions de l'IA de manière critique fait partie des compétences que tout développeur doit maîtriser aujourd'hui. Ignorer ces outils dans un cours de génie logiciel moderne serait à contre-courant de la réalité du métier.
 
-Cette ouverture crée cependant un défi d'évaluation réel. Si un outil peut produire du code fonctionnel, des ADRs convaincants et des réflexions de blogue plausibles, comment distinguer un apprentissage authentique d'une délégation totale ? Ce cours s'attaque à ce problème par deux mécanismes complémentaires.
+Cette ouverture crée cependant un défi d'évaluation réel. Si un outil peut produire du code fonctionnel, des [ADRs]({{< relref "module4/30-gestion-projet/index.md" >}}) convaincants et des réflexions de blogue plausibles, comment distinguer un apprentissage authentique d'une délégation totale ? Ce cours s'attaque à ce problème par deux mécanismes complémentaires.
 
-Le premier est l'entretien de suivi. Ces rencontres visent à évaluer la cohérence entre le niveau de sophistication que vos travaux affichent et la profondeur de votre compréhension réelle, telle qu'elle se manifeste dans une conversation en temps réel. Un écart important entre les deux est, en soi, un signal d'évaluation. L'idée n'est pas d'exiger une mémorisation parfaite de chaque détail, mais de vérifier que vous maîtrisez ce que vous avez produit. Pour quelqu'un qui a réellement travaillé sur le projet, cela devrait aller de soi. Dans certains cas, l'entretien pourra inclure un court exercice pratique sans assistance, à l'image de ce qu'un cours de programmation pourrait faire avec un exercice de code sur tableau blanc. Ce cours n'étant pas un cours de programmation à proprement parler, l'exercice serait adapté en conséquence&nbsp;: une question de conception architecturale, un problème de modélisation de données, ou toute autre tâche en lien direct avec le contenu de votre projet.
+Le premier est **l'entretien de suivi**. Ces rencontres visent à évaluer la cohérence entre le niveau de sophistication que vos travaux affichent et la profondeur de votre compréhension réelle, telle qu'elle se manifeste dans une conversation en tête à tête avec le professeur. Un écart important entre les deux est, en soi, un signal d'évaluation. L'idée n'est pas d'exiger une mémorisation parfaite de chaque détail, mais de vérifier que vous maîtrisez ce que vous avez produit. Pour quelqu'un qui a réellement travaillé sur le projet, cela devrait aller de soi. Dans certains cas, l'entretien pourra inclure un court exercice pratique sans assistance, à l'image de ce qu'un cours de programmation pourrait faire avec un exercice de code sur tableau blanc. Ce cours n'étant pas un cours de programmation à proprement parler, l'exercice serait adapté en conséquence&nbsp;: une question de conception architecturale, un problème de modélisation de données, ou toute autre tâche en lien direct avec le contenu de votre projet.
+
+{{% hint warning %}}
+
+🚨🚨🚨 **Attention : assurez-vous de ne pas prendre à la légère les entretiens de suivi de ce cours.** Tout le reste de ce que vous remettez, le code, les ADRs, les entrées de blogue, peut avoir été produit avec une assistance dont l'ampleur reste impossible à mesurer de l'extérieur. L'entretien est le seul mécanisme sur lequel le professeur peut se fier entièrement, parce qu'il met en présence votre compréhension elle-même, sans intermédiaire. Il pèse donc bien plus lourd que sa pondération ne le laisse croire. **La réussite du cours est conditionnelle à celle des deux entretiens.** Des explications insuffisantes, ou un doute raisonnable qui s'installe sans se dissiper, peuvent mener à un échec, quelle que soit la qualité apparente des livrables.
+
+{{% /hint %}}
 
 Le second mécanisme porte sur la traçabilité temporelle des artefacts. Le problème central avec une délégation excessive à l'IA, c'est qu'elle permet de produire en quelques heures ce qui devrait résulter de semaines de travail itératif. Pour contrer cela, l'évaluation porte non seulement sur ce que vous avez produit, mais sur quand vous l'avez produit.
 
-La plateforme GitHub se prête naturellement à cet exercice. Les commits, les issues, les pull requests et les entrées de blogue hébergés en ligne comportent tous des horodatages enregistrés par les serveurs de GitHub au moment de leur réception. Contrairement aux métadonnées d'un dépôt git local, qui peuvent techniquement être modifiées, ces traces en ligne sont extrêmement difficiles à altérer rétrospectivement. Le graphe d'activité, l'historique des contributions et la chronologie des issues constituent ainsi un journal de bord de votre progression que le correcteur peut consulter avec confiance.
+La plateforme GitHub se prête naturellement à cet exercice. Les [commits]({{< relref "module2/30-versioning/index.md" >}}), les issues, les [pull requests]({{< relref "module4/10-github/index.md" >}}) et les entrées de blogue hébergés en ligne comportent tous des horodatages enregistrés par les serveurs de GitHub au moment de leur réception. Contrairement aux métadonnées d'un dépôt git local, qui peuvent techniquement être modifiées, ces traces en ligne sont plus difficiles à altérer rétrospectivement. Le graphe d'activité, l'historique des contributions et la chronologie des issues constituent ainsi un journal de bord de votre progression que le correcteur peut consulter avec confiance.
 
 Un projet dont tous les commits arrivent dans les 48 heures précédant une remise, ou dont les entrées de blogue semblent avoir été rédigées en rafale en une seule soirée, ne ressemble pas à un projet qui a évolué pendant plusieurs semaines. Cette différence est visible, et elle est prise en compte dans l'évaluation. L'objectif n'est pas de surveiller chaque geste, mais de vous encourager à travailler de façon régulière et à documenter votre réflexion au moment où elle se produit, ce qui est, au passage, la meilleure façon d'apprendre durablement.
 
@@ -35,7 +41,13 @@ Vous pouvez travailler seul ou en équipe de deux ou trois personnes. Les deux o
 
 La principale différence porte sur la gestion de projet. Le travail en équipe implique une dimension organisationnelle que le travail solo n'a pas, notamment l'attribution des tâches, la coordination et le suivi des priorités. Pour refléter cet effort, l'utilisation de **GitHub Projects** (tableau de bord, suivi des issues, progression visible) est **requise pour les équipes**. Elle est **optionnelle pour les personnes travaillant seules**. Là où les jalons mentionnent GitHub Projects, la mention *(équipe)* indique que ce livrable ne s'applique qu'aux équipes.
 
+Une équipe est par ailleurs attendue sur un projet **proportionnellement plus ambitieux**. À deux ou trois, la capacité de travail est plus grande, et l'évaluation en tient compte. Un projet d'équipe qui ressemble à ce qu'une personne seule aurait pu livrer sera jugé en deçà des attentes. L'ambition dont il est question plus loin, dans la section sur le projet, se mesure donc à l'aune de la taille de l'équipe.
+
+Il vous revient aussi de vous assurer que le travail est **raisonnablement distribué** entre les membres. Deux approches fonctionnent bien. Vous pouvez attribuer des **rôles fixes**, chacun devenant responsable d'un domaine comme la base de données, l'interface ou le pipeline de déploiement, ce qui donne de la profondeur mais crée des angles morts. Vous pouvez aussi **faire alterner les rôles** d'un jalon à l'autre, ce qui exige plus de coordination mais garantit que chacun touche à tout. Dans les deux cas, la répartition doit rester visible dans l'historique du dépôt et dans le tableau GitHub Projects, et un déséquilibre marqué se remarquera.
+
 ## Le dépôt GitHub
+
+**Chaque étudiant doit avoir son propre compte GitHub**, y compris au sein d'une équipe. C'est la condition pour que les contributions soient attribuables individuellement, ce sur quoi repose une bonne partie de l'évaluation. Un compte partagé, ou un seul membre qui pousse le travail de tous, rend cette lecture impossible et sera pénalisé.
 
 Le dépôt GitHub de votre projet est le mécanisme central de remise et de suivi du cours. Tous les livrables qui ne sont pas du code — ADRs, schémas de données, documentation — doivent être rédigés en texte brut (Markdown de préférence) ou en PDF. Aucun document au format MS Office (Word, Excel, PowerPoint) n'est accepté.
 
@@ -54,6 +66,8 @@ Vous devrez concevoir et développer une application web de nature transactionne
 Le choix du langage et des technologies est entièrement libre. Python, JavaScript, Go, Ruby, Java, Rust — tout est acceptable, sans aucune restriction. De la même façon, le choix du framework web, de l'outil de déploiement ou de la base de données vous appartient complètement. Ce qui compte, c'est la qualité de votre démarche et la pertinence de vos choix, pas la technologie utilisée pour les mettre en oeuvre.
 
 L'intégration d'une API tierce, comme Stripe pour le traitement de paiements, Twilio pour les notifications, ou toute autre API pertinente à votre domaine, n'est pas obligatoire. De façon générale, les choix techniques ambitieux sont activement encouragés dans ce cours. Un projet qui tente quelque chose de difficile, qui explore des territoires moins familiers, sera toujours évalué avec plus d'intérêt qu'un projet techniquement correct mais sans ambition. Le degré de complexité supplémentaire que vous vous imposez est en soi un critère positif.
+
+Dans le même esprit, la **conteneurisation** est une avenue particulièrement intéressante. Empaqueter votre application et sa base de données dans des conteneurs [Docker]({{< relref "module5/10-infrastructure/10-docker/index.md" >}}), orchestrés localement par `docker compose`, règle d'un coup le vieux problème du « ça marche sur ma machine » et rend votre déploiement reproductible d'un environnement à l'autre. Pour les plus ambitieux, [Kubernetes]({{< relref "module5/10-infrastructure/20-kubernetes/index.md" >}}) ouvre la porte à l'orchestration à plus grande échelle, et un tableau de bord Grafana branché sur votre application vous donnerait une [observabilité]({{< relref "module5/30-observabilite/index.md" >}}) que peu de projets étudiants atteignent. Rien de tout cela n'est exigé, et ces sujets ne sont abordés qu'au module 5, donc après le jalon 3. Mais si vous vous y aventurez, ce sera remarqué.
 
 ## Le blogue technique de développement
 
@@ -88,21 +102,27 @@ Ce premier jalon pose les bases de votre projet. Vous devrez avoir clarifié la 
 
 Livrables&nbsp;:
 - Un dépôt GitHub contenant un `README.md` avec la **vision client** : qui est l'utilisateur, quel problème l'application résout, et quelle est la solution envisagée (environ une page, rédigée du point de vue de l'utilisateur)
-- Un ensemble de **user stories** sous forme de GitHub Issues, traduisant cette vision en tâches concrètes (avec des labels appropriés)
-- *(équipe)* Un tableau **GitHub Projects** initialisé avec ces issues en backlog
-- Un fichier `.github/workflows/ci.yml` configurant une pipeline CI qui exécute automatiquement la suite de tests à chaque push
-- Un ensemble de **tests automatisés** couvrant les fonctionnalités déjà implantées
-- Une première entrée dans votre **blogue technique**, répondant aux questions suivantes&nbsp;: qui sont vos utilisateurs et quel problème résolvez-vous ? Quels sont vos premiers choix techniques (langage, framework, hébergement) et quelles alternatives avez-vous considérées ? Qu'est-ce qui est encore incertain à ce stade ?
+- Un ensemble de **[user stories]({{< relref "module4/20-agile/10-scrum/index.md" >}})** sous forme de [GitHub Issues]({{< relref "module4/10-github/index.md" >}}), traduisant cette vision en tâches concrètes (avec des labels appropriés)
+- *(équipe)* Un tableau **[GitHub Projects]({{< relref "module4/20-agile/10-scrum/index.md" >}})** initialisé avec ces issues en backlog
+- Un fichier `.github/workflows/ci.yml` configurant une [pipeline CI]({{< relref "module2/50-ci/index.md" >}}) qui exécute automatiquement la suite de tests à chaque push
+- Un ensemble de **[tests automatisés]({{< relref "module2/20-tests/index.md" >}})** couvrant les fonctionnalités déjà implantées
+- Une première entrée dans votre **blogue technique**, répondant aux questions suivantes&nbsp;: qui sont vos utilisateurs et quel problème résolvez-vous ? Quels sont vos premiers choix techniques (langage, [framework]({{< relref "module3/30-interfaces/30-frameworks/index.md" >}}), hébergement) et quelles alternatives avez-vous considérées ? Qu'est-ce qui est encore incertain à ce stade ?
+
+{{% hint warning %}}
+
+**Attention&nbsp;: le projet doit être approuvé au jalon 1 pour que la session puisse se poursuivre.** Si la vision proposée n'est pas assez ambitieuse, si son ampleur est mal calibrée dans un sens ou dans l'autre, ou si elle se prête mal aux exigences techniques du cours, il faudra la retravailler et la resoumettre jusqu'à ce qu'elle soit jugée satisfaisante. Ce n'est pas une formalité administrative. Tous les jalons suivants s'appuient sur ces fondations, et un projet mal cadré au départ devient très coûteux à corriger une fois le développement engagé. Une itération de plus au début de la session vaut mieux qu'une impasse à la fin.
+
+{{% /hint %}}
 
 ### Jalon 2 — Architecture et données (15%)
 
 *À remettre après le module 3*
 
-Ce jalon marque le passage d'un prototype initial à une application mieux structurée. Vous devrez avoir réfléchi à l'architecture de votre système et formalisé votre modèle de données.
+Ce jalon marque le passage d'un prototype initial à une application mieux structurée. Vous devrez avoir réfléchi à l'[architecture]({{< relref "module3/10-architecture/index.md" >}}) de votre système et formalisé votre modèle de données.
 
 Livrables&nbsp;:
-- Deux ou trois **ADRs** documentant vos choix architecturaux importants : framework, organisation du code, type de base de données, etc. Ils sont hébergés dans le dépôt, par exemple dans un dossier `docs/adr/`
-- Un **schéma de données** commenté décrivant vos tables, leurs champs et leurs relations, dans le dépôt
+- Deux ou trois **[ADRs]({{< relref "module4/30-gestion-projet/index.md" >}})** documentant vos choix architecturaux importants : framework, organisation du code, [type de base de données]({{< relref "module3/40-données/20-stockage/index.md" >}}), etc. Ils sont hébergés dans le dépôt, par exemple dans un dossier `docs/adr/`
+- Un **[schéma de données]({{< relref "module3/40-données/10-représentation/index.md" >}})** commenté décrivant vos tables, leurs champs et leurs relations, dans le dépôt
 - *(équipe)* Une mise à jour du **tableau GitHub Projects** reflétant l'évolution du travail depuis le jalon 1
 - Une entrée dans votre **blogue**, répondant aux questions suivantes&nbsp;: quelle décision architecturale importante avez-vous prise, quel était son contexte, et quelles alternatives avez-vous rejetées et pourquoi ? Quel obstacle concret avez-vous rencontré et comment l'avez-vous résolu ? Qu'est-ce que votre schéma de données révèle de votre compréhension du domaine ?
 
@@ -120,9 +140,15 @@ Ce jalon met l'accent sur l'évolution du projet et la rigueur des pratiques de 
 
 Livrables&nbsp;:
 - *(équipe)* Un **tableau GitHub Projects** ayant évolué de manière visible : issues fermées, nouvelles issues ouvertes, progression observable dans le temps
-- Un **historique git** non trivial : branches nommées de manière significative, pull requests avec description, commits qui racontent une progression cohérente dans le temps
+- Un **[historique git]({{< relref "module2/30-versioning/index.md" >}})** non trivial : branches nommées de manière significative, [pull requests]({{< relref "module4/10-github/index.md" >}}) avec description, commits qui racontent une progression cohérente dans le temps
 - De nouveaux **ADRs** documentant les décisions prises depuis le jalon 2
 - Une entrée dans votre **blogue**, répondant aux questions suivantes&nbsp;: qu'est-ce qui a bien fonctionné depuis le jalon 2 ? Décrivez un moment difficile (un bug, une mauvaise décision initiale, une friction dans l'équipe) et comment vous l'avez résolu. Qu'est-ce que vous feriez différemment si vous recommenciez depuis le début ?
+
+{{% hint warning %}}
+
+**Attention&nbsp;: au jalon 3, l'historique git n'est pas une trace du travail, c'est le livrable.** Le dépôt sera inspecté dans le détail, et pas seulement dans son état final. La distribution des commits dans le temps, leur taille et leur cohérence, la qualité des messages, le découpage en branches et le contenu des pull requests seront examinés pour y chercher la preuve d'une progression graduelle et structurée, et d'un travail en équipe bien balancé et équitable, le cas échéant. Un historique où tout arrive en quelques commits massifs à la veille de la remise raconte une autre histoire que celui d'un projet mené semaine après semaine, et cette différence se lit sans ambiguïté. C'est exactement ce que vise la [philosophie du flux continu](#la-philosophie-du-flux-continu) décrite plus haut.
+
+{{% /hint %}}
 
 ### Jalon 4 — Livraison finale (25%)
 
@@ -131,14 +157,24 @@ Livrables&nbsp;:
 Ce jalon représente l'aboutissement du projet. Votre application doit être complète, fonctionnelle et déployée automatiquement.
 
 Livrables&nbsp;:
-- Un lien vers votre **application déployée** et pleinement fonctionnelle, accessible sans installation
-- Un **pipeline CI/CD complet** dans le dépôt GitHub : les tests s'exécutent automatiquement et le déploiement se déclenche sans intervention manuelle à chaque push sur la branche principale
-- Une **version finale du blogue**, répondant aux questions suivantes&nbsp;: comment avez-vous utilisé l'IA dans votre développement, sur quelles tâches, avec quels résultats, et à quels moments vous a-t-elle déçu ou surpris ? Quelles bibliothèques et quels outils open source avez-vous choisis, et pourquoi ? Qu'est-ce que ce projet vous a appris que vous n'auriez pas appris autrement ?
+- Un lien vers votre **[application déployée]({{< relref "module5/20-deploiement/index.md" >}})** et pleinement fonctionnelle, accessible sans installation
+- Un **[pipeline CI/CD complet]({{< relref "module5/20-deploiement/index.md" >}})** dans le dépôt GitHub : les tests s'exécutent automatiquement et le déploiement se déclenche sans intervention manuelle à chaque push sur la branche principale
+- Une **version finale du blogue**, répondant aux questions suivantes&nbsp;: comment avez-vous utilisé l'[IA]({{< relref "module6/60-ia/index.md" >}}) dans votre développement, sur quelles tâches, avec quels résultats, et à quels moments vous a-t-elle déçu ou surpris ? Quelles bibliothèques et quels outils [open source]({{< relref "module6/10-open-source/index.md" >}}) avez-vous choisis, et pourquoi ? Qu'est-ce que ce projet vous a appris que vous n'auriez pas appris autrement ?
 
 ### Entretien final (25%)
 
 *À planifier avec le professeur dans les deux semaines suivant la remise du jalon 4*
 
-L'entretien final est une rencontre individuelle (ou par équipe) de 25 à 30 minutes sur Microsoft Teams. Il porte sur l'ensemble du projet : ses choix techniques, son architecture, son évolution dans le temps, et votre compréhension de ce qui a été produit. Des questions comme « Pourquoi avez-vous structuré vos données de cette façon ? », « Que se passerait-il si votre application devait gérer dix fois plus d'utilisateurs ? » ou « À quel endroit dans votre code l'IA a-t-elle produit quelque chose que vous avez dû corriger ou adapter ? » sont typiques de ce qui sera discuté.
+L'entretien final est une rencontre individuelle (ou par équipe) de 25 à 30 minutes sur Microsoft Teams. Il porte sur l'ensemble du projet : ses choix techniques, son architecture, son évolution dans le temps, et votre compréhension de ce qui a été produit. Des questions comme « Pourquoi avez-vous structuré vos données de cette façon ? », « Que se passerait-il si votre application devait [gérer dix fois plus d'utilisateurs]({{< relref "module5/60-scalabilite/index.md" >}}) ? » ou « À quel endroit dans votre code l'IA a-t-elle produit quelque chose que vous avez dû corriger ou adapter ? » sont typiques de ce qui sera discuté.
 
 À une époque où les outils d'IA permettent de générer du code fonctionnel sans nécessairement le comprendre, cet entretien est le moyen le plus direct de démontrer que vous avez développé une expertise authentique à travers ce projet.
+
+{{% hint info %}}
+
+## Un dernier mot : 🎉🎉🎉
+
+Ces travaux devraient être, avant tout, un moment d'expérimentation. C'est l'occasion de construire quelque chose qui vous tient réellement à coeur, d'essayer une technologie que vous ne maîtrisez pas encore, de vous tromper et de recommencer. Un projet qui prend des risques et qui porte quelques cicatrices en dira toujours plus long sur ce que vous avez appris qu'un projet impeccable mais sans surprise. La curiosité et la créativité ne sont pas des écarts par rapport aux attentes, elles en font partie.
+
+L'IA a toute sa place dans cette aventure, mais la façon dont vous vous en servez change tout. Comme tutrice, elle vous rend plus compétent&nbsp;: elle explique, elle propose des pistes, elle vous fait découvrir des idées que vous n'auriez pas cherchées. Comme coéquipière à qui l'on refile le gros du travail, elle produit du code dont vous n'êtes que le destinataire. La différence tient souvent à la question posée. « Pourquoi cette requête est-elle si lente ? » vous laisse quelque chose. « Écris-moi cette fonction » vous laisse une fonction.
+
+{{% /hint %}}

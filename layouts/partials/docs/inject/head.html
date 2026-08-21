@@ -1,3 +1,20 @@
+{{/* Sélecteur de thème, partie 1 sur 2 (voir inject/menu-before.html).
+     Ce script doit rester synchrone et le plus haut possible dans <head> :
+     il applique le choix mémorisé avant le premier rendu, sinon la page
+     scintille en passant du thème par défaut au thème choisi.
+     Sans choix mémorisé, on ne touche à rien et data-theme garde la valeur
+     de BookTheme ("auto"), donc le réglage du système s'applique. */}}
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem("book-theme");
+    if (t === "light" || t === "dark" || t === "auto") {
+      document.documentElement.dataset.theme = t;
+    }
+  } catch (e) {}
+})();
+</script>
+
 <script>
 MathJax = {
   tex: {
@@ -13,7 +30,7 @@ MathJax = {
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="{{ "css/applet.css" | relURL }}">
-{{- if or (.Page.Scratch.Get "needs_pyodide") (.Page.Scratch.Get "needs_sql") -}}
+{{- if or (.Page.Scratch.Get "needs_pyodide") (.Page.Scratch.Get "needs_sql") (.Page.Scratch.Get "needs_js") -}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css">
 {{- end -}}
@@ -22,4 +39,7 @@ MathJax = {
 {{- end -}}
 {{- if .Page.Scratch.Get "needs_sql" -}}
 <link rel="stylesheet" href="{{ "css/sql.css" | relURL }}">
+{{- end -}}
+{{- if .Page.Scratch.Get "needs_js" -}}
+<link rel="stylesheet" href="{{ "css/js.css" | relURL }}">
 {{- end -}}

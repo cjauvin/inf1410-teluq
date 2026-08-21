@@ -69,6 +69,13 @@ logiciel :
 6. **Le logiciel dans le monde** : la culture de l'open source, l'économie du
    logiciel, et le développement assisté par l'IA.
 
+Le nuage ci-dessous rassemble les mots les plus fréquents de l'ensemble du
+cours, tous modules confondus, la taille de chacun étant proportionnelle au
+nombre de ses occurrences. C'est un portrait grossier, mais assez fidèle, de ce
+dont il sera question.
+
+{{< wordcloud >}}
+
 ## Les travaux
 
 Tout au long du cours, vous serez amenés à développer une application web

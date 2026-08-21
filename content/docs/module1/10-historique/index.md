@@ -35,7 +35,7 @@ passage les premières techniques de débogage. Leur contribution a été largem
 invisibilisée pendant des décennies, la photo célèbre de l'ENIAC étant longtemps
 légendée sans même mentionner leurs noms.
 
-{{< image src="eniac6.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="eniac6.jpg" alt="Portraits des six programmeuses de l'ENIAC : Kay McNulty, Betty Jean Jennings, Betty Snyder, Marlyn Meltzer, Frances Bilas et Ruth Lichterman" title="Les six programmeuses de l'ENIAC" loading="lazy" >}}
 
 Les choses commencent à changer avec l'apparition des premiers langages de
 programmation dans les années 1950. FORTRAN (1957), conçu par John Backus chez
@@ -80,19 +80,19 @@ héritage le plus durable, ciblait le monde des affaires avec une syntaxe qui se
 voulait proche de l'anglais :
 
 ```cobol
-IDENTIFICATION DIVISION.
-PROGRAM-ID. HELLO-WORLD.
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. HELLO-WORLD.
 
-PROCEDURE DIVISION.
-    DISPLAY "Hello, World!".
-    STOP RUN.
+       PROCEDURE DIVISION.
+           DISPLAY "Hello, World!".
+           STOP RUN.
 ```
 
 Même sans connaître COBOL, on peut voir l'ambition de rendre le code lisible par
 des non-programmeurs, une préoccupation qui reviendra régulièrement dans
 l'histoire du génie logiciel.
 
-{{< image src="hopper.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="hopper.jpg" alt="Grace Hopper, conceptrice du compilateur A-0 et figure majeure derrière COBOL" title="" loading="lazy" >}}
 
 Fait remarquable, COBOL est encore utilisé de nos jours dans de nombreux
 systèmes critiques, en particulier dans le secteur bancaire et les
@@ -148,7 +148,7 @@ engineering* afin de donner à son travail la même légitimité que les autres
 disciplines d'ingénierie, à une époque où le développement logiciel n'est pas
 encore pris au sérieux.
 
-{{< image src="hamilton.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="hamilton.jpg" alt="Margaret Hamilton, responsable du logiciel embarqué du programme Apollo" title="" loading="lazy" >}}
 
 {{% hint info %}}
 **Le code source d'Apollo 11 est open source**
@@ -174,7 +174,7 @@ schéma qui se répétera souvent : une bonne pratique, née de l'observation de
 problèmes réels, est d'abord résistée par ceux qui la perçoivent comme un dogme
 académique.
 
-{{< image src="dijkstra.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="dijkstra.jpg" alt="Edsger Dijkstra, auteur de « Go To Statement Considered Harmful »" title="" loading="lazy" >}}
 
 La première tentative de formaliser le processus de développement vient en 1970,
 quand Winston Royce décrit ce qui deviendra le **modèle en cascade**
@@ -188,7 +188,7 @@ compatibilité avec les structures bureaucratiques. Il faudra attendre trente an
 et le Manifeste Agile pour qu'un modèle alternatif prenne véritablement le
 dessus.
 
-{{< image src="waterfall.webp" alt="" title="" loading="lazy" >}}
+{{< image src="waterfall.webp" alt="Diagramme du modèle en cascade : six étapes disposées en escalier, exigences, analyse, conception, mise en oeuvre, validation et mise en service, chacune dépendant de la précédente" title="Le modèle en cascade" loading="lazy" >}}
 
 Les années 70 voient aussi la naissance de **Unix** (1969-1971) chez Bell Labs,
 créé par Ken Thompson et Dennis Ritchie. Unix introduit une philosophie de
@@ -212,9 +212,9 @@ autre niveau d'abstraction par rapport à l'assembleur, mais qui reste proche de
 la machine. Cette proximité, combinée à une portabilité inédite, en fera un
 outil révolutionnaire.
 
-{{< image src="unix.webp" alt="" title="" loading="lazy" >}}
+{{< image src="unix.webp" alt="Ken Thompson et Dennis Ritchie devant un PDP-11 aux laboratoires Bell" title="Thompson et Ritchie" loading="lazy" >}}
 
-{{< image src="c-book.png" alt="" title="" loading="lazy" >}}
+{{< image src="c-book.png" alt="Couverture de The C Programming Language de Kernighan et Ritchie" title="" loading="lazy" >}}
 
 En 1975, **Fred Brooks** publie *The Mythical Man-Month*, un livre fondé sur son
 expérience comme chef de projet du système OS/360 chez IBM, l'un des plus grands
@@ -232,7 +232,7 @@ seule produire une amélioration d'un ordre de grandeur en productivité
 logicielle. La complexité fondamentale du logiciel, dit-il, n'est pas dans les
 outils, mais dans le problème lui-même.
 
-{{< image src="mythical-man-month.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="mythical-man-month.jpg" alt="Couverture de The Mythical Man-Month de Frederick Brooks" title="" loading="lazy" >}}
 
 En 1970, **Edgar F. Codd** publie son article fondateur sur le **modèle
 relationnel**, qui propose de structurer les données en tables liées par des
@@ -250,7 +250,7 @@ plutôt que de tout planifier d'avance est encore minoritaire à l'époque, mais
 elle préfigure directement les approches agiles qui émergeront une quinzaine
 d'années plus tard.
 
-{{< image src="spiral.png" alt="" title="" loading="lazy" >}}
+{{< image src="spiral.png" alt="Diagramme du modèle en spirale de Boehm : quatre quadrants parcourus en spirale, détermination des objectifs, identification des risques, développement et tests, planification de l'itération suivante, le coût cumulé croissant à chaque tour" title="Le modèle en spirale de Boehm" loading="lazy" >}}
 
 ## Les années 80 : l'ère des abstractions, du PC et du GUI
 
@@ -262,7 +262,7 @@ Smalltalk (1972), c'est dans les années 80 qu'ils se généralisent, portés
 notamment par **C++** (créé par Bjarne Stroustrup, première version publique en
 1985).
 
-{{< image src="stroustrup.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="stroustrup.jpg" alt="Bjarne Stroustrup, créateur du C++" title="" loading="lazy" >}}
 
 C++ ajoute les classes, l'héritage et le polymorphisme au langage C, permettant
 de modéliser les problèmes en termes d'objets qui encapsulent données et
@@ -301,7 +301,7 @@ le « L » de l'acronyme SOLID qu'on verra dans un module ultérieur, reste l'un
 des règles les plus fondamentales de la conception orientée objet. Liskov
 recevra le prix Turing en 2008 pour l'ensemble de ses contributions.
 
-{{< image src="liskov.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="liskov.jpg" alt="Barbara Liskov, prix Turing 2008, autrice du principe de substitution" title="" loading="lazy" >}}
 
 L'apparition du Macintosh (1984) et plus tard de Windows popularise les
 interfaces graphiques. Ce changement a un impact profond sur la programmation :
@@ -312,9 +312,9 @@ progressive des protocoles réseau, avec le modèle OSI et la suite TCP/IP, pose
 les bases de ce qui deviendra Internet. Le logiciel ne vit plus seulement sur
 une machine isolée : il commence à communiquer.
 
-{{< image src="pc.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="pc.jpg" alt="Un ordinateur personnel de bureau sous Windows 95" title="" loading="lazy" >}}
 
-{{< image src="mac.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="mac.jpg" alt="Le Macintosh d'Apple, avec son clavier et sa souris" title="" loading="lazy" >}}
 
 ## Les années 90 : la naissance du web
 
@@ -324,7 +324,7 @@ partage de documents scientifiques à une plateforme universelle. Les développe
 doivent soudainement penser en termes de client-serveur, de protocoles HTTP et
 de HTML.
 
-{{< image src="timbl.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="timbl.jpg" alt="Tim Berners-Lee, inventeur du World Wide Web" title="" loading="lazy" >}}
 
 Puis JavaScript arrive en 1995, créé en dix jours par Brendan Eich chez
 Netscape. Ce langage, conçu dans l'urgence pour ajouter de l'interactivité aux
@@ -343,7 +343,7 @@ On voit ici le modèle événementiel en action : plutôt que d'exécuter du cod
 façon séquentielle, on attache un comportement à un événement (le clic sur un
 bouton).
 
-{{< image src="brendaneich.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="brendaneich.jpg" alt="Brendan Eich, créateur de JavaScript" title="" loading="lazy" >}}
 
 **Java** (1995), créé par James Gosling chez Sun Microsystems, arrive avec la
 promesse « *Write Once, Run Anywhere* » : grâce à sa machine virtuelle (JVM), un
@@ -371,7 +371,7 @@ années 90 : tout est objet, tout est patron. Avec le recul, on réalisera que
 certains de ces patrons sont moins des solutions universelles que des
 contournements de limitations spécifiques à certains langages.
 
-{{< image src="james-gosling.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="james-gosling.jpg" alt="James Gosling, créateur de Java" title="" loading="lazy" >}}
 
 En 1991, **Guido van Rossum** publie la première version de **Python**, un
 langage qui prend le contre-pied de la verbosité de Java. La philosophie de
@@ -395,7 +395,7 @@ deviendra au fil des décennies l'un des langages les plus utilisés au monde,
 porté notamment par l'essor de la science des données et de l'apprentissage
 automatique.
 
-{{< image src="guido.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="guido.jpg" alt="Guido van Rossum, créateur de Python" title="" loading="lazy" >}}
 
 Le **Unified Modeling Language** (UML), standardisé en 1997, représente l'apogée
 de l'approche « concevoir d'abord, coder ensuite ». UML propose une notation
@@ -421,7 +421,7 @@ En parallèle, le mouvement du **logiciel libre**, initié par Richard Stallman
 dans les années 80, prend une dimension nouvelle avec l'essor de l'**open
 source**.
 
-{{< image src="rms.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="rms.jpg" alt="Richard Stallman, initiateur du mouvement du logiciel libre" title="" loading="lazy" >}}
 
 **Linux** (1991), créé par Linus Torvalds, démontre qu'une communauté
 mondiale de bénévoles peut créer et maintenir un système d'exploitation complet.
@@ -431,7 +431,7 @@ milliers de contributeurs qui ne se sont jamais rencontrés. Ce modèle influenc
 profondément les pratiques du génie logiciel et préfigure la façon dont la
 majorité du logiciel est développé aujourd'hui.
 
-{{< image src="linus.webp" alt="" title="" loading="lazy" >}}
+{{< image src="linus.webp" alt="Linus Torvalds, créateur de Linux et de git" title="" loading="lazy" >}}
 
 En 1999, **Andrew Hunt** et **David Thomas** publient *The Pragmatic
 Programmer*, un ouvrage qui offre des conseils pratiques et terre-à-terre pour le
@@ -440,7 +440,7 @@ Repeat Yourself*) et insiste sur l'importance d'un apprentissage continu. Son
 titre même est un manifeste : face au formalisme ambiant des années 90, il
 revendique le pragmatisme comme vertu cardinale.
 
-{{< image src="pragprog.jpg" alt="" title="" loading="lazy" >}}
+{{< image src="pragprog.jpg" alt="Couverture de The Pragmatic Programmer de Hunt et Thomas" title="" loading="lazy" >}}
 
 ## Les années 00 : l'ère de l'agilité
 
@@ -467,7 +467,7 @@ d'utilisateurs simultanés, évoluer rapidement et être disponibles en permanen
 Les cycles de livraison de 18 mois deviennent intenables. C'est dans ce contexte
 que le cloud et les outils de collaboration modernes prennent tout leur sens.
 
-{{< image src="faang.webp" alt="" title="" loading="lazy" >}}
+{{< image src="faang.webp" alt="Les logos de Facebook, Apple, Amazon, Netflix et Google, réunis sous l'acronyme FAANG" title="Les FAANG" loading="lazy" >}}
 
 En 2006, **Amazon Web Services** (AWS) lance ses premiers services de cloud
 computing, permettant à quiconque de louer de la puissance de calcul et du
@@ -544,7 +544,7 @@ du code? Comment valider du code généré par une machine? Les principes du gé
 logiciel (tests, revue de code, architecture) deviennent-ils plus ou moins
 importants dans ce contexte?
 
-{{< image src="ai.webp" alt="" title="" loading="lazy" >}}
+{{< image src="ai.webp" alt="Les logos de ChatGPT, Claude et Gemini" title="" loading="lazy" >}}
 
 ---
 

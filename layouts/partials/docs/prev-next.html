@@ -1,16 +1,12 @@
 {{/* Ceci est un override que j'ai ajouté pour faire en sorte que la page d'accueil ait un lien "next page", et qu'il soit à droite, même s'il y a aucun lien "prev" */}}
+{{/* Porté en août 2026 : "docs/prev-next-cache" a été supprimé de hugo-book,
+     remplacé par "docs/menu-section" + "docs/menu-section-pages". */}}
 
-{{ $bookSection := default "docs" .Site.Params.BookSection  }}
-{{ if eq $bookSection "*" }}
-  {{ $bookSection = "/" }}{{/* Backward compatibility */}}
-{{ end }}
-
-{{ with .Site.GetPage $bookSection }}
-  {{ $pages := partialCached "docs/prev-next-cache" .Pages }}
-  {{ $homepage := .Site.Home }}
-  {{ $allPages := slice $homepage | append $pages }}
-  {{ $prev := $allPages.Next $ }}
-  {{ $next := $allPages.Prev $ }}
+{{- with (partialCached "docs/menu-section" .Site) -}}
+  {{- $pages := partialCached "docs/menu-section-pages" . -}}
+  {{- $allPages := slice $.Site.Home | append $pages -}}
+  {{- $prev := $allPages.Next $ -}}
+  {{- $next := $allPages.Prev $ -}}
 
   {{- if or $prev $next }}
   <div class="flex flex-wrap justify-between">
@@ -32,4 +28,4 @@
     </span>
   </div>
   {{ end -}}
-{{ end }}
+{{- end -}}

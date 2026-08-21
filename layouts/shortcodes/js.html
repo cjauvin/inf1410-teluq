@@ -1,0 +1,19 @@
+{{/* layouts/shortcodes/js.html
+
+     Bloc JavaScript exécutable, pendant de {{< pyodide >}}. Contrairement à
+     Pyodide, aucun runtime n'est à télécharger : le navigateur sait déjà
+     exécuter du JavaScript. Le code tourne dans un Web Worker, isolé du DOM
+     et interruptible, pour qu'une boucle infinie ne gèle pas la page. */}}
+{{- .Page.Scratch.Set "needs_js" true -}}
+{{- $id := printf "js-%d" .Ordinal -}}
+{{- $code := .Inner | strings.TrimPrefix "\n" | strings.TrimSuffix "\n" -}}
+
+<div class="js-block" id="{{ $id }}">
+  <textarea id="{{ $id }}-code" tabindex="-1">{{ $code }}</textarea>
+  <div class="js-toolbar">
+    <button id="{{ $id }}-run" onclick="jsRun('{{ $id }}')">&#9654; Exécuter</button>
+    <button id="{{ $id }}-reset" onclick="jsReset('{{ $id }}')">&#8634; Réinitialiser</button>
+    <span class="js-status" id="{{ $id }}-status"></span>
+  </div>
+  <pre class="js-output js-output-hidden" id="{{ $id }}-output"></pre>
+</div>

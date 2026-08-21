@@ -44,7 +44,7 @@
   </script>
 {{- end -}}
 
-{{- if or (.Page.Scratch.Get "needs_pyodide") (.Page.Scratch.Get "needs_sql") -}}
+{{- if or (.Page.Scratch.Get "needs_pyodide") (.Page.Scratch.Get "needs_sql") (.Page.Scratch.Get "needs_js") -}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
 {{- end -}}
 
@@ -167,6 +167,165 @@ sys.stderr = sys.__stderr__
       cm.setValue(cm._originalCode);
       const outEl = document.getElementById(id + '-output');
       outEl.textContent = '';
+    }
+  </script>
+{{- end -}}
+
+{{- if .Page.Scratch.Get "needs_js" -}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/javascript/javascript.min.js"></script>
+  <script>
+    // ── Éditeurs CodeMirror des blocs JavaScript ──
+    const _jsEditors = {};
+
+    document.querySelectorAll('.js-block').forEach(block => {
+      const textarea = block.querySelector('textarea');
+      if (!textarea) return;
+      const cm = CodeMirror.fromTextArea(textarea, {
+        mode: 'javascript',
+        theme: 'material-darker',
+        indentUnit: 2,
+        tabSize: 2,
+        indentWithTabs: false,
+        lineNumbers: false,
+        viewportMargin: Infinity,
+      });
+      cm._originalCode = textarea.value;
+      _jsEditors[block.id] = cm;
+    });
+
+    // ── Exécution dans un Web Worker ──
+    //
+    // Le Worker est isolé du DOM et surtout interruptible : une boucle
+    // infinie écrite par un étudiant est tuée après DELAI_MAX au lieu de
+    // geler l'onglet. C'est la raison principale de ne pas exécuter le code
+    // directement dans la page.
+    //
+    // eval() renvoie la « completion value » de la dernière instruction,
+    // c'est-à-dire exactement ce qu'un REPL affiche. Sans ça, un bloc qui
+    // se termine par une expression sans console.log n'afficherait rien.
+    const _JS_DELAI_MAX = 5000;
+
+    const _JS_WORKER_SRC = `
+      function inspecter(v, vus) {
+        vus = vus || new Set();
+        if (v === null) return 'null';
+        if (v === undefined) return 'undefined';
+        const t = typeof v;
+        if (t === 'string') return JSON.stringify(v);
+        if (t === 'bigint') return v + 'n';
+        if (t === 'symbol') return v.toString();
+        if (t === 'function') return v.name ? '[Function: ' + v.name + ']' : '[Function]';
+        if (t === 'number') return Object.is(v, -0) ? '-0' : String(v);
+        if (t !== 'object') return String(v);
+        if (vus.has(v)) return '[Circulaire]';
+        vus.add(v);
+        try {
+          if (Array.isArray(v)) return '[ ' + v.map(x => inspecter(x, vus)).join(', ') + ' ]';
+          if (v instanceof Error) return v.name + ': ' + v.message;
+          if (v instanceof Date) return v.toISOString();
+          if (v instanceof Map) return 'Map(' + v.size + ') { ' + [...v].map(([k, x]) => inspecter(k, vus) + ' => ' + inspecter(x, vus)).join(', ') + ' }';
+          if (v instanceof Set) return 'Set(' + v.size + ') { ' + [...v].map(x => inspecter(x, vus)).join(', ') + ' }';
+          const cles = Object.keys(v);
+          return '{ ' + cles.map(k => k + ': ' + inspecter(v[k], vus)).join(', ') + ' }';
+        } finally { vus.delete(v); }
+      }
+
+      // console.log affiche les chaînes brutes, sans guillemets, comme
+      // dans un vrai navigateur. La valeur de retour, elle, est inspectée.
+      function afficher(args) {
+        return args.map(a => typeof a === 'string' ? a : inspecter(a)).join(' ');
+      }
+
+      ['log', 'info', 'warn', 'error', 'debug'].forEach(niveau => {
+        console[niveau] = function () {
+          postMessage({ type: 'log', niveau: niveau, texte: afficher([].slice.call(arguments)) });
+        };
+      });
+
+      onmessage = function (e) {
+        try {
+          const resultat = eval(e.data);
+          postMessage({ type: 'fin', valeur: resultat === undefined ? null : inspecter(resultat) });
+        } catch (err) {
+          postMessage({ type: 'erreur', texte: (err && err.stack) ? String(err) : String(err) });
+        }
+      };
+    `;
+
+    function _jsEcrire(outEl, texte, classe) {
+      const span = document.createElement('span');
+      if (classe) span.className = classe;
+      span.textContent = texte + '\n';
+      outEl.appendChild(span);
+    }
+
+    function jsRun(id) {
+      const cm = _jsEditors[id];
+      const outEl = document.getElementById(id + '-output');
+      const runBtn = document.getElementById(id + '-run');
+      const statusEl = document.getElementById(id + '-status');
+
+      runBtn.disabled = true;
+      outEl.innerHTML = '';
+      outEl.classList.remove('js-output-hidden');
+      statusEl.textContent = 'Exécution…';
+
+      const blob = new Blob([_JS_WORKER_SRC], { type: 'application/javascript' });
+      const url = URL.createObjectURL(blob);
+      const worker = new Worker(url);
+      let fini = false;
+
+      const minuterie = setTimeout(() => {
+        if (fini) return;
+        fini = true;
+        worker.terminate();
+        URL.revokeObjectURL(url);
+        _jsEcrire(outEl, 'Exécution interrompue après ' + (_JS_DELAI_MAX / 1000) + ' secondes (boucle infinie ?)', 'js-error');
+        statusEl.textContent = '';
+        runBtn.disabled = false;
+      }, _JS_DELAI_MAX);
+
+      worker.onmessage = (e) => {
+        const m = e.data;
+        if (m.type === 'log') {
+          _jsEcrire(outEl, m.texte, m.niveau === 'error' || m.niveau === 'warn' ? 'js-error' : null);
+          return;
+        }
+        fini = true;
+        clearTimeout(minuterie);
+        if (m.type === 'erreur') {
+          _jsEcrire(outEl, m.texte, 'js-error');
+        } else if (m.valeur !== null) {
+          _jsEcrire(outEl, m.valeur, 'js-value');
+        } else if (!outEl.childNodes.length) {
+          _jsEcrire(outEl, '(Exécution terminée, aucune sortie)');
+        }
+        worker.terminate();
+        URL.revokeObjectURL(url);
+        statusEl.textContent = '';
+        runBtn.disabled = false;
+      };
+
+      worker.onerror = (err) => {
+        if (fini) return;
+        fini = true;
+        clearTimeout(minuterie);
+        _jsEcrire(outEl, err.message || 'Erreur inconnue', 'js-error');
+        worker.terminate();
+        URL.revokeObjectURL(url);
+        statusEl.textContent = '';
+        runBtn.disabled = false;
+      };
+
+      worker.postMessage(cm.getValue());
+    }
+
+    function jsReset(id) {
+      const cm = _jsEditors[id];
+      cm.setValue(cm._originalCode);
+      const outEl = document.getElementById(id + '-output');
+      outEl.innerHTML = '';
+      outEl.classList.add('js-output-hidden');
     }
   </script>
 {{- end -}}
@@ -323,7 +482,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.highlight pre').forEach(pre => {
     const code = pre.querySelector('code');
-    if (code && code.getAttribute('data-lang') === 'shell') return;
+    // Pas de bouton copier sur les transcriptions de terminal ni de REPL :
+    // elles contiennent des invites ($, >>>) et la sortie du programme, donc
+    // le texte copié ne serait pas exécutable tel quel.
+    const sansCopie = ['shell', 'bash', 'console', 'pycon'];
+    if (code && sansCopie.includes(code.getAttribute('data-lang'))) return;
     pre.style.position = 'relative';
     const btn = makeCopyBtn(() => code ? code.textContent : pre.textContent);
     pre.appendChild(btn);
@@ -337,5 +500,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = makeCopyBtn(() => _pyodideEditors[id].getValue());
     cmWrapper.appendChild(btn);
   });
+
+  document.querySelectorAll('.js-block').forEach(block => {
+    const id = block.id;
+    const cmWrapper = block.querySelector('.CodeMirror');
+    if (!cmWrapper) return;
+    cmWrapper.style.position = 'relative';
+    const btn = makeCopyBtn(() => _jsEditors[id].getValue());
+    cmWrapper.appendChild(btn);
+  });
 });
+</script>
+<script>
+// Infobulles des images (voir layouts/shortcodes/image.html).
+//
+// Deux comportements ici. D'abord la position : la bulle est en position fixe
+// et suit le pointeur, car ancrée sous l'image elle tomberait hors écran sur
+// les grandes illustrations. Ensuite le déclenchement : elle n'apparaît que
+// lorsque le curseur s'immobilise. Tout mouvement la masque et relance le
+// compte à rebours, de sorte qu'un simple survol de passage ne fait pas
+// clignoter des bulles sur toute la page.
+//
+// La visibilité est donc pilotée par l'attribut data-tip-visible et non par
+// :hover, sans quoi le délai serait impossible à obtenir en CSS seul.
+(function () {
+  const DELAI = 400; // ms d'immobilité avant affichage
+  let minuterie = null;
+  let cible = null;
+
+  function masquer() {
+    if (minuterie) { clearTimeout(minuterie); minuterie = null; }
+    if (cible) { cible.removeAttribute('data-tip-visible'); cible = null; }
+  }
+
+  document.addEventListener('mousemove', function (e) {
+    const el = e.target.closest && e.target.closest('.book-image[data-tooltip]');
+    if (!el) { masquer(); return; }
+
+    el.style.setProperty('--tip-x', e.clientX + 'px');
+    el.style.setProperty('--tip-y', e.clientY + 'px');
+
+    if (minuterie) clearTimeout(minuterie);
+    if (cible && cible !== el) cible.removeAttribute('data-tip-visible');
+    el.removeAttribute('data-tip-visible');
+    cible = el;
+    minuterie = setTimeout(function () {
+      el.setAttribute('data-tip-visible', '');
+    }, DELAI);
+  });
+
+  // Le pointeur peut quitter la fenêtre ou la page défiler sans qu'aucun
+  // mousemove ne survienne : sans ça, une bulle resterait affichée.
+  document.addEventListener('mouseleave', masquer);
+  window.addEventListener('scroll', masquer, { passive: true });
+})();
 </script>

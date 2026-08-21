@@ -9,12 +9,21 @@
 {{- $log     := .Get "log" | default "" -}}
 {{- $scale   := .Get "scale" | default "1.0" -}}
 
+{{/* Le site est publié dans un sous-dossier (/inf1410-teluq/). Hugo n'ajoute
+     pas ce préfixe à un chemin qui commence déjà par "/", il faut donc retirer
+     la barre oblique avant relURL. Auparavant c'est canonifyURLs qui rattrapait
+     ça, mais cette option cassait la recherche du thème. */}}
+{{- $srcURL := $src -}}
+{{- if not (or (hasPrefix $src "http://") (hasPrefix $src "https://") (hasPrefix $src "//")) -}}
+  {{- $srcURL = $src | strings.TrimPrefix "/" | relURL -}}
+{{- end -}}
+
 {{/* Flag the page so we load the library once */}}
 {{- .Page.Scratch.Add "needs_iresizer" 1 -}}
 
 <div class="applet-wrapper" style="width: {{ $width }};">
   <iframe
-    src="{{ $src }}"
+    src="{{ $srcURL }}"
     id="{{ $id }}"
     class="applet-iframe"
     width="{{ $width }}"

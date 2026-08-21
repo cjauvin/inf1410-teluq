@@ -1,0 +1,288 @@
+/*
+  Porté de assets/_custom.scss en août 2026 : hugo-book a abandonné le SASS
+  au profit du CSS (commit 162c806). Les variables SCSS sont remplacées par
+  les variables CSS de assets/styles/variables.css, sauf $mobile-breakpoint,
+  qui vaut $menu-width + $body-min-width * 1.2 + $toc-width, soit 56rem, et
+  qui doit rester une valeur littérale car une media query ne peut pas lire
+  une variable CSS.
+*/
+
+p {
+  text-align: justify;
+}
+
+/* Largeur de contenu identique qu'il y ait une table des matières ou non :
+   en son absence, on ajoute un espaceur flex de la même largeur.
+   Uniquement hors mobile, pour ne pas créer de vide en mode responsive. */
+@media screen and (min-width: 56rem) {
+  .container.flex:not(:has(.book-toc))::after {
+    content: "";
+    flex: 0 0 var(--toc-width);
+  }
+}
+
+.markdown table {
+  display: table;
+  margin: 0 auto;
+}
+
+/* Centrage des images */
+.book-image {
+  display: block;
+  text-align: center;
+}
+
+/* Les images zoomées doivent passer au-dessus des applets */
+.book-image input:checked + img {
+  z-index: 100 !important;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 4px;
+  line-height: 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.copy-btn:hover {
+  color: #333;
+}
+
+/* Sélecteur de thème (voir layouts/partials/docs/inject/menu-before.html) */
+.theme-switch {
+  display: flex;
+  gap: 2px;
+  margin: 0 var(--space-16) var(--space-16);
+  padding: 2px;
+  border-radius: var(--border-radius);
+  background: var(--gray-100);
+}
+
+.theme-switch button {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4) 0;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--border-radius);
+  background: transparent;
+  color: var(--body-font-color);
+  opacity: 0.55;
+  transition: opacity 0.15s, background-color 0.15s;
+}
+
+.theme-switch button:hover {
+  opacity: 0.9;
+}
+
+.theme-switch button[aria-pressed="true"] {
+  opacity: 1;
+  background: var(--body-background);
+}
+
+.theme-switch svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* La lune est pleine, pas un contour ouvert */
+.theme-switch button[data-theme-value="dark"] svg path {
+  fill: currentColor;
+}
+
+/* Infobulles.
+
+   La barre latérale a overflow-x: hidden, donc une infobulle centrée sous les
+   boutons de bord serait tronquée. On centre celle du bouton du milieu, et on
+   aligne les deux autres sur le bord correspondant pour qu'elles restent dans
+   la largeur du menu. */
+.theme-switch button {
+  position: relative;
+}
+
+.theme-switch button::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 3px 7px;
+  border-radius: var(--border-radius);
+  background: var(--body-font-color);
+  color: var(--body-background);
+  font-size: var(--font-size-smallest);
+  line-height: 1.4;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.12s ease, visibility 0.12s;
+}
+
+.theme-switch button:first-child::after {
+  left: 0;
+  transform: none;
+}
+
+.theme-switch button:last-child::after {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+.theme-switch button:hover::after,
+.theme-switch button:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Infobulles sur les images.
+
+   Le texte vient de l'attribut title du shortcode image, sinon de alt (voir
+   layouts/shortcodes/image.html). Seules les images qui portent réellement un
+   texte reçoivent l'attribut, donc aucune bulle vide n'apparaît. */
+.book-image[data-tooltip] {
+  position: relative;
+}
+
+.book-image[data-tooltip]::after {
+  content: attr(data-tooltip);
+  /* Position fixe suivant le curseur : les images font souvent plusieurs
+     centaines de pixels de haut, et une bulle ancrée sous l'image se
+     retrouverait loin du pointeur, voire hors écran. Les coordonnées sont
+     posées par le gestionnaire de inject/body.html. */
+  position: fixed;
+  left: var(--tip-x, 50%);
+  top: calc(var(--tip-y, 50%) + 18px);
+  transform: translateX(-50%);
+  z-index: 20;
+  max-width: min(30ch, 90%);
+  padding: 4px 8px;
+  border-radius: var(--border-radius);
+  background: var(--body-font-color);
+  color: var(--body-background);
+  font-size: var(--font-size-smallest);
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.12s ease, visibility 0.12s;
+}
+
+.book-image[data-tooltip][data-tip-visible]::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Pas d'infobulle quand l'image est agrandie au clic */
+.book-image[data-tooltip]:has(input:checked)::after {
+  content: none;
+}
+
+/* Hauteur maximale des images.
+
+   La contrainte du thème porte sur la largeur (max-width: 100%), donc une
+   image en format portrait s'étale sur toute la colonne et devient plus haute
+   qu'un écran : jusqu'à 1450 px pour une couverture de livre.
+
+   Le problème est concentré dans 27 images sur 227. Les 200 images en format
+   paysage font 560 px de haut en moyenne et n'ont jamais posé problème ; les
+   27 portraits en font 1182. Un plafond de 700 px les ramène toutes à une
+   taille raisonnable, et ne touche par ailleurs que 37 images paysage, celles
+   qui sont presque carrées et donc déjà très imposantes.
+
+   En pixels et non en vh : avec une unité relative à la fenêtre, l'effet
+   disparaissait presque sur un grand écran, au point de donner l'impression
+   que la règle ne fonctionnait plus.
+
+   Le sélecteur exclut délibérément l'état agrandi au clic (input:checked), que
+   le thème passe en position fixe avec height: 100% et qui doit rester plein
+   écran. La règle est limitée à l'écran pour ne pas perturber l'impression ni
+   le mode page unique. */
+@media screen {
+  .book-image input:not(:checked) + img {
+    max-height: 700px;
+    width: auto;
+  }
+}
+
+/* Portrait de la page « Le professeur ».
+
+   La photo fait 550×650, donc en format portrait : sans contrainte elle
+   occuperait toute la colonne et écraserait le texte d'introduction. On la
+   ramène à une taille de portrait, flottée à droite hors mobile. */
+/* Le shortcode image pose la classe sur le <img>, pas sur le <label> qui
+   l'enveloppe, d'où le :has() pour atteindre le conteneur. */
+.book-image:has(img.portrait-prof) {
+  display: block;
+  max-width: 240px;
+  margin: 0 auto var(--space-16);
+}
+
+@media screen and (min-width: 56rem) {
+  .book-image:has(img.portrait-prof) {
+    float: right;
+    margin: 0 0 var(--space-16) var(--space-16);
+  }
+}
+
+/* Le flottement ne doit pas survivre à l'agrandissement plein écran */
+.book-image:has(img.portrait-prof):has(input:checked) {
+  float: none;
+  max-width: none;
+}
+
+/* Nuage de mots de la page d'accueil (voir scripts/wordcloud.py).
+
+   Le SVG est inséré dans la page et dessiné en currentColor, donc il suit
+   automatiquement le thème. On atténue légèrement l'ensemble pour qu'il se
+   lise comme une illustration et non comme du texte à lire. */
+.wordcloud-wrap {
+  margin: var(--space-16) 0;
+  padding: var(--space-16);
+  text-align: center;
+  border: 1px solid color-mix(in srgb, var(--body-font-color) 12%, transparent);
+  border-radius: calc(var(--border-radius) * 4);
+
+  /* Deux halos très pâles tirés des couleurs d'accent du thème, sur un fond
+     à peine teinté. Tout est exprimé en color-mix à partir de variables du
+     thème, donc le panneau se recolore de lui-même en clair et en sombre.
+     Les valeurs de repli protègent si une variable venait à disparaître. */
+  background:
+    radial-gradient(90% 130% at 30% 0%,
+      color-mix(in srgb, var(--color-accent-note, #5e81ac) 12%, transparent),
+      transparent 68%),
+    radial-gradient(80% 120% at 85% 100%,
+      color-mix(in srgb, var(--color-accent-tip, #a3be8c) 10%, transparent),
+      transparent 62%),
+    color-mix(in srgb, var(--body-font-color) 4%, transparent);
+}
+
+.wordcloud-wrap .wordcloud {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0.85;
+}
+
+.wordcloud-wrap figcaption {
+  margin-top: var(--space-8);
+  font-size: var(--font-size-smaller);
+  opacity: 0.7;
+}

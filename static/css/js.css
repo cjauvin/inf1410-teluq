@@ -1,19 +1,19 @@
-/* ── SQL executable code block ── */
+/* ── Bloc JavaScript exécutable ── */
 
-.sql-block {
+.js-block {
   margin: 1rem 0;
   border: 1px solid var(--gray-200, #e2e8f0);
   border-radius: 6px;
   overflow: hidden;
 }
 
-/* Hide the raw textarea (CodeMirror replaces it) */
-.sql-block > textarea {
+/* Le textarea brut est remplacé par CodeMirror */
+.js-block > textarea {
   display: none;
 }
 
 /* CodeMirror overrides */
-.sql-block .CodeMirror {
+.js-block .CodeMirror {
   height: auto;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -23,7 +23,7 @@
 
 /* ── Toolbar ── */
 
-.sql-toolbar {
+.js-toolbar {
   display: flex;
   gap: 0.5rem;
   padding: 0.4rem 0.75rem;
@@ -31,7 +31,7 @@
   border-top: 1px solid var(--gray-200, #e2e8f0);
 }
 
-.sql-toolbar button {
+.js-toolbar button {
   padding: 0.25rem 0.75rem;
   border: 1px solid var(--gray-500, #ccc);
   border-radius: 4px;
@@ -42,17 +42,17 @@
   transition: background 0.15s;
 }
 
-.sql-toolbar button:hover {
+.js-toolbar button:hover {
   background: var(--gray-100, #f0f0f3);
   border-color: var(--body-font-color, #333);
 }
 
-.sql-toolbar button:disabled {
+.js-toolbar button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.sql-toolbar .sql-status {
+.js-toolbar .js-status {
   margin-left: auto;
   font-size: 0.8rem;
   color: var(--gray-500, #888);
@@ -61,76 +61,53 @@
 
 /* ── Output ── */
 
-.sql-output {
-  margin: 0;
+.js-output {
+  margin: 0 !important;
+  padding: 0.75rem 1rem;
   border-top: 1px solid var(--gray-200, #e2e8f0);
-  background: #1e1e2e;
+  border-radius: 0 !important;
+  background: #1e1e2e !important;
   color: #cdd6f4;
   font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 0.825rem;
   line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
   max-height: 400px;
-  overflow: auto;
+  overflow-y: auto;
 }
 
-.sql-output.sql-output-hidden {
+.js-output.js-output-hidden {
   display: none;
 }
 
-/* Message output (row count, errors) */
-.sql-output .sql-message {
-  padding: 0.75rem 1rem;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-.sql-output .sql-error {
+.js-output .js-error {
   color: #f38ba8;
 }
 
-/* ── Result table ── */
-
-.sql-output table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0;
+/* Valeur de retour de la dernière expression, distinguée de la sortie
+   de console.log pour que l'étudiant voie ce qui est « le résultat ». */
+.js-output .js-value {
+  color: #a6e3a1;
 }
 
-.sql-output th,
-.sql-output td {
-  padding: 0.35rem 0.75rem;
-  text-align: left;
-  border-bottom: 1px solid #313244;
-  white-space: nowrap;
-}
-
-.sql-output th {
-  background: #313244;
-  color: #89b4fa;
-  font-weight: 600;
-  position: sticky;
-  top: 0;
-}
-
-.sql-output tr:hover td {
-  background: rgba(137, 180, 250, 0.07);
-}
-
-.sql-output td.sql-null {
+.js-output .js-value::before {
+  content: "⇒ ";
   color: #6c7086;
-  font-style: italic;
 }
-/* Marge intérieure de l'éditeur, alignée sur celle du bloc JS.
+
+/* Marge intérieure de l'éditeur.
 
    CodeMirror colle le code contre le bord par défaut (padding 4px 0 sur
-   .CodeMirror-lines). On reprend les valeurs de .sql-output ci-dessus, pour
+   .CodeMirror-lines). On reprend les valeurs de .js-output ci-dessus, pour
    que le code et sa sortie s'alignent verticalement. */
-.sql-block .CodeMirror-lines {
+.js-block .CodeMirror-lines {
   padding: 0.75rem 0;
 }
 
-.sql-block .CodeMirror pre.CodeMirror-line,
-.sql-block .CodeMirror pre.CodeMirror-line-like {
+.js-block .CodeMirror pre.CodeMirror-line,
+.js-block .CodeMirror pre.CodeMirror-line-like {
   padding-left: 1rem;
   padding-right: 1rem;
 }

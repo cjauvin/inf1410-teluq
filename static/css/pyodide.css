@@ -85,3 +85,18 @@
 .pyodide-output .pyodide-error {
   color: #f38ba8;
 }
+
+/* Marge intérieure de l'éditeur, alignée sur celle du bloc JS.
+
+   CodeMirror colle le code contre le bord par défaut (padding 4px 0 sur
+   .CodeMirror-lines). On reprend les valeurs de .pyodide-output ci-dessus, pour
+   que le code et sa sortie s'alignent verticalement. */
+.pyodide-block .CodeMirror-lines {
+  padding: 0.75rem 0;
+}
+
+.pyodide-block .CodeMirror pre.CodeMirror-line,
+.pyodide-block .CodeMirror pre.CodeMirror-line-like {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
