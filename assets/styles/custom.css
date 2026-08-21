@@ -221,3 +221,29 @@ p {
     width: auto;
   }
 }
+
+/* Portrait de la page « Le professeur ».
+
+   La photo fait 550×650, donc en format portrait : sans contrainte elle
+   occuperait toute la colonne et écraserait le texte d'introduction. On la
+   ramène à une taille de portrait, flottée à droite hors mobile. */
+/* Le shortcode image pose la classe sur le <img>, pas sur le <label> qui
+   l'enveloppe, d'où le :has() pour atteindre le conteneur. */
+.book-image:has(img.portrait-prof) {
+  display: block;
+  max-width: 240px;
+  margin: 0 auto var(--space-16);
+}
+
+@media screen and (min-width: 56rem) {
+  .book-image:has(img.portrait-prof) {
+    float: right;
+    margin: 0 0 var(--space-16) var(--space-16);
+  }
+}
+
+/* Le flottement ne doit pas survivre à l'agrandissement plein écran */
+.book-image:has(img.portrait-prof):has(input:checked) {
+  float: none;
+  max-width: none;
+}
