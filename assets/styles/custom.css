@@ -255,7 +255,23 @@ p {
    lise comme une illustration et non comme du texte à lire. */
 .wordcloud-wrap {
   margin: var(--space-16) 0;
+  padding: var(--space-16);
   text-align: center;
+  border: 1px solid color-mix(in srgb, var(--body-font-color) 12%, transparent);
+  border-radius: calc(var(--border-radius) * 4);
+
+  /* Deux halos très pâles tirés des couleurs d'accent du thème, sur un fond
+     à peine teinté. Tout est exprimé en color-mix à partir de variables du
+     thème, donc le panneau se recolore de lui-même en clair et en sombre.
+     Les valeurs de repli protègent si une variable venait à disparaître. */
+  background:
+    radial-gradient(90% 130% at 30% 0%,
+      color-mix(in srgb, var(--color-accent-note, #5e81ac) 12%, transparent),
+      transparent 68%),
+    radial-gradient(80% 120% at 85% 100%,
+      color-mix(in srgb, var(--color-accent-tip, #a3be8c) 10%, transparent),
+      transparent 62%),
+    color-mix(in srgb, var(--body-font-color) 4%, transparent);
 }
 
 .wordcloud-wrap .wordcloud {
