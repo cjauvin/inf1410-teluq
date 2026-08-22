@@ -9,7 +9,7 @@ weight: 20
 
 Ce cours est structuré autour d'un projet de développement logiciel unique, que vous ferez évoluer d'un bout à l'autre de la session. L'idée est simple : plutôt que de produire des travaux déconnectés les uns des autres, vous allez construire quelque chose de concret, en appliquant progressivement les outils et les pratiques vus dans chaque module. Ce projet est donc à la fois un fil conducteur pédagogique et une occasion de vivre, de l'intérieur, les défis réels du génie logiciel moderne. Il n'est pas attendu de vous que vous maîtrisiez ou utilisiez la totalité des techniques et des outils abordés dans le cours — l'objectif est plutôt que vous fassiez des choix éclairés, et que vous soyez capables de les justifier.
 
-{{< image src="../ligne-rouge.png" alt="" title="" loading="lazy" >}}
+{{< image src="ligne-rouge.png" alt="" title="" loading="lazy" >}}
 
 ## L'intelligence artificielle dans ce cours
 
@@ -37,7 +37,7 @@ Sur le plan de l'évaluation, une règle simple s'applique&nbsp;: plus vous avez
 
 Vous pouvez travailler seul ou en équipe de deux ou trois personnes. Les deux options sont équivalentes sur le plan des exigences techniques de base&nbsp;: qualité du code, tests automatisés, intégration continue, ADRs, déploiement et blogue technique sont attendus dans les deux cas.
 
-{{< image src="../team-vs-solo.png" alt="" title="" loading="lazy" >}}
+{{< image src="team-vs-solo.png" alt="" title="" loading="lazy" >}}
 
 La principale différence porte sur la gestion de projet. Le travail en équipe implique une dimension organisationnelle que le travail solo n'a pas, notamment l'attribution des tâches, la coordination et le suivi des priorités. Pour refléter cet effort, l'utilisation de **GitHub Projects** (tableau de bord, suivi des issues, progression visible) est **requise pour les équipes**. Elle est **optionnelle pour les personnes travaillant seules**. Là où les jalons mentionnent GitHub Projects, la mention *(équipe)* indique que ce livrable ne s'applique qu'aux équipes.
 
