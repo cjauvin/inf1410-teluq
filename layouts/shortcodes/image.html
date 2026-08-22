@@ -1,4 +1,47 @@
-{{- $destination := partial "docs/links/portable-image" (dict "Page" .Page "Destination" (.Get "src")) -}}
+{{- $src := .Get "src" -}}
+{{- $destination := partial "docs/links/portable-image" (dict "Page" .Page "Destination" $src) -}}
+
+{{/* Dimensions intrinsèques et largeur plafond.
+
+     Sans width et height, le navigateur ne réserve aucune place pour une image
+     en chargement différé. La page s'allonge donc brutalement au fur et à
+     mesure des chargements, et une ancre visée depuis la table des matières se
+     déplace pendant le défilement. Sur la page historique du module 1, le
+     document passait de 13 199 à 24 903 pixels, et un titre se retrouvait
+     11 051 pixels plus bas qu'au moment du clic. Il fallait plusieurs clics
+     pour atteindre une section.
+
+     Les deux attributs sont des indications de présentation, que le navigateur
+     traduit en propriétés CSS width et height. Une feuille de style qui déclare
+     explicitement width: auto les écrase, et l'image non chargée retombe alors
+     à zéro. C'est la raison pour laquelle le plafond de taille ne peut pas être
+     exprimé en max-height accompagné de width: auto, comme il l'était : il faut
+     laisser la largeur tranquille.
+
+     On plafonne donc la largeur plutôt que la hauteur. La variable calculée
+     ici est la largeur à laquelle l'image atteint HAUTEUR_MAX, jamais plus que
+     sa largeur réelle pour ne pas agrandir les petites images. Le rendu final
+     est identique à l'ancien plafond de hauteur, mais la proportion est cette
+     fois préservée dans les deux états, avant et après chargement.
+     La règle qui la consomme est dans assets/styles/custom.css.
+
+     La résolution du chemin reprend celle de docs/links/portable-image, qui
+     ne renvoie qu'une URL alors qu'il nous faut la ressource elle-même. Les
+     SVG sont écartés, Hugo ne leur expose pas de dimensions. */}}
+{{- $HAUTEUR_MAX := 700.0 -}}
+{{- $dimensions := "" -}}
+{{- $url := urls.Parse $src -}}
+{{- if not $url.IsAbs -}}
+  {{- $path := strings.TrimPrefix "./" $url.Path -}}
+  {{- $path = strings.TrimPrefix "/assets/" $path -}}
+  {{- with or (.Page.Resources.Get $path) (resources.Get $path) -}}
+    {{- if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") (gt .Height 0) -}}
+      {{- $plafond := math.Round (mul $HAUTEUR_MAX (div (float .Width) (float .Height))) -}}
+      {{- $plafond = math.Min .Width $plafond -}}
+      {{- $dimensions = printf ` width="%d" height="%d" style="--largeur-plafond: %.0fpx"` .Width .Height $plafond -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 
 {{/* Infobulle : on prend "title" s'il est renseigné, sinon "alt". Le texte
      est porté par le <label> et affiché en CSS (voir assets/styles/custom.css).
@@ -15,7 +58,7 @@
 ) -}}
 <label class="book-image" for="book-image-toggle-{{ .Ordinal }}"{{ with $tip }} data-tooltip="{{ . }}"{{ end }}>
   <input class="hidden toggle" type="checkbox" id="book-image-toggle-{{ .Ordinal }}" />
-  <img src="{{ $destination | safeURL }}" {{ partial "docs/html-attrs" $attributes | safeHTMLAttr }} />
+  <img src="{{ $destination | safeURL }}" {{ partial "docs/html-attrs" $attributes | safeHTMLAttr }}{{ $dimensions | safeHTMLAttr }} />
 </label>
 <script>
 (function() {

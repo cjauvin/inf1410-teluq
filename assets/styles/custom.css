@@ -211,14 +211,28 @@ p {
    disparaissait presque sur un grand écran, au point de donner l'impression
    que la règle ne fonctionnait plus.
 
+   Le plafond porte sur la largeur et non sur la hauteur, ce qui est contre
+   intuitif puisque c'est bien la hauteur qu'on veut limiter. La raison tient
+   au chargement différé. Les attributs width et height posés par le shortcode
+   image sont des indications de présentation, que le navigateur traduit en
+   propriétés CSS ; une déclaration width: auto les écrase, et l'image pas
+   encore chargée occupe alors une boîte de zéro pixel. La page s'allongeait
+   donc au fil des chargements et les ancres de la table des matières se
+   dérobaient sous le curseur. Or max-height sans width: auto déforme l'image,
+   la largeur ne se réajustant pas. Plafonner la largeur échappe aux deux
+   problèmes, la hauteur suivant d'elle-même par le rapport de forme.
+
+   La valeur de --largeur-plafond est calculée image par image par le
+   shortcode : c'est la largeur à laquelle l'image atteint 700 px de haut. Le
+   repli à 100% couvre les images sans dimensions connues, comme les SVG.
+
    Le sélecteur exclut délibérément l'état agrandi au clic (input:checked), que
    le thème passe en position fixe avec height: 100% et qui doit rester plein
    écran. La règle est limitée à l'écran pour ne pas perturber l'impression ni
    le mode page unique. */
 @media screen {
   .book-image input:not(:checked) + img {
-    max-height: 700px;
-    width: auto;
+    max-width: min(100%, var(--largeur-plafond, 100%));
   }
 }
 
