@@ -1,5 +1,5 @@
 <!doctype html><html lang=fr dir=ltr data-theme=auto><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie.
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#2e3440"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Le développement assisté par IA"><meta property="og:description" content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Le développement assisté par IA"><meta itemprop=description content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta itemprop=wordCount content="9708"><title>Le développement assisté par IA • INF1410 - Initiation au génie logiciel</title><link rel=icon href=/inf1410-teluq/images/2gears.png><link rel=manifest href=/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/><link rel=stylesheet href=/inf1410-teluq/book.min.70136917ccb039d8cb261ee5dddbcce2d4a388eaada6cad19d533706f7164bff.css integrity="sha256-cBNpF8ywOdjLJh7l3dvM4tSjiOqtpsrRnVM3BvcWS/8=" crossorigin=anonymous><script defer type=module src=/inf1410-teluq/fr.search.min.edd7a42d1b8c5a19978b5f807275db1bcd9564ed01b75d3d57b57b317422948e.js integrity="sha256-7dekLRuMWhmXi1+AcnXbG82VZO0Bt109V7V7MXQilI4=" crossorigin=anonymous></script><script>(function(){try{var e=localStorage.getItem("book-theme");(e==="light"||e==="dark"||e==="auto")&&(document.documentElement.dataset.theme=e)}catch{}})()</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#2e3440"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Le développement assisté par IA"><meta property="og:description" content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Le développement assisté par IA"><meta itemprop=description content="Le développement assisté par IA# La section précédente se terminait sur une question ouverte : l’IA générative sera-t-elle enfin la silver bullet que Brooks jugeait impossible en 1986 ? La question mérite d’être posée sérieusement, parce que quelque chose de fondamentalement différent est en train de se passer. Depuis 2021, des outils capables de générer du code à partir de descriptions en langage naturel ont commencé à transformer le quotidien des développeurs. Pas comme une curiosité de laboratoire, mais comme un changement concret dans la manière de travailler : en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était écrit avec l’assistance de Copilot. Que l’on soit enthousiaste ou sceptique, il est difficile de nier que le développement logiciel est en train de vivre sa transformation la plus profonde depuis l’invention des langages de haut niveau. Pour comprendre ce qui se passe, il faut d’abord comprendre d’où vient cette technologie."><meta itemprop=wordCount content="9708"><title>Le développement assisté par IA • INF1410 - Initiation au génie logiciel</title><link rel=icon href=/inf1410-teluq/images/2gears.png><link rel=manifest href=/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module6/ia/><link rel=stylesheet href=/inf1410-teluq/book.min.be46a6603411fccc132d36e934685c6188ae5118281e0fc52fd0d31a971c7bbf.css integrity="sha256-vkamYDQR/MwTLTbpNGhcYYiuURgoHg/FL9DTGpcce78=" crossorigin=anonymous><script defer type=module src=/inf1410-teluq/fr.search.min.edd7a42d1b8c5a19978b5f807275db1bcd9564ed01b75d3d57b57b317422948e.js integrity="sha256-7dekLRuMWhmXi1+AcnXbG82VZO0Bt109V7V7MXQilI4=" crossorigin=anonymous></script><script>(function(){try{var e=localStorage.getItem("book-theme");(e==="light"||e==="dark"||e==="auto")&&(document.documentElement.dataset.theme=e)}catch{}})()</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/inf1410-teluq/><img src=/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><div class="book-search hidden"><input id=book-search-input type=text placeholder=Rechercher aria-label=Rechercher maxlength=64><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><div class=theme-switch role=group aria-label="Thème de la page"><button type=button data-theme-value=auto data-tooltip="Thème du système" aria-label="Thème du système">
 <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.5" y="2.5" width="13" height="9" rx="1.5"/><path d="M5.5 14h5"/></svg>
 </button>
@@ -61,7 +61,7 @@ l&rsquo;IA&rdquo; (AI winters), des périodes de désillusion et de coupures de 
 quand les promesses initiales se sont heurtées à la réalité : l&rsquo;intelligence
 humaine ne se réduit pas à un ensemble de règles logiques, et les problèmes du
 monde réel résistent à la formalisation complète.</p><label class=book-image for=book-image-toggle-0><input class="hidden toggle" type=checkbox id=book-image-toggle-0>
-<img src=/inf1410-teluq/docs/module6/ia/turing.jpg alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/turing.jpg alt loading=lazy width=733 height=745 style=--largeur-plafond:689px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-0"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Il serait toutefois trompeur de conclure que l&rsquo;IA symbolique a échoué. En
 réalité, une grande partie de ses idées se sont fondues dans la programmation
 ordinaire, au point qu&rsquo;on ne les associe plus à l&rsquo;&ldquo;intelligence artificielle&rdquo;.
@@ -98,7 +98,7 @@ combinaison de trois facteurs : des données massives (le web), du matériel
 puissant (les GPU, des processeurs graphiques détournés pour le calcul
 scientifique) et des architectures de réseaux de neurones plus profondes. C&rsquo;est
 le deep learning.</p><label class=book-image for=book-image-toggle-1><input class="hidden toggle" type=checkbox id=book-image-toggle-1>
-<img src=/inf1410-teluq/docs/module6/ia/neuron.webp alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/neuron.webp alt loading=lazy width=1451 height=622 style=--largeur-plafond:1451px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-1"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h3 id=le-deep-learning-et-montréal-années-2010>Le deep learning et Montréal (années 2010)<a class=anchor href=#le-deep-learning-et-montr%c3%a9al-ann%c3%a9es-2010>#</a></h3><p>Le deep learning (apprentissage profond) désigne l&rsquo;utilisation de réseaux de
 neurones comportant de nombreuses couches successives, chacune apprenant des
 représentations de plus en plus abstraites des données. Un réseau de
@@ -114,7 +114,7 @@ trois d&rsquo;entre eux ont joué un rôle déterminant : Geoffrey Hinton (Unive
 Toronto), Yann LeCun (Bell Labs puis NYU) et Yoshua Bengio (Université de
 Montréal). Ils recevront ensemble le prix Turing en 2018, souvent décrit comme
 le &ldquo;prix Nobel de l&rsquo;informatique&rdquo;, pour leurs travaux sur le deep learning.</p><label class=book-image for=book-image-toggle-2><input class="hidden toggle" type=checkbox id=book-image-toggle-2>
-<img src=/inf1410-teluq/docs/module6/ia/bengio.jpg alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/bengio.jpg alt loading=lazy width=1280 height=1543 style=--largeur-plafond:581px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-2"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le rôle de Montréal dans cette histoire mérite d&rsquo;être souligné. Yoshua Bengio
 est arrivé à l&rsquo;Université de Montréal en 1993 et y a fondé ce qui allait
 devenir le MILA (aujourd&rsquo;hui l&rsquo;Institut québécois d&rsquo;intelligence artificielle),
@@ -127,7 +127,7 @@ de Google, Meta, Microsoft et Samsung, et engendrant un écosystème de startups
 spécialisées. Cette concentration de talent n&rsquo;est pas un accident : elle
 résulte directement de la persévérance d&rsquo;un chercheur et de l&rsquo;université qui
 l&rsquo;a soutenu pendant les années de vaches maigres.</p><label class=book-image for=book-image-toggle-3><input class="hidden toggle" type=checkbox id=book-image-toggle-3>
-<img src=/inf1410-teluq/docs/module6/ia/mila.webp alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/mila.webp alt loading=lazy width=1000 height=1000 style=--largeur-plafond:700px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-3"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le moment charnière est arrivé en 2012. Lors de la compétition ImageNet, un
 défi annuel de classification d&rsquo;images, Alex Krizhevsky, un étudiant de Hinton
 à Toronto, a soumis AlexNet, un réseau de neurones profond entraîné sur des
@@ -157,7 +157,7 @@ capturaient des relations sémantiques. L&rsquo;exemple devenu célèbre est que
 vecteur &ldquo;roi&rdquo; moins &ldquo;homme&rdquo; plus &ldquo;femme&rdquo; donnait un résultat proche de &ldquo;reine&rdquo;,
 comme si le modèle avait appris, sans supervision explicite, des concepts
 abstraits comme le genre et la royauté.</p><label class=book-image for=book-image-toggle-4><input class="hidden toggle" type=checkbox id=book-image-toggle-4>
-<img src=/inf1410-teluq/docs/module6/ia/embeddings.webp alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/embeddings.webp alt loading=lazy width=1418 height=474 style=--largeur-plafond:1418px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-4"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>L&rsquo;étape suivante est venue, encore une fois, du MILA. En 2014, Dzmitry
 Bahdanau, Kyunghyun Cho et Yoshua Bengio ont publié &ldquo;Neural Machine Translation
 by Jointly Learning to Align and Translate&rdquo;, un article qui introduisait le
@@ -181,7 +181,7 @@ leur importance relative. Cette architecture était aussi massivement
 parallélisable, ce qui permettait de l&rsquo;entraîner sur des quantités de texte
 sans précédent en exploitant la puissance des GPU. Le Transformer est devenu la
 brique de base de presque tous les modèles de langage modernes.</p><label class=book-image for=book-image-toggle-5><input class="hidden toggle" type=checkbox id=book-image-toggle-5>
-<img src=/inf1410-teluq/docs/module6/ia/transformer.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/transformer.png alt loading=lazy width=534 height=742 style=--largeur-plafond:504px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-5"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>OpenAI a été parmi les premiers à exploiter cette architecture à grande échelle.
 GPT (Generative Pre-trained Transformer), publié en 2018, puis GPT-2 en 2019
 et GPT-3 en 2020, ont montré qu&rsquo;en augmentant la taille du modèle (le nombre
@@ -199,7 +199,7 @@ de la même manière qu&rsquo;ils comprenaient l&rsquo;anglais ou le français :
 patterns statistiques dans des séquences de tokens. La frontière entre comprendre
 du texte et comprendre du code s&rsquo;est brouillée, et c&rsquo;est précisément cette
 convergence qui a rendu possible les outils de développement assisté par IA.</p><label class=book-image for=book-image-toggle-6><input class="hidden toggle" type=checkbox id=book-image-toggle-6>
-<img src=/inf1410-teluq/docs/module6/ia/chatgpt.webp alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/chatgpt.webp alt loading=lazy width=780 height=438 style=--largeur-plafond:780px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-6"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><h2 id=lia-entre-dans-léditeur>L&rsquo;IA entre dans l&rsquo;éditeur<a class=anchor href=#lia-entre-dans-l%c3%a9diteur>#</a></h2><p>L&rsquo;autocomplétion de code n&rsquo;a pas attendu les LLM. Dès 1996, Intellisense de
 Microsoft proposait dans Visual Basic des suggestions basées sur l&rsquo;analyse
 statique du code : le système connaissait les types, les méthodes disponibles,
@@ -226,7 +226,7 @@ patterns complexes en s&rsquo;appuyant sur le contexte du fichier, et s&rsquo;ad
 style du code environnant. Pour beaucoup de développeurs, c&rsquo;était la première
 fois qu&rsquo;un outil d&rsquo;IA produisait du code réellement utile, pas juste
 impressionnant comme démonstration.</p><label class=book-image for=book-image-toggle-7><input class="hidden toggle" type=checkbox id=book-image-toggle-7>
-<img src=/inf1410-teluq/docs/module6/ia/vsc-ai.jpg alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/vsc-ai.jpg alt loading=lazy width=3850 height=2178 style=--largeur-plafond:1237px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-7"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Puis, en novembre 2022, OpenAI a lancé ChatGPT, et tout a basculé. ChatGPT
 n&rsquo;était pas un outil de développement : c&rsquo;était un agent conversationnel
 généraliste. Mais les développeurs ont immédiatement commencé à l&rsquo;utiliser pour
@@ -263,7 +263,7 @@ désormais créer des applications fonctionnelles. Pour ses critiques, c&rsquo;e
 recette pour produire du code fragile, incompris, et potentiellement dangereux.
 Le débat est riche parce qu&rsquo;il touche à des questions fondamentales sur la
 nature même de la programmation.</p><label class=book-image for=book-image-toggle-8><input class="hidden toggle" type=checkbox id=book-image-toggle-8>
-<img src=/inf1410-teluq/docs/module6/ia/vibe-coding.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/vibe-coding.png alt loading=lazy width=1184 height=818 style=--largeur-plafond:1013px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-8"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>En 1979, Edsger Dijkstra, l&rsquo;un des pères de la programmation structurée que
 nous avons rencontré dans le module 1, a écrit un texte au titre sans
 équivoque : &ldquo;On the foolishness of &rsquo;natural language programming&rsquo;&rdquo;. Pour
@@ -396,12 +396,12 @@ proposer, puis vérifier soi-même avant d&rsquo;accepter — devrait être au c
 tout développement assisté par IA. Elle ne ralentit pas le travail de manière
 significative, mais elle réduit considérablement le risque d&rsquo;introduire des
 erreurs qu&rsquo;on ne comprend pas et qu&rsquo;on ne saurait pas corriger.</p><label class=book-image for=book-image-toggle-9><input class="hidden toggle" type=checkbox id=book-image-toggle-9>
-<img src=/inf1410-teluq/docs/module6/ia/inception.avif alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/inception.avif alt loading=lazy width=2160 height=1080 style=--largeur-plafond:1400px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-9"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Les deux démonstrations qui suivent rendent ces idées concrètes. Elles ont été
 réalisées avec Claude Code, un agent de développement développé par Anthropic
 qui peut naviguer dans un dépôt, lire des fichiers, exécuter des commandes,
 lancer des tests et itérer sur son travail.</p><label class=book-image for=book-image-toggle-10><input class="hidden toggle" type=checkbox id=book-image-toggle-10>
-<img src=/inf1410-teluq/docs/module6/ia/claude-alien.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/claude-alien.png alt loading=lazy width=1105 height=697 style=--largeur-plafond:1105px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-10"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Claude Code est disponible sous plusieurs formes. La plus dépouillée est le CLI
 (interface en ligne de commande) : on installe l&rsquo;outil, on tape <code>claude</code> dans
 un terminal, et on interagit directement avec l&rsquo;agent. Il existe aussi des
@@ -457,7 +457,7 @@ démarrage. C&rsquo;est une forme de mémoire externe pour l&rsquo;agent, ancré
 dépôt lui-même, et donc partagée avec toute l&rsquo;équipe si le fichier est versionné
 avec git. Quand <code>/init</code> génère ce fichier, il produit un premier portrait du
 projet qu&rsquo;on peut ensuite compléter et affiner manuellement.</p><label class=book-image for=book-image-toggle-11><input class="hidden toggle" type=checkbox id=book-image-toggle-11>
-<img src=/inf1410-teluq/docs/module6/ia/cc1.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc1.png alt loading=lazy width=1047 height=839 style=--largeur-plafond:874px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-11"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Avant d&rsquo;écrire le fichier <code>CLAUDE.md</code>, l&rsquo;agent s&rsquo;arrête et demande la
 permission. Ce comportement est au coeur du modèle de confiance de Claude Code :
 l&rsquo;agent ne modifie jamais un fichier, n&rsquo;exécute jamais une commande shell, et
@@ -472,7 +472,7 @@ permissions existe pour une raison simple : un agent qui peut lire des fichiers,
 l&rsquo;environnement dans lequel il tourne. La supervision humaine n&rsquo;est pas une
 contrainte artificielle, c&rsquo;est une pratique saine, surtout quand on commence à
 travailler avec un outil qu&rsquo;on ne connaît pas encore bien.</p><label class=book-image for=book-image-toggle-12><input class="hidden toggle" type=checkbox id=book-image-toggle-12>
-<img src=/inf1410-teluq/docs/module6/ia/cc2.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc2.png alt loading=lazy width=1090 height=390 style=--largeur-plafond:1090px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-12"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Première question : la vue d&rsquo;ensemble.</strong></p><p>On commence par demander à Claude Code un portrait général de l&rsquo;architecture du
 projet.</p><pre tabindex=0><code>Peux-tu me donner une vue d&#39;ensemble de l&#39;organisation et
 du fonctionnement de ce projet</code></pre><p>La réponse est structurée en plusieurs niveaux. D&rsquo;abord, une description
@@ -487,7 +487,7 @@ dans <code>sessions.py</code>, <code>PreparedRequest</code> dans <code>models.py
 premier échange illustre un usage fondamental : obtenir une carte mentale
 complète d&rsquo;un projet en quelques secondes, avec une profondeur qu&rsquo;il faudrait
 plusieurs heures de lecture pour construire manuellement.</p><label class=book-image for=book-image-toggle-13><input class="hidden toggle" type=checkbox id=book-image-toggle-13>
-<img src=/inf1410-teluq/docs/module6/ia/cc3.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc3.png alt loading=lazy width=1314 height=1257 style=--largeur-plafond:732px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-13"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Deuxième question : suivre le chemin d&rsquo;une requête.</strong></p><p>On demande ensuite à l&rsquo;agent :</p><pre tabindex=0><code>Peux-tu tracer et expliquer clairement et brièvement ce qui se passe
 quand on exécute requests.get(&#34;https://example.com&#34;)</code></pre><p>Avant de répondre, l&rsquo;agent lit de sa propre initiative les trois fichiers clés pour
 pouvoir citer des références précises. La réponse prend la forme de six étapes
@@ -508,7 +508,7 @@ ouvrir plusieurs fichiers, trouver les bons points d&rsquo;entrée, suivre les a
 de méthode en méthode. L&rsquo;agent le fait en quelques secondes et produit une
 explication linéaire qui reconstruit la <em>théorie</em> du programme, au sens de
 Naur.</p><label class=book-image for=book-image-toggle-14><input class="hidden toggle" type=checkbox id=book-image-toggle-14>
-<img src=/inf1410-teluq/docs/module6/ia/cc4.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc4.png alt loading=lazy width=1087 height=1265 style=--largeur-plafond:602px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-14"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Troisième question : un détail architectural surprenant.</strong></p><p>On demande finalement à l&rsquo;agent d&rsquo;expliquer le rôle du pattern Adapter dans
 Requests. La réponse commence par identifier le problème que ce pattern résout :
 <code>Session</code> a deux responsabilités bien distinctes, gérer l&rsquo;état (cookies, auth,
@@ -529,14 +529,14 @@ mutuellement. Cet échange illustre comment l&rsquo;agent peut relier du code co
 à des concepts théoriques que l&rsquo;étudiant a déjà vus dans le module 3 : le
 pattern adaptateur, la séparation des responsabilités, l&rsquo;inversion de
 dépendances.</p><label class=book-image for=book-image-toggle-15><input class="hidden toggle" type=checkbox id=book-image-toggle-15>
-<img src=/inf1410-teluq/docs/module6/ia/cc5.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc5.png alt loading=lazy width=1710 height=1264 style=--largeur-plafond:947px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-15"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>En fin de session, la commande <code>/usage</code> donne une vue sur la consommation :
 la portion du contexte de la session courante utilisée, la consommation
 hebdomadaire tous modèles confondus, et le montant facturé depuis le début du
 cycle de facturation. C&rsquo;est un rappel utile que l&rsquo;agent n&rsquo;est pas gratuit, et
 que des sessions longues ou des dépôts volumineux coûtent plus que de courtes
 interactions.</p><label class=book-image for=book-image-toggle-16><input class="hidden toggle" type=checkbox id=book-image-toggle-16>
-<img src=/inf1410-teluq/docs/module6/ia/cc6.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc6.png alt loading=lazy width=554 height=357 style=--largeur-plafond:554px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-16"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>L&rsquo;exploration d&rsquo;un codebase avec un agent IA n&rsquo;est pas du vibe coding : on ne
 génère pas de code à l&rsquo;aveugle, on construit activement une compréhension. Le
 développeur pose des questions, évalue les réponses, approfondit les points qui
@@ -562,7 +562,7 @@ CLI : taper <code>/init</code>. L&rsquo;agent analyse le squelette du projet et 
 exactement comme on l&rsquo;a vu avec Requests. On choisit &ldquo;Yes, allow all edits this
 session&rdquo; pour ne pas avoir à confirmer chaque modification pendant le reste de
 la démonstration.</p><label class=book-image for=book-image-toggle-17><input class="hidden toggle" type=checkbox id=book-image-toggle-17>
-<img src=/inf1410-teluq/docs/module6/ia/cc-md-1.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc-md-1.png alt loading=lazy width=2557 height=1414 style=--largeur-plafond:1266px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-17"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le <code>CLAUDE.md</code> généré est minimal : il décrit la structure de base du projet.
 C&rsquo;est maintenant qu&rsquo;on l&rsquo;édite manuellement pour y ajouter l&rsquo;intention de
 l&rsquo;outil : ce qu&rsquo;il doit faire, les choix techniques (bibliothèque <code>requests</code>,
@@ -571,7 +571,7 @@ on écrit la spécification dans le dépôt, versionnée avec git, plutôt que d
 tout expliquer dans le chat à chaque session. La section ajoutée est mise en
 évidence dans le screenshot — quatre points qui décrivent précisément le
 comportement attendu, plus une ligne sur les choix techniques.</p><label class=book-image for=book-image-toggle-18><input class="hidden toggle" type=checkbox id=book-image-toggle-18>
-<img src=/inf1410-teluq/docs/module6/ia/cc-md-2.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc-md-2.png alt loading=lazy width=1329 height=700 style=--largeur-plafond:1329px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-18"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Étape 2 : planifier avant d&rsquo;implémenter.</strong></p><p>Avant d&rsquo;envoyer la demande d&rsquo;implémentation, on bascule en <strong>Plan mode</strong> via le
 menu des modes dans le panneau Claude Code. Ce mode a un comportement distinct
 des deux autres options disponibles : &ldquo;Ask before edits&rdquo; demande une approbation
@@ -580,9 +580,9 @@ changements sans confirmation, et &ldquo;Plan mode&rdquo; ne touche à aucun fic
 se contente d&rsquo;explorer le code et de produire un plan complet avant d&rsquo;agir.
 C&rsquo;est l&rsquo;équivalent de demander à un développeur de réfléchir à voix haute avant
 de commencer à taper.</p><label class=book-image for=book-image-toggle-19><input class="hidden toggle" type=checkbox id=book-image-toggle-19>
-<img src=/inf1410-teluq/docs/module6/ia/cc-md-3.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc-md-3.png alt loading=lazy width=678 height=313 style=--largeur-plafond:678px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-19"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Une fois le mode activé, on envoie simplement :</p><pre tabindex=0><code>Implémente le projet tel que décrit dans CLAUDE.md</code></pre><p>L&rsquo;agent relit <code>CLAUDE.md</code> et produit un plan complet — sans toucher à aucun fichier.</p><label class=book-image for=book-image-toggle-20><input class="hidden toggle" type=checkbox id=book-image-toggle-20>
-<img src=/inf1410-teluq/docs/module6/ia/cc-md-4.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc-md-4.png alt loading=lazy width=2558 height=1412 style=--largeur-plafond:1268px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-20"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le plan est structuré en trois sections. D&rsquo;abord le contexte : l&rsquo;agent confirme
 sa compréhension du projet en résumant ce qu&rsquo;il a lu dans <code>CLAUDE.md</code>. Ensuite
 les fichiers concernés : <code>main.py</code> à créer avec les fonctions <code>extract_links()</code>,
@@ -604,7 +604,7 @@ est importante : les modifications de fichiers (écriture de code) et
 l&rsquo;exécution de commandes shell sont deux niveaux de permissions séparés. Écrire
 du code dans un fichier est réversible avec git ; exécuter une commande shell
 peut avoir des effets plus larges sur l&rsquo;environnement.</p><label class=book-image for=book-image-toggle-21><input class="hidden toggle" type=checkbox id=book-image-toggle-21>
-<img src=/inf1410-teluq/docs/module6/ia/cc-md-5.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc-md-5.png alt loading=lazy width=667 height=267 style=--largeur-plafond:667px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-21"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>C&rsquo;est aussi le bon moment pour penser à git. Dans un workflow assisté par IA,
 git joue un rôle de mécanisme de contrôle supplémentaire : il rend les
 changements de l&rsquo;agent explicites et traçables, permet de voir exactement ce
@@ -627,13 +627,13 @@ directement dans l&rsquo;éditeur. Une fois les fichiers écrits, l&rsquo;agent 
 lancer les tests avec <code>uv run pytest tests/ -v</code> — on choisit d&rsquo;autoriser toutes
 les commandes <code>uv run</code> pour le projet, et l&rsquo;agent conclut en vérifiant que tout
 passe.</p><label class=book-image for=book-image-toggle-22><input class="hidden toggle" type=checkbox id=book-image-toggle-22>
-<img src=/inf1410-teluq/docs/module6/ia/cc-md-6.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc-md-6.png alt loading=lazy width=650 height=271 style=--largeur-plafond:650px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-22"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Une fois la permission accordée, l&rsquo;agent installe les dépendances, écrit les
 fichiers et lance les tests. Le screenshot suivant montre le résumé complet de
 la session : les commandes exécutées, le diff de <code>pyproject.toml</code> avec les
 nouvelles dépendances en vert, et en bas la confirmation que tous les tests
 passent.</p><label class=book-image for=book-image-toggle-23><input class="hidden toggle" type=checkbox id=book-image-toggle-23>
-<img src=/inf1410-teluq/docs/module6/ia/cc-md-7.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc-md-7.png alt loading=lazy width=1223 height=1158 style=--largeur-plafond:739px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-23"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Étape 3 : vérifier par soi-même.</strong></p><p>L&rsquo;agent a lancé les tests de son côté, mais rien n&rsquo;empêche de les relancer
 indépendamment dans le terminal intégré de VS Code — hors de Claude Code,
 directement dans le shell. C&rsquo;est un geste simple mais important, à plusieurs titres. D&rsquo;abord, il rappelle
@@ -646,13 +646,13 @@ Relancer les tests soi-même, même si le résultat est identique, change la
 posture : on vérifie, on valide, on reste acteur. On voit ici à la fois le code généré
 dans l&rsquo;éditeur et la sortie de <code>uv run pytest</code> dans le terminal — tous les
 tests passent.</p><label class=book-image for=book-image-toggle-24><input class="hidden toggle" type=checkbox id=book-image-toggle-24>
-<img src=/inf1410-teluq/docs/module6/ia/cc-md-8.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc-md-8.png alt loading=lazy width=1474 height=848 style=--largeur-plafond:1217px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-24"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p><strong>Étape 4 : tester et valider les choix de l&rsquo;agent.</strong></p><p>Avant de relire le code, on teste l&rsquo;outil sur un fichier Markdown minimal
 qui contient un lien valide, un lien cassé et une image :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ echo <span style=color:#e6db74>&#34;Voici [Google](https://google.com) et [un lien cassé](https://exemple-inexistant-xyz.com) et ![logo](https://google.com/logo.png)&#34;</span> &gt; test.md
 </span></span><span style=display:flex><span>$ uv run main.py test.md
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>OK    <span style=color:#f92672>]</span> test.md | Google | https://google.com | <span style=color:#ae81ff>200</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>BROKEN<span style=color:#f92672>]</span> test.md | un lien cassé | https://exemple-inexistant-xyz.com | HTTPSConnectionPool<span style=color:#f92672>(</span>host<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;exemple-inexistant-xyz.com&#39;</span>, port<span style=color:#f92672>=</span>443<span style=color:#f92672>)</span>: Max retries exceeded with url: / <span style=color:#f92672>(</span>Caused by NameResolutionError<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;HTTPSConnection(host=&#39;exemple-inexistant-xyz.com&#39;, port=443): Failed to resolve &#39;exemple-inexistant-xyz.com&#39; ([Errno 8] nodename nor servname provided, or not known)&#34;</span><span style=color:#f92672>))</span></span></span></code></pre></div><label class=book-image for=book-image-toggle-25><input class="hidden toggle" type=checkbox id=book-image-toggle-25>
-<img src=/inf1410-teluq/docs/module6/ia/cc-md-9.png alt loading=lazy>
+<img src=/inf1410-teluq/docs/module6/ia/cc-md-9.png alt loading=lazy width=609 height=672 style=--largeur-plafond:609px>
 </label><script>(function(){const e=document.getElementById("book-image-toggle-25"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>En relisant <code>main.py</code>, on remarque quelque chose d&rsquo;intéressant. La regex
 utilisée pour extraire les liens est :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>pattern <span style=color:#f92672>=</span> <span style=color:#e6db74>r</span><span style=color:#e6db74>&#34;(?&lt;!!)\[([^\]]+)\]\((https?://[^)]+)\)&#34;</span></span></span></code></pre></div><p>Le préfixe <code>(?&lt;!!)</code> est un <em>negative lookbehind</em> qui signifie &ldquo;pas précédé d&rsquo;un
 point d&rsquo;exclamation&rdquo; — ce qui exclut précisément les images Markdown, qui
