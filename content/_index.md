@@ -2,7 +2,7 @@
 title: "Accueil"
 ---
 
-{{< image src="open-space.png" alt="" title="" loading="lazy" >}}
+{{< image src="open-space.webp" alt="Un vaste espace de travail ouvert où des centaines de développeurs travaillent côte à côte devant leurs écrans" title="Le logiciel moderne se construit à plusieurs" loading="lazy" >}}
 
 # Bienvenue
 
