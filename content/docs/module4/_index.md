@@ -36,7 +36,7 @@ humaine. On ne peut pas concevoir un système modulaire avec une équipe
 monolithique, ni un système intégré avec des équipes cloisonnées.
 L'architecture et l'organisation co-évoluent, qu'on le veuille ou non.
 
-{{< image src="conway-teams.png" alt="" title="" loading="lazy" >}}
+{{< image src="conway-teams.webp" alt="" title="" loading="lazy" >}}
 
 Ce module explore les différentes facettes de cette coordination. Nous
 commencerons par étendre notre connaissance de git vers son usage distribué avec

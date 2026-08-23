@@ -238,7 +238,7 @@ couplage est fort : tous les modules dépendent des mêmes données globales. Da
 la deuxième, le couplage est faible : chaque module interagit avec les autres
 uniquement à travers une interface étroite.
 
-{{< image src="couplage-et-cohésion.png" alt="" title="" loading="lazy" >}}
+{{< image src="couplage-et-cohésion.webp" alt="" title="" loading="lazy" >}}
 
 Ces deux axes sont faciles à illustrer. Prenons un exemple simple : un système
 qui envoie des notifications aux utilisateurs.
@@ -533,7 +533,7 @@ que je me prépare à un problème imaginaire ?" Parnas nous rappelle que le bon
 critère de découpage est "quelle décision pourrait changer". Si la réponse est
 "aucune, pour l'instant", alors YAGNI l'emporte.
 
-{{< image src="solid-vs-yagni.png" alt="" title="" loading="lazy" >}}
+{{< image src="solid-vs-yagni.webp" alt="" title="" loading="lazy" >}}
 
 ## Les design patterns
 
@@ -655,7 +655,7 @@ Jusqu'ici, on a parlé de découpage *interne* : comment organiser les modules �
 
 L'intuition naturelle, surtout quand on a appris les vertus du découpage, est de vouloir tout séparer dès le départ. Mais l'expérience de l'industrie montre le contraire. Un monolithe bien structuré (avec des couches claires, des modules cohésifs et un couplage faible) est presque toujours le meilleur point de départ. Martin Fowler résume cette idée par la formule *monolith first* : commencer par un monolithe, et ne découper en services que lorsque la douleur le justifie. La raison est simple : les microservices résolvent des problèmes d'organisation et de passage à l'échelle, mais ils en créent d'autres. Chaque service a besoin de sa propre infrastructure de déploiement, de monitoring, de gestion des erreurs. La communication entre services passe par le réseau, ce qui introduit de la latence, des pannes partielles et des problèmes de cohérence des données. Déboguer un problème qui traverse cinq services est incomparablement plus difficile que de déboguer un appel de fonction dans un monolithe.
 
-{{< image src="monolith-vs-microservices.png" alt="" title="" loading="lazy" >}}
+{{< image src="monolith-vs-microservices.webp" alt="" title="" loading="lazy" >}}
 
 Quand est-ce que le découpage en services devient pertinent ? Typiquement quand l'organisation grandit. Si plusieurs équipes travaillent sur le même monolithe et se marchent constamment sur les pieds, si les cycles de déploiement deviennent trop lents parce qu'il faut tout retester à chaque changement, ou si certaines parties du système ont des besoins de passage à l'échelle très différents (le moteur de recherche doit gérer 10 000 requêtes par seconde, mais le module de facturation n'en traite que 100), alors il peut être judicieux d'extraire certains composants en services indépendants.
 

@@ -23,7 +23,7 @@ changer le comportement de la machine. Il n'existait pas encore de notion de
 programmation, si on peut l'appeler ainsi, était une affaire de quelques
 spécialistes qui travaillaient seuls, en contact direct avec le matériel.
 
-{{< image src="eniac.png" alt="L'ordinateur ENIAC" title="L'Ordinateur ENIAC" loading="lazy" >}}
+{{< image src="eniac.webp" alt="L'ordinateur ENIAC" title="L'Ordinateur ENIAC" loading="lazy" >}}
 
 Fait souvent oublié : les personnes qui ont programmé l'ENIAC étaient six femmes,
 recrutées parce qu'elles étaient considérées comme « calculatrices » (*computers*,
@@ -214,7 +214,7 @@ outil révolutionnaire.
 
 {{< image src="unix.webp" alt="Ken Thompson et Dennis Ritchie devant un PDP-11 aux laboratoires Bell" title="Thompson et Ritchie" loading="lazy" >}}
 
-{{< image src="c-book.png" alt="Couverture de The C Programming Language de Kernighan et Ritchie" title="" loading="lazy" >}}
+{{< image src="c-book.webp" alt="Couverture de The C Programming Language de Kernighan et Ritchie" title="" loading="lazy" >}}
 
 En 1975, **Fred Brooks** publie *The Mythical Man-Month*, un livre fondé sur son
 expérience comme chef de projet du système OS/360 chez IBM, l'un des plus grands

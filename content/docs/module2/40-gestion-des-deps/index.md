@@ -792,7 +792,7 @@ mécanismes, des pratiques comme l'audit régulier des dépendances (`uv audit`,
 Bill of Materials) et la vérification des signatures cryptographiques font
 aujourd'hui partie des compétences attendues en génie logiciel.
 
-{{< image src="4-attack-vectors.png" alt="" title="" loading="lazy" >}}
+{{< image src="4-attack-vectors.webp" alt="" title="" loading="lazy" >}}
 
 # Pas seulement pour Python !
 

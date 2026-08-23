@@ -19,7 +19,7 @@ dans les années 1980, porté par des convictions idéologiques fortes, et qui a
 profondément transformé non seulement la manière dont on produit du logiciel,
 mais aussi son économie.
 
-{{< image src="open-source.png" alt="" title="" loading="lazy" >}}
+{{< image src="open-source.webp" alt="" title="" loading="lazy" >}}
 
 ## Les origines du logiciel libre
 

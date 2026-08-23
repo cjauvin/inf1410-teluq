@@ -60,14 +60,14 @@ comme on traite un projet de construction d'un nouveau pont : il est préférabl
 de tout prévoir et calculer d'avance, car ceci permettra d'éviter les surprises,
 et d'avoir une idée précise du déroulement.
 
-{{< image src="bridge.png" alt="" title="" loading="lazy" >}}
+{{< image src="bridge.webp" alt="" title="" loading="lazy" >}}
 
 Avec le manifeste Agile, les mentalités changent, et on reconnaît qu'une
 meilleure métaphore pour le développement logiciel est celle d'un jardin, un
 objet moins prévisible, plus organique et changeant, auquel on doit accorder une
 attention quotidienne et en constante évolution :
 
-{{< image src="gardening.png" alt="" title="" loading="lazy" >}}
+{{< image src="gardening.webp" alt="" title="" loading="lazy" >}}
 
 Plusieurs méthodes concrètes ont émergé du mouvement agile. Les deux plus
 influentes, que nous allons explorer en détail dans les sections qui suivent,
