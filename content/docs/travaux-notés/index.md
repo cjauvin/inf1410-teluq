@@ -37,7 +37,7 @@ Sur le plan de l'évaluation, une règle simple s'applique&nbsp;: plus vous avez
 
 Vous pouvez travailler seul ou en équipe de deux ou trois personnes. Les deux options sont équivalentes sur le plan des exigences techniques de base&nbsp;: qualité du code, tests automatisés, intégration continue, ADRs, déploiement et blogue technique sont attendus dans les deux cas.
 
-{{< image src="team-vs-solo.png" alt="" title="" loading="lazy" >}}
+{{< image src="team-vs-solo.webp" alt="" title="" loading="lazy" >}}
 
 La principale différence porte sur la gestion de projet. Le travail en équipe implique une dimension organisationnelle que le travail solo n'a pas, notamment l'attribution des tâches, la coordination et le suivi des priorités. Pour refléter cet effort, l'utilisation de **GitHub Projects** (tableau de bord, suivi des issues, progression visible) est **requise pour les équipes**. Elle est **optionnelle pour les personnes travaillant seules**. Là où les jalons mentionnent GitHub Projects, la mention *(équipe)* indique que ce livrable ne s'applique qu'aux équipes.
 

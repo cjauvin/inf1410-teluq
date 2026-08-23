@@ -217,7 +217,7 @@ modernes (et graphiques) de développement. VS Code par exemple a sa propre
 console (voici ma propre version, avec laquelle je développe ce cours, la
 console est à droite) :
 
-{{< image src="my-vscode.png" alt="" title="" loading="lazy" >}}
+{{< image src="my-vscode.webp" alt="" title="" loading="lazy" >}}
 
 Et même les navigateurs web ont des consoles intégrées, voici mon Brave avec sa
 console Javascript à droite :
