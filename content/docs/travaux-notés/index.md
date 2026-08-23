@@ -33,6 +33,24 @@ Un projet dont tous les commits arrivent dans les 48 heures précédant une remi
 
 Sur le plan de l'évaluation, une règle simple s'applique&nbsp;: plus vous avez utilisé l'IA, plus les attentes seront élevées quant à la façon dont vous en parlez dans votre blogue technique. Écrire « j'ai utilisé l'IA pour générer du code » est insuffisant. Ce qui est attendu, c'est un regard réflexif et, idéalement, original&nbsp;: comment avez-vous affiné votre façon d'interagir avec ces outils au fil du projet ? Où vous ont-ils surpris, déçu, ou conduit à repenser votre approche ? Avez-vous découvert des usages inattendus, ou développé des techniques d'expérimentation qui vous sont propres ? L'IA est un territoire suffisamment nouveau pour que vos observations personnelles aient de la valeur, et c'est cette curiosité exploratoire qui sera valorisée.
 
+Sur ce point, une conviction guide l'évaluation. Un texte qui décrit votre façon de travailler avec l'IA est une reconstruction, écrite après coup, et la mémoire lisse naturellement les hésitations, les fausses pistes et les moments d'incompréhension. Or c'est exactement là que se trouve la matière intéressante. Une transcription de session montre la chose telle qu'elle s'est produite&nbsp;: les questions que vous avez réellement posées, les réponses que vous avez écartées, l'endroit où vous avez repris la main parce que la proposition ne tenait pas.
+
+C'est pourquoi votre blogue devra s'appuyer sur des transcriptions publiées, et pas seulement sur votre récit. L'outil [claude-code-transcripts](https://github.com/simonw/claude-code-transcripts), de Simon Willison, transforme une session Claude Code en pages HTML autonomes et lisibles sur téléphone, qu'on peut déposer dans un gist GitHub et référencer depuis une entrée de blogue.
+
+```shell
+uvx claude-code-transcripts local
+```
+
+Si vous travaillez avec un autre outil, à vous d'en trouver l'équivalent, qu'il s'agisse d'un lien de partage de conversation ou d'un export. Ce qui compte n'est pas l'outil, mais le principe de rendre la trace consultable.
+
+Il ne s'agit surtout pas de tout publier. Une session complète est longue, et un dépôt qui les accumulerait toutes serait illisible. Choisissez-en quelques-unes qui disent quelque chose&nbsp;: celle où vous avez enfin compris un mécanisme, celle où l'IA vous a conduit dans un mur que vous avez mis du temps à voir, celle où la conversation a changé une décision d'architecture. Votre entrée de blogue commente et renvoie, elle ne paraphrase pas.
+
+{{% hint warning %}}
+
+**Attention&nbsp;: relisez une transcription avant de la publier.** Une session de développement traverse vos fichiers, et il n'est pas rare qu'elle contienne une clé d'API, le contenu d'un `.env`, un mot de passe de base de données, ou des chemins qui en disent long sur votre machine. Une fois dans un gist public, c'est public.
+
+{{% /hint %}}
+
 ## En équipe ou en solo
 
 Vous pouvez travailler seul ou en équipe de deux ou trois personnes. Les deux options sont équivalentes sur le plan des exigences techniques de base&nbsp;: qualité du code, tests automatisés, intégration continue, ADRs, déploiement et blogue technique sont attendus dans les deux cas.
@@ -49,7 +67,13 @@ Il vous revient aussi de vous assurer que le travail est **raisonnablement distr
 
 **Chaque étudiant doit avoir son propre compte GitHub**, y compris au sein d'une équipe. C'est la condition pour que les contributions soient attribuables individuellement, ce sur quoi repose une bonne partie de l'évaluation. Un compte partagé, ou un seul membre qui pousse le travail de tous, rend cette lecture impossible et sera pénalisé.
 
-Le dépôt GitHub de votre projet est le mécanisme central de remise et de suivi du cours. Tous les livrables qui ne sont pas du code — ADRs, schémas de données, documentation — doivent être rédigés en texte brut (Markdown de préférence) ou en PDF. Aucun document au format MS Office (Word, Excel, PowerPoint) n'est accepté.
+Le dépôt GitHub de votre projet est le mécanisme central de remise et de suivi du cours. Tous les livrables qui ne sont pas du code — ADRs, schémas de données, documentation — doivent être rédigés en texte brut (Markdown de préférence) ou en PDF.
+
+{{% hint warning %}}
+
+**Attention&nbsp;: aucun document au format MS Office (Word, Excel, PowerPoint) ne sera accepté**, dans tous les contextes.
+
+{{% /hint %}}
 
 Votre dépôt peut être public ou privé, selon votre préférence. S'il est privé, vous devrez inviter le professeur en tant que collaborateur&nbsp;: son compte GitHub est [cjauvin](https://github.com/cjauvin).
 
@@ -142,6 +166,7 @@ Livrables&nbsp;:
 - *(équipe)* Un **tableau GitHub Projects** ayant évolué de manière visible : issues fermées, nouvelles issues ouvertes, progression observable dans le temps
 - Un **[historique git]({{< relref "module2/30-versioning/index.md" >}})** non trivial : branches nommées de manière significative, [pull requests]({{< relref "module4/10-github/index.md" >}}) avec description, commits qui racontent une progression cohérente dans le temps
 - De nouveaux **ADRs** documentant les décisions prises depuis le jalon 2
+- Au moins deux **[transcriptions de session](#lintelligence-artificielle-dans-ce-cours)** publiées, choisies parce qu'elles montrent quelque chose, et liées depuis l'entrée de blogue
 - Une entrée dans votre **blogue**, répondant aux questions suivantes&nbsp;: qu'est-ce qui a bien fonctionné depuis le jalon 2 ? Décrivez un moment difficile (un bug, une mauvaise décision initiale, une friction dans l'équipe) et comment vous l'avez résolu. Qu'est-ce que vous feriez différemment si vous recommenciez depuis le début ?
 
 {{% hint warning %}}
@@ -159,6 +184,7 @@ Ce jalon représente l'aboutissement du projet. Votre application doit être com
 Livrables&nbsp;:
 - Un lien vers votre **[application déployée]({{< relref "module5/20-deploiement/index.md" >}})** et pleinement fonctionnelle, accessible sans installation
 - Un **[pipeline CI/CD complet]({{< relref "module5/20-deploiement/index.md" >}})** dans le dépôt GitHub : les tests s'exécutent automatiquement et le déploiement se déclenche sans intervention manuelle à chaque push sur la branche principale
+- Une sélection de **[transcriptions de session](#lintelligence-artificielle-dans-ce-cours)** couvrant l'ensemble de la session, qui rend visible l'évolution de votre façon de travailler avec ces outils
 - Une **version finale du blogue**, répondant aux questions suivantes&nbsp;: comment avez-vous utilisé l'[IA]({{< relref "module6/60-ia/index.md" >}}) dans votre développement, sur quelles tâches, avec quels résultats, et à quels moments vous a-t-elle déçu ou surpris ? Quelles bibliothèques et quels outils [open source]({{< relref "module6/10-open-source/index.md" >}}) avez-vous choisis, et pourquoi ? Qu'est-ce que ce projet vous a appris que vous n'auriez pas appris autrement ?
 
 ### Entretien final (25%)
