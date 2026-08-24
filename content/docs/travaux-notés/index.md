@@ -11,6 +11,67 @@ Ce cours est structuré autour d'un projet de développement logiciel unique, qu
 
 {{< image src="ligne-rouge.png" alt="" title="" loading="lazy" >}}
 
+## Le projet
+
+Vous devrez concevoir et développer une application web de nature transactionnelle, comme un service de réservation, une plateforme communautaire, un outil de gestion, ou tout autre concept qui implique des utilisateurs, des données et des interactions. Votre application devra obligatoirement comporter un mécanisme d'authentification et de création d'usagers, ainsi qu'une base de données relationnelle (SQL) pour la gestion des données. Elle devra également être déployée et accessible en ligne pour les correcteurs, sans qu'ils aient à installer quoi que ce soit sur leur poste.
+
+Le choix du langage et des technologies est entièrement libre. Python, JavaScript, Go, Ruby, Java, Rust — tout est acceptable, sans aucune restriction. De la même façon, le choix du framework web, de l'outil de déploiement ou de la base de données vous appartient complètement. Ce qui compte, c'est la qualité de votre démarche et la pertinence de vos choix, pas la technologie utilisée pour les mettre en oeuvre.
+
+L'intégration d'une API tierce, comme Stripe pour le traitement de paiements, Twilio pour les notifications, ou toute autre API pertinente à votre domaine, n'est pas obligatoire. De façon générale, les choix techniques ambitieux sont activement encouragés dans ce cours. Un projet qui tente quelque chose de difficile, qui explore des territoires moins familiers, sera toujours évalué avec plus d'intérêt qu'un projet techniquement correct mais sans ambition. Le degré de complexité supplémentaire que vous vous imposez est en soi un critère positif.
+
+Dans le même esprit, la **conteneurisation** est une avenue particulièrement intéressante. Empaqueter votre application et sa base de données dans des conteneurs [Docker]({{< relref "module5/10-infrastructure/10-docker/index.md" >}}), orchestrés localement par `docker compose`, règle d'un coup le vieux problème du « ça marche sur ma machine » et rend votre déploiement reproductible d'un environnement à l'autre. Pour les plus ambitieux, [Kubernetes]({{< relref "module5/10-infrastructure/20-kubernetes/index.md" >}}) ouvre la porte à l'orchestration à plus grande échelle, et un tableau de bord Grafana branché sur votre application vous donnerait une [observabilité]({{< relref "module5/30-observabilite/index.md" >}}) que peu de projets étudiants atteignent. Rien de tout cela n'est exigé, et ces sujets ne sont abordés qu'au module 5, donc après le jalon 3. Mais si vous vous y aventurez, ce sera remarqué.
+
+## En équipe ou en solo
+
+Vous pouvez travailler seul ou en équipe de deux ou trois personnes. Les deux options sont équivalentes sur le plan des exigences techniques de base&nbsp;: qualité du code, tests automatisés, intégration continue, ADRs, déploiement et blogue technique sont attendus dans les deux cas.
+
+{{< image src="team-vs-solo.webp" alt="" title="" loading="lazy" >}}
+
+La principale différence porte sur la gestion de projet. Le travail en équipe implique une dimension organisationnelle que le travail solo n'a pas, notamment l'attribution des tâches, la coordination et le suivi des priorités. Pour refléter cet effort, l'utilisation de **GitHub Projects** (tableau de bord, suivi des issues, progression visible) est **requise pour les équipes**. Elle est **optionnelle pour les personnes travaillant seules**. Là où les jalons mentionnent GitHub Projects, la mention *(équipe)* indique que ce livrable ne s'applique qu'aux équipes.
+
+Une équipe est par ailleurs attendue sur un projet **proportionnellement plus ambitieux**. À deux ou trois, la capacité de travail est plus grande, et l'évaluation en tient compte. Un projet d'équipe qui ressemble à ce qu'une personne seule aurait pu livrer sera jugé en deçà des attentes. L'ambition dont il est question plus haut, dans la section sur le projet, se mesure donc à l'aune de la taille de l'équipe.
+
+Il vous revient aussi de vous assurer que le travail est **raisonnablement distribué** entre les membres. Deux approches fonctionnent bien. Vous pouvez attribuer des **rôles fixes**, chacun devenant responsable d'un domaine comme la base de données, l'interface ou le pipeline de déploiement, ce qui donne de la profondeur mais crée des angles morts. Vous pouvez aussi **faire alterner les rôles** d'un jalon à l'autre, ce qui exige plus de coordination mais garantit que chacun touche à tout. Dans les deux cas, la répartition doit rester visible dans l'historique du dépôt et dans le tableau GitHub Projects, et un déséquilibre marqué se remarquera.
+
+## Le dépôt GitHub
+
+**Chaque étudiant doit avoir son propre compte GitHub**, y compris au sein d'une équipe. C'est la condition pour que les contributions soient attribuables individuellement, ce sur quoi repose une bonne partie de l'évaluation. Un compte partagé, ou un seul membre qui pousse le travail de tous, rend cette lecture impossible et sera pénalisé.
+
+Le dépôt GitHub de votre projet est le mécanisme central de remise et de suivi du cours. Tous les livrables qui ne sont pas du code — ADRs, schémas de données, documentation — doivent être rédigés en texte brut (Markdown de préférence) ou en PDF.
+
+{{% hint warning %}}
+
+**Attention&nbsp;: aucun document au format MS Office (Word, Excel, PowerPoint) ne sera accepté**, dans tous les contextes.
+
+{{% /hint %}}
+
+{{% hint info %}}
+
+Votre dépôt peut être public ou privé, selon votre préférence. S'il est privé, vous devrez inviter le professeur en tant que collaborateur&nbsp;: son compte GitHub est [cjauvin](https://github.com/cjauvin).
+
+{{% /hint %}}
+
+## Le serveur Discord
+
+Le cours dispose d'un [serveur Discord]({{< relref "discord.md" >}}) accessible à tous les étudiants inscrits. Son usage n'est pas obligatoire, mais il fait partie intégrante du concept du cours&nbsp;: il est pensé comme le hub central de communication, aussi bien pour la coordination au sein des équipes que pour toute question ou discussion en lien avec le cours. Chaque équipe y disposera de son propre canal privé, mais le serveur comporte aussi des canaux ouverts à tous, pour poser une question technique, partager une ressource, ou simplement échanger avec d'autres étudiants qui travaillent sur les mêmes problèmes que vous.
+
+Par expérience, le sentiment de communauté qui se développe sur ce genre de plateforme est l'un des aspects les plus bénéfiques de la session. Les cours en ligne peuvent être isolants&nbsp;; Discord brise cette isolation de façon naturelle, et rend l'expérience d'apprentissage plus riche et plus humaine. Les sessions où les étudiants s'y investissent sont presque toujours plus vivantes et plus intéressantes pour tout le monde, y compris pour le professeur.
+
+## Le blogue technique de développement
+
+Le blogue technique est le fil narratif de votre projet. Il ne s'agit pas d'un rapport de fin de session, mais d'un document vivant que vous alimentez tout au long de la session, au fur et à mesure que vous prenez des décisions, rencontrez des difficultés et faites évoluer votre application. Chaque entrée doit être datée et rédigée de façon contemporaine au développement, et non rétrospectivement.
+
+Le blogue peut prendre la forme qui vous convient&nbsp;: un site hébergé (GitHub Pages, Notion, etc.), un wiki dans le dépôt, ou un dossier de fichiers Markdown. Pour les plus aventureux, [Hugo](https://gohugo.io), le générateur de sites statiques avec lequel ce cours a lui-même été construit, est un excellent choix pour héberger un blogue technique sur GitHub Pages. L'essentiel est que le blogue soit accessible publiquement et qu'il raconte une progression réelle dans le temps.
+
+Les questions posées dans chaque jalon servent de point de départ, pas de plafond. Les entrées peuvent être aussi nombreuses et détaillées que vous le jugez utile. Dans la culture du développement logiciel, le blogue technique est depuis longtemps un outil de réflexion autant que de communication&nbsp;: beaucoup de développeurs écrivent pour clarifier leur propre pensée, pour fixer ce qu'ils viennent d'apprendre, ou pour forcer l'articulation d'une idée encore floue. C'est exactement cet usage qui est valorisé ici. Quelques exemples de blogues techniques qui incarnent cet esprit, et qui valent la peine d'être lus pour leur style autant que pour leur contenu&nbsp;:
+
+- [Joel on Software](https://www.joelonsoftware.com) de Joel Spolsky, l'un des blogues de développement les plus influents jamais écrits
+- [Les essais](https://paulgraham.com/articles.html) de Paul Graham, cofondateur de Y Combinator, sur la programmation, les startups et la pensée
+- [Le site de Martin Fowler](https://martinfowler.com), référence incontournable sur l'architecture et les pratiques de développement
+- [Julia Evans](https://jvns.ca), qui illustre parfaitement l'idée d'écrire pour apprendre et rendre les concepts techniques accessibles
+
+Ce qui distingue un bon blogue d'un rapport générique, c'est la spécificité. Écrire « nous avons choisi PostgreSQL » n'apporte rien. Écrire « lors de la modélisation du panier, on a réalisé que notre schéma initial ne supportait pas les items avec des variantes, ce qui nous a forcés à restructurer la relation entre `orders` et `products` »&nbsp;: voilà ce qui démontre une réflexion authentique. Pour vous guider dans cette direction, chaque jalon précise les questions auxquelles votre entrée de blogue devra répondre.
+
 ## L'intelligence artificielle dans ce cours
 
 L'usage de l'IA est non seulement permis dans ce cours, il est activement encouragé. Savoir formuler de bonnes questions, évaluer les réponses et intégrer les suggestions de l'IA de manière critique fait partie des compétences que tout développeur doit maîtriser aujourd'hui. Ignorer ces outils dans un cours de génie logiciel moderne serait à contre-courant de la réalité du métier.
@@ -50,63 +111,6 @@ Il ne s'agit surtout pas de tout publier. Une session complète est longue, et u
 **Attention&nbsp;: relisez une transcription avant de la publier.** Une session de développement traverse vos fichiers, et il n'est pas rare qu'elle contienne une clé d'API, le contenu d'un `.env`, un mot de passe de base de données, ou des chemins qui en disent long sur votre machine. Une fois dans un gist public, c'est public.
 
 {{% /hint %}}
-
-## En équipe ou en solo
-
-Vous pouvez travailler seul ou en équipe de deux ou trois personnes. Les deux options sont équivalentes sur le plan des exigences techniques de base&nbsp;: qualité du code, tests automatisés, intégration continue, ADRs, déploiement et blogue technique sont attendus dans les deux cas.
-
-{{< image src="team-vs-solo.webp" alt="" title="" loading="lazy" >}}
-
-La principale différence porte sur la gestion de projet. Le travail en équipe implique une dimension organisationnelle que le travail solo n'a pas, notamment l'attribution des tâches, la coordination et le suivi des priorités. Pour refléter cet effort, l'utilisation de **GitHub Projects** (tableau de bord, suivi des issues, progression visible) est **requise pour les équipes**. Elle est **optionnelle pour les personnes travaillant seules**. Là où les jalons mentionnent GitHub Projects, la mention *(équipe)* indique que ce livrable ne s'applique qu'aux équipes.
-
-Une équipe est par ailleurs attendue sur un projet **proportionnellement plus ambitieux**. À deux ou trois, la capacité de travail est plus grande, et l'évaluation en tient compte. Un projet d'équipe qui ressemble à ce qu'une personne seule aurait pu livrer sera jugé en deçà des attentes. L'ambition dont il est question plus loin, dans la section sur le projet, se mesure donc à l'aune de la taille de l'équipe.
-
-Il vous revient aussi de vous assurer que le travail est **raisonnablement distribué** entre les membres. Deux approches fonctionnent bien. Vous pouvez attribuer des **rôles fixes**, chacun devenant responsable d'un domaine comme la base de données, l'interface ou le pipeline de déploiement, ce qui donne de la profondeur mais crée des angles morts. Vous pouvez aussi **faire alterner les rôles** d'un jalon à l'autre, ce qui exige plus de coordination mais garantit que chacun touche à tout. Dans les deux cas, la répartition doit rester visible dans l'historique du dépôt et dans le tableau GitHub Projects, et un déséquilibre marqué se remarquera.
-
-## Le dépôt GitHub
-
-**Chaque étudiant doit avoir son propre compte GitHub**, y compris au sein d'une équipe. C'est la condition pour que les contributions soient attribuables individuellement, ce sur quoi repose une bonne partie de l'évaluation. Un compte partagé, ou un seul membre qui pousse le travail de tous, rend cette lecture impossible et sera pénalisé.
-
-Le dépôt GitHub de votre projet est le mécanisme central de remise et de suivi du cours. Tous les livrables qui ne sont pas du code — ADRs, schémas de données, documentation — doivent être rédigés en texte brut (Markdown de préférence) ou en PDF.
-
-{{% hint warning %}}
-
-**Attention&nbsp;: aucun document au format MS Office (Word, Excel, PowerPoint) ne sera accepté**, dans tous les contextes.
-
-{{% /hint %}}
-
-Votre dépôt peut être public ou privé, selon votre préférence. S'il est privé, vous devrez inviter le professeur en tant que collaborateur&nbsp;: son compte GitHub est [cjauvin](https://github.com/cjauvin).
-
-## Le serveur Discord
-
-Le cours dispose d'un [serveur Discord]({{< relref "discord.md" >}}) accessible à tous les étudiants inscrits. Son usage n'est pas obligatoire, mais il fait partie intégrante du concept du cours&nbsp;: il est pensé comme le hub central de communication, aussi bien pour la coordination au sein des équipes que pour toute question ou discussion en lien avec le cours. Chaque équipe y disposera de son propre canal privé, mais le serveur comporte aussi des canaux ouverts à tous, pour poser une question technique, partager une ressource, ou simplement échanger avec d'autres étudiants qui travaillent sur les mêmes problèmes que vous.
-
-Par expérience, le sentiment de communauté qui se développe sur ce genre de plateforme est l'un des aspects les plus bénéfiques de la session. Les cours en ligne peuvent être isolants&nbsp;; Discord brise cette isolation de façon naturelle, et rend l'expérience d'apprentissage plus riche et plus humaine. Les sessions où les étudiants s'y investissent sont presque toujours plus vivantes et plus intéressantes pour tout le monde, y compris pour le professeur.
-
-## Le projet
-
-Vous devrez concevoir et développer une application web de nature transactionnelle, comme un service de réservation, une plateforme communautaire, un outil de gestion, ou tout autre concept qui implique des utilisateurs, des données et des interactions. Votre application devra obligatoirement comporter un mécanisme d'authentification et de création d'usagers, ainsi qu'une base de données relationnelle (SQL) pour la gestion des données. Elle devra également être déployée et accessible en ligne pour les correcteurs, sans qu'ils aient à installer quoi que ce soit sur leur poste.
-
-Le choix du langage et des technologies est entièrement libre. Python, JavaScript, Go, Ruby, Java, Rust — tout est acceptable, sans aucune restriction. De la même façon, le choix du framework web, de l'outil de déploiement ou de la base de données vous appartient complètement. Ce qui compte, c'est la qualité de votre démarche et la pertinence de vos choix, pas la technologie utilisée pour les mettre en oeuvre.
-
-L'intégration d'une API tierce, comme Stripe pour le traitement de paiements, Twilio pour les notifications, ou toute autre API pertinente à votre domaine, n'est pas obligatoire. De façon générale, les choix techniques ambitieux sont activement encouragés dans ce cours. Un projet qui tente quelque chose de difficile, qui explore des territoires moins familiers, sera toujours évalué avec plus d'intérêt qu'un projet techniquement correct mais sans ambition. Le degré de complexité supplémentaire que vous vous imposez est en soi un critère positif.
-
-Dans le même esprit, la **conteneurisation** est une avenue particulièrement intéressante. Empaqueter votre application et sa base de données dans des conteneurs [Docker]({{< relref "module5/10-infrastructure/10-docker/index.md" >}}), orchestrés localement par `docker compose`, règle d'un coup le vieux problème du « ça marche sur ma machine » et rend votre déploiement reproductible d'un environnement à l'autre. Pour les plus ambitieux, [Kubernetes]({{< relref "module5/10-infrastructure/20-kubernetes/index.md" >}}) ouvre la porte à l'orchestration à plus grande échelle, et un tableau de bord Grafana branché sur votre application vous donnerait une [observabilité]({{< relref "module5/30-observabilite/index.md" >}}) que peu de projets étudiants atteignent. Rien de tout cela n'est exigé, et ces sujets ne sont abordés qu'au module 5, donc après le jalon 3. Mais si vous vous y aventurez, ce sera remarqué.
-
-## Le blogue technique de développement
-
-Le blogue technique est le fil narratif de votre projet. Il ne s'agit pas d'un rapport de fin de session, mais d'un document vivant que vous alimentez tout au long de la session, au fur et à mesure que vous prenez des décisions, rencontrez des difficultés et faites évoluer votre application. Chaque entrée doit être datée et rédigée de façon contemporaine au développement, et non rétrospectivement.
-
-Le blogue peut prendre la forme qui vous convient&nbsp;: un site hébergé (GitHub Pages, Notion, etc.), un wiki dans le dépôt, ou un dossier de fichiers Markdown. Pour les plus aventureux, [Hugo](https://gohugo.io), le générateur de sites statiques avec lequel ce cours a lui-même été construit, est un excellent choix pour héberger un blogue technique sur GitHub Pages. L'essentiel est que le blogue soit accessible publiquement et qu'il raconte une progression réelle dans le temps.
-
-Les questions posées dans chaque jalon servent de point de départ, pas de plafond. Les entrées peuvent être aussi nombreuses et détaillées que vous le jugez utile. Dans la culture du développement logiciel, le blogue technique est depuis longtemps un outil de réflexion autant que de communication&nbsp;: beaucoup de développeurs écrivent pour clarifier leur propre pensée, pour fixer ce qu'ils viennent d'apprendre, ou pour forcer l'articulation d'une idée encore floue. C'est exactement cet usage qui est valorisé ici. Quelques exemples de blogues techniques qui incarnent cet esprit, et qui valent la peine d'être lus pour leur style autant que pour leur contenu&nbsp;:
-
-- [Joel on Software](https://www.joelonsoftware.com) de Joel Spolsky, l'un des blogues de développement les plus influents jamais écrits
-- [Les essais](https://paulgraham.com/articles.html) de Paul Graham, cofondateur de Y Combinator, sur la programmation, les startups et la pensée
-- [Le site de Martin Fowler](https://martinfowler.com), référence incontournable sur l'architecture et les pratiques de développement
-- [Julia Evans](https://jvns.ca), qui illustre parfaitement l'idée d'écrire pour apprendre et rendre les concepts techniques accessibles
-
-Ce qui distingue un bon blogue d'un rapport générique, c'est la spécificité. Écrire « nous avons choisi PostgreSQL » n'apporte rien. Écrire « lors de la modélisation du panier, on a réalisé que notre schéma initial ne supportait pas les items avec des variantes, ce qui nous a forcés à restructurer la relation entre `orders` et `products` »&nbsp;: voilà ce qui démontre une réflexion authentique. Pour vous guider dans cette direction, chaque jalon précise les questions auxquelles votre entrée de blogue devra répondre.
 
 ## La philosophie du flux continu
 
@@ -204,3 +208,4 @@ Ces travaux devraient être, avant tout, un moment d'expérimentation. C'est l'o
 L'IA a toute sa place dans cette aventure, mais la façon dont vous vous en servez change tout. Comme tutrice, elle vous rend plus compétent&nbsp;: elle explique, elle propose des pistes, elle vous fait découvrir des idées que vous n'auriez pas cherchées. Comme coéquipière à qui l'on refile le gros du travail, elle produit du code dont vous n'êtes que le destinataire. La différence tient souvent à la question posée. « Pourquoi cette requête est-elle si lente ? » vous laisse quelque chose. « Écris-moi cette fonction » vous laisse une fonction.
 
 {{% /hint %}}
+
