@@ -11,6 +11,19 @@ Ce cours est structuré autour d'un projet de développement logiciel unique, qu
 
 {{< image src="ligne-rouge.png" alt="" title="" loading="lazy" >}}
 
+Avant d'entrer dans le détail, une chose mérite d'être dite d'emblée. Cette page est longue parce qu'elle est précise, et une bonne part de ce qu'elle décrit concerne la façon dont votre travail sera évalué. Mais l'évaluation n'est pas le sujet du projet, elle en est la conséquence. Ce qui est réellement attendu de vous, c'est que vous construisiez quelque chose qui vous intéresse, en assumant des choix que vous serez capables de défendre.
+
+Voici, en un coup d'oeil, la structure de la session. Chaque étape est détaillée dans la [section sur les jalons](#les-jalons).
+
+| Étape | Quand | Poids |
+|---|---|---|
+| Jalon 1, Fondations | après le module 2 | 10&nbsp;% |
+| Jalon 2, Architecture et données | après le module 3 | 15&nbsp;% |
+| Entretien mi-parcours | dans les deux semaines suivant le jalon 2 | 10&nbsp;% |
+| Jalon 3, Développement | après le module 4 | 15&nbsp;% |
+| Jalon 4, Livraison finale | après le module 6 | 25&nbsp;% |
+| Entretien final | dans les deux semaines suivant le jalon 4 | 25&nbsp;% |
+
 ## Le projet
 
 Vous devrez concevoir et développer une application web de nature transactionnelle, comme un service de réservation, une plateforme communautaire, un outil de gestion, ou tout autre concept qui implique des utilisateurs, des données et des interactions. Votre application devra obligatoirement comporter un mécanisme d'authentification et de création d'usagers, ainsi qu'une base de données relationnelle (SQL) pour la gestion des données. Elle devra également être déployée et accessible en ligne pour les correcteurs, sans qu'ils aient à installer quoi que ce soit sur leur poste.
@@ -76,9 +89,11 @@ Ce qui distingue un bon blogue d'un rapport générique, c'est la spécificité.
 
 L'usage de l'IA est non seulement permis dans ce cours, il est activement encouragé. Savoir formuler de bonnes questions, évaluer les réponses et intégrer les suggestions de l'IA de manière critique fait partie des compétences que tout développeur doit maîtriser aujourd'hui. Ignorer ces outils dans un cours de génie logiciel moderne serait à contre-courant de la réalité du métier.
 
-Cette ouverture crée cependant un défi d'évaluation réel. Si un outil peut produire du code fonctionnel, des [ADRs]({{< relref "module4/30-gestion-projet/index.md" >}}) convaincants et des réflexions de blogue plausibles, comment distinguer un apprentissage authentique d'une délégation totale ? Ce cours s'attaque à ce problème par deux mécanismes complémentaires.
+Cette ouverture crée cependant un défi d'évaluation réel. Si un outil peut produire du code fonctionnel, des [ADRs]({{< relref "module4/30-gestion-projet/index.md" >}}) convaincants et des réflexions de blogue plausibles, comment distinguer un apprentissage authentique d'une délégation totale ? Ce cours s'attaque à ce problème par trois mécanismes complémentaires.
 
-Le premier est **l'entretien de suivi**. Ces rencontres visent à évaluer la cohérence entre le niveau de sophistication que vos travaux affichent et la profondeur de votre compréhension réelle, telle qu'elle se manifeste dans une conversation en tête à tête avec le professeur. Un écart important entre les deux est, en soi, un signal d'évaluation. L'idée n'est pas d'exiger une mémorisation parfaite de chaque détail, mais de vérifier que vous maîtrisez ce que vous avez produit. Pour quelqu'un qui a réellement travaillé sur le projet, cela devrait aller de soi. Dans certains cas, l'entretien pourra inclure un court exercice pratique sans assistance, à l'image de ce qu'un cours de programmation pourrait faire avec un exercice de code sur tableau blanc. Ce cours n'étant pas un cours de programmation à proprement parler, l'exercice serait adapté en conséquence&nbsp;: une question de conception architecturale, un problème de modélisation de données, ou toute autre tâche en lien direct avec le contenu de votre projet.
+### L'entretien de suivi
+
+Ces rencontres visent à évaluer la cohérence entre le niveau de sophistication que vos travaux affichent et la profondeur de votre compréhension réelle, telle qu'elle se manifeste dans une conversation en tête à tête avec le professeur. Un écart important entre les deux est, en soi, un signal d'évaluation. L'idée n'est pas d'exiger une mémorisation parfaite de chaque détail, mais de vérifier que vous maîtrisez ce que vous avez produit. Pour quelqu'un qui a réellement travaillé sur le projet, cela devrait aller de soi. Dans certains cas, l'entretien pourra inclure un court exercice pratique sans assistance, à l'image de ce qu'un cours de programmation pourrait faire avec un exercice de code sur tableau blanc. Ce cours n'étant pas un cours de programmation à proprement parler, l'exercice serait adapté en conséquence&nbsp;: une question de conception architecturale, un problème de modélisation de données, ou toute autre tâche en lien direct avec le contenu de votre projet.
 
 {{% hint warning %}}
 
@@ -86,11 +101,15 @@ Le premier est **l'entretien de suivi**. Ces rencontres visent à évaluer la co
 
 {{% /hint %}}
 
-Le second mécanisme porte sur la traçabilité temporelle des artefacts. Le problème central avec une délégation excessive à l'IA, c'est qu'elle permet de produire en quelques heures ce qui devrait résulter de semaines de travail itératif. Pour contrer cela, l'évaluation porte non seulement sur ce que vous avez produit, mais sur quand vous l'avez produit.
+### La trace du temps
+
+Le problème central avec une délégation excessive à l'IA, c'est qu'elle permet de produire en quelques heures ce qui devrait résulter de semaines de travail itératif. Pour contrer cela, l'évaluation porte non seulement sur ce que vous avez produit, mais sur quand vous l'avez produit.
 
 La plateforme GitHub se prête naturellement à cet exercice. Les [commits]({{< relref "module2/30-versioning/index.md" >}}), les issues, les [pull requests]({{< relref "module4/10-github/index.md" >}}) et les entrées de blogue hébergés en ligne comportent tous des horodatages enregistrés par les serveurs de GitHub au moment de leur réception. Contrairement aux métadonnées d'un dépôt git local, qui peuvent techniquement être modifiées, ces traces en ligne sont plus difficiles à altérer rétrospectivement. Le graphe d'activité, l'historique des contributions et la chronologie des issues constituent ainsi un journal de bord de votre progression que le correcteur peut consulter avec confiance.
 
 Un projet dont tous les commits arrivent dans les 48 heures précédant une remise, ou dont les entrées de blogue semblent avoir été rédigées en rafale en une seule soirée, ne ressemble pas à un projet qui a évolué pendant plusieurs semaines. Cette différence est visible, et elle est prise en compte dans l'évaluation. L'objectif n'est pas de surveiller chaque geste, mais de vous encourager à travailler de façon régulière et à documenter votre réflexion au moment où elle se produit, ce qui est, au passage, la meilleure façon d'apprendre durablement.
+
+### Montrer plutôt que raconter
 
 Sur le plan de l'évaluation, une règle simple s'applique&nbsp;: plus vous avez utilisé l'IA, plus les attentes seront élevées quant à la façon dont vous en parlez dans votre blogue technique. Écrire « j'ai utilisé l'IA pour générer du code » est insuffisant. Ce qui est attendu, c'est un regard réflexif et, idéalement, original&nbsp;: comment avez-vous affiné votre façon d'interagir avec ces outils au fil du projet ? Où vous ont-ils surpris, déçu, ou conduit à repenser votre approche ? Avez-vous découvert des usages inattendus, ou développé des techniques d'expérimentation qui vous sont propres ? L'IA est un territoire suffisamment nouveau pour que vos observations personnelles aient de la valeur, et c'est cette curiosité exploratoire qui sera valorisée.
 
@@ -120,7 +139,7 @@ En pratique, cela signifie committer régulièrement, alimenter le blogue techni
 
 ## Les jalons
 
-Le projet est évalué à travers quatre jalons et deux entretiens de suivi, répartis sur la session. La pondération totale est de 100%, répartie comme suit&nbsp;: J1 (10%), J2 (15%), entretien mi-parcours (10%), J3 (15%), J4 (25%), entretien final (25%).
+Le projet est évalué à travers quatre jalons et deux entretiens de suivi, répartis sur la session, pour un total de 100&nbsp;%. Le tableau du début de page en donne la vue d'ensemble.
 
 ### Jalon 1 — Fondations (10%)
 
@@ -170,7 +189,7 @@ Livrables&nbsp;:
 - *(équipe)* Un **tableau GitHub Projects** ayant évolué de manière visible : issues fermées, nouvelles issues ouvertes, progression observable dans le temps
 - Un **[historique git]({{< relref "module2/30-versioning/index.md" >}})** non trivial : branches nommées de manière significative, [pull requests]({{< relref "module4/10-github/index.md" >}}) avec description, commits qui racontent une progression cohérente dans le temps
 - De nouveaux **ADRs** documentant les décisions prises depuis le jalon 2
-- Au moins deux **[transcriptions de session](#lintelligence-artificielle-dans-ce-cours)** publiées, choisies parce qu'elles montrent quelque chose, et liées depuis l'entrée de blogue
+- Au moins deux **[transcriptions de session](#montrer-plutôt-que-raconter)** publiées, choisies parce qu'elles montrent quelque chose, et liées depuis l'entrée de blogue
 - Une entrée dans votre **blogue**, répondant aux questions suivantes&nbsp;: qu'est-ce qui a bien fonctionné depuis le jalon 2 ? Décrivez un moment difficile (un bug, une mauvaise décision initiale, une friction dans l'équipe) et comment vous l'avez résolu. Qu'est-ce que vous feriez différemment si vous recommenciez depuis le début ?
 
 {{% hint warning %}}
@@ -188,7 +207,7 @@ Ce jalon représente l'aboutissement du projet. Votre application doit être com
 Livrables&nbsp;:
 - Un lien vers votre **[application déployée]({{< relref "module5/20-deploiement/index.md" >}})** et pleinement fonctionnelle, accessible sans installation
 - Un **[pipeline CI/CD complet]({{< relref "module5/20-deploiement/index.md" >}})** dans le dépôt GitHub : les tests s'exécutent automatiquement et le déploiement se déclenche sans intervention manuelle à chaque push sur la branche principale
-- Une sélection de **[transcriptions de session](#lintelligence-artificielle-dans-ce-cours)** couvrant l'ensemble de la session, qui rend visible l'évolution de votre façon de travailler avec ces outils
+- Une sélection de **[transcriptions de session](#montrer-plutôt-que-raconter)** couvrant l'ensemble de la session, qui rend visible l'évolution de votre façon de travailler avec ces outils
 - Une **version finale du blogue**, répondant aux questions suivantes&nbsp;: comment avez-vous utilisé l'[IA]({{< relref "module6/60-ia/index.md" >}}) dans votre développement, sur quelles tâches, avec quels résultats, et à quels moments vous a-t-elle déçu ou surpris ? Quelles bibliothèques et quels outils [open source]({{< relref "module6/10-open-source/index.md" >}}) avez-vous choisis, et pourquoi ? Qu'est-ce que ce projet vous a appris que vous n'auriez pas appris autrement ?
 
 ### Entretien final (25%)
