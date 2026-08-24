@@ -58,6 +58,8 @@ Le dépôt GitHub de votre projet est le mécanisme central de remise et de suiv
 
 {{% /hint %}}
 
+{{< image src="office-interdit.webp" alt="Les logos de Word, Excel et PowerPoint barrés d'un cercle d'interdiction rouge" title="Aucun document en format MS Office" loading="lazy" >}}
+
 {{% hint info %}}
 
 Votre dépôt peut être public ou privé, selon votre préférence. S'il est privé, vous devrez inviter le professeur en tant que collaborateur&nbsp;: son compte GitHub est [cjauvin](https://github.com/cjauvin).
