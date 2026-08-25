@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 410" class="modules-svg" role="img"
+     aria-label="Les six modules du cours, représentés par une icône chacun : une pyramide pour le génie logiciel, une fenêtre de terminal pour la conception d'un programme correct, des composants reliés pour le passage au système, trois personnes pour le travail en équipe, un tableau de bord avec une courbe de pulsation pour la mise en service, et un globe relié en réseau pour le logiciel dans le monde">
+
+  <!-- Les traits sont en currentColor et suivent donc le thème d'eux-mêmes.
+       Les couleurs d'accent sont posées ici en valeurs claires, pour que le
+       fichier reste correct ouvert seul ; assets/styles/custom.css les
+       reprend avec une spécificité supérieure pour le thème sombre. -->
+  <style>
+    .modules-svg .m1 { color: #5b7fa6 }
+    .modules-svg .m2 { color: #6f9455 }
+    .modules-svg .m3 { color: #4a8e9e }
+    .modules-svg .m4 { color: #c06e4a }
+    .modules-svg .m5 { color: #91678f }
+    .modules-svg .m6 { color: #b58a2b }
+  </style>
+
+  <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- 1 · Le génie logiciel : une pyramide, archétype du grand chantier.
+         Le terme même de génie logiciel est né de l'analogie avec le génie
+         civil, et la pyramide dit à la fois l'ancienneté et la construction. -->
+    <g transform="translate(150,100)">
+      <g class="m1">
+        <path d="M14 26 L 32 -6 L 48 26 Z" stroke="currentColor"
+              fill="currentColor" fill-opacity="0.2"/>
+      </g>
+      <path d="M-46 26 L -4 -32 L 34 26 Z"/>
+      <g stroke-width="1.3" opacity="0.5">
+        <path d="M-34.4 10 H 23.5"/>
+        <path d="M-22.8 -6 H 13"/>
+        <path d="M-12.7 -20 H 3.9"/>
+      </g>
+      <path d="M-52 26 H 52" opacity="0.55"/>
+    </g>
+
+    <!-- 2 · Concevoir un programme correct : une fenêtre de terminal, l'outil
+         du programmeur, et la coche de la vérification -->
+    <g transform="translate(450,100)">
+      <rect x="-46" y="-34" width="92" height="68" rx="7"/>
+      <path d="M-46 -16 H 46"/>
+      <g fill="currentColor" stroke="none" opacity="0.45">
+        <circle cx="-37" cy="-25" r="2.6"/><circle cx="-28" cy="-25" r="2.6"/><circle cx="-19" cy="-25" r="2.6"/>
+      </g>
+      <path d="M-16 16 H -2" opacity="0.5"/>
+      <g class="m2" stroke="currentColor" stroke-width="3">
+        <path d="M-32 -2 l 9 8 l -9 8"/>
+        <path d="M 10 6 l 7 7 l 16 -18"/>
+      </g>
+    </g>
+
+    <!-- 3 · Passer du programme au système : des composants distincts et les
+         liens qui les font tenir ensemble -->
+    <g transform="translate(750,100)">
+      <rect x="-46" y="-34" width="34" height="26" rx="4"/>
+      <rect x="12" y="-34" width="34" height="26" rx="4"/>
+      <path d="M-12 -21 H 12"/>
+      <path d="M-29 -8 V 0 H -8 V 10"/>
+      <path d="M29 -8 V 0 H 8 V 10"/>
+      <g class="m3">
+        <rect x="-17" y="10" width="34" height="26" rx="4"
+              stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
+      </g>
+    </g>
+
+    <!-- 4 · Construire en équipe : trois personnes, celle du centre en avant -->
+    <g transform="translate(150,295)">
+      <circle cx="-33" cy="-6" r="8"/>
+      <path d="M-46 16 a 13 13 0 0 1 26 0"/>
+      <circle cx="33" cy="-6" r="8"/>
+      <path d="M20 16 a 13 13 0 0 1 26 0"/>
+      <g class="m4" stroke="currentColor">
+        <circle cx="0" cy="-16" r="9.5"/>
+        <path d="M-15 10 a 15 15 0 0 1 30 0"/>
+      </g>
+    </g>
+
+    <!-- 5 · Faire vivre le logiciel : le tableau de bord et la pulsation d'un
+         système en fonctionnement -->
+    <g transform="translate(450,295)">
+      <rect x="-46" y="-34" width="92" height="56" rx="6"/>
+      <path d="M0 22 V 30"/>
+      <path d="M-18 30 H 18"/>
+      <g class="m5" stroke="currentColor" stroke-width="3">
+        <polyline points="-34,-6 -21,-6 -14,-21 -3,10 7,-15 14,-6 34,-6"/>
+      </g>
+    </g>
+
+    <!-- 6 · Le logiciel dans le monde : un globe et le réseau qui le parcourt -->
+    <g transform="translate(750,295)">
+      <circle r="38"/>
+      <ellipse rx="15" ry="38"/>
+      <path d="M-35.5 -13 H 35.5" opacity="0.75"/>
+      <path d="M-35.5 13 H 35.5" opacity="0.75"/>
+      <g class="m6">
+        <path d="M-17 -21 L 13 -5 L -4 18" stroke="currentColor" stroke-width="1.8"/>
+        <g fill="currentColor" stroke="none">
+          <circle cx="-17" cy="-21" r="4"/><circle cx="13" cy="-5" r="4"/><circle cx="-4" cy="18" r="4"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+     font-size="15" text-anchor="middle" fill="currentColor">
+    <text x="150" y="180"><tspan class="m1" fill="currentColor" font-weight="700">1</tspan><tspan opacity="0.9">  Le génie logiciel</tspan></text>
+    <text x="450" y="180"><tspan class="m2" fill="currentColor" font-weight="700">2</tspan><tspan opacity="0.9">  Concevoir un programme correct</tspan></text>
+    <text x="750" y="180"><tspan class="m3" fill="currentColor" font-weight="700">3</tspan><tspan opacity="0.9">  Passer du programme au système</tspan></text>
+    <text x="150" y="375"><tspan class="m4" fill="currentColor" font-weight="700">4</tspan><tspan opacity="0.9">  Construire en équipe</tspan></text>
+    <text x="450" y="375"><tspan class="m5" fill="currentColor" font-weight="700">5</tspan><tspan opacity="0.9">  Faire vivre le logiciel</tspan></text>
+    <text x="750" y="375"><tspan class="m6" fill="currentColor" font-weight="700">6</tspan><tspan opacity="0.9">  Le logiciel dans le monde</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+{{/* layouts/shortcodes/modules.html
+
+     Insère assets/modules.svg directement dans la page plutôt que de le
+     référencer par <img>. C'est nécessaire pour deux raisons : le trait est
+     dessiné en currentColor et doit suivre le thème, et les couleurs d'accent
+     sont reprises par assets/styles/custom.css pour le fond sombre, ce qui
+     n'atteindrait pas un SVG chargé comme image. */}}
+{{- with resources.Get "modules.svg" -}}
+<figure class="modules-wrap">
+  {{ .Content | safeHTML }}
+  {{- with $.Get "legende" }}<figcaption>{{ . }}</figcaption>{{ end -}}
+</figure>
+{{- else -}}
+  {{- warnf "modules : assets/modules.svg introuvable" -}}
+{{- end -}}

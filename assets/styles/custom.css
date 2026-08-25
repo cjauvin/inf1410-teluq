@@ -300,3 +300,40 @@ p {
   font-size: var(--font-size-smaller);
   opacity: 0.7;
 }
+
+/* Grille des six modules (voir assets/modules.svg et le shortcode modules).
+
+   Le SVG est inséré dans la page plutôt que référencé par <img>, pour que son
+   trait, dessiné en currentColor, suive la bascule de thème. Les couleurs
+   d'accent sont posées dans le fichier lui-même en valeurs claires, pour qu'il
+   reste correct ouvert seul ; on les reprend ici en teintes plus lumineuses
+   pour le fond sombre, avec une spécificité supérieure qui garantit la
+   priorité sur la feuille interne du SVG.
+
+   Le sélecteur en $="dark" attrape aussi les variantes du thème
+   (contrast-dark, catppuccin-dark, etc.) si elles venaient à être utilisées. */
+.modules-wrap {
+  margin: var(--space-16) 0;
+}
+
+.modules-wrap .modules-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+:root[data-theme$="dark"] .modules-svg .m1 { color: #81a1c1 }
+:root[data-theme$="dark"] .modules-svg .m2 { color: #a3be8c }
+:root[data-theme$="dark"] .modules-svg .m3 { color: #88c0d0 }
+:root[data-theme$="dark"] .modules-svg .m4 { color: #d08770 }
+:root[data-theme$="dark"] .modules-svg .m5 { color: #b48ead }
+:root[data-theme$="dark"] .modules-svg .m6 { color: #ebcb8b }
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme$="auto"] .modules-svg .m1 { color: #81a1c1 }
+  :root[data-theme$="auto"] .modules-svg .m2 { color: #a3be8c }
+  :root[data-theme$="auto"] .modules-svg .m3 { color: #88c0d0 }
+  :root[data-theme$="auto"] .modules-svg .m4 { color: #d08770 }
+  :root[data-theme$="auto"] .modules-svg .m5 { color: #b48ead }
+  :root[data-theme$="auto"] .modules-svg .m6 { color: #ebcb8b }
+}

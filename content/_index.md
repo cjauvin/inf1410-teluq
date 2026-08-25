@@ -49,6 +49,8 @@ idées guident sa conception :
 Le cours est divisé en six modules, qui couvrent les grands domaines du génie
 logiciel :
 
+{{< modules >}}
+
 1. **Le génie logiciel** : une introduction au domaine, à sa problématique
    centrale, et à l'histoire des idées qui l'ont façonné.
 
