@@ -102,7 +102,7 @@ avec un ordinateur. Voici deux exemples fameux de prompts :
 
 {{< image src="claude-prompt.png" alt="" title="" loading="lazy" >}}
 
-Dans les deux cas, il s'agit clairement d'interfaces de nature textuelle.
+Dans les deux cas, il s'agit clairement d'interfaces de nature textuelle (mais implémentées en tant que pages, ou applications, web).
 
 ## La philosophie Unix
 
@@ -110,7 +110,7 @@ La philosophie Unix est un ensemble de principes de conception logicielle qui a
 émergé dans les années 1970 aux Bell Labs, en même temps que le système Unix
 lui-même. Ses auteurs principaux, Ken Thompson et Dennis Ritchie (les créateurs
 d'Unix et du langage C), ainsi que Doug McIlroy (l'inventeur du concept de
-"pipe"), ont formulé une vision qui peut se résumer en quelques idées simples :
+"Unix pipe"), ont formulé une vision qui peut se résumer en quelques idées simples :
 chaque programme devrait faire une seule chose et la faire bien; les programmes
 devraient pouvoir être composés (ou assemblés) ensemble, la sortie de l'un devenant l'entrée de
 l'autre; et le texte devrait être le format universel d'échange entre
@@ -160,7 +160,7 @@ accident : Microsoft a bâti son empire sur la vente de logiciels commerciaux
 l'écosystème. Le résultat est un environnement où les applications sont souvent
 de grandes "boîtes noires" difficiles à composer entre elles, et où la ligne de
 commande a longtemps été un citoyen de seconde classe. Il est révélateur que
-Microsoft ait fini par développer WSL (Windows Subsystem for Linux), qui permet
+Microsoft ait fini par offrir WSL (Windows Subsystem for Linux) en 2016, qui permet
 de rouler un environnement Linux complet à l'intérieur de Windows : c'est un
 aveu que pour le développement logiciel, l'écosystème Unix est devenu
 incontournable. Microsoft a aussi fait l'acquisition de GitHub en 2018, et
