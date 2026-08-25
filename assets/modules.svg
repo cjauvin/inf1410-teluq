@@ -102,11 +102,11 @@
 
   <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
      font-size="15" text-anchor="middle" fill="currentColor">
-    <text x="150" y="180"><tspan class="m1" fill="currentColor" font-weight="700">1</tspan><tspan opacity="0.9">  Le génie logiciel</tspan></text>
-    <text x="450" y="180"><tspan class="m2" fill="currentColor" font-weight="700">2</tspan><tspan opacity="0.9">  Concevoir un programme correct</tspan></text>
-    <text x="750" y="180"><tspan class="m3" fill="currentColor" font-weight="700">3</tspan><tspan opacity="0.9">  Passer du programme au système</tspan></text>
-    <text x="150" y="375"><tspan class="m4" fill="currentColor" font-weight="700">4</tspan><tspan opacity="0.9">  Construire en équipe</tspan></text>
-    <text x="450" y="375"><tspan class="m5" fill="currentColor" font-weight="700">5</tspan><tspan opacity="0.9">  Faire vivre le logiciel</tspan></text>
-    <text x="750" y="375"><tspan class="m6" fill="currentColor" font-weight="700">6</tspan><tspan opacity="0.9">  Le logiciel dans le monde</tspan></text>
+    <text x="150" y="180"><tspan class="m1" fill="currentColor" font-weight="700">1</tspan><tspan dx="7" opacity="0.9">Le génie logiciel</tspan></text>
+    <text x="450" y="180"><tspan class="m2" fill="currentColor" font-weight="700">2</tspan><tspan dx="7" opacity="0.9">Concevoir un programme correct</tspan></text>
+    <text x="750" y="180"><tspan class="m3" fill="currentColor" font-weight="700">3</tspan><tspan dx="7" opacity="0.9">Passer du programme au système</tspan></text>
+    <text x="150" y="375"><tspan class="m4" fill="currentColor" font-weight="700">4</tspan><tspan dx="7" opacity="0.9">Construire en équipe</tspan></text>
+    <text x="450" y="375"><tspan class="m5" fill="currentColor" font-weight="700">5</tspan><tspan dx="7" opacity="0.9">Faire vivre le logiciel</tspan></text>
+    <text x="750" y="375"><tspan class="m6" fill="currentColor" font-weight="700">6</tspan><tspan dx="7" opacity="0.9">Le logiciel dans le monde</tspan></text>
   </g>
 </svg>
