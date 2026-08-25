@@ -2,6 +2,7 @@
 title: "Module 2 - Concevoir un programme correct"
 weight: 200
 bookCollapseSection: true
+bookIcon: terminal
 ---
 
 # Module 2 - Concevoir un programme correct

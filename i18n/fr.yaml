@@ -1,0 +1,28 @@
+# Traductions du projet. Elles complètent celles du thème
+# (themes/hugo-book/i18n/fr.yaml), qui n'en contient que quatre : Hugo fusionne
+# les deux fichiers, les clés définies ici l'emportant.
+
+# Éléments d'interface laissés en anglais par le thème. La liste complète des
+# clés qu'il utilise s'obtient ainsi :
+#   grep -rho 'i18n "[^"]*"' themes/hugo-book/layouts/
+Expand: Développer
+Forward: Suivant
+Backward: Précédent
+Menu: Menu
+Logo: Logo
+Table of Contents: Table des matières
+Calendar: Calendrier
+Edit: Modifier
+Languages: Langues
+Thumbnail: Vignette
+
+# Textes alternatifs des icônes de module (paramètre bookIcon dans le
+# frontmatter). Le thème les passe par i18n en utilisant le nom du fichier
+# comme clé, et retombe sur ce nom en l'absence de traduction, ce qui donnait
+# « systeme » sans accent.
+pyramide: Pyramide
+terminal: Terminal
+systeme: Système
+equipe: Équipe
+pulsation: Pulsation
+globe: Globe

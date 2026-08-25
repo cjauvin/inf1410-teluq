@@ -2,6 +2,7 @@
 title: "Module 3 - Passer du programme au système"
 weight: 300
 bookCollapseSection: true
+bookIcon: systeme
 ---
 
 # Du programme au système

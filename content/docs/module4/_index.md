@@ -2,6 +2,7 @@
 title: "Module 4 - Construire en équipe"
 weight: 400
 bookCollapseSection: true
+bookIcon: equipe
 ---
 
 # Module 4 - Construire en équipe
