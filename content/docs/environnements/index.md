@@ -291,7 +291,7 @@ Namespaces are one honking great idea -- let's do more of those!
 ```
 
 Le résultat est un langage
-objectivement lent par rapport à C, mais d'une productivité remarquable : on
+objectivement lent par rapport à C (facilement de 10 à 100 fois plus lent, selon le contexte, ce qui n'est pas rien!), mais d'une productivité remarquable : on
 peut exprimer en quelques lignes de Python ce qui en prendrait des dizaines en
 C. Cette simplicité a fait de Python le langage dominant dans l'enseignement de
 la programmation, dans le scripting et l'automatisation, et surtout dans le
