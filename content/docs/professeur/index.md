@@ -91,7 +91,7 @@ un blocage technique.
 - **[Prendre un rendez-vous Teams](https://outlook.office.com/bookwithme/user/d8e2ad7e3dfa4e22a58bf5e7081d2643%40teluq.ca/meetingtype/AjxgXWTZAEu0b5JtOPzDwQ2?anonymous&ismsaljsauthenabled=true)**, au moment qui vous convient
 - Un message direct sur **Teams**, sans rendez-vous et sans préavis
 - Courriel&nbsp;: [christian.jauvin@teluq.ca](mailto:christian.jauvin@teluq.ca)
-- Le [serveur Discord]({{< relref "discord.md" >}}) du cours, où je suis présent
-  et où vous aurez souvent une réponse plus rapide
+- Le [serveur Discord]({{< relref "discord.md" >}}) du cours, où je suis présent,
+  et où vous pouvez surtout discuter avec les autres étudiants
 - [Mon blogue](https://cjauvin.github.io/) et [mon GitHub](https://github.com/cjauvin)
 - [Ma page à la TÉLUQ](https://www.teluq.ca/communaute/corps-professoral/cjauvin)
