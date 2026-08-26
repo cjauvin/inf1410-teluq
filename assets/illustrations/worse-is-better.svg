@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" class="fig-svg" role="img"
+     aria-label="Graphique opposant deux trajectoires dans le temps. L'approche MIT, issue du monde Lisp, part d'une qualité élevée mais son trait reste fin, signe d'une diffusion qui ne vient jamais, et s'interrompt par une croix marquant la disparition des machines Lisp. L'approche New Jersey, celle d'Unix, part d'une qualité bien plus basse mais son trait s'épaissit à mesure qu'elle se diffuse, elle progresse par améliorations successives, rattrape puis dépasse la première.">
+
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" fill="currentColor">
+
+    <!-- Axes -->
+    <g stroke="currentColor" stroke-width="1.6" fill="none" opacity="0.45" stroke-linecap="round">
+      <path d="M130 50 V 420 H 866"/>
+      <path d="M124 62 L 130 50 L 136 62"/>
+      <path d="M854 414 L 866 420 L 854 426"/>
+    </g>
+    <text x="112" y="235" font-size="15" text-anchor="middle" opacity="0.7"
+          transform="rotate(-90 112 235)">Qualité</text>
+    <text x="866" y="444" font-size="15" text-anchor="end" opacity="0.7">Temps</text>
+
+    <!-- Approche MIT : trait fin d'un bout à l'autre, la diffusion ne vient pas -->
+    <g style="color: var(--a1, #5b7fa6)">
+      <g stroke="currentColor" fill="none" stroke-width="1.7" stroke-linecap="round">
+        <path d="M155 160 C 240 152, 320 148, 400 148 S 640 156, 795 172"/>
+      </g>
+      <g stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+        <path d="M786 163 L 804 181"/><path d="M804 163 L 786 181"/>
+      </g>
+      <text x="160" y="112" font-size="16" font-weight="600" fill="currentColor">MIT &#183; les machines Lisp</text>
+    </g>
+    <text x="160" y="132" font-size="14" opacity="0.75">élégant, complet, coûteux à porter</text>
+    <text x="852" y="212" font-size="13" text-anchor="end" opacity="0.75">la lignée s'éteint</text>
+
+    <!-- Approche New Jersey : le trait s'épaissit à mesure que le système se
+         diffuse. Sept segments plutôt qu'un seul tracé, faute de largeur
+         variable en SVG. -->
+    <g style="color: var(--a2, #6f9455)" stroke="currentColor" fill="none" stroke-linecap="round">
+      <path d="M155 350 Q 205 345, 255 338"   stroke-width="1.7"/>
+      <path d="M255 338 Q 305 330, 355 318"   stroke-width="2.6"/>
+      <path d="M355 318 Q 405 306, 455 288"   stroke-width="3.5"/>
+      <path d="M455 288 Q 505 270, 555 248"   stroke-width="4.4"/>
+      <path d="M555 248 Q 605 225, 655 198"   stroke-width="5.3"/>
+      <path d="M655 198 Q 705 174, 755 148"   stroke-width="6.2"/>
+      <path d="M755 148 Q 805 127, 850 108"   stroke-width="7.1"/>
+    </g>
+    <g style="color: var(--a2, #6f9455)">
+      <text x="160" y="382" font-size="16" font-weight="600" fill="currentColor">New Jersey &#183; Unix</text>
+    </g>
+    <text x="160" y="402" font-size="14" opacity="0.75">simple, imparfait, livré tôt</text>
+
+    <!-- Le rattrapage -->
+    <g stroke="currentColor" fill="none" opacity="0.4" stroke-dasharray="3 4" stroke-width="1.3">
+      <path d="M742 156 V 104"/>
+    </g>
+    <circle cx="742" cy="163" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.75"/>
+    <text x="742" y="94" font-size="14" text-anchor="middle" opacity="0.8">le rattrapage</text>
+
+    <!-- Annotations le long de la trajectoire -->
+    <text x="432" y="372" font-size="13.5" opacity="0.75">adopté vite, puis amélioré au fil de l'usage</text>
+
+    <!-- Clé de lecture, sans laquelle l'épaisseur ne veut rien dire -->
+    <g transform="translate(130,472)">
+      <g style="color: var(--a2, #6f9455)" stroke="currentColor" fill="none" stroke-linecap="round">
+        <path d="M0 0 H 22" stroke-width="1.7"/>
+        <path d="M26 0 H 48" stroke-width="4.4"/>
+        <path d="M52 0 H 74" stroke-width="7.1"/>
+      </g>
+      <text x="86" y="5" font-size="13.5" opacity="0.75">L'épaisseur du trait indique la diffusion, non la qualité.</text>
+    </g>
+  </g>
+</svg>

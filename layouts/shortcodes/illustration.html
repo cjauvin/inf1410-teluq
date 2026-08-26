@@ -1,0 +1,17 @@
+{{/* layouts/shortcodes/illustration.html
+
+     Insère un SVG de assets/illustrations/ directement dans la page, plutôt
+     que de le référencer par <img>. C'est la condition pour que le trait,
+     dessiné en currentColor, suive le thème, et pour que les variables
+     d'accent définies dans assets/styles/custom.css l'atteignent.
+
+     Usage : {{< illustration src="worse-is-better.svg" legende="..." >}} */}}
+{{- $src := .Get "src" | default (.Get 0) -}}
+{{- with resources.Get (printf "illustrations/%s" $src) -}}
+<figure class="svg-fig">
+  {{ .Content | safeHTML }}
+  {{- with $.Get "legende" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end -}}
+</figure>
+{{- else -}}
+  {{- warnf "illustration : assets/illustrations/%s introuvable" $src -}}
+{{- end -}}

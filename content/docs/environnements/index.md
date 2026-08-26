@@ -185,6 +185,8 @@ exactement ce qui s'est passé avec Unix et Linux : un système techniquement
 imparfait, mais simple et portable, a fini par dominer le monde, tandis que des
 systèmes théoriquement supérieurs (comme les machines Lisp) ont disparu.
 
+{{< illustration src="worse-is-better.svg" legende="Les deux trajectoires de l'essai de Gabriel. La qualité se lit sur l'axe vertical, la diffusion dans l'épaisseur du trait." >}}
+
 L'essai de Gabriel met le doigt sur une tension fondamentale en génie logiciel,
 que nous retrouverons tout au long de ce cours : la simplicité pragmatique
 versus la perfection théorique. Le principe YAGNI ("You Aren't Gonna Need It"),
@@ -219,8 +221,8 @@ console est à droite) :
 
 {{< image src="my-vscode.webp" alt="" title="" loading="lazy" >}}
 
-Et même les navigateurs web ont des consoles intégrées, voici mon Brave avec sa
-console Javascript à droite :
+Et même les navigateurs web ont des consoles intégrées, voici mon navigateur
+Brave avec sa console Javascript à droite :
 
 {{< image src="my-brave.png" alt="" title="" loading="lazy" >}}
 

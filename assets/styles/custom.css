@@ -337,3 +337,47 @@ p {
   :root[data-theme$="auto"] .modules-svg .m5 { color: #b48ead }
   :root[data-theme$="auto"] .modules-svg .m6 { color: #ebcb8b }
 }
+
+/* Illustrations SVG insérées dans les pages (shortcode illustration).
+
+   Les traits sont en currentColor et suivent le thème d'eux-mêmes. Les
+   couleurs d'accent passent par des variables, définies ici en teintes sombres
+   pour le fond clair et reprises en teintes Nord plus lumineuses pour le fond
+   sombre. Un SVG les consomme ainsi :
+
+     <g style="color: var(--a1, #5b7fa6)" stroke="currentColor">
+
+   La valeur de repli garde le fichier correct s'il est ouvert seul. */
+.svg-fig {
+  margin: var(--space-16) 0;
+  --a1: #5b7fa6;
+  --a2: #6f9455;
+  --a3: #c06e4a;
+}
+
+.svg-fig .fig-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.svg-fig figcaption {
+  margin-top: var(--space-8);
+  font-size: var(--font-size-smaller);
+  text-align: center;
+  opacity: 0.75;
+}
+
+:root[data-theme$="dark"] .svg-fig {
+  --a1: #81a1c1;
+  --a2: #a3be8c;
+  --a3: #d08770;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme$="auto"] .svg-fig {
+    --a1: #81a1c1;
+    --a2: #a3be8c;
+    --a3: #d08770;
+  }
+}
