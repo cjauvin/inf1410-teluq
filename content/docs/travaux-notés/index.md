@@ -50,7 +50,7 @@ Il vous revient aussi de vous assurer que le travail est **raisonnablement distr
 
 **Chaque étudiant doit avoir son propre compte GitHub**, y compris au sein d'une équipe. C'est la condition pour que les contributions soient attribuables individuellement, ce sur quoi repose une bonne partie de l'évaluation. Un compte partagé, ou un seul membre qui pousse le travail de tous, rend cette lecture impossible et sera pénalisé.
 
-Le dépôt GitHub de votre projet est le mécanisme central de remise et de suivi du cours. Tous les livrables qui ne sont pas du code — ADRs, schémas de données, documentation — doivent être rédigés en texte brut (Markdown de préférence) ou en PDF.
+Le dépôt GitHub de votre projet est le lieu central où vit votre travail. Tous les livrables qui ne sont pas du code — ADRs, schémas de données, documentation — doivent être rédigés en texte brut (Markdown de préférence) ou en PDF.
 
 {{% hint warning %}}
 
@@ -65,6 +65,14 @@ Le dépôt GitHub de votre projet est le mécanisme central de remise et de suiv
 Votre dépôt peut être public ou privé, selon votre préférence. S'il est privé, vous devrez inviter le professeur en tant que collaborateur&nbsp;: son compte GitHub est [cjauvin](https://github.com/cjauvin).
 
 {{% /hint %}}
+
+## La remise officielle
+
+Les projets de ce cours sont volontairement hétéroclites. Chacun choisit son langage, son hébergement et sa plateforme de blogue, et son dépôt peut être public ou privé. Il n'existe donc aucun endroit unique où le correcteur saurait d'avance aller regarder.
+
+C'est pourquoi **chaque jalon doit être accompagné d'un court document déposé dans le système officiel de remise des travaux de la TÉLUQ**. Ce document ne contient pas le travail lui-même, il dit comment y accéder&nbsp;: l'adresse du dépôt GitHub, celle du blogue, celle de l'application déployée le cas échéant, celle du tableau GitHub Projects, et les liens vers les transcriptions publiées. Un lien par ressource, avec une ligne qui dit ce qu'on y trouve.
+
+C'est ce dépôt officiel qui fait foi de la remise et qui en fixe la date. Votre travail vit sur GitHub et sur le web, mais c'est ce document qui y donne accès, et un jalon dont les ressources ne sont pas atteignables ne peut pas être évalué.
 
 ## Le serveur Discord
 
@@ -141,7 +149,7 @@ En pratique, cela signifie committer régulièrement, alimenter le blogue techni
 
 ## Les jalons
 
-Le projet est évalué à travers quatre jalons et deux entretiens de suivi, répartis sur la session, pour un total de 100&nbsp;%. Le tableau du début de page en donne la vue d'ensemble.
+Le projet est évalué à travers quatre jalons et deux entretiens de suivi, répartis sur la session, pour un total de 100&nbsp;%. Le tableau du début de page en donne la vue d'ensemble. Chacun donne lieu à une [remise officielle](#la-remise-officielle) à la TÉLUQ, sous la forme décrite plus haut.
 
 ### Jalon 1 — Fondations (10%)
 
