@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" class="fig-svg" role="img"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="87 40 789 450" class="fig-svg" role="img"
      aria-label="Graphique opposant deux trajectoires dans le temps. L'approche MIT, issue du monde Lisp, part d'une qualité élevée mais son trait reste fin, signe d'une diffusion qui ne vient jamais, et s'interrompt par une croix marquant la disparition des machines Lisp. L'approche New Jersey, celle d'Unix, part d'une qualité bien plus basse mais son trait s'épaissit à mesure qu'elle se diffuse, elle progresse par améliorations successives, rattrape puis dépasse la première.">
 
   <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" fill="currentColor">
@@ -45,10 +45,10 @@
 
     <!-- Le rattrapage -->
     <g stroke="currentColor" fill="none" opacity="0.4" stroke-dasharray="3 4" stroke-width="1.3">
-      <path d="M742 156 V 104"/>
+      <path d="M722 158 V 104"/>
     </g>
-    <circle cx="742" cy="163" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.75"/>
-    <text x="742" y="94" font-size="14" text-anchor="middle" opacity="0.8">le rattrapage</text>
+    <circle cx="722" cy="165" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.75"/>
+    <text x="722" y="94" font-size="14" text-anchor="middle" opacity="0.8">le rattrapage</text>
 
     <!-- Annotations le long de la trajectoire -->
     <text x="432" y="372" font-size="13.5" opacity="0.75">adopté vite, puis amélioré au fil de l'usage</text>

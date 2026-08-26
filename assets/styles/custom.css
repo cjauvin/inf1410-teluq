@@ -361,6 +361,28 @@ p {
   height: auto;
 }
 
+/* Agrandissement au clic, comme pour les images.
+
+   Le thème ne stylise que `input + img`, or le contenu est ici un <svg> inséré
+   dans la page. On redouble donc ses règles pour la balise svg. Le z-index de
+   100 reprend celui appliqué plus haut aux images, pour passer au-dessus des
+   applets. */
+.svg-fig .book-image input + svg {
+  cursor: zoom-in;
+}
+
+.svg-fig .book-image input:checked + svg {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-16);
+  box-sizing: border-box;
+  background: var(--body-background);
+  cursor: zoom-out;
+}
+
 .svg-fig figcaption {
   margin-top: var(--space-8);
   font-size: var(--font-size-smaller);

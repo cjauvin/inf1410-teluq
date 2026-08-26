@@ -5,13 +5,32 @@
      dessiné en currentColor, suive le thème, et pour que les variables
      d'accent définies dans assets/styles/custom.css l'atteignent.
 
+     L'enveloppe reprend la structure du shortcode image du thème, une étiquette
+     et une case à cocher masquée, pour que l'agrandissement au clic fonctionne
+     comme sur les autres images du cours. Le CSS du thème ne vise que les
+     balises img, custom.css double donc ses règles pour les svg insérés.
+
      Usage : {{< illustration src="worse-is-better.svg" legende="..." >}} */}}
 {{- $src := .Get "src" | default (.Get 0) -}}
+{{- $id := printf "illustration-%d" .Ordinal -}}
 {{- with resources.Get (printf "illustrations/%s" $src) -}}
 <figure class="svg-fig">
-  {{ .Content | safeHTML }}
-  {{- with $.Get "legende" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end -}}
+  <label class="book-image" for="{{ $id }}">
+    <input class="hidden toggle" type="checkbox" id="{{ $id }}" />
+    {{ .Content | safeHTML }}
+  </label>
+  {{- with $.Get "legende" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
 </figure>
+<script>
+(function () {
+  const c = document.getElementById('{{ $id }}');
+  const fermer = e => { if (e.key === 'Escape' && c.checked) c.checked = false; };
+  c.addEventListener('change', function () {
+    this.checked ? document.addEventListener('keydown', fermer)
+                 : document.removeEventListener('keydown', fermer);
+  });
+})();
+</script>
 {{- else -}}
   {{- warnf "illustration : assets/illustrations/%s introuvable" $src -}}
 {{- end -}}
