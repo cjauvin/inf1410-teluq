@@ -83,6 +83,13 @@ pourquoi il faudrait.
 
 ## Me joindre
 
+**Vous pouvez m'écrire sur Teams en tout temps, ou y prendre rendez-vous quand
+vous le souhaitez.** Je réponds rapidement à toutes les questions et à toutes
+les demandes d'aide, qu'elles portent sur la matière, sur votre projet ou sur
+un blocage technique.
+
+- **[Prendre un rendez-vous Teams](https://outlook.office.com/bookwithme/user/d8e2ad7e3dfa4e22a58bf5e7081d2643%40teluq.ca/meetingtype/AjxgXWTZAEu0b5JtOPzDwQ2?anonymous&ismsaljsauthenabled=true)**, au moment qui vous convient
+- Un message direct sur **Teams**, sans rendez-vous et sans préavis
 - Courriel&nbsp;: [christian.jauvin@teluq.ca](mailto:christian.jauvin@teluq.ca)
 - Le [serveur Discord]({{< relref "discord.md" >}}) du cours, où je suis présent
   et où vous aurez souvent une réponse plus rapide
