@@ -185,7 +185,9 @@ Livrables&nbsp;:
 
 ### Entretien mi-parcours (10%)
 
-*À planifier avec le professeur dans les deux semaines suivant la remise du jalon 2*
+*Rendez-vous à prendre par vous-même, dans les deux semaines suivant la réception de votre note du jalon 2*
+
+Il vous revient de fixer cette rencontre, une fois votre note reçue, en passant par le lien de réservation de la [page du professeur]({{< relref "professeur/index.md" >}}). Aucune convocation ne vous sera envoyée.
 
 Cet entretien est une rencontre individuelle (ou par équipe) de 15 à 20 minutes sur Microsoft Teams. La conversation porte sur ce que vous avez produit jusqu'ici : vos choix techniques, votre schéma de données, le fonctionnement de votre pipeline CI. L'objectif n'est pas de vous piéger, mais de vérifier que vous comprenez et maîtrisez ce que reflète votre dépôt, et d'identifier les points à consolider pour la suite de la session.
 
@@ -222,7 +224,9 @@ Livrables&nbsp;:
 
 ### Entretien final (25%)
 
-*À planifier avec le professeur dans les deux semaines suivant la remise du jalon 4*
+*Rendez-vous à prendre par vous-même, dans les deux semaines suivant la réception de votre note du jalon 4*
+
+Comme pour l'entretien de mi-parcours, c'est à vous de le fixer, une fois votre note du jalon 4 reçue, par le même [lien de réservation]({{< relref "professeur/index.md" >}}).
 
 L'entretien final est une rencontre individuelle (ou par équipe) de 25 à 30 minutes sur Microsoft Teams. Il porte sur l'ensemble du projet : ses choix techniques, son architecture, son évolution dans le temps, et votre compréhension de ce qui a été produit. Des questions comme « Pourquoi avez-vous structuré vos données de cette façon ? », « Que se passerait-il si votre application devait [gérer dix fois plus d'utilisateurs]({{< relref "module5/60-scalabilite/index.md" >}}) ? » ou « À quel endroit dans votre code l'IA a-t-elle produit quelque chose que vous avez dû corriger ou adapter ? » sont typiques de ce qui sera discuté.
 
