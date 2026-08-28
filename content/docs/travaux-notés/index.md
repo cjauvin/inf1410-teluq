@@ -46,6 +46,10 @@ Une équipe est par ailleurs attendue sur un projet **proportionnellement plus a
 
 Il vous revient aussi de vous assurer que le travail est **raisonnablement distribué** entre les membres. Deux approches fonctionnent bien. Vous pouvez attribuer des **rôles fixes**, chacun devenant responsable d'un domaine comme la base de données, l'interface ou le pipeline de déploiement, ce qui donne de la profondeur mais crée des angles morts. Vous pouvez aussi **faire alterner les rôles** d'un jalon à l'autre, ce qui exige plus de coordination mais garantit que chacun touche à tout. Dans les deux cas, la répartition doit rester visible dans l'historique du dépôt et dans le tableau GitHub Projects, et un déséquilibre marqué se remarquera.
 
+La coordination de l'équipe se fera dans **un canal Discord privé**, créé pour vous sur le [serveur du cours]({{< relref "discord.md" >}}), et auquel j'aurai accès. C'est là que devraient vivre vos échanges de travail, vos décisions et vos arbitrages, plutôt que dans une conversation privée dont il ne resterait aucune trace.
+
+Autant le dire franchement, **c'est une expérience**. Cette façon de faire n'a jamais été tentée dans ce cours, et je ne sais pas encore ce qu'elle donnera. Elle rend visible une dimension du travail d'équipe qui reste d'ordinaire invisible de l'extérieur, la coordination elle-même, qui est pourtant l'endroit où une bonne partie du génie logiciel se joue. Nous découvrirons ensemble ce que ça donne, et c'est une des choses que j'attends avec le plus de curiosité cette session.
+
 ## Le dépôt GitHub
 
 **Chaque étudiant doit avoir son propre compte GitHub**, y compris au sein d'une équipe. C'est la condition pour que les contributions soient attribuables individuellement, ce sur quoi repose une bonne partie de l'évaluation. Un compte partagé, ou un seul membre qui pousse le travail de tous, rend cette lecture impossible et sera pénalisé.
@@ -76,7 +80,7 @@ C'est ce dépôt officiel qui fait foi de la remise et qui en fixe la date. Votr
 
 ## Le serveur Discord
 
-Le cours dispose d'un [serveur Discord]({{< relref "discord.md" >}}) accessible à tous les étudiants inscrits. Son usage n'est pas obligatoire, mais il fait partie intégrante du concept du cours&nbsp;: il est pensé comme le hub central de communication, aussi bien pour la coordination au sein des équipes que pour toute question ou discussion en lien avec le cours. Chaque équipe y disposera de son propre canal privé, mais le serveur comporte aussi des canaux ouverts à tous, pour poser une question technique, partager une ressource, ou simplement échanger avec d'autres étudiants qui travaillent sur les mêmes problèmes que vous.
+Le cours dispose d'un [serveur Discord]({{< relref "discord.md" >}}) accessible à tous les étudiants inscrits. Son usage est facultatif pour qui travaille seul, et requis pour les équipes, qui y coordonnent leur travail. Il fait partie intégrante du concept du cours&nbsp;: il est pensé comme le hub central de communication, aussi bien pour la coordination au sein des équipes que pour toute question ou discussion en lien avec le cours. Chaque équipe y disposera de son propre canal privé, mais le serveur comporte aussi des canaux ouverts à tous, pour poser une question technique, partager une ressource, ou simplement échanger avec d'autres étudiants qui travaillent sur les mêmes problèmes que vous.
 
 Par expérience, le sentiment de communauté qui se développe sur ce genre de plateforme est l'un des aspects les plus bénéfiques de la session. Les cours en ligne peuvent être isolants&nbsp;; Discord brise cette isolation de façon naturelle, et rend l'expérience d'apprentissage plus riche et plus humaine. Les sessions où les étudiants s'y investissent sont presque toujours plus vivantes et plus intéressantes pour tout le monde, y compris pour le professeur.
 
