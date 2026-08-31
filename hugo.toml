@@ -29,28 +29,25 @@ BookPortableLinks = "warning"
 BookLogo = "images/2gears.png"
 BookFavicon = "images/2gears.png"
 
-# Point d'arrivée du formulaire de retour anonyme affiché en fin de page (voir
-# layouts/partials/docs/comments.html). Un relais formulaire-vers-courriel, qui
-# réexpédie le message sans rien exiger de l'étudiant.
+# Formulaire de retour anonyme en fin de page (voir
+# layouts/partials/docs/comments.html). Désactivé le 31 août 2026, le temps de
+# lui trouver un meilleur point d'arrivée. Vide, ni le bloc ni le raccourci de
+# la table des matières ne sont rendus, les deux partageant la même garde.
 #
-# Mise en service, en deux temps :
-#   1. déclencher le courriel d'activation, puis cliquer le lien qu'il contient.
-#      FormSubmit exige les en-têtes Origin et Referer, faute de quoi il répond
-#      200 en renvoyant sa page d'accueil, sans le moindre message d'erreur :
+# Le relais essayé était FormSubmit, avec l'identifiant haché
+# 22d185756eee46a07d2c0af2efc35214, valide pour localhost et cjauvin.github.io.
+# Il a été abandonné parce qu'il répond « submitted successfully » puis jette
+# le message sans rien dire. Sa documentation l'explique : quand le reCAPTCHA
+# est désactivé, ce que faisait _captcha=false pour épargner l'écran de
+# vérification aux étudiants, le service applique ses propres heuristiques et
+# ignore silencieusement ce qu'il juge automatique.
 #
-#        curl -X POST -H "Content-Type: application/json" \
-#             -H "Origin: https://cjauvin.github.io" \
-#             -H "Referer: https://cjauvin.github.io/" \
-#             -d '{"message":"activation"}' \
-#             https://formsubmit.co/ajax/<son-adresse>
-#
-#      Le point d'arrivée /ajax/ répond en JSON, donc il dit ce qui cloche ;
-#   2. reporter ici l'identifiant haché renvoyé, et non l'adresse en clair, qui
-#      serait autrement visible dans le code source de chaque page.
-#
-# Vide, le bloc n'est pas affiché du tout : le site ne publie donc jamais un
-# formulaire qui n'aboutit nulle part.
-RetourEndpoint = "https://formsubmit.co/22d185756eee46a07d2c0af2efc35214"
+# Un canal de retour qui perd des messages sans le signaler est pire que pas
+# de canal : on conclurait que les étudiants ne disent rien alors qu'ils
+# écrivent. La suite envisagée est un Worker Cloudflare qui relaie vers un
+# canal Discord privé, sans courriel dans le chemin, donc sans filtre ni
+# quota ni tri opaque.
+RetourEndpoint = ""
 
 [markup]
   [markup.goldmark]
