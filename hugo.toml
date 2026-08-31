@@ -34,14 +34,23 @@ BookFavicon = "images/2gears.png"
 # réexpédie le message sans rien exiger de l'étudiant.
 #
 # Mise en service, en deux temps :
-#   1. poster une première fois vers https://formsubmit.co/<son-adresse> pour
-#      déclencher le courriel d'activation, et cliquer le lien qu'il contient ;
+#   1. déclencher le courriel d'activation, puis cliquer le lien qu'il contient.
+#      FormSubmit exige les en-têtes Origin et Referer, faute de quoi il répond
+#      200 en renvoyant sa page d'accueil, sans le moindre message d'erreur :
+#
+#        curl -X POST -H "Content-Type: application/json" \
+#             -H "Origin: https://cjauvin.github.io" \
+#             -H "Referer: https://cjauvin.github.io/" \
+#             -d '{"message":"activation"}' \
+#             https://formsubmit.co/ajax/<son-adresse>
+#
+#      Le point d'arrivée /ajax/ répond en JSON, donc il dit ce qui cloche ;
 #   2. reporter ici l'identifiant haché renvoyé, et non l'adresse en clair, qui
 #      serait autrement visible dans le code source de chaque page.
 #
 # Vide, le bloc n'est pas affiché du tout : le site ne publie donc jamais un
 # formulaire qui n'aboutit nulle part.
-RetourEndpoint = ""
+RetourEndpoint = "https://formsubmit.co/22d185756eee46a07d2c0af2efc35214"
 
 [markup]
   [markup.goldmark]
