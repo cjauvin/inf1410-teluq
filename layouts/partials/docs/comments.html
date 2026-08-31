@@ -58,6 +58,14 @@
   // Sans ça l'étudiant atterrit sur une ligne repliée, collée au bas de la
   // fenêtre puisque l'ancre est en fin de document, et rien ne lui indique
   // qu'il y a une boîte à ouvrir.
+  // Le bloc étant en fin de document, le déplier révèle la zone de saisie et le
+  // bouton sous la ligne de flottaison, sans que le navigateur bouge. On le
+  // ramène donc dans la fenêtre à chaque ouverture, d'où qu'elle vienne : le
+  // chevron, le raccourci de la table des matières ou le retour d'envoi.
+  details.addEventListener('toggle', () => {
+    if (details.open) details.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  });
+
   const ouvrirSiVise = () => { if (location.hash === '#retour') details.open = true; };
   ouvrirSiVise();
   addEventListener('hashchange', ouvrirSiVise);
