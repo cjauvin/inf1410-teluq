@@ -403,3 +403,84 @@ p {
     --a3: #d08770;
   }
 }
+
+/* Retour anonyme en fin de page (voir layouts/partials/docs/comments.html).
+
+   Le bloc doit être discret : replié par défaut, il ne pèse rien sur une page
+   qu'on lit normalement, et il ne laisse pas 99 sections de commentaires vides
+   derrière lui. Les couleurs passent toutes par les variables du thème, donc
+   le bloc suit les modes clair et sombre sans règle dédiée. */
+.retour {
+  margin-top: var(--space-16);
+  padding-top: var(--space-16);
+  border-top: 1px solid var(--gray-200);
+  font-size: var(--font-size-smaller);
+}
+
+.retour summary {
+  cursor: pointer;
+  opacity: 0.7;
+  user-select: none;
+}
+
+.retour summary:hover {
+  opacity: 1;
+  color: var(--color-link);
+}
+
+.retour-intro {
+  margin: var(--space-8) 0 var(--space-16);
+  opacity: 0.75;
+  text-align: left;
+}
+
+.retour-form textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-8);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius);
+  background: var(--gray-100);
+  color: var(--body-font-color);
+  font-family: inherit;
+  font-size: inherit;
+  resize: vertical;
+}
+
+.retour-form textarea:focus {
+  outline: none;
+  border-color: var(--color-link);
+}
+
+.retour-form button {
+  margin-top: var(--space-8);
+  padding: var(--space-8) var(--space-16);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius);
+  background: var(--gray-100);
+  color: var(--body-font-color);
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.retour-form button:hover {
+  border-color: var(--color-link);
+  color: var(--color-link);
+}
+
+/* L'appât à robots. Il doit rester dans le flux pour qu'un automate le
+   remplisse, mais hors de vue et hors du parcours au clavier. */
+.retour-form input[name="_honey"] {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
+}
+
+.retour-merci {
+  margin: 0;
+  text-align: left;
+  color: var(--color-accent-tip);
+}

@@ -29,6 +29,20 @@ BookPortableLinks = "warning"
 BookLogo = "images/2gears.png"
 BookFavicon = "images/2gears.png"
 
+# Point d'arrivée du formulaire de retour anonyme affiché en fin de page (voir
+# layouts/partials/docs/comments.html). Un relais formulaire-vers-courriel, qui
+# réexpédie le message sans rien exiger de l'étudiant.
+#
+# Mise en service, en deux temps :
+#   1. poster une première fois vers https://formsubmit.co/<son-adresse> pour
+#      déclencher le courriel d'activation, et cliquer le lien qu'il contient ;
+#   2. reporter ici l'identifiant haché renvoyé, et non l'adresse en clair, qui
+#      serait autrement visible dans le code source de chaque page.
+#
+# Vide, le bloc n'est pas affiché du tout : le site ne publie donc jamais un
+# formulaire qui n'aboutit nulle part.
+RetourEndpoint = ""
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

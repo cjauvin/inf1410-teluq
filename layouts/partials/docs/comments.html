@@ -1,0 +1,66 @@
+{{/*
+  Retour anonyme en fin de page.
+
+  Remplace le partial docs/comments du thème, qui appelle Disqus par défaut.
+  Le thème l'insère dans le pied de chaque page et l'entoure déjà d'une garde
+  sur le paramètre BookComments, ce qui permet d'exclure une page en posant
+  `BookComments: false` dans son frontmatter.
+
+  Le formulaire poste vers un service de relais qui réexpédie le contenu par
+  courriel (voir params.RetourEndpoint dans hugo.toml). Aucun compte n'est
+  demandé à l'étudiant et rien de son identité ne circule, contrairement à un
+  lien mailto: qui ouvrirait son client de messagerie et signerait le message
+  à sa place.
+
+  L'envoi est un POST de formulaire ordinaire, sans JavaScript, pour rester
+  indépendant du service choisi : passer par fetch obligerait à connaître le
+  point d'arrivée AJAX propre à chaque relais et à dépendre de sa politique
+  CORS. Le champ _next ramène l'étudiant sur la page, à l'ancre du bloc, et le
+  script se contente d'y afficher la confirmation.
+*/}}
+
+{{- with .Site.Params.RetourEndpoint -}}
+<div class="retour" id="retour">
+  <details class="retour-details">
+    <summary>Un problème dans cette page&nbsp;? Écrivez-moi, anonymement</summary>
+
+    <p class="retour-intro">
+      Une erreur, un passage obscur, un lien mort, une question que vous n'osez
+      pas poser sur Discord. Le message m'arrive sans aucune information sur son
+      auteur, et il n'est affiché nulle part.
+    </p>
+
+    <form class="retour-form" action="{{ . }}" method="POST">
+      <input type="hidden" name="page" value="{{ $.Permalink }}">
+      <input type="hidden" name="_subject" value="Retour anonyme ({{ $.Title }})">
+      <input type="hidden" name="_next" value="{{ $.Permalink }}?merci=1#retour">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      {{/* Appât à robots : un humain ne voit pas le champ et le laisse vide. */}}
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <textarea name="message" rows="5" required maxlength="3000"
+                placeholder="Ce qui bloque, ou ce qui pourrait être amélioré…"></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+  </details>
+</div>
+
+<script>
+// Retour de la page après l'envoi : le relais renvoie sur ?merci=1#retour.
+// On ouvre le bloc, on remplace le formulaire par la confirmation, et on
+// nettoie l'URL pour qu'un rechargement ne réaffiche pas le message.
+(function () {
+  if (!new URLSearchParams(location.search).has('merci')) return;
+  const bloc = document.getElementById('retour');
+  if (!bloc) return;
+  bloc.querySelector('details').open = true;
+  const form = bloc.querySelector('.retour-form');
+  const merci = document.createElement('p');
+  merci.className = 'retour-merci';
+  merci.textContent = "Merci, c'est reçu. Ces retours servent directement à améliorer le cours.";
+  form.replaceWith(merci);
+  history.replaceState(null, '', location.pathname + '#retour');
+})();
+</script>
+{{- end -}}
