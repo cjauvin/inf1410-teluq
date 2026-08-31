@@ -90,3 +90,21 @@ données, authentification, paiement en ligne (optionnel) et déploiement
 automatisé sur une plateforme d'infonuagique. Le travail peut se faire
 individuellement ou en petites équipes. Les détails complets se trouvent dans la
 section [Travaux notés](docs/travaux-notés).
+
+## Vos retours
+
+Ce cours est neuf, et ses défauts sont encore à découvrir. Au bas de chaque
+page, une ligne discrète ouvre une boîte qui me permet de recevoir vos
+remarques de manière anonyme&nbsp;: une erreur, un passage obscur, un lien mort,
+une explication qui tombe à plat. Le message m'arrive accompagné de l'adresse
+de la page d'où il part, ce qui me dit exactement quoi relire, mais sans rien
+qui permette de savoir qui l'a écrit.
+
+L'anonymat est là pour une raison précise. Dire qu'on ne comprend pas une
+section demande un certain courage quand on le fait sous son nom, et ce sont
+justement ces retours-là qui me sont les plus utiles.
+
+Comme je n'ai en revanche aucun moyen de vous répondre, ce n'est pas le bon
+canal pour une question qui attend une réponse. Pour ça, écrivez-moi sur Teams
+ou passez par le [serveur Discord](docs/discord), comme l'explique la page
+[Le professeur](docs/professeur).

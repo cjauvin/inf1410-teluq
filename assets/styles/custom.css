@@ -484,3 +484,20 @@ p {
   text-align: left;
   color: var(--color-accent-tip);
 }
+
+/* Raccourci vers le formulaire de retour, au pied de la table des matières
+   (voir layouts/partials/docs/inject/toc-after.html). Aligné sur les entrées
+   de la table, dont il reprend le retrait, mais détaché par un filet pour ne
+   pas se lire comme une section de la page. */
+.toc-retour {
+  display: block;
+  margin-top: var(--space-16);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--gray-200);
+  font-size: var(--font-size-smaller);
+  opacity: 0.7;
+}
+
+.toc-retour:hover {
+  opacity: 1;
+}

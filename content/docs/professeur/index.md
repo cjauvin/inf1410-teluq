@@ -1,6 +1,8 @@
 ---
 title: "Le professeur"
 weight: 12
+# Les moyens de me joindre sont déjà l'objet de cette page.
+BookComments: false
 ---
 
 # Le professeur

@@ -22,12 +22,14 @@
 {{- with .Site.Params.RetourEndpoint -}}
 <div class="retour" id="retour">
   <details class="retour-details">
-    <summary>Un problème dans cette page&nbsp;? Écrivez-moi, anonymement</summary>
+    <summary>Une remarque sur cette page&nbsp;? Écrivez-moi, anonymement</summary>
 
     <p class="retour-intro">
-      Une erreur, un passage obscur, un lien mort, une question que vous n'osez
-      pas poser sur Discord. Le message m'arrive sans aucune information sur son
-      auteur, et il n'est affiché nulle part.
+      Une erreur, un passage obscur, un lien mort, une explication qui tombe à
+      plat. Le message m'arrive avec l'adresse de cette page, mais sans rien qui
+      permette de savoir qui l'a écrit, et il n'est affiché nulle part. Comme je
+      n'ai aucun moyen de vous répondre, passez plutôt par Teams ou Discord pour
+      une question qui attend une réponse.
     </p>
 
     <form class="retour-form" action="{{ . }}" method="POST">
@@ -47,19 +49,28 @@
 </div>
 
 <script>
-// Retour de la page après l'envoi : le relais renvoie sur ?merci=1#retour.
-// On ouvre le bloc, on remplace le formulaire par la confirmation, et on
-// nettoie l'URL pour qu'un rechargement ne réaffiche pas le message.
 (function () {
-  if (!new URLSearchParams(location.search).has('merci')) return;
   const bloc = document.getElementById('retour');
   if (!bloc) return;
-  bloc.querySelector('details').open = true;
-  const form = bloc.querySelector('.retour-form');
+  const details = bloc.querySelector('details');
+
+  // Arrivée par le raccourci de la table des matières, ou par un lien direct.
+  // Sans ça l'étudiant atterrit sur une ligne repliée, collée au bas de la
+  // fenêtre puisque l'ancre est en fin de document, et rien ne lui indique
+  // qu'il y a une boîte à ouvrir.
+  const ouvrirSiVise = () => { if (location.hash === '#retour') details.open = true; };
+  ouvrirSiVise();
+  addEventListener('hashchange', ouvrirSiVise);
+
+  // Retour de la page après l'envoi : le relais renvoie sur ?merci=1#retour.
+  // Le formulaire cède la place à la confirmation, et l'URL est nettoyée pour
+  // qu'un rechargement ne réaffiche pas le message.
+  if (!new URLSearchParams(location.search).has('merci')) return;
+  details.open = true;
   const merci = document.createElement('p');
   merci.className = 'retour-merci';
   merci.textContent = "Merci, c'est reçu. Ces retours servent directement à améliorer le cours.";
-  form.replaceWith(merci);
+  bloc.querySelector('.retour-form').replaceWith(merci);
   history.replaceState(null, '', location.pathname + '#retour');
 })();
 </script>

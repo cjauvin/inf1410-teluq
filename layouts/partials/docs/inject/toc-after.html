@@ -1,0 +1,19 @@
+{{/*
+  Raccourci vers le formulaire de retour, au pied de la table des matières.
+
+  Le bloc de retour vit en fin de page, ce qui suffit sur une page courte mais
+  pas ici : la médiane du cours est de 2700 mots et une vingtaine de pages
+  dépassent 3000, la plus longue frôlant les 11 000. Un étudiant bloqué au
+  tiers d'une de ces pages devrait dérouler jusqu'en bas pour signaler quoi que
+  ce soit, ce qui est précisément la friction qu'on cherchait à supprimer.
+
+  La table des matières étant collante, le lien reste à portée de vue partout
+  dans la page. Il n'apparaît que si le formulaire existe et que la page ne
+  l'a pas exclu. La condition reprend mot pour mot la garde du bloc dans
+  baseof.html, .Content compris : sans elle le lien apparaissait aussi sur les
+  pages de taxonomie et sur le bundle du menu, qui n'ont pas de contenu et donc
+  pas de formulaire vers lequel pointer.
+*/}}
+{{- if and .Site.Params.RetourEndpoint .Content (default true (default .Site.Params.BookComments .Params.BookComments)) -}}
+  <a class="toc-retour" href="#retour">Écrire au professeur, anonymement</a>
+{{- end -}}

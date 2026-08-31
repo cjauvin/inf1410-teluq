@@ -2,6 +2,8 @@
 title: "Serveur Discord"
 weight: 30
 slug: discord
+# Page d'aiguillage de quelques lignes : il n'y a rien à commenter dessus.
+BookComments: false
 ---
 
 # Discord
