@@ -33,7 +33,7 @@ spécialistes de la concurrence, tests de non-régression couvrant 100&nbsp;% du
 Le système a tourné quatre ans sans le moindre incident. Le 26 avril 2004, il
 s'est bloqué. L'interblocage y était depuis le premier jour.
 
-{{< image src="edward-lee.webp" alt="Edward A. Lee, professeur d'informatique à l'Université de Californie à Berkeley" title="Edward A. Lee. Photo : Université de Californie à Berkeley" loading="lazy" >}}
+{{< image src="edward-lee.webp" alt="Edward A. Lee, professeur d'informatique à l'Université de Californie à Berkeley" title="Edward A. Lee en 2018. Photo : Edward A. Lee, CC BY-SA 4.0, via Wikimedia Commons" loading="lazy" >}}
 
 Retenez bien ce chiffre de 100&nbsp;%, parce que la section sur
 [les tests]({{< relref "/docs/module2/20-tests" >}}) vous apprendra à vous en
