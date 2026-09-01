@@ -7,8 +7,6 @@ bookCollapseSection: true
 
 # Concurrence et parallélisme
 
-{{< illustration src="cuisine.svg" legende="Dans les deux cas, trois plats avancent. À gauche une seule paire de mains les mène tour à tour, à droite trois paires travaillent vraiment en même temps. La concurrence est une manière d'organiser le travail, le parallélisme une manière de l'exécuter." >}}
-
 
 
 Il y a une hypothèse que tout programmeur fait sans jamais y penser&nbsp;: que les
@@ -20,6 +18,8 @@ elle cesse d'être vraie. C'est exactement ce qui se produit dès qu'un programm
 fait plusieurs choses à la fois, et c'est ce qui rend le sujet réputé
 difficile. Il ne s'agit pas d'apprendre une bibliothèque de plus, mais de
 renoncer à une intuition.
+
+{{< illustration src="cuisine.svg" legende="Dans les deux cas, trois plats avancent. À gauche une seule paire de mains les mène tour à tour, à droite trois paires travaillent vraiment en même temps. La concurrence est une manière d'organiser le travail, le parallélisme une manière de l'exécuter." >}}
 
 Le texte le plus tranchant sur la question s'intitule *The Problem with
 Threads*, publié par Edward Lee dans *IEEE Computer* en mai 2006. Lee y soutient
