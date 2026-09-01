@@ -88,6 +88,25 @@ intégrées dans le cours.)*
 
 ## Articles et essais
 
+- Sam Gross, *PEP 703&nbsp;: Making the Global Interpreter Lock Optional in CPython*
+  (2023)&nbsp;: la proposition qui défait un compromis vieux de trente ans, acceptée
+  puis livrée en variante expérimentale. Le même code y devient trois fois plus
+  rapide en threads, et révèle du même coup des bogues que le verrou masquait →
+  [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+- Gordon Moore, *Cramming More Components onto Integrated Circuits* (1965)&nbsp;:
+  l'observation, sur deux pages, que le nombre de composants gravés sur une
+  puce double à intervalle régulier. Moore y parle de quantité, jamais de
+  vitesse → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+- Robert Dennard et coll., *Design of Ion-Implanted MOSFET's with Very Small
+  Physical Dimensions* (1974)&nbsp;: la loi de proportionnalité qui, en gardant la
+  densité thermique constante quand les transistors rétrécissent, a converti la
+  loi de Moore en gain de vitesse pendant trente ans → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+- Herb Sutter, *The Free Lunch Is Over* (2005)&nbsp;: le moment où l'accélération
+  cesse d'être offerte par le matériel et devient un travail de programmeur →
+  [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+- Rob Pike, *Concurrency Is Not Parallelism* (conférence, 2012)&nbsp;: la concurrence
+  est une manière de structurer un programme, le parallélisme une manière de
+  l'exécuter → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
 - Edgar F. Codd, *A Relational Model of Data for Large Shared Data Banks* (1970) :
   article fondateur du modèle relationnel → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}}), [Module 3, Les données (stockage)]({{< ref "/docs/module3/40-données/20-stockage" >}})
 - David Parnas, *On the Criteria To Be Used in Decomposing Systems into Modules*

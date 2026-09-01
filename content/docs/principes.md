@@ -32,6 +32,33 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
 - **Idempotence** : une opération qu'on peut exécuter plusieurs fois avec le même résultat, propriété cruciale pour les APIs réseau → [Module 3, Les APIs]({{< ref "/docs/module3/20-apis" >}}), [Module 5, Comment je le déploie ?]({{< ref "/docs/module5/20-deploiement" >}})
 - **Immutable infrastructure** : ne jamais modifier un artefact déployé, toujours le remplacer. Lien avec l'immutabilité en programmation fonctionnelle → [Module 5, Comment je le déploie ?]({{< ref "/docs/module5/20-deploiement" >}})
 
+## Concurrence et parallélisme
+
+- **La concurrence n'est pas le parallélisme** (Rob Pike, 2012)&nbsp;: la concurrence
+  est une manière de structurer un programme en tâches indépendantes, le
+  parallélisme une manière de l'exécuter sur plusieurs coeurs. La première est
+  une propriété du code, la seconde une propriété de la machine. Un programme
+  découpé en dix tâches sur une machine à un seul coeur est parfaitement
+  concurrent et n'a aucun parallélisme → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}}),
+  [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+- **Les threads pour attendre, les processus pour calculer**&nbsp;: en Python, le
+  verrou global (GIL) empêche deux threads d'exécuter du code simultanément,
+  mais un thread qui attend le relâche. Les threads n'accélèrent donc jamais un
+  calcul et accélèrent énormément une série d'attentes → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+- **Préemption** (par opposition au multitâche coopératif)&nbsp;: le système
+  d'exploitation reprend la main sur un programme sans lui demander son avis,
+  plutôt que de compter sur sa bonne volonté. Comme la protection mémoire, la
+  garantie naît sur les gros systèmes des années 60 et met trente ans à
+  atteindre les machines personnelles → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+- **Loi de Moore** (Gordon Moore, 1965)&nbsp;: le nombre de composants gravés sur une
+  puce, à coût égal, double à intervalle régulier. Elle porte sur la quantité de
+  transistors, et non sur la vitesse, contrairement à ce qu'on lui fait souvent
+  dire → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+- **Loi de Dennard** (Robert Dennard, 1974)&nbsp;: en réduisant les transistors, la
+  puissance dissipée par unité de surface reste constante. C'est elle, et non
+  celle de Moore, qui a cessé de s'appliquer vers 2004, forçant l'industrie à
+  multiplier les coeurs plutôt que les cycles → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+
 ## Principes de systèmes distribués
 
 - **Théorème CAP** (Eric Brewer, 2000) : un système distribué ne peut garantir simultanément que deux des trois propriétés suivantes : cohérence, disponibilité, tolérance aux partitions → [Module 5, Est-ce que ça va tenir la charge ?]({{< ref "/docs/module5/60-scalabilite" >}})

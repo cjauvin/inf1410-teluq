@@ -81,6 +81,43 @@
 - Types : compilé vs interprété, statique vs dynamique, fort vs faible,
   type hints Python/mypy, lien avec les schémas JSON et SQL
 
+## La concurrence (en cours)
+
+Section en cinq sous-sections, insérée entre la programmation et les tests
+parce qu'elle introduit un vocabulaire matériel et système que le reste du
+cours utilisait sans l'avoir jamais défini (coeur, processus, thread,
+ordonnanceur).
+
+### Pourquoi la concurrence (complété)
+- La fin du repas gratuit (Herb Sutter, 2005)
+- Loi de Moore (1965) et loi de Dennard (1974) : c'est la seconde qui s'est arrêtée en 2004
+- Ce qu'est un coeur, avec une illustration des trois courbes divergentes
+- La concurrence n'est pas le parallélisme (Rob Pike, 2012), et la filiation
+  Newsqueak, Alef, Limbo, Go, depuis les CSP de Hoare
+- Attendre n'est pas calculer, la distinction qui porte toute la section
+
+### Processus et threads (complété)
+- Programme contre processus, espace d'adressage, isolation par l'unité de gestion mémoire
+- Une garantie récente : MS-DOS et Mac OS classique n'en avaient aucune
+- Le coût de la communication entre processus, qui explique l'existence des threads
+- Coûts mesurés : un processus vaut environ cinq threads, et le piège de
+  `multiprocessing` en mode spawn
+- Ordonnanceur, temps partagé, changement de contexte, préemption contre
+  multitâche coopératif
+- Le GIL mesuré : inutile pour calculer, décisif pour attendre
+- Le free-threading (PEP 703) : mêmes fichiers, deux interpréteurs, et un
+  compteur qui révèle un bogue que le verrou masquait depuis toujours
+
+### Ce qui casse (à faire)
+- Conditions de course, verrous, interblocage, Dijkstra et les sémaphores (1965)
+
+### Ne pas partager (à faire)
+- CSP (Hoare, 1978), acteurs (Hewitt, 1973), Erlang, QNX, immutabilité
+
+### Ne jamais bloquer (à faire)
+- Problème C10K, Node, boucle d'événements
+- Rappels, promesses, async/await, en JavaScript et en Python
+
 ## Les tests (complété)
 - Pourquoi tester : confronter le modèle mental (Naur) à la réalité
 - Tests comme substitut partiel au compilateur en Python
