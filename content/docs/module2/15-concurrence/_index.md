@@ -23,15 +23,17 @@ renoncer à une intuition.
 
 Le texte le plus tranchant sur la question s'intitule *The Problem with
 Threads*, publié par Edward Lee dans *IEEE Computer* en mai 2006. Lee y soutient
-que les threads sont une mauvaise abstraction, non parce qu'ils seraient mal
-réalisés, mais parce qu'ils détruisent le **déterminisme**, c'est-à-dire
-justement ce qui permet de comprendre un programme en le lisant. Son argument
-s'appuie sur sa propre expérience, et elle donne à réfléchir. Le projet
-Ptolemy, qu'il dirige à Berkeley depuis 2000, construit des systèmes embarqués
-concurrents avec une discipline peu commune&nbsp;: revues de code menées par des
-spécialistes de la concurrence, tests de non-régression couvrant 100&nbsp;% du code.
-Le système a tourné quatre ans sans le moindre incident. Le 26 avril 2004, il
-s'est bloqué. L'interblocage y était depuis le premier jour.
+que la façon dont on s'y prend d'ordinaire pour faire mener plusieurs choses de
+front à un programme est mauvaise, non parce qu'elle serait mal réalisée, mais
+parce qu'elle détruit le **déterminisme**, c'est-à-dire ce qui permet de
+comprendre un programme en le lisant. Son argument s'appuie sur sa propre
+expérience, et elle donne à réfléchir. Le projet Ptolemy, qu'il dirige à
+Berkeley depuis 2000, construit des logiciels de ce genre avec une discipline
+peu commune&nbsp;: relecture ligne à ligne par des gens qui connaissent le sujet
+mieux que quiconque, tests de non-régression couvrant 100&nbsp;% du code. Le système
+a tourné quatre ans sans le moindre incident. Le 26 avril 2004, il s'est figé
+d'un coup et n'a plus rien fait du tout. Le défaut y était depuis le premier
+jour.
 
 {{< image src="edward-lee.webp" alt="Edward A. Lee, professeur d'informatique à l'Université de Californie à Berkeley" title="Edward A. Lee en 2018. Photo : Edward A. Lee, CC BY-SA 4.0, via Wikimedia Commons" loading="lazy" >}}
 
@@ -43,15 +45,17 @@ fois dans ce cours qu'on rencontre une catégorie de bogues contre laquelle nos
 outils habituels ne peuvent à peu près rien.
 
 Si le sujet est si périlleux, on pourrait souhaiter l'éviter. Ce n'est plus
-possible, et vous l'avez déjà rencontré sans qu'on vous en avertisse. Le
-`async def` qui ouvre les exemples de la section sur
-[les APIs]({{< relref "/docs/module3/20-apis" >}}) est un mot-clé de
-programmation asynchrone. Les files d'attente et les travailleurs en arrière-plan
-de la section sur [la scalabilité]({{< relref "/docs/module5/60-scalabilite" >}})
-sont de la concurrence répartie sur plusieurs machines. Le sujet traverse le
-cours de bout en bout, et cette section vient combler le trou&nbsp;: on vous
-enseignait l'asynchronisme au niveau du système sans jamais vous l'avoir
-expliqué au niveau du programme.
+possible. L'application que vous développerez cette session devra répondre à
+plusieurs personnes en même temps, sans faire patienter la deuxième jusqu'à ce
+que la première ait fini. Quand elle enverra un courriel de confirmation, elle
+ne devra pas immobiliser celui qui vient de cliquer pendant que le message
+chemine. Rien de tout cela n'est exotique, et pourtant rien de tout cela ne
+fonctionne si le programme ne sait faire qu'une chose à la fois. Le reste du
+cours s'appuie d'ailleurs déjà sur ces mécanismes sans les avoir jamais
+expliqués, dans les sections sur
+[les APIs]({{< relref "/docs/module3/20-apis" >}}) et sur
+[la scalabilité]({{< relref "/docs/module5/60-scalabilite" >}}). Cette section
+vient combler ce trou.
 
 Sa place dans ce module découle du reste. Le module 2 s'intitule « Concevoir un
 programme correct », et une erreur de concurrence est l'archétype du défaut de

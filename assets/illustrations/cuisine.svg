@@ -62,16 +62,34 @@
 
     <!-- Un seul cuisinier, dont l'attention se partage entre les trois -->
     <g stroke="currentColor" fill="none" stroke-width="1.7" opacity="0.45" stroke-dasharray="5 6">
-      <path d="M222 232 C 190 214, 140 200, 112 186"/>
-      <path d="M230 232 V 188"/>
-      <path d="M238 232 C 270 214, 320 200, 348 186"/>
+      <path d="M222 210 C 198 201, 142 193, 112 186"/>
+      <path d="M230 210 V 188"/>
+      <path d="M238 210 C 262 201, 318 193, 348 186"/>
     </g>
 
     <g transform="translate(230,272)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
-      <rect x="-16" y="-46" width="32" height="20" rx="10" fill="currentColor" fill-opacity="0.14"/>
-      <rect x="-17" y="-27" width="34" height="8"  rx="2" fill="none"/>
+      <!-- Ordre de tracé voulu : la tête d'abord, puis le bandeau opaque
+           qui en masque le sommet, puis la coiffe qui retombe par-dessus.
+           Sans l'opacité du bandeau, l'arc du crâne traverserait le
+           chapeau ; sans ce recouvrement, la toque serait posée sur la
+           tête au lieu d'être portée. -->
       <circle cx="0" cy="-7" r="11" fill="none"/>
       <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
+      <!-- Le chapeau penche vers la gauche, et sa coiffe déborde davantage
+           de ce côté : une toque parfaitement symétrique a l'air d'un
+           pictogramme, pas d'un vêtement porté. La rotation se fait autour
+           du centre du bandeau pour que celui-ci reste bien sur le crâne. -->
+      <g transform="rotate(-5 0 -17.5)">
+        <rect x="-15" y="-24" width="30" height="13" rx="2"
+              fill="var(--body-background, #fff)"/>
+        <path d="M-15 -24 C -29 -21, -31 -34, -25 -43 C -18 -53, 15 -54, 21 -44 C 26 -36, 25 -23, 15 -24 Z"
+              fill="currentColor" fill-opacity="0.10"/>
+        <g stroke-width="1.2" opacity="0.45" fill="none">
+          <path d="M-11 -27 C -15 -36, -14 -43, -11 -48"/>
+          <path d="M-1 -28 C -3 -38, -3 -45, -3 -51"/>
+          <path d="M10 -27 C 12 -36, 9 -43, 6 -47"/>
+        </g>
+      </g>
     </g>
 
     <text x="40" y="346" font-size="16" font-weight="600">Un seul cuisinier.</text>
@@ -132,29 +150,83 @@
 
     <!-- Chacun le sien : trois liens droits et pleins -->
     <g stroke="currentColor" fill="none" stroke-width="1.7" opacity="0.45">
-      <path d="M560 232 V 188"/>
-      <path d="M680 232 V 188"/>
-      <path d="M800 232 V 188"/>
+      <path d="M560 210 V 188"/>
+      <path d="M680 210 V 188"/>
+      <path d="M800 210 V 188"/>
     </g>
 
     <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
       <g transform="translate(560,272)">
-        <rect x="-16" y="-46" width="32" height="20" rx="10" fill="currentColor" fill-opacity="0.14"/>
-        <rect x="-17" y="-27" width="34" height="8"  rx="2" fill="none"/>
+        <!-- Ordre de tracé voulu : la tête d'abord, puis le bandeau opaque
+             qui en masque le sommet, puis la coiffe qui retombe par-dessus.
+             Sans l'opacité du bandeau, l'arc du crâne traverserait le
+             chapeau ; sans ce recouvrement, la toque serait posée sur la
+             tête au lieu d'être portée. -->
         <circle cx="0" cy="-7" r="11" fill="none"/>
         <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
+        <!-- Le chapeau penche vers la gauche, et sa coiffe déborde davantage
+             de ce côté : une toque parfaitement symétrique a l'air d'un
+             pictogramme, pas d'un vêtement porté. La rotation se fait autour
+             du centre du bandeau pour que celui-ci reste bien sur le crâne. -->
+        <g transform="rotate(-5 0 -17.5)">
+          <rect x="-15" y="-24" width="30" height="13" rx="2"
+                fill="var(--body-background, #fff)"/>
+          <path d="M-15 -24 C -29 -21, -31 -34, -25 -43 C -18 -53, 15 -54, 21 -44 C 26 -36, 25 -23, 15 -24 Z"
+                fill="currentColor" fill-opacity="0.10"/>
+          <g stroke-width="1.2" opacity="0.45" fill="none">
+            <path d="M-11 -27 C -15 -36, -14 -43, -11 -48"/>
+            <path d="M-1 -28 C -3 -38, -3 -45, -3 -51"/>
+            <path d="M10 -27 C 12 -36, 9 -43, 6 -47"/>
+          </g>
+        </g>
       </g>
       <g transform="translate(680,272)">
-        <rect x="-16" y="-46" width="32" height="20" rx="10" fill="currentColor" fill-opacity="0.14"/>
-        <rect x="-17" y="-27" width="34" height="8"  rx="2" fill="none"/>
+        <!-- Ordre de tracé voulu : la tête d'abord, puis le bandeau opaque
+             qui en masque le sommet, puis la coiffe qui retombe par-dessus.
+             Sans l'opacité du bandeau, l'arc du crâne traverserait le
+             chapeau ; sans ce recouvrement, la toque serait posée sur la
+             tête au lieu d'être portée. -->
         <circle cx="0" cy="-7" r="11" fill="none"/>
         <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
+        <!-- Le chapeau penche vers la gauche, et sa coiffe déborde davantage
+             de ce côté : une toque parfaitement symétrique a l'air d'un
+             pictogramme, pas d'un vêtement porté. La rotation se fait autour
+             du centre du bandeau pour que celui-ci reste bien sur le crâne. -->
+        <g transform="rotate(-5 0 -17.5)">
+          <rect x="-15" y="-24" width="30" height="13" rx="2"
+                fill="var(--body-background, #fff)"/>
+          <path d="M-15 -24 C -29 -21, -31 -34, -25 -43 C -18 -53, 15 -54, 21 -44 C 26 -36, 25 -23, 15 -24 Z"
+                fill="currentColor" fill-opacity="0.10"/>
+          <g stroke-width="1.2" opacity="0.45" fill="none">
+            <path d="M-11 -27 C -15 -36, -14 -43, -11 -48"/>
+            <path d="M-1 -28 C -3 -38, -3 -45, -3 -51"/>
+            <path d="M10 -27 C 12 -36, 9 -43, 6 -47"/>
+          </g>
+        </g>
       </g>
       <g transform="translate(800,272)">
-        <rect x="-16" y="-46" width="32" height="20" rx="10" fill="currentColor" fill-opacity="0.14"/>
-        <rect x="-17" y="-27" width="34" height="8"  rx="2" fill="none"/>
+        <!-- Ordre de tracé voulu : la tête d'abord, puis le bandeau opaque
+             qui en masque le sommet, puis la coiffe qui retombe par-dessus.
+             Sans l'opacité du bandeau, l'arc du crâne traverserait le
+             chapeau ; sans ce recouvrement, la toque serait posée sur la
+             tête au lieu d'être portée. -->
         <circle cx="0" cy="-7" r="11" fill="none"/>
         <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
+        <!-- Le chapeau penche vers la gauche, et sa coiffe déborde davantage
+             de ce côté : une toque parfaitement symétrique a l'air d'un
+             pictogramme, pas d'un vêtement porté. La rotation se fait autour
+             du centre du bandeau pour que celui-ci reste bien sur le crâne. -->
+        <g transform="rotate(-5 0 -17.5)">
+          <rect x="-15" y="-24" width="30" height="13" rx="2"
+                fill="var(--body-background, #fff)"/>
+          <path d="M-15 -24 C -29 -21, -31 -34, -25 -43 C -18 -53, 15 -54, 21 -44 C 26 -36, 25 -23, 15 -24 Z"
+                fill="currentColor" fill-opacity="0.10"/>
+          <g stroke-width="1.2" opacity="0.45" fill="none">
+            <path d="M-11 -27 C -15 -36, -14 -43, -11 -48"/>
+            <path d="M-1 -28 C -3 -38, -3 -45, -3 -51"/>
+            <path d="M10 -27 C 12 -36, 9 -43, 6 -47"/>
+          </g>
+        </g>
       </g>
     </g>
 
