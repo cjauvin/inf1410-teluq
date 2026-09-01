@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 6 872 390" class="fig-svg" role="img"
+     aria-label="Deux dessins côte à côte, dans une cuisine. À gauche, sous le mot Concurrence, un seul cuisinier s'occupe de trois casseroles qui fument toutes les trois : les trois plats avancent, mais une seule main les mène, tour à tour. À droite, sous le mot Parallélisme, trois cuisiniers s'occupent chacun d'une casserole, les trois plats avançant cette fois réellement en même temps. Dans les deux cas les trois casseroles fument : seul le nombre de cuisiniers change.">
+
+  <!-- Les trois casseroles fument dans les deux panneaux, et c'est le coeur du
+       dessin : le résultat se ressemble, seul le nombre de cuisiniers diffère.
+       C'est exactement la distinction de Rob Pike, la structure du travail
+       d'un côté, son exécution de l'autre. -->
+
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" fill="currentColor">
+
+    <!-- ═══════════ Panneau gauche : concurrence ═══════════ -->
+    <text x="40" y="48" font-size="19" font-weight="700">Concurrence</text>
+
+    <!-- Le plan de cuisson -->
+    <path d="M46 178 H 414" stroke="currentColor" stroke-width="2.4" opacity="0.4" stroke-linecap="round"/>
+
+    <g style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Trois casseroles, toutes en train de cuire -->
+      <g transform="translate(110,150)">
+        <g stroke-width="2" fill="currentColor" fill-opacity="0.14">
+          <rect x="-26" y="-6" width="52" height="30" rx="5"/>
+        </g>
+        <g stroke-width="2" fill="none">
+          <path d="M-31 -6 H 31"/>
+          <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
+        </g>
+        <g stroke-width="1.8" fill="none" opacity="0.6">
+          <path d="M-12 -14 q 5 -7 0 -14"/>
+          <path d="M0 -18 q 5 -8 0 -16"/>
+          <path d="M12 -14 q 5 -7 0 -14"/>
+        </g>
+      </g>
+      <g transform="translate(230,150)">
+        <g stroke-width="2" fill="currentColor" fill-opacity="0.14">
+          <rect x="-26" y="-6" width="52" height="30" rx="5"/>
+        </g>
+        <g stroke-width="2" fill="none">
+          <path d="M-31 -6 H 31"/>
+          <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
+        </g>
+        <g stroke-width="1.8" fill="none" opacity="0.6">
+          <path d="M-12 -14 q 5 -7 0 -14"/>
+          <path d="M0 -18 q 5 -8 0 -16"/>
+          <path d="M12 -14 q 5 -7 0 -14"/>
+        </g>
+      </g>
+      <g transform="translate(350,150)">
+        <g stroke-width="2" fill="currentColor" fill-opacity="0.14">
+          <rect x="-26" y="-6" width="52" height="30" rx="5"/>
+        </g>
+        <g stroke-width="2" fill="none">
+          <path d="M-31 -6 H 31"/>
+          <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
+        </g>
+        <g stroke-width="1.8" fill="none" opacity="0.6">
+          <path d="M-12 -14 q 5 -7 0 -14"/>
+          <path d="M0 -18 q 5 -8 0 -16"/>
+          <path d="M12 -14 q 5 -7 0 -14"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- Un seul cuisinier, dont l'attention se partage entre les trois -->
+    <g stroke="currentColor" fill="none" stroke-width="1.7" opacity="0.45" stroke-dasharray="5 6">
+      <path d="M222 232 C 190 214, 140 200, 112 186"/>
+      <path d="M230 232 V 188"/>
+      <path d="M238 232 C 270 214, 320 200, 348 186"/>
+    </g>
+
+    <g transform="translate(230,272)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+      <rect x="-16" y="-46" width="32" height="20" rx="10" fill="currentColor" fill-opacity="0.14"/>
+      <rect x="-17" y="-27" width="34" height="8"  rx="2" fill="none"/>
+      <circle cx="0" cy="-7" r="11" fill="none"/>
+      <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
+    </g>
+
+    <text x="40" y="346" font-size="16" font-weight="600">Un seul cuisinier.</text>
+    <text x="40" y="370" font-size="13.5" opacity="0.75">Les trois plats avancent quand même, menés tour à tour.</text>
+
+    <!-- Séparateur -->
+    <path d="M452 34 V 330" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
+
+    <!-- ═══════════ Panneau droit : parallélisme ═══════════ -->
+    <text x="490" y="48" font-size="19" font-weight="700">Parallélisme</text>
+
+    <path d="M496 178 H 864" stroke="currentColor" stroke-width="2.4" opacity="0.4" stroke-linecap="round"/>
+
+    <g style="color: var(--a2, #6f9455)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(560,150)">
+        <g stroke-width="2" fill="currentColor" fill-opacity="0.14">
+          <rect x="-26" y="-6" width="52" height="30" rx="5"/>
+        </g>
+        <g stroke-width="2" fill="none">
+          <path d="M-31 -6 H 31"/>
+          <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
+        </g>
+        <g stroke-width="1.8" fill="none" opacity="0.6">
+          <path d="M-12 -14 q 5 -7 0 -14"/>
+          <path d="M0 -18 q 5 -8 0 -16"/>
+          <path d="M12 -14 q 5 -7 0 -14"/>
+        </g>
+      </g>
+      <g transform="translate(680,150)">
+        <g stroke-width="2" fill="currentColor" fill-opacity="0.14">
+          <rect x="-26" y="-6" width="52" height="30" rx="5"/>
+        </g>
+        <g stroke-width="2" fill="none">
+          <path d="M-31 -6 H 31"/>
+          <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
+        </g>
+        <g stroke-width="1.8" fill="none" opacity="0.6">
+          <path d="M-12 -14 q 5 -7 0 -14"/>
+          <path d="M0 -18 q 5 -8 0 -16"/>
+          <path d="M12 -14 q 5 -7 0 -14"/>
+        </g>
+      </g>
+      <g transform="translate(800,150)">
+        <g stroke-width="2" fill="currentColor" fill-opacity="0.14">
+          <rect x="-26" y="-6" width="52" height="30" rx="5"/>
+        </g>
+        <g stroke-width="2" fill="none">
+          <path d="M-31 -6 H 31"/>
+          <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
+        </g>
+        <g stroke-width="1.8" fill="none" opacity="0.6">
+          <path d="M-12 -14 q 5 -7 0 -14"/>
+          <path d="M0 -18 q 5 -8 0 -16"/>
+          <path d="M12 -14 q 5 -7 0 -14"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- Chacun le sien : trois liens droits et pleins -->
+    <g stroke="currentColor" fill="none" stroke-width="1.7" opacity="0.45">
+      <path d="M560 232 V 188"/>
+      <path d="M680 232 V 188"/>
+      <path d="M800 232 V 188"/>
+    </g>
+
+    <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+      <g transform="translate(560,272)">
+        <rect x="-16" y="-46" width="32" height="20" rx="10" fill="currentColor" fill-opacity="0.14"/>
+        <rect x="-17" y="-27" width="34" height="8"  rx="2" fill="none"/>
+        <circle cx="0" cy="-7" r="11" fill="none"/>
+        <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
+      </g>
+      <g transform="translate(680,272)">
+        <rect x="-16" y="-46" width="32" height="20" rx="10" fill="currentColor" fill-opacity="0.14"/>
+        <rect x="-17" y="-27" width="34" height="8"  rx="2" fill="none"/>
+        <circle cx="0" cy="-7" r="11" fill="none"/>
+        <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
+      </g>
+      <g transform="translate(800,272)">
+        <rect x="-16" y="-46" width="32" height="20" rx="10" fill="currentColor" fill-opacity="0.14"/>
+        <rect x="-17" y="-27" width="34" height="8"  rx="2" fill="none"/>
+        <circle cx="0" cy="-7" r="11" fill="none"/>
+        <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
+      </g>
+    </g>
+
+    <text x="490" y="346" font-size="16" font-weight="600">Trois cuisiniers.</text>
+    <text x="490" y="370" font-size="13.5" opacity="0.75">Les trois plats avancent vraiment en même temps.</text>
+  </g>
+</svg>

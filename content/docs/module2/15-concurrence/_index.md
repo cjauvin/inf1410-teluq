@@ -7,7 +7,9 @@ bookCollapseSection: true
 
 # Concurrence et parallélisme
 
-{{< illustration src="resultats-variables.svg" legende="Ce programme est faux, et il l'est différemment à chaque exécution. C'est le genre de défaut que ce chapitre vous apprendra à reconnaître, à provoquer, et à éviter." >}}
+{{< illustration src="cuisine.svg" legende="Dans les deux cas, trois plats avancent. À gauche une seule paire de mains les mène tour à tour, à droite trois paires travaillent vraiment en même temps. La concurrence est une manière d'organiser le travail, le parallélisme une manière de l'exécuter." >}}
+
+
 
 Il y a une hypothèse que tout programmeur fait sans jamais y penser&nbsp;: que les
 choses arrivent dans l'ordre. La ligne 12 s'exécute après la ligne 11, une
