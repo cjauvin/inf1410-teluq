@@ -8,3 +8,6 @@ meme-depot-ailleurs
 uv-demo*
 CLAUDE.md
 notes/
+
+# Journal du serveur de développement local (voir .hugo-serve/supervise.sh)
+.hugo-serve/serveur.log
