@@ -81,7 +81,7 @@
 - Types : compilé vs interprété, statique vs dynamique, fort vs faible,
   type hints Python/mypy, lien avec les schémas JSON et SQL
 
-## La concurrence (en cours)
+## Concurrence et parallélisme (en cours)
 
 Section en cinq sous-sections, insérée entre la programmation et les tests
 parce qu'elle introduit un vocabulaire matériel et système que le reste du

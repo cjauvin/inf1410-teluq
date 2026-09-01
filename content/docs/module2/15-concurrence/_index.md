@@ -1,8 +1,8 @@
 ---
-title: "La concurrence"
+title: "Concurrence et parallélisme"
 slug: "concurrence"
 weight: 15
 bookCollapseSection: true
 ---
 
-# La concurrence
+# Concurrence et parallélisme

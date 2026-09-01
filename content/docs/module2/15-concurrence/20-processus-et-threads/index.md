@@ -17,7 +17,7 @@ de mémoire, y installe les instructions et de quoi ranger les données, retient
 courir. Le même programme lancé trois fois donne trois processus, qui portent
 le même code et n'ont rien d'autre en commun&nbsp;: trois zones de mémoire
 distinctes, trois positions différentes dans ce code, trois jeux de fichiers
-ouverts. C'est pour cette raison que deux fenêtres du même éditeur de texte
+ouverts. C'est ce qui permet à deux fenêtres du même éditeur de texte
 peuvent afficher deux documents sans se mélanger, alors qu'elles exécutent
 exactement les mêmes instructions.
 
@@ -153,8 +153,7 @@ le même code, n'a donc pas du tout le même coût selon le système.
 
 La conséquence pratique est simple. Créer un processus par tâche est ruineux,
 créer une réserve de processus au démarrage et la réutiliser ne coûte presque
-rien. C'est exactement ce que fait `multiprocessing.Pool`, et c'est pour cette
-raison qu'il existe.
+rien. C'est exactement ce que fait `multiprocessing.Pool`, et c'est précisément sa raison d'être.
 
 ## Comment un seul coeur fait semblant
 
@@ -194,8 +193,7 @@ strictement **aucun parallélisme**. Les dix tâches existent bel et bien, elles
 se relaient, aucune n'est terminée avant que les autres aient commencé, mais à
 chaque instant une seule avance. Donnez dix coeurs à ce même programme, sans
 changer une ligne, et il devient parallèle. La concurrence était dans le code
-depuis le début, le parallélisme est arrivé avec la machine. C'est pour cette
-raison que la distinction n'est pas une subtilité de vocabulaire&nbsp;: elle sépare
+depuis le début, le parallélisme est arrivé avec la machine. C'est ce qui fait que la distinction n'est pas une subtilité de vocabulaire&nbsp;: elle sépare
 ce que vous écrivez de ce sur quoi vous n'avez aucune prise.
 
 ## Le verrou global de Python
@@ -272,7 +270,7 @@ et qui a rendu Python beaucoup plus simple à faire évoluer.
 Il serait facile de conclure de ce qui précède que les threads ne servent à
 rien en Python. Ce serait une demi-vérité, et elle coûte cher, parce qu'elle
 prive d'un outil parfaitement adapté à la moitié des situations. Reprenons
-exactement la même comparaison, mais avec un programme qui **attend** au lieu
+exactement la même comparaison, mais avec un programme qui attend au lieu
 de calculer. Cinquante requêtes réseau de cent millisecondes chacune, ici
 simulées par une pause pour que l'expérience soit reproductible hors ligne.
 
