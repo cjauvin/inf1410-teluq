@@ -7,6 +7,8 @@ bookCollapseSection: true
 
 # Concurrence et parallélisme
 
+{{< illustration src="resultats-variables.svg" legende="Ce programme est faux, et il l'est différemment à chaque exécution. C'est le genre de défaut que ce chapitre vous apprendra à reconnaître, à provoquer, et à éviter." >}}
+
 Il y a une hypothèse que tout programmeur fait sans jamais y penser&nbsp;: que les
 choses arrivent dans l'ordre. La ligne 12 s'exécute après la ligne 11, une
 variable qu'on vient d'écrire contient bien ce qu'on y a mis, et un programme
@@ -29,14 +31,14 @@ spécialistes de la concurrence, tests de non-régression couvrant 100&nbsp;% du
 Le système a tourné quatre ans sans le moindre incident. Le 26 avril 2004, il
 s'est bloqué. L'interblocage y était depuis le premier jour.
 
+{{< image src="edward-lee.webp" alt="Edward A. Lee, professeur d'informatique à l'Université de Californie à Berkeley" title="Edward A. Lee. Photo : Université de Californie à Berkeley" loading="lazy" >}}
+
 Retenez bien ce chiffre de 100&nbsp;%, parce que la section sur
 [les tests]({{< relref "/docs/module2/20-tests" >}}) vous apprendra à vous en
 méfier, et voici son démenti le plus spectaculaire. Ni la relecture par des
 experts, ni une couverture totale n'ont révélé le défaut. C'est la première
 fois dans ce cours qu'on rencontre une catégorie de bogues contre laquelle nos
 outils habituels ne peuvent à peu près rien.
-
-{{< illustration src="entrelacements.svg" legende="Un programme séquentiel n'a qu'un seul déroulement. Le même travail réparti sur quelques threads en a des milliards, et rien ne garantit que celui qui révèle le défaut sera jamais exécuté pendant vos tests." >}}
 
 Si le sujet est si périlleux, on pourrait souhaiter l'éviter. Ce n'est plus
 possible, et vous l'avez déjà rencontré sans qu'on vous en avertisse. Le
