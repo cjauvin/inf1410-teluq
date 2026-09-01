@@ -20,7 +20,7 @@ difficile. Il ne s'agit pas d'apprendre une bibliothèque de plus, mais de
 renoncer à une intuition.
 
 
-{{< illustration src="cuisine.svg" legende="Dans les deux cas, trois plats avancent. À gauche une seule paire de mains les mène tour à tour, à droite trois paires travaillent vraiment en même temps. La concurrence est une manière d'organiser le travail, le parallélisme une manière de l'exécuter." >}}
+{{< illustration src="cuisine.svg" legende="Trois plats à faire, dans les trois cas. Le cuisinier peut les enchaîner l'un après l'autre. Il peut aussi les mener de front en passant de l'un à l'autre, et c'est la **concurrence** : rien n'a changé sinon son organisation. Ou trois cuisiniers peuvent s'y mettre, et c'est le **parallélisme** : cette fois ce sont les ressources qui ont changé." >}}
 
 On pourrait espérer que tout cela ne regarde que les auteurs de systèmes
 d'exploitation. Ce n'est pas le cas. L'application que vous développerez cette session devra répondre à
