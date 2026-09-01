@@ -112,6 +112,9 @@ ordonnanceur).
 - Conditions de course, verrous, interblocage, Dijkstra et les sémaphores (1965)
 
 ### Ne pas partager (à faire)
+- Ouvrir sur la thèse d'Edward Lee, *The Problem with Threads* (2006) : les
+  threads détruisent le déterminisme. L'argument est déplacé ici depuis
+  l'introduction, où le lecteur ne pouvait pas encore l'évaluer
 - CSP (Hoare, 1978), acteurs (Hewitt, 1973), Erlang, QNX, immutabilité
 
 ### Ne jamais bloquer (à faire)
