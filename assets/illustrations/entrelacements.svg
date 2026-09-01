@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="36 6 828 479" class="fig-svg" role="img"
+     aria-label="Comparaison du nombre d'ordres d'exécution possibles. À gauche, un programme séquentiel de six instructions : une seule rangée de six cases, et un seul ordre possible. À droite, les mêmes six instructions réparties sur deux threads de trois instructions chacun : trois exemples de rangées où les cases des deux threads s'entremêlent différemment, et vingt ordres possibles au total. En bas, l'escalade : trois threads de trois instructions donnent 1680 ordres, et quatre threads de cinq instructions en donnent plus de onze milliards.">
+
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" fill="currentColor">
+
+    <!-- ══ Colonne de gauche : le séquentiel ══ -->
+    <text x="60" y="46" font-size="16" font-weight="600">En séquentiel</text>
+    <text x="60" y="68" font-size="13.5" opacity="0.7">six instructions, une seule après l'autre</text>
+
+    <g opacity="0.55">
+      <g fill="none" stroke="currentColor" stroke-width="1.6">
+        <rect x="60"  y="92" width="45" height="30" rx="4"/>
+        <rect x="111" y="92" width="45" height="30" rx="4"/>
+        <rect x="162" y="92" width="45" height="30" rx="4"/>
+        <rect x="213" y="92" width="45" height="30" rx="4"/>
+        <rect x="264" y="92" width="45" height="30" rx="4"/>
+        <rect x="315" y="92" width="45" height="30" rx="4"/>
+      </g>
+      <g font-size="12.5" text-anchor="middle">
+        <text x="82"  y="112">1</text><text x="133" y="112">2</text><text x="184" y="112">3</text>
+        <text x="235" y="112">4</text><text x="286" y="112">5</text><text x="337" y="112">6</text>
+      </g>
+    </g>
+
+    <text x="60" y="160" font-size="26" font-weight="700">1</text>
+    <text x="86" y="160" font-size="15" opacity="0.8">ordre possible</text>
+
+    <!-- Séparateur -->
+    <path d="M410 30 V 300" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
+
+    <!-- ══ Colonne de droite : deux threads ══ -->
+    <text x="450" y="46" font-size="16" font-weight="600">Sur deux threads</text>
+    <text x="450" y="68" font-size="13.5" opacity="0.7">les mêmes six instructions, trois par thread</text>
+
+    <!-- Trois entrelacements parmi les vingt. Les couleurs disent de quel
+         thread vient chaque instruction : bleu pour A, vert pour B. -->
+    <g font-size="12.5" text-anchor="middle" stroke-width="1.6">
+
+      <!-- A A A B B B -->
+      <g transform="translate(450,92)">
+        <g style="color: var(--a1, #5b7fa6)" stroke="currentColor" fill="currentColor" fill-opacity="0.14">
+          <rect x="0"   y="0" width="45" height="30" rx="4"/>
+          <rect x="51"  y="0" width="45" height="30" rx="4"/>
+          <rect x="102" y="0" width="45" height="30" rx="4"/>
+        </g>
+        <g style="color: var(--a2, #6f9455)" stroke="currentColor" fill="currentColor" fill-opacity="0.14">
+          <rect x="153" y="0" width="45" height="30" rx="4"/>
+          <rect x="204" y="0" width="45" height="30" rx="4"/>
+          <rect x="255" y="0" width="45" height="30" rx="4"/>
+        </g>
+        <g fill="currentColor" stroke="none">
+          <text x="22"  y="20">A1</text><text x="73"  y="20">A2</text><text x="124" y="20">A3</text>
+          <text x="175" y="20">B1</text><text x="226" y="20">B2</text><text x="277" y="20">B3</text>
+        </g>
+      </g>
+
+      <!-- A B A B A B -->
+      <g transform="translate(450,136)">
+        <g style="color: var(--a1, #5b7fa6)" stroke="currentColor" fill="currentColor" fill-opacity="0.14">
+          <rect x="0"   y="0" width="45" height="30" rx="4"/>
+          <rect x="102" y="0" width="45" height="30" rx="4"/>
+          <rect x="204" y="0" width="45" height="30" rx="4"/>
+        </g>
+        <g style="color: var(--a2, #6f9455)" stroke="currentColor" fill="currentColor" fill-opacity="0.14">
+          <rect x="51"  y="0" width="45" height="30" rx="4"/>
+          <rect x="153" y="0" width="45" height="30" rx="4"/>
+          <rect x="255" y="0" width="45" height="30" rx="4"/>
+        </g>
+        <g fill="currentColor" stroke="none">
+          <text x="22"  y="20">A1</text><text x="73"  y="20">B1</text><text x="124" y="20">A2</text>
+          <text x="175" y="20">B2</text><text x="226" y="20">A3</text><text x="277" y="20">B3</text>
+        </g>
+      </g>
+
+      <!-- B B A A B A -->
+      <g transform="translate(450,180)">
+        <g style="color: var(--a2, #6f9455)" stroke="currentColor" fill="currentColor" fill-opacity="0.14">
+          <rect x="0"   y="0" width="45" height="30" rx="4"/>
+          <rect x="51"  y="0" width="45" height="30" rx="4"/>
+          <rect x="204" y="0" width="45" height="30" rx="4"/>
+        </g>
+        <g style="color: var(--a1, #5b7fa6)" stroke="currentColor" fill="currentColor" fill-opacity="0.14">
+          <rect x="102" y="0" width="45" height="30" rx="4"/>
+          <rect x="153" y="0" width="45" height="30" rx="4"/>
+          <rect x="255" y="0" width="45" height="30" rx="4"/>
+        </g>
+        <g fill="currentColor" stroke="none">
+          <text x="22"  y="20">B1</text><text x="73"  y="20">B2</text><text x="124" y="20">A1</text>
+          <text x="175" y="20">A2</text><text x="226" y="20">B3</text><text x="277" y="20">A3</text>
+        </g>
+      </g>
+    </g>
+
+    <text x="450" y="238" font-size="13.5" opacity="0.7">et dix-sept autres</text>
+
+    <text x="450" y="278" font-size="26" font-weight="700">20</text>
+    <text x="490" y="278" font-size="15" opacity="0.8">ordres possibles</text>
+
+    <!-- ══ L'escalade ══ -->
+    <path d="M60 330 H 840" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
+    <text x="60" y="360" font-size="14" opacity="0.75">Et le nombre explose bien plus vite que la taille du programme.</text>
+
+    <g font-size="14.5">
+      <text x="60"  y="394">3 threads de 3 instructions</text>
+      <text x="380" y="394" font-weight="700">1 680</text>
+      <text x="480" y="394" opacity="0.7">ordres possibles</text>
+
+      <text x="60"  y="424">4 threads de 5 instructions</text>
+      <text x="380" y="424" font-weight="700">11 732 745 024</text>
+      <text x="600" y="424" opacity="0.7">ordres possibles</text>
+    </g>
+
+    <text x="60" y="458" font-size="13.5" opacity="0.65">Vos tests en explorent une poignée, toujours à peu près les mêmes.</text>
+  </g>
+</svg>

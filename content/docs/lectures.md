@@ -88,6 +88,13 @@ intégrées dans le cours.)*
 
 ## Articles et essais
 
+- Edward A. Lee, *The Problem with Threads* (IEEE Computer, mai 2006)&nbsp;: les
+  threads détruisent le déterminisme, c'est-à-dire ce qui permet de comprendre
+  un programme en le lisant. À l'appui, son propre projet Ptolemy, relu par des
+  spécialistes de la concurrence et couvert à 100&nbsp;% par des tests, resté quatre
+  ans sans incident avant de se bloquer le 26 avril 2004 sur un interblocage
+  présent depuis le premier jour →
+  [Module 2, Concurrence et parallélisme]({{< ref "/docs/module2/15-concurrence" >}})
 - Sam Gross, *PEP 703&nbsp;: Making the Global Interpreter Lock Optional in CPython*
   (2023)&nbsp;: la proposition qui défait un compromis vieux de trente ans, acceptée
   puis livrée en variante expérimentale. Le même code y devient trois fois plus
