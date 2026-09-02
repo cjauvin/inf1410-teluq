@@ -88,7 +88,7 @@ intégrées dans le cours.)*
 
 ## Articles et essais
 
-- Edward A. Lee, *The Problem with Threads* (IEEE Computer, mai 2006)&nbsp;: les
+- Edward A. Lee, *The Problem with Threads* (IEEE Computer, mai 2006) [[DOI](https://doi.org/10.1109/MC.2006.180)]&nbsp;: les
   threads détruisent le déterminisme, c'est-à-dire ce qui permet de comprendre
   un programme en le lisant. À l'appui, son propre projet Ptolemy, relu par des
   spécialistes de la concurrence et couvert à 100&nbsp;% par des tests, resté quatre
@@ -96,22 +96,22 @@ intégrées dans le cours.)*
   présent depuis le premier jour →
   [Module 2, Concurrence et parallélisme]({{< ref "/docs/module2/15-concurrence" >}})
 - Sam Gross, *PEP 703&nbsp;: Making the Global Interpreter Lock Optional in CPython*
-  (2023)&nbsp;: la proposition qui défait un compromis vieux de trente ans, acceptée
+  (2023) [[texte](https://peps.python.org/pep-0703/)]&nbsp;: la proposition qui défait un compromis vieux de trente ans, acceptée
   puis livrée en variante expérimentale. Le même code y devient trois fois plus
   rapide en threads, et révèle du même coup des bogues que le verrou masquait →
   [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
-- Gordon Moore, *Cramming More Components onto Integrated Circuits* (1965)&nbsp;:
+- Gordon Moore, *Cramming More Components onto Integrated Circuits* (1965) [[texte](https://www.cs.utexas.edu/~fussell/courses/cs352h/papers/moore.pdf), [DOI](https://doi.org/10.1109/N-SSC.2006.4785860)]&nbsp;:
   l'observation, sur deux pages, que le nombre de composants gravés sur une
   puce double à intervalle régulier. Moore y parle de quantité, jamais de
   vitesse → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
 - Robert Dennard et coll., *Design of Ion-Implanted MOSFET's with Very Small
-  Physical Dimensions* (1974)&nbsp;: la loi de proportionnalité qui, en gardant la
+  Physical Dimensions* (1974) [[DOI](https://doi.org/10.1109/JSSC.1974.1050511)]&nbsp;: la loi de proportionnalité qui, en gardant la
   densité thermique constante quand les transistors rétrécissent, a converti la
   loi de Moore en gain de vitesse pendant trente ans → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
-- Herb Sutter, *The Free Lunch Is Over* (2005)&nbsp;: le moment où l'accélération
+- Herb Sutter, *The Free Lunch Is Over* (2005) [[texte](http://www.gotw.ca/publications/concurrency-ddj.htm)]&nbsp;: le moment où l'accélération
   cesse d'être offerte par le matériel et devient un travail de programmeur →
   [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
-- Rob Pike, *Concurrency Is Not Parallelism* (conférence, 2012)&nbsp;: la concurrence
+- Rob Pike, *Concurrency Is Not Parallelism* (conférence, 2012) [[vidéo et diapositives](https://go.dev/blog/waza-talk)]&nbsp;: la concurrence
   est une manière de structurer un programme, le parallélisme une manière de
   l'exécuter → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
 - Edgar F. Codd, *A Relational Model of Data for Large Shared Data Banks* (1970) :
