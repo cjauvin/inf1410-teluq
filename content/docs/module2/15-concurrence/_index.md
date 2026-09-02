@@ -7,54 +7,43 @@ bookCollapseSection: true
 
 # Concurrence et parallélisme
 
+Au moment d'écrire ces lignes, le portable qui sert à rédiger ce cours fait
+tourner 722 programmes. Deux d'entre eux sont réellement en train de faire
+quelque chose. Les 720 autres dorment, en attendant qu'il se passe quelque
+chose, un clic, l'arrivée d'un paquet sur le réseau, la fin d'une lecture sur
+le disque. Le processeur est inoccupé à 83&nbsp;%. Ce n'est pas un moment de calme,
+c'est l'état normal d'un ordinateur&nbsp;: une salle d'attente où presque tout le
+monde patiente, et où quelques-uns s'activent.
 
-
-Il y a une hypothèse que tout programmeur fait sans jamais y penser&nbsp;: que les
-choses arrivent dans l'ordre. La ligne 12 s'exécute après la ligne 11, une
-variable qu'on vient d'écrire contient bien ce qu'on y a mis, et un programme
-qui a fonctionné une fois se comportera pareil la fois suivante. Cette
-hypothèse est si profondément installée qu'on ne la remarque qu'au moment où
-elle cesse d'être vraie. C'est exactement ce qui se produit dès qu'un programme
-fait plusieurs choses à la fois, et c'est ce qui rend le sujet réputé
-difficile. Il ne s'agit pas d'apprendre une bibliothèque de plus, mais de
-renoncer à une intuition.
-
+Une cuisine de restaurant fonctionne exactement ainsi, et c'est pour cette
+raison qu'elle servira de fil conducteur à toute cette section. Un samedi soir,
+trois cuisiniers sortent deux cents plats. Aucun ne prépare un plat du début à
+la fin avant de passer au suivant. L'eau des pâtes met huit minutes à bouillir,
+la sauce en met vingt à réduire, et un cuisinier qui resterait planté devant sa
+casserole ferait fermer le restaurant. Tout le métier consiste à ne jamais rester
+immobile pendant que quelque chose cuit. Il y a deux façons d'y parvenir, et
+elles n'ont presque rien à voir l'une avec l'autre.
 
 {{< illustration src="cuisine.svg" legende="Trois plats à faire, dans les trois cas. Le cuisinier peut les enchaîner l'un après l'autre. Il peut aussi les mener de front en passant de l'un à l'autre, et c'est la **concurrence** : rien n'a changé sinon son organisation. Ou trois cuisiniers peuvent s'y mettre, et c'est le **parallélisme** : cette fois ce sont les ressources qui ont changé." >}}
 
-On pourrait espérer que tout cela ne regarde que les auteurs de systèmes
-d'exploitation. Ce n'est pas le cas. L'application que vous développerez cette session devra répondre à
-plusieurs personnes en même temps, sans faire patienter la deuxième jusqu'à ce
-que la première ait fini. Quand elle enverra un courriel de confirmation, elle
-ne devra pas immobiliser celui qui vient de cliquer pendant que le message
-chemine. Rien de tout cela n'est exotique, et pourtant rien de tout cela ne
-fonctionne si le programme ne sait mener qu'une chose à la fois. Le reste du
-cours s'appuie d'ailleurs déjà sur ces mécanismes sans les avoir jamais
-expliqués, dans les sections sur
-[les APIs]({{< relref "/docs/module3/20-apis" >}}) et sur
-[la scalabilité]({{< relref "/docs/module5/60-scalabilite" >}}).
+La première est de s'organiser pour mener plusieurs plats de front, seul. La
+seconde est d'embaucher. Un logiciel dispose des deux&nbsp;: un programme peut être
+écrit pour ne jamais attendre les bras croisés, et une machine d'aujourd'hui ne
+contient plus un seul processeur mais huit ou dix, autant de cuisiniers
+supplémentaires. L'application que vous construirez cette session aura besoin
+des deux. Elle devra répondre à plusieurs personnes à la fois sans faire
+patienter la deuxième derrière la première, et elle ne devra pas figer l'écran
+de quelqu'un pendant qu'un courriel de confirmation s'envoie.
 
-Reste que c'est difficile, et d'une difficulté particulière&nbsp;: les outils sur
-lesquels vous avez appris à compter n'y voient rien. Edward Lee dirige à
-Berkeley, depuis 2000, un projet qui construit exactement ce genre de logiciels,
-avec une discipline peu commune&nbsp;: relecture ligne à ligne par des gens qui
-connaissent le sujet mieux que quiconque, tests de non-régression couvrant
-100&nbsp;% du code. Le système a tourné quatre ans sans le moindre incident. Le
-26 avril 2004, il s'est figé d'un coup et n'a plus rien fait du tout. Le défaut
-y était depuis le premier jour.
-
-Retenez ce chiffre de 100&nbsp;%, parce que la section sur
-[les tests]({{< relref "/docs/module2/20-tests" >}}) vous apprendra à vous en
-méfier, et voici son démenti le plus spectaculaire. Ni la relecture par des
-experts, ni une couverture totale n'ont révélé le défaut. C'est la première
-fois dans ce cours qu'on rencontre une catégorie d'erreurs contre laquelle nos
-outils habituels ne peuvent à peu près rien, et c'est ce qui justifie de lui
-consacrer une section entière.
-
-Sa place dans ce module découle du reste. Le module 2 s'intitule « Concevoir un
-programme correct », et une erreur de ce genre en est l'archétype&nbsp;: elle ne
-fait pas planter le programme, elle lui fait produire une mauvaise réponse, de
-temps en temps, sans jamais rien signaler.
+Ce qui rend le sujet difficile, c'est ce qui se passe quand deux cuisiniers ont
+besoin du même couteau au même instant. Ou quand l'un sale la soupe que l'autre
+vient de saler. Rien ne s'effondre, aucun plat ne brûle. La soupe est simplement
+trop salée, une fois sur cent, et personne ne sait dire pourquoi. Ces erreurs-là
+ne se voient pas en goûtant une fois, et c'est ce qui les rend redoutables&nbsp;:
+elles passent les tests, parce que les tests goûtent une fois. Une erreur de ce
+genre ne fait pas planter le programme. Elle lui fait donner une mauvaise
+réponse, de temps en temps, sans rien signaler, et c'est l'archétype du défaut
+qu'un module intitulé « Concevoir un programme correct » se doit de traiter.
 
 Le parcours suit cinq étapes. On commencera par **pourquoi** le sujet s'impose,
 en remontant au moment où le matériel a cessé d'accélérer tout seul, et en

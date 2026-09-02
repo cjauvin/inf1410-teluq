@@ -110,11 +110,12 @@ ordonnanceur).
 
 ### Ce qui casse (à faire)
 - Conditions de course, verrous, interblocage, Dijkstra et les sémaphores (1965)
+- Conclure sur Edward Lee : l'interblocage de Ptolemy resté caché quatre ans
+  malgré 100 % de couverture, puis la thèse de *The Problem with Threads*
+  (2006). Déplacé depuis l'introduction, où il faisait chute de registre après
+  la cuisine, et où le lecteur ne pouvait pas encore l'évaluer
 
 ### Ne pas partager (à faire)
-- Ouvrir sur la thèse d'Edward Lee, *The Problem with Threads* (2006) : les
-  threads détruisent le déterminisme. L'argument est déplacé ici depuis
-  l'introduction, où le lecteur ne pouvait pas encore l'évaluer
 - CSP (Hoare, 1978), acteurs (Hewitt, 1973), Erlang, QNX, immutabilité
 
 ### Ne jamais bloquer (à faire)
