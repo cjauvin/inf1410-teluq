@@ -50,6 +50,10 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
   plutôt que de compter sur sa bonne volonté. Comme la protection mémoire, la
   garantie naît sur les gros systèmes des années 60 et met trente ans à
   atteindre les machines personnelles → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+- **Loi d'Amdahl** (Gene Amdahl, 1967)&nbsp;: la part d'un programme qu'on ne peut
+  pas répartir fixe un plafond au gain du parallélisme. Avec 10&nbsp;% de travail
+  séquentiel, dix coeurs donnent un peu plus de cinq fois, et une infinité de
+  coeurs jamais plus de dix → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
 - **Loi de Moore** (Gordon Moore, 1965)&nbsp;: le nombre de composants gravés sur une
   puce, à coût égal, double à intervalle régulier. Elle porte sur la quantité de
   transistors, et non sur la vitesse, contrairement à ce qu'on lui fait souvent
