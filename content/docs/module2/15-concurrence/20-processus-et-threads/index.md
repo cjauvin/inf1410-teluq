@@ -94,6 +94,20 @@ d'adressage complet, avec ses tables de traduction. Un thread ne demande qu'une
 pile et de quoi noter où il en est. On peut mesurer l'écart en quelques lignes,
 en créant cinq cents fois chacun et en les laissant s'arrêter aussitôt.
 
+{{% hint info %}}
+**Pourquoi ces exemples ne s'exécutent pas dans la page.** Ailleurs dans le
+cours, les blocs Python se lancent d'un clic, grâce à Pyodide, une version de
+Python qui tourne dans le navigateur. Ceux de cette section ne le peuvent pas,
+et la raison est elle-même une leçon de la section. Pyodide vit dans l'unique
+fil d'exécution de la page web, et n'a accès ni aux threads ni aux processus
+du système&nbsp;: lui demander un thread donne `RuntimeError: can't start new
+thread`, et un `fork()` ou un `multiprocessing` répond `Function not
+implemented`. Le navigateur est précisément l'un de ces environnements à un
+seul fil dont parlera la dernière sous-section, et `asyncio`, lui, y
+fonctionne. Les exemples de cette page se copient donc dans un fichier et se
+lancent au terminal, avec `uv run`.
+{{% /hint %}}
+
 ```python
 import os, time, threading
 
