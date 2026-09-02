@@ -145,6 +145,92 @@ séquentiel. `with verrou:` et `BEGIN … COMMIT` sont la même idée, l'une dan
 le programme, l'autre dans la base, et le prix est le même, la correction se
 paie en vitesse.
 
+## Chacun tient ce dont l'autre a besoin
+
+Le verrou règle la condition de course, et il en crée une autre catégorie de
+problème, plus sournoise encore. Deux cuisiniers, un couteau, une planche.
+Le premier prend le couteau et se retourne pour attraper la planche. Le second,
+au même instant, a pris la planche et tend la main vers le couteau. Chacun tient
+ce dont l'autre a besoin, chacun attend que l'autre lâche, et aucun ne lâchera
+jamais. On appelle cela un **interblocage** (*deadlock*). Dijkstra en a donné
+en 1965 la formulation restée classique, cinq philosophes à table avec cinq
+fourchettes, chacun ayant besoin de ses deux voisines pour manger, et Tony
+Hoare l'a baptisée plus tard le **dîner des philosophes**. Qu'il s'agisse
+d'un dîner n'est pas un hasard de cette section, c'est le problème lui-même.
+
+```python
+import threading, time
+
+couteau = threading.Lock()
+planche = threading.Lock()
+
+def cuisinier_a():
+    with couteau:                 # prend le couteau
+        time.sleep(0.01)          # le temps de se retourner
+        with planche:             # puis veut la planche
+            print("A a coupé")
+
+def cuisinier_b():
+    with planche:                 # prend la planche
+        time.sleep(0.01)
+        with couteau:             # puis veut le couteau
+            print("B a coupé")
+
+# daemon=True : sans cela, le programme ne se terminerait jamais, ce qui est
+# précisément le symptôme. On le laisse ici pour pouvoir constater et sortir.
+a = threading.Thread(target=cuisinier_a, daemon=True)
+b = threading.Thread(target=cuisinier_b, daemon=True)
+debut = time.perf_counter()
+a.start(); b.start()
+a.join(timeout=3); b.join(timeout=3)
+print(f"après {time.perf_counter() - debut:.1f} s : A vivant={a.is_alive()}, B vivant={b.is_alive()}")
+```
+
+```shell
+$ uv run --no-project python interblocage.py
+après 6.0 s : A vivant=True, B vivant=True
+```
+
+Regardez ce qui **ne** s'est **pas** affiché. Ni « A a coupé », ni « B a
+coupé », ni la moindre erreur. Un interblocage ne fait pas planter le programme
+et ne lève aucune exception. Il l'arrête, en silence, pour toujours. Sans le
+`daemon=True` et les `join` à délai, ce script ne rendrait jamais la main, et
+c'est ainsi qu'un tel défaut se manifeste en production&nbsp;: par un service qui
+répond de moins en moins, puis plus du tout, sans une ligne dans les journaux.
+C'est exactement ce qui a figé le projet d'Edward Lee dont on parlera plus bas.
+
+Le remède tient en une règle, et elle est plus simple que le problème&nbsp;:
+**toujours prendre les verrous dans le même ordre.** Si les deux cuisiniers
+conviennent de saisir le couteau avant la planche, celui qui a le couteau
+finira toujours par avoir la planche, parce que l'autre n'a pas encore le droit
+d'y toucher. Dans le programme ci-dessus, cela revient à inverser les deux
+verrous de `cuisinier_b`, pour qu'il les prenne dans le même ordre que
+`cuisinier_a`. C'est le seul changement.
+
+```python
+def cuisinier_b():
+    with couteau:                 # le couteau d'abord, comme A
+        time.sleep(0.01)
+        with planche:             # la planche ensuite
+            print("B a coupé")
+```
+
+Relancé avec cette seule fonction modifiée, le même fichier se termine
+aussitôt.
+
+```shell
+$ uv run --no-project python interblocage.py
+A a coupé
+B a coupé
+après 0.0 s : A vivant=False, B vivant=False
+```
+
+La règle est simple à énoncer et difficile à tenir, parce qu'elle doit valoir
+pour tous les verrous de tout le programme, y compris ceux que prennent les
+bibliothèques qu'on appelle sans le savoir. C'est pour cela que quatre ans de
+tests n'ont rien vu chez Lee&nbsp;: l'ordre fautif ne se produisait que sous une
+charge que personne n'avait provoquée.
+
 <!-- À ÉCRIRE, en conclusion de cette sous-section, comme pont vers « Ne pas
      partager » : Edward Lee et le projet Ptolemy. Un logiciel construit à
      Berkeley depuis 2000 par des spécialistes de la concurrence, relu ligne à
