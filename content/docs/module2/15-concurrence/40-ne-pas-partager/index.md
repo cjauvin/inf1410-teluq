@@ -35,3 +35,33 @@ que Hoare a vue avant tout le monde&nbsp;: dans un tel système, une condition d
 course ne peut pas se produire, parce qu'elle ne peut même pas s'écrire. Il n'y
 a pas de variable à lire pendant qu'un autre l'écrit. L'exclusion mutuelle,
 que Dijkstra avait dû inventer, vient gratuitement avec le canal.
+
+## Des acteurs qui ne se voient pas
+
+Hoare n'était pas le premier. Cinq ans plus tôt, en 1973, Carl Hewitt et deux
+étudiants du laboratoire d'intelligence artificielle du MIT, Peter Bishop et
+Richard Steiger, avaient proposé une idée voisine sous un autre nom, dans un
+article présenté à la conférence IJCAI. Ils ne cherchaient pas à écrire des
+systèmes d'exploitation, mais à modéliser l'intelligence comme une foule
+d'agents indépendants qui se parlent. Leur unité de base est l'**acteur**&nbsp;: un
+objet qui possède un état que lui seul peut lire ou modifier, et une **boîte
+aux lettres** (*mailbox*) où les autres déposent des messages. Quand un acteur
+traite un message, il peut faire exactement trois choses, envoyer des messages
+à d'autres acteurs, en créer de nouveaux, et décider de son propre
+comportement pour le message suivant. Rien d'autre. Personne ne touche jamais
+à l'état d'un acteur autrement qu'en lui écrivant.
+
+La différence avec Hoare tient à un mot, et elle compte. Dans CSP, l'envoi
+est un rendez-vous&nbsp;: celui qui envoie attend que l'autre ait reçu. Chez
+Hewitt, on dépose le message dans la boîte et on repart sans attendre,
+l'autre le lira quand il y viendra. Les messages des acteurs sont
+**asynchrones**, et c'est ce qui les rend naturels dès que les interlocuteurs
+sont loin l'un de l'autre, sur une autre machine, ou simplement occupés. En
+cuisine, l'acteur est le cuisinier à son poste, et la boîte aux lettres est le
+rail où s'accrochent les bons de commande&nbsp;: la salle y pique un ticket et
+retourne à ses tables sans attendre que le plat soit parti, le cuisinier les
+prend dans l'ordre, et personne ne vient tourner ses casseroles à sa place.
+
+L'idée est restée pendant plus de dix ans une affaire de laboratoire, une
+belle théorie que peu de programmes utilisaient. Il aura fallu qu'une
+compagnie de téléphone ait un problème que rien d'autre ne résolvait.
