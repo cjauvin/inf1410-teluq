@@ -1,26 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 7 703 603" class="fig-svg" role="img"
-     aria-label="Trois rangées en cuisine, avec toujours trois plats à faire. Première rangée, Séquentiel : un cuisinier et trois casseroles reliées par des flèches, il les fait l'une après l'autre. Deuxième rangée, Concurrence : le même cuisinier, seul, devant les trois casseroles alignées sur un plan de cuisson et toutes en train de cuire, reliées à lui par trois traits en pointillé. Troisième rangée, Parallélisme : trois cuisiniers devant les trois mêmes casseroles, chacun relié à la sienne. Du premier dessin au deuxième, seule l'organisation du cuisinier change ; du deuxième au troisième, c'est le nombre de cuisiniers.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 0 708 520" class="fig-svg" role="img"
+     aria-label="Trois vignettes en cuisine disposées en triangle, avec toujours trois plats à faire. En haut, Séquentiel : un cuisinier et trois casseroles reliées par des flèches, il les fait l'une après l'autre. En bas à gauche, Concurrence : le même cuisinier, seul, devant les trois casseroles alignées sur un plan de cuisson et toutes en train de cuire, reliées à lui par trois traits en pointillé. En bas à droite, Parallélisme : trois cuisiniers devant les trois mêmes casseroles, chacun relié à la sienne. Les deux vignettes du bas sont deux façons différentes de s'écarter de celle du haut : dans la première seule l'organisation du cuisinier change, dans la seconde c'est le nombre de cuisiniers.">
 
-  <!-- Trois plats à faire dans les trois cas, ce qui fait de la comparaison une
-       expérience contrôlée. Ce qui change, ce sont deux choses distinctes :
-       l'organisation entre la première rangée et la deuxième, les ressources
-       entre la deuxième et la troisième. C'est la distinction de Rob Pike.
+  <!-- Disposition en triangle : le séquentiel en haut est le point de départ,
+       et les deux cas du bas en sont deux écarts distincts. En file, on aurait
+       suggéré une progression alors qu'il s'agit de deux branches.
 
-       Empilement vertical plutôt que trois colonnes : à trois colonnes dans une
-       largeur de texte, l'échelle tombe sous 0,7 et les casseroles deviennent
-       minuscules. -->
+       Une teinte par cas, sur le titre et les casseroles. Les cuisiniers restent
+       neutres, puisque ce qui distingue les vignettes n'est pas eux. -->
 
   <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" fill="currentColor">
 
     <!-- ═══ Séquentiel ═══ -->
-    <text x="40" y="120" font-size="19" font-weight="700">Séquentiel</text>
-    <g stroke="currentColor" fill="none" stroke-width="1.8" opacity="0.4" stroke-linecap="round">
-      <path d="M370 71 H 450"/><path d="M441 64 L 450 71 L 441 78"/>
-      <path d="M530 71 H 610"/><path d="M601 64 L 610 71 L 601 78"/>
+    <text x="350" y="43" font-size="19" font-weight="700" text-anchor="middle"
+          style="color: var(--a1, #5b7fa6)" fill="currentColor">Séquentiel</text>
+    <g style="color: var(--a1, #5b7fa6)" stroke="currentColor" fill="none" opacity="0.45" stroke-linecap="round">
+      <path d="M230 111 H 310" stroke-width="1.8"/><path d="M301 104 L 310 111 L 301 118" stroke-width="1.8"/>
+      <path d="M390 111 H 470" stroke-width="1.8"/><path d="M461 104 L 470 111 L 461 118" stroke-width="1.8"/>
     </g>
     <g>
-      <g transform="translate(330,65)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.14"/>
+      <g transform="translate(190,105)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.16"/>
         <g stroke-width="2" fill="none">
           <path d="M-31 -6 H 31"/>
           <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
@@ -31,8 +30,8 @@
           <path d="M12 -14 q 5 -7 0 -14"/>
         </g>
       </g>
-      <g transform="translate(490,65)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.14"/>
+      <g transform="translate(350,105)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.16"/>
         <g stroke-width="2" fill="none">
           <path d="M-31 -6 H 31"/>
           <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
@@ -43,8 +42,8 @@
           <path d="M12 -14 q 5 -7 0 -14"/>
         </g>
       </g>
-      <g transform="translate(650,65)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.14"/>
+      <g transform="translate(510,105)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.16"/>
         <g stroke-width="2" fill="none">
           <path d="M-31 -6 H 31"/>
           <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
@@ -56,10 +55,10 @@
         </g>
       </g>
     </g>
-    <g stroke="currentColor" fill="none" stroke-width="1.7" opacity="0.45">
-      <path d="M330 110 V 95"/>
+    <g style="color: var(--a1, #5b7fa6)" stroke="currentColor" fill="none" stroke-width="1.7" opacity="0.5">
+      <path d="M190 150 V 135"/>
     </g>
-      <g transform="translate(330,170)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+      <g transform="translate(190,210)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
         <circle cx="0" cy="-7" r="11" fill="none"/>
         <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
         <g transform="rotate(-5 0 -17.5)">
@@ -75,11 +74,14 @@
       </g>
 
     <!-- ═══ Concurrence ═══ -->
-    <text x="40" y="315" font-size="19" font-weight="700">Concurrence</text>
-    <path d="M285 293 H 695" stroke="currentColor" stroke-width="2.4" opacity="0.4" stroke-linecap="round"/>
+    <text x="185" y="303" font-size="19" font-weight="700" text-anchor="middle"
+          style="color: var(--a2, #6f9455)" fill="currentColor">Concurrence</text>
+    <g style="color: var(--a2, #6f9455)" stroke="currentColor" fill="none" opacity="0.45" stroke-linecap="round">
+      <path d="M30 398 H 340" stroke-width="2.4"/>
+    </g>
     <g>
-      <g transform="translate(330,260)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.14"/>
+      <g transform="translate(75,365)" style="color: var(--a2, #6f9455)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.16"/>
         <g stroke-width="2" fill="none">
           <path d="M-31 -6 H 31"/>
           <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
@@ -90,8 +92,8 @@
           <path d="M12 -14 q 5 -7 0 -14"/>
         </g>
       </g>
-      <g transform="translate(490,260)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.14"/>
+      <g transform="translate(185,365)" style="color: var(--a2, #6f9455)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.16"/>
         <g stroke-width="2" fill="none">
           <path d="M-31 -6 H 31"/>
           <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
@@ -102,8 +104,8 @@
           <path d="M12 -14 q 5 -7 0 -14"/>
         </g>
       </g>
-      <g transform="translate(650,260)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.14"/>
+      <g transform="translate(295,365)" style="color: var(--a2, #6f9455)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.16"/>
         <g stroke-width="2" fill="none">
           <path d="M-31 -6 H 31"/>
           <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
@@ -115,12 +117,12 @@
         </g>
       </g>
     </g>
-    <g stroke="currentColor" fill="none" stroke-width="1.7" opacity="0.45" stroke-dasharray="5 6">
-      <path d="M482 305 C 450 295, 380 287, 330 292"/>
-      <path d="M490 305 V 290"/>
-      <path d="M498 305 C 530 295, 600 287, 650 292"/>
+    <g style="color: var(--a2, #6f9455)" stroke="currentColor" fill="none" stroke-width="1.7" opacity="0.5" stroke-dasharray="5 6">
+      <path d="M177 410 C 155 400, 105 392, 75 397"/>
+      <path d="M185 410 V 395"/>
+      <path d="M193 410 C 215 400, 265 392, 295 397"/>
     </g>
-      <g transform="translate(490,365)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+      <g transform="translate(185,470)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
         <circle cx="0" cy="-7" r="11" fill="none"/>
         <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
         <g transform="rotate(-5 0 -17.5)">
@@ -136,11 +138,14 @@
       </g>
 
     <!-- ═══ Parallélisme ═══ -->
-    <text x="40" y="510" font-size="19" font-weight="700">Parallélisme</text>
-    <path d="M285 488 H 695" stroke="currentColor" stroke-width="2.4" opacity="0.4" stroke-linecap="round"/>
+    <text x="535" y="303" font-size="19" font-weight="700" text-anchor="middle"
+          style="color: var(--a3, #c06e4a)" fill="currentColor">Parallélisme</text>
+    <g style="color: var(--a3, #c06e4a)" stroke="currentColor" fill="none" opacity="0.45" stroke-linecap="round">
+      <path d="M380 398 H 690" stroke-width="2.4"/>
+    </g>
     <g>
-      <g transform="translate(330,455)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.14"/>
+      <g transform="translate(425,365)" style="color: var(--a3, #c06e4a)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.16"/>
         <g stroke-width="2" fill="none">
           <path d="M-31 -6 H 31"/>
           <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
@@ -151,8 +156,8 @@
           <path d="M12 -14 q 5 -7 0 -14"/>
         </g>
       </g>
-      <g transform="translate(490,455)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.14"/>
+      <g transform="translate(535,365)" style="color: var(--a3, #c06e4a)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.16"/>
         <g stroke-width="2" fill="none">
           <path d="M-31 -6 H 31"/>
           <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
@@ -163,8 +168,8 @@
           <path d="M12 -14 q 5 -7 0 -14"/>
         </g>
       </g>
-      <g transform="translate(650,455)" style="color: var(--a1, #5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.14"/>
+      <g transform="translate(645,365)" style="color: var(--a3, #c06e4a)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity="0.16"/>
         <g stroke-width="2" fill="none">
           <path d="M-31 -6 H 31"/>
           <path d="M-31 0 q -7 5 0 10"/><path d="M31 0 q 7 5 0 10"/>
@@ -176,12 +181,12 @@
         </g>
       </g>
     </g>
-    <g stroke="currentColor" fill="none" stroke-width="1.7" opacity="0.45">
-      <path d="M330 500 V 485"/>
-      <path d="M490 500 V 485"/>
-      <path d="M650 500 V 485"/>
+    <g style="color: var(--a3, #c06e4a)" stroke="currentColor" fill="none" stroke-width="1.7" opacity="0.5">
+      <path d="M425 410 V 395"/>
+      <path d="M535 410 V 395"/>
+      <path d="M645 410 V 395"/>
     </g>
-      <g transform="translate(330,560)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+      <g transform="translate(425,470)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
         <circle cx="0" cy="-7" r="11" fill="none"/>
         <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
         <g transform="rotate(-5 0 -17.5)">
@@ -195,7 +200,7 @@
           </g>
         </g>
       </g>
-      <g transform="translate(490,560)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+      <g transform="translate(535,470)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
         <circle cx="0" cy="-7" r="11" fill="none"/>
         <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
         <g transform="rotate(-5 0 -17.5)">
@@ -209,7 +214,7 @@
           </g>
         </g>
       </g>
-      <g transform="translate(650,560)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+      <g transform="translate(645,470)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
         <circle cx="0" cy="-7" r="11" fill="none"/>
         <path d="M-20 26 a 20 20 0 0 1 40 0" fill="none"/>
         <g transform="rotate(-5 0 -17.5)">
