@@ -131,9 +131,12 @@ processus       222.8 µs par unité
 
 {{% hint warning %}}
 `os.fork()` n'existe que sur les systèmes de la famille Unix, donc macOS et
-Linux. Sous Windows, ce script s'arrêtera sur une `AttributeError`, parce que
-le système n'offre tout simplement pas cette manière de créer un processus. La
-portion sur les threads, elle, fonctionne partout.
+Linux. Sous Windows sans WSL, ce script s'arrêtera sur une `AttributeError`,
+parce que le système n'offre tout simplement pas cette manière de créer un
+processus. Sous WSL, qui est un vrai Linux, tout fonctionne, et c'est
+d'ailleurs l'environnement que
+[le cours recommande]({{< relref "/docs/environnements" >}}) aux utilisateurs
+de Windows. La portion sur les threads, elle, fonctionne partout.
 {{% /hint %}}
 
 Un processus coûte donc environ **cinq fois** un thread, ce qui est déjà
