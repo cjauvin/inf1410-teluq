@@ -231,16 +231,39 @@ bibliothèques qu'on appelle sans le savoir. C'est pour cela que quatre ans de
 tests n'ont rien vu chez Lee&nbsp;: l'ordre fautif ne se produisait que sous une
 charge que personne n'avait provoquée.
 
-<!-- À ÉCRIRE, en conclusion de cette sous-section, comme pont vers « Ne pas
-     partager » : Edward Lee et le projet Ptolemy. Un logiciel construit à
-     Berkeley depuis 2000 par des spécialistes de la concurrence, relu ligne à
-     ligne, couvert à 100 % par des tests de non-régression, qui a tourné
-     quatre ans sans incident puis s'est figé le 26 avril 2004 sur un
-     interblocage présent depuis le premier jour. L'anecdote arrive après que
-     le lecteur a vu un interblocage de ses yeux, donc elle porte. Renvoyer à
-     la section sur les tests (limites de la couverture). Enchaîner sur la
-     thèse de son article *The Problem with Threads* (IEEE Computer, mai 2006) :
-     les threads détruisent le déterminisme, ce qui permet de comprendre un
-     programme en le lisant. C'est la conclusion naturelle de « Ce qui casse »
-     et l'ouverture de « Ne pas partager ». Portrait : edward-lee.webp dans le
-     dossier de la section, CC BY-SA 4.0, crédit dans le title. -->
+## Ce que les tests ne peuvent pas voir
+
+Tout ce que cette sous-section a montré a une propriété commune, et c'est la
+plus inquiétante&nbsp;: ça passe les tests. Le compteur faux donnait 4 000 000
+sur CPython 3.13, la bonne réponse, mille fois de suite. L'interblocage ne se
+produit que si A et B se retournent au même centième de seconde, ce qu'aucun
+test n'a de raison de provoquer. Et la couverture, dont
+[la section sur les tests]({{< relref "/docs/module2/20-tests" >}}) vous a
+appris à vous méfier, mesure quelles lignes ont été exécutées, pas dans lequel
+des onze milliards d'ordres elles l'ont été. Un test goûte la soupe une fois.
+Il n'a aucun moyen de savoir qu'une fois sur cent, deux cuisiniers la salent.
+
+L'histoire la plus parlante sur ce point est celle d'Edward Lee, professeur à
+l'Université de Californie à Berkeley, qui y dirige depuis 2000 le projet
+Ptolemy. Ce projet construit
+des logiciels concurrents pour des systèmes embarqués avec une discipline peu
+commune&nbsp;: relecture ligne à ligne par des spécialistes de la concurrence,
+tests de non-régression couvrant 100&nbsp;% du code. Le système a tourné quatre
+ans sans le moindre incident. Le 26 avril 2004, il s'est figé. C'était un
+interblocage, exactement celui que vous venez de provoquer en vingt lignes, et
+il était dans le code depuis le premier jour. Quatre ans de tests l'avaient
+traversé sans le voir, parce que l'ordre fautif ne se produisait que sous une
+charge que personne n'avait jamais exercée.
+
+{{< image src="edward-lee.webp" alt="Edward A. Lee, professeur d'informatique à l'Université de Californie à Berkeley" title="Edward A. Lee en 2018. Photo : Edward A. Lee, CC BY-SA 4.0, via Wikimedia Commons" loading="lazy" >}}
+
+Lee en a tiré une conclusion tranchée, dans un article de 2006 au titre sans
+ambiguïté, *The Problem with Threads*. Les threads, dit-il, ne sont pas une
+mauvaise réalisation d'une bonne idée. Ce sont une mauvaise abstraction. Ils
+prennent un programme séquentiel, compréhensible parce que **déterministe**,
+c'est-à-dire parce qu'il fait la même chose à chaque exécution, et le rendent
+non déterministe par défaut. Puis ils demandent au programmeur de reconquérir
+le déterminisme perdu à coups de verrous, un par un, sans jamais lui donner le
+moyen de prouver qu'il n'en manque pas. C'est le monde à l'envers. La bonne
+question n'est pas comment poser assez de verrous, mais comment ne pas avoir à
+en poser. C'est le sujet de la sous-section suivante.

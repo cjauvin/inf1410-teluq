@@ -50,6 +50,19 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
   plutôt que de compter sur sa bonne volonté. Comme la protection mémoire, la
   garantie naît sur les gros systèmes des années 60 et met trente ans à
   atteindre les machines personnelles → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+- **Condition de course** (*race condition*)&nbsp;: quand le résultat d'un
+  programme dépend de l'ordre dans lequel ses threads s'entrelacent, ordre que
+  personne ne choisit. Le programme n'est pas faux, il est parfois faux, et ses
+  tests passent → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
+- **Interblocage** (*deadlock*, Dijkstra, 1965)&nbsp;: deux threads qui tiennent
+  chacun le verrou dont l'autre a besoin s'attendent pour toujours, sans
+  planter ni rien signaler. La règle qui l'évite tient en une ligne, toujours
+  prendre les verrous dans le même ordre, et elle est difficile à tenir parce
+  qu'elle doit valoir pour tout le programme → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
+- **On achète la correction avec de la vitesse**&nbsp;: un verrou remet les
+  threads en file indienne devant ce qu'il protège, et une file indienne n'est
+  pas du parallélisme. Protéger le moins possible pour en perdre le moins
+  possible → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
 - **CPU-bound et I/O-bound**&nbsp;: un programme est lent soit parce qu'il calcule,
   limité par le processeur, soit parce qu'il attend, limité par les
   entrées-sorties. Les deux se ressemblent vus du dehors et leurs remèdes sont

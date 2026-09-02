@@ -108,12 +108,20 @@ ordonnanceur).
 - Le free-threading (PEP 703) : mêmes fichiers, deux interpréteurs, et un
   compteur qui révèle un bogue que le verrou masquait depuis toujours
 
-### Ce qui casse (à faire)
-- Conditions de course, verrous, interblocage, Dijkstra et les sémaphores (1965)
-- Conclure sur Edward Lee : l'interblocage de Ptolemy resté caché quatre ans
-  malgré 100 % de couverture, puis la thèse de *The Problem with Threads*
-  (2006). Déplacé depuis l'introduction, où il faisait chute de registre après
-  la cuisine, et où le lecteur ne pouvait pas encore l'évaluer
+### Ce qui casse (complété)
+- La condition de course disséquée sur le compteur : lire, augmenter, écrire,
+  avec le cas correct puis le cas fautif en tableaux
+- La combinatoire des entrelacements, et un ordonnanceur imprévisible mais pas
+  aléatoire, ce qui explique qu'un test relancé mille fois ne prouve rien
+- Le verrou, la section critique, Dijkstra et le sémaphore (1965), avec le
+  coût mesuré : correct, et trois fois plus lent
+- Le lien avec la transaction et l'isolation d'ACID (Jim Gray), posé dans les
+  deux sens avec la section sur le stockage
+- L'interblocage, le dîner des philosophes, une démonstration qui ne se
+  termine jamais, et la règle de l'ordre des verrous
+- Ce que les tests ne peuvent pas voir, puis Edward Lee : Ptolemy figé après
+  quatre ans malgré 100 % de couverture, et la thèse de *The Problem with
+  Threads*, pont vers « Ne pas partager »
 
 ### Ne pas partager (à faire)
 - CSP (Hoare, 1978), acteurs (Hewitt, 1973), Erlang, QNX, immutabilité

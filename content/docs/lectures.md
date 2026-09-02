@@ -88,13 +88,27 @@ intégrées dans le cours.)*
 
 ## Articles et essais
 
+- Edsger W. Dijkstra, *Cooperating Sequential Processes* (EWD123, 1965)
+  [[texte](https://www.cs.utexas.edu/~EWD/ewd01xx/EWD123.PDF)]&nbsp;: le problème
+  de l'exclusion mutuelle, le sémaphore qui le résout, et le dîner des
+  philosophes qui montre ce que les verrous cassent à leur tour → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
+- C. A. R. Hoare, *Communicating Sequential Processes* (CACM, 1978)
+  [[texte](https://www.cs.cmu.edu/~crary/819-f09/Hoare78.pdf)]&nbsp;: des tâches
+  qui ne partagent rien et ne s'échangent que des messages. Baptise le dîner
+  des philosophes, et fonde la lignée qui mène à Go → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
+- Jim Gray, *The Transaction Concept: Virtues and Limitations* (VLDB, 1981)
+  [[texte](https://jimgray.azurewebsites.net/papers/thetransactionconcept.pdf)]&nbsp;:
+  la transaction comme réponse de la base de données au même problème que le
+  verrou résout dans le programme → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}}),
+  [Module 3, Les données (stockage)]({{< ref "/docs/module3/40-données/20-stockage" >}})
 - Edward A. Lee, *The Problem with Threads* (IEEE Computer, mai 2006) [[DOI](https://doi.org/10.1109/MC.2006.180)]&nbsp;: les
   threads détruisent le déterminisme, c'est-à-dire ce qui permet de comprendre
   un programme en le lisant. À l'appui, son propre projet Ptolemy, relu par des
   spécialistes de la concurrence et couvert à 100&nbsp;% par des tests, resté quatre
   ans sans incident avant de se bloquer le 26 avril 2004 sur un interblocage
   présent depuis le premier jour →
-  [Module 2, Concurrence et parallélisme]({{< ref "/docs/module2/15-concurrence" >}})
+  [Module 2, Concurrence et parallélisme]({{< ref "/docs/module2/15-concurrence" >}}),
+  [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
 - Sam Gross, *PEP 703&nbsp;: Making the Global Interpreter Lock Optional in CPython*
   (2023) [[texte](https://peps.python.org/pep-0703/)]&nbsp;: la proposition qui défait un compromis vieux de trente ans, acceptée
   puis livrée en variante expérimentale. Le même code y devient trois fois plus
