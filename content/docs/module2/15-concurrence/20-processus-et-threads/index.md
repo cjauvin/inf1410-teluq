@@ -53,6 +53,8 @@ bureau. L'écran bleu de Windows et la bombe du Mac, que les plus anciens se
 rappellent, sont les vestiges d'une époque où un seul programme pouvait tout
 faire tomber.
 
+{{< image src="ecran-bleu.webp" alt="L'écran bleu de Windows 98 : du texte blanc sur fond bleu uni annonce qu'une exception fatale s'est produite dans l'application en cours, et invite à appuyer sur une touche pour tenter de continuer, ou sur Ctrl+Alt+Suppr pour redémarrer, en perdant le travail non sauvegardé" title="L'écran bleu de Windows 9x. Image dans le domaine public, via Wikimedia Commons" loading="lazy" >}}
+
 ## Se parler coûte cher
 
 Cette isolation a un prix, et c'est lui qui explique tout ce qui suit. Deux
