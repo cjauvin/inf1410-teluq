@@ -1,0 +1,20 @@
+{{/*
+  Une rangée d'images côte à côte.
+
+  Le shortcode image pose chaque image seule sur sa ligne, centrée. Quand deux
+  images se répondent, deux crashs d'époque par exemple, les empiler les fait
+  lire comme une suite alors qu'il s'agit d'une paire. Ce conteneur les met en
+  ligne, à hauteur centrée, et les laisse se replier en colonne sur un écran
+  étroit.
+
+    {{< rangee >}}
+    {{< image src="a.webp" ... >}}
+    {{< image src="b.webp" ... >}}
+    {{< /rangee >}}
+
+  L'agrandissement au clic de chaque image continue de fonctionner : il repose
+  sur la case à cocher propre à chaque étiquette, que le conteneur ne touche pas.
+*/}}
+<div class="images-rangee">
+  {{ .Inner }}
+</div>

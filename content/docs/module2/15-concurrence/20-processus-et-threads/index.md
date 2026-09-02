@@ -53,9 +53,10 @@ bureau. L'écran bleu de Windows et la bombe du Mac, que les plus anciens se
 rappellent, sont les vestiges d'une époque où un seul programme pouvait tout
 faire tomber.
 
+{{< rangee >}}
 {{< image src="ecran-bleu.webp" alt="L'écran bleu de Windows 98 : du texte blanc sur fond bleu uni annonce qu'une exception fatale s'est produite dans l'application en cours, et invite à appuyer sur une touche pour tenter de continuer, ou sur Ctrl+Alt+Suppr pour redémarrer, en perdant le travail non sauvegardé" title="L'écran bleu de Windows 9x. Image dans le domaine public, via Wikimedia Commons" loading="lazy" >}}
-
 {{< image src="bombe-mac.webp" alt="La boîte de dialogue d'erreur système du Mac OS classique : une bombe à mèche allumée, le message Sorry, a system error occurred, et un bouton Restart, seule issue possible" title="La bombe du Mac OS classique, ère du Système 7. Image dans le domaine public, via Wikimedia Commons" loading="lazy" >}}
+{{< /rangee >}}
 
 ## Se parler coûte cher
 

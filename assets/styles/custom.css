@@ -501,3 +501,30 @@ p {
 .toc-retour:hover {
   opacity: 1;
 }
+
+/* Rangée d'images côte à côte (voir layouts/shortcodes/rangee.html).
+
+   Chaque image occupe une part égale de la largeur, plafonnée par sa propre
+   taille intrinsèque via --largeur-plafond, et le tout se replie en colonne
+   quand la rangée n'a plus la place pour deux images de 260 px. Le centrage
+   vertical fait qu'une boîte de dialogue basse et un écran plein se lisent
+   comme posés sur une même étagère. */
+.images-rangee {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-16);
+  margin: var(--space-16) 0;
+}
+
+.images-rangee .book-image {
+  flex: 1 1 260px;
+  margin: 0;
+  min-width: 0;
+}
+
+.images-rangee .book-image input:not(:checked) + img {
+  width: 100%;
+  max-width: var(--largeur-plafond, 100%);
+}
