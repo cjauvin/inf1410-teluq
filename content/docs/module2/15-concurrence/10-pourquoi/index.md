@@ -154,3 +154,15 @@ n'a aucun besoin d'un bras de plus, puisque celui qu'il a déjà ne bouge pas. I
 a besoin qu'on cesse de le laisser inerte pendant que la réponse chemine. Un
 serveur qui attend cent réponses en même temps ne réclame pas cent coeurs. Il
 lui en faut un seul, qui ne s'arrête jamais.
+
+Les programmeurs ont deux mots pour ces deux cas, et vous les rencontrerez
+partout, dans la documentation de Python comme dans n'importe quelle discussion
+sur le sujet. Un programme **CPU-bound**, limité par le processeur, est celui qui
+calcule&nbsp;: c'est le cuisinier qui hache les légumes, et il n'ira pas plus vite
+sans une paire de bras de plus. Un programme **I/O-bound**, limité par les
+entrées-sorties, est celui qui attend&nbsp;: c'est l'eau qui bout, et une paire de
+bras de plus n'y changerait rien. Le mot *bound* veut dire « limité par », et il
+désigne la ressource dont le programme manque. La plupart des applications web
+sont I/O-bound, elles passent leur vie à attendre une base de données ou un
+client, et c'est ce qui explique qu'un seul processus puisse en servir des
+centaines.

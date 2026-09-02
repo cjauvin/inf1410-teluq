@@ -50,6 +50,10 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
   plutôt que de compter sur sa bonne volonté. Comme la protection mémoire, la
   garantie naît sur les gros systèmes des années 60 et met trente ans à
   atteindre les machines personnelles → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+- **CPU-bound et I/O-bound**&nbsp;: un programme est lent soit parce qu'il calcule,
+  limité par le processeur, soit parce qu'il attend, limité par les
+  entrées-sorties. Les deux se ressemblent vus du dehors et leurs remèdes sont
+  opposés, des coeurs pour le premier, ne jamais bloquer pour le second → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
 - **Loi d'Amdahl** (Gene Amdahl, 1967)&nbsp;: la part d'un programme qu'on ne peut
   pas répartir fixe un plafond au gain du parallélisme. Avec 10&nbsp;% de travail
   séquentiel, dix coeurs donnent un peu plus de cinq fois, et une infinité de

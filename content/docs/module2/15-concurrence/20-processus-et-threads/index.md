@@ -322,7 +322,9 @@ Voilà pourquoi la distinction entre attendre et calculer, posée dans la
 sous-section précédente, valait la peine d'être posée avant tout le reste. Le
 même mot de concurrence, le même outil, et deux résultats opposés selon le
 problème. La règle à retenir tient en une ligne&nbsp;: en Python, les threads pour
-attendre, les processus pour calculer.
+l'I/O-bound, les processus pour le CPU-bound. Ou, dans les mots de la
+sous-section précédente, les threads pour attendre, les processus pour
+calculer.
 
 ## Ce que devient Python sans son verrou
 
