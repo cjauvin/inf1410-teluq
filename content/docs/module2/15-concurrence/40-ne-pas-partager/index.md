@@ -223,3 +223,44 @@ en faisant vérifier par le compilateur qu'aucune donnée n'est accessible par
 deux fils à la fois, de sorte que la condition de course y est refusée avant
 même que le programme tourne. Trois langages, trois réponses à la question de
 Lee&nbsp;: encourager, interdire, ou prouver.
+
+## Un système d'exploitation qui ne partage rien
+
+L'idée de Hoare ne s'est pas arrêtée aux langages. En 1980, à Kanata, en
+banlieue d'Ottawa, deux étudiants de l'Université de Waterloo, Gordon Bell et
+Dan Dodge, fondent Quantum Software Systems pour construire un système
+d'exploitation sur ce principe. Leur premier produit, QUNIX, sort en 1982 sur
+le processeur 8088 des premiers PC, et prend en 1984 le nom qu'il a gardé,
+**QNX**. Il tourne aujourd'hui dans les voitures du monde entier, dans des
+appareils médicaux et des équipements industriels, et il appartient depuis
+avril 2010 à Research In Motion, l'entreprise de Waterloo derrière le
+BlackBerry, qui en a fait depuis le coeur de son activité automobile.
+
+Ce qui distingue QNX, c'est ce que son noyau ne fait pas. Un système
+d'exploitation classique, Linux ou Windows, est un **noyau monolithique**&nbsp;:
+l'ordonnanceur, les pilotes de périphériques, les systèmes de fichiers et la
+pile réseau vivent dans le même espace mémoire, et se partagent tout. C'est
+efficace, et c'est exactement pour cela qu'un pilote défaillant peut emporter
+la machine entière, comme l'écran bleu de la sous-section précédente le
+montrait. QNX est un **micronoyau**. Sa propre documentation décrit ce qu'il
+contient en une phrase&nbsp;: le noyau « implémente les fonctions POSIX de base
+utilisées dans les systèmes temps réel embarqués, ainsi que les services
+fondamentaux d'échange de messages ». Rien d'autre. Les systèmes de fichiers,
+les pilotes, le réseau, « s'exécutent hors du noyau », comme des processus
+ordinaires, et les programmes les utilisent « en communiquant par messages ».
+Le passage de messages n'est pas une option de QNX, il est, selon ses propres
+mots, « la forme première de communication entre processus » de tout le
+système.
+
+La conséquence est celle d'Erlang, appliquée au système lui-même. Un pilote
+qui plante est un processus qui meurt, et on le relance, pendant que le reste
+de la machine continue. Un système de fichiers n'a aucun moyen d'écraser la
+mémoire du réseau, parce qu'il ne la voit pas. C'est ce qui vaut à QNX sa
+place dans les endroits où un redémarrage n'est pas une option. Et le choix de
+QNX entre les deux branches de cette sous-section est net&nbsp;: sa documentation
+précise que l'échange de messages « est synchrone et copie les données ».
+C'est le rendez-vous de Hoare, pas la boîte aux lettres de Hewitt, avec un
+prix qu'on reconnaît&nbsp;: chaque message est copié d'un espace d'adressage à
+l'autre. On l'a vu dans la sous-section sur les processus, c'est ce coût-là
+que les threads avaient été inventés pour éviter. QNX le paie volontairement,
+parce que l'isolation vaut plus que la vitesse dans une voiture.
