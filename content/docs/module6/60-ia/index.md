@@ -432,7 +432,7 @@ manifeste que sous certaines conditions de charge ou avec certaines données, la
 capacité de raisonner sur le système dans son ensemble, de formuler des
 hypothèses et de les tester méthodiquement, reste une compétence irremplaçable.
 Le développeur qui comprend les fondamentaux (comment fonctionne la mémoire, ce
-que fait réellement une requête SQL, pourquoi [une condition de course]({{< relref "/docs/module2/15-concurrence/30-ce-qui-casse" >}}) se produit)
+que fait réellement une requête SQL, pourquoi [une condition de course]({{< relref "/docs/module2/concurrence/30-ce-qui-casse" >}}) se produit)
 sera toujours plus efficace, avec ou sans IA, que celui qui ne fait que
 manipuler des abstractions sans en comprendre les mécanismes sous-jacents.
 

@@ -351,7 +351,7 @@ ne touchent pas du tout.
 Il est tentant de viser une couverture de 100%, mais c'est un objectif trompeur.
 Une couverture élevée garantit que le code a été *exécuté*, pas qu'il est
 *correct*. Il existe même une famille de bogues qu'une couverture de 100&nbsp;% ne
-peut pas voir par construction, et la section sur [la concurrence]({{< relref "/docs/module2/15-concurrence/30-ce-qui-casse" >}}) en donne un exemple resté quatre ans invisible. On pourrait exécuter chaque ligne sans jamais vérifier que les
+peut pas voir par construction, et la section sur [la concurrence]({{< relref "/docs/module2/concurrence/30-ce-qui-casse" >}}) en donne un exemple resté quatre ans invisible. On pourrait exécuter chaque ligne sans jamais vérifier que les
 résultats sont bons. La couverture est un indicateur utile pour repérer du code
 non testé, mais elle ne remplace pas la réflexion sur la qualité des tests
 eux-mêmes.

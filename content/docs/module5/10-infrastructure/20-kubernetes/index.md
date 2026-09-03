@@ -397,7 +397,7 @@ créé un nouveau. Ce comportement est le coeur de la philosophie Kubernetes : l
 pods sont *éphémères*, et c'est normal. Le système ne tente pas de réparer un
 pod défaillant, il le remplace. Ce principe a une histoire&nbsp;: c'est le *let it
 crash* d'Erlang, vu dans la section sur
-[la concurrence]({{< relref "/docs/module2/15-concurrence/40-ne-pas-partager" >}}),
+[la concurrence]({{< relref "/docs/module2/concurrence/40-ne-pas-partager" >}}),
 où un superviseur relance les processus qui meurent au lieu de chercher à les
 protéger de tout. C'est le même principe que l'*immutable
 infrastructure* que nous avons évoqué plus haut : plutôt que de corriger, on
@@ -442,7 +442,7 @@ faciliter : plutôt que de donner plus de ressources à une seule machine (scali
 vertical), on ajoute des instances identiques derrière un load balancer. C'est,
 à l'échelle d'un centre de données, le virage que le matériel a pris vers 2004
 quand il a cessé d'accélérer et s'est mis à multiplier les coeurs, raconté dans
-la section sur [la concurrence]({{< relref "/docs/module2/15-concurrence/10-pourquoi" >}}). Et
+la section sur [la concurrence]({{< relref "/docs/module2/concurrence/10-pourquoi" >}}). Et
 grâce au modèle déclaratif, cette opération est triviale : un seul chiffre à
 changer.
 

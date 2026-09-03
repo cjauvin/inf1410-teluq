@@ -137,7 +137,7 @@ Le fonctionnement repose sur quelques concepts clés qu'il faut comprendre :
 - **Job** : un groupe d'étapes qui s'exécutent ensemble, sur une même machine.
   Un workflow peut contenir plusieurs jobs, qui par défaut s'exécutent en
   parallèle. C'est du parallélisme au sens strict, celui de la section sur
-  [la concurrence]({{< relref "/docs/module2/15-concurrence/10-pourquoi" >}})&nbsp;: des machines distinctes, réellement en même temps.
+  [la concurrence]({{< relref "/docs/module2/concurrence/10-pourquoi" >}})&nbsp;: des machines distinctes, réellement en même temps.
 
 - **Step** : une étape individuelle à l'intérieur d'un job. Chaque step est soit
   une commande shell (par exemple `pytest`), soit l'utilisation d'une *action*

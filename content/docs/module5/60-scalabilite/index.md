@@ -404,7 +404,7 @@ accepte la commande, la dépose dans une **file d'attente** (*message queue*), e
 répond immédiatement à l'utilisateur. Des processus séparés, appelés *workers*
 ou *consumers*, consomment les messages de la file et exécutent les tâches en
 arrière-plan, à leur propre rythme. Le choix de processus séparés plutôt que de
-threads n'est pas anodin, et la section sur [la concurrence]({{< relref "/docs/module2/15-concurrence/20-processus-et-threads" >}}) explique ce qu'il coûte et ce qu'il achète.
+threads n'est pas anodin, et la section sur [la concurrence]({{< relref "/docs/module2/concurrence/20-processus-et-threads" >}}) explique ce qu'il coûte et ce qu'il achète.
 
 Ce modèle est directement lié à l'**architecture événementielle** que nous avons
 rencontrée dans le module 3 : la file d'attente joue le même rôle de découplage
@@ -454,7 +454,7 @@ immédiatement, sans attendre que la tâche soit terminée. Le serveur web est
 libre de traiter la requête suivante pendant qu'un worker, dans un processus
 séparé, exécute les étapes de traitement de la commande. Déposer en file est
 une manière de ne pas bloquer. Il en existe une autre, à l'intérieur d'un seul
-processus, la boucle d'événements, et la section sur [ne jamais bloquer]({{< relref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}}) les met côte à côte. C'est le contraire d'un
+processus, la boucle d'événements, et la section sur [ne jamais bloquer]({{< relref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}}) les met côte à côte. C'est le contraire d'un
 appel **bloquant**, où le serveur resterait immobilisé en attendant la fin de
 chaque étape (validation du paiement, envoi de courriel, etc.) avant de pouvoir
 répondre au client. La distinction est fondamentale pour la scalabilité : un

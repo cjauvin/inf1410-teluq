@@ -55,7 +55,7 @@ colonne, on force l'équipe à terminer ce qu'elle a commencé avant de commence
 autre chose. Si la colonne *In Progress* a une limite de 2 et qu'elle est
 pleine, personne ne peut y ajouter une nouvelle tâche tant qu'une des deux en
 cours n'a pas avancé vers la colonne suivante. Cette intuition est aussi celle
-que corrige la section sur [la concurrence]({{< relref "/docs/module2/15-concurrence/10-pourquoi" >}})&nbsp;: passer sans cesse d'une tâche à l'autre a un coût, mesurable chez une
+que corrige la section sur [la concurrence]({{< relref "/docs/module2/concurrence/10-pourquoi" >}})&nbsp;: passer sans cesse d'une tâche à l'autre a un coût, mesurable chez une
 machine comme chez une équipe. Ce mécanisme crée une pression
 saine : au lieu d'accumuler du travail partiellement fait, l'équipe se concentre
 sur ce qui est le plus près d'être terminé. C'est le même principe que le flux

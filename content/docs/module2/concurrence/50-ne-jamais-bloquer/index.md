@@ -56,7 +56,7 @@ pendant qu'on s'occupe d'une autre. La différence n'est pas dans l'image, elle
 est dans qui déplace le cuisinier.
 
 Avec les threads, c'est le système qui le déplace. Vous avez vu comment dans
-la sous-section sur [les processus et les threads]({{< relref "/docs/module2/15-concurrence/20-processus-et-threads" >}})&nbsp;:
+la sous-section sur [les processus et les threads]({{< relref "/docs/module2/concurrence/20-processus-et-threads" >}})&nbsp;:
 une minuterie interrompt le thread en cours sans lui demander son avis,
 l'ordonnanceur range son état et en installe un autre à la place. Le cuisinier
 peut donc rester planté devant sa casserole autant qu'il veut, quelqu'un

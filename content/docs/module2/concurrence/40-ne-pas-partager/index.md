@@ -139,7 +139,7 @@ parallélisme, c'est une question d'attente.
 
 Si Erlang a fait vivre les acteurs de Hewitt, c'est Go qui a rendu les canaux
 de Hoare ordinaires. On a vu dans
-[la première sous-section]({{< relref "/docs/module2/15-concurrence/10-pourquoi" >}})
+[la première sous-section]({{< relref "/docs/module2/concurrence/10-pourquoi" >}})
 d'où vient le langage, de Newsqueak à Go en passant par Plan 9, trente ans de
 Rob Pike à reconstruire la même idée. Ce qui a changé en 2009, c'est l'échelle
 d'adoption. Une goroutine se lance avec un mot-clé et coûte si peu qu'on en

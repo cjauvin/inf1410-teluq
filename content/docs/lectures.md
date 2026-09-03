@@ -91,16 +91,16 @@ intégrées dans le cours.)*
 - Edsger W. Dijkstra, *Cooperating Sequential Processes* (EWD123, 1965)
   [[texte](https://www.cs.utexas.edu/~EWD/ewd01xx/EWD123.PDF)]&nbsp;: le problème
   de l'exclusion mutuelle, le sémaphore qui le résout, et le dîner des
-  philosophes qui montre ce que les verrous cassent à leur tour → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
+  philosophes qui montre ce que les verrous cassent à leur tour → [Module 2, Ce qui casse]({{< ref "/docs/module2/concurrence/30-ce-qui-casse" >}})
 - C. A. R. Hoare, *Communicating Sequential Processes* (CACM, 1978)
   [[texte](https://www.cs.cmu.edu/~crary/819-f09/Hoare78.pdf)]&nbsp;: des tâches
   qui ne partagent rien et ne s'échangent que des messages. Baptise le dîner
-  des philosophes, et fonde la lignée qui mène à Go → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}}),
-  [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+  des philosophes, et fonde la lignée qui mène à Go → [Module 2, Ce qui casse]({{< ref "/docs/module2/concurrence/30-ce-qui-casse" >}}),
+  [Module 2, Ne pas partager]({{< ref "/docs/module2/concurrence/40-ne-pas-partager" >}})
 - Jim Gray, *The Transaction Concept: Virtues and Limitations* (VLDB, 1981)
   [[texte](https://jimgray.azurewebsites.net/papers/thetransactionconcept.pdf)]&nbsp;:
   la transaction comme réponse de la base de données au même problème que le
-  verrou résout dans le programme → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}}),
+  verrou résout dans le programme → [Module 2, Ce qui casse]({{< ref "/docs/module2/concurrence/30-ce-qui-casse" >}}),
   [Module 3, Les données (stockage)]({{< ref "/docs/module3/40-données/20-stockage" >}})
 - Edward A. Lee, *The Problem with Threads* (IEEE Computer, mai 2006) [[DOI](https://doi.org/10.1109/MC.2006.180)]&nbsp;: les
   threads détruisent le déterminisme, c'est-à-dire ce qui permet de comprendre
@@ -108,100 +108,100 @@ intégrées dans le cours.)*
   spécialistes de la concurrence et couvert à 100&nbsp;% par des tests, resté quatre
   ans sans incident avant de se bloquer le 26 avril 2004 sur un interblocage
   présent depuis le premier jour →
-  [Module 2, Concurrence et parallélisme]({{< ref "/docs/module2/15-concurrence" >}}),
-  [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
+  [Module 2, Concurrence et parallélisme]({{< ref "/docs/module2/concurrence" >}}),
+  [Module 2, Ce qui casse]({{< ref "/docs/module2/concurrence/30-ce-qui-casse" >}})
 - Carl Hewitt, Peter Bishop et Richard Steiger, *A Universal Modular ACTOR
   Formalism for Artificial Intelligence* (IJCAI, 1973)
   [[texte](https://www.ijcai.org/Proceedings/73/Papers/027B.pdf)]&nbsp;: l'acteur,
   un état que lui seul touche et une boîte aux lettres, cinq ans avant CSP et
-  avec des messages asynchrones → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+  avec des messages asynchrones → [Module 2, Ne pas partager]({{< ref "/docs/module2/concurrence/40-ne-pas-partager" >}})
 - Joe Armstrong, *Making Reliable Distributed Systems in the Presence of
   Software Errors* (thèse, KTH, 2003)
   [[texte](https://erlang.org/download/armstrong_thesis_2003.pdf)]&nbsp;: Erlang
   expliqué par son auteur, let it crash et les superviseurs. À lire aussi pour
   ce qu'elle dit des fameux neuf neuf de l'AXD301, dont la seule source était
-  une présentation PowerPoint → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+  une présentation PowerPoint → [Module 2, Ne pas partager]({{< ref "/docs/module2/concurrence/40-ne-pas-partager" >}})
 - Andrew Gerrand, *Share Memory By Communicating* (blogue de Go, 2010)
   [[texte](https://go.dev/blog/codelab-share)]&nbsp;: la formule de Go, ne
   communiquez pas en partageant la mémoire, partagez la mémoire en
-  communiquant → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+  communiquant → [Module 2, Ne pas partager]({{< ref "/docs/module2/concurrence/40-ne-pas-partager" >}})
 - Rich Hickey, *Clojure Rationale* [[texte](https://clojure.org/about/rationale)]&nbsp;:
   l'état mutable comme « désastre pour la concurrence », et l'immutabilité qui
-  permet de « partager librement entre threads » → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+  permet de « partager librement entre threads » → [Module 2, Ne pas partager]({{< ref "/docs/module2/concurrence/40-ne-pas-partager" >}})
 - *The Rust Programming Language*, chapitre *Fearless Concurrency*
   [[texte](https://doc.rust-lang.org/book/ch16-00-concurrency.html)]&nbsp;: les
-  erreurs de concurrence comme erreurs de compilation plutôt que d'exécution → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+  erreurs de concurrence comme erreurs de compilation plutôt que d'exécution → [Module 2, Ne pas partager]({{< ref "/docs/module2/concurrence/40-ne-pas-partager" >}})
 - QNX, *System Architecture*, chapitres sur le micronoyau et la communication
   entre processus
   [[noyau](https://www.qnx.com/developers/docs/8.0/com.qnx.doc.neutrino.sys_arch/topic/kernel.html),
   [messages](https://www.qnx.com/developers/docs/8.0/com.qnx.doc.neutrino.sys_arch/topic/ipc.html)]&nbsp;:
   un système d'exploitation canadien où tout, jusqu'aux systèmes de fichiers,
-  s'exécute hors du noyau et communique par messages synchrones → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+  s'exécute hors du noyau et communique par messages synchrones → [Module 2, Ne pas partager]({{< ref "/docs/module2/concurrence/40-ne-pas-partager" >}})
 - Sam Gross, *PEP 703&nbsp;: Making the Global Interpreter Lock Optional in CPython*
   (2023) [[texte](https://peps.python.org/pep-0703/)]&nbsp;: la proposition qui défait un compromis vieux de trente ans, acceptée
   puis livrée en variante expérimentale. Le même code y devient trois fois plus
   rapide en threads, et révèle du même coup des bogues que le verrou masquait →
-  [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+  [Module 2, Processus et threads]({{< ref "/docs/module2/concurrence/20-processus-et-threads" >}})
 - Gene Amdahl, *Validity of the Single Processor Approach to Achieving Large
   Scale Computing Capabilities* (AFIPS, 1967) [[texte](https://inst.eecs.berkeley.edu/~n252/paper/Amdahl.pdf)]&nbsp;: quatre pages qui
   fixent le plafond du parallélisme, la part séquentielle d'un programme
-  bornant le gain quel que soit le nombre de processeurs → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+  bornant le gain quel que soit le nombre de processeurs → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/concurrence/10-pourquoi" >}})
 - Gordon Moore, *Cramming More Components onto Integrated Circuits* (1965) [[texte](https://www.cs.utexas.edu/~fussell/courses/cs352h/papers/moore.pdf), [DOI](https://doi.org/10.1109/N-SSC.2006.4785860)]&nbsp;:
   l'observation, sur deux pages, que le nombre de composants gravés sur une
   puce double à intervalle régulier. Moore y parle de quantité, jamais de
-  vitesse → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+  vitesse → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/concurrence/10-pourquoi" >}})
 - Robert Dennard et coll., *Design of Ion-Implanted MOSFET's with Very Small
   Physical Dimensions* (1974) [[DOI](https://doi.org/10.1109/JSSC.1974.1050511)]&nbsp;: la loi de proportionnalité qui, en gardant la
   densité thermique constante quand les transistors rétrécissent, a converti la
-  loi de Moore en gain de vitesse pendant trente ans → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+  loi de Moore en gain de vitesse pendant trente ans → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/concurrence/10-pourquoi" >}})
 - Herb Sutter, *The Free Lunch Is Over* (2005) [[texte](http://www.gotw.ca/publications/concurrency-ddj.htm)]&nbsp;: le moment où l'accélération
   cesse d'être offerte par le matériel et devient un travail de programmeur →
-  [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+  [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/concurrence/10-pourquoi" >}})
 - Rob Pike, *Concurrency Is Not Parallelism* (conférence, 2012) [[vidéo et diapositives](https://go.dev/blog/waza-talk)]&nbsp;: la concurrence
   est une manière de structurer un programme, le parallélisme une manière de
-  l'exécuter → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+  l'exécuter → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/concurrence/10-pourquoi" >}})
 - Dan Kegel, *The C10K problem* (1999, mis à jour jusqu'en 2014)
   [[texte](http://www.kegel.com/c10k.html)]&nbsp;: la page qui pose le problème
-  des dix mille connexions, et la division qui condamne le thread par client → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  des dix mille connexions, et la division qui condamne le thread par client → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - Node.js, *About Node.js* [[texte](https://nodejs.org/en/about)]&nbsp;: Node
   décrit par lui-même, une boucle d'événements comme construction de
-  l'environnement d'exécution plutôt que comme bibliothèque → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  l'environnement d'exécution plutôt que comme bibliothèque → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - Ryan Dahl, *Porting Node to Windows With Microsoft's Help* (blogue de Node,
   2011) [[texte](https://nodejs.org/en/blog/uncategorized/porting-node-to-windows-with-microsofts-help)]&nbsp;:
-  le portage vers l'API IOCP de Windows, d'où est née libuv → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  le portage vers l'API IOCP de Windows, d'où est née libuv → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - libuv, *Design overview* [[texte](https://docs.libuv.org/en/v1.x/design.html)]&nbsp;:
   la boucle au centre, liée à un seul thread, et les noms de Kegel, epoll,
-  kqueue, IOCP, derrière une seule interface. Reprise par uvloop pour Python → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  kqueue, IOCP, derrière une seule interface. Reprise par uvloop pour Python → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - Barbara Liskov et Liuba Shrira, *Promises&nbsp;: Linguistic Support for
   Efficient Asynchronous Procedure Calls in Distributed Systems* (PLDI, 1988)
   [[DOI](https://doi.org/10.1145/53990.54016)]&nbsp;: le mot et l'idée, un objet
   qui représente un résultat pas encore arrivé, pour les systèmes distribués,
-  vingt-sept ans avant leur entrée dans JavaScript → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  vingt-sept ans avant leur entrée dans JavaScript → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - *Promises/A+* [[texte](https://promisesaplus.com/)]&nbsp;: le standard
   communautaire des promesses JavaScript, dont la première phrase est la
-  définition à retenir → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  définition à retenir → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - Don Syme, Tomas Petříček et Dmitry Lomov, *The F# Asynchronous Programming
   Model* (PADL, 2011) [[DOI](https://doi.org/10.1007/978-3-642-18378-2_15)]&nbsp;:
   l'origine d'`async` et `await`, chez Microsoft, avant C#, Python et
-  JavaScript → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  JavaScript → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - Guido van Rossum, *PEP 3156&nbsp;: Asynchronous IO Support Rebooted&nbsp;: the
   « asyncio » Module* (2012) [[texte](https://peps.python.org/pep-3156/)]&nbsp;:
   la boucle d'événements de la bibliothèque standard, trois ans avant les
-  mots-clés qui la rendent agréable → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  mots-clés qui la rendent agréable → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - Yury Selivanov, *PEP 492&nbsp;: Coroutines with async and await syntax* (2015)
   [[texte](https://peps.python.org/pep-0492/)]&nbsp;: les coroutines comme
-  fonctionnalité native de Python, clairement séparées des générateurs → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  fonctionnalité native de Python, clairement séparées des générateurs → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - Python, documentation du module *asyncio*
   [[texte](https://docs.python.org/3/library/asyncio.html)]&nbsp;: « convient
   souvent parfaitement au code I/O-bound », et la fondation des serveurs web
-  Python d'aujourd'hui → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  Python d'aujourd'hui → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - FastAPI, *Concurrency and async / await*
   [[texte](https://fastapi.tiangolo.com/async/)]&nbsp;: quand écrire `async def`,
-  expliqué avec des hamburgers, par le framework qui en dépend → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  expliqué avec des hamburgers, par le framework qui en dépend → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - Node.js, documentation du module *worker_threads*
   [[texte](https://nodejs.org/api/worker_threads.html)]&nbsp;: des threads
   « utiles pour les opérations intensives en calcul », et « peu utiles » pour
-  les entrées-sorties, où la boucle fait mieux → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  les entrées-sorties, où la boucle fait mieux → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - Edgar F. Codd, *A Relational Model of Data for Large Shared Data Banks* (1970) :
   article fondateur du modèle relationnel → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}}), [Module 3, Les données (stockage)]({{< ref "/docs/module3/40-données/20-stockage" >}})
 - David Parnas, *On the Criteria To Be Used in Decomposing Systems into Modules*

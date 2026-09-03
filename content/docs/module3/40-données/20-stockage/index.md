@@ -688,7 +688,7 @@ le système tombe entre la vérification et l'insertion, ou si deux processus
 tentent la même inscription simultanément, les données peuvent se retrouver dans
 un état incohérent. Dans un programme simple, on gère ça avec des conditions et
 des verrous, comme on l'a vu dans la section sur
-[la concurrence]({{< relref "/docs/module2/15-concurrence/30-ce-qui-casse" >}}).
+[la concurrence]({{< relref "/docs/module2/concurrence/30-ce-qui-casse" >}}).
 Dans un SGBD, on utilise une *transaction*.
 
 Jim Gray, chercheur chez IBM puis chez Microsoft Research, a formalisé dans les

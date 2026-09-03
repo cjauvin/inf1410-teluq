@@ -39,80 +39,80 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
   parallélisme une manière de l'exécuter sur plusieurs coeurs. La première est
   une propriété du code, la seconde une propriété de la machine. Un programme
   découpé en dix tâches sur une machine à un seul coeur est parfaitement
-  concurrent et n'a aucun parallélisme → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}}),
-  [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+  concurrent et n'a aucun parallélisme → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/concurrence/10-pourquoi" >}}),
+  [Module 2, Processus et threads]({{< ref "/docs/module2/concurrence/20-processus-et-threads" >}})
 - **Les threads pour attendre, les processus pour calculer**&nbsp;: en Python, le
   verrou global (GIL) empêche deux threads d'exécuter du code simultanément,
   mais un thread qui attend le relâche. Les threads n'accélèrent donc jamais un
   calcul et accélèrent énormément une série d'attentes. La boucle d'événements
-  est la deuxième réponse pour l'attente, et souvent la meilleure → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}}),
-  [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  est la deuxième réponse pour l'attente, et souvent la meilleure → [Module 2, Processus et threads]({{< ref "/docs/module2/concurrence/20-processus-et-threads" >}}),
+  [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - **Préemption** (par opposition au multitâche coopératif)&nbsp;: le système
   d'exploitation reprend la main sur un programme sans lui demander son avis,
   plutôt que de compter sur sa bonne volonté. Comme la protection mémoire, la
   garantie naît sur les gros systèmes des années 60 et met trente ans à
   atteindre les machines personnelles. Le multitâche coopératif revient
   pourtant par la petite porte, à l'intérieur d'un seul processus, sous le nom
-  de boucle d'événements → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}}),
-  [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  de boucle d'événements → [Module 2, Processus et threads]({{< ref "/docs/module2/concurrence/20-processus-et-threads" >}}),
+  [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - **Ne jamais bloquer**&nbsp;: dans une boucle d'événements, un seul cuisinier
   s'occupe de toutes les casseroles, et il change de casserole quand l'une
   sonne. La règle est absolue, ni calcul long ni attente synchrone, parce qu'un
   seul appel qui bloque fige tous les clients à la fois, personne ne pouvant
-  pousser le cuisinier → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  pousser le cuisinier → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - **Écrire comme si on bloquait**&nbsp;: `async` et `await` n'ont rien changé à la
   boucle, seulement à la manière d'écrire ce qu'on lui confie. Fonctions de
   rappel, promesses, puis coroutines, trois visages du même modèle en quinze
-  ans, de F# à C#, Python et JavaScript → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  ans, de F# à C#, Python et JavaScript → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - **Une boucle ne calcule pas plus vite**&nbsp;: elle fait attendre sans coûter,
   elle ne fait pas calculer. Ce qui attend va dans une boucle ou des threads,
   ce qui calcule va dans des processus, un par coeur, qui ne partagent rien.
-  La boucle, c'est de la concurrence sans parallélisme → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  La boucle, c'est de la concurrence sans parallélisme → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - **Ne pas partager d'état mutable**&nbsp;: ce qui casse n'est pas le partage,
   c'est le partage d'une valeur que l'un lit pendant qu'un autre l'écrit. Deux
   stratégies, ne rien partager et s'échanger des messages, ou ne partager que
-  des valeurs qui ne changent jamais → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+  des valeurs qui ne changent jamais → [Module 2, Ne pas partager]({{< ref "/docs/module2/concurrence/40-ne-pas-partager" >}})
 - **Ne communiquez pas en partageant la mémoire, partagez la mémoire en
   communiquant** (Go, Andrew Gerrand, 2010)&nbsp;: une seule goroutine possède la
   donnée, les autres lui envoient des messages. Le poste de travail et le
-  passe → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+  passe → [Module 2, Ne pas partager]({{< ref "/docs/module2/concurrence/40-ne-pas-partager" >}})
 - **Let it crash** (Erlang, Joe Armstrong)&nbsp;: plutôt que de prévoir toute
   erreur, laisser mourir le processus fautif et le faire relancer par un
   superviseur. Ne fonctionne que parce que rien n'est partagé, et se retrouve
-  dans Kubernetes, qui remplace un pod défaillant au lieu de le réparer → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+  dans Kubernetes, qui remplace un pod défaillant au lieu de le réparer → [Module 2, Ne pas partager]({{< ref "/docs/module2/concurrence/40-ne-pas-partager" >}})
 - **Encourager, interdire, ou prouver**&nbsp;: les trois réponses des langages à la
   question de Lee. Go encourage à ne pas partager, Erlang l'interdit, Rust le
-  fait vérifier par le compilateur → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+  fait vérifier par le compilateur → [Module 2, Ne pas partager]({{< ref "/docs/module2/concurrence/40-ne-pas-partager" >}})
 - **Condition de course** (*race condition*)&nbsp;: quand le résultat d'un
   programme dépend de l'ordre dans lequel ses threads s'entrelacent, ordre que
   personne ne choisit. Le programme n'est pas faux, il est parfois faux, et ses
-  tests passent → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
+  tests passent → [Module 2, Ce qui casse]({{< ref "/docs/module2/concurrence/30-ce-qui-casse" >}})
 - **Interblocage** (*deadlock*, Dijkstra, 1965)&nbsp;: deux threads qui tiennent
   chacun le verrou dont l'autre a besoin s'attendent pour toujours, sans
   planter ni rien signaler. La règle qui l'évite tient en une ligne, toujours
   prendre les verrous dans le même ordre, et elle est difficile à tenir parce
-  qu'elle doit valoir pour tout le programme → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
+  qu'elle doit valoir pour tout le programme → [Module 2, Ce qui casse]({{< ref "/docs/module2/concurrence/30-ce-qui-casse" >}})
 - **On achète la correction avec de la vitesse**&nbsp;: un verrou remet les
   threads en file indienne devant ce qu'il protège, et une file indienne n'est
   pas du parallélisme. Protéger le moins possible pour en perdre le moins
-  possible → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
+  possible → [Module 2, Ce qui casse]({{< ref "/docs/module2/concurrence/30-ce-qui-casse" >}})
 - **CPU-bound et I/O-bound**&nbsp;: un programme est lent soit parce qu'il calcule,
   limité par le processeur, soit parce qu'il attend, limité par les
   entrées-sorties. Les deux se ressemblent vus du dehors et leurs remèdes sont
-  opposés, des coeurs pour le premier, ne jamais bloquer pour le second → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}}),
-  [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+  opposés, des coeurs pour le premier, ne jamais bloquer pour le second → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/concurrence/10-pourquoi" >}}),
+  [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}})
 - **Loi d'Amdahl** (Gene Amdahl, 1967)&nbsp;: la part d'un programme qu'on ne peut
   pas répartir fixe un plafond au gain du parallélisme. Avec 10&nbsp;% de travail
   séquentiel, dix coeurs donnent un peu plus de cinq fois, et une infinité de
-  coeurs jamais plus de dix → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+  coeurs jamais plus de dix → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/concurrence/10-pourquoi" >}})
 - **Loi de Moore** (Gordon Moore, 1965)&nbsp;: le nombre de composants gravés sur une
   puce, à coût égal, double à intervalle régulier. Elle porte sur la quantité de
   transistors, et non sur la vitesse, contrairement à ce qu'on lui fait souvent
-  dire → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+  dire → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/concurrence/10-pourquoi" >}})
 - **Loi de Dennard** (Robert Dennard, 1974)&nbsp;: en réduisant les transistors, la
   puissance dissipée par unité de surface reste constante. C'est elle, et non
   celle de Moore, qui a cessé de s'appliquer vers 2004, forçant l'industrie à
-  multiplier les coeurs plutôt que les cycles → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+  multiplier les coeurs plutôt que les cycles → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/concurrence/10-pourquoi" >}})
 
 ## Principes de systèmes distribués
 

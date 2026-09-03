@@ -33,7 +33,7 @@ rapidement, le logiciel pouvait configurer la machine pour un faisceau à haute
 énergie tout en affichant les paramètres d'un faisceau à faible énergie. Le
 mécanisme de ce bogue, deux opérations qui se croisent parce que personne ne
 contrôle leur ordre, est celui que décrit la section sur [ce qui casse en
-concurrence]({{< relref "/docs/module2/15-concurrence/30-ce-qui-casse" >}}).
+concurrence]({{< relref "/docs/module2/concurrence/30-ce-qui-casse" >}}).
 L'enquête a révélé que le logiciel n'avait jamais été soumis à une revue de code
 indépendante, qu'il n'existait pas de tests systématiques, et que les rapports
 d'incidents des hôpitaux avaient été ignorés par AECL pendant des mois. C'est un
