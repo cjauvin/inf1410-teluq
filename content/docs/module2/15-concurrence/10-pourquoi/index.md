@@ -108,8 +108,8 @@ Rob Pike, un informaticien canadien formé à l'Université de Toronto, passé p
 les Bell Labs où il a travaillé sur Unix et coinventé l'UTF-8 avec Ken
 Thompson, avant de concevoir le langage Go chez Google. Dans une conférence de
 2012 au titre sans ambiguïté, *Concurrency Is Not Parallelism*, il pose ceci&nbsp;:
-la **concurrence** consiste à s'occuper de plusieurs choses à la fois, le
-**parallélisme** à en faire plusieurs à la fois. Le cuisinier seul devant ses
+la concurrence consiste à s'occuper de plusieurs choses à la fois, le
+parallélisme à en faire plusieurs à la fois. Le cuisinier seul devant ses
 trois casseroles s'en occupe&nbsp;; les trois cuisiniers les font. La première est
 une manière de structurer un programme, la seconde une manière de l'exécuter. Un programme
 concurrent s'écrit comme un ensemble de tâches indépendantes qui progressent
@@ -122,16 +122,16 @@ l'exécute.
 
 Ce n'est pas une remarque de conférencier. Pike a passé trente ans à construire
 des langages autour de cette idée. Dès la fin des années 80, aux Bell Labs, il
-conçoit Newsqueak, un langage où les tâches communiquent par des canaux plutôt
-qu'en se partageant de la mémoire. L'idée vient de Tony Hoare, qui avait
+conçoit Newsqueak, un langage où les tâches communiquent en s'envoyant des
+messages plutôt qu'en se partageant de la mémoire. L'idée vient de Tony Hoare, qui avait
 formalisé en 1978 un modèle où des tâches indépendantes ne s'échangent que des
 messages, les *processus séquentiels communicants*. La même idée traverse
 ensuite Alef puis Limbo, les langages des systèmes Plan 9 et Inferno, avant
 d'aboutir en 2009 à Go, conçu chez Google avec Ken Thompson et Robert
 Griesemer. Go en fait sa signature&nbsp;: ses tâches légères, les **goroutines**, se
-lancent avec un seul mot-clé, et se parlent par des canaux. Le mot d'ordre du
+lancent avec un seul mot-clé, et se parlent en s'envoyant des messages. Le mot d'ordre du
 langage tient dans une formule qu'on retrouvera plus loin dans cette section,
-ne communiquez pas en partageant de la mémoire, partagez de la mémoire en
+ne communiquez pas en partageant la mémoire, partagez la mémoire en
 communiquant. Trente ans séparent l'article de Hoare de la sortie de Go, ce qui
 dit assez la longévité des bonnes idées dans ce domaine.
 

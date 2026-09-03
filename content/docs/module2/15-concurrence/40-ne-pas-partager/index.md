@@ -22,9 +22,10 @@ prend rien sur le poste d'un autre. Quand un plat doit passer de l'un à
 l'autre, il est posé sur le passe, et l'autre le prend. Rien n'est jamais tenu
 à deux.
 
-{{< illustration src="postes.svg" legende="Tant que deux mains peuvent saisir le même couteau, il faut un cadenas, et le cadenas remet tout le monde en file. Donnez à chacun son poste, et le cadenas n'a plus de raison d'être : ce qui doit changer de mains passe par le passe, et n'est jamais tenu à deux." >}}
+{{< illustration src="postes.svg" legende="Tant que deux mains peuvent saisir le même couteau, il faut un cadenas, et le cadenas remet tout le monde en file. Donnez à chacun son poste, et le cadenas n'a plus de raison d'être&nbsp;: ce qui doit changer de mains passe par le passe, et n'est jamais tenu à deux." >}}
 
-L'idée a été formalisée en 1978 par Tony Hoare, dans un article intitulé
+L'idée a été formalisée en 1978 par Tony Hoare, que vous avez croisé dans
+« Pourquoi la concurrence » à propos de Rob Pike, dans un article intitulé
 *Communicating Sequential Processes*, que le domaine désigne par ses initiales,
 **CSP**. Hoare y décrit des processus qui, chacun, sont de simples programmes
 séquentiels, et qui ne partagent rien&nbsp;: aucune variable, aucune mémoire.
@@ -76,7 +77,8 @@ entre eux, un système qui ne doit jamais s'arrêter, et surtout, une erreur
 dans un appel qui ne doit pas toucher les autres. Le langage s'appellera
 **Erlang**, et chaque appel y devient ce que le langage nomme, un peu
 trompeusement, un processus. Ce n'est pas un processus du système
-d'exploitation, ceux de la sous-section précédente, lourds et rares. C'en est
+d'exploitation, ceux de la sous-section sur les processus et les threads,
+lourds et rares. C'en est
 une version minuscule, gérée par le langage lui-même, dont une machine fait
 tourner des centaines de milliers. Chacun a sa mémoire, que personne d'autre
 ne voit, et sa boîte aux lettres. Ce sont les acteurs de Hewitt, dans un
@@ -126,7 +128,7 @@ l'étayer. Ce que la thèse affirme est plus modeste et bien mieux établi.
 
 L'idée a survécu à la téléphonie. Le 6 janvier 2012, WhatsApp, alors une
 petite entreprise, publie un billet technique montrant un seul de ses serveurs,
-vingt-quatre coeurs sous FreeBSD, tenant **2 277 845 connexions** simultanées.
+vingt-quatre coeurs sous FreeBSD, tenant 2 277 845 connexions simultanées.
 Le logiciel derrière était écrit en Erlang, un processus par connexion, et
 c'est ce qui permettait à une équipe minuscule de servir des centaines de
 millions de personnes. On y reviendra dans la dernière sous-section, parce que
@@ -153,8 +155,8 @@ des deux articles de 1973 et 1978.
 
 Le mot d'ordre annoncé depuis le début de cette section vient d'un billet du
 blogue officiel de Go, écrit par Andrew Gerrand le 13 juillet 2010, et il tient
-en une phrase&nbsp;: **« Ne communiquez pas en partageant la mémoire&nbsp;; partagez
-la mémoire en communiquant. »** Ce qu'elle demande est concret. Au lieu d'une
+en une phrase&nbsp;: « Ne communiquez pas en partageant la mémoire&nbsp;; partagez
+la mémoire en communiquant. » Ce qu'elle demande est concret. Au lieu d'une
 variable que plusieurs goroutines lisent et écrivent sous la garde d'un verrou,
 une seule goroutine possède la donnée, et les autres lui envoient des messages
 pour la consulter ou la modifier. Gerrand le résume ainsi&nbsp;: cette approche
@@ -241,8 +243,9 @@ d'exploitation classique, Linux ou Windows, est un **noyau monolithique**&nbsp;:
 l'ordonnanceur, les pilotes de périphériques, les systèmes de fichiers et la
 pile réseau vivent dans le même espace mémoire, et se partagent tout. C'est
 efficace, et c'est exactement pour cela qu'un pilote défaillant peut emporter
-la machine entière, comme l'écran bleu de la sous-section précédente le
-montrait. QNX est un **micronoyau**. Sa propre documentation décrit ce qu'il
+la machine entière, une panne de la même famille que l'écran bleu de la
+sous-section sur les processus et les threads, celle où rien ne sépare le
+fautif du reste. QNX est un **micronoyau**. Sa propre documentation décrit ce qu'il
 contient en une phrase&nbsp;: le noyau « implémente les fonctions POSIX de base
 utilisées dans les systèmes temps réel embarqués, ainsi que les services
 fondamentaux d'échange de messages ». Rien d'autre. Les systèmes de fichiers,
@@ -283,7 +286,8 @@ Cette seconde voie a un nom que vous connaissez déjà. La section sur
 l'immutabilité comme la première des deux idées centrales du paradigme
 fonctionnel, et disait qu'elle « élimine toute une classe de bugs liés aux
 modifications inattendues de l'état ». Vous savez maintenant de quelle classe
-il s'agit. Ce n'est pas un hasard si le même paragraphe citait Erlang&nbsp;: Erlang
+il s'agit. Ce n'est pas un hasard si, quelques lignes plus haut, cette section citait
+Erlang&nbsp;: Erlang
 est un langage fonctionnel précisément parce que ses processus s'envoient des
 données, et qu'une donnée qui ne change pas peut être envoyée sans crainte.
 Rich Hickey, le créateur de Clojure, que la même section nommait comme forme

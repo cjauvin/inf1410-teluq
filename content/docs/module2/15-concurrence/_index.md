@@ -24,7 +24,7 @@ casserole ferait fermer le restaurant. Tout le métier consiste à ne jamais res
 immobile pendant que quelque chose cuit. Il y a deux façons d'y parvenir, et
 elles n'ont presque rien à voir l'une avec l'autre.
 
-{{< illustration src="cuisine.svg" legende="Trois plats à faire, dans les trois cas. Le cuisinier peut les enchaîner l'un après l'autre. Il peut aussi les mener de front en passant de l'un à l'autre, et c'est la **concurrence** : rien n'a changé sinon son organisation. Ou trois cuisiniers peuvent s'y mettre, et c'est le **parallélisme** : cette fois ce sont les ressources qui ont changé." >}}
+{{< illustration src="cuisine.svg" legende="Trois plats à faire, dans les trois cas. Le cuisinier peut les enchaîner l'un après l'autre. Il peut aussi les mener de front en passant de l'un à l'autre, et c'est la concurrence&nbsp;: rien n'a changé sinon son organisation. Ou trois cuisiniers peuvent s'y mettre, et c'est le parallélisme&nbsp;: cette fois ce sont les ressources qui ont changé." >}}
 
 La première est de s'organiser pour mener plusieurs plats de front, seul. La
 seconde est d'embaucher. Un logiciel dispose des deux&nbsp;: un programme peut être
@@ -45,12 +45,12 @@ genre ne fait pas planter le programme. Elle lui fait donner une mauvaise
 réponse, de temps en temps, sans rien signaler, et c'est l'archétype du défaut
 qu'un module intitulé « Concevoir un programme correct » se doit de traiter.
 
-Le parcours suit cinq étapes. On commencera par **pourquoi** le sujet s'impose,
+Le parcours suit cinq étapes. On commencera par pourquoi le sujet s'impose,
 en remontant au moment où le matériel a cessé d'accélérer tout seul, et en
 posant les deux distinctions qui organisent le reste. On verra ensuite ce que
-le système d'exploitation offre réellement, avec les **processus et les
-threads**, puis **ce qui casse** quand plusieurs d'entre eux touchent aux mêmes
-données. On étudiera la réponse historique alternative, qui consiste à **ne pas
-partager** du tout, avant de terminer sur la manière dont un seul fil
-d'exécution peut servir des milliers de connexions à condition de **ne jamais
-bloquer**.
+le système d'exploitation offre réellement, avec les processus et les
+threads, puis ce qui casse quand plusieurs d'entre eux touchent aux mêmes
+données. On étudiera la réponse historique alternative, qui consiste à ne pas
+partager du tout, avant de terminer sur la manière dont un seul fil
+d'exécution peut servir des milliers de connexions à condition de ne jamais
+bloquer.

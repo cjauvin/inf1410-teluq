@@ -18,7 +18,7 @@ courir. Le même programme lancé trois fois donne trois processus, qui portent
 le même code et n'ont rien d'autre en commun&nbsp;: trois zones de mémoire
 distinctes, trois positions différentes dans ce code, trois jeux de fichiers
 ouverts. C'est ce qui permet à deux fenêtres du même éditeur de texte
-peuvent afficher deux documents sans se mélanger, alors qu'elles exécutent
+d'afficher deux documents sans se mélanger, alors qu'elles exécutent
 exactement les mêmes instructions.
 
 ## Pourquoi ils ne peuvent pas se toucher
@@ -76,7 +76,9 @@ absurde. On passerait plus de temps à recopier qu'à travailler.
 
 La réponse tient en une idée simple&nbsp;: garder un seul processus, mais y faire
 courir plusieurs exécutions à la fois. C'est ce qu'on appelle un **thread**, ou
-fil d'exécution. Un thread possède en propre le strict minimum, sa position
+fil d'exécution. Dans la cuisine de l'introduction, un processus est une
+cuisine entière, avec ses réserves, et un thread est un cuisinier de plus dans
+la même cuisine, qui pioche dans les mêmes réserves. Un thread possède en propre le strict minimum, sa position
 dans le code et sa **pile** (*stack*), c'est-à-dire l'endroit où s'empilent ses
 appels de fonction et ses variables locales. Tout le reste, il le partage avec
 ses frères, le même espace d'adressage, les mêmes variables globales, les mêmes
@@ -154,7 +156,7 @@ d'ailleurs l'environnement que
 de Windows. La portion sur les threads, elle, fonctionne partout.
 {{% /hint %}}
 
-Un processus coûte donc environ **cinq fois** un thread, ce qui est déjà
+Un processus coûte donc environ cinq fois un thread, ce qui est déjà
 notable quand on en crée beaucoup, mais reste loin des ordres de grandeur qu'on
 lit parfois. Ces chiffres viennent d'un portable récent, et ils varieront chez
 vous, mais c'est le rapport entre les deux qui compte, pas leur valeur absolue.
@@ -162,16 +164,20 @@ vous, mais c'est le rapport entre les deux qui compte, pas leur valeur absolue.
 ### Un piège de mesure, et il est courant
 
 Si on refait la mesure avec `multiprocessing.Process`, la bibliothèque standard
-prévue pour ça, le résultat explose&nbsp;: environ **7100 µs** par processus sur le
-même portable, soit 167 fois un thread au lieu de cinq. La conclusion qu'on en
+prévue pour ça, le résultat explose&nbsp;: environ 7100 µs par processus sur le
+même portable, soit 166 fois un thread au lieu de cinq. La conclusion qu'on en
 tire spontanément, que les processus coûtent sept millisecondes, est fausse.
 
 Ce n'est pas le prix d'un processus, c'est celui du démarrage d'un interpréteur
 Python complet. Sur macOS et sur Windows, `multiprocessing` emploie par défaut
 la méthode **spawn**, qui lance un nouvel interpréteur vierge et lui fait
-réimporter votre module. Sur Linux, il emploie **fork**, qui duplique le
-processus courant, et la mesure y est bien plus basse. Le même programme, avec
-le même code, n'a donc pas du tout le même coût selon le système.
+réimporter votre module. Sur Linux, jusqu'à Python 3.13, il employait **fork**, qui
+duplique le processus courant, et la mesure y était bien plus basse. Depuis
+Python 3.14, Linux emploie **forkserver**, un processus serveur lancé une
+seule fois, sans threads, à partir duquel chaque nouveau processus est
+dupliqué, parce que dupliquer un processus qui a déjà des threads est un
+piège connu. Le même programme, avec le même code, n'a donc pas du tout le
+même coût selon le système, ni selon la version.
 
 La conséquence pratique est simple. Créer un processus par tâche est ruineux,
 créer une réserve de processus au démarrage et la réutiliser ne coûte presque
@@ -185,7 +191,9 @@ déjà tourner un traitement de texte, une horloge et une impression en même
 temps. L'illusion repose sur un mécanisme matériel très simple, une minuterie
 qui, toutes les quelques millisecondes, interrompt ce qui se passe et rend la
 main au système d'exploitation. La partie de celui-ci qui décide alors quoi
-faire s'appelle l'**ordonnanceur** (*scheduler*). Il range l'état du thread en
+faire s'appelle l'**ordonnanceur** (*scheduler*), et c'est lui, en cuisine,
+qui tape sur l'épaule d'un cuisinier toutes les quelques millisecondes pour en
+faire avancer un autre. Il range l'état du thread en
 cours, ses registres et sa position dans le code, puis installe à la place
 l'état d'un autre thread qui attendait son tour. C'est ce qu'on appelle un
 **changement de contexte**, et il se produit assez souvent pour que rien ne se
@@ -210,8 +218,8 @@ aujourd'hui pour si acquise qu'on ne la remarque plus.
 
 On peut maintenant relire la formule de Rob Pike autrement que comme un jeu de
 mots. Sur une machine à un seul coeur, un programme découpé en dix tâches qui
-progressent chacune à leur rythme est parfaitement **concurrent**, et il n'a
-strictement **aucun parallélisme**. Les dix tâches existent bel et bien, elles
+progressent chacune à leur rythme est parfaitement concurrent, et il n'a
+strictement aucun parallélisme. Les dix tâches existent bel et bien, elles
 se relaient, aucune n'est terminée avant que les autres aient commencé, mais à
 chaque instant une seule avance. Donnez dix coeurs à ce même programme, sans
 changer une ligne, et il devient parallèle. La concurrence était dans le code
@@ -223,7 +231,8 @@ ce que vous écrivez de ce sur quoi vous n'avez aucune prise.
 Tout ce qui précède décrit ce que le système d'exploitation offre. Reste à
 savoir ce que le langage en fait, et Python réserve ici une surprise. Son
 implémentation courante, CPython, protège son fonctionnement interne par un
-verrou unique que l'on nomme le **GIL**, pour *global interpreter lock*.
+**verrou** (*lock*) unique que l'on nomme le **GIL**, pour *global
+interpreter lock*.
 Un seul thread à la fois peut le détenir, et sans lui aucun code Python ne
 s'exécute. Autrement dit, quel que soit le nombre de coeurs de la machine et
 le nombre de threads du programme, **un seul thread exécute du Python à un
@@ -327,7 +336,7 @@ séquentiel        5.17 s
 
 Quarante-sept fois plus rapide, avec le même outil qui ne servait à rien
 l'instant d'avant. La raison est simple une fois qu'on la connaît&nbsp;: un thread
-qui s'apprête à attendre **relâche le GIL** avant de se mettre en pause, et ne
+qui s'apprête à attendre relâche le GIL avant de se mettre en pause, et ne
 le reprend qu'au retour. Pendant qu'il patiente, il n'exécute aucun code
 Python, donc il n'a aucune raison de tenir le verrou. Les quarante-neuf autres
 en profitent pour lancer leur propre attente, et les cinquante pauses se
@@ -337,9 +346,9 @@ Voilà pourquoi la distinction entre attendre et calculer, posée dans la
 sous-section précédente, valait la peine d'être posée avant tout le reste. Le
 même mot de concurrence, le même outil, et deux résultats opposés selon le
 problème. La règle à retenir tient en une ligne&nbsp;: en Python, les threads pour
-l'I/O-bound, les processus pour le CPU-bound. Ou, dans les mots de la
-sous-section précédente, les threads pour attendre, les processus pour
-calculer.
+l'I/O-bound, les processus pour le CPU-bound. Ou, pour reprendre la
+distinction de la sous-section précédente, les threads pour attendre, les
+processus pour calculer.
 
 ## Ce que devient Python sans son verrou
 
@@ -354,7 +363,9 @@ $ uv run --python 3.14  --no-project python gil.py     # avec le verrou
 $ uv run --python 3.14t --no-project python gil.py     # sans le verrou
 ```
 
-Le fichier est le même, à la lettre près. Seul l'interpréteur change.
+Le fichier est le même, à la lettre près. Seul l'interpréteur change. Les
+chiffres viennent d'une nouvelle exécution, d'où de légers écarts avec ceux
+donnés plus haut.
 
 | Sur le calcul | avec GIL | sans GIL |
 |---|---|---|
@@ -404,11 +415,11 @@ obtenu  : 1014951
 ```
 
 Le même fichier. Correct sur un interpréteur, faux de trois quarts sur l'autre.
-Et il faut bien voir que ce n'est pas le second qui est cassé&nbsp;: `compteur += 1`
-n'a jamais été une opération unique, c'est une lecture, une addition et une
-écriture. Quand deux threads lisent la même valeur avant que l'un des deux ait
-écrit la sienne, l'un des deux incréments est perdu. **Le bogue était présent
-depuis le premier jour, le verrou le rendait invisible.**
+Et il faut bien voir que ce n'est pas le second qui est cassé&nbsp;: le bogue
+était dans le fichier depuis toujours, et c'est le verrou global qui le
+masquait. Ce qui se passe exactement quand deux threads touchent au même
+compteur, instruction par instruction, est l'objet de la sous-section
+suivante.
 
 Il l'est d'ailleurs très solidement. Même en demandant à Python de faire
 tourner ses threads le plus souvent possible, avec

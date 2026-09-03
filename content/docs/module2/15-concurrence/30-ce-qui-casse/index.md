@@ -11,8 +11,8 @@ weight: 30
 Reprenons le compteur de la sous-section précédente, celui qui donnait
 4 000 000 sur un interpréteur et 1 014 951 sur l'autre. La ligne coupable est
 `compteur += 1`, et tout tient au fait qu'elle n'est pas une opération mais
-trois. Le processeur **lit** la valeur courante en mémoire, l'**augmente** de un
-dans un registre, puis **écrit** le résultat à sa place. Entre la lecture et
+trois. Le processeur lit la valeur courante en mémoire, l'augmente de un
+dans un registre, puis écrit le résultat à sa place. Entre la lecture et
 l'écriture s'écoule un temps minuscule mais réel, et rien n'interdit à
 l'ordonnanceur d'y glisser un autre thread. Si ce second thread lit à ce
 moment-là, il obtient la même valeur que le premier, l'augmente lui aussi de
@@ -75,8 +75,8 @@ imprévisible.
 Le remède tient en une idée&nbsp;: rendre les trois étapes indivisibles, non pas en
 les fusionnant, ce que le processeur ne sait pas toujours faire, mais en
 interdisant à un second thread d'y entrer tant que le premier n'en est pas
-sorti. L'objet qui impose cela s'appelle un **verrou** (*lock*), et la portion
-de code qu'il protège une **section critique**. Un thread qui veut y entrer
+sorti. L'objet qui impose cela est un verrou, le même mot que pour le GIL, et la
+portion de code qu'il protège s'appelle une **section critique**. Un thread qui veut y entrer
 prend le verrou. S'il est déjà pris, il attend qu'on le libère. En cuisine,
 c'est la règle qu'un seul cuisinier à la fois s'approche de la salière&nbsp;: le
 second attend que le premier ait salé, goûté et reposé la salière.
@@ -138,7 +138,8 @@ de données ne demande pas au programmeur de poser un verrou. Elle lui offre la
 **transaction**, un bloc d'opérations que le système s'engage à exécuter
 *comme si* aucune autre ne s'entrelaçait avec lui, même s'il les entrelace en
 réalité pour aller plus vite. Cette propriété, l'isolation, est l'une des
-quatre que Jim Gray a formalisées sous l'acronyme ACID, et elle dit exactement
+quatre que Jim Gray a formalisées, celles que l'acronyme ACID résume depuis,
+et elle dit exactement
 ce que les deux tableaux du début de cette page montrent&nbsp;: un entrelacement
 est acceptable si, et seulement si, son résultat est celui d'un ordre
 séquentiel. `with verrou:` et `BEGIN … COMMIT` sont la même idée, l'une dans
@@ -191,7 +192,7 @@ $ uv run --no-project python interblocage.py
 après 6.0 s : A vivant=True, B vivant=True
 ```
 
-Regardez ce qui **ne** s'est **pas** affiché. Ni « A a coupé », ni « B a
+Regardez ce qui ne s'est pas affiché. Ni « A a coupé », ni « B a
 coupé », ni la moindre erreur. Un interblocage ne fait pas planter le programme
 et ne lève aucune exception. Il l'arrête, en silence, pour toujours. Sans le
 `daemon=True` et les `join` à délai, ce script ne rendrait jamais la main, et
@@ -200,7 +201,7 @@ répond de moins en moins, puis plus du tout, sans une ligne dans les journaux.
 C'est exactement ce qui a figé le projet d'Edward Lee dont on parlera plus bas.
 
 Le remède tient en une règle, et elle est plus simple que le problème&nbsp;:
-**toujours prendre les verrous dans le même ordre.** Si les deux cuisiniers
+toujours prendre les verrous dans le même ordre. Si les deux cuisiniers
 conviennent de saisir le couteau avant la planche, celui qui a le couteau
 finira toujours par avoir la planche, parce que l'autre n'a pas encore le droit
 d'y toucher. Dans le programme ci-dessus, cela revient à inverser les deux
@@ -227,9 +228,9 @@ après 0.0 s : A vivant=False, B vivant=False
 
 La règle est simple à énoncer et difficile à tenir, parce qu'elle doit valoir
 pour tous les verrous de tout le programme, y compris ceux que prennent les
-bibliothèques qu'on appelle sans le savoir. C'est pour cela que quatre ans de
-tests n'ont rien vu chez Lee&nbsp;: l'ordre fautif ne se produisait que sous une
-charge que personne n'avait provoquée.
+bibliothèques qu'on appelle sans le savoir. C'est pour cela qu'un interblocage
+peut dormir des années dans un programme pourtant testé, comme vous allez le
+voir.
 
 ## Ce que les tests ne peuvent pas voir
 

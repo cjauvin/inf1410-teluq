@@ -43,9 +43,7 @@ varient, `select` et `poll` partout, `epoll` sur Linux, `kqueue` sur les
 systèmes BSD dont macOS&nbsp;: une fonction qui reçoit une liste de connexions
 et rend la main quand l'une d'elles a quelque chose à dire. Un seul thread, dix
 mille connexions, et une boucle qui demande sans cesse « laquelle est
-prête&nbsp;? ». On l'appelle une **boucle d'événements** (*event loop*), et c'est
-ce que vous avez vu tourner sans le savoir dans les deux millions de
-connexions de WhatsApp, à la fin de la sous-section précédente.
+prête&nbsp;? ». On l'appelle une **boucle d'événements** (*event loop*).
 
 ## Le multitâche coopératif, revenu par la petite porte
 
@@ -65,7 +63,9 @@ peut donc rester planté devant sa casserole autant qu'il veut, quelqu'un
 viendra le pousser. Mais chaque cuisinier planté est un cuisinier entier, avec
 sa pile, et chaque poussée est un changement de contexte. Dix mille clients,
 c'est dix mille cuisiniers debout dans la cuisine, et c'est le compte de
-Kegel.
+Kegel. Notez que le cuisinier a changé de sens au passage&nbsp;: dans
+l'introduction de la section il représentait un coeur, ici il représente un
+thread, et dix mille threads se partagent quelques coeurs.
 
 Avec la boucle d'événements, personne ne pousse personne. Il n'y a qu'un
 cuisinier, et c'est lui qui décide quand changer de casserole. Il n'a le droit
@@ -91,7 +91,7 @@ lignes qui les séparent vraiment.
 
 | | Processus | Thread | Boucle d'événements |
 |---|---|---|---|
-| Mémoire | la sienne, isolée par la MMU | celle du processus, partagée avec les autres threads | celle du processus, un seul thread |
+| Mémoire | la sienne, isolée par l'unité de gestion mémoire | celle du processus, partagée avec les autres threads | celle du processus, un seul thread |
 | Qui décide de changer de tâche | le système, par préemption | le système, par préemption | le programme lui-même, aux moments où il a demandé à être prévenu |
 | Ce que coûte une tâche qui attend | un processus entier | un thread entier, avec sa pile, et un changement de contexte | une note, l'état du plat et quoi faire ensuite |
 | Ce qui casse | rien n'est partagé, mais se parler coûte cher | les conditions de course | un seul appel bloquant fige tout |
@@ -251,8 +251,9 @@ Sur ma machine, la minuterie de 100 millisecondes a sonné après 2001. Elle
 dos tourné et personne ne pouvait le pousser. Dans un serveur Node, remplacez
 la minuterie par dix mille connexions&nbsp;: pendant ces deux secondes, aucune
 n'est servie, aucune n'est même lue. Une seule fonction qui calcule un peu
-trop longtemps, ou qui lit un fichier de manière synchrone, et tout le
-serveur retient son souffle. C'est la panne du Mac classique, sauf qu'elle
+trop longtemps, ou qui lit un fichier de manière **synchrone**, c'est-à-dire
+en attendant sur place que la lecture finisse, et tout le serveur retient son
+souffle. C'est la panne du Mac classique, sauf qu'elle
 n'arrive plus à une machine, elle arrive à tous vos clients à la fois. La
 règle en découle, et elle est absolue&nbsp;: dans une boucle d'événements, on
 ne bloque jamais. Ni calcul long, ni attente synchrone. Tout ce qui prend du
@@ -341,7 +342,7 @@ dit Microsoft, « est allé au modèle `async` et `await` ». Python l'a adopté
 en 2015 avec la version 3.5, par un document de conception de Yury Selivanov
 qui voulait faire des **coroutines**, ces fonctions capables de se suspendre
 puis de reprendre, « une fonctionnalité native du langage ». JavaScript l'a
-eue en 2017. Quatre langages, cinq ans, deux mots-clés.
+eue en 2017. Quatre langages, moins de dix ans, deux mots-clés.
 
 {{< js >}}
 // La même lecture, écrite comme si elle bloquait. Elle ne bloque pas.
@@ -506,8 +507,9 @@ thread qui hache et la boucle se relaient sur un seul coeur, et c'est
 seulement parce que la boucle a très peu à faire qu'elle passe entre les
 gouttes. Avec le processus, 0,11 et 0,90. Le hachage a pris un autre coeur,
 la boucle n'en a rien su, et les 0,07 seconde de plus sont le prix du
-démarrage d'un interpréteur, celui que vous avez mesuré dans la sous-section
-sur les processus. Node dit exactement la même chose de ses threads&nbsp;:
+bassin de processus, un interpréteur par coeur à démarrer, dix sur cette
+machine, à sept millisecondes chacun d'après la mesure de la sous-section sur
+les processus. Node dit exactement la même chose de ses threads&nbsp;:
 « utiles pour les opérations JavaScript intensives en calcul », et « peu
 utiles pour le travail intensif en entrées-sorties », où sa boucle fait
 mieux.
