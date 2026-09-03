@@ -1,5 +1,5 @@
 <!doctype html><html lang=fr dir=ltr data-theme=auto><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Les bases de données# La section précédente a montré comment les données sont représentées, encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données.
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#2e3440"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Les bases de données"><meta property="og:description" content="Les bases de données# La section précédente a montré comment les données sont représentées, encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Les bases de données"><meta itemprop=description content="Les bases de données# La section précédente a montré comment les données sont représentées, encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données."><meta itemprop=wordCount content="8782"><title>Les bases de données • INF1410 - Initiation au génie logiciel</title><link rel=icon href=/inf1410-teluq/images/2gears.png><link rel=manifest href=/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/><link rel=stylesheet href=/inf1410-teluq/book.min.dd15512d9f3b5db7384d3f0eb250b98c2017e8203e7ef10e37a317cb6b1fdddd.css integrity="sha256-3RVRLZ87Xbc4TT8OslC5jCAX6CA+fvEON6MXy2sf3d0=" crossorigin=anonymous><script defer type=module src=/inf1410-teluq/fr.search.min.fff252ec492b5cc44dead6e3fdaba72cccc9d663b38af538849d5a1d56278cc7.js integrity="sha256-//JS7EkrXMRN6tbj/aunLMzJ1mOzivU4hJ1aHVYnjMc=" crossorigin=anonymous></script><script>(function(){try{var e=localStorage.getItem("book-theme");(e==="light"||e==="dark"||e==="auto")&&(document.documentElement.dataset.theme=e)}catch{}})()</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=/inf1410-teluq/css/pyodide.css><link rel=stylesheet href=/inf1410-teluq/css/sql.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#2e3440"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Les bases de données"><meta property="og:description" content="Les bases de données# La section précédente a montré comment les données sont représentées, encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Les bases de données"><meta itemprop=description content="Les bases de données# La section précédente a montré comment les données sont représentées, encodées en bits, sérialisées en formats textuels ou binaires, structurées par des schémas. Mais représenter des données ne suffit pas. Dès qu’un système doit conserver des données au-delà de l’exécution d’un programme, les retrouver efficacement, et garantir leur cohérence même en cas de panne ou d’accès concurrent, on entre dans le domaine des bases de données."><meta itemprop=wordCount content="8792"><title>Les bases de données • INF1410 - Initiation au génie logiciel</title><link rel=icon href=/inf1410-teluq/images/2gears.png><link rel=manifest href=/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/><link rel=stylesheet href=/inf1410-teluq/book.min.a9072de5a6ce3b1e5475155a1632dce8ae7e7e9bea5fa0fd07f395fda6c49983.css integrity="sha256-qQct5abOOx5UdRVaFjLc6K5+fpvqX6D9B/OV/abEmYM=" crossorigin=anonymous><script defer type=module src=/inf1410-teluq/fr.search.min.9f7e5cb416c9383463774d0108c5b040ef14149f7415f46face0fd31d1a22a2f.js integrity="sha256-n35ctBbJODRjd00BCMWwQO8UFJ90FfRvrOD9MdGiKi8=" crossorigin=anonymous></script><script>(function(){try{var e=localStorage.getItem("book-theme");(e==="light"||e==="dark"||e==="auto")&&(document.documentElement.dataset.theme=e)}catch{}})()</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=/inf1410-teluq/css/pyodide.css><link rel=stylesheet href=/inf1410-teluq/css/sql.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/inf1410-teluq/><img src=/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><div class="book-search hidden"><input id=book-search-input type=text placeholder=Rechercher aria-label=Rechercher maxlength=64><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><div class=theme-switch role=group aria-label="Thème de la page"><button type=button data-theme-value=auto data-tooltip="Thème du système" aria-label="Thème du système">
 <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.5" y="2.5" width="13" height="9" rx="1.5"/><path d="M5.5 14h5"/></svg>
 </button>
@@ -11,7 +11,9 @@
 <label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=/inf1410-teluq/docs/module1/><img src=/inf1410-teluq/icons/pyramide.svg class=book-icon alt=Pyramide>Module 1 - Le génie logiciel</a>
 <img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module1/historique/>Intro et historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle>
 <label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=/inf1410-teluq/docs/module2/><img src=/inf1410-teluq/icons/terminal.svg class=book-icon alt=Terminal>Module 2 - Concevoir un programme correct</a>
-<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><a href=/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle checked>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><input type=checkbox id=section-a5161d6fd4ebb86a335521fe0728e616 class=toggle>
+<label for=section-a5161d6fd4ebb86a335521fe0728e616 class=flex><a href=/inf1410-teluq/docs/module2/15-concurrence/>Concurrence et parallélisme</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module2/15-concurrence/pourquoi/>Pourquoi la concurrence</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/processus-threads/>Processus et threads</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/ce-qui-casse/>Ce qui casse</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/ne-pas-partager/>Ne pas partager</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/ne-jamais-bloquer/>Ne jamais bloquer</a></li></ul></li><li><a href=/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle checked>
 <label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=/inf1410-teluq/docs/module3/><img src=/inf1410-teluq/icons/systeme.svg class=book-icon alt=Système>Module 3 - Passer du programme au système</a>
 <img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
 <label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
@@ -586,7 +588,9 @@ est-elle déjà inscrite ?) et une insertion. Si
 le système tombe entre la vérification et l&rsquo;insertion, ou si deux processus
 tentent la même inscription simultanément, les données peuvent se retrouver dans
 un état incohérent. Dans un programme simple, on gère ça avec des conditions et
-des verrous. Dans un SGBD, on utilise une <em>transaction</em>.</p><p>Jim Gray, chercheur chez IBM puis chez Microsoft Research, a formalisé dans les
+des verrous, comme on l&rsquo;a vu dans la section sur
+<a href=/inf1410-teluq/docs/module2/15-concurrence/ce-qui-casse/>la concurrence</a>.
+Dans un SGBD, on utilise une <em>transaction</em>.</p><p>Jim Gray, chercheur chez IBM puis chez Microsoft Research, a formalisé dans les
 années 70 et 80 les propriétés fondamentales des transactions, un travail qui
 lui a valu le prix Turing en 1998. Ces propriétés sont connues sous l&rsquo;acronyme
 ACID :</p><ul><li><strong>Atomicité</strong> (<em>Atomicity</em>) : une transaction est tout ou rien. Soit toutes
@@ -599,7 +603,7 @@ l&rsquo;autre, même si en pratique le SGBD les entrelace pour la performance.</
 (<code>COMMIT</code>), ses effets survivent aux pannes, même un crash immédiat du
 serveur.</li></ul><p>Illustrons ces propriétés avec notre base universitaire. On tente d&rsquo;inscrire
 Alice à un cours auquel elle est déjà inscrite, ce qui viole la clé primaire de
-la table d&rsquo;inscription :</p><div class=sql-block id=sql-16><textarea id=sql-16-code>
+la table d&rsquo;inscription :</p><div class=sql-block id=sql-17><textarea id=sql-17-code>
 -- ============================================================
 -- Les transactions — atomicite en action
 -- ============================================================
@@ -615,9 +619,9 @@ ROLLBACK;
 
 -- La base est intacte — c&#39;est l&#39;atomicite en action
 SELECT * FROM inscription WHERE matricule = &#39;TRAA01&#39;;
-</textarea><div class=sql-toolbar><button id=sql-16-run onclick='sqlRun("sql-16")'>&#9654; Exécuter</button>
-<button id=sql-16-reset onclick='sqlReset("sql-16")'>&#8634; Réinitialiser</button>
-<span class=sql-status id=sql-16-status></span></div><div class="sql-output sql-output-hidden" id=sql-16-output></div></div><p>Kleppmann consacre une partie importante de <em>Designing Data-Intensive
+</textarea><div class=sql-toolbar><button id=sql-17-run onclick='sqlRun("sql-17")'>&#9654; Exécuter</button>
+<button id=sql-17-reset onclick='sqlReset("sql-17")'>&#8634; Réinitialiser</button>
+<span class=sql-status id=sql-17-status></span></div><div class="sql-output sql-output-hidden" id=sql-17-output></div></div><p>Kleppmann consacre une partie importante de <em>Designing Data-Intensive
 Applications</em> aux niveaux d&rsquo;isolation, montrant que la propriété I d&rsquo;ACID est en
 réalité un spectre. L&rsquo;isolation totale (<em>serializable</em>) est coûteuse en
 performance, et la plupart des SGBD offrent par défaut un niveau plus faible
@@ -786,7 +790,7 @@ après un délai fixe), le <em>write-through</em> (mise à jour simultanée du c
 la source) et le <em>cache-aside</em> (le code vérifie d&rsquo;abord le cache, puis
 interroge la source en cas d&rsquo;absence). Python offre <code>functools.lru_cache</code>, un
 décorateur qui implémente un cache LRU (<em>Least Recently Used</em>) directement sur
-les appels de fonction :</p><div class=pyodide-block id=pyodide-18><textarea id=pyodide-18-code tabindex=-1>import functools
+les appels de fonction :</p><div class=pyodide-block id=pyodide-19><textarea id=pyodide-19-code tabindex=-1>import functools
 import time
 
 # --- Cache LRU intégré à Python ---
@@ -819,9 +823,9 @@ print(f&#34;  Taux   : {info.hits / (info.hits &#43; info.misses) * 100:.0f}%&#3
 
 print(f&#34;\n=== Invalidation du cache ===\n&#34;)
 requete_couteuse.cache_clear()
-print(f&#34;  Cache vidé. Nouvelle taille : {requete_couteuse.cache_info().currsize}&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-18-run onclick='pyodideRun("pyodide-18")'>&#9654; Exécuter</button>
-<button id=pyodide-18-reset onclick='pyodideReset("pyodide-18")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-18-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-18-output></pre></div><h3 id=les-bases-orientées-documents>Les bases orientées documents<a class=anchor href=#les-bases-orient%c3%a9es-documents>#</a></h3><p>Les bases orientées documents poussent l&rsquo;idée un cran plus loin que les bases
+print(f&#34;  Cache vidé. Nouvelle taille : {requete_couteuse.cache_info().currsize}&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-19-run onclick='pyodideRun("pyodide-19")'>&#9654; Exécuter</button>
+<button id=pyodide-19-reset onclick='pyodideReset("pyodide-19")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-19-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-19-output></pre></div><h3 id=les-bases-orientées-documents>Les bases orientées documents<a class=anchor href=#les-bases-orient%c3%a9es-documents>#</a></h3><p>Les bases orientées documents poussent l&rsquo;idée un cran plus loin que les bases
 clé-valeur. La valeur n&rsquo;est plus opaque, c&rsquo;est un document structuré
 (généralement en JSON) que la base sait interroger. On peut chercher par
 n&rsquo;importe quel champ à l&rsquo;intérieur du document, sans avoir besoin de connaître
@@ -884,7 +888,7 @@ transformées vers un entrepôt orienté colonnes via un processus appelé ETL
 de ralentir le système transactionnel. C&rsquo;est une application directe du principe de séparation des préoccupations,
 puisque les deux charges de travail ont des besoins si différents qu&rsquo;il vaut
 mieux les servir avec des systèmes distincts.</p><p>En Python, on peut illustrer la différence entre les deux approches de
-stockage :</p><div class=pyodide-block id=pyodide-19><textarea id=pyodide-19-code tabindex=-1>import random
+stockage :</p><div class=pyodide-block id=pyodide-20><textarea id=pyodide-20-code tabindex=-1>import random
 
 # --- Génération de données de ventes ---
 
@@ -967,9 +971,9 @@ for region in sorted(regions):
     for t in trimestres:
         val = cube.get((region, t), 0)
         print(f&#34;  {val:10,.2f}&#34;, end=&#34;&#34;)
-    print()</textarea><div class=pyodide-toolbar><button id=pyodide-19-run onclick='pyodideRun("pyodide-19")'>&#9654; Exécuter</button>
-<button id=pyodide-19-reset onclick='pyodideReset("pyodide-19")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-19-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-19-output></pre></div><h3 id=les-bases-orientées-graphes>Les bases orientées graphes<a class=anchor href=#les-bases-orient%c3%a9es-graphes>#</a></h3><p>Certaines données sont fondamentalement des réseaux de relations. Un réseau
+    print()</textarea><div class=pyodide-toolbar><button id=pyodide-20-run onclick='pyodideRun("pyodide-20")'>&#9654; Exécuter</button>
+<button id=pyodide-20-reset onclick='pyodideReset("pyodide-20")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-20-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-20-output></pre></div><h3 id=les-bases-orientées-graphes>Les bases orientées graphes<a class=anchor href=#les-bases-orient%c3%a9es-graphes>#</a></h3><p>Certaines données sont fondamentalement des réseaux de relations. Un réseau
 social, une carte routière, une ontologie, les dépendances entre les composants
 d&rsquo;un système logiciel. Dans ces cas, ce qui importe n&rsquo;est pas tant les entités
 elles-mêmes que les connexions entre elles. Les requêtes typiques sont des
@@ -988,7 +992,7 @@ modifier un schéma global, et les requêtes sont déclaratives plutôt que
 procédurales. Neo4j (2007, Emil Eifrem et Johan Svensson) est la plus connue.
 Son langage de requête, Cypher, est au graphe ce que SQL est aux tables.</p><p>En Python, un graphe peut se représenter simplement comme un dictionnaire
 d&rsquo;adjacence. Voici un exemple de traversée en largeur (<em>breadth-first search</em>,
-BFS) qui trouve tous les nœuds accessibles depuis un point de départ :</p><div class=pyodide-block id=pyodide-20><textarea id=pyodide-20-code tabindex=-1>from collections import deque
+BFS) qui trouve tous les nœuds accessibles depuis un point de départ :</p><div class=pyodide-block id=pyodide-21><textarea id=pyodide-21-code tabindex=-1>from collections import deque
 
 # Graphe d&#39;adjacence : qui connaît qui ?
 graphe = {
@@ -1022,9 +1026,9 @@ def bfs(graphe, depart, profondeur_max):
 print(&#34;Réseau d&#39;Alice (jusqu&#39;à 2 sauts) :\n&#34;)
 for personne, distance in bfs(graphe, &#34;Alice&#34;, 2):
     relation = &#34;ami direct&#34; if distance == 1 else &#34;ami d&#39;ami&#34;
-    print(f&#34;  {personne:10s} ({relation})&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-20-run onclick='pyodideRun("pyodide-20")'>&#9654; Exécuter</button>
-<button id=pyodide-20-reset onclick='pyodideReset("pyodide-20")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-20-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-20-output></pre></div><p>Cypher, le langage de requête de Neo4j, rend la structure du graphe visible
+    print(f&#34;  {personne:10s} ({relation})&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-21-run onclick='pyodideRun("pyodide-21")'>&#9654; Exécuter</button>
+<button id=pyodide-21-reset onclick='pyodideReset("pyodide-21")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-21-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-21-output></pre></div><p>Cypher, le langage de requête de Neo4j, rend la structure du graphe visible
 directement dans la syntaxe. Les nœuds sont représentés par des parenthèses et
 les relations par des flèches, ce qui donne des requêtes dont la forme épouse
 celle des données. Reprenons notre exemple universitaire pour comparer avec les
@@ -1061,9 +1065,9 @@ Slutsky). Mais les bases de données spécialisées pour ce type de données son
 récentes. Prometheus (2012, développé chez SoundCloud par Matt Proud et Julius
 Volz) a montré que le monitoring d&rsquo;infrastructure nécessitait un modèle de
 données dédié, suivi d&rsquo;InfluxDB (2013) et de TimescaleDB (2017, une extension
-de PostgreSQL).</p><label class=book-image for=book-image-toggle-21><input class="hidden toggle" type=checkbox id=book-image-toggle-21>
+de PostgreSQL).</p><label class=book-image for=book-image-toggle-22><input class="hidden toggle" type=checkbox id=book-image-toggle-22>
 <img src=/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/time-series.png alt loading=lazy width=601 height=447 style=--largeur-plafond:601px>
-</label><script>(function(){const e=document.getElementById("book-image-toggle-21"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Les bases relationnelles classiques peuvent stocker des séries temporelles, mais
+</label><script>(function(){const e=document.getElementById("book-image-toggle-22"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Les bases relationnelles classiques peuvent stocker des séries temporelles, mais
 elles ne sont pas optimisées pour leurs particularités. Les données arrivent
 principalement en mode <em>append</em> (on ajoute sans modifier), les requêtes portent
 presque toujours sur des intervalles de temps, et le volume peut être
@@ -1074,7 +1078,7 @@ espacés), des fonctions d&rsquo;agrégation temporelle natives (<em>downsample<
 et des politiques de rétention automatiques (supprimer les données de plus de 90
 jours, par exemple).</p><p>En Python, on peut illustrer les opérations fondamentales sur les séries
 temporelles (rééchantillonnage, moyenne mobile, détection d&rsquo;anomalies) avec les
-structures de données de base :</p><div class=pyodide-block id=pyodide-22><textarea id=pyodide-22-code tabindex=-1>import random
+structures de données de base :</p><div class=pyodide-block id=pyodide-23><textarea id=pyodide-23-code tabindex=-1>import random
 import math
 from datetime import datetime, timedelta
 
@@ -1145,9 +1149,9 @@ for pt in lisse:
 if not anomalies:
     print(&#34;  Aucune anomalie détectée.&#34;)
 else:
-    print(f&#34;\n  {len(anomalies)} anomalie(s) détectée(s).&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-22-run onclick='pyodideRun("pyodide-22")'>&#9654; Exécuter</button>
-<button id=pyodide-22-reset onclick='pyodideReset("pyodide-22")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-22-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-22-output></pre></div><p>On retrouvera les séries temporelles dans le module 5, lorsqu&rsquo;on abordera
+    print(f&#34;\n  {len(anomalies)} anomalie(s) détectée(s).&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-23-run onclick='pyodideRun("pyodide-23")'>&#9654; Exécuter</button>
+<button id=pyodide-23-reset onclick='pyodideReset("pyodide-23")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-23-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-23-output></pre></div><p>On retrouvera les séries temporelles dans le module 5, lorsqu&rsquo;on abordera
 l&rsquo;observabilité et le monitoring. Les métriques collectées par des outils comme
 Prometheus et Grafana sont précisément des séries temporelles, et les concepts
 de rétention, d&rsquo;agrégation et d&rsquo;alerting sur seuil sont au cœur de la
@@ -1180,7 +1184,7 @@ en haute dimension est prohibitivement lente. Des algorithmes comme HNSW
 (<em>Hierarchical Navigable Small World</em>) permettent des recherches quasi
 instantanées même sur des millions de vecteurs, au prix d&rsquo;une approximation
 contrôlée.</p><p>En Python, on peut illustrer les concepts fondamentaux (embedding, distance
-cosinus, recherche par similarité) avec des vecteurs simplifiés :</p><div class=pyodide-block id=pyodide-23><textarea id=pyodide-23-code tabindex=-1>import math
+cosinus, recherche par similarité) avec des vecteurs simplifiés :</p><div class=pyodide-block id=pyodide-24><textarea id=pyodide-24-code tabindex=-1>import math
 import random
 
 # --- Similarité cosinus ---
@@ -1256,9 +1260,9 @@ for description, themes_requete in requetes:
 
     print(f&#34;\n=== Recherche : &#39;{description}&#39; ===\n&#34;)
     for doc, score in resultats:
-        print(f&#34;  {score:.3f}  {doc[&#39;id&#39;]}: {doc[&#39;texte&#39;][:55]}...&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-23-run onclick='pyodideRun("pyodide-23")'>&#9654; Exécuter</button>
-<button id=pyodide-23-reset onclick='pyodideReset("pyodide-23")'>&#8634; Réinitialiser</button>
-<span class=pyodide-status id=pyodide-23-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-23-output></pre></div><p>On retrouvera les bases vectorielles et le RAG dans le module 6, lorsqu&rsquo;on
+        print(f&#34;  {score:.3f}  {doc[&#39;id&#39;]}: {doc[&#39;texte&#39;][:55]}...&#34;)</textarea><div class=pyodide-toolbar><button id=pyodide-24-run onclick='pyodideRun("pyodide-24")'>&#9654; Exécuter</button>
+<button id=pyodide-24-reset onclick='pyodideReset("pyodide-24")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-24-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-24-output></pre></div><p>On retrouvera les bases vectorielles et le RAG dans le module 6, lorsqu&rsquo;on
 abordera le développement assisté par l&rsquo;IA et l&rsquo;écosystème des grands modèles de
 langage. Les embeddings et la recherche par similarité sont devenus des briques
 fondamentales de l&rsquo;infrastructure logicielle moderne, au même titre que les
@@ -1269,7 +1273,7 @@ bases relationnelles l&rsquo;étaient une génération plus tôt.</p></article><
 import sys, io
 sys.stdout = io.StringIO()
 sys.stderr = io.StringIO()
-`);try{e.runPython(i)}catch(o){const i=e.runPython("sys.stderr.getvalue()"),s=e.runPython("sys.stdout.getvalue()");t.innerHTML="",s&&t.appendChild(document.createTextNode(s));const n=document.createElement("span");n.className="pyodide-error",n.textContent=i||o.message,t.appendChild(n);return}finally{const s=e.runPython("sys.stdout.getvalue()"),n=e.runPython("sys.stderr.getvalue()");if(e.runPython(`
+`);try{await e.runPythonAsync(i)}catch(o){const i=e.runPython("sys.stderr.getvalue()"),s=e.runPython("sys.stdout.getvalue()");t.innerHTML="",s&&t.appendChild(document.createTextNode(s));const n=document.createElement("span");n.className="pyodide-error",n.textContent=i||o.message,t.appendChild(n);return}finally{const s=e.runPython("sys.stdout.getvalue()"),n=e.runPython("sys.stderr.getvalue()");if(e.runPython(`
 sys.stdout = sys.__stdout__
 sys.stderr = sys.__stderr__
 `),!t.children.length){if(t.textContent=s,n){const e=document.createElement("span");e.className="pyodide-error",e.textContent=n,t.appendChild(e)}!s&&!n&&(t.textContent="(Exécution terminée, aucune sortie)")}}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("span");e.className="pyodide-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function pyodideReset(e){const t=_pyodideEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.textContent=""}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/sql/sql.min.js></script><script>const _sqlEditors={};document.querySelectorAll(".sql-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const s=e.id,o=t.value,n=CodeMirror.fromTextArea(t,{mode:"text/x-sql",theme:"material-darker",indentUnit:2,tabSize:2,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=o,_sqlEditors[s]=n});let _sqlDbReady=null;async function _getSqlDb(){return _sqlDbReady||(_sqlDbReady=(async()=>{await new Promise((e,t)=>{const n=document.createElement("script");n.src="https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.js",n.onload=e,n.onerror=t,document.head.appendChild(n)});const e=await initSqlJs({locateFile:()=>"https://cdn.jsdelivr.net/npm/sql.js@1/dist/sql-wasm.wasm"});return new e.Database})()),_sqlDbReady}function _sqlResultToTable(e,t){let n="<table><thead><tr>";for(const t of e)n+="<th>"+_sqlEscape(t)+"</th>";n+="</tr></thead><tbody>";for(const e of t){n+="<tr>";for(const t of e)t===null?n+='<td class="sql-null">NULL</td>':n+="<td>"+_sqlEscape(String(t))+"</td>";n+="</tr>"}return n+="</tbody></table>",n}function _sqlEscape(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}async function sqlRun(e){const o=_sqlEditors[e],t=document.getElementById(e+"-output"),s=document.getElementById(e+"-run"),n=document.getElementById(e+"-status"),i=o.getValue();s.disabled=!0,t.innerHTML="",t.classList.remove("sql-output-hidden"),n.textContent="Chargement de SQL.js…";try{const e=await _getSqlDb();n.textContent="Exécution…";const s=e.exec(i);if(s.length===0){const s=e.getRowsModified(),n=document.createElement("div");n.className="sql-message",n.textContent=s>0?s+" ligne(s) modifiée(s).":"Requête exécutée avec succès.",t.appendChild(n)}else for(const e of s){const n=document.createElement("div");n.innerHTML=_sqlResultToTable(e.columns,e.values),t.appendChild(n)}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("div");e.className="sql-message sql-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function sqlReset(e){const t=_sqlEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.innerHTML="",n.classList.add("sql-output-hidden")}</script><script>document.addEventListener("DOMContentLoaded",()=>{const t='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5"/><path d="M3.5 10.5H2.5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v1"/></svg>',n='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>';function e(e){const s=document.createElement("button");return s.className="copy-btn",s.innerHTML=t,s.addEventListener("click",()=>{navigator.clipboard.writeText(e()).then(()=>{s.innerHTML=n,setTimeout(()=>{s.innerHTML=t},2e3)})}),s}document.querySelectorAll(".highlight pre").forEach(t=>{const n=t.querySelector("code"),s=["shell","bash","console","pycon"];if(n&&s.includes(n.getAttribute("data-lang")))return;t.style.position="relative";const o=e(()=>n?n.textContent:t.textContent);t.appendChild(o)}),document.querySelectorAll(".pyodide-block").forEach(t=>{const s=t.id,n=t.querySelector(".CodeMirror");if(!n)return;n.style.position="relative";const o=e(()=>_pyodideEditors[s].getValue());n.appendChild(o)}),document.querySelectorAll(".js-block").forEach(t=>{const s=t.id,n=t.querySelector(".CodeMirror");if(!n)return;n.style.position="relative";const o=e(()=>_jsEditors[s].getValue());n.appendChild(o)})})</script><script>(function(){const s=400;let t=null,e=null;function n(){t&&(clearTimeout(t),t=null),e&&(e.removeAttribute("data-tip-visible"),e=null)}document.addEventListener("mousemove",function(o){const i=o.target.closest&&o.target.closest(".book-image[data-tooltip]");if(!i){n();return}i.style.setProperty("--tip-x",o.clientX+"px"),i.style.setProperty("--tip-y",o.clientY+"px"),t&&clearTimeout(t),e&&e!==i&&e.removeAttribute("data-tip-visible"),i.removeAttribute("data-tip-visible"),e=i,t=setTimeout(function(){i.setAttribute("data-tip-visible","")},s)}),document.addEventListener("mouseleave",n),window.addEventListener("scroll",n,{passive:!0})})()</script></body></html>

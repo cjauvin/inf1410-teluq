@@ -1,0 +1,539 @@
+<!doctype html><html lang=fr dir=ltr data-theme=auto><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Ne jamais bloquer# Dix mille clients# En 1999, un programmeur nommé Dan Kegel ouvre une page web par une question faussement modeste : « Il est temps que les serveurs web servent dix mille clients en même temps, vous ne trouvez pas ? » Le problème a gardé le nom qu’il lui a donné, C10K, dix mille connexions, et il est resté la page de référence du sujet pendant quinze ans, remise à jour jusqu’en 2014. Ce qui le rendait difficile n’était pas la puissance de calcul. Dix mille personnes qui lisent un site ne demandent presque rien au processeur. Ce qui le rendait difficile, c’est que la manière évidente de s’y prendre ne tient pas.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#2e3440"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module2/15-concurrence/ne-jamais-bloquer/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Ne jamais bloquer"><meta property="og:description" content="Ne jamais bloquer# Dix mille clients# En 1999, un programmeur nommé Dan Kegel ouvre une page web par une question faussement modeste : « Il est temps que les serveurs web servent dix mille clients en même temps, vous ne trouvez pas ? » Le problème a gardé le nom qu’il lui a donné, C10K, dix mille connexions, et il est resté la page de référence du sujet pendant quinze ans, remise à jour jusqu’en 2014. Ce qui le rendait difficile n’était pas la puissance de calcul. Dix mille personnes qui lisent un site ne demandent presque rien au processeur. Ce qui le rendait difficile, c’est que la manière évidente de s’y prendre ne tient pas."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Ne jamais bloquer"><meta itemprop=description content="Ne jamais bloquer# Dix mille clients# En 1999, un programmeur nommé Dan Kegel ouvre une page web par une question faussement modeste : « Il est temps que les serveurs web servent dix mille clients en même temps, vous ne trouvez pas ? » Le problème a gardé le nom qu’il lui a donné, C10K, dix mille connexions, et il est resté la page de référence du sujet pendant quinze ans, remise à jour jusqu’en 2014. Ce qui le rendait difficile n’était pas la puissance de calcul. Dix mille personnes qui lisent un site ne demandent presque rien au processeur. Ce qui le rendait difficile, c’est que la manière évidente de s’y prendre ne tient pas."><meta itemprop=wordCount content="4565"><title>Ne jamais bloquer • INF1410 - Initiation au génie logiciel</title><link rel=icon href=/inf1410-teluq/images/2gears.png><link rel=manifest href=/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/15-concurrence/ne-jamais-bloquer/><link rel=stylesheet href=/inf1410-teluq/book.min.a9072de5a6ce3b1e5475155a1632dce8ae7e7e9bea5fa0fd07f395fda6c49983.css integrity="sha256-qQct5abOOx5UdRVaFjLc6K5+fpvqX6D9B/OV/abEmYM=" crossorigin=anonymous><script defer type=module src=/inf1410-teluq/fr.search.min.9f7e5cb416c9383463774d0108c5b040ef14149f7415f46face0fd31d1a22a2f.js integrity="sha256-n35ctBbJODRjd00BCMWwQO8UFJ90FfRvrOD9MdGiKi8=" crossorigin=anonymous></script><script>(function(){try{var e=localStorage.getItem("book-theme");(e==="light"||e==="dark"||e==="auto")&&(document.documentElement.dataset.theme=e)}catch{}})()</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=/inf1410-teluq/css/applet.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css><link rel=stylesheet href=/inf1410-teluq/css/pyodide.css><link rel=stylesheet href=/inf1410-teluq/css/js.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/inf1410-teluq/><img src=/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><div class="book-search hidden"><input id=book-search-input type=text placeholder=Rechercher aria-label=Rechercher maxlength=64><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><div class=theme-switch role=group aria-label="Thème de la page"><button type=button data-theme-value=auto data-tooltip="Thème du système" aria-label="Thème du système">
+<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.5" y="2.5" width="13" height="9" rx="1.5"/><path d="M5.5 14h5"/></svg>
+</button>
+<button type=button data-theme-value=light data-tooltip="Thème clair" aria-label="Thème clair">
+<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="3.25"/><path d="M8 1v1.5m0 11V15M1 8h1.5m11 0H15M3.05 3.05l1.06 1.06m7.78 7.78 1.06 1.06M12.95 3.05l-1.06 1.06M4.11 11.89l-1.06 1.06"/></svg>
+</button>
+<button type=button data-theme-value=dark data-tooltip="Thème sombre" aria-label="Thème sombre">
+<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M13.5 9.7A5.8 5.8.0 016.3 2.5a5.8 5.8.0 107.2 7.2z"/></svg></button></div><script>(function(){var e="book-theme",s=["auto","light","dark"],o=document.documentElement,t=Array.prototype.slice.call(document.querySelectorAll(".theme-switch [data-theme-value]"));function i(){try{var t=localStorage.getItem(e);if(s.indexOf(t)!==-1)return t}catch{}return"auto"}function n(e){o.dataset.theme=e,t.forEach(function(t){t.setAttribute("aria-pressed",String(t.dataset.themeValue===e))})}t.forEach(function(t){t.addEventListener("click",function(){var s=t.dataset.themeValue;try{localStorage.setItem(e,s)}catch{}n(s)})}),n(i())})()</script><ul><li><a href=/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=/inf1410-teluq/docs/professeur/>Le professeur</a></li><li><a href=/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=/inf1410-teluq/docs/module1/><img src=/inf1410-teluq/icons/pyramide.svg class=book-icon alt=Pyramide>Module 1 - Le génie logiciel</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module1/historique/>Intro et historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle checked>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=/inf1410-teluq/docs/module2/><img src=/inf1410-teluq/icons/terminal.svg class=book-icon alt=Terminal>Module 2 - Concevoir un programme correct</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><input type=checkbox id=section-a5161d6fd4ebb86a335521fe0728e616 class=toggle checked>
+<label for=section-a5161d6fd4ebb86a335521fe0728e616 class=flex><a href=/inf1410-teluq/docs/module2/15-concurrence/>Concurrence et parallélisme</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module2/15-concurrence/pourquoi/>Pourquoi la concurrence</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/processus-threads/>Processus et threads</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/ce-qui-casse/>Ce qui casse</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/ne-pas-partager/>Ne pas partager</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/ne-jamais-bloquer/ class=active>Ne jamais bloquer</a></li></ul></li><li><a href=/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=/inf1410-teluq/docs/module3/><img src=/inf1410-teluq/icons/systeme.svg class=book-icon alt=Système>Module 3 - Passer du programme au système</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
+<label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module3/30-interfaces/historique/>Perspective historique</a></li><li><a href=/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>L'architecture des applications web</a></li><li><a href=/inf1410-teluq/docs/module3/30-interfaces/frameworks/>Les frameworks JavaScript</a></li><li><a href=/inf1410-teluq/docs/module3/30-interfaces/convergences/>Desktop, web et mobile</a></li></ul></li><li><input type=checkbox id=section-e4d51cc3c07f12fea00e9c0cd309e911 class=toggle>
+<label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=/inf1410-teluq/docs/module4/><img src=/inf1410-teluq/icons/equipe.svg class=book-icon alt=Équipe>Module 4 - Construire en équipe</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=toggle>
+<label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=/inf1410-teluq/docs/module4/20-agile/kanban/>Kanban</a></li></ul></li><li><a href=/inf1410-teluq/docs/module4/gestion-projet/>Gestion de projet et coordination</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=/inf1410-teluq/docs/module5/><img src=/inf1410-teluq/icons/pulsation.svg class=book-icon alt=Pulsation>Module 5 - Faire vivre le logiciel</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><input type=checkbox id=section-69c4d37a525484fe9a3045731c1a6b13 class=toggle>
+<label for=section-69c4d37a525484fe9a3045731c1a6b13 class=flex><a href=/inf1410-teluq/docs/module5/10-infrastructure/>L'infrastructure</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module5/10-infrastructure/docker/>La conteneurisation (Docker)</a></li><li><a href=/inf1410-teluq/docs/module5/10-infrastructure/kubernetes/>L'orchestration (Kubernetes)</a></li><li><a href=/inf1410-teluq/docs/module5/10-infrastructure/iac/>L'infrastructure comme code (Terraform)</a></li></ul></li><li><a href=/inf1410-teluq/docs/module5/deploiement/>Le déploiement continu (CD)</a></li><li><a href=/inf1410-teluq/docs/module5/observabilite/>L'observabilité</a></li><li><a href=/inf1410-teluq/docs/module5/incidents/>La fiabilité et les incidents</a></li><li><a href=/inf1410-teluq/docs/module5/securite/>La sécurité</a></li><li><a href=/inf1410-teluq/docs/module5/scalabilite/>La scalabilité</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=/inf1410-teluq/docs/module6/><img src=/inf1410-teluq/icons/globe.svg class=book-icon alt=Globe>Module 6 - Le logiciel dans le monde</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module6/open-source/>L'open source</a></li><li><a href=/inf1410-teluq/docs/module6/economie/>L'économie du logiciel</a></li><li><a href=/inf1410-teluq/docs/module6/monopoles/>Monopoles et régulation</a></li><li><a href=/inf1410-teluq/docs/module6/catastrophes/>Catastrophes, éthique et responsabilité</a></li><li><a href=/inf1410-teluq/docs/module6/metier/>Le métier de développeur</a></li><li><a href=/inf1410-teluq/docs/module6/ia/>Le développement assisté par IA</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Ne jamais bloquer</h3><label for=toc-control><img src=/inf1410-teluq/icons/toc.svg class=book-icon alt="Table des matières"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#dix-mille-clients>Dix mille clients</a></li><li><a href=#le-multitâche-coopératif-revenu-par-la-petite-porte>Le multitâche coopératif, revenu par la petite porte</a></li><li><a href=#un-langage-de-navigateur-devient-un-serveur>Un langage de navigateur devient un serveur</a><ul><li><a href=#rien-na-été-inventé-tout-a-été-assemblé>Rien n&rsquo;a été inventé, tout a été assemblé</a></li></ul></li><li><a href=#regarder-la-boucle-tourner>Regarder la boucle tourner</a><ul><li><a href=#deux-secondes-de-calcul-et-tout-le-monde-attend>Deux secondes de calcul, et tout le monde attend</a></li></ul></li><li><a href=#le-même-code-trois-fois>Le même code, trois fois</a><ul><li><a href=#première-génération-la-fonction-de-rappel>Première génération, la fonction de rappel</a></li><li><a href=#deuxième-génération-la-promesse>Deuxième génération, la promesse</a></li><li><a href=#troisième-génération-écrire-comme-si-on-bloquait>Troisième génération, écrire comme si on bloquait</a></li></ul></li><li><a href=#python-a-sa-boucle-aussi>Python a sa boucle aussi</a></li><li><a href=#une-boucle-ne-calcule-pas-plus-vite>Une boucle ne calcule pas plus vite</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=ne-jamais-bloquer>Ne jamais bloquer<a class=anchor href=#ne-jamais-bloquer>#</a></h1><h2 id=dix-mille-clients>Dix mille clients<a class=anchor href=#dix-mille-clients>#</a></h2><p>En 1999, un programmeur nommé Dan Kegel ouvre une page web par une question
+faussement modeste : « Il est temps que les serveurs web servent dix mille
+clients en même temps, vous ne trouvez pas ? » Le problème a gardé le nom
+qu&rsquo;il lui a donné, <strong>C10K</strong>, dix mille connexions, et il est resté la page de
+référence du sujet pendant quinze ans, remise à jour jusqu&rsquo;en 2014. Ce qui le
+rendait difficile n&rsquo;était pas la puissance de calcul. Dix mille personnes qui
+lisent un site ne demandent presque rien au processeur. Ce qui le rendait
+difficile, c&rsquo;est que la manière évidente de s&rsquo;y prendre ne tient pas.</p><p>La manière évidente, c&rsquo;est celle de tout ce qu&rsquo;on a vu jusqu&rsquo;ici : un thread
+par client. Chaque connexion reçoit son fil d&rsquo;exécution, qui attend la requête,
+la lit, répond, et recommence. C&rsquo;est simple, c&rsquo;est lisible, et Kegel montre en
+une division pourquoi cela s&rsquo;effondre. Un thread a besoin d&rsquo;une pile, deux
+mégaoctets sur le Linux de l&rsquo;époque, et un processus disposait d&rsquo;un gigaoctet
+de mémoire virtuelle. « On manque de mémoire virtuelle à
+2^30 / 2^21 = 512 threads. » Un gigaoctet divisé par deux mégaoctets, cinq
+cent douze. On en voulait dix mille.
+Et même en réduisant les piles, chaque thread qui attend coûte un changement de
+contexte à l&rsquo;ordonnanceur pour rien, puisqu&rsquo;il n&rsquo;a rien à faire d&rsquo;autre
+qu&rsquo;attendre. On retrouve le cuisinier planté devant sa casserole, sauf qu&rsquo;ils
+sont dix mille à attendre chacun devant la sienne, et que la cuisine n&rsquo;a pas
+la place.</p><p>La réponse de Kegel tient en une phrase, et elle est le programme de toute
+cette sous-section : « servir beaucoup de clients avec chaque thread, et
+utiliser des entrées-sorties non bloquantes et une notification de
+disponibilité ». Autrement dit, un seul cuisinier pour toutes les casseroles,
+à condition qu&rsquo;il ne reste jamais planté devant aucune. Au lieu de demander au
+réseau « donne-moi la requête » et d&rsquo;attendre qu&rsquo;elle arrive, on lui demande
+« préviens-moi quand une requête est arrivée » et on passe à la casserole
+suivante. Le système d&rsquo;exploitation offre exactement cela, sous des noms qui
+varient, <code>select</code> et <code>poll</code> partout, <code>epoll</code> sur Linux, <code>kqueue</code> sur les
+systèmes BSD dont macOS : une fonction qui reçoit une liste de connexions
+et rend la main quand l&rsquo;une d&rsquo;elles a quelque chose à dire. Un seul thread, dix
+mille connexions, et une boucle qui demande sans cesse « laquelle est
+prête ? ». On l&rsquo;appelle une <strong>boucle d&rsquo;événements</strong> (<em>event loop</em>).</p><h2 id=le-multitâche-coopératif-revenu-par-la-petite-porte>Le multitâche coopératif, revenu par la petite porte<a class=anchor href=#le-multit%c3%a2che-coop%c3%a9ratif-revenu-par-la-petite-porte>#</a></h2><p>Il faut être précis sur ce qui change, parce que sur une image fixe, rien ne
+change. Un cuisinier devant trois casseroles qui cuisent, c&rsquo;est la vignette
+« Concurrence » de l&rsquo;introduction de cette section, et elle décrit aussi bien
+dix threads sur un seul coeur qu&rsquo;une boucle d&rsquo;événements. Dans les deux cas,
+une seule chose avance à la fois, et dans les deux cas, les casseroles cuisent
+pendant qu&rsquo;on s&rsquo;occupe d&rsquo;une autre. La différence n&rsquo;est pas dans l&rsquo;image, elle
+est dans qui déplace le cuisinier.</p><p>Avec les threads, c&rsquo;est le système qui le déplace. Vous avez vu comment dans
+la sous-section sur <a href=/inf1410-teluq/docs/module2/15-concurrence/processus-threads/>les processus et les threads</a> :
+une minuterie interrompt le thread en cours sans lui demander son avis,
+l&rsquo;ordonnanceur range son état et en installe un autre à la place. Le cuisinier
+peut donc rester planté devant sa casserole autant qu&rsquo;il veut, quelqu&rsquo;un
+viendra le pousser. Mais chaque cuisinier planté est un cuisinier entier, avec
+sa pile, et chaque poussée est un changement de contexte. Dix mille clients,
+c&rsquo;est dix mille cuisiniers debout dans la cuisine, et c&rsquo;est le compte de
+Kegel. Notez que le cuisinier a changé de sens au passage : dans
+l&rsquo;introduction de la section il représentait un coeur, ici il représente un
+thread, et dix mille threads se partagent quelques coeurs.</p><p>Avec la boucle d&rsquo;événements, personne ne pousse personne. Il n&rsquo;y a qu&rsquo;un
+cuisinier, et c&rsquo;est lui qui décide quand changer de casserole. Il n&rsquo;a le droit
+de le faire qu&rsquo;à un moment précis, celui où il a demandé à être prévenu, et il
+ne se plante jamais, parce que la casserole a une sonnette. Un plat en attente
+n&rsquo;est plus une personne, c&rsquo;est une note posée sur la casserole, l&rsquo;état du plat
+et quoi faire quand elle sonnera.</p><figure class=svg-fig><label class=book-image for=illustration-1><input class="hidden toggle" type=checkbox id=illustration-1>
+<svg viewBox="0 0 760 350" class="fig-svg" role="img" aria-label="Deux vignettes en cuisine côte à côte, avec trois casseroles sur le feu dans chacune. À gauche, Threads : un cuisinier sous chaque casserole, et une file qui continue. Un seul est en train de cuisiner, les deux autres sont estompés, plantés devant leur casserole. Une flèche venue d'une étiquette « l'ordonnanceur » tape sur l'épaule de celui qui cuisine. À droite, Boucle d'événements : un seul cuisinier pour les trois casseroles, et une sonnette au-dessus de chacune. La sonnette de droite sonne, et le trait qui relie le cuisinier à cette casserole est plein, alors que les deux autres sont en pointillé."><g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" fill="currentColor"><text x="190" y="34" font-size="19" font-weight="700" text-anchor="middle" style="color:var(--a1,#5b7fa6)" fill="currentColor">Threads</text><g style="color:var(--a1,#5b7fa6)" stroke="currentColor" fill="none" opacity=".45" stroke-linecap="round"><path d="M40 152H340" stroke-width="2.4"/></g><g style="color:var(--a1,#5b7fa6)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(110,118)"><rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity=".16"/><g stroke-width="2" fill="none"><path d="M-31-6H31"/><path d="M-31 0q-7 5 0 10"/><path d="M31 0q7 5 0 10"/></g><g stroke-width="1.8" fill="none" opacity=".6"><path d="M-12-14q5-7 0-14"/><path d="M0-18q5-8 0-16"/><path d="M12-14q5-7 0-14"/></g></g><g transform="translate(190,118)"><rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity=".16"/><g stroke-width="2" fill="none"><path d="M-31-6H31"/><path d="M-31 0q-7 5 0 10"/><path d="M31 0q7 5 0 10"/></g><g stroke-width="1.8" fill="none" opacity=".6"><path d="M-12-14q5-7 0-14"/><path d="M0-18q5-8 0-16"/><path d="M12-14q5-7 0-14"/></g></g><g transform="translate(270,118)"><rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity=".16"/><g stroke-width="2" fill="none"><path d="M-31-6H31"/><path d="M-31 0q-7 5 0 10"/><path d="M31 0q7 5 0 10"/></g><g stroke-width="1.8" fill="none" opacity=".6"><path d="M-12-14q5-7 0-14"/><path d="M0-18q5-8 0-16"/><path d="M12-14q5-7 0-14"/></g></g></g><g style="color:var(--a1,#5b7fa6)" stroke="currentColor" fill="none" stroke-width="1.7" opacity=".5"><path d="M110 196V160"/></g><g transform="translate(110,258)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1"><circle cx="0" cy="-7" r="11" fill="none"/><path d="M-20 26a20 20 0 0140 0" fill="none"/><g transform="rotate(-5 0 -17.5)"><rect x="-15" y="-24" width="30" height="13" rx="2" fill="var(--body-background, #fff)"/><path d="M-15-24c-14 3-16-10-10-19 7-10 40-11 46-1 5 8 4 21-6 20z" fill="currentColor" fill-opacity=".1"/><g stroke-width="1.2" opacity=".45" fill="none"><path d="M-11-27c-4-9-3-16 0-21"/><path d="M-1-28C-3-38-3-45-3-51"/><path d="M10-27c2-9-1-16-4-20"/></g></g></g><text x="6" y="200" font-size="13" opacity=".8">l'ordonnanceur</text><g stroke="currentColor" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".8"><path d="M58 206c8 22 18 44 30 63"/><path d="M80 263l8 6-9 3"/><path d="M76 279q-3 5 0 10" opacity=".6"/><path d="M70 277q-4 7 0 14" opacity=".4"/></g><g opacity=".35"><g style="color:var(--a1,#5b7fa6)" stroke="currentColor" fill="none" stroke-width="1.7" opacity=".5"><path d="M190 196V160"/><path d="M270 196V160"/></g><g transform="translate(190,258)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1"><circle cx="0" cy="-7" r="11" fill="none"/><path d="M-20 26a20 20 0 0140 0" fill="none"/><g transform="rotate(-5 0 -17.5)"><rect x="-15" y="-24" width="30" height="13" rx="2" fill="var(--body-background, #fff)"/><path d="M-15-24c-14 3-16-10-10-19 7-10 40-11 46-1 5 8 4 21-6 20z" fill="currentColor" fill-opacity=".1"/><g stroke-width="1.2" opacity=".45" fill="none"><path d="M-11-27c-4-9-3-16 0-21"/><path d="M-1-28C-3-38-3-45-3-51"/><path d="M10-27c2-9-1-16-4-20"/></g></g></g><g transform="translate(270,258)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1"><circle cx="0" cy="-7" r="11" fill="none"/><path d="M-20 26a20 20 0 0140 0" fill="none"/><g transform="rotate(-5 0 -17.5)"><rect x="-15" y="-24" width="30" height="13" rx="2" fill="var(--body-background, #fff)"/><path d="M-15-24c-14 3-16-10-10-19 7-10 40-11 46-1 5 8 4 21-6 20z" fill="currentColor" fill-opacity=".1"/><g stroke-width="1.2" opacity=".45" fill="none"><path d="M-11-27c-4-9-3-16 0-21"/><path d="M-1-28C-3-38-3-45-3-51"/><path d="M10-27c2-9-1-16-4-20"/></g></g></g><text x="318" y="262" font-size="22" font-weight="700">…</text></g><text x="190" y="318" font-size="13.5" text-anchor="middle" opacity=".75">un cuisinier par casserole</text><text x="190" y="336" font-size="13.5" text-anchor="middle" opacity=".75">le système choisit lequel avance</text><path d="M380 22V3e2" stroke="currentColor" stroke-width="1.2" opacity=".25"/><text x="570" y="34" font-size="19" font-weight="700" text-anchor="middle" style="color:var(--a2,#6f9455)" fill="currentColor">Boucle d'événements</text><g style="color:var(--a2,#6f9455)" stroke="currentColor" fill="none" opacity=".45" stroke-linecap="round"><path d="M420 152H720" stroke-width="2.4"/></g><g style="color:var(--a2,#6f9455)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(490,118)"><rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity=".16"/><g stroke-width="2" fill="none"><path d="M-31-6H31"/><path d="M-31 0q-7 5 0 10"/><path d="M31 0q7 5 0 10"/></g><g stroke-width="1.8" fill="none" opacity=".6"><path d="M-12-14q5-7 0-14"/><path d="M0-18q5-8 0-16"/><path d="M12-14q5-7 0-14"/></g></g><g transform="translate(570,118)"><rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity=".16"/><g stroke-width="2" fill="none"><path d="M-31-6H31"/><path d="M-31 0q-7 5 0 10"/><path d="M31 0q7 5 0 10"/></g><g stroke-width="1.8" fill="none" opacity=".6"><path d="M-12-14q5-7 0-14"/><path d="M0-18q5-8 0-16"/><path d="M12-14q5-7 0-14"/></g></g><g transform="translate(650,118)"><rect x="-26" y="-6" width="52" height="30" rx="5" stroke-width="2" fill="currentColor" fill-opacity=".16"/><g stroke-width="2" fill="none"><path d="M-31-6H31"/><path d="M-31 0q-7 5 0 10"/><path d="M31 0q7 5 0 10"/></g><g stroke-width="1.8" fill="none" opacity=".6"><path d="M-12-14q5-7 0-14"/><path d="M0-18q5-8 0-16"/><path d="M12-14q5-7 0-14"/></g></g><g transform="translate(490,66)" stroke-width="1.6"><path d="M-7 0c0-9 4-13 7-13S7-9 7 0z" fill="currentColor" fill-opacity=".16"/><path d="M-9 0H9" fill="none"/><circle cx="0" cy="3" r="1.6" stroke="none" fill="currentColor"/></g><g transform="translate(570,66)" stroke-width="1.6"><path d="M-7 0c0-9 4-13 7-13S7-9 7 0z" fill="currentColor" fill-opacity=".16"/><path d="M-9 0H9" fill="none"/><circle cx="0" cy="3" r="1.6" stroke="none" fill="currentColor"/></g><g transform="translate(650,66) rotate(14)" stroke-width="1.6"><path d="M-7 0c0-9 4-13 7-13S7-9 7 0z" fill="currentColor" fill-opacity=".35"/><path d="M-9 0H9" fill="none"/><circle cx="0" cy="3" r="1.6" stroke="none" fill="currentColor"/><g fill="none" stroke-width="1.5"><path d="M-14-10q-4 5 0 10"/><path d="M-19-13q-6 8 0 16" opacity=".5"/><path d="M14-10q4 5 0 10"/><path d="M19-13q6 8 0 16" opacity=".5"/></g></g></g><g style="color:var(--a2,#6f9455)" stroke="currentColor" fill="none" stroke-width="1.7" opacity=".5"><path d="M562 196c-16-6-50-18-72-34" stroke-dasharray="5 6"/><path d="M570 196V160" stroke-dasharray="5 6"/><path d="M578 196c16-6 50-18 72-34" stroke-width="2.2" opacity="1"/></g><g transform="translate(570,258)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1"><circle cx="0" cy="-7" r="11" fill="none"/><path d="M-20 26a20 20 0 0140 0" fill="none"/><g transform="rotate(-5 0 -17.5)"><rect x="-15" y="-24" width="30" height="13" rx="2" fill="var(--body-background, #fff)"/><path d="M-15-24c-14 3-16-10-10-19 7-10 40-11 46-1 5 8 4 21-6 20z" fill="currentColor" fill-opacity=".1"/><g stroke-width="1.2" opacity=".45" fill="none"><path d="M-11-27c-4-9-3-16 0-21"/><path d="M-1-28C-3-38-3-45-3-51"/><path d="M10-27c2-9-1-16-4-20"/></g></g></g><text x="570" y="318" font-size="13.5" text-anchor="middle" opacity=".75">un cuisinier, une sonnette par casserole</text><text x="570" y="336" font-size="13.5" text-anchor="middle" opacity=".75">il change de casserole quand l'une sonne</text></g></svg></label><figcaption>La même cuisine, les mêmes casseroles. À gauche, un cuisinier par casserole, et c&rsquo;est l&rsquo;ordonnanceur qui décide lequel avance, en poussant l&rsquo;un pendant que les autres restent plantés, chacun avec sa pile. À droite, un seul cuisinier et une sonnette par casserole : il ne se plante devant aucune, et il change de casserole quand l&rsquo;une sonne.</figcaption></figure><script>(function(){const e=document.getElementById("illustration-1"),t=t=>{t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Si cela vous rappelle quelque chose, c&rsquo;est normal. Un programme qui rend la
+main de lui-même, à des moments qu&rsquo;il choisit, c&rsquo;est le multitâche coopératif
+que vous avez rencontré avec l&rsquo;ordonnanceur, celui du Mac OS classique et de
+Windows 3.x, que la préemption avait remplacé parce qu&rsquo;un seul programme qui
+oubliait de céder son tour figeait la machine entière. Il revient ici par la
+petite porte, à l&rsquo;intérieur d&rsquo;un seul processus, et il revient avec sa
+fragilité intacte. Si le cuisinier unique reste planté devant une casserole,
+ne serait-ce qu&rsquo;une seconde, les dix mille autres brûlent. C&rsquo;est de là que
+cette sous-section tient son titre.</p><p>Le tableau rassemble les trois modèles rencontrés jusqu&rsquo;ici, sur les quatre
+lignes qui les séparent vraiment.</p><table><thead><tr><th></th><th>Processus</th><th>Thread</th><th>Boucle d&rsquo;événements</th></tr></thead><tbody><tr><td>Mémoire</td><td>la sienne, isolée par l&rsquo;unité de gestion mémoire</td><td>celle du processus, partagée avec les autres threads</td><td>celle du processus, un seul thread</td></tr><tr><td>Qui décide de changer de tâche</td><td>le système, par préemption</td><td>le système, par préemption</td><td>le programme lui-même, aux moments où il a demandé à être prévenu</td></tr><tr><td>Ce que coûte une tâche qui attend</td><td>un processus entier</td><td>un thread entier, avec sa pile, et un changement de contexte</td><td>une note, l&rsquo;état du plat et quoi faire ensuite</td></tr><tr><td>Ce qui casse</td><td>rien n&rsquo;est partagé, mais se parler coûte cher</td><td>les conditions de course</td><td>un seul appel bloquant fige tout</td></tr></tbody></table><h2 id=un-langage-de-navigateur-devient-un-serveur>Un langage de navigateur devient un serveur<a class=anchor href=#un-langage-de-navigateur-devient-un-serveur>#</a></h2><p>En novembre 2009, à Berlin, un programmeur nommé Ryan Dahl présente à la
+première JSConf EU un projet qui applique la recette de Kegel à un langage qui
+ne l&rsquo;avait jamais connue en dehors du navigateur, JavaScript. Le projet
+s&rsquo;appelle <strong>Node.js</strong>, et sa page d&rsquo;accueil le décrit encore aujourd&rsquo;hui dans
+des termes qui sont presque ceux de Kegel : « un environnement d&rsquo;exécution
+JavaScript asynchrone et piloté par les événements, conçu pour construire des
+applications réseau qui passent à l&rsquo;échelle ». Puis, à propos du petit serveur
+donné en exemple : « à chaque connexion, la fonction de rappel est
+déclenchée, mais s&rsquo;il n&rsquo;y a rien à faire, Node.js dort ». La <strong>fonction de
+rappel</strong> (<em>callback</em>), c&rsquo;est la note posée sur la casserole, ce qu&rsquo;il faut
+faire quand elle sonnera. Et un serveur qui dort quand il n&rsquo;a rien à faire,
+c&rsquo;est un cuisinier qui n&rsquo;est planté devant rien.</p><label class=book-image for=book-image-toggle-2 data-tooltip="Le logo de Node.js, marque déposée, depuis la page de marque de nodejs.org"><input class="hidden toggle" type=checkbox id=book-image-toggle-2>
+<img src=/inf1410-teluq/docs/module2/15-concurrence/ne-jamais-bloquer/node.webp alt="Le logo de Node.js : le mot node en gris foncé, dont le o est un hexagone vert, suivi d'un petit hexagone vert marqué JS" loading=lazy width=480 height=144 style=--largeur-plafond:480px>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-2"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Le choix de JavaScript n&rsquo;a rien d&rsquo;un hasard. C&rsquo;est un langage qui n&rsquo;avait
+jamais eu de threads, parce que dans le navigateur il n&rsquo;y en a jamais eu : un
+seul fil, une boucle d&rsquo;événements, et du code qui réagit aux clics et aux
+réponses du réseau sans jamais bloquer, faute de quoi la page entière se
+figerait. Les programmeurs JavaScript pratiquaient le multitâche coopératif
+depuis plus de dix ans sans le savoir, et ils n&rsquo;avaient aucune bibliothèque
+de threads à désapprendre. La page de Node reconnaît d&rsquo;ailleurs ses aînés,
+Twisted en Python et EventMachine en Ruby, qui offraient la même boucle mais
+comme une bibliothèque, qu&rsquo;il fallait choisir puis démarrer par un appel
+bloquant. Node, dit-elle, « présente une boucle d&rsquo;événements comme une
+construction de l&rsquo;environnement d&rsquo;exécution plutôt que comme une
+bibliothèque ». Il n&rsquo;y a pas de fonction pour lancer la boucle. Elle tourne
+dès que le programme commence, et le programme se termine quand il n&rsquo;y a plus
+rien à attendre.</p><p>Ce choix a eu une conséquence que personne n&rsquo;avait demandée. Le même langage
+tournait désormais des deux côtés du réseau, dans le navigateur et sur le
+serveur, et c&rsquo;était celui que tout développeur web connaissait déjà. Node
+n&rsquo;était pas le premier à l&rsquo;essayer, Netscape avait proposé du JavaScript côté
+serveur dès 1996 avec LiveWire, mais c&rsquo;est Node qui a tenu, parce qu&rsquo;il
+arrivait avec un moteur rapide et un modèle qui répondait au C10K. Un
+gestionnaire de paquets, npm, a suivi dès janvier 2010, et avec lui un seul
+écosystème de bibliothèques, partagé par les deux côtés. C&rsquo;est ce qu&rsquo;on
+appelle aujourd&rsquo;hui une <strong>pile JavaScript complète</strong> (<em>full-stack</em>), celle
+des frameworks comme Next.js et Nuxt, que vous verrez dans le module sur
+<a href=/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>les architectures web</a>.
+Et même ceux qui n&rsquo;écriront jamais un serveur en JavaScript ont Node sur leur
+machine, puisque tout l&rsquo;outillage du front-end moderne, TypeScript, JSX, les
+empaqueteurs, tourne dessus. Un projet fait pour servir dix mille clients est
+devenu l&rsquo;atelier de tout le web.</p><h3 id=rien-na-été-inventé-tout-a-été-assemblé>Rien n&rsquo;a été inventé, tout a été assemblé<a class=anchor href=#rien-na-%c3%a9t%c3%a9-invent%c3%a9-tout-a-%c3%a9t%c3%a9-assembl%c3%a9>#</a></h3><label class=book-image for=book-image-toggle-4 data-tooltip="Le logo de V8, marque de Google, publié sur v8.dev sous licence CC BY 3.0"><input class="hidden toggle" type=checkbox id=book-image-toggle-4>
+<img src=/inf1410-teluq/docs/module2/15-concurrence/ne-jamais-bloquer/v8.webp alt="Le logo de V8 : un grand V gris anthracite, et devant lui un 8 bleu aux boucles bien rondes" loading=lazy width=480 height=480 style=--largeur-plafond:480px>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-4"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><p>Ce qui frappe, quand on ouvre le dépôt de Node, c&rsquo;est que presque rien n&rsquo;y a
+été écrit de zéro. Le cuisinier, c&rsquo;est <strong>V8</strong>, le moteur JavaScript que Google
+avait construit en 2008 pour Chrome, au moment où les navigateurs se livraient
+une guerre de vitesse. V8 se présente comme « le moteur JavaScript et
+WebAssembly open source et haute performance de Google, écrit en C++, utilisé
+dans Chrome et dans Node.js ». Il n&rsquo;a jamais été conçu pour un serveur, et il
+n&rsquo;a pas eu à l&rsquo;être. Les sonnettes, c&rsquo;est <strong>libuv</strong>, une bibliothèque C dont
+la première ligne de présentation dit tout : « une bibliothèque de support
+multiplateforme centrée sur les entrées-sorties asynchrones », et dont la
+première fonctionnalité annoncée est « une boucle d&rsquo;événements complète,
+appuyée sur <code>epoll</code>, <code>kqueue</code>, IOCP et les ports d&rsquo;événements ». Ce sont les
+noms de la page de Kegel, plus celui de Windows, derrière une seule interface.
+Et libuv est un morceau que Node a lui-même fait naître : elle a été
+écrite pour lui, en 2011, quand Dahl a annoncé un portage vers Windows « visant l&rsquo;API
+IOCP », avec l&rsquo;aide de Microsoft, parce que la bibliothèque utilisée jusque là
+ne connaissait pas cette API. Depuis, libuv a quitté le nid : Julia s&rsquo;en
+sert, et Python aussi, à travers uvloop, dont on reparlera.</p><p>Le reste de la liste est du même ordre. OpenSSL pour le chiffrement, zlib pour
+la compression, c-ares pour les requêtes DNS sans bloquer, llhttp pour
+découper les requêtes HTTP, ICU pour Unicode. Le fichier de maintenance du
+dépôt en compte une trentaine. Ce que Node a écrit lui-même, c&rsquo;est la colle
+en C++ entre V8 et libuv, et une bibliothèque standard en JavaScript par-dessus.
+C&rsquo;est un cas d&rsquo;école de ce que vous verrez dans le module sur
+<a href=/inf1410-teluq/docs/module3/architecture/>l&rsquo;architecture</a>, et une
+démonstration de ce que permet l&rsquo;open source : un projet qui a changé la
+manière d&rsquo;écrire des serveurs a commencé comme un assemblage de pièces que
+d&rsquo;autres avaient déjà faites, et bien faites.</p><p>Voici à quoi ressemble un serveur Node, en entier. Il compte les requêtes
+qu&rsquo;il reçoit.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// serveur.js, à lancer avec : node serveur.js
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>createServer</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;node:http&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>requetes</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>createServer</span>((<span style=color:#a6e22e>requete</span>, <span style=color:#a6e22e>reponse</span>) =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>requetes</span> <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>reponse</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>`Vous êtes la requête numéro </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>requetes</span><span style=color:#e6db74>}</span><span style=color:#e6db74>\n`</span>);
+</span></span><span style=display:flex><span>}).<span style=color:#a6e22e>listen</span>(<span style=color:#ae81ff>3210</span>);</span></span></code></pre></div><p>La fonction passée à <code>createServer</code> est la fonction de rappel. Elle n&rsquo;est pas
+appelée par le programme, qui se termine en apparence dès la dernière ligne,
+mais par la boucle, à chaque fois qu&rsquo;une connexion arrive. Et regardez le
+compteur. C&rsquo;est celui de la sous-section sur les processus et les threads,
+celui qui perdait trois millions d&rsquo;incréments sans verrou, et ici il n&rsquo;y a
+toujours pas de verrou. Il est pourtant juste, quel que soit le nombre de
+clients. Il n&rsquo;y a qu&rsquo;un seul thread, donc deux incréments ne peuvent jamais
+se croiser. C&rsquo;est la dernière ligne du tableau, prise à l&rsquo;envers : la boucle
+ne connaît pas la condition de course. Elle a un autre ennemi, et il arrive
+maintenant.</p><h2 id=regarder-la-boucle-tourner>Regarder la boucle tourner<a class=anchor href=#regarder-la-boucle-tourner>#</a></h2><p>Le navigateur a exactement la même boucle que Node, c&rsquo;est même de lui qu&rsquo;elle
+vient, et vous pouvez la regarder tourner ici, sans rien installer. Le bloc
+qui suit s&rsquo;exécute dans votre navigateur quand vous cliquez sur « Exécuter ».
+Avant de le lancer, essayez de prédire l&rsquo;ordre des quatre lignes.</p><div class=js-block id=js-6><textarea id=js-6-code tabindex=-1>console.log(&#34;1 : début du script&#34;);
+setTimeout(() =&gt; console.log(&#34;4 : la minuterie, pourtant à 0 ms&#34;), 0);
+Promise.resolve().then(() =&gt; console.log(&#34;3 : la promesse&#34;));
+console.log(&#34;2 : fin du script&#34;);</textarea><div class=js-toolbar><button id=js-6-run onclick='jsRun("js-6")'>&#9654; Exécuter</button>
+<button id=js-6-reset onclick='jsReset("js-6")'>&#8634; Réinitialiser</button>
+<span class=js-status id=js-6-status></span></div><pre class="js-output js-output-hidden" id=js-6-output></pre></div><p>L&rsquo;ordre est 1, 2, 3, 4, et non 1, 4, 3, 2 comme la lecture du code le
+suggère. La ligne <code>setTimeout</code> avec un délai de zéro ne dit pas « fais ceci
+maintenant », elle dit « pose une note, et quand tu auras fini ce que tu fais,
+fais ceci ». Le script court jusqu&rsquo;à sa dernière ligne sans être interrompu,
+ce qui est très exactement la règle du coopératif : personne ne prend la
+main au cuisinier, il la rend quand il a fini. Alors seulement la boucle
+regarde ses notes, et elle en tient deux piles. La <strong>promesse</strong> (<em>promise</em>),
+que vous verrez de près dans un instant, va dans une pile prioritaire, la
+<strong>file des microtâches</strong>, qui est vidée entièrement avant qu&rsquo;on touche à
+l&rsquo;autre. La minuterie va dans la <strong>file des tâches</strong>, avec les clics, les
+réponses du réseau et tout ce que libuv, ou le navigateur, rapporte du
+dehors. D&rsquo;où le 3 avant le 4, même avec zéro milliseconde.</p><h3 id=deux-secondes-de-calcul-et-tout-le-monde-attend>Deux secondes de calcul, et tout le monde attend<a class=anchor href=#deux-secondes-de-calcul-et-tout-le-monde-attend>#</a></h3><p>Voici maintenant la fragilité promise depuis le titre. Le bloc pose une
+minuterie de 100 millisecondes, puis se met à calculer pendant deux secondes
+sans jamais rendre la main.</p><div class=js-block id=js-7><textarea id=js-7-code tabindex=-1>const depart = performance.now();
+setTimeout(() =&gt; {
+  console.log(`la minuterie de 100 ms a sonné après ${Math.round(performance.now() - depart)} ms`);
+}, 100);
+let n = 0;
+while (performance.now() - depart &lt; 2000) { n &#43;= 1; }
+console.log(`la boucle a tourné ${n} fois, pendant 2000 ms, sans jamais rendre la main`);</textarea><div class=js-toolbar><button id=js-7-run onclick='jsRun("js-7")'>&#9654; Exécuter</button>
+<button id=js-7-reset onclick='jsReset("js-7")'>&#8634; Réinitialiser</button>
+<span class=js-status id=js-7-status></span></div><pre class="js-output js-output-hidden" id=js-7-output></pre></div><p>Sur ma machine, la minuterie de 100 millisecondes a sonné après 2001. Elle
+était prête depuis longtemps, sa note était posée, mais le cuisinier avait le
+dos tourné et personne ne pouvait le pousser. Dans un serveur Node, remplacez
+la minuterie par dix mille connexions : pendant ces deux secondes, aucune
+n&rsquo;est servie, aucune n&rsquo;est même lue. Une seule fonction qui calcule un peu
+trop longtemps, ou qui lit un fichier de manière <strong>synchrone</strong>, c&rsquo;est-à-dire
+en attendant sur place que la lecture finisse, et tout le serveur retient son
+souffle. C&rsquo;est la panne du Mac classique, sauf qu&rsquo;elle
+n&rsquo;arrive plus à une machine, elle arrive à tous vos clients à la fois. La
+règle en découle, et elle est absolue : dans une boucle d&rsquo;événements, on
+ne bloque jamais. Ni calcul long, ni attente synchrone. Tout ce qui prend du
+temps est confié à quelqu&rsquo;un d&rsquo;autre, et la boucle ne fait que poser des
+notes et les relire. Reste à savoir à quoi ressemble du code qui ne bloque
+jamais, et il a changé trois fois de visage en quinze ans.</p><h2 id=le-même-code-trois-fois>Le même code, trois fois<a class=anchor href=#le-m%c3%aame-code-trois-fois>#</a></h2><p>Prenons une tâche minuscule et refaisons-la trois fois, une par génération.
+Il faut lire trois fichiers l&rsquo;un après l&rsquo;autre et additionner leurs tailles.
+La lecture est simulée par une minuterie de 100 millisecondes, ce qui la
+rend exécutable ici, mais rien ne changerait avec un vrai disque ou un vrai
+réseau, c&rsquo;est justement le point : pendant ces 100 millisecondes, la boucle
+est libre.</p><h3 id=première-génération-la-fonction-de-rappel>Première génération, la fonction de rappel<a class=anchor href=#premi%c3%a8re-g%c3%a9n%c3%a9ration-la-fonction-de-rappel>#</a></h3><p>C&rsquo;est le style de Node à ses débuts, et sa convention est restée : la
+fonction de rappel reçoit l&rsquo;erreur en premier argument, puis le résultat. La
+documentation de Node le dit encore, « la plupart des méthodes asynchrones qui
+acceptent une fonction de rappel lui passeront un objet Error en premier
+argument ».</p><div class=js-block id=js-8><textarea id=js-8-code tabindex=-1>// Une lecture simulée : le résultat arrive plus tard, par une fonction de rappel.
+function lire(fichier, rappel) {
+  setTimeout(() =&gt; rappel(null, fichier.length * 10), 100);
+}
+lire(&#34;entrée.txt&#34;, (err, a) =&gt; {
+  if (err) return console.error(err);
+  lire(&#34;plat.txt&#34;, (err, b) =&gt; {
+    if (err) return console.error(err);
+    lire(&#34;dessert.txt&#34;, (err, c) =&gt; {
+      if (err) return console.error(err);
+      console.log(&#34;total :&#34;, a &#43; b &#43; c);
+    });
+  });
+});</textarea><div class=js-toolbar><button id=js-8-run onclick='jsRun("js-8")'>&#9654; Exécuter</button>
+<button id=js-8-reset onclick='jsReset("js-8")'>&#8634; Réinitialiser</button>
+<span class=js-status id=js-8-status></span></div><pre class="js-output js-output-hidden" id=js-8-output></pre></div><p>Ça marche, et ça ne bloque jamais. Mais regardez la forme. Trois lectures en
+séquence donnent trois niveaux d&rsquo;indentation, l&rsquo;erreur est traitée trois
+fois, et le résultat ne peut jamais être <em>retourné</em>, seulement passé plus
+loin. Une fonction qui lit ne rend rien, elle promet d&rsquo;appeler quelqu&rsquo;un.
+Avec dix lectures, le code se couche sur le côté, et le nom que la
+communauté a donné à cette forme dit tout, l&rsquo;<strong>enfer des fonctions de
+rappel</strong> (<em>callback hell</em>).</p><h3 id=deuxième-génération-la-promesse>Deuxième génération, la promesse<a class=anchor href=#deuxi%c3%a8me-g%c3%a9n%c3%a9ration-la-promesse>#</a></h3><p>L&rsquo;idée est plus vieille que JavaScript. En 1988, Barbara Liskov et Liuba
+Shrira proposent, pour les systèmes distribués, un objet qui représente un
+résultat pas encore arrivé, et elles l&rsquo;appellent une <em>promise</em>. JavaScript
+l&rsquo;a redécouverte par ses bibliothèques, puis la communauté a fixé un
+standard, Promises/A+, dont la première phrase est la définition qu&rsquo;il faut
+retenir : « une promesse représente le résultat éventuel d&rsquo;une opération
+asynchrone ». Le langage l&rsquo;a intégrée en juin 2015, dans ECMAScript 2015.</p><div class=js-block id=js-9><textarea id=js-9-code tabindex=-1>// La même lecture, qui rend une promesse au lieu de prendre une fonction de rappel.
+function lire(fichier) {
+  return new Promise((resoudre) =&gt; setTimeout(() =&gt; resoudre(fichier.length * 10), 100));
+}
+let total = 0;
+lire(&#34;entrée.txt&#34;)
+  .then((a) =&gt; { total &#43;= a; return lire(&#34;plat.txt&#34;); })
+  .then((b) =&gt; { total &#43;= b; return lire(&#34;dessert.txt&#34;); })
+  .then((c) =&gt; { total &#43;= c; console.log(&#34;total :&#34;, total); })
+  .catch((err) =&gt; console.error(err));</textarea><div class=js-toolbar><button id=js-9-run onclick='jsRun("js-9")'>&#9654; Exécuter</button>
+<button id=js-9-reset onclick='jsReset("js-9")'>&#8634; Réinitialiser</button>
+<span class=js-status id=js-9-status></span></div><pre class="js-output js-output-hidden" id=js-9-output></pre></div><p>La fonction qui lit rend de nouveau quelque chose, une promesse, sur
+laquelle on accroche la suite avec <code>then</code>. La pyramide devient une chaîne,
+et une seule clause <code>catch</code> à la fin attrape l&rsquo;erreur d&rsquo;où qu&rsquo;elle vienne.
+Ce que la boucle fait n&rsquo;a pas changé d&rsquo;un iota. La note posée sur la
+casserole s&rsquo;appelle maintenant une promesse, et c&rsquo;est elle qui va dans la
+file des microtâches que vous avez vue tourner plus haut.</p><h3 id=troisième-génération-écrire-comme-si-on-bloquait>Troisième génération, écrire comme si on bloquait<a class=anchor href=#troisi%c3%a8me-g%c3%a9n%c3%a9ration-%c3%a9crire-comme-si-on-bloquait>#</a></h3><p>La dernière étape n&rsquo;est pas venue de JavaScript. Elle est venue de Microsoft,
+dans F#, à la fin des années 2000, sous le nom de <em>workflows asynchrones</em>,
+puis dans C# 5.0 en août 2012, où « presque tout l&rsquo;effort de cette version »,
+dit Microsoft, « est allé au modèle <code>async</code> et <code>await</code> ». Python l&rsquo;a adoptée
+en 2015 avec la version 3.5, par un document de conception de Yury Selivanov
+qui voulait faire des <strong>coroutines</strong>, ces fonctions capables de se suspendre
+puis de reprendre, « une fonctionnalité native du langage ». JavaScript l&rsquo;a
+eue en 2017. Quatre langages, moins de dix ans, deux mots-clés.</p><div class=js-block id=js-10><textarea id=js-10-code tabindex=-1>// La même lecture, écrite comme si elle bloquait. Elle ne bloque pas.
+function lire(fichier) {
+  return new Promise((resoudre) =&gt; setTimeout(() =&gt; resoudre(fichier.length * 10), 100));
+}
+const a = await lire(&#34;entrée.txt&#34;);
+const b = await lire(&#34;plat.txt&#34;);
+const c = await lire(&#34;dessert.txt&#34;);
+console.log(&#34;total :&#34;, a &#43; b &#43; c);</textarea><div class=js-toolbar><button id=js-10-run onclick='jsRun("js-10")'>&#9654; Exécuter</button>
+<button id=js-10-reset onclick='jsReset("js-10")'>&#8634; Réinitialiser</button>
+<span class=js-status id=js-10-status></span></div><pre class="js-output js-output-hidden" id=js-10-output></pre></div><p>Lisez-le comme du code séquentiel, c&rsquo;est exactement ce qu&rsquo;il est. Chaque
+<code>await</code> est le moment où le cuisinier rend la main : la fonction se
+suspend, la boucle est libre pendant 100 millisecondes, et quand la promesse
+est tenue, la fonction reprend à la ligne suivante, avec sa valeur. La note
+sur la casserole, c&rsquo;est le reste de la fonction. Les erreurs redeviennent des
+exceptions ordinaires, qu&rsquo;on attrape avec un <code>try</code> ordinaire. Trois
+versions, un seul total, 290, et surtout un seul modèle : rien n&rsquo;a changé
+dans la boucle entre 2009 et 2017, seulement la manière d&rsquo;écrire ce qu&rsquo;on
+lui confie. Python a suivi exactement ce chemin, et c&rsquo;est là qu&rsquo;on va.</p><h2 id=python-a-sa-boucle-aussi>Python a sa boucle aussi<a class=anchor href=#python-a-sa-boucle-aussi>#</a></h2><p>Elle s&rsquo;appelle <strong>asyncio</strong>, et elle est plus vieille que les mots-clés qui
+la rendent agréable. Guido van Rossum l&rsquo;a proposée en décembre 2012, dans
+un document de conception qui décrit une boucle d&rsquo;événements pour la
+bibliothèque standard, à une époque où Python n&rsquo;avait encore ni <code>async</code> ni
+<code>await</code>. Les deux mots sont arrivés trois ans plus tard, et c&rsquo;est depuis ce
+moment que la documentation peut la présenter en une phrase : « asyncio
+est une bibliothèque pour écrire du code concurrent avec la syntaxe
+<code>async</code>/<code>await</code> ». Elle ajoute, et c&rsquo;est la phrase à retenir, qu&rsquo;asyncio
+« convient souvent parfaitement au code I/O-bound ». Vous savez maintenant
+pourquoi : c&rsquo;est le cuisinier qui ne se plante devant aucune casserole,
+et il n&rsquo;a rien à offrir à celui qui doit hacher pendant une heure.</p><p>Le bloc qui suit tourne ici, dans la page. C&rsquo;est le premier bloc Python de
+cette section à pouvoir le faire, et ce n&rsquo;est pas un hasard : les threads
+et les processus étaient hors de portée de l&rsquo;environnement Python du
+navigateur, mais une boucle d&rsquo;événements n&rsquo;a besoin ni des uns ni des
+autres. Vingt lectures simulées de 100 millisecondes, d&rsquo;abord l&rsquo;une après
+l&rsquo;autre, puis toutes en même temps.</p><div class=pyodide-block id=pyodide-11><textarea id=pyodide-11-code tabindex=-1>import asyncio, time
+
+async def lire(fichier):
+    await asyncio.sleep(0.1)          # une lecture simulée de 100 ms
+    return len(fichier) * 10
+
+async def principal():
+    fichiers = [f&#34;plat-{i}.txt&#34; for i in range(20)]
+
+    depart = time.perf_counter()
+    tailles = []
+    for f in fichiers:
+        tailles.append(await lire(f))
+    print(f&#34;en séquence : {sum(tailles)} en {time.perf_counter() - depart:.2f} s&#34;)
+
+    depart = time.perf_counter()
+    tailles = await asyncio.gather(*(lire(f) for f in fichiers))
+    print(f&#34;en même temps : {sum(tailles)} en {time.perf_counter() - depart:.2f} s&#34;)
+
+await principal()</textarea><div class=pyodide-toolbar><button id=pyodide-11-run onclick='pyodideRun("pyodide-11")'>&#9654; Exécuter</button>
+<button id=pyodide-11-reset onclick='pyodideReset("pyodide-11")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-11-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-11-output></pre></div><p>Sur ma machine, 2,02 secondes en séquence, 0,10 seconde en même temps, et le
+même total. Si vos chiffres sont dix fois plus grands, c&rsquo;est que vous avez
+changé d&rsquo;onglet pendant l&rsquo;exécution : les navigateurs ralentissent les
+minuteries des onglets cachés, et la boucle d&rsquo;asyncio, dans cette page, est
+celle du navigateur. Le premier passage attend chaque lecture avant de lancer la
+suivante, comme le cuisinier de la vignette « Séquentiel ». Le second met
+les vingt casseroles sur le feu d&rsquo;un coup, avec <code>asyncio.gather</code>, et n&rsquo;a
+plus qu&rsquo;à attendre la plus lente, qui prend 100 millisecondes comme les
+autres. Un seul thread, donc pas de verrou global qui gêne, et pas de
+condition de course possible : la règle de la sous-section sur les threads,
+« des threads pour l&rsquo;I/O-bound », a maintenant une deuxième réponse, et
+c&rsquo;est souvent la meilleure.</p><p>La sonnette sous asyncio est d&rsquo;ailleurs interchangeable. Une bibliothèque
+nommée uvloop se présente comme « un remplacement direct de la boucle
+d&rsquo;événements intégrée d&rsquo;asyncio », qui « utilise libuv sous le capot ». La
+même libuv que Node, exactement celle dont on annonçait le retour. Et c&rsquo;est
+cette boucle, native ou libuv, qui fait tourner les serveurs web Python
+d&rsquo;aujourd&rsquo;hui. Quand FastAPI, que vous retrouverez dans le module sur
+<a href=/inf1410-teluq/docs/module3/apis/>les APIs</a>, vous dit d&rsquo;écrire vos
+fonctions avec <code>async def</code> dès qu&rsquo;une bibliothèque « vous demande de
+l&rsquo;appeler avec <code>await</code> », c&rsquo;est de ce cuisinier-là qu&rsquo;il parle.</p><h2 id=une-boucle-ne-calcule-pas-plus-vite>Une boucle ne calcule pas plus vite<a class=anchor href=#une-boucle-ne-calcule-pas-plus-vite>#</a></h2><p>Il reste à dire ce que la boucle ne sait pas faire, et le bloc qui suit le
+montre mieux qu&rsquo;une phrase. Les vingt lectures de tout à l&rsquo;heure sont là,
+prêtes en 100 millisecondes. Mais cette fois un autre plat demande du
+calcul pur, une somme de trente millions de carrés, et c&rsquo;est le même
+cuisinier qui s&rsquo;en charge.</p><div class=pyodide-block id=pyodide-13><textarea id=pyodide-13-code tabindex=-1>import asyncio, time
+
+async def lire(fichier):
+    await asyncio.sleep(0.1)
+    return len(fichier) * 10
+
+def hacher():
+    return sum(i * i for i in range(30_000_000))   # du calcul pur, rien à attendre
+
+async def lectures(depart):
+    tailles = await asyncio.gather(*(lire(f&#34;plat-{i}.txt&#34;) for i in range(20)))
+    print(f&#34;lectures finies à {time.perf_counter() - depart:.2f} s&#34;)
+    return sum(tailles)
+
+async def cuisinier_qui_hache(depart):
+    resultat = hacher()                            # bloque la boucle
+    print(f&#34;hachage fini à {time.perf_counter() - depart:.2f} s&#34;)
+    return resultat
+
+async def principal():
+    depart = time.perf_counter()
+    await asyncio.gather(cuisinier_qui_hache(depart), lectures(depart))
+
+await principal()</textarea><div class=pyodide-toolbar><button id=pyodide-13-run onclick='pyodideRun("pyodide-13")'>&#9654; Exécuter</button>
+<button id=pyodide-13-reset onclick='pyodideReset("pyodide-13")'>&#8634; Réinitialiser</button>
+<span class=pyodide-status id=pyodide-13-status></span></div><pre class="pyodide-output pyodide-output-hidden" id=pyodide-13-output></pre></div><p>Sur ma machine, le hachage finit à 0,83 seconde, et les lectures à 0,93.
+Elles étaient prêtes depuis 100 millisecondes, leurs sonnettes avaient
+sonné, mais le cuisinier hachait, et rien dans une boucle ne peut le pousser.
+<code>await</code> ne sert à rien ici, puisqu&rsquo;il n&rsquo;y a rien à attendre. C&rsquo;est la
+minuterie de 100 millisecondes qui sonnait après deux secondes, en Python
+cette fois, et c&rsquo;est la limite de tout ce que cette sous-section a
+construit : une boucle d&rsquo;événements fait attendre sans coûter, elle ne
+fait pas calculer plus vite. Pour le calcul, il faut des bras, et on revient
+aux threads et aux processus des sous-sections précédentes.</p><p>Les deux réponses tiennent chacune en une ligne, et elles ne peuvent pas
+s&rsquo;exécuter dans la page, pour la raison donnée dans la sous-section sur les
+processus et les threads : Pyodide n&rsquo;a ni les uns ni les autres.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># La même fonction cuisinier_qui_hache, en deux variantes. Le reste ne change pas.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 1. Confié à un thread : la boucle est libre, mais le verrou global reste.</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>cuisinier_qui_hache</span>(depart):
+</span></span><span style=display:flex><span>    resultat <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> asyncio<span style=color:#f92672>.</span>to_thread(hacher)
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;hachage fini à </span><span style=color:#e6db74>{</span>time<span style=color:#f92672>.</span>perf_counter() <span style=color:#f92672>-</span> depart<span style=color:#e6db74>:</span><span style=color:#e6db74>.2f</span><span style=color:#e6db74>}</span><span style=color:#e6db74> s&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> resultat
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 2. Confié à un processus : un autre coeur, un autre interpréteur, pas de verrou.</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> concurrent.futures <span style=color:#f92672>import</span> ProcessPoolExecutor
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>cuisinier_qui_hache</span>(depart):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> ProcessPoolExecutor() <span style=color:#66d9ef>as</span> bassin:
+</span></span><span style=display:flex><span>        resultat <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> asyncio<span style=color:#f92672>.</span>get_running_loop()<span style=color:#f92672>.</span>run_in_executor(bassin, hacher)
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;hachage fini à </span><span style=color:#e6db74>{</span>time<span style=color:#f92672>.</span>perf_counter() <span style=color:#f92672>-</span> depart<span style=color:#e6db74>:</span><span style=color:#e6db74>.2f</span><span style=color:#e6db74>}</span><span style=color:#e6db74> s&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> resultat</span></span></code></pre></div><p>Avec le thread, les lectures finissent à 0,14 seconde et le hachage à 0,85.
+La boucle a retrouvé sa liberté, mais le hachage n&rsquo;a pas gagné une
+milliseconde, parce que le verrou global de Python est toujours là : le
+thread qui hache et la boucle se relaient sur un seul coeur, et c&rsquo;est
+seulement parce que la boucle a très peu à faire qu&rsquo;elle passe entre les
+gouttes. Avec le processus, 0,11 et 0,90. Le hachage a pris un autre coeur,
+la boucle n&rsquo;en a rien su, et les 0,07 seconde de plus sont le prix du
+bassin de processus, un interpréteur par coeur à démarrer, dix sur cette
+machine, à sept millisecondes chacun d&rsquo;après la mesure de la sous-section sur
+les processus. Node dit exactement la même chose de ses threads :
+« utiles pour les opérations JavaScript intensives en calcul », et « peu
+utiles pour le travail intensif en entrées-sorties », où sa boucle fait
+mieux.</p><p>Vous tenez maintenant la règle complète, et elle referme la section. Ce qui
+attend va dans une boucle, ou dans des threads, et ne coûte presque rien. Ce
+qui calcule va dans des processus, un par coeur, et ne partage rien. Et rien
+n&rsquo;interdit de combiner, une boucle par coeur dans des processus séparés qui
+ne se parlent que par messages, ce qui est très exactement la cuisine de la
+sous-section sur le partage, avec le passe. Relisez la formule de Pike avec
+ça en tête : la boucle, c&rsquo;est de la concurrence sans parallélisme, une
+structure qui fait attendre proprement. Les processus, c&rsquo;est du
+parallélisme, une exécution sur plusieurs coeurs. Le triangle de
+l&rsquo;introduction est complet, et quand la question deviendra « combien de
+machines, et non plus combien de coeurs », vous la retrouverez dans le
+module sur <a href=/inf1410-teluq/docs/module5/scalabilite/>la scalabilité</a>.
+Amdahl, lui, n&rsquo;aura pas bougé : ce qui est vraiment séquentiel le reste,
+quel que soit le nombre de cuisiniers.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=/inf1410-teluq/docs/module2/15-concurrence/ne-pas-partager/ class="flex align-center"><img src=/inf1410-teluq/icons/backward.svg class=book-icon alt=Précédent>
+<span>Ne pas partager</span>
+</a></span><span><a href=/inf1410-teluq/docs/module2/tests/ class="flex align-center"><span>Les tests</span>
+<img src=/inf1410-teluq/icons/forward.svg class=book-icon alt=Suivant></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#dix-mille-clients>Dix mille clients</a></li><li><a href=#le-multitâche-coopératif-revenu-par-la-petite-porte>Le multitâche coopératif, revenu par la petite porte</a></li><li><a href=#un-langage-de-navigateur-devient-un-serveur>Un langage de navigateur devient un serveur</a><ul><li><a href=#rien-na-été-inventé-tout-a-été-assemblé>Rien n&rsquo;a été inventé, tout a été assemblé</a></li></ul></li><li><a href=#regarder-la-boucle-tourner>Regarder la boucle tourner</a><ul><li><a href=#deux-secondes-de-calcul-et-tout-le-monde-attend>Deux secondes de calcul, et tout le monde attend</a></li></ul></li><li><a href=#le-même-code-trois-fois>Le même code, trois fois</a><ul><li><a href=#première-génération-la-fonction-de-rappel>Première génération, la fonction de rappel</a></li><li><a href=#deuxième-génération-la-promesse>Deuxième génération, la promesse</a></li><li><a href=#troisième-génération-écrire-comme-si-on-bloquait>Troisième génération, écrire comme si on bloquait</a></li></ul></li><li><a href=#python-a-sa-boucle-aussi>Python a sa boucle aussi</a></li><li><a href=#une-boucle-ne-calcule-pas-plus-vite>Une boucle ne calcule pas plus vite</a></li></ul></nav></div></aside></main><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js></script><script>const _pyodideEditors={};document.querySelectorAll(".pyodide-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const s=e.id,o=t.value,n=CodeMirror.fromTextArea(t,{mode:"python",theme:"material-darker",indentUnit:4,tabSize:4,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=o,_pyodideEditors[s]=n});let _pyodideReady=null;async function _getPyodide(){return _pyodideReady||(_pyodideReady=(async()=>(await new Promise((e,t)=>{const n=document.createElement("script");n.src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js",n.onload=e,n.onerror=t,document.head.appendChild(n)}),await loadPyodide()))()),_pyodideReady}async function pyodideRun(e){const o=_pyodideEditors[e],t=document.getElementById(e+"-output"),s=document.getElementById(e+"-run"),n=document.getElementById(e+"-status"),i=o.getValue();s.disabled=!0,t.textContent="",t.classList.remove("pyodide-output-hidden"),n.textContent="Chargement de Pyodide…";try{const e=await _getPyodide();n.textContent="Exécution…",e.runPython(`
+import sys, io
+sys.stdout = io.StringIO()
+sys.stderr = io.StringIO()
+`);try{await e.runPythonAsync(i)}catch(o){const i=e.runPython("sys.stderr.getvalue()"),s=e.runPython("sys.stdout.getvalue()");t.innerHTML="",s&&t.appendChild(document.createTextNode(s));const n=document.createElement("span");n.className="pyodide-error",n.textContent=i||o.message,t.appendChild(n);return}finally{const s=e.runPython("sys.stdout.getvalue()"),n=e.runPython("sys.stderr.getvalue()");if(e.runPython(`
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+`),!t.children.length){if(t.textContent=s,n){const e=document.createElement("span");e.className="pyodide-error",e.textContent=n,t.appendChild(e)}!s&&!n&&(t.textContent="(Exécution terminée, aucune sortie)")}}n.textContent=""}catch(s){t.innerHTML="";const e=document.createElement("span");e.className="pyodide-error",e.textContent=s.message,t.appendChild(e),n.textContent=""}finally{s.disabled=!1}}function pyodideReset(e){const t=_pyodideEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.textContent=""}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/javascript/javascript.min.js></script><script>const _jsEditors={};document.querySelectorAll(".js-block").forEach(e=>{const t=e.querySelector("textarea");if(!t)return;const n=CodeMirror.fromTextArea(t,{mode:"javascript",theme:"material-darker",indentUnit:2,tabSize:2,indentWithTabs:!1,lineNumbers:!1,viewportMargin:1/0});n._originalCode=t.value,_jsEditors[e.id]=n});const _JS_DELAI_MAX=5e3,_JS_WORKER_SRC=`
+      function inspecter(v, vus) {
+        vus = vus || new Set();
+        if (v === null) return 'null';
+        if (v === undefined) return 'undefined';
+        const t = typeof v;
+        if (t === 'string') return JSON.stringify(v);
+        if (t === 'bigint') return v + 'n';
+        if (t === 'symbol') return v.toString();
+        if (t === 'function') return v.name ? '[Function: ' + v.name + ']' : '[Function]';
+        if (t === 'number') return Object.is(v, -0) ? '-0' : String(v);
+        if (t !== 'object') return String(v);
+        if (vus.has(v)) return '[Circulaire]';
+        vus.add(v);
+        try {
+          if (Array.isArray(v)) return '[ ' + v.map(x => inspecter(x, vus)).join(', ') + ' ]';
+          if (v instanceof Error) return v.name + ': ' + v.message;
+          if (v instanceof Date) return v.toISOString();
+          if (v instanceof Map) return 'Map(' + v.size + ') { ' + [...v].map(([k, x]) => inspecter(k, vus) + ' => ' + inspecter(x, vus)).join(', ') + ' }';
+          if (v instanceof Set) return 'Set(' + v.size + ') { ' + [...v].map(x => inspecter(x, vus)).join(', ') + ' }';
+          const cles = Object.keys(v);
+          return '{ ' + cles.map(k => k + ': ' + inspecter(v[k], vus)).join(', ') + ' }';
+        } finally { vus.delete(v); }
+      }
+
+      // console.log affiche les chaînes brutes, sans guillemets, comme
+      // dans un vrai navigateur. La valeur de retour, elle, est inspectée.
+      function afficher(args) {
+        return args.map(a => typeof a === 'string' ? a : inspecter(a)).join(' ');
+      }
+
+      ['log', 'info', 'warn', 'error', 'debug'].forEach(niveau => {
+        console[niveau] = function () {
+          postMessage({ type: 'log', niveau: niveau, texte: afficher([].slice.call(arguments)) });
+        };
+      });
+
+      // La fin n'est déclarée que lorsque le travail asynchrone du script est
+      // terminé : les minuteries qu'il a posées ont sonné (ou été annulées),
+      // et les promesses qu'il a enchaînées ont été vidées. Sans cela, un
+      // setTimeout ou un .then écrit par l'étudiant serait tué avant de
+      // s'exécuter, puisque la page termine le Worker au message 'fin'. La
+      // garde DELAI_MAX reste le seul filet contre une boucle infinie.
+      let minuteriesEnAttente = 0, scriptTermine = false, finDeclaree = false, valeurFinale = null;
+      const _setTimeout = setTimeout, _clearTimeout = clearTimeout, actives = new Set();
+
+      function declarerFin() {
+        if (finDeclaree || !scriptTermine || minuteriesEnAttente > 0) return;
+        // Un tour de microtâches de plus, pour que les .then posés par la
+        // dernière minuterie s'exécutent avant que la page ne nous termine.
+        Promise.resolve().then(() => {
+          if (finDeclaree || minuteriesEnAttente > 0) return;
+          finDeclaree = true;
+          postMessage({ type: 'fin', valeur: valeurFinale });
+        });
+      }
+
+      setTimeout = function (fn, delai) {
+        const args = [].slice.call(arguments, 2);
+        minuteriesEnAttente += 1;
+        const id = _setTimeout(function () {
+          actives.delete(id); minuteriesEnAttente -= 1;
+          try { typeof fn === 'function' ? fn.apply(null, args) : eval(String(fn)); }
+          catch (err) { postMessage({ type: 'log', niveau: 'error', texte: String(err) }); }
+          declarerFin();
+        }, delai);
+        actives.add(id);
+        return id;
+      };
+      clearTimeout = function (id) {
+        if (actives.has(id)) { actives.delete(id); minuteriesEnAttente -= 1; }
+        _clearTimeout(id);
+        declarerFin();
+      };
+
+      onmessage = function (e) {
+        let resultat;
+        try {
+          try {
+            resultat = eval(e.data);
+          } catch (err) {
+            // Un await au niveau supérieur n'est pas accepté par eval() :
+            // on réessaie dans une fonction async, comme le fait le
+            // runner Python avec runPythonAsync.
+            if (err instanceof SyntaxError && /\\bawait\\b/.test(e.data)) {
+              resultat = eval('(async () => {\\n' + e.data + '\\n})()');
+            } else { throw err; }
+          }
+        } catch (err) {
+          postMessage({ type: 'erreur', texte: (err && err.stack) ? String(err) : String(err) });
+          return;
+        }
+        Promise.resolve(resultat).then(
+          v => { valeurFinale = v === undefined ? null : inspecter(v); },
+          err => { postMessage({ type: 'log', niveau: 'error', texte: String(err) }); }
+        ).then(() => { scriptTermine = true; declarerFin(); });
+      };
+    `;function _jsEcrire(e,t,n){const s=document.createElement("span");n&&(s.className=n),s.textContent=t+`
+`,e.appendChild(s)}function jsRun(e){const c=_jsEditors[e],t=document.getElementById(e+"-output"),o=document.getElementById(e+"-run"),i=document.getElementById(e+"-status");o.disabled=!0,t.innerHTML="",t.classList.remove("js-output-hidden"),i.textContent="Exécution…";const l=new Blob([_JS_WORKER_SRC],{type:"application/javascript"}),a=URL.createObjectURL(l),n=new Worker(a);let s=!1;const r=setTimeout(()=>{if(s)return;s=!0,n.terminate(),URL.revokeObjectURL(a),_jsEcrire(t,"Exécution interrompue après "+_JS_DELAI_MAX/1e3+" secondes (boucle infinie ?)","js-error"),i.textContent="",o.disabled=!1},_JS_DELAI_MAX);n.onmessage=e=>{const c=e.data;if(c.type==="log"){_jsEcrire(t,c.texte,c.niveau==="error"||c.niveau==="warn"?"js-error":null);return}s=!0,clearTimeout(r),c.type==="erreur"?_jsEcrire(t,c.texte,"js-error"):c.valeur!==null?_jsEcrire(t,c.valeur,"js-value"):t.childNodes.length||_jsEcrire(t,"(Exécution terminée, aucune sortie)"),n.terminate(),URL.revokeObjectURL(a),i.textContent="",o.disabled=!1},n.onerror=e=>{if(s)return;s=!0,clearTimeout(r),_jsEcrire(t,e.message||"Erreur inconnue","js-error"),n.terminate(),URL.revokeObjectURL(a),i.textContent="",o.disabled=!1},n.postMessage(c.getValue())}function jsReset(e){const t=_jsEditors[e];t.setValue(t._originalCode);const n=document.getElementById(e+"-output");n.innerHTML="",n.classList.add("js-output-hidden")}</script><script>document.addEventListener("DOMContentLoaded",()=>{const t='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5"/><path d="M3.5 10.5H2.5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v1"/></svg>',n='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>';function e(e){const s=document.createElement("button");return s.className="copy-btn",s.innerHTML=t,s.addEventListener("click",()=>{navigator.clipboard.writeText(e()).then(()=>{s.innerHTML=n,setTimeout(()=>{s.innerHTML=t},2e3)})}),s}document.querySelectorAll(".highlight pre").forEach(t=>{const n=t.querySelector("code"),s=["shell","bash","console","pycon"];if(n&&s.includes(n.getAttribute("data-lang")))return;t.style.position="relative";const o=e(()=>n?n.textContent:t.textContent);t.appendChild(o)}),document.querySelectorAll(".pyodide-block").forEach(t=>{const s=t.id,n=t.querySelector(".CodeMirror");if(!n)return;n.style.position="relative";const o=e(()=>_pyodideEditors[s].getValue());n.appendChild(o)}),document.querySelectorAll(".js-block").forEach(t=>{const s=t.id,n=t.querySelector(".CodeMirror");if(!n)return;n.style.position="relative";const o=e(()=>_jsEditors[s].getValue());n.appendChild(o)})})</script><script>(function(){const s=400;let t=null,e=null;function n(){t&&(clearTimeout(t),t=null),e&&(e.removeAttribute("data-tip-visible"),e=null)}document.addEventListener("mousemove",function(o){const i=o.target.closest&&o.target.closest(".book-image[data-tooltip]");if(!i){n();return}i.style.setProperty("--tip-x",o.clientX+"px"),i.style.setProperty("--tip-y",o.clientY+"px"),t&&clearTimeout(t),e&&e!==i&&e.removeAttribute("data-tip-visible"),i.removeAttribute("data-tip-visible"),e=i,t=setTimeout(function(){i.setAttribute("data-tip-visible","")},s)}),document.addEventListener("mouseleave",n),window.addEventListener("scroll",n,{passive:!0})})()</script></body></html>

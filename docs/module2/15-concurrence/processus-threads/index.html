@@ -1,0 +1,327 @@
+<!doctype html><html lang=fr dir=ltr data-theme=auto><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Processus et threads# Un programme n’est pas un processus# Il faut d’abord séparer deux choses que le langage courant confond. Un programme est un fichier, une suite d’instructions posée sur un disque, aussi inerte qu’une partition rangée dans un tiroir. Un processus est ce qui arrive quand on l’exécute. Le système d’exploitation lit le fichier, réserve une zone de mémoire, y installe les instructions et de quoi ranger les données, retient à quelle instruction on en est, tient la liste des fichiers ouverts, et laisse courir. Le même programme lancé trois fois donne trois processus, qui portent le même code et n’ont rien d’autre en commun : trois zones de mémoire distinctes, trois positions différentes dans ce code, trois jeux de fichiers ouverts. C’est ce qui permet à deux fenêtres du même éditeur de texte d’afficher deux documents sans se mélanger, alors qu’elles exécutent exactement les mêmes instructions.
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#2e3440"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://cjauvin.github.io/inf1410-teluq/docs/module2/15-concurrence/processus-threads/"><meta property="og:site_name" content="INF1410 - Initiation au génie logiciel"><meta property="og:title" content="Processus et threads"><meta property="og:description" content="Processus et threads# Un programme n’est pas un processus# Il faut d’abord séparer deux choses que le langage courant confond. Un programme est un fichier, une suite d’instructions posée sur un disque, aussi inerte qu’une partition rangée dans un tiroir. Un processus est ce qui arrive quand on l’exécute. Le système d’exploitation lit le fichier, réserve une zone de mémoire, y installe les instructions et de quoi ranger les données, retient à quelle instruction on en est, tient la liste des fichiers ouverts, et laisse courir. Le même programme lancé trois fois donne trois processus, qui portent le même code et n’ont rien d’autre en commun : trois zones de mémoire distinctes, trois positions différentes dans ce code, trois jeux de fichiers ouverts. C’est ce qui permet à deux fenêtres du même éditeur de texte d’afficher deux documents sans se mélanger, alors qu’elles exécutent exactement les mêmes instructions."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta itemprop=name content="Processus et threads"><meta itemprop=description content="Processus et threads# Un programme n’est pas un processus# Il faut d’abord séparer deux choses que le langage courant confond. Un programme est un fichier, une suite d’instructions posée sur un disque, aussi inerte qu’une partition rangée dans un tiroir. Un processus est ce qui arrive quand on l’exécute. Le système d’exploitation lit le fichier, réserve une zone de mémoire, y installe les instructions et de quoi ranger les données, retient à quelle instruction on en est, tient la liste des fichiers ouverts, et laisse courir. Le même programme lancé trois fois donne trois processus, qui portent le même code et n’ont rien d’autre en commun : trois zones de mémoire distinctes, trois positions différentes dans ce code, trois jeux de fichiers ouverts. C’est ce qui permet à deux fenêtres du même éditeur de texte d’afficher deux documents sans se mélanger, alors qu’elles exécutent exactement les mêmes instructions."><meta itemprop=wordCount content="3034"><title>Processus et threads • INF1410 - Initiation au génie logiciel</title><link rel=icon href=/inf1410-teluq/images/2gears.png><link rel=manifest href=/inf1410-teluq/manifest.json><link rel=canonical href=https://cjauvin.github.io/inf1410-teluq/docs/module2/15-concurrence/processus-threads/><link rel=stylesheet href=/inf1410-teluq/book.min.a9072de5a6ce3b1e5475155a1632dce8ae7e7e9bea5fa0fd07f395fda6c49983.css integrity="sha256-qQct5abOOx5UdRVaFjLc6K5+fpvqX6D9B/OV/abEmYM=" crossorigin=anonymous><script defer type=module src=/inf1410-teluq/fr.search.min.9f7e5cb416c9383463774d0108c5b040ef14149f7415f46face0fd31d1a22a2f.js integrity="sha256-n35ctBbJODRjd00BCMWwQO8UFJ90FfRvrOD9MdGiKi8=" crossorigin=anonymous></script><script>(function(){try{var e=localStorage.getItem("book-theme");(e==="light"||e==="dark"||e==="auto")&&(document.documentElement.dataset.theme=e)}catch{}})()</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=/inf1410-teluq/css/applet.css></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/inf1410-teluq/><img src=/inf1410-teluq/images/2gears.png alt=Logo><span>INF1410 - Initiation au génie logiciel</span></a></h2><div class="book-search hidden"><input id=book-search-input type=text placeholder=Rechercher aria-label=Rechercher maxlength=64><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><div class=theme-switch role=group aria-label="Thème de la page"><button type=button data-theme-value=auto data-tooltip="Thème du système" aria-label="Thème du système">
+<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.5" y="2.5" width="13" height="9" rx="1.5"/><path d="M5.5 14h5"/></svg>
+</button>
+<button type=button data-theme-value=light data-tooltip="Thème clair" aria-label="Thème clair">
+<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="3.25"/><path d="M8 1v1.5m0 11V15M1 8h1.5m11 0H15M3.05 3.05l1.06 1.06m7.78 7.78 1.06 1.06M12.95 3.05l-1.06 1.06M4.11 11.89l-1.06 1.06"/></svg>
+</button>
+<button type=button data-theme-value=dark data-tooltip="Thème sombre" aria-label="Thème sombre">
+<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M13.5 9.7A5.8 5.8.0 016.3 2.5a5.8 5.8.0 107.2 7.2z"/></svg></button></div><script>(function(){var e="book-theme",s=["auto","light","dark"],o=document.documentElement,t=Array.prototype.slice.call(document.querySelectorAll(".theme-switch [data-theme-value]"));function i(){try{var t=localStorage.getItem(e);if(s.indexOf(t)!==-1)return t}catch{}return"auto"}function n(e){o.dataset.theme=e,t.forEach(function(t){t.setAttribute("aria-pressed",String(t.dataset.themeValue===e))})}t.forEach(function(t){t.addEventListener("click",function(){var s=t.dataset.themeValue;try{localStorage.setItem(e,s)}catch{}n(s)})}),n(i())})()</script><ul><li><a href=/inf1410-teluq/docs/environnements/>Environnements du cours</a></li><li><a href=/inf1410-teluq/docs/professeur/>Le professeur</a></li><li><a href=/inf1410-teluq/docs/principes/>Principes et idées clés</a></li><li><a href=/inf1410-teluq/docs/lectures/>Lectures et publications de référence</a></li><li><a href=/inf1410-teluq/docs/travaux-not%C3%A9s/>Travaux notés</a></li><li><a href=/inf1410-teluq/docs/discord/>Serveur Discord</a></li><li><input type=checkbox id=section-ceede6672d79ee87ce5f1a12533f0f89 class=toggle>
+<label for=section-ceede6672d79ee87ce5f1a12533f0f89 class=flex><a href=/inf1410-teluq/docs/module1/><img src=/inf1410-teluq/icons/pyramide.svg class=book-icon alt=Pyramide>Module 1 - Le génie logiciel</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module1/historique/>Intro et historique</a></li></ul></li><li><input type=checkbox id=section-6bcde8c955d2ef4a29812289ee291845 class=toggle checked>
+<label for=section-6bcde8c955d2ef4a29812289ee291845 class=flex><a href=/inf1410-teluq/docs/module2/><img src=/inf1410-teluq/icons/terminal.svg class=book-icon alt=Terminal>Module 2 - Concevoir un programme correct</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module2/programmation/>Survol rapide de la programmation</a></li><li><input type=checkbox id=section-a5161d6fd4ebb86a335521fe0728e616 class=toggle checked>
+<label for=section-a5161d6fd4ebb86a335521fe0728e616 class=flex><a href=/inf1410-teluq/docs/module2/15-concurrence/>Concurrence et parallélisme</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module2/15-concurrence/pourquoi/>Pourquoi la concurrence</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/processus-threads/ class=active>Processus et threads</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/ce-qui-casse/>Ce qui casse</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/ne-pas-partager/>Ne pas partager</a></li><li><a href=/inf1410-teluq/docs/module2/15-concurrence/ne-jamais-bloquer/>Ne jamais bloquer</a></li></ul></li><li><a href=/inf1410-teluq/docs/module2/tests/>Les tests</a></li><li><a href=/inf1410-teluq/docs/module2/versioning/>Le versioning avec git</a></li><li><a href=/inf1410-teluq/docs/module2/gestion-des-deps/>La gestion des dépendances</a></li><li><a href=/inf1410-teluq/docs/module2/ci/>L'intégration continue (CI)</a></li></ul></li><li><input type=checkbox id=section-dacaf5bf92061137876427d5274f80b8 class=toggle>
+<label for=section-dacaf5bf92061137876427d5274f80b8 class=flex><a href=/inf1410-teluq/docs/module3/><img src=/inf1410-teluq/icons/systeme.svg class=book-icon alt=Système>Module 3 - Passer du programme au système</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module3/architecture/>Architecture et modularité</a></li><li><a href=/inf1410-teluq/docs/module3/apis/>Les APIs</a></li><li><input type=checkbox id=section-8dd7ba4bb83c6daf54476b5f0a539374 class=toggle>
+<label for=section-8dd7ba4bb83c6daf54476b5f0a539374 class=flex><a href=/inf1410-teluq/docs/module3/30-interfaces/>Les interfaces utilisateur</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module3/30-interfaces/historique/>Perspective historique</a></li><li><a href=/inf1410-teluq/docs/module3/30-interfaces/architectures-web/>L'architecture des applications web</a></li><li><a href=/inf1410-teluq/docs/module3/30-interfaces/frameworks/>Les frameworks JavaScript</a></li><li><a href=/inf1410-teluq/docs/module3/30-interfaces/convergences/>Desktop, web et mobile</a></li></ul></li><li><input type=checkbox id=section-e4d51cc3c07f12fea00e9c0cd309e911 class=toggle>
+<label for=section-e4d51cc3c07f12fea00e9c0cd309e911 class=flex><a href=/inf1410-teluq/docs/module3/40-donn%C3%A9es/>Les données</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module3/40-donn%C3%A9es/repr%C3%A9sentation/>La représentation des données</a></li><li><a href=/inf1410-teluq/docs/module3/40-donn%C3%A9es/stockage/>Les bases de données</a></li><li><a href=/inf1410-teluq/docs/module3/40-donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a></li></ul></li></ul></li><li><input type=checkbox id=section-d43313f1368df8488a83030094191c31 class=toggle>
+<label for=section-d43313f1368df8488a83030094191c31 class=flex><a href=/inf1410-teluq/docs/module4/><img src=/inf1410-teluq/icons/equipe.svg class=book-icon alt=Équipe>Module 4 - Construire en équipe</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module4/github/>Git distribué (GitHub)</a></li><li><input type=checkbox id=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=toggle>
+<label for=section-f90c6cc990b4e14705b2d1b1ff435eb6 class=flex><a href=/inf1410-teluq/docs/module4/20-agile/>L'agilité</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module4/20-agile/scrum/>Scrum</a></li><li><a href=/inf1410-teluq/docs/module4/20-agile/kanban/>Kanban</a></li></ul></li><li><a href=/inf1410-teluq/docs/module4/gestion-projet/>Gestion de projet et coordination</a></li></ul></li><li><input type=checkbox id=section-a26973bae2fed65c6fe8fb0151c28c36 class=toggle>
+<label for=section-a26973bae2fed65c6fe8fb0151c28c36 class=flex><a href=/inf1410-teluq/docs/module5/><img src=/inf1410-teluq/icons/pulsation.svg class=book-icon alt=Pulsation>Module 5 - Faire vivre le logiciel</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><input type=checkbox id=section-69c4d37a525484fe9a3045731c1a6b13 class=toggle>
+<label for=section-69c4d37a525484fe9a3045731c1a6b13 class=flex><a href=/inf1410-teluq/docs/module5/10-infrastructure/>L'infrastructure</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module5/10-infrastructure/docker/>La conteneurisation (Docker)</a></li><li><a href=/inf1410-teluq/docs/module5/10-infrastructure/kubernetes/>L'orchestration (Kubernetes)</a></li><li><a href=/inf1410-teluq/docs/module5/10-infrastructure/iac/>L'infrastructure comme code (Terraform)</a></li></ul></li><li><a href=/inf1410-teluq/docs/module5/deploiement/>Le déploiement continu (CD)</a></li><li><a href=/inf1410-teluq/docs/module5/observabilite/>L'observabilité</a></li><li><a href=/inf1410-teluq/docs/module5/incidents/>La fiabilité et les incidents</a></li><li><a href=/inf1410-teluq/docs/module5/securite/>La sécurité</a></li><li><a href=/inf1410-teluq/docs/module5/scalabilite/>La scalabilité</a></li></ul></li><li><input type=checkbox id=section-e048a05c5e3f3e77303c39a90f95ec11 class=toggle>
+<label for=section-e048a05c5e3f3e77303c39a90f95ec11 class=flex><a href=/inf1410-teluq/docs/module6/><img src=/inf1410-teluq/icons/globe.svg class=book-icon alt=Globe>Module 6 - Le logiciel dans le monde</a>
+<img src=/inf1410-teluq/icons/chevron-right.svg class=book-icon alt=Développer></label><ul><li><a href=/inf1410-teluq/docs/module6/open-source/>L'open source</a></li><li><a href=/inf1410-teluq/docs/module6/economie/>L'économie du logiciel</a></li><li><a href=/inf1410-teluq/docs/module6/monopoles/>Monopoles et régulation</a></li><li><a href=/inf1410-teluq/docs/module6/catastrophes/>Catastrophes, éthique et responsabilité</a></li><li><a href=/inf1410-teluq/docs/module6/metier/>Le métier de développeur</a></li><li><a href=/inf1410-teluq/docs/module6/ia/>Le développement assisté par IA</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/inf1410-teluq/icons/menu.svg class=book-icon alt=Menu></label><h3>Processus et threads</h3><label for=toc-control><img src=/inf1410-teluq/icons/toc.svg class=book-icon alt="Table des matières"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#un-programme-nest-pas-un-processus>Un programme n&rsquo;est pas un processus</a></li><li><a href=#pourquoi-ils-ne-peuvent-pas-se-toucher>Pourquoi ils ne peuvent pas se toucher</a></li><li><a href=#une-garantie-plus-récente-quon-ne-croit>Une garantie plus récente qu&rsquo;on ne croit</a></li><li><a href=#se-parler-coûte-cher>Se parler coûte cher</a></li><li><a href=#plusieurs-fils-dans-un-même-processus>Plusieurs fils dans un même processus</a></li><li><a href=#ce-que-chacun-coûte>Ce que chacun coûte</a><ul><li><a href=#un-piège-de-mesure-et-il-est-courant>Un piège de mesure, et il est courant</a></li></ul></li><li><a href=#comment-un-seul-coeur-fait-semblant>Comment un seul coeur fait semblant</a><ul><li><a href=#prendre-la-main-plutôt-que-la-demander>Prendre la main plutôt que la demander</a></li><li><a href=#la-distinction-de-pike-mécaniquement>La distinction de Pike, mécaniquement</a></li></ul></li><li><a href=#le-verrou-global-de-python>Le verrou global de Python</a><ul><li><a href=#le-verrou-bloque-le-calcul-jamais-lattente>Le verrou bloque le calcul, jamais l&rsquo;attente</a></li></ul></li><li><a href=#ce-que-devient-python-sans-son-verrou>Ce que devient Python sans son verrou</a><ul><li><a href=#le-bogue-était-là-depuis-toujours>Le bogue était là depuis toujours</a></li></ul></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=processus-et-threads>Processus et threads<a class=anchor href=#processus-et-threads>#</a></h1><h2 id=un-programme-nest-pas-un-processus>Un programme n&rsquo;est pas un processus<a class=anchor href=#un-programme-nest-pas-un-processus>#</a></h2><p>Il faut d&rsquo;abord séparer deux choses que le langage courant confond. Un
+<strong>programme</strong> est un fichier, une suite d&rsquo;instructions posée sur un disque, aussi
+inerte qu&rsquo;une partition rangée dans un tiroir. Un <strong>processus</strong> est ce qui arrive
+quand on l&rsquo;exécute. Le système d&rsquo;exploitation lit le fichier, réserve une zone
+de mémoire, y installe les instructions et de quoi ranger les données, retient
+à quelle instruction on en est, tient la liste des fichiers ouverts, et laisse
+courir. Le même programme lancé trois fois donne trois processus, qui portent
+le même code et n&rsquo;ont rien d&rsquo;autre en commun : trois zones de mémoire
+distinctes, trois positions différentes dans ce code, trois jeux de fichiers
+ouverts. C&rsquo;est ce qui permet à deux fenêtres du même éditeur de texte
+d&rsquo;afficher deux documents sans se mélanger, alors qu&rsquo;elles exécutent
+exactement les mêmes instructions.</p><h2 id=pourquoi-ils-ne-peuvent-pas-se-toucher>Pourquoi ils ne peuvent pas se toucher<a class=anchor href=#pourquoi-ils-ne-peuvent-pas-se-toucher>#</a></h2><p>Cette étanchéité n&rsquo;est pas une politesse que les processus s&rsquo;accordent entre
+eux, c&rsquo;est une impossibilité matérielle. Chaque processus reçoit son propre
+<strong>espace d&rsquo;adressage</strong>, un plan de mémoire qui n&rsquo;appartient qu&rsquo;à lui. Quand deux
+processus manipulent tous les deux l&rsquo;adresse 4096, ils ne désignent pas le même
+endroit : une pièce du processeur appelée <strong>unité de gestion mémoire</strong> traduit ces
+adresses vers des emplacements physiques différents, en suivant une table que
+seul le système d&rsquo;exploitation a le droit d&rsquo;écrire. Un processus ne peut donc
+pas lire la mémoire d&rsquo;un autre, et ce n&rsquo;est pas parce que ce serait interdit,
+c&rsquo;est parce qu&rsquo;il n&rsquo;a aucun moyen de la nommer. La conséquence est
+considérable, et on l&rsquo;oublie d&rsquo;autant plus facilement qu&rsquo;on en profite sans
+cesse : un processus qui s&rsquo;effondre n&rsquo;emporte que lui-même. Le reste de la
+machine ne s&rsquo;en aperçoit même pas.</p><h2 id=une-garantie-plus-récente-quon-ne-croit>Une garantie plus récente qu&rsquo;on ne croit<a class=anchor href=#une-garantie-plus-r%c3%a9cente-quon-ne-croit>#</a></h2><p>Cette garantie n&rsquo;a pourtant rien d&rsquo;éternel, et elle est plus récente qu&rsquo;on ne
+l&rsquo;imagine. Les premiers ordinateurs personnels n&rsquo;offraient aucune protection.
+Sous MS-DOS, un programme pouvait écrire n&rsquo;importe où en mémoire, y compris
+par-dessus le système d&rsquo;exploitation lui-même, et une seule adresse mal
+calculée suffisait à emporter la machine entière. Le Mac OS classique, jusqu&rsquo;à
+sa version 9, laissait toutes les applications se partager une mémoire commune,
+si bien qu&rsquo;un traitement de texte fautif faisait tomber le reste avec lui.
+L&rsquo;idée de donner à chaque programme une mémoire qui n&rsquo;existe que pour lui, la
+<strong>mémoire virtuelle</strong>, vient des gros systèmes universitaires et militaires des
+années 60, avec l&rsquo;Atlas de Manchester en 1962 puis Multics. Il aura fallu
+attendre les années 90 et 2000 pour qu&rsquo;elle atteigne enfin les machines de
+bureau. L&rsquo;écran bleu de Windows et la bombe du Mac, que les plus anciens se
+rappellent, sont les vestiges d&rsquo;une époque où un seul programme pouvait tout
+faire tomber.</p><div class=images-rangee><label class=book-image for=book-image-toggle-0 data-tooltip="L'écran bleu de Windows 9x. Image dans le domaine public, via Wikimedia Commons"><input class="hidden toggle" type=checkbox id=book-image-toggle-0>
+<img src=/inf1410-teluq/docs/module2/15-concurrence/processus-threads/ecran-bleu.webp alt="L'écran bleu de Windows 98 : du texte blanc sur fond bleu uni annonce qu'une exception fatale s'est produite dans l'application en cours, et invite à appuyer sur une touche pour tenter de continuer, ou sur Ctrl+Alt+Suppr pour redémarrer, en perdant le travail non sauvegardé" loading=lazy width=640 height=400 style=--largeur-plafond:640px>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-0"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script><label class=book-image for=book-image-toggle-1 data-tooltip="La bombe du Mac OS classique, ère du Système 7. Image dans le domaine public, via Wikimedia Commons"><input class="hidden toggle" type=checkbox id=book-image-toggle-1>
+<img src=/inf1410-teluq/docs/module2/15-concurrence/processus-threads/bombe-mac.webp alt="La boîte de dialogue d'erreur système du Mac OS classique : une bombe à mèche allumée, le message Sorry, a system error occurred, et un bouton Restart, seule issue possible" loading=lazy width=445 height=123 style=--largeur-plafond:445px>
+</label><script>(function(){const e=document.getElementById("book-image-toggle-1"),t=function(t){t.key==="Escape"&&e.checked&&(e.checked=!1)};e.addEventListener("change",function(){this.checked?document.addEventListener("keydown",t):document.removeEventListener("keydown",t)})})()</script></div><h2 id=se-parler-coûte-cher>Se parler coûte cher<a class=anchor href=#se-parler-co%c3%bbte-cher>#</a></h2><p>Cette isolation a un prix, et c&rsquo;est lui qui explique tout ce qui suit. Deux
+processus qui doivent collaborer n&rsquo;ont aucun moyen direct de le faire. Il leur
+faut passer par le système d&rsquo;exploitation, au moyen d&rsquo;un <strong>tuyau</strong> (<em>pipe</em>),
+d&rsquo;une <strong>socket</strong>, d&rsquo;un fichier, ou d&rsquo;une zone de mémoire partagée réclamée
+explicitement. Chaque échange suppose alors de recopier les données depuis
+l&rsquo;espace du premier vers celui du second, en passant par le noyau. Pour deux
+programmes qui s&rsquo;envoient un message de temps à autre, la dépense est
+invisible. Pour deux morceaux d&rsquo;un même travail qui manipulent sans arrêt les
+mêmes données, un navigateur qui affiche une page pendant qu&rsquo;il en télécharge
+les images, un tableur qui recalcule pendant qu&rsquo;on tape, la facture devient
+absurde. On passerait plus de temps à recopier qu&rsquo;à travailler.</p><h2 id=plusieurs-fils-dans-un-même-processus>Plusieurs fils dans un même processus<a class=anchor href=#plusieurs-fils-dans-un-m%c3%aame-processus>#</a></h2><p>La réponse tient en une idée simple : garder un seul processus, mais y faire
+courir plusieurs exécutions à la fois. C&rsquo;est ce qu&rsquo;on appelle un <strong>thread</strong>, ou
+fil d&rsquo;exécution. Dans la cuisine de l&rsquo;introduction, un processus est une
+cuisine entière, avec ses réserves, et un thread est un cuisinier de plus dans
+la même cuisine, qui pioche dans les mêmes réserves. Un thread possède en propre le strict minimum, sa position
+dans le code et sa <strong>pile</strong> (<em>stack</em>), c&rsquo;est-à-dire l&rsquo;endroit où s&rsquo;empilent ses
+appels de fonction et ses variables locales. Tout le reste, il le partage avec
+ses frères, le même espace d&rsquo;adressage, les mêmes variables globales, les mêmes
+fichiers ouverts. Deux threads d&rsquo;un même processus qui lisent une même variable
+ne recopient rien et ne dérangent pas le noyau : ils vont chercher le même
+emplacement en mémoire, directement. Le problème du paragraphe précédent
+disparaît d&rsquo;un coup. Il disparaît même si complètement qu&rsquo;on va bientôt
+regretter l&rsquo;isolation qu&rsquo;on vient d&rsquo;abandonner.</p><h2 id=ce-que-chacun-coûte>Ce que chacun coûte<a class=anchor href=#ce-que-chacun-co%c3%bbte>#</a></h2><p>Le partage n&rsquo;est pas le seul avantage des threads : ils sont aussi beaucoup
+moins chers à créer. Un processus exige que le système bâtisse un espace
+d&rsquo;adressage complet, avec ses tables de traduction. Un thread ne demande qu&rsquo;une
+pile et de quoi noter où il en est. On peut mesurer l&rsquo;écart en quelques lignes,
+en créant cinq cents fois chacun et en les laissant s&rsquo;arrêter aussitôt.</p><blockquote class="book-hint info"><p><strong>Pourquoi ces exemples ne s&rsquo;exécutent pas dans la page.</strong> Ailleurs dans le
+cours, les blocs Python se lancent d&rsquo;un clic, grâce à Pyodide, une version de
+Python qui tourne dans le navigateur. Ceux de cette section ne le peuvent pas,
+et la raison est elle-même une leçon de la section. Pyodide vit dans l&rsquo;unique
+fil d&rsquo;exécution de la page web, et n&rsquo;a accès ni aux threads ni aux processus
+du système : lui demander un thread donne <code>RuntimeError: can't start new thread</code>, et un <code>fork()</code> ou un <code>multiprocessing</code> répond <code>Function not implemented</code>. Le navigateur est précisément l&rsquo;un de ces environnements à un
+seul fil dont parlera la dernière sous-section, et <code>asyncio</code>, lui, y
+fonctionne. Les exemples de cette page se copient donc dans un fichier et se
+lancent au terminal, avec <code>uv run</code>.</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> os<span style=color:#f92672>,</span> time<span style=color:#f92672>,</span> threading
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>N <span style=color:#f92672>=</span> <span style=color:#ae81ff>500</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>chrono</span>(nom, f):
+</span></span><span style=display:flex><span>    debut <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>perf_counter()
+</span></span><span style=display:flex><span>    f()
+</span></span><span style=display:flex><span>    duree <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>perf_counter() <span style=color:#f92672>-</span> debut
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>nom<span style=color:#e6db74>:</span><span style=color:#e6db74>12s</span><span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>{</span>duree <span style=color:#f92672>/</span> N <span style=color:#f92672>*</span> <span style=color:#ae81ff>1e6</span><span style=color:#e6db74>:</span><span style=color:#e6db74>7.1f</span><span style=color:#e6db74>}</span><span style=color:#e6db74> µs par unité&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>threads</span>():
+</span></span><span style=display:flex><span>    ts <span style=color:#f92672>=</span> [threading<span style=color:#f92672>.</span>Thread(target<span style=color:#f92672>=</span><span style=color:#66d9ef>lambda</span>: <span style=color:#66d9ef>None</span>) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> t <span style=color:#f92672>in</span> ts: t<span style=color:#f92672>.</span>start()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> t <span style=color:#f92672>in</span> ts: t<span style=color:#f92672>.</span>join()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>processus</span>():
+</span></span><span style=display:flex><span>    pids <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N):
+</span></span><span style=display:flex><span>        pid <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>fork()          <span style=color:#75715e># l&#39;enfant repart d&#39;ici avec pid valant 0</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> pid <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>            os<span style=color:#f92672>.</span>_exit(<span style=color:#ae81ff>0</span>)          <span style=color:#75715e># et s&#39;arrête immédiatement</span>
+</span></span><span style=display:flex><span>        pids<span style=color:#f92672>.</span>append(pid)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> pid <span style=color:#f92672>in</span> pids:
+</span></span><span style=display:flex><span>        os<span style=color:#f92672>.</span>waitpid(pid, <span style=color:#ae81ff>0</span>)       <span style=color:#75715e># on attend chacun d&#39;eux</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>chrono(<span style=color:#e6db74>&#34;thread&#34;</span>, threads)
+</span></span><span style=display:flex><span>chrono(<span style=color:#e6db74>&#34;processus&#34;</span>, processus)</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ uv run --no-project python cout.py
+</span></span><span style=display:flex><span>thread           42.8 µs par unité
+</span></span><span style=display:flex><span>processus       222.8 µs par unité</span></span></code></pre></div><blockquote class="book-hint warning"><p><code>os.fork()</code> n&rsquo;existe que sur les systèmes de la famille Unix, donc macOS et
+Linux. Sous Windows sans WSL, ce script s&rsquo;arrêtera sur une <code>AttributeError</code>,
+parce que le système n&rsquo;offre tout simplement pas cette manière de créer un
+processus. Sous WSL, qui est un vrai Linux, tout fonctionne, et c&rsquo;est
+d&rsquo;ailleurs l&rsquo;environnement que
+<a href=/inf1410-teluq/docs/environnements/>le cours recommande</a> aux utilisateurs
+de Windows. La portion sur les threads, elle, fonctionne partout.</p></blockquote><p>Un processus coûte donc environ cinq fois un thread, ce qui est déjà
+notable quand on en crée beaucoup, mais reste loin des ordres de grandeur qu&rsquo;on
+lit parfois. Ces chiffres viennent d&rsquo;un portable récent, et ils varieront chez
+vous, mais c&rsquo;est le rapport entre les deux qui compte, pas leur valeur absolue.</p><h3 id=un-piège-de-mesure-et-il-est-courant>Un piège de mesure, et il est courant<a class=anchor href=#un-pi%c3%a8ge-de-mesure-et-il-est-courant>#</a></h3><p>Si on refait la mesure avec <code>multiprocessing.Process</code>, la bibliothèque standard
+prévue pour ça, le résultat explose : environ 7100 µs par processus sur le
+même portable, soit 166 fois un thread au lieu de cinq. La conclusion qu&rsquo;on en
+tire spontanément, que les processus coûtent sept millisecondes, est fausse.</p><p>Ce n&rsquo;est pas le prix d&rsquo;un processus, c&rsquo;est celui du démarrage d&rsquo;un interpréteur
+Python complet. Sur macOS et sur Windows, <code>multiprocessing</code> emploie par défaut
+la méthode <strong>spawn</strong>, qui lance un nouvel interpréteur vierge et lui fait
+réimporter votre module. Sur Linux, jusqu&rsquo;à Python 3.13, il employait <strong>fork</strong>, qui
+duplique le processus courant, et la mesure y était bien plus basse. Depuis
+Python 3.14, Linux emploie <strong>forkserver</strong>, un processus serveur lancé une
+seule fois, sans threads, à partir duquel chaque nouveau processus est
+dupliqué, parce que dupliquer un processus qui a déjà des threads est un
+piège connu. Le même programme, avec le même code, n&rsquo;a donc pas du tout le
+même coût selon le système, ni selon la version.</p><p>La conséquence pratique est simple. Créer un processus par tâche est ruineux,
+créer une réserve de processus au démarrage et la réutiliser ne coûte presque
+rien. C&rsquo;est exactement ce que fait <code>multiprocessing.Pool</code>, et c&rsquo;est précisément sa raison d&rsquo;être.</p><h2 id=comment-un-seul-coeur-fait-semblant>Comment un seul coeur fait semblant<a class=anchor href=#comment-un-seul-coeur-fait-semblant>#</a></h2><p>Un coeur exécute une suite d&rsquo;instructions à la fois, et rien ne changera cela.
+Pourtant, bien avant que les puces aient plusieurs coeurs, une machine faisait
+déjà tourner un traitement de texte, une horloge et une impression en même
+temps. L&rsquo;illusion repose sur un mécanisme matériel très simple, une minuterie
+qui, toutes les quelques millisecondes, interrompt ce qui se passe et rend la
+main au système d&rsquo;exploitation. La partie de celui-ci qui décide alors quoi
+faire s&rsquo;appelle l&rsquo;<strong>ordonnanceur</strong> (<em>scheduler</em>), et c&rsquo;est lui, en cuisine,
+qui tape sur l&rsquo;épaule d&rsquo;un cuisinier toutes les quelques millisecondes pour en
+faire avancer un autre. Il range l&rsquo;état du thread en
+cours, ses registres et sa position dans le code, puis installe à la place
+l&rsquo;état d&rsquo;un autre thread qui attendait son tour. C&rsquo;est ce qu&rsquo;on appelle un
+<strong>changement de contexte</strong>, et il se produit assez souvent pour que rien ne se
+voie. Chaque programme n&rsquo;avance qu&rsquo;une fraction du temps, mais il avance si
+fréquemment que l&rsquo;oeil n&rsquo;y distingue aucune interruption.</p><h3 id=prendre-la-main-plutôt-que-la-demander>Prendre la main plutôt que la demander<a class=anchor href=#prendre-la-main-plut%c3%b4t-que-la-demander>#</a></h3><p>Que la minuterie interrompe un programme sans lui demander son avis n&rsquo;a rien
+d&rsquo;évident, et ce n&rsquo;est pas ainsi qu&rsquo;on a commencé. On appelle cela la
+<strong>préemption</strong>, par opposition au <strong>multitâche coopératif</strong>, où chaque
+programme devait rendre la main de lui-même, en appelant régulièrement une
+fonction prévue pour cela. Le Mac OS classique et Windows 3.x fonctionnaient
+de cette manière. Il suffisait donc qu&rsquo;un seul programme oublie de céder son
+tour, ou reste coincé dans une boucle, pour que la machine entière se fige,
+souris comprise. C&rsquo;est exactement la même trajectoire que la protection
+mémoire, vue plus haut : une garantie née sur les gros systèmes des années 60,
+restée trente ans hors de portée des machines personnelles, et qu&rsquo;on tient
+aujourd&rsquo;hui pour si acquise qu&rsquo;on ne la remarque plus.</p><h3 id=la-distinction-de-pike-mécaniquement>La distinction de Pike, mécaniquement<a class=anchor href=#la-distinction-de-pike-m%c3%a9caniquement>#</a></h3><p>On peut maintenant relire la formule de Rob Pike autrement que comme un jeu de
+mots. Sur une machine à un seul coeur, un programme découpé en dix tâches qui
+progressent chacune à leur rythme est parfaitement concurrent, et il n&rsquo;a
+strictement aucun parallélisme. Les dix tâches existent bel et bien, elles
+se relaient, aucune n&rsquo;est terminée avant que les autres aient commencé, mais à
+chaque instant une seule avance. Donnez dix coeurs à ce même programme, sans
+changer une ligne, et il devient parallèle. La concurrence était dans le code
+depuis le début, le parallélisme est arrivé avec la machine. C&rsquo;est ce qui fait que la distinction n&rsquo;est pas une subtilité de vocabulaire : elle sépare
+ce que vous écrivez de ce sur quoi vous n&rsquo;avez aucune prise.</p><h2 id=le-verrou-global-de-python>Le verrou global de Python<a class=anchor href=#le-verrou-global-de-python>#</a></h2><p>Tout ce qui précède décrit ce que le système d&rsquo;exploitation offre. Reste à
+savoir ce que le langage en fait, et Python réserve ici une surprise. Son
+implémentation courante, CPython, protège son fonctionnement interne par un
+<strong>verrou</strong> (<em>lock</em>) unique que l&rsquo;on nomme le <strong>GIL</strong>, pour <em>global
+interpreter lock</em>.
+Un seul thread à la fois peut le détenir, et sans lui aucun code Python ne
+s&rsquo;exécute. Autrement dit, quel que soit le nombre de coeurs de la machine et
+le nombre de threads du programme, <strong>un seul thread exécute du Python à un
+instant donné</strong>.</p><p>Reprenons le calcul le plus bête possible, une somme de carrés, répété quatre
+fois, en séquentiel puis réparti sur quatre threads puis sur quatre processus.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> time<span style=color:#f92672>,</span> threading<span style=color:#f92672>,</span> multiprocessing
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>calcul</span>(n):
+</span></span><span style=display:flex><span>    somme <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(n):
+</span></span><span style=display:flex><span>        somme <span style=color:#f92672>+=</span> i <span style=color:#f92672>*</span> i
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> somme
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>N, K <span style=color:#f92672>=</span> <span style=color:#ae81ff>30_000_000</span>, <span style=color:#ae81ff>4</span>          <span style=color:#75715e># 4 fois le même calcul, bien assez long</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>chrono</span>(nom, f):
+</span></span><span style=display:flex><span>    debut <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>perf_counter()
+</span></span><span style=display:flex><span>    f()
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>nom<span style=color:#e6db74>:</span><span style=color:#e6db74>16s</span><span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>{</span>time<span style=color:#f92672>.</span>perf_counter() <span style=color:#f92672>-</span> debut<span style=color:#e6db74>:</span><span style=color:#e6db74>5.2f</span><span style=color:#e6db74>}</span><span style=color:#e6db74> s&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>sequentiel</span>():
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(K):
+</span></span><span style=display:flex><span>        calcul(N)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>avec_threads</span>():
+</span></span><span style=display:flex><span>    ts <span style=color:#f92672>=</span> [threading<span style=color:#f92672>.</span>Thread(target<span style=color:#f92672>=</span>calcul, args<span style=color:#f92672>=</span>(N,)) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(K)]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> t <span style=color:#f92672>in</span> ts: t<span style=color:#f92672>.</span>start()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> t <span style=color:#f92672>in</span> ts: t<span style=color:#f92672>.</span>join()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>avec_processus</span>():
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> multiprocessing<span style=color:#f92672>.</span>Pool(K) <span style=color:#66d9ef>as</span> pool:
+</span></span><span style=display:flex><span>        pool<span style=color:#f92672>.</span>map(calcul, [N] <span style=color:#f92672>*</span> K)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:        <span style=color:#75715e># obligatoire pour multiprocessing</span>
+</span></span><span style=display:flex><span>    chrono(<span style=color:#e6db74>&#34;séquentiel&#34;</span>, sequentiel)
+</span></span><span style=display:flex><span>    chrono(<span style=color:#e6db74>&#34;4 threads&#34;</span>, avec_threads)
+</span></span><span style=display:flex><span>    chrono(<span style=color:#e6db74>&#34;4 processus&#34;</span>, avec_processus)</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ uv run --no-project python gil.py
+</span></span><span style=display:flex><span>séquentiel        2.51 s
+</span></span><span style=display:flex><span><span style=color:#ae81ff>4</span> threads         2.62 s
+</span></span><span style=display:flex><span><span style=color:#ae81ff>4</span> processus       0.89 s</span></span></code></pre></div><p>Les quatre threads ne font rien gagner du tout, et sont même <strong>légèrement plus
+lents</strong> que le code séquentiel, parce qu&rsquo;on paie les changements de contexte et
+la dispute autour du verrou sans jamais rien exécuter en parallèle. Les quatre
+processus, eux, divisent le temps par presque trois. Rien d&rsquo;étonnant : chacun a
+son propre interpréteur, donc son propre GIL, et le verrou ne les gêne plus.</p><p>Pourquoi s&rsquo;infliger un tel verrou ? Parce qu&rsquo;il achète beaucoup de choses. Il
+rend l&rsquo;interpréteur correct sans qu&rsquo;il faille protéger individuellement chacune
+de ses structures internes, il garde le code à un seul thread rapide, cas de
+loin le plus fréquent, et il permet d&rsquo;écrire des extensions en C sans se
+soucier de la concurrence. C&rsquo;est un compromis assumé, choisi il y a trente ans,
+et qui a rendu Python beaucoup plus simple à faire évoluer.</p><h3 id=le-verrou-bloque-le-calcul-jamais-lattente>Le verrou bloque le calcul, jamais l&rsquo;attente<a class=anchor href=#le-verrou-bloque-le-calcul-jamais-lattente>#</a></h3><p>Il serait facile de conclure de ce qui précède que les threads ne servent à
+rien en Python. Ce serait une demi-vérité, et elle coûte cher, parce qu&rsquo;elle
+prive d&rsquo;un outil parfaitement adapté à la moitié des situations. Reprenons
+exactement la même comparaison, mais avec un programme qui attend au lieu
+de calculer. Cinquante requêtes réseau de cent millisecondes chacune, ici
+simulées par une pause pour que l&rsquo;expérience soit reproductible hors ligne.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> time<span style=color:#f92672>,</span> threading
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>N, LATENCE <span style=color:#f92672>=</span> <span style=color:#ae81ff>50</span>, <span style=color:#ae81ff>0.1</span>          <span style=color:#75715e># 50 « requêtes » de 100 ms chacune</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>chrono</span>(nom, f):
+</span></span><span style=display:flex><span>    debut <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>perf_counter()
+</span></span><span style=display:flex><span>    f()
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>nom<span style=color:#e6db74>:</span><span style=color:#e6db74>16s</span><span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>{</span>time<span style=color:#f92672>.</span>perf_counter() <span style=color:#f92672>-</span> debut<span style=color:#e6db74>:</span><span style=color:#e6db74>5.2f</span><span style=color:#e6db74>}</span><span style=color:#e6db74> s&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>sequentiel</span>():
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N):
+</span></span><span style=display:flex><span>        time<span style=color:#f92672>.</span>sleep(LATENCE)   <span style=color:#75715e># ici, une vraie requête réseau</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>avec_threads</span>():
+</span></span><span style=display:flex><span>    ts <span style=color:#f92672>=</span> [threading<span style=color:#f92672>.</span>Thread(target<span style=color:#f92672>=</span>time<span style=color:#f92672>.</span>sleep, args<span style=color:#f92672>=</span>(LATENCE,)) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> t <span style=color:#f92672>in</span> ts: t<span style=color:#f92672>.</span>start()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> t <span style=color:#f92672>in</span> ts: t<span style=color:#f92672>.</span>join()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>chrono(<span style=color:#e6db74>&#34;séquentiel&#34;</span>, sequentiel)
+</span></span><span style=display:flex><span>chrono(<span style=color:#e6db74>&#34;50 threads&#34;</span>, avec_threads)</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ uv run --no-project python attente.py
+</span></span><span style=display:flex><span>séquentiel        5.17 s
+</span></span><span style=display:flex><span><span style=color:#ae81ff>50</span> threads        0.11 s</span></span></code></pre></div><p>Quarante-sept fois plus rapide, avec le même outil qui ne servait à rien
+l&rsquo;instant d&rsquo;avant. La raison est simple une fois qu&rsquo;on la connaît : un thread
+qui s&rsquo;apprête à attendre relâche le GIL avant de se mettre en pause, et ne
+le reprend qu&rsquo;au retour. Pendant qu&rsquo;il patiente, il n&rsquo;exécute aucun code
+Python, donc il n&rsquo;a aucune raison de tenir le verrou. Les quarante-neuf autres
+en profitent pour lancer leur propre attente, et les cinquante pauses se
+déroulent ensemble.</p><p>Voilà pourquoi la distinction entre attendre et calculer, posée dans la
+sous-section précédente, valait la peine d&rsquo;être posée avant tout le reste. Le
+même mot de concurrence, le même outil, et deux résultats opposés selon le
+problème. La règle à retenir tient en une ligne : en Python, les threads pour
+l&rsquo;I/O-bound, les processus pour le CPU-bound. Ou, pour reprendre la
+distinction de la sous-section précédente, les threads pour attendre, les
+processus pour calculer.</p><h2 id=ce-que-devient-python-sans-son-verrou>Ce que devient Python sans son verrou<a class=anchor href=#ce-que-devient-python-sans-son-verrou>#</a></h2><p>Ce compromis vieux de trente ans est en train d&rsquo;être défait. Le <strong>PEP 703</strong>,
+accepté en 2023, ajoute à CPython une variante sans GIL, dite
+<strong>free-threaded</strong>. Elle s&rsquo;installe comme les autres, son numéro de version
+portant simplement un <code>t</code> final, et <code>uv</code> sait la récupérer sans qu&rsquo;on ait rien
+à configurer.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ uv run --python 3.14  --no-project python gil.py     <span style=color:#75715e># avec le verrou</span>
+</span></span><span style=display:flex><span>$ uv run --python 3.14t --no-project python gil.py     <span style=color:#75715e># sans le verrou</span></span></span></code></pre></div><p>Le fichier est le même, à la lettre près. Seul l&rsquo;interpréteur change. Les
+chiffres viennent d&rsquo;une nouvelle exécution, d&rsquo;où de légers écarts avec ceux
+donnés plus haut.</p><table><thead><tr><th>Sur le calcul</th><th>avec GIL</th><th>sans GIL</th></tr></thead><tbody><tr><td>séquentiel</td><td>2,61 s</td><td>3,03 s</td></tr><tr><td>4 threads</td><td>2,69 s</td><td><strong>0,80 s</strong></td></tr><tr><td>4 processus</td><td>0,84 s</td><td>0,88 s</td></tr></tbody></table><p>Les threads passent d&rsquo;inutiles à les plus rapides, et la règle apprise deux
+paragraphes plus haut, les processus pour calculer, cesse d&rsquo;être vraie. On
+notera aussi que le séquentiel est un peu plus lent sans le verrou : retirer le
+GIL coûte quelque chose au code à un seul thread, ce qui est précisément la
+raison pour laquelle il a fallu vingt ans de débats avant d&rsquo;y toucher.</p><h3 id=le-bogue-était-là-depuis-toujours>Le bogue était là depuis toujours<a class=anchor href=#le-bogue-%c3%a9tait-l%c3%a0-depuis-toujours>#</a></h3><p>Reste le revers, et c&rsquo;est la leçon la plus importante de cette sous-section.
+Voici quatre threads qui incrémentent un même compteur un million de fois
+chacun.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> threading
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>compteur <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>incrementer</span>(n):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>global</span> compteur
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(n):
+</span></span><span style=display:flex><span>        compteur <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>        <span style=color:#75715e># lire, ajouter, écrire : trois étapes, pas une</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>N, K <span style=color:#f92672>=</span> <span style=color:#ae81ff>1_000_000</span>, <span style=color:#ae81ff>4</span>
+</span></span><span style=display:flex><span>ts <span style=color:#f92672>=</span> [threading<span style=color:#f92672>.</span>Thread(target<span style=color:#f92672>=</span>incrementer, args<span style=color:#f92672>=</span>(N,)) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(K)]
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> t <span style=color:#f92672>in</span> ts: t<span style=color:#f92672>.</span>start()
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> t <span style=color:#f92672>in</span> ts: t<span style=color:#f92672>.</span>join()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;attendu : </span><span style=color:#e6db74>{</span>N <span style=color:#f92672>*</span> K<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;obtenu  : </span><span style=color:#e6db74>{</span>compteur<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>$ uv run --python 3.14  --no-project python compteur.py
+</span></span><span style=display:flex><span>attendu : <span style=color:#ae81ff>4000000</span>
+</span></span><span style=display:flex><span>obtenu  : <span style=color:#ae81ff>4000000</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ uv run --python 3.14t --no-project python compteur.py
+</span></span><span style=display:flex><span>attendu : <span style=color:#ae81ff>4000000</span>
+</span></span><span style=display:flex><span>obtenu  : <span style=color:#ae81ff>1014951</span></span></span></code></pre></div><p>Le même fichier. Correct sur un interpréteur, faux de trois quarts sur l&rsquo;autre.
+Et il faut bien voir que ce n&rsquo;est pas le second qui est cassé : le bogue
+était dans le fichier depuis toujours, et c&rsquo;est le verrou global qui le
+masquait. Ce qui se passe exactement quand deux threads touchent au même
+compteur, instruction par instruction, est l&rsquo;objet de la sous-section
+suivante.</p><p>Il l&rsquo;est d&rsquo;ailleurs très solidement. Même en demandant à Python de faire
+tourner ses threads le plus souvent possible, avec
+<code>sys.setswitchinterval(1e-9)</code>, le compteur reste parfaitement juste sur
+CPython 3.13 et 3.14. Sur CPython 3.9, en revanche, le même programme perdait
+déjà un tiers de ses incréments. Autrement dit, la visibilité de ce bogue
+dépend de la version de l&rsquo;interpréteur, de la machine et de la chance, et
+certainement pas de la correction du code.</p><p>C&rsquo;est la première fois dans ce cours qu&rsquo;on rencontre un programme dont les
+tests peuvent passer mille fois sans rien prouver. Ce ne sera pas la dernière,
+et c&rsquo;est le sujet de la sous-section suivante.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=/inf1410-teluq/docs/module2/15-concurrence/pourquoi/ class="flex align-center"><img src=/inf1410-teluq/icons/backward.svg class=book-icon alt=Précédent>
+<span>Pourquoi la concurrence</span>
+</a></span><span><a href=/inf1410-teluq/docs/module2/15-concurrence/ce-qui-casse/ class="flex align-center"><span>Ce qui casse</span>
+<img src=/inf1410-teluq/icons/forward.svg class=book-icon alt=Suivant></a></span></div><div class=book-comments></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#un-programme-nest-pas-un-processus>Un programme n&rsquo;est pas un processus</a></li><li><a href=#pourquoi-ils-ne-peuvent-pas-se-toucher>Pourquoi ils ne peuvent pas se toucher</a></li><li><a href=#une-garantie-plus-récente-quon-ne-croit>Une garantie plus récente qu&rsquo;on ne croit</a></li><li><a href=#se-parler-coûte-cher>Se parler coûte cher</a></li><li><a href=#plusieurs-fils-dans-un-même-processus>Plusieurs fils dans un même processus</a></li><li><a href=#ce-que-chacun-coûte>Ce que chacun coûte</a><ul><li><a href=#un-piège-de-mesure-et-il-est-courant>Un piège de mesure, et il est courant</a></li></ul></li><li><a href=#comment-un-seul-coeur-fait-semblant>Comment un seul coeur fait semblant</a><ul><li><a href=#prendre-la-main-plutôt-que-la-demander>Prendre la main plutôt que la demander</a></li><li><a href=#la-distinction-de-pike-mécaniquement>La distinction de Pike, mécaniquement</a></li></ul></li><li><a href=#le-verrou-global-de-python>Le verrou global de Python</a><ul><li><a href=#le-verrou-bloque-le-calcul-jamais-lattente>Le verrou bloque le calcul, jamais l&rsquo;attente</a></li></ul></li><li><a href=#ce-que-devient-python-sans-son-verrou>Ce que devient Python sans son verrou</a><ul><li><a href=#le-bogue-était-là-depuis-toujours>Le bogue était là depuis toujours</a></li></ul></li></ul></nav></div></aside></main><script>document.addEventListener("DOMContentLoaded",()=>{const t='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5"/><path d="M3.5 10.5H2.5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v1"/></svg>',n='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>';function e(e){const s=document.createElement("button");return s.className="copy-btn",s.innerHTML=t,s.addEventListener("click",()=>{navigator.clipboard.writeText(e()).then(()=>{s.innerHTML=n,setTimeout(()=>{s.innerHTML=t},2e3)})}),s}document.querySelectorAll(".highlight pre").forEach(t=>{const n=t.querySelector("code"),s=["shell","bash","console","pycon"];if(n&&s.includes(n.getAttribute("data-lang")))return;t.style.position="relative";const o=e(()=>n?n.textContent:t.textContent);t.appendChild(o)}),document.querySelectorAll(".pyodide-block").forEach(t=>{const s=t.id,n=t.querySelector(".CodeMirror");if(!n)return;n.style.position="relative";const o=e(()=>_pyodideEditors[s].getValue());n.appendChild(o)}),document.querySelectorAll(".js-block").forEach(t=>{const s=t.id,n=t.querySelector(".CodeMirror");if(!n)return;n.style.position="relative";const o=e(()=>_jsEditors[s].getValue());n.appendChild(o)})})</script><script>(function(){const s=400;let t=null,e=null;function n(){t&&(clearTimeout(t),t=null),e&&(e.removeAttribute("data-tip-visible"),e=null)}document.addEventListener("mousemove",function(o){const i=o.target.closest&&o.target.closest(".book-image[data-tooltip]");if(!i){n();return}i.style.setProperty("--tip-x",o.clientX+"px"),i.style.setProperty("--tip-y",o.clientY+"px"),t&&clearTimeout(t),e&&e!==i&&e.removeAttribute("data-tip-visible"),i.removeAttribute("data-tip-visible"),e=i,t=setTimeout(function(){i.setAttribute("data-tip-visible","")},s)}),document.addEventListener("mouseleave",n),window.addEventListener("scroll",n,{passive:!0})})()</script></body></html>
