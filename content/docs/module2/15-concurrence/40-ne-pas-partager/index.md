@@ -132,3 +132,94 @@ c'est ce qui permettait à une équipe minuscule de servir des centaines de
 millions de personnes. On y reviendra dans la dernière sous-section, parce que
 tenir deux millions de connexions n'est pas d'abord une question de
 parallélisme, c'est une question d'attente.
+
+## La formule de Go
+
+Si Erlang a fait vivre les acteurs de Hewitt, c'est Go qui a rendu les canaux
+de Hoare ordinaires. On a vu dans
+[la première sous-section]({{< relref "/docs/module2/15-concurrence/10-pourquoi" >}})
+d'où vient le langage, de Newsqueak à Go en passant par Plan 9, trente ans de
+Rob Pike à reconstruire la même idée. Ce qui a changé en 2009, c'est l'échelle
+d'adoption. Une goroutine se lance avec un mot-clé et coûte si peu qu'on en
+crée des milliers sans y penser, et un canal se déclare avec un type, `chan
+int`, si bien qu'on y envoie et qu'on en reçoit avec la même flèche&nbsp;:
+`ch <- 42` pour déposer, `x := <-ch` pour prendre. Par défaut, l'envoi attend
+que quelqu'un reçoive, exactement comme chez Hoare. Go a donc pris le
+rendez-vous de CSP là où Erlang avait pris la boîte aux lettres de Hewitt, et
+les deux langages sont, cinquante ans plus tard, les deux branches vivantes
+des deux articles de 1973 et 1978.
+
+{{< image src="gopher.webp" alt="Le gopher de Go, la mascotte du langage : un petit rongeur bleu aux grands yeux ronds, dessiné au trait" title="Le gopher de Go, dessiné par Renée French, CC BY 3.0, via Wikimedia Commons" loading="lazy" >}}
+
+Le mot d'ordre annoncé depuis le début de cette section vient d'un billet du
+blogue officiel de Go, écrit par Andrew Gerrand le 13 juillet 2010, et il tient
+en une phrase&nbsp;: **« Ne communiquez pas en partageant la mémoire&nbsp;; partagez
+la mémoire en communiquant. »** Ce qu'elle demande est concret. Au lieu d'une
+variable que plusieurs goroutines lisent et écrivent sous la garde d'un verrou,
+une seule goroutine possède la donnée, et les autres lui envoient des messages
+pour la consulter ou la modifier. Gerrand le résume ainsi&nbsp;: cette approche
+garantit qu'une seule goroutine a accès à la donnée à un instant donné. C'est
+le poste de travail et le passe, dits en Go. La donnée ne change jamais de
+mains par une saisie à deux, seulement par un dépôt suivi d'une prise.
+
+Voici le compteur de la sous-section précédente, réécrit ainsi. Il n'y a plus
+de variable partagée ni de verrou&nbsp;: chaque goroutine compte pour elle-même,
+puis dépose son résultat sur le passe, et le programme principal prend les
+quatre plats un à un.
+
+```go
+package main
+
+import "fmt"
+
+// Chaque goroutine compte pour elle-même, sur son propre poste,
+// puis dépose son résultat sur le passe. Rien n'est partagé.
+func compter(n int, resultats chan<- int) {
+	somme := 0
+	for i := 0; i < n; i++ {
+		somme++
+	}
+	resultats <- somme
+}
+
+func main() {
+	resultats := make(chan int)
+	for i := 0; i < 4; i++ {
+		go compter(1_000_000, resultats) // quatre cuisiniers, chacun son poste
+	}
+	total := 0
+	for i := 0; i < 4; i++ {
+		total += <-resultats // on prend les quatre plats, un à un
+	}
+	fmt.Println("attendu :", 4_000_000)
+	fmt.Println("obtenu  :", total)
+}
+```
+
+```shell
+$ go run compteur.go
+attendu : 4000000
+obtenu  : 4000000
+```
+
+Le mot-clé `go` devant l'appel lance la fonction dans une goroutine et rend la
+main aussitôt. Le canal `resultats` est le passe&nbsp;: `resultats <- somme` y
+dépose, `<-resultats` y prend, et comme l'envoi attend qu'on reçoive, le
+programme principal ne peut pas terminer avant d'avoir pris les quatre
+résultats. Il n'y a rien à protéger, parce que `somme` n'existe que dans la
+goroutine qui la calcule, et que le seul moment où une valeur change de mains
+est un dépôt sur le canal. La justesse ne dépend plus de l'ordre dans lequel
+les quatre goroutines finissent. Relancez-le mille fois, il donnera mille fois
+4 000 000, et cette fois ce n'est pas une chance, c'est une propriété.
+
+Il faut être honnête sur ce que Go promet et ce qu'il n'impose pas. Le
+langage a toujours de la mémoire partagée et des verrous, dans son paquet
+`sync`, et rien n'empêche d'écrire en Go le compteur faux de la sous-section
+précédente. La formule est une discipline que le langage encourage par ce
+qu'il rend facile, pas une règle qu'il fait respecter. Erlang, lui, ne laisse
+pas le choix, puisque ses processus ne peuvent physiquement rien partager. Et
+c'est Rust, en 2015, qui poussera l'idée jusqu'au bout dans l'autre direction,
+en faisant vérifier par le compilateur qu'aucune donnée n'est accessible par
+deux fils à la fois, de sorte que la condition de course y est refusée avant
+même que le programme tourne. Trois langages, trois réponses à la question de
+Lee&nbsp;: encourager, interdire, ou prouver.
