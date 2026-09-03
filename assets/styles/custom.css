@@ -528,3 +528,17 @@ p {
   width: 100%;
   max-width: var(--largeur-plafond, 100%);
 }
+
+/* Le thème met les liens de la table des matières en flex : un morceau de
+   code dans un titre (my-app, uv.lock) y devenait un item séparé, avec des
+   trous entre les morceaux, et le nom se coupait à son trait d'union. En
+   bloc, le texte du lien reprend son flux normal, et le code y reste d'un
+   seul tenant. */
+.book-toc a,
+.book-toc-content a,
+#TableOfContents a {
+  display: block;
+}
+.book-toc code {
+  white-space: nowrap;
+}
