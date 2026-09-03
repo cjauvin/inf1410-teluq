@@ -260,6 +260,110 @@ temps est confié à quelqu'un d'autre, et la boucle ne fait que poser des
 notes et les relire. Reste à savoir à quoi ressemble du code qui ne bloque
 jamais, et il a changé trois fois de visage en quinze ans.
 
+## Le même code, trois fois
+
+Prenons une tâche minuscule et refaisons-la trois fois, une par génération.
+Il faut lire trois fichiers l'un après l'autre et additionner leurs tailles.
+La lecture est simulée par une minuterie de 100 millisecondes, ce qui la
+rend exécutable ici, mais rien ne changerait avec un vrai disque ou un vrai
+réseau, c'est justement le point&nbsp;: pendant ces 100 millisecondes, la boucle
+est libre.
+
+### Première génération, la fonction de rappel
+
+C'est le style de Node à ses débuts, et sa convention est restée&nbsp;: la
+fonction de rappel reçoit l'erreur en premier argument, puis le résultat. La
+documentation de Node le dit encore, « la plupart des méthodes asynchrones qui
+acceptent une fonction de rappel lui passeront un objet Error en premier
+argument ».
+
+{{< js >}}
+// Une lecture simulée : le résultat arrive plus tard, par une fonction de rappel.
+function lire(fichier, rappel) {
+  setTimeout(() => rappel(null, fichier.length * 10), 100);
+}
+lire("entrée.txt", (err, a) => {
+  if (err) return console.error(err);
+  lire("plat.txt", (err, b) => {
+    if (err) return console.error(err);
+    lire("dessert.txt", (err, c) => {
+      if (err) return console.error(err);
+      console.log("total :", a + b + c);
+    });
+  });
+});
+{{< /js >}}
+
+Ça marche, et ça ne bloque jamais. Mais regardez la forme. Trois lectures en
+séquence donnent trois niveaux d'indentation, l'erreur est traitée trois
+fois, et le résultat ne peut jamais être *retourné*, seulement passé plus
+loin. Une fonction qui lit ne rend rien, elle promet d'appeler quelqu'un.
+Avec dix lectures, le code se couche sur le côté, et le nom que la
+communauté a donné à cette forme dit tout, l'**enfer des fonctions de
+rappel** (*callback hell*).
+
+### Deuxième génération, la promesse
+
+L'idée est plus vieille que JavaScript. En 1988, Barbara Liskov et Liuba
+Shrira proposent, pour les systèmes distribués, un objet qui représente un
+résultat pas encore arrivé, et elles l'appellent une *promise*. JavaScript
+l'a redécouverte par ses bibliothèques, puis la communauté a fixé un
+standard, Promises/A+, dont la première phrase est la définition qu'il faut
+retenir&nbsp;: « une promesse représente le résultat éventuel d'une opération
+asynchrone ». Le langage l'a intégrée en juin 2015, dans ECMAScript 2015.
+
+{{< js >}}
+// La même lecture, qui rend une promesse au lieu de prendre une fonction de rappel.
+function lire(fichier) {
+  return new Promise((resoudre) => setTimeout(() => resoudre(fichier.length * 10), 100));
+}
+let total = 0;
+lire("entrée.txt")
+  .then((a) => { total += a; return lire("plat.txt"); })
+  .then((b) => { total += b; return lire("dessert.txt"); })
+  .then((c) => { total += c; console.log("total :", total); })
+  .catch((err) => console.error(err));
+{{< /js >}}
+
+La fonction qui lit rend de nouveau quelque chose, une promesse, sur
+laquelle on accroche la suite avec `then`. La pyramide devient une chaîne,
+et une seule clause `catch` à la fin attrape l'erreur d'où qu'elle vienne.
+Ce que la boucle fait n'a pas changé d'un iota. La note posée sur la
+casserole s'appelle maintenant une promesse, et c'est elle qui va dans la
+file des microtâches que vous avez vue tourner plus haut.
+
+### Troisième génération, écrire comme si on bloquait
+
+La dernière étape n'est pas venue de JavaScript. Elle est venue de Microsoft,
+dans F#, à la fin des années 2000, sous le nom de *workflows asynchrones*,
+puis dans C# 5.0 en août 2012, où « presque tout l'effort de cette version »,
+dit Microsoft, « est allé au modèle `async` et `await` ». Python l'a adoptée
+en 2015 avec la version 3.5, par un document de conception de Yury Selivanov
+qui voulait faire des **coroutines**, ces fonctions capables de se suspendre
+puis de reprendre, « une fonctionnalité native du langage ». JavaScript l'a
+eue en 2017. Quatre langages, cinq ans, deux mots-clés.
+
+{{< js >}}
+// La même lecture, écrite comme si elle bloquait. Elle ne bloque pas.
+function lire(fichier) {
+  return new Promise((resoudre) => setTimeout(() => resoudre(fichier.length * 10), 100));
+}
+const a = await lire("entrée.txt");
+const b = await lire("plat.txt");
+const c = await lire("dessert.txt");
+console.log("total :", a + b + c);
+{{< /js >}}
+
+Lisez-le comme du code séquentiel, c'est exactement ce qu'il est. Chaque
+`await` est le moment où le cuisinier rend la main&nbsp;: la fonction se
+suspend, la boucle est libre pendant 100 millisecondes, et quand la promesse
+est tenue, la fonction reprend à la ligne suivante, avec sa valeur. La note
+sur la casserole, c'est le reste de la fonction. Les erreurs redeviennent des
+exceptions ordinaires, qu'on attrape avec un `try` ordinaire. Trois
+versions, un seul total, 290, et surtout un seul modèle&nbsp;: rien n'a changé
+dans la boucle entre 2009 et 2017, seulement la manière d'écrire ce qu'on
+lui confie. Python a suivi exactement ce chemin, et c'est là qu'on va.
+
 <!-- MESURÉ le 2 septembre 2026 dans la page, Pyodide 3.12.7 : threading.Thread
      -> RuntimeError: can't start new thread ; os.fork et multiprocessing ->
      OSError 52 Function not implemented ; MAIS `await asyncio.sleep(0.1)` via
