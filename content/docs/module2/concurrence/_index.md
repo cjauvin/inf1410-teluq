@@ -8,12 +8,15 @@ bookCollapseSection: true
 # Concurrence et parallélisme
 
 Au moment d'écrire ces lignes, le portable qui sert à rédiger ce cours fait
-tourner 722 programmes. Deux d'entre eux sont réellement en train de faire
-quelque chose. Les 720 autres dorment, en attendant qu'il se passe quelque
-chose, un clic, l'arrivée d'un paquet sur le réseau, la fin d'une lecture sur
-le disque. Le processeur est inoccupé à 83&nbsp;%. Ce n'est pas un moment de calme,
-c'est l'état normal d'un ordinateur&nbsp;: une salle d'attente où presque tout le
-monde patiente, et où quelques-uns s'activent.
+tourner 716 programmes. Trois d'entre eux sont réellement en train de faire
+quelque chose, et l'un des trois est l'outil qui regarde. Les autres, plus de
+sept cents, dorment, en attendant qu'il se passe quelque chose, un clic,
+l'arrivée d'un paquet sur le réseau, la fin d'une lecture sur le disque. Le
+processeur est inoccupé à 78&nbsp;%. Ce n'est pas un moment de calme, c'est l'état
+normal d'un ordinateur&nbsp;: une salle d'attente où presque tout le monde patiente,
+et où quelques-uns s'activent.
+
+{{< image src="top.webp" alt="La fenêtre de l'outil top sur un Mac : 716 processus au total, 3 qui courent, 4 bloqués, 709 qui dorment, 6104 threads, un processeur inoccupé à 77,54 %, puis la liste des processus les plus actifs, presque tous à l'état sleeping" title="La commande top sur le portable de l'auteur, le 3 septembre 2026. Les trois processus qui courent sont le noyau, un rapporteur de plantage, et top lui-même." loading="lazy" >}}
 
 Une cuisine de restaurant fonctionne exactement ainsi, et c'est pour cette
 raison qu'elle servira de fil conducteur à toute cette section. Un samedi soir,
