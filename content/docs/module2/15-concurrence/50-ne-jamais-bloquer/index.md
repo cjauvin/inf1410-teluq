@@ -128,6 +128,22 @@ bibliothèque ». Il n'y a pas de fonction pour lancer la boucle. Elle tourne
 dès que le programme commence, et le programme se termine quand il n'y a plus
 rien à attendre.
 
+Ce choix a eu une conséquence que personne n'avait demandée. Le même langage
+tournait désormais des deux côtés du réseau, dans le navigateur et sur le
+serveur, et c'était celui que tout développeur web connaissait déjà. Node
+n'était pas le premier à l'essayer, Netscape avait proposé du JavaScript côté
+serveur dès 1996 avec LiveWire, mais c'est Node qui a tenu, parce qu'il
+arrivait avec un moteur rapide et un modèle qui répondait au C10K. Un
+gestionnaire de paquets, npm, a suivi dès janvier 2010, et avec lui un seul
+écosystème de bibliothèques, partagé par les deux côtés. C'est ce qu'on
+appelle aujourd'hui une **pile JavaScript complète** (*full-stack*), celle
+des frameworks comme Next.js et Nuxt, que vous verrez dans le module sur
+[les architectures web]({{< relref "/docs/module3/30-interfaces/20-architectures-web" >}}).
+Et même ceux qui n'écriront jamais un serveur en JavaScript ont Node sur leur
+machine, puisque tout l'outillage du front-end moderne, TypeScript, JSX, les
+empaqueteurs, tourne dessus. Un projet fait pour servir dix mille clients est
+devenu l'atelier de tout le web.
+
 ### Rien n'a été inventé, tout a été assemblé
 
 {{< image src="v8.webp" alt="Le logo de V8 : un grand V gris anthracite, et devant lui un 8 bleu aux boucles bien rondes" title="Le logo de V8, marque de Google, publié sur v8.dev sous licence CC BY 3.0" loading="lazy" >}}
