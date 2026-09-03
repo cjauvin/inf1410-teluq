@@ -989,3 +989,8 @@ n'importe qui peut générer du code en décrivant ce qu'il veut en langage
 naturel, la valeur du développeur ne réside plus dans sa capacité à écrire des
 lignes de code. Elle réside dans sa capacité à comprendre, à juger et à
 décider. À construire la théorie.
+
+C'est la promesse faite à l'[accueil]({{< relref "/" >}}) de ce cours&nbsp;: un
+pouvoir d'exécution n'est utile qu'à qui a le sens du possible, et c'est ce
+sens que les six modules ont tenté de construire, idée par idée, outil par
+outil, histoire par histoire.

@@ -44,6 +44,20 @@ idées guident sa conception :
 
 {{< image src="3-pillars.jpg" alt="" title="" loading="lazy" >}}
 
+Ces trois idées convergent vers une seule. Apprendre quelque chose, c'est en
+grande partie développer un sens de ce qui est possible&nbsp;: savoir qu'une chose
+peut se faire, à quel prix et avec quoi, avant même de savoir la faire
+soi-même. Ce sens compte aujourd'hui plus qu'il n'a jamais compté, et pour une
+raison paradoxale. Les outils qui écrivent, exécutent et corrigent du code à
+notre place nous donnent un pouvoir d'exécution que personne n'avait il y a
+quelques années. Mais ce pouvoir ne vaut que ce que vaut le sens du possible de
+celui qui le tient. On ne demande pas ce qu'on ne sait pas concevable, et on ne
+reconnaît pas une bonne réponse dans un domaine où l'on n'a jamais mis les
+pieds. C'est pourquoi ce cours est touffu, et l'assume&nbsp;: il contient beaucoup
+d'idées, d'outils et d'histoires, choisis pour vous donner le meilleur **sens du
+possible** avec le logiciel, celui qui fait la différence entre disposer d'un
+pouvoir et savoir quoi en faire.
+
 ## Les modules
 
 Le cours est divisé en six modules, qui couvrent les grands domaines du génie
