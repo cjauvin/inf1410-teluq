@@ -226,7 +226,9 @@ Replicated Data Types*), des structures de données mathématiquement conçues p
 que la fusion de modifications concurrentes soit toujours possible sans conflit.
 L'intuition est élégante : on conçoit des opérations qui sont commutatives
 (l'ordre n'importe pas) et idempotentes (appliquer deux fois donne le même
-résultat). Un G-Counter (compteur croissant), par exemple, donne à chaque nœud
+résultat). C'est la version distribuée de la règle vue dans la section sur
+[la concurrence]({{< relref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})&nbsp;: ce qui ne change pas, ou dont l'ordre n'importe pas, peut être partagé
+sans crainte. Un G-Counter (compteur croissant), par exemple, donne à chaque nœud
 son propre compteur ; la fusion prend le maximum de chaque compteur, et la
 valeur globale est la somme. Peu importe l'ordre de synchronisation, le résultat
 est toujours correct. Martin Kleppmann, l'auteur de *Designing Data-Intensive

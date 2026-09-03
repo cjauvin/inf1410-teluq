@@ -8,7 +8,8 @@ bookIcon: systeme
 # Du programme au système
 
 Dans le module précédent, on s'est concentré sur les outils du programmeur
-individuel : les types, les tests, git, les dépendances, l'intégration continue.
+individuel : les types, la concurrence, les tests, git, les dépendances,
+l'intégration continue.
 Ces outils permettent de construire et de vérifier si un programme est correct
 ou non. Mais un logiciel réel n'est presque jamais un programme simple. C'est un
 ensemble de composants qui interagissent : une base de données, une API, un

@@ -64,7 +64,7 @@
 ### Les années 20 : l'ère de l'IA
 - LLM, GitHub Copilot, ChatGPT, Claude Code
 
-# Module 2 - Concevoir un logiciel correct
+# Module 2 - Concevoir un programme correct
 
 ## Introduction (complété)
 - *Programming as Theory Building* (Peter Naur) : programmer comme construction d'une théorie / d'un modèle mental

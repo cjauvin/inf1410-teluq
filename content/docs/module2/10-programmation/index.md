@@ -686,7 +686,9 @@ Ericsson.
 Deux idées centrales du paradigme fonctionnel méritent une attention
 particulière. La première est l'*immutabilité* : plutôt que de modifier une
 structure de données existante, on en crée une nouvelle. Cela élimine toute une
-classe de bugs liés aux modifications inattendues de l'état. La seconde est
+classe de bugs liés aux modifications inattendues de l'état. Cette classe a un
+nom, et la section sur [la concurrence]({{< relref "/docs/module2/15-concurrence/40-ne-pas-partager" >}}) montre pourquoi une valeur qu'on ne modifie jamais peut être partagée sans
+verrou. La seconde est
 l'usage de *fonctions d'ordre supérieur*, c'est-à-dire des fonctions qui
 prennent d'autres fonctions en argument ou qui en retournent. Les plus célèbres
 sont `map`, `filter` et `reduce`, qui permettent de transformer des collections

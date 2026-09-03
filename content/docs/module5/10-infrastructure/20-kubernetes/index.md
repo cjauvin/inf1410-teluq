@@ -439,7 +439,10 @@ On constate que le nom du pod change entre les requêtes : le load balancer
 service Redis, donc les données restent cohérentes. C'est exactement le type de
 *scaling horizontal* que les architectures cloud-native sont conçues pour
 faciliter : plutôt que de donner plus de ressources à une seule machine (scaling
-vertical), on ajoute des instances identiques derrière un load balancer. Et
+vertical), on ajoute des instances identiques derrière un load balancer. C'est,
+à l'échelle d'un centre de données, le virage que le matériel a pris vers 2004
+quand il a cessé d'accélérer et s'est mis à multiplier les coeurs, raconté dans
+la section sur [la concurrence]({{< relref "/docs/module2/15-concurrence/10-pourquoi" >}}). Et
 grâce au modèle déclaratif, cette opération est triviale : un seul chiffre à
 changer.
 

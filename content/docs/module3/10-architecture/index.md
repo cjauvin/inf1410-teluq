@@ -677,7 +677,7 @@ Dans le contexte des applications web, le pattern le plus courant est le **MVC**
 Un *framework* web est une bibliothèque qui fournit une structure prête à l'emploi pour construire des applications web : routage des requêtes HTTP, connexion à la base de données, rendu des pages, et organisation du code selon un pattern comme MVC. Parmi les plus connus, on trouve Ruby on Rails (Ruby), Django et Flask (Python), Laravel (PHP), et Express (JavaScript/Node.js). Django se décrit d'ailleurs comme MTV (Model-Template-View) plutôt que MVC, ce qui illustre bien le fait que le vocabulaire varie d'un framework à l'autre, mais que l'idée sous-jacente reste la même.
 {{% /hint %}}
 
-Le pattern **pipes and filters** organise le traitement comme une chaîne d'étapes indépendantes. Chaque filtre (*filter*) reçoit des données en entrée, les transforme, et les passe au filtre suivant via un canal (*pipe*). Ce pattern est au coeur de la philosophie Unix, où de petits utilitaires spécialisés se combinent en pipelines :
+Le pattern **pipes and filters** organise le traitement comme une chaîne d'étapes indépendantes. Chaque filtre (*filter*) reçoit des données en entrée, les transforme, et les passe au filtre suivant via un canal (*pipe*). Ce canal est, à peu de chose près, celui que Hoare a formalisé en 1978 et que Go a rendu ordinaire, comme le raconte la section sur [la concurrence]({{< relref "/docs/module2/15-concurrence/40-ne-pas-partager" >}}). Ce pattern est au coeur de la philosophie Unix, où de petits utilitaires spécialisés se combinent en pipelines :
 
 ```shell
 cat access.log | grep "POST" | cut -d' ' -f1 | sort | uniq -c | sort -rn

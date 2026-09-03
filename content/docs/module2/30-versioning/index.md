@@ -63,7 +63,8 @@ Brian Berliner. CVS est construit par-dessus RCS, mais il apporte deux
 innovations majeures : il gère des arborescences complètes de fichiers plutôt
 que des fichiers individuels, et surtout il permet à plusieurs développeurs de
 travailler simultanément sur le même code. C'est le premier système
-véritablement *concurrent*. CVS introduit aussi le modèle client-serveur, avec
+véritablement *concurrent*, au sens que la section sur [la concurrence]({{< relref "/docs/module2/15-concurrence/30-ce-qui-casse" >}}) donne à ce mot, plusieurs acteurs sur la même ressource, avec les conflits
+qui vont avec. CVS introduit aussi le modèle client-serveur, avec
 un dépôt central auquel les développeurs se connectent pour récupérer le code et
 soumettre leurs modifications. Pour la première fois, une équipe dispersée peut
 collaborer sur un même projet de manière structurée. Cependant, CVS souffre de

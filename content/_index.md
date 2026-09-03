@@ -54,9 +54,9 @@ logiciel :
 1. **Le génie logiciel** : une introduction au domaine, à sa problématique
    centrale, et à l'histoire des idées qui l'ont façonné.
 
-2. **Concevoir un logiciel correct** : les outils et les pratiques du
-   programmeur individuel : les tests, le versioning avec git, la gestion des
-   dépendances et l'intégration continue.
+2. **Concevoir un programme correct**&nbsp;: ce que le programmeur individuel doit
+   savoir et savoir faire&nbsp;: la concurrence et le parallélisme, les tests, le
+   versioning avec git, la gestion des dépendances et l'intégration continue.
 
 3. **Passer du programme au système** : le passage du programme individuel au
    système logiciel, avec ses multiples composantes en interaction. On y aborde

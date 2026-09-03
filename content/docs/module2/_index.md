@@ -45,8 +45,10 @@ programmation réside dans le modèle mental plutôt que dans le code, alors les
 outils du programmeur ne servent pas seulement à produire du code : ils servent
 à construire, vérifier et préserver ce modèle mental. Les types et les
 structures de données permettent de formaliser les contraintes et les règles
-logiques qu'on a en tête. Les tests vérifient que notre compréhension du
-problème correspond bien au comportement du programme. Le versioning avec git
+logiques qu'on a en tête. [La concurrence et le parallélisme]({{< relref "/docs/module2/15-concurrence" >}}) rappellent que ce
+modèle s'exécute sur une machine réelle, qui fait plusieurs choses à la fois,
+et qu'il doit en tenir compte pour rester juste. Les tests vérifient que notre
+compréhension du problème correspond bien au comportement du programme. Le versioning avec git
 préserve l'historique de nos décisions et de leur évolution. La gestion des
 dépendances nous permet d'intégrer le travail et la compréhension des autres
 dans notre propre modèle. Et l'intégration continue automatise la vérification
