@@ -200,8 +200,65 @@ celui qui perdait trois millions d'incréments sans verrou, et ici il n'y a
 toujours pas de verrou. Il est pourtant juste, quel que soit le nombre de
 clients. Il n'y a qu'un seul thread, donc deux incréments ne peuvent jamais
 se croiser. C'est la dernière ligne du tableau, prise à l'envers&nbsp;: la boucle
-ne connaît pas la condition de course. Elle a un autre ennemi, et il arrive à
-la prochaine section.
+ne connaît pas la condition de course. Elle a un autre ennemi, et il arrive
+maintenant.
+
+## Regarder la boucle tourner
+
+Le navigateur a exactement la même boucle que Node, c'est même de lui qu'elle
+vient, et vous pouvez la regarder tourner ici, sans rien installer. Le bloc
+qui suit s'exécute dans votre navigateur quand vous cliquez sur « Exécuter ».
+Avant de le lancer, essayez de prédire l'ordre des quatre lignes.
+
+{{< js >}}
+console.log("1 : début du script");
+setTimeout(() => console.log("4 : la minuterie, pourtant à 0 ms"), 0);
+Promise.resolve().then(() => console.log("3 : la promesse"));
+console.log("2 : fin du script");
+{{< /js >}}
+
+L'ordre est 1, 2, 3, 4, et non 1, 4, 3, 2 comme la lecture du code le
+suggère. La ligne `setTimeout` avec un délai de zéro ne dit pas « fais ceci
+maintenant », elle dit « pose une note, et quand tu auras fini ce que tu fais,
+fais ceci ». Le script court jusqu'à sa dernière ligne sans être interrompu,
+ce qui est très exactement la règle du coopératif&nbsp;: personne ne prend la
+main au cuisinier, il la rend quand il a fini. Alors seulement la boucle
+regarde ses notes, et elle en tient deux piles. La **promesse** (*promise*),
+que vous verrez de près dans un instant, va dans une pile prioritaire, la
+**file des microtâches**, qui est vidée entièrement avant qu'on touche à
+l'autre. La minuterie va dans la **file des tâches**, avec les clics, les
+réponses du réseau et tout ce que libuv, ou le navigateur, rapporte du
+dehors. D'où le 3 avant le 4, même avec zéro milliseconde.
+
+### Deux secondes de calcul, et tout le monde attend
+
+Voici maintenant la fragilité promise depuis le titre. Le bloc pose une
+minuterie de 100 millisecondes, puis se met à calculer pendant deux secondes
+sans jamais rendre la main.
+
+{{< js >}}
+const depart = performance.now();
+setTimeout(() => {
+  console.log(`la minuterie de 100 ms a sonné après ${Math.round(performance.now() - depart)} ms`);
+}, 100);
+let n = 0;
+while (performance.now() - depart < 2000) { n += 1; }
+console.log(`la boucle a tourné ${n} fois, pendant 2000 ms, sans jamais rendre la main`);
+{{< /js >}}
+
+Sur ma machine, la minuterie de 100 millisecondes a sonné après 2001. Elle
+était prête depuis longtemps, sa note était posée, mais le cuisinier avait le
+dos tourné et personne ne pouvait le pousser. Dans un serveur Node, remplacez
+la minuterie par dix mille connexions&nbsp;: pendant ces deux secondes, aucune
+n'est servie, aucune n'est même lue. Une seule fonction qui calcule un peu
+trop longtemps, ou qui lit un fichier de manière synchrone, et tout le
+serveur retient son souffle. C'est la panne du Mac classique, sauf qu'elle
+n'arrive plus à une machine, elle arrive à tous vos clients à la fois. La
+règle en découle, et elle est absolue&nbsp;: dans une boucle d'événements, on
+ne bloque jamais. Ni calcul long, ni attente synchrone. Tout ce qui prend du
+temps est confié à quelqu'un d'autre, et la boucle ne fait que poser des
+notes et les relire. Reste à savoir à quoi ressemble du code qui ne bloque
+jamais, et il a changé trois fois de visage en quinze ans.
 
 <!-- MESURÉ le 2 septembre 2026 dans la page, Pyodide 3.12.7 : threading.Thread
      -> RuntimeError: can't start new thread ; os.fork et multiprocessing ->

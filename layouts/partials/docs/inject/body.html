@@ -246,13 +246,65 @@ sys.stderr = sys.__stderr__
         };
       });
 
+      // La fin n'est déclarée que lorsque le travail asynchrone du script est
+      // terminé : les minuteries qu'il a posées ont sonné (ou été annulées),
+      // et les promesses qu'il a enchaînées ont été vidées. Sans cela, un
+      // setTimeout ou un .then écrit par l'étudiant serait tué avant de
+      // s'exécuter, puisque la page termine le Worker au message 'fin'. La
+      // garde DELAI_MAX reste le seul filet contre une boucle infinie.
+      let minuteriesEnAttente = 0, scriptTermine = false, finDeclaree = false, valeurFinale = null;
+      const _setTimeout = setTimeout, _clearTimeout = clearTimeout, actives = new Set();
+
+      function declarerFin() {
+        if (finDeclaree || !scriptTermine || minuteriesEnAttente > 0) return;
+        // Un tour de microtâches de plus, pour que les .then posés par la
+        // dernière minuterie s'exécutent avant que la page ne nous termine.
+        Promise.resolve().then(() => {
+          if (finDeclaree || minuteriesEnAttente > 0) return;
+          finDeclaree = true;
+          postMessage({ type: 'fin', valeur: valeurFinale });
+        });
+      }
+
+      setTimeout = function (fn, delai) {
+        const args = [].slice.call(arguments, 2);
+        minuteriesEnAttente += 1;
+        const id = _setTimeout(function () {
+          actives.delete(id); minuteriesEnAttente -= 1;
+          try { typeof fn === 'function' ? fn.apply(null, args) : eval(String(fn)); }
+          catch (err) { postMessage({ type: 'log', niveau: 'error', texte: String(err) }); }
+          declarerFin();
+        }, delai);
+        actives.add(id);
+        return id;
+      };
+      clearTimeout = function (id) {
+        if (actives.has(id)) { actives.delete(id); minuteriesEnAttente -= 1; }
+        _clearTimeout(id);
+        declarerFin();
+      };
+
       onmessage = function (e) {
+        let resultat;
         try {
-          const resultat = eval(e.data);
-          postMessage({ type: 'fin', valeur: resultat === undefined ? null : inspecter(resultat) });
+          try {
+            resultat = eval(e.data);
+          } catch (err) {
+            // Un await au niveau supérieur n'est pas accepté par eval() :
+            // on réessaie dans une fonction async, comme le fait le
+            // runner Python avec runPythonAsync.
+            if (err instanceof SyntaxError && /\\bawait\\b/.test(e.data)) {
+              resultat = eval('(async () => {\\n' + e.data + '\\n})()');
+            } else { throw err; }
+          }
         } catch (err) {
           postMessage({ type: 'erreur', texte: (err && err.stack) ? String(err) : String(err) });
+          return;
         }
+        Promise.resolve(resultat).then(
+          v => { valeurFinale = v === undefined ? null : inspecter(v); },
+          err => { postMessage({ type: 'log', niveau: 'error', texte: String(err) }); }
+        ).then(() => { scriptTermine = true; declarerFin(); });
       };
     `;
 
