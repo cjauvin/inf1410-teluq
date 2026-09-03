@@ -219,12 +219,41 @@ modernes (et graphiques) de développement. VS Code par exemple a sa propre
 console (voici ma propre version, avec laquelle je développe ce cours, la
 console est à droite) :
 
-{{< image src="my-vscode.webp" alt="" title="" loading="lazy" >}}
+{{< image src="my-vscode.webp" alt="L'éditeur VS Code de l'auteur, en thème sombre : l'explorateur de fichiers à gauche, le code au centre, et le terminal intégré à droite" title="VS Code, tel qu'il sert à rédiger ce cours, avec son terminal intégré à droite" loading="lazy" >}}
 
 Et même les navigateurs web ont des consoles intégrées, voici mon navigateur
 Brave avec sa console Javascript à droite :
 
 {{< image src="my-brave.png" alt="" title="" loading="lazy" >}}
+
+## VS Code, ou l'éditeur comme vue sur les outils
+
+Dans le module 2, presque tout se fera d'abord dans le terminal&nbsp;: lancer les
+tests avec `pytest`, créer un environnement avec `uv`, faire un commit avec
+`git`. C'est voulu. La ligne de commande est l'endroit où l'on voit ce que les
+outils font vraiment, et un outil qu'on a d'abord vu nu ne surprend plus quand
+on le retrouve habillé. À quatre endroits du module, un encart « Dans VS Code »
+le retrouvera habillé, et montrera comment l'éditeur rend ces mêmes gestes
+visibles, cliquables et, pour certains, plus rapides, sans jamais rien changer
+à ce qui se passe dessous. Quand vous cliquerez sur une coche verte pour lancer
+un test, c'est `pytest` qui tournera. Quand vous poserez un point d'arrêt, c'est
+un débogueur en ligne de commande qui s'arrêtera. Quand vous validerez un
+changement dans le panneau de gauche, c'est `git commit` qui s'exécutera.
+L'éditeur n'ajoute pas de magie, il ajoute une vue.
+
+Quelques faits sur cet éditeur, puisqu'il reviendra souvent. Microsoft le
+développe en source ouverte avec sa communauté, sous le nom de *Code - OSS* et
+sous licence MIT, et en distribue chaque mois une version pour Windows, macOS
+et Linux. Son dépôt le décrit comme un éditeur qui « combine la simplicité d'un
+éditeur de code avec ce dont les développeurs ont besoin pour leur cycle de
+base, éditer, construire, déboguer ». Presque tout ce que les encarts
+utiliseront vient d'une seule extension, l'extension Python de Microsoft, qui
+installe avec elle le débogueur. Le reste, la vue de contrôle de source, est
+intégré à l'éditeur lui-même. Et presque tout se commande depuis un seul
+endroit, la **palette de commandes**, qu'on ouvre avec Ctrl+Maj+P, ou
+Cmd+Maj+P sur Mac, et où l'on tape ce qu'on veut faire plutôt que de le
+chercher dans les menus. Tout y sera montré en Python, mais chacune de ces
+vues existe pour JavaScript, avec d'autres extensions et les mêmes gestes.
 
 ## Les langages du cours
 
