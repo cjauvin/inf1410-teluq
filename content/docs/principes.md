@@ -44,12 +44,30 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
 - **Les threads pour attendre, les processus pour calculer**&nbsp;: en Python, le
   verrou global (GIL) empêche deux threads d'exécuter du code simultanément,
   mais un thread qui attend le relâche. Les threads n'accélèrent donc jamais un
-  calcul et accélèrent énormément une série d'attentes → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+  calcul et accélèrent énormément une série d'attentes. La boucle d'événements
+  est la deuxième réponse pour l'attente, et souvent la meilleure → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}}),
+  [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
 - **Préemption** (par opposition au multitâche coopératif)&nbsp;: le système
   d'exploitation reprend la main sur un programme sans lui demander son avis,
   plutôt que de compter sur sa bonne volonté. Comme la protection mémoire, la
   garantie naît sur les gros systèmes des années 60 et met trente ans à
-  atteindre les machines personnelles → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+  atteindre les machines personnelles. Le multitâche coopératif revient
+  pourtant par la petite porte, à l'intérieur d'un seul processus, sous le nom
+  de boucle d'événements → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}}),
+  [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- **Ne jamais bloquer**&nbsp;: dans une boucle d'événements, un seul cuisinier
+  s'occupe de toutes les casseroles, et il change de casserole quand l'une
+  sonne. La règle est absolue, ni calcul long ni attente synchrone, parce qu'un
+  seul appel qui bloque fige tous les clients à la fois, personne ne pouvant
+  pousser le cuisinier → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- **Écrire comme si on bloquait**&nbsp;: `async` et `await` n'ont rien changé à la
+  boucle, seulement à la manière d'écrire ce qu'on lui confie. Fonctions de
+  rappel, promesses, puis coroutines, trois visages du même modèle en quinze
+  ans, de F# à C#, Python et JavaScript → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- **Une boucle ne calcule pas plus vite**&nbsp;: elle fait attendre sans coûter,
+  elle ne fait pas calculer. Ce qui attend va dans une boucle ou des threads,
+  ce qui calcule va dans des processus, un par coeur, qui ne partagent rien.
+  La boucle, c'est de la concurrence sans parallélisme → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
 - **Ne pas partager d'état mutable**&nbsp;: ce qui casse n'est pas le partage,
   c'est le partage d'une valeur que l'un lit pendant qu'un autre l'écrit. Deux
   stratégies, ne rien partager et s'échanger des messages, ou ne partager que
@@ -81,7 +99,8 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
 - **CPU-bound et I/O-bound**&nbsp;: un programme est lent soit parce qu'il calcule,
   limité par le processeur, soit parce qu'il attend, limité par les
   entrées-sorties. Les deux se ressemblent vus du dehors et leurs remèdes sont
-  opposés, des coeurs pour le premier, ne jamais bloquer pour le second → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+  opposés, des coeurs pour le premier, ne jamais bloquer pour le second → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}}),
+  [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
 - **Loi d'Amdahl** (Gene Amdahl, 1967)&nbsp;: la part d'un programme qu'on ne peut
   pas répartir fixe un plafond au gain du parallélisme. Avec 10&nbsp;% de travail
   séquentiel, dix coeurs donnent un peu plus de cinq fois, et une infinité de

@@ -431,12 +431,99 @@ d'aujourd'hui. Quand FastAPI, que vous retrouverez dans le module sur
 fonctions avec `async def` dès qu'une bibliothèque « vous demande de
 l'appeler avec `await` », c'est de ce cuisinier-là qu'il parle.
 
-<!-- MESURÉ le 2 septembre 2026 dans la page, Pyodide 3.12.7 : threading.Thread
-     -> RuntimeError: can't start new thread ; os.fork et multiprocessing ->
-     OSError 52 Function not implemented ; MAIS `await asyncio.sleep(0.1)` via
-     runPythonAsync fonctionne (737 ms au premier appel, chauffe de la boucle
-     comprise). Donc l'exemple asyncio de cette sous-section PEUT être un bloc
-     exécutable dans la page, par le shortcode pyodide,, contrairement aux exemples de
-     threads de la sous-section 20. À exploiter&nbsp;: ce serait l'exemple Python le
-     plus fort de la section, l'étudiant le lance lui-même. Vérifier que le
-     shortcode pyodide passe par runPythonAsync (ou l'adapter). -->
+## Une boucle ne calcule pas plus vite
+
+Il reste à dire ce que la boucle ne sait pas faire, et le bloc qui suit le
+montre mieux qu'une phrase. Les vingt lectures de tout à l'heure sont là,
+prêtes en 100 millisecondes. Mais cette fois un autre plat demande du
+calcul pur, une somme de trente millions de carrés, et c'est le même
+cuisinier qui s'en charge.
+
+{{< pyodide >}}
+import asyncio, time
+
+async def lire(fichier):
+    await asyncio.sleep(0.1)
+    return len(fichier) * 10
+
+def hacher():
+    return sum(i * i for i in range(30_000_000))   # du calcul pur, rien à attendre
+
+async def lectures(depart):
+    tailles = await asyncio.gather(*(lire(f"plat-{i}.txt") for i in range(20)))
+    print(f"lectures finies à {time.perf_counter() - depart:.2f} s")
+    return sum(tailles)
+
+async def cuisinier_qui_hache(depart):
+    resultat = hacher()                            # bloque la boucle
+    print(f"hachage fini à {time.perf_counter() - depart:.2f} s")
+    return resultat
+
+async def principal():
+    depart = time.perf_counter()
+    await asyncio.gather(cuisinier_qui_hache(depart), lectures(depart))
+
+await principal()
+{{< /pyodide >}}
+
+Sur ma machine, le hachage finit à 0,83 seconde, et les lectures à 0,93.
+Elles étaient prêtes depuis 100 millisecondes, leurs sonnettes avaient
+sonné, mais le cuisinier hachait, et rien dans une boucle ne peut le pousser.
+`await` ne sert à rien ici, puisqu'il n'y a rien à attendre. C'est la
+minuterie de 100 millisecondes qui sonnait après deux secondes, en Python
+cette fois, et c'est la limite de tout ce que cette sous-section a
+construit&nbsp;: une boucle d'événements fait attendre sans coûter, elle ne
+fait pas calculer plus vite. Pour le calcul, il faut des bras, et on revient
+aux threads et aux processus des sous-sections précédentes.
+
+Les deux réponses tiennent chacune en une ligne, et elles ne peuvent pas
+s'exécuter dans la page, pour la raison donnée dans la sous-section sur les
+processus et les threads&nbsp;: Pyodide n'a ni les uns ni les autres.
+
+```python
+# La même fonction cuisinier_qui_hache, en deux variantes. Le reste ne change pas.
+
+# 1. Confié à un thread : la boucle est libre, mais le verrou global reste.
+async def cuisinier_qui_hache(depart):
+    resultat = await asyncio.to_thread(hacher)
+    print(f"hachage fini à {time.perf_counter() - depart:.2f} s")
+    return resultat
+
+# 2. Confié à un processus : un autre coeur, un autre interpréteur, pas de verrou.
+from concurrent.futures import ProcessPoolExecutor
+
+async def cuisinier_qui_hache(depart):
+    with ProcessPoolExecutor() as bassin:
+        resultat = await asyncio.get_running_loop().run_in_executor(bassin, hacher)
+    print(f"hachage fini à {time.perf_counter() - depart:.2f} s")
+    return resultat
+```
+
+Avec le thread, les lectures finissent à 0,14 seconde et le hachage à 0,85.
+La boucle a retrouvé sa liberté, mais le hachage n'a pas gagné une
+milliseconde, parce que le verrou global de Python est toujours là&nbsp;: le
+thread qui hache et la boucle se relaient sur un seul coeur, et c'est
+seulement parce que la boucle a très peu à faire qu'elle passe entre les
+gouttes. Avec le processus, 0,11 et 0,90. Le hachage a pris un autre coeur,
+la boucle n'en a rien su, et les 0,07 seconde de plus sont le prix du
+démarrage d'un interpréteur, celui que vous avez mesuré dans la sous-section
+sur les processus. Node dit exactement la même chose de ses threads&nbsp;:
+« utiles pour les opérations JavaScript intensives en calcul », et « peu
+utiles pour le travail intensif en entrées-sorties », où sa boucle fait
+mieux.
+
+Vous tenez maintenant la règle complète, et elle referme la section. Ce qui
+attend va dans une boucle, ou dans des threads, et ne coûte presque rien. Ce
+qui calcule va dans des processus, un par coeur, et ne partage rien. Et rien
+n'interdit de combiner, une boucle par coeur dans des processus séparés qui
+ne se parlent que par messages, ce qui est très exactement la cuisine de la
+sous-section sur le partage, avec le passe. Relisez la formule de Pike avec
+ça en tête&nbsp;: la boucle, c'est de la concurrence sans parallélisme, une
+structure qui fait attendre proprement. Les processus, c'est du
+parallélisme, une exécution sur plusieurs coeurs. Le triangle de
+l'introduction est complet, et quand la question deviendra « combien de
+machines, et non plus combien de coeurs », vous la retrouverez dans le
+module sur [la scalabilité]({{< relref "/docs/module5/60-scalabilite" >}}).
+Amdahl, lui, n'aura pas bougé&nbsp;: ce qui est vraiment séquentiel le reste,
+quel que soit le nombre de cuisiniers.
+

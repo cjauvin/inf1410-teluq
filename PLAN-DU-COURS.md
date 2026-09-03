@@ -81,7 +81,7 @@
 - Types : compilé vs interprété, statique vs dynamique, fort vs faible,
   type hints Python/mypy, lien avec les schémas JSON et SQL
 
-## Concurrence et parallélisme (en cours)
+## Concurrence et parallélisme (complété)
 
 Section en cinq sous-sections, insérée entre la programmation et les tests
 parce qu'elle introduit un vocabulaire matériel et système que le reste du
@@ -137,10 +137,25 @@ ordonnanceur).
 - Ne rien partager, ou ne partager que ce qui ne change pas : l'immutabilité
   du paradigme fonctionnel, Hickey, et multiprocessing.Queue en Python
 
-### Ne jamais bloquer (à faire)
-- Problème C10K, Node, boucle d'événements
-- Rappels, promesses, async/await, en JavaScript et en Python
-
+### Ne jamais bloquer (complété)
+- Le problème C10K (Dan Kegel, 1999) : le thread par client condamné par une
+  division, et la boucle d'événements comme réponse
+- En quoi la boucle diffère des threads : c'est le programme qui décide quand
+  changer de casserole, le multitâche coopératif revenu dans un seul processus,
+  avec une illustration (sonnette.svg) et un tableau processus, thread, boucle
+- Node.js (Ryan Dahl, 2009) décrit par lui-même, la fonction de rappel, la pile
+  JavaScript complète, et Node comme assemblage de V8, libuv et une trentaine
+  de dépendances, avec les deux logos
+- Regarder la boucle tourner dans la page : l'ordre 1, 2, 3, 4, microtâches et
+  tâches, puis une boucle de deux secondes qui retarde une minuterie de 100 ms
+- Le même code trois fois : fonctions de rappel, promesses (Liskov et Shrira
+  1988, Promises/A+, ECMAScript 2015), puis async et await (F#, C# 5.0, PEP 492,
+  ECMAScript 2017), trois blocs JavaScript exécutables
+- asyncio (PEP 3156, 2012) avec le premier bloc Python exécutable de la
+  section, uvloop et libuv, FastAPI et async def
+- La limite : une boucle ne calcule pas plus vite, to_thread contre
+  ProcessPoolExecutor mesurés, worker_threads de Node, et la règle complète qui
+  referme la section
 ## Les tests (complété)
 - Pourquoi tester : confronter le modèle mental (Naur) à la réalité
 - Tests comme substitut partiel au compilateur en Python

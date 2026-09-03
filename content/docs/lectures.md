@@ -160,6 +160,48 @@ intégrées dans le cours.)*
 - Rob Pike, *Concurrency Is Not Parallelism* (conférence, 2012) [[vidéo et diapositives](https://go.dev/blog/waza-talk)]&nbsp;: la concurrence
   est une manière de structurer un programme, le parallélisme une manière de
   l'exécuter → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+- Dan Kegel, *The C10K problem* (1999, mis à jour jusqu'en 2014)
+  [[texte](http://www.kegel.com/c10k.html)]&nbsp;: la page qui pose le problème
+  des dix mille connexions, et la division qui condamne le thread par client → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- Node.js, *About Node.js* [[texte](https://nodejs.org/en/about)]&nbsp;: Node
+  décrit par lui-même, une boucle d'événements comme construction de
+  l'environnement d'exécution plutôt que comme bibliothèque → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- Ryan Dahl, *Porting Node to Windows With Microsoft's Help* (blogue de Node,
+  2011) [[texte](https://nodejs.org/en/blog/uncategorized/porting-node-to-windows-with-microsofts-help)]&nbsp;:
+  le portage vers l'API IOCP de Windows, d'où est née libuv → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- libuv, *Design overview* [[texte](https://docs.libuv.org/en/v1.x/design.html)]&nbsp;:
+  la boucle au centre, liée à un seul thread, et les noms de Kegel, epoll,
+  kqueue, IOCP, derrière une seule interface. Reprise par uvloop pour Python → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- Barbara Liskov et Liuba Shrira, *Promises&nbsp;: Linguistic Support for
+  Efficient Asynchronous Procedure Calls in Distributed Systems* (PLDI, 1988)
+  [[DOI](https://doi.org/10.1145/53990.54016)]&nbsp;: le mot et l'idée, un objet
+  qui représente un résultat pas encore arrivé, pour les systèmes distribués,
+  vingt-sept ans avant leur entrée dans JavaScript → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- *Promises/A+* [[texte](https://promisesaplus.com/)]&nbsp;: le standard
+  communautaire des promesses JavaScript, dont la première phrase est la
+  définition à retenir → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- Don Syme, Tomas Petříček et Dmitry Lomov, *The F# Asynchronous Programming
+  Model* (PADL, 2011) [[DOI](https://doi.org/10.1007/978-3-642-18378-2_15)]&nbsp;:
+  l'origine d'`async` et `await`, chez Microsoft, avant C#, Python et
+  JavaScript → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- Guido van Rossum, *PEP 3156&nbsp;: Asynchronous IO Support Rebooted&nbsp;: the
+  « asyncio » Module* (2012) [[texte](https://peps.python.org/pep-3156/)]&nbsp;:
+  la boucle d'événements de la bibliothèque standard, trois ans avant les
+  mots-clés qui la rendent agréable → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- Yury Selivanov, *PEP 492&nbsp;: Coroutines with async and await syntax* (2015)
+  [[texte](https://peps.python.org/pep-0492/)]&nbsp;: les coroutines comme
+  fonctionnalité native de Python, clairement séparées des générateurs → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- Python, documentation du module *asyncio*
+  [[texte](https://docs.python.org/3/library/asyncio.html)]&nbsp;: « convient
+  souvent parfaitement au code I/O-bound », et la fondation des serveurs web
+  Python d'aujourd'hui → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- FastAPI, *Concurrency and async / await*
+  [[texte](https://fastapi.tiangolo.com/async/)]&nbsp;: quand écrire `async def`,
+  expliqué avec des hamburgers, par le framework qui en dépend → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
+- Node.js, documentation du module *worker_threads*
+  [[texte](https://nodejs.org/api/worker_threads.html)]&nbsp;: des threads
+  « utiles pour les opérations intensives en calcul », et « peu utiles » pour
+  les entrées-sorties, où la boucle fait mieux → [Module 2, Ne jamais bloquer]({{< ref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}})
 - Edgar F. Codd, *A Relational Model of Data for Large Shared Data Banks* (1970) :
   article fondateur du modèle relationnel → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}}), [Module 3, Les données (stockage)]({{< ref "/docs/module3/40-données/20-stockage" >}})
 - David Parnas, *On the Criteria To Be Used in Decomposing Systems into Modules*
