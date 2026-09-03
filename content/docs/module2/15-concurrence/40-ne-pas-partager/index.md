@@ -65,3 +65,70 @@ prend dans l'ordre, et personne ne vient tourner ses casseroles à sa place.
 L'idée est restée pendant plus de dix ans une affaire de laboratoire, une
 belle théorie que peu de programmes utilisaient. Il aura fallu qu'une
 compagnie de téléphone ait un problème que rien d'autre ne résolvait.
+
+## Le langage d'une compagnie de téléphone
+
+En 1986, au laboratoire d'informatique d'Ericsson, Joe Armstrong commence à
+travailler sur un langage pour les centraux téléphoniques, bientôt rejoint par
+Robert Virding et Mike Williams. Le problème d'un central est celui de Hewitt,
+mot pour mot&nbsp;: des milliers d'appels en même temps, qui n'ont rien à voir
+entre eux, un système qui ne doit jamais s'arrêter, et surtout, une erreur
+dans un appel qui ne doit pas toucher les autres. Le langage s'appellera
+**Erlang**, et chaque appel y devient ce que le langage nomme, un peu
+trompeusement, un processus. Ce n'est pas un processus du système
+d'exploitation, ceux de la sous-section précédente, lourds et rares. C'en est
+une version minuscule, gérée par le langage lui-même, dont une machine fait
+tourner des centaines de milliers. Chacun a sa mémoire, que personne d'autre
+ne voit, et sa boîte aux lettres. Ce sont les acteurs de Hewitt, dans un
+langage sur lequel une entreprise a parié.
+
+{{< image src="erlang.webp" alt="Le logo d'Erlang : le nom du langage en lettres noires, avec un e rouge" title="Le logo d'Erlang, marque d'Ericsson, via Wikimedia Commons" loading="lazy" >}}
+
+De cette isolation découle la décision la plus surprenante d'Erlang, que
+Armstrong résume par une formule devenue célèbre&nbsp;: **let it crash**, laissez
+planter. Plutôt que de prévoir dans chaque processus tout ce qui pourrait mal
+tourner, on le laisse mourir dès qu'il rencontre une erreur, et un autre
+processus, le **superviseur**, dont c'est le seul rôle, s'en aperçoit et le
+relance. Dans sa thèse de 2003, Armstrong pose la distinction qui rend cela
+raisonnable&nbsp;: une exception est une situation que le système ne sait pas
+traiter, une erreur est une situation que le programmeur ne sait pas traiter,
+et pour la seconde, la seule réponse honnête est de laisser un autre processus
+réparer. En cuisine, le cuisinier qui rate sa sauce la jette et recommence, le
+chef le remarque et réaffecte le poste, et les quarante autres plats n'en
+sauront jamais rien. Cela ne fonctionne que parce que rien n'est partagé. Un
+processus qui meurt en tenant un verrou emporterait tout le monde avec lui.
+Un processus Erlang ne tient rien.
+
+Vous retrouverez cette philosophie, presque mot pour mot, à une tout autre
+échelle. Dans la section sur
+[Kubernetes]({{< relref "/docs/module5/10-infrastructure/20-kubernetes" >}}),
+vous tuerez un conteneur de vos propres mains et le verrez réapparaître
+aussitôt, parce qu'une boucle de contrôle compare sans cesse l'état désiré à
+l'état réel et remplace ce qui manque. Le texte y dit que le système « ne
+tente pas de réparer un pod défaillant, il le remplace ». C'est le superviseur
+d'Erlang, avec des conteneurs à la place des processus et un centre de données
+à la place d'un central téléphonique. Aucune filiation directe entre les deux,
+mais la même conclusion, tirée deux fois à trente ans d'écart&nbsp;: quand rien
+n'est partagé, laisser mourir et relancer coûte moins cher que prévoir.
+
+Le résultat s'est vu sur un produit. En 1998, Ericsson livre l'AXD301, un
+commutateur qui, au moment où Armstrong écrit sa thèse, compte 1,7 million de
+lignes d'Erlang, et qu'il décrit comme « l'un des produits les plus fiables
+jamais faits par Ericsson ». On lit partout à son sujet une disponibilité de
+99,9999999&nbsp;%, les fameux neuf neuf, soit trente et une millisecondes
+d'arrêt par an. Il vaut la peine de lire ce qu'Armstrong lui-même en dit&nbsp;: la
+seule source de ce chiffre était « une présentation PowerPoint montrant des
+chiffres selon lesquels un client important avait fait tourner un système de
+onze noeuds avec une fiabilité de 99,9999999&nbsp;%, sans que la façon dont ces
+chiffres avaient été obtenus soit documentée ». Le chiffre le plus cité sur
+Erlang est ainsi désavoué par son auteur, dans le texte même qu'on cite pour
+l'étayer. Ce que la thèse affirme est plus modeste et bien mieux établi.
+
+L'idée a survécu à la téléphonie. Le 6 janvier 2012, WhatsApp, alors une
+petite entreprise, publie un billet technique montrant un seul de ses serveurs,
+vingt-quatre coeurs sous FreeBSD, tenant **2 277 845 connexions** simultanées.
+Le logiciel derrière était écrit en Erlang, un processus par connexion, et
+c'est ce qui permettait à une équipe minuscule de servir des centaines de
+millions de personnes. On y reviendra dans la dernière sous-section, parce que
+tenir deux millions de connexions n'est pas d'abord une question de
+parallélisme, c'est une question d'attente.
