@@ -398,6 +398,21 @@ temps constant. Mais étant donné que nous devons tout de même passer à trave
 tous les items de la liste une seule fois, la complexité finale de l'algorithme
 reste tout de même $O(N)$, ce qu'on appelle une complexité linéaire.
 
+{{% hint warning %}}
+**Ce « en moyenne » cache quelque chose.** Daniel Lemire, professeur à la
+TÉLUQ, montre dans un [billet de septembre 2026](https://lemire.me/blog/2026/09/03/python-sets-and-dictionaries-can-have-quadratic-time-performance/)
+qu'un `set` ou un `dict` Python peut se comporter en temps quadratique. Il
+suffit de choisir des clés dont les hachages entrent en collision, et sur sa
+machine le temps de construction quadruple chaque fois que la taille double,
+jusqu'à 45 secondes pour cent mille éléments. Le temps constant de la table de
+hachage est un modèle, qui suppose des collisions rares, une table qui n'a pas
+à se réallouer, et une mémoire dont la vitesse ne dépend pas de la taille.
+Aucune de ces trois hypothèses n'est vraie en toutes circonstances, et la
+dernière ne l'est jamais&nbsp;: une petite table tient dans le cache du
+processeur, une grande vit en mémoire vive, bien plus lente. Un modèle est un
+excellent outil pour apprendre, à condition de se rappeler que c'en est un.
+{{% /hint %}}
+
 Pour comparer de manière empirique la performance de ces deux algorithmes, nous
 avons besoin de considérer plusieurs résultats (c-à-d plusieurs sommes
 possibles), car un seul appel pourrait être "chanceux" (la première paire

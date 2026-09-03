@@ -223,6 +223,11 @@ intégrées dans le cours.)*
 - Rob Pike, *Notes on Programming in C* (1989) : contient les « 5 règles de
   programmation » de Pike, dont la règle 5 sur la primauté des structures de
   données → [Module 2, Survol rapide de la programmation]({{< ref "/docs/module2/10-programmation" >}})
+- Daniel Lemire, *Python sets and dictionaries can have quadratic-time
+  performance* (blogue, 2026) [[texte](https://lemire.me/blog/2026/09/03/python-sets-and-dictionaries-can-have-quadratic-time-performance/)]&nbsp;:
+  un professeur de la TÉLUQ montre, mesures à l'appui, que le temps constant
+  des tables de hachage est un modèle, et comment le faire mentir avec des clés
+  bien choisies → [Module 2, Survol rapide de la programmation]({{< ref "/docs/module2/10-programmation" >}})
 - Edsger Dijkstra, *Go To Statement Considered Harmful* (1968) : plaidoyer pour
   la programmation structurée → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}})
 - Edsger Dijkstra, *On the foolishness of "natural language programming"*
