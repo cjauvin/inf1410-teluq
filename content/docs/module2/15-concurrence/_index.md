@@ -28,9 +28,9 @@ elles n'ont presque rien à voir l'une avec l'autre.
 
 La première est de s'organiser pour mener plusieurs plats de front, seul. La
 seconde est d'embaucher. Un logiciel dispose des deux&nbsp;: un programme peut être
-écrit pour ne jamais attendre les bras croisés, et une machine d'aujourd'hui ne
+écrit pour ne jamais attendre les bras croisés (c'est la **concurrence**), et une machine d'aujourd'hui ne
 contient plus un seul processeur mais huit ou dix, autant de cuisiniers
-supplémentaires. L'application que vous construirez cette session aura besoin
+supplémentaires (**parallélisme**). L'application que vous construirez cette session aura besoin
 des deux. Elle devra répondre à plusieurs personnes à la fois sans faire
 patienter la deuxième derrière la première, et elle ne devra pas figer l'écran
 de quelqu'un pendant qu'un courriel de confirmation s'envoie.

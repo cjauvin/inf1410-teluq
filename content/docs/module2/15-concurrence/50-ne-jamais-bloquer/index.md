@@ -96,12 +96,103 @@ lignes qui les séparent vraiment.
 | Ce que coûte une tâche qui attend | un processus entier | un thread entier, avec sa pile, et un changement de contexte | une note, l'état du plat et quoi faire ensuite |
 | Ce qui casse | rien n'est partagé, mais se parler coûte cher | les conditions de course | un seul appel bloquant fige tout |
 
+## Un langage de navigateur devient un serveur
+
+En novembre 2009, à Berlin, un programmeur nommé Ryan Dahl présente à la
+première JSConf EU un projet qui applique la recette de Kegel à un langage qui
+ne l'avait jamais connue en dehors du navigateur, JavaScript. Le projet
+s'appelle **Node.js**, et sa page d'accueil le décrit encore aujourd'hui dans
+des termes qui sont presque ceux de Kegel&nbsp;: « un environnement d'exécution
+JavaScript asynchrone et piloté par les événements, conçu pour construire des
+applications réseau qui passent à l'échelle ». Puis, à propos du petit serveur
+donné en exemple&nbsp;: « à chaque connexion, la fonction de rappel est
+déclenchée, mais s'il n'y a rien à faire, Node.js dort ». La **fonction de
+rappel** (*callback*), c'est la note posée sur la casserole, ce qu'il faut
+faire quand elle sonnera. Et un serveur qui dort quand il n'a rien à faire,
+c'est un cuisinier qui n'est planté devant rien.
+
+{{< image src="node.webp" alt="Le logo de Node.js : le mot node en gris foncé, dont le o est un hexagone vert, suivi d'un petit hexagone vert marqué JS" title="Le logo de Node.js, marque déposée, depuis la page de marque de nodejs.org" loading="lazy" >}}
+
+Le choix de JavaScript n'a rien d'un hasard. C'est un langage qui n'avait
+jamais eu de threads, parce que dans le navigateur il n'y en a jamais eu&nbsp;: un
+seul fil, une boucle d'événements, et du code qui réagit aux clics et aux
+réponses du réseau sans jamais bloquer, faute de quoi la page entière se
+figerait. Les programmeurs JavaScript pratiquaient le multitâche coopératif
+depuis plus de dix ans sans le savoir, et ils n'avaient aucune bibliothèque
+de threads à désapprendre. La page de Node reconnaît d'ailleurs ses aînés,
+Twisted en Python et EventMachine en Ruby, qui offraient la même boucle mais
+comme une bibliothèque, qu'il fallait choisir puis démarrer par un appel
+bloquant. Node, dit-elle, « présente une boucle d'événements comme une
+construction de l'environnement d'exécution plutôt que comme une
+bibliothèque ». Il n'y a pas de fonction pour lancer la boucle. Elle tourne
+dès que le programme commence, et le programme se termine quand il n'y a plus
+rien à attendre.
+
+### Rien n'a été inventé, tout a été assemblé
+
+{{< image src="v8.webp" alt="Le logo de V8 : un grand V gris anthracite, et devant lui un 8 bleu aux boucles bien rondes" title="Le logo de V8, marque de Google, publié sur v8.dev sous licence CC BY 3.0" loading="lazy" >}}
+
+Ce qui frappe, quand on ouvre le dépôt de Node, c'est que presque rien n'y a
+été écrit de zéro. Le cuisinier, c'est **V8**, le moteur JavaScript que Google
+avait construit en 2008 pour Chrome, au moment où les navigateurs se livraient
+une guerre de vitesse. V8 se présente comme « le moteur JavaScript et
+WebAssembly open source et haute performance de Google, écrit en C++, utilisé
+dans Chrome et dans Node.js ». Il n'a jamais été conçu pour un serveur, et il
+n'a pas eu à l'être. Les sonnettes, c'est **libuv**, une bibliothèque C dont
+la première ligne de présentation dit tout&nbsp;: « une bibliothèque de support
+multiplateforme centrée sur les entrées-sorties asynchrones », et dont la
+première fonctionnalité annoncée est « une boucle d'événements complète,
+appuyée sur `epoll`, `kqueue`, IOCP et les ports d'événements ». Ce sont les
+noms de la page de Kegel, plus celui de Windows, derrière une seule interface.
+Et libuv est un morceau que Node a lui-même fait naître&nbsp;: elle a été
+écrite pour lui, en 2011, quand Dahl a annoncé un portage vers Windows « visant l'API
+IOCP », avec l'aide de Microsoft, parce que la bibliothèque utilisée jusque là
+ne connaissait pas cette API. Depuis, libuv a quitté le nid&nbsp;: Julia s'en
+sert, et Python aussi, à travers uvloop, dont on reparlera.
+
+Le reste de la liste est du même ordre. OpenSSL pour le chiffrement, zlib pour
+la compression, c-ares pour les requêtes DNS sans bloquer, llhttp pour
+découper les requêtes HTTP, ICU pour Unicode. Le fichier de maintenance du
+dépôt en compte une trentaine. Ce que Node a écrit lui-même, c'est la colle
+en C++ entre V8 et libuv, et une bibliothèque standard en JavaScript par-dessus.
+C'est un cas d'école de ce que vous verrez dans le module sur
+[l'architecture]({{< relref "/docs/module3/10-architecture" >}}), et une
+démonstration de ce que permet l'open source&nbsp;: un projet qui a changé la
+manière d'écrire des serveurs a commencé comme un assemblage de pièces que
+d'autres avaient déjà faites, et bien faites.
+
+Voici à quoi ressemble un serveur Node, en entier. Il compte les requêtes
+qu'il reçoit.
+
+```javascript
+// serveur.js, à lancer avec : node serveur.js
+const { createServer } = require("node:http");
+
+let requetes = 0;
+
+createServer((requete, reponse) => {
+  requetes += 1;
+  reponse.end(`Vous êtes la requête numéro ${requetes}\n`);
+}).listen(3210);
+```
+
+La fonction passée à `createServer` est la fonction de rappel. Elle n'est pas
+appelée par le programme, qui se termine en apparence dès la dernière ligne,
+mais par la boucle, à chaque fois qu'une connexion arrive. Et regardez le
+compteur. C'est celui de la sous-section sur les processus et les threads,
+celui qui perdait trois millions d'incréments sans verrou, et ici il n'y a
+toujours pas de verrou. Il est pourtant juste, quel que soit le nombre de
+clients. Il n'y a qu'un seul thread, donc deux incréments ne peuvent jamais
+se croiser. C'est la dernière ligne du tableau, prise à l'envers&nbsp;: la boucle
+ne connaît pas la condition de course. Elle a un autre ennemi, et il arrive à
+la prochaine section.
+
 <!-- MESURÉ le 2 septembre 2026 dans la page, Pyodide 3.12.7 : threading.Thread
      -> RuntimeError: can't start new thread ; os.fork et multiprocessing ->
      OSError 52 Function not implemented ; MAIS `await asyncio.sleep(0.1)` via
      runPythonAsync fonctionne (737 ms au premier appel, chauffe de la boucle
      comprise). Donc l'exemple asyncio de cette sous-section PEUT être un bloc
      exécutable dans la page, par le shortcode pyodide,, contrairement aux exemples de
-     threads de la sous-section 20. À exploiter : ce serait l'exemple Python le
+     threads de la sous-section 20. À exploiter&nbsp;: ce serait l'exemple Python le
      plus fort de la section, l'étudiant le lance lui-même. Vérifier que le
      shortcode pyodide passe par runPythonAsync (ou l'adapter). -->
