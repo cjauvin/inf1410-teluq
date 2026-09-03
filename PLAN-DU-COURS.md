@@ -123,8 +123,19 @@ ordonnanceur).
   quatre ans malgré 100 % de couverture, et la thèse de *The Problem with
   Threads*, pont vers « Ne pas partager »
 
-### Ne pas partager (à faire)
-- CSP (Hoare, 1978), acteurs (Hewitt, 1973), Erlang, QNX, immutabilité
+### Ne pas partager (complété)
+- S'il n'y a rien à protéger : retirer le partage fait disparaître verrous et
+  interblocages ; le poste de travail et le passe, avec une figure
+- Hoare et CSP (1978) : la condition de course ne peut même plus s'écrire
+- Hewitt et les acteurs (1973) : boîte aux lettres, messages asynchrones
+- Erlang : processus légers, let it crash, superviseurs, et les neuf neuf de
+  l'AXD301 désavoués par Armstrong lui-même ; WhatsApp ; lien vers Kubernetes
+- Go : la formule de Gerrand à la lettre, le compteur réécrit sans verrou, et
+  trois réponses à Lee, encourager (Go), interdire (Erlang), prouver (Rust)
+- QNX, l'angle canadien : un micronoyau où tout communique par messages,
+  dans les mots de sa documentation
+- Ne rien partager, ou ne partager que ce qui ne change pas : l'immutabilité
+  du paradigme fonctionnel, Hickey, et multiprocessing.Queue en Python
 
 ### Ne jamais bloquer (à faire)
 - Problème C10K, Node, boucle d'événements

@@ -50,6 +50,21 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
   plutôt que de compter sur sa bonne volonté. Comme la protection mémoire, la
   garantie naît sur les gros systèmes des années 60 et met trente ans à
   atteindre les machines personnelles → [Module 2, Processus et threads]({{< ref "/docs/module2/15-concurrence/20-processus-et-threads" >}})
+- **Ne pas partager d'état mutable**&nbsp;: ce qui casse n'est pas le partage,
+  c'est le partage d'une valeur que l'un lit pendant qu'un autre l'écrit. Deux
+  stratégies, ne rien partager et s'échanger des messages, ou ne partager que
+  des valeurs qui ne changent jamais → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+- **Ne communiquez pas en partageant la mémoire, partagez la mémoire en
+  communiquant** (Go, Andrew Gerrand, 2010)&nbsp;: une seule goroutine possède la
+  donnée, les autres lui envoient des messages. Le poste de travail et le
+  passe → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+- **Let it crash** (Erlang, Joe Armstrong)&nbsp;: plutôt que de prévoir toute
+  erreur, laisser mourir le processus fautif et le faire relancer par un
+  superviseur. Ne fonctionne que parce que rien n'est partagé, et se retrouve
+  dans Kubernetes, qui remplace un pod défaillant au lieu de le réparer → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+- **Encourager, interdire, ou prouver**&nbsp;: les trois réponses des langages à la
+  question de Lee. Go encourage à ne pas partager, Erlang l'interdit, Rust le
+  fait vérifier par le compilateur → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
 - **Condition de course** (*race condition*)&nbsp;: quand le résultat d'un
   programme dépend de l'ordre dans lequel ses threads s'entrelacent, ordre que
   personne ne choisit. Le programme n'est pas faux, il est parfois faux, et ses

@@ -95,7 +95,8 @@ intégrées dans le cours.)*
 - C. A. R. Hoare, *Communicating Sequential Processes* (CACM, 1978)
   [[texte](https://www.cs.cmu.edu/~crary/819-f09/Hoare78.pdf)]&nbsp;: des tâches
   qui ne partagent rien et ne s'échangent que des messages. Baptise le dîner
-  des philosophes, et fonde la lignée qui mène à Go → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
+  des philosophes, et fonde la lignée qui mène à Go → [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}}),
+  [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
 - Jim Gray, *The Transaction Concept: Virtues and Limitations* (VLDB, 1981)
   [[texte](https://jimgray.azurewebsites.net/papers/thetransactionconcept.pdf)]&nbsp;:
   la transaction comme réponse de la base de données au même problème que le
@@ -109,6 +110,33 @@ intégrées dans le cours.)*
   présent depuis le premier jour →
   [Module 2, Concurrence et parallélisme]({{< ref "/docs/module2/15-concurrence" >}}),
   [Module 2, Ce qui casse]({{< ref "/docs/module2/15-concurrence/30-ce-qui-casse" >}})
+- Carl Hewitt, Peter Bishop et Richard Steiger, *A Universal Modular ACTOR
+  Formalism for Artificial Intelligence* (IJCAI, 1973)
+  [[texte](https://www.ijcai.org/Proceedings/73/Papers/027B.pdf)]&nbsp;: l'acteur,
+  un état que lui seul touche et une boîte aux lettres, cinq ans avant CSP et
+  avec des messages asynchrones → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+- Joe Armstrong, *Making Reliable Distributed Systems in the Presence of
+  Software Errors* (thèse, KTH, 2003)
+  [[texte](https://erlang.org/download/armstrong_thesis_2003.pdf)]&nbsp;: Erlang
+  expliqué par son auteur, let it crash et les superviseurs. À lire aussi pour
+  ce qu'elle dit des fameux neuf neuf de l'AXD301, dont la seule source était
+  une présentation PowerPoint → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+- Andrew Gerrand, *Share Memory By Communicating* (blogue de Go, 2010)
+  [[texte](https://go.dev/blog/codelab-share)]&nbsp;: la formule de Go, ne
+  communiquez pas en partageant la mémoire, partagez la mémoire en
+  communiquant → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+- Rich Hickey, *Clojure Rationale* [[texte](https://clojure.org/about/rationale)]&nbsp;:
+  l'état mutable comme « désastre pour la concurrence », et l'immutabilité qui
+  permet de « partager librement entre threads » → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+- *The Rust Programming Language*, chapitre *Fearless Concurrency*
+  [[texte](https://doc.rust-lang.org/book/ch16-00-concurrency.html)]&nbsp;: les
+  erreurs de concurrence comme erreurs de compilation plutôt que d'exécution → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
+- QNX, *System Architecture*, chapitres sur le micronoyau et la communication
+  entre processus
+  [[noyau](https://www.qnx.com/developers/docs/8.0/com.qnx.doc.neutrino.sys_arch/topic/kernel.html),
+  [messages](https://www.qnx.com/developers/docs/8.0/com.qnx.doc.neutrino.sys_arch/topic/ipc.html)]&nbsp;:
+  un système d'exploitation canadien où tout, jusqu'aux systèmes de fichiers,
+  s'exécute hors du noyau et communique par messages synchrones → [Module 2, Ne pas partager]({{< ref "/docs/module2/15-concurrence/40-ne-pas-partager" >}})
 - Sam Gross, *PEP 703&nbsp;: Making the Global Interpreter Lock Optional in CPython*
   (2023) [[texte](https://peps.python.org/pep-0703/)]&nbsp;: la proposition qui défait un compromis vieux de trente ans, acceptée
   puis livrée en variante expérimentale. Le même code y devient trois fois plus

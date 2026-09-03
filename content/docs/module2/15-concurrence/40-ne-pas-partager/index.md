@@ -264,3 +264,74 @@ prix qu'on reconnaît&nbsp;: chaque message est copié d'un espace d'adressage �
 l'autre. On l'a vu dans la sous-section sur les processus, c'est ce coût-là
 que les threads avaient été inventés pour éviter. QNX le paie volontairement,
 parce que l'isolation vaut plus que la vitesse dans une voiture.
+
+## Ne rien partager, ou ne partager que ce qui ne change pas
+
+Tout ce qui précède peut maintenant se dire en une règle, plus précise que le
+titre de cette sous-section. Ce qui casse n'est pas le partage. C'est le
+partage d'un **état mutable**, une valeur que l'un peut lire pendant qu'un
+autre l'écrit. De là, il y a deux stratégies, et non une. La première est de
+ne rien partager du tout et de s'échanger des messages, c'est la voie de Hoare,
+de Hewitt, d'Erlang, de Go et de QNX. La seconde est de partager librement des
+valeurs qui ne changent jamais, parce qu'une valeur qu'on ne modifie pas ne
+peut pas être lue pendant qu'on l'écrit, et qu'il n'y a donc rien sur quoi
+courir. Un million de threads peuvent lire la même chaîne de caractères sans
+verrou, à condition que personne ne la modifie jamais.
+
+Cette seconde voie a un nom que vous connaissez déjà. La section sur
+[la programmation]({{< relref "/docs/module2/10-programmation" >}}) présentait
+l'immutabilité comme la première des deux idées centrales du paradigme
+fonctionnel, et disait qu'elle « élimine toute une classe de bugs liés aux
+modifications inattendues de l'état ». Vous savez maintenant de quelle classe
+il s'agit. Ce n'est pas un hasard si le même paragraphe citait Erlang&nbsp;: Erlang
+est un langage fonctionnel précisément parce que ses processus s'envoient des
+données, et qu'une donnée qui ne change pas peut être envoyée sans crainte.
+Rich Hickey, le créateur de Clojure, que la même section nommait comme forme
+moderne de Lisp, l'a dit sans détour dans le texte où il justifie son
+langage&nbsp;: les objets à état mutable sont « le nouveau code spaghetti », un
+« désastre pour la concurrence », et l'immutabilité « fait disparaître
+l'essentiel du problème, partagez librement entre threads ». Les deux
+stratégies se rejoignent donc, et les langages qui prennent la concurrence au
+sérieux tendent à prendre les deux.
+
+Python, lui, n'impose ni l'une ni l'autre, mais il offre la première dans sa
+bibliothèque standard, et vous l'avez déjà utilisée sans le savoir. Voici le
+programme Go de tout à l'heure, réécrit avec des processus et une file.
+
+```python
+from multiprocessing import Process, Queue
+
+def compter(n, resultats):
+    somme = 0
+    for _ in range(n):
+        somme += 1
+    resultats.put(somme)          # dépose le résultat sur le passe
+
+if __name__ == "__main__":
+    resultats = Queue()
+    ps = [Process(target=compter, args=(1_000_000, resultats)) for _ in range(4)]
+    for p in ps: p.start()
+    total = sum(resultats.get() for _ in range(4))   # prend les quatre plats
+    for p in ps: p.join()
+    print(f"attendu : {4_000_000}")
+    print(f"obtenu  : {total}")
+```
+
+```shell
+$ uv run --python 3.14t --no-project python file.py
+attendu : 4000000
+obtenu  : 4000000
+```
+
+Le résultat est juste sur l'interpréteur sans GIL comme sur l'autre, et cette
+fois sans verrou, parce que chaque processus a sa propre mémoire et que la
+seule chose qui la quitte est une valeur déposée dans la file. Le
+`multiprocessing.Pool` de la sous-section sur les processus faisait déjà
+exactement cela, en cachant la file. C'est le passe, en Python.
+
+Reste une chose que ne pas partager ne règle pas. Les quatre processus
+ci-dessus calculent. Mais la plupart des programmes, on l'a vu, n'ont pas ce
+problème-là&nbsp;: ils attendent. Et pour un programme qui attend, la question
+n'est pas comment répartir le travail entre plusieurs cuisiniers, c'est
+comment un seul cuisinier peut ne jamais rester planté devant l'eau qui bout.
+C'est le sujet de la dernière sous-section.
