@@ -116,7 +116,11 @@ sys.stdout = io.StringIO()
 sys.stderr = io.StringIO()
 `);
         try {
-          pyodide.runPython(code);
+          // runPythonAsync plutôt que runPython : il accepte un await au niveau
+          // supérieur, ce qui permet aux blocs asyncio de la section sur la
+          // concurrence de tourner dans la page, et exécute le code ordinaire
+          // exactement comme avant.
+          await pyodide.runPythonAsync(code);
         } catch (pyErr) {
           const stderr = pyodide.runPython('sys.stderr.getvalue()');
           const stdout = pyodide.runPython('sys.stdout.getvalue()');
