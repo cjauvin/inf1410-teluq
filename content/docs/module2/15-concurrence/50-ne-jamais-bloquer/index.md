@@ -364,6 +364,73 @@ versions, un seul total, 290, et surtout un seul modèle&nbsp;: rien n'a changé
 dans la boucle entre 2009 et 2017, seulement la manière d'écrire ce qu'on
 lui confie. Python a suivi exactement ce chemin, et c'est là qu'on va.
 
+## Python a sa boucle aussi
+
+Elle s'appelle **asyncio**, et elle est plus vieille que les mots-clés qui
+la rendent agréable. Guido van Rossum l'a proposée en décembre 2012, dans
+un document de conception qui décrit une boucle d'événements pour la
+bibliothèque standard, à une époque où Python n'avait encore ni `async` ni
+`await`. Les deux mots sont arrivés trois ans plus tard, et c'est depuis ce
+moment que la documentation peut la présenter en une phrase&nbsp;: « asyncio
+est une bibliothèque pour écrire du code concurrent avec la syntaxe
+`async`/`await` ». Elle ajoute, et c'est la phrase à retenir, qu'asyncio
+« convient souvent parfaitement au code I/O-bound ». Vous savez maintenant
+pourquoi&nbsp;: c'est le cuisinier qui ne se plante devant aucune casserole,
+et il n'a rien à offrir à celui qui doit hacher pendant une heure.
+
+Le bloc qui suit tourne ici, dans la page. C'est le premier bloc Python de
+cette section à pouvoir le faire, et ce n'est pas un hasard&nbsp;: les threads
+et les processus étaient hors de portée de l'environnement Python du
+navigateur, mais une boucle d'événements n'a besoin ni des uns ni des
+autres. Vingt lectures simulées de 100 millisecondes, d'abord l'une après
+l'autre, puis toutes en même temps.
+
+{{< pyodide >}}
+import asyncio, time
+
+async def lire(fichier):
+    await asyncio.sleep(0.1)          # une lecture simulée de 100 ms
+    return len(fichier) * 10
+
+async def principal():
+    fichiers = [f"plat-{i}.txt" for i in range(20)]
+
+    depart = time.perf_counter()
+    tailles = []
+    for f in fichiers:
+        tailles.append(await lire(f))
+    print(f"en séquence : {sum(tailles)} en {time.perf_counter() - depart:.2f} s")
+
+    depart = time.perf_counter()
+    tailles = await asyncio.gather(*(lire(f) for f in fichiers))
+    print(f"en même temps : {sum(tailles)} en {time.perf_counter() - depart:.2f} s")
+
+await principal()
+{{< /pyodide >}}
+
+Sur ma machine, 2,02 secondes en séquence, 0,10 seconde en même temps, et le
+même total. Si vos chiffres sont dix fois plus grands, c'est que vous avez
+changé d'onglet pendant l'exécution&nbsp;: les navigateurs ralentissent les
+minuteries des onglets cachés, et la boucle d'asyncio, dans cette page, est
+celle du navigateur. Le premier passage attend chaque lecture avant de lancer la
+suivante, comme le cuisinier de la vignette « Séquentiel ». Le second met
+les vingt casseroles sur le feu d'un coup, avec `asyncio.gather`, et n'a
+plus qu'à attendre la plus lente, qui prend 100 millisecondes comme les
+autres. Un seul thread, donc pas de verrou global qui gêne, et pas de
+condition de course possible&nbsp;: la règle de la sous-section sur les threads,
+« des threads pour l'I/O-bound », a maintenant une deuxième réponse, et
+c'est souvent la meilleure.
+
+La sonnette sous asyncio est d'ailleurs interchangeable. Une bibliothèque
+nommée uvloop se présente comme « un remplacement direct de la boucle
+d'événements intégrée d'asyncio », qui « utilise libuv sous le capot ». La
+même libuv que Node, exactement celle dont on annonçait le retour. Et c'est
+cette boucle, native ou libuv, qui fait tourner les serveurs web Python
+d'aujourd'hui. Quand FastAPI, que vous retrouverez dans le module sur
+[les APIs]({{< relref "/docs/module3/20-apis" >}}), vous dit d'écrire vos
+fonctions avec `async def` dès qu'une bibliothèque « vous demande de
+l'appeler avec `await` », c'est de ce cuisinier-là qu'il parle.
+
 <!-- MESURÉ le 2 septembre 2026 dans la page, Pyodide 3.12.7 : threading.Thread
      -> RuntimeError: can't start new thread ; os.fork et multiprocessing ->
      OSError 52 Function not implemented ; MAIS `await asyncio.sleep(0.1)` via
