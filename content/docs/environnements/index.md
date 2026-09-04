@@ -319,6 +319,7 @@ If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
 ```
 
+
 Le résultat est un langage
 objectivement lent par rapport à C (facilement de 10 à 100 fois plus lent, selon le contexte, ce qui n'est pas rien!), mais d'une productivité remarquable : on
 peut exprimer en quelques lignes de Python ce qui en prendrait des dizaines en
@@ -331,6 +332,141 @@ entrailles sont souvent écrites en C ou C++ pour la performance). Le succès de
 Python est un autre cas de "Worse is Better" : un langage techniquement
 "inférieur" en performance brute, mais tellement plus simple à apprendre et à
 utiliser qu'il a fini par s'imposer dans des domaines entiers.
+
+Cette invite `>>>` mérite un mot, parce qu'elle reviendra. Lancer `python`
+sans rien d'autre ouvre une **boucle interactive**, ou *REPL* pour
+*read-eval-print loop*&nbsp;: on tape une ligne, elle est exécutée, le résultat
+s'affiche, et on recommence, avec tout ce qu'on a défini avant encore en
+mémoire. C'est l'endroit où l'on essaie une idée avant de l'écrire dans un
+fichier, où l'on vérifie ce que renvoie une fonction, où l'on regarde à quoi
+ressemble une valeur. L'idée est aussi vieille que la programmation
+interactive elle-même, et elle vient de Lisp. À une époque où l'on remettait
+son programme sur cartes perforées et où l'on revenait chercher le résultat
+des heures plus tard, John McCarthy raconte, dans son histoire de Lisp, qu'une
+démonstration de Lisp « en temps partagé » a eu lieu sur un IBM 704 dès 1960,
+et que L. Peter Deutsch a écrit le premier Lisp interactif sur le PDP-1 en
+1963. Lisp étant un interpréteur, on pouvait lui soumettre une expression, la
+voir évaluée et affichée, et en soumettre une autre, sans jamais quitter le
+système&nbsp;: la boucle « lire, évaluer, afficher » est née là, et le shell
+que vous avez vu plus haut en est une cousine, qui lit des commandes plutôt
+que des expressions. La boucle livrée avec Python est sobre. Celle que les
+programmeurs Python utilisent vraiment s'appelle **IPython**, commencée en 2001
+par Fernando Pérez, alors étudiant au doctorat à Boulder, et qui ajoute la
+complétion par tabulation, la coloration, l'historique et une foule de
+commodités, sans rien changer au langage. Elle s'essaie en une commande, sans
+installation permanente, et voici à quoi ressemble une session, avec une
+fonction définie sur place, un résultat repris par `_`, et un `?` qui demande
+à la boucle ce qu'elle sait d'un nom&nbsp;:
+
+```shell
+$ uvx ipython
+In [1]: def est_palindrome(s):
+   ...:     """Vrai si s se lit dans les deux sens, espaces et casse ignorées."""
+   ...:     s = s.lower().replace(" ", "")
+   ...:     return s == s[::-1]
+   ...:
+
+In [2]: est_palindrome("Engage le jeu que je le gagne")
+Out[2]: True
+
+In [3]: _
+Out[3]: True
+
+In [4]: phrases = ["kayak", "radar", "python"]
+
+In [5]: [p for p in phrases if est_palindrome(p)]
+Out[5]: ['kayak', 'radar']
+
+In [6]: est_palindrome?
+Signature: est_palindrome(s)
+Docstring: Vrai si s se lit dans les deux sens, espaces et casse ignorées.
+File:      ~/<ipython-input-1-f603ce89dc33>
+Type:      function
+```
+
+Chaque entrée et chaque sortie sont numérotées, ce qui permet d'y revenir,
+et la touche de tabulation complète les noms au fur et à mesure, ce qu'une
+transcription ne peut pas montrer.
+
+### Le notebook, et ce qui tourne derrière
+
+Le projet Jupyter est né du projet IPython en 2014, dit-il lui-même, « pour
+soutenir la science des données interactive et le calcul scientifique dans
+tous les langages ». Un **notebook** est un programme découpé en
+cellules, de code ou de texte, qu'on exécute une à une, dans l'ordre qu'on
+veut, l'état restant vivant entre deux exécutions. Autrement dit, un point
+d'arrêt permanent, dans lequel on peut écrire. En voici un, à quatre cellules,
+que vous pouvez [télécharger](palindromes.ipynb)&nbsp;: une cellule de texte, puis
+`est_palindrome` définie dans la première cellule de code, une liste filtrée
+dans la deuxième, qui trouve trois palindromes, et l'appel sur la phrase
+d'Ésope dans la troisième, qui répond `False`. La deuxième cellule utilise la
+fonction définie dans la première sans la redéfinir&nbsp;: c'est l'état qui
+survit, et le numéro entre crochets à gauche de chaque cellule dit dans quel
+ordre elles ont été exécutées.
+
+{{< image src="notebook-palindromes.webp" alt="Le notebook palindromes.ipynb rendu dans un navigateur : un titre Palindromes, une phrase, puis trois cellules de code numérotées In [1], In [2], In [3], la définition d'est_palindrome avec sa docstring, la liste filtrée dont la sortie Out[2] donne kayak, radar et Engage le jeu que je le gagne, et l'appel sur la phrase d'Ésope dont la sortie Out[3] est False" title="Le notebook palindromes.ipynb, rendu en HTML par nbconvert, tel qu'un navigateur l'affiche : les numéros d'exécution et les sorties sont ceux enregistrés dans le fichier" loading="lazy" >}}
+
+Ce qui tourne derrière est plus intéressant que l'interface. Il y a trois
+acteurs, et la documentation de Jupyter insiste sur le fait qu'ils « ne
+peuvent pas se parler directement ». La page que vous voyez est une
+application web dans votre navigateur. Elle parle à un serveur Jupyter, lancé
+sur votre machine, qui est « un carrefour de communication » et qui, seul,
+lit et écrit le fichier sur le disque. Et le code est exécuté par un
+**noyau** (*kernel*), un processus séparé, ici un IPython, qui reçoit des
+messages JSON par des sockets ZeroMQ, exécute ce qu'on lui envoie et renvoie
+les résultats. Le noyau « ne sait rien du document », dit la même page, « il
+reçoit seulement des cellules de code à exécuter quand l'utilisateur les
+lance ». Retenez l'image, des processus qui ne partagent rien et ne se parlent que
+par messages&nbsp;: vous la retrouverez dans le module 2, dans la section sur
+[la concurrence]({{< relref "/docs/module2/concurrence/40-ne-pas-partager" >}}). C'est
+ce découpage qui permet d'exécuter du R ou de Julia dans le même notebook, il
+suffit d'un autre noyau, et de faire tourner le noyau sur une machine
+distante pendant que le navigateur reste ici.
+
+Le fichier lui-même, l'extension `.ipynb`, est du JSON, un format que vous
+reverrez de près dans le module 2&nbsp;: une liste de cellules, chacune avec son type, son
+code source, ses sorties et son numéro d'exécution. Voici la deuxième cellule
+de code du notebook, telle qu'elle est écrite sur le disque.
+
+```json
+{
+  "cell_type": "code",
+  "execution_count": 2,
+  "source": [
+    "phrases = [\"kayak\", \"radar\", \"python\", \"Engage le jeu que je le gagne\"]\n",
+    "[p for p in phrases if est_palindrome(p)]"
+  ],
+  "outputs": [
+    {
+      "output_type": "execute_result",
+      "execution_count": 2,
+      "data": {
+        "text/plain": [
+          "['kayak', 'radar', 'Engage le jeu que je le gagne']"
+        ]
+      }
+    }
+  ]
+}
+```
+
+Ce détail explique deux choses qu'on constate vite. Les sorties sont dans le
+fichier, donc un notebook se lit sans rien exécuter, sur GitHub par exemple, qui
+les affiche. Et un notebook dans git est pénible à comparer, parce qu'une
+exécution change les numéros et les sorties sans qu'une ligne de code ait
+bougé. Pour l'ouvrir, une commande suffit, qui démarre le serveur et ouvre le
+navigateur&nbsp;:
+
+```shell
+$ uvx --from jupyterlab jupyter-lab
+```
+
+C'est ce qui rend le notebook irremplaçable pour explorer des données, où l'on
+ne sait pas d'avance ce qu'on cherche. Il a aussi un piège, que la section sur
+le débogage du module 2 décrira, parce que c'en est un.
+
+Vous retrouverez cette boucle dans le module 2, où l'on verra qu'un débogueur
+n'est rien d'autre qu'une boucle interactive arrêtée au milieu d'un programme.
 
 ### JavaScript
 
