@@ -407,6 +407,66 @@ venv en venv, elle aussi.
 Chaque fois qu'une commande `uv` est exécutée, elle l'est dans le contexte d'un
 venv particulier. Si le venv n'existe pas, il sera créé pour l'occasion.
 
+#### Dans VS Code
+
+C'est ici que l'éditeur entre en scène pour la première fois, et c'est le bon
+endroit, parce que tout ce qu'il fera ensuite avec Python, lancer un test,
+s'arrêter sur un point d'arrêt, dépend d'une seule chose&nbsp;: savoir quel
+interpréteur utiliser. Ouvrez le dossier du projet dans VS Code, avec
+l'extension Python installée, et l'éditeur cherche de lui-même un dossier
+`.venv` dans le projet. Il le trouve, puisque `uv` vient de le créer, et
+l'affiche dans la barre d'état, en bas à droite, avec sa version de Python,
+« Python 3.13.5.final.0 » par exemple.
+C'est cet interpréteur, celui du venv, qui servira à exécuter le code, à le
+déboguer et à découvrir les tests. Le terminal intégré de l'éditeur, lui,
+s'ouvre avec le venv déjà activé, ce qui dispense de la commande d'activation
+qu'on oublie une fois sur deux. Et si `uv` est installé, la documentation de
+VS Code précise que l'extension s'en sert automatiquement pour créer les
+environnements et installer les paquets, parce qu'il est bien plus rapide que
+les outils standards.
+
+Le plus simple est de le voir casser, puis de le réparer. Le projet `my-app`
+de cette section importe `my_lib`, une bibliothèque qui n'existe que dans son
+venv. Ouvrez-le dans VS Code et supposez que la barre d'état montre « Python
+3.9.6.final.0 » plutôt que le projet, ce qui arrive, par exemple quand on a
+choisi un interpréteur global pour un autre projet la veille. C'est le Python
+que macOS installe lui-même, et il ne contient aucune bibliothèque du projet.
+La ligne `from my_lib.secret import get_secret_number` se souligne aussitôt,
+et le fichier reçoit un « 1 » dans l'explorateur, un problème à voir&nbsp;:
+l'éditeur ne trouve pas `my_lib`, parce qu'il la cherche dans un interpréteur
+où elle n'a jamais été installée. Survolez la ligne, et il le dit en toutes
+lettres, « Import "my_lib.secret" could not be resolved ». Lancez le fichier
+avec le triangle en haut à droite, et le terminal répond `ModuleNotFoundError:
+No module named 'my_lib'`, exactement ce que donnerait `python main.py` hors
+du venv. Pendant ce temps, `uv run main.py` continue de fonctionner dans le
+même terminal, puisque `uv` choisit toujours le bon interpréteur. Rien n'est
+cassé dans le projet. C'est l'éditeur qui regarde au mauvais endroit.
+
+{{< image src="vscode-venv-ko.webp" alt="VS Code en thème sombre, le projet my-app ouvert avec le mauvais interpréteur : la ligne d'import de my_lib.secret est soulignée et encadrée en rouge, le fichier main.py porte un 1 dans l'explorateur, le dossier .venv est encadré, et la barre d'état en bas à droite, encadrée elle aussi, affiche Python 3.9.6.final.0, le Python du système" title="Le cas brisé : l'éditeur regarde le Python du système, où my_lib n'a jamais été installée, et souligne l'import" loading="lazy" >}}
+
+La réparation tient en un geste. Ouvrez la palette, tapez `Python: Select
+Interpreter`, et l'éditeur affiche la liste des interpréteurs qu'il a trouvés,
+celui du projet en tête, avec le chemin de son `.venv`. Choisissez-le. Le
+soulignement disparaît dans la seconde, la barre d'état affiche « Python
+3.13.5.final.0 », le Python du venv, et lancer le fichier imprime le nombre
+secret. Dépliez `.venv/lib/python3.13/site-packages` dans l'explorateur, et
+vous y voyez `my_lib`, avec son numéro de version&nbsp;: c'est le même dossier que
+la commande `ll` de tout à l'heure, et c'est là que l'éditeur regarde
+maintenant.
+
+{{< image src="vscode-venv-ok.webp" alt="VS Code en thème sombre, le projet my-app ouvert avec le bon interpréteur : l'explorateur montre le dossier .venv déplié jusqu'à lib/python3.13/site-packages, où figurent my_lib et my_lib-0.2.0.dist-info, encadrés en rouge, la ligne d'import est propre, aucun problème n'est signalé, et la barre d'état en bas à droite, désignée par une flèche rouge, affiche Python 3.13.5.final.0" title="Réparé : l'éditeur regarde le Python du venv, où my_lib est installée, dans le site-packages que l'explorateur montre" loading="lazy" >}}
+
+C'est presque toujours là qu'il faut regarder en premier quand quelque chose
+ne marche pas dans l'éditeur alors que `uv run` fonctionne au terminal. L'autre
+cause classique est d'avoir ouvert le mauvais dossier&nbsp;: l'éditeur ne cherche
+le `.venv` que dans le dossier ouvert et ses sous-dossiers, pas un étage plus
+haut. La règle, en un mot, est d'ouvrir le dossier qui contient le
+`pyproject.toml`, ou un dossier parent qui en contient plusieurs. Ce que
+l'éditeur fait ici, il le fait pour vous une fois pour toutes, et c'est
+exactement le sens de ce que la page des
+[environnements]({{< relref "/docs/environnements" >}}) annonçait&nbsp;: une vue
+sur `uv` et son venv, pas un autre mécanisme.
+
 #### La notion de reproductibilité (`uv.lock`)
 
 Un autre fichier qu'il est intéressant de considérer dans notre projet est
