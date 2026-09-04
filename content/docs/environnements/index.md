@@ -333,7 +333,7 @@ Python est un autre cas de "Worse is Better" : un langage techniquement
 "inférieur" en performance brute, mais tellement plus simple à apprendre et à
 utiliser qu'il a fini par s'imposer dans des domaines entiers.
 
-#### La boucle interactive, et IPython
+#### La boucle interactive (REPL), et IPython
 
 Cette invite `>>>` mérite un mot, parce qu'elle reviendra. Lancer `python`
 sans rien d'autre ouvre une **boucle interactive**, ou *REPL* pour
