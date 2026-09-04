@@ -206,6 +206,7 @@ Livrables&nbsp;:
 - Un **[historique git]({{< relref "module2/30-versioning/index.md" >}})** non trivial : branches nommées de manière significative, [pull requests]({{< relref "module4/10-github/index.md" >}}) avec description, commits qui racontent une progression cohérente dans le temps
 - De nouveaux **ADRs** documentant les décisions prises depuis le jalon 2
 - Au moins deux **[transcriptions de session](#montrer-plutôt-que-raconter)** publiées, choisies parce qu'elles montrent quelque chose, et liées depuis l'entrée de blogue
+- S'il y a lieu, une **activité de débogage** documentée&nbsp;: un bogue réel rencontré pendant le développement, la manière dont vous l'avez localisé, par exemple avec un point d'arrêt, le panneau des variables et la pile d'appels de l'éditeur, comme dans la section sur [le débogage]({{< relref "module2/25-debogage/index.md" >}}), et ce que vous avez compris en le trouvant. Un billet de blogue ou une transcription de session convient, avec des captures d'écran de préférence. Un bogue bien raconté vaut souvent plus qu'une fonctionnalité de plus.
 - Une entrée dans votre **blogue**, répondant aux questions suivantes&nbsp;: qu'est-ce qui a bien fonctionné depuis le jalon 2 ? Décrivez un moment difficile (un bug, une mauvaise décision initiale, une friction dans l'équipe) et comment vous l'avez résolu. Qu'est-ce que vous feriez différemment si vous recommenciez depuis le début ?
 
 {{% hint warning %}}
