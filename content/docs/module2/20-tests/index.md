@@ -810,3 +810,70 @@ crashes et révéler des vulnérabilités, sans formuler de propriété explicit
 est surtout utilisé dans les langages bas niveau comme C et C++, où les erreurs
 mémoire sont courantes. Hypothesis peut être vu comme une version plus structurée
 et plus intelligente du fuzzing, adaptée au monde du développement applicatif.
+
+## Dans VS Code
+
+Tout ce que cette section a construit se retrouve dans l'éditeur, et c'est
+l'endroit où le voir d'un coup. Avec l'extension Python installée et le projet
+d'exemple ouvert, une icône en forme d'éprouvette apparaît dans la barre
+d'activité, celle qui porte l'explorateur de fichiers et la recherche&nbsp;: c'est
+l'explorateur de tests. La première fois, il est vide, dit qu'aucun test n'a
+encore été trouvé dans ce dossier, et propose un bouton « Configure Python
+Tests », qui demande deux choses, le cadre de test, `pytest` ici plutôt que
+`unittest`, celui de la bibliothèque standard, et le dossier qui contient les
+tests. C'est tout. L'extension lance alors
+la découverte, avec les mêmes règles que `pytest` au terminal, les fichiers
+`test_*.py` et leurs fonctions `test_*`, et affiche l'arbre du projet&nbsp;: un
+noeud par fichier, une feuille par test, y compris les tests paramétrés, qui
+apparaissent avec un enfant par jeu de paramètres, et ceux d'Hypothesis, qui ne
+se distinguent en rien des autres. La condition pour que cela fonctionne est
+celle de l'encart précédent&nbsp;: l'interpréteur du venv doit être choisi, sinon
+l'explorateur ne trouve ni `pytest` ni `hypothesis`, et reste vide.
+
+{{< rangee >}}
+{{< image src="vscode-tests-config.webp" alt="VS Code en thème sombre, le projet test-examples ouvert, la vue Testing affichée à gauche : elle dit qu'aucun test n'a encore été trouvé dans ce dossier et propose un bouton Configure Python Tests, encadré en rouge ; une flèche rouge désigne l'icône en forme d'éprouvette dans la barre d'activité, en bas" title="Avant la configuration : l'explorateur de tests est vide et propose de choisir le cadre de test et le dossier" loading="lazy" >}}
+{{< image src="vscode-tests-cadre.webp" alt="La même vue, après un clic sur Configure Python Tests : une liste s'ouvre en haut de la fenêtre, Select a test framework/tool to enable, avec deux choix, unittest et pytest ; pytest est encadré en rouge et désigné par une flèche" title="Deuxième étape : choisir le cadre de test, pytest plutôt que unittest" loading="lazy" >}}
+{{< /rangee >}}
+
+
+Lancer, ensuite, se fait de trois endroits. Le bouton en haut de l'explorateur
+lance tout. Dans un fichier de test ouvert, une petite icône de lancement se
+trouve dans la marge, à côté de chaque fonction, et un clic n'exécute que ce
+test-là, ce qui est le geste qu'on fait cent fois par jour quand on travaille
+sur une fonction. Et la palette a ses commandes, `Test: Run All Tests`,
+`Test: Run Tests in Current File`, `Test: Run Test at Cursor`. Dans les trois
+cas, c'est `pytest` qui tourne, et le panneau « Test Results » le prouve&nbsp;:
+il affiche la commande exacte, `pytest` avec ses arguments, puis la trace
+habituelle, la liste des fichiers, les pourcentages, et « 17 passed ». Ce que l'éditeur ajoute, c'est le résultat à l'endroit même du
+code&nbsp;: une coche verte ou une croix rouge devant chaque test, et, pour un test
+qui échoue, un repère rouge sur la ligne même de sa définition, et le détail
+de l'assertion dans le panneau « Test Results », sans avoir à remonter la
+sortie du terminal.
+
+{{< image src="vscode-tests-decouverts.webp" alt="VS Code en thème sombre, la vue Testing après la configuration : No test results yet, puis l'arbre Project test-examples avec ses six fichiers de test, test_addition_avec_hypothesis, test_calcul, test_inventaire, test_meteo, test_palindrome_avec_hypothesis, test_palindrome ; en haut de la vue, le bouton de lancement est encadré en rouge et désigné par une flèche" title="Les tests découverts, pas encore lancés : un noeud par fichier, et le bouton qui lance tout" loading="lazy" >}}
+
+{{< image src="vscode-tests-vert.webp" alt="La même vue après le lancement : 17/17 en vert, 490 ms, chaque fichier coché ; au centre, le panneau Test Results montre la commande pytest exacte avec ses arguments, puis la sortie habituelle de pytest, platform darwin, Python 3.13.5, pytest 9.0.2, plugins hypothesis et cov, collected 17 items, les pourcentages par fichier et 17 passed in 0.23s ; à droite, la liste des dix-sept tests cochés" title="Tout vert, et la preuve que c'est pytest qui tourne : sa commande et sa trace dans le panneau Test Results" loading="lazy" >}}
+
+Voyez maintenant un test qui échoue, et provoquez-le vous-même, c'est
+l'affaire d'un caractère. Dans
+`calcul.py`, remplacez le `+` de `addition` par un `-`, puis lancez
+`test_calcul.py` depuis l'explorateur. Deux tests sur quatre rougissent,
+`test_addition_simple` et `test_addition_negatifs`, la marge les marque d'une
+croix, et le panneau montre la sortie de `pytest` telle que vous la
+connaissez, `assert -1 == 5`, avec le détail que `-1` vient de
+`addition(2, 3)`. Vous savez tout, sans avoir quitté l'éditeur. Remettez le
+`+`, et gardez ce bogue en tête, la section suivante le reprend pour autre
+chose que lire un message.
+
+{{< image src="vscode-tests-rouge.webp" alt="VS Code en thème sombre après l'erreur volontaire dans addition : l'explorateur de tests affiche 2/4 en rouge, test_calcul.py encadré ; au centre, test_calcul.py avec une croix rouge dans la marge devant test_addition_simple et test_addition_negatifs, une coche verte devant les deux tests de factorielle ; à droite, le panneau Test Results montre la sortie de pytest, FAILURES, assert -1 == 5 where -1 = addition(2, 3), assert -2 == 0, et 2 failed, 2 passed in 0.09s" title="Deux rouges sur quatre : la croix dans la marge, et le détail de l'assertion dans Test Results, la sortie de pytest telle quelle" loading="lazy" >}}
+
+Deux boutons de plus méritent d'être connus. Le premier lance les tests avec la
+couverture, celle du chapitre sur la couverture de code&nbsp;: les lignes exécutées
+et les lignes jamais atteintes se colorent directement dans l'éditeur, et un
+onglet « Test Coverage » de l'explorateur donne le pourcentage par fichier. C'est
+la manière la plus parlante de voir ce que ce chapitre disait, qu'une ligne
+colorée a été exécutée, pas vérifiée. Le second bouton, une icône d'insecte,
+lance un test sous le débogueur&nbsp;: on pose un point d'arrêt dans la fonction
+testée, le test s'arrête dessus, et on regarde les variables au moment précis
+où l'assertion va échouer. C'est souvent la manière la plus rapide de comprendre
+un test rouge, et c'est l'objet de la section suivante.
