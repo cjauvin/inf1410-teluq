@@ -94,7 +94,23 @@
       return _pyodideReady;
     }
 
-    async function pyodideRun(id) {
+    // Les blocs partagent un seul interpréteur, dont on remplace sys.stdout le
+    // temps d'une exécution. Deux exécutions qui se chevauchent (deux clics
+    // rapprochés, deux blocs lancés coup sur coup) se volaient donc leur sortie
+    // et l'une des deux plantait en restaurant un stdout déjà restauré. Elles
+    // sont mises en file : chacune attend la fin de la précédente.
+    let _pyodideFile = Promise.resolve();
+    function pyodideRun(id) {
+      const statusEl = document.getElementById(id + '-status');
+      const runBtn = document.getElementById(id + '-run');
+      runBtn.disabled = true;
+      statusEl.textContent = 'En attente…';
+      const mien = _pyodideFile.then(() => _pyodideRunSeq(id));
+      _pyodideFile = mien.catch(() => {});
+      return mien;
+    }
+
+    async function _pyodideRunSeq(id) {
       const cm = _pyodideEditors[id];
       const outEl = document.getElementById(id + '-output');
       const runBtn = document.getElementById(id + '-run');
