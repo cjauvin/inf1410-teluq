@@ -333,6 +333,8 @@ Python est un autre cas de "Worse is Better" : un langage techniquement
 "inférieur" en performance brute, mais tellement plus simple à apprendre et à
 utiliser qu'il a fini par s'imposer dans des domaines entiers.
 
+#### La boucle interactive, et IPython
+
 Cette invite `>>>` mérite un mot, parce qu'elle reviendra. Lancer `python`
 sans rien d'autre ouvre une **boucle interactive**, ou *REPL* pour
 *read-eval-print loop*&nbsp;: on tape une ligne, elle est exécutée, le résultat
@@ -388,7 +390,7 @@ Chaque entrée et chaque sortie sont numérotées, ce qui permet d'y revenir,
 et la touche de tabulation complète les noms au fur et à mesure, ce qu'une
 transcription ne peut pas montrer.
 
-### Le notebook, et ce qui tourne derrière
+#### Le notebook
 
 Le projet Jupyter est né du projet IPython en 2014, dit-il lui-même, « pour
 soutenir la science des données interactive et le calcul scientifique dans
@@ -405,6 +407,42 @@ survit, et le numéro entre crochets à gauche de chaque cellule dit dans quel
 ordre elles ont été exécutées.
 
 {{< image src="notebook-palindromes.webp" alt="Le notebook palindromes.ipynb rendu dans un navigateur : un titre Palindromes, une phrase, puis trois cellules de code numérotées In [1], In [2], In [3], la définition d'est_palindrome avec sa docstring, la liste filtrée dont la sortie Out[2] donne kayak, radar et Engage le jeu que je le gagne, et l'appel sur la phrase d'Ésope dont la sortie Out[3] est False" title="Le notebook palindromes.ipynb, rendu en HTML par nbconvert, tel qu'un navigateur l'affiche : les numéros d'exécution et les sorties sont ceux enregistrés dans le fichier" loading="lazy" >}}
+
+Pourquoi tant de gens y travaillent, alors qu'un fichier et une boucle
+interactive existent déjà&nbsp;? Pour trois raisons, qui tiennent chacune à ce
+qu'un notebook est, et non à ce qu'il fait.
+
+- **Une autre manière d'écrire du code, non linéaire.** Un programme se lit de
+  haut en bas. Une exploration ne s'écrit pas ainsi&nbsp;: on essaie, on regarde,
+  on revient trois cellules plus haut, on change une chose, on relance ce qui
+  suit. Le notebook est fait pour ce va-et-vient, et il garde, à côté du
+  code, ses résultats et le texte qui les commente. Cette idée a un auteur.
+  En 1984, dans *The Computer Journal*, Donald Knuth proposait de renverser la
+  perspective&nbsp;: « au lieu de nous imaginer que notre tâche principale est de
+  dire à un ordinateur quoi faire, concentrons-nous plutôt sur l'explication,
+  à des êtres humains, de ce que nous voulons qu'un ordinateur fasse ». Il
+  appelait cela la **programmation lettrée** (*literate programming*), et
+  voyait le programmeur comme un essayiste, dont les concepts sont présentés
+  « dans l'ordre qui convient le mieux à la compréhension humaine ». L'idée
+  n'a jamais vraiment percé sous la forme qu'il lui donnait. Le notebook est
+  ce qui s'en approche le plus, et lui a percé.
+- **Il vit dans le navigateur.** L'interface est une page web, ce qui a deux
+  conséquences. La première est que le code peut s'exécuter ailleurs que là où
+  l'on regarde, sur une machine plus grosse, avec des cartes graphiques&nbsp;:
+  Google Colab, « un service Jupyter hébergé qui ne demande aucune
+  installation » et donne accès « à des ressources de calcul, dont des GPU
+  et des TPU », dit sa foire aux questions, n'est rien d'autre que cela, un
+  notebook dont le noyau tourne chez Google. La seconde est qu'un notebook se
+  lit sans s'exécuter, puisque ses résultats sont dedans&nbsp;: GitHub l'affiche
+  tel quel.
+- **Il se partage.** Colab se partage « comme un document Google Docs ou
+  Sheets », et JupyterLab, avec son extension de collaboration, permet l'édition
+  simultanée du même notebook par plusieurs personnes, chacune voyant le curseur des autres,
+  « sans conflit possible, puisque tout le monde travaille en synchronie sur
+  le même document ». Pour une équipe qui explore des données, c'est le
+  tableau blanc de la réunion, sauf que le tableau calcule.
+
+#### Ce qui tourne derrière un notebook
 
 Ce qui tourne derrière est plus intéressant que l'interface. Il y a trois
 acteurs, et la documentation de Jupyter insiste sur le fait qu'ils « ne
@@ -450,9 +488,8 @@ de code du notebook, telle qu'elle est écrite sur le disque.
 }
 ```
 
-Ce détail explique deux choses qu'on constate vite. Les sorties sont dans le
-fichier, donc un notebook se lit sans rien exécuter, sur GitHub par exemple, qui
-les affiche. Et un notebook dans git est pénible à comparer, parce qu'une
+Ce détail explique une chose qu'on constate vite&nbsp;: un notebook dans git
+est pénible à comparer, parce qu'une
 exécution change les numéros et les sorties sans qu'une ligne de code ait
 bougé. Pour l'ouvrir, une commande suffit, qui démarre le serveur et ouvre le
 navigateur&nbsp;:
