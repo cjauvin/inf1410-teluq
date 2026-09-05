@@ -23,8 +23,8 @@ la lit, répond, et recommence. C'est simple, c'est lisible, et Kegel montre en
 une division pourquoi cela s'effondre. Un thread a besoin d'une pile, deux
 mégaoctets sur le Linux de l'époque, et un processus disposait d'un gigaoctet
 de mémoire virtuelle. « On manque de mémoire virtuelle à
-2^30 / 2^21 = 512 threads. » Un gigaoctet divisé par deux mégaoctets, cinq
-cent douze. On en voulait dix mille.
+$2^{30} / 2^{21} = 512$ threads. » Un gigaoctet divisé par deux mégaoctets,
+cinq cent douze. On en voulait dix mille.
 Et même en réduisant les piles, chaque thread qui attend coûte un changement de
 contexte à l'ordonnanceur pour rien, puisqu'il n'a rien à faire d'autre
 qu'attendre. On retrouve le cuisinier planté devant sa casserole, sauf qu'ils
