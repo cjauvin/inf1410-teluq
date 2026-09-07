@@ -228,6 +228,40 @@ intégrées dans le cours.)*
   un professeur de la TÉLUQ montre, mesures à l'appui, que le temps constant
   des tables de hachage est un modèle, et comment le faire mentir avec des clés
   bien choisies → [Module 2, Survol rapide de la programmation]({{< ref "/docs/module2/10-programmation" >}})
+- Brian Kernighan, *UNIX For Beginners* (Bell Labs, 7e édition du manuel Unix,
+  1979) [[texte](https://wolfram.schneider.org/bsd/7thEdManVol2/beginners/beginners.pdf)]&nbsp;:
+  le débogueur `adb` « plutôt difficile à apprendre », et la phrase que
+  cinquante ans n'ont pas démentie, « l'outil de débogage le plus efficace
+  reste la réflexion attentive, accompagnée de quelques print judicieusement
+  placés » → [Module 2, Le débogage]({{< ref "/docs/module2/25-debogage" >}})
+- Barry Warsaw, *PEP 553&nbsp;: Built-in breakpoint()* (2017)
+  [[texte](https://peps.python.org/pep-0553/)]&nbsp;: un seul mot pour entrer dans
+  le débogueur, et la variable d'environnement qui permet d'en changer sans
+  toucher au code → [Module 2, Le débogage]({{< ref "/docs/module2/25-debogage" >}})
+- Python, documentation du module *pdb*
+  [[texte](https://docs.python.org/3/library/pdb.html)]&nbsp;: le débogueur de la
+  bibliothèque standard, points d'arrêt, pas à pas, inspection de la pile, mode
+  *post-mortem* → [Module 2, Le débogage]({{< ref "/docs/module2/25-debogage" >}})
+- *Debugging with GDB*, manuel de GDB, section *Contributors*
+  [[texte](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Contributors.html)]&nbsp;:
+  Richard Stallman, auteur d'origine du débogueur qui a fixé le vocabulaire de
+  tous les autres → [Module 2, Le débogage]({{< ref "/docs/module2/25-debogage" >}})
+- Smithsonian, National Museum of American History, *Log Book With Computer
+  Bug* (1947) [[fiche](https://americanhistory.si.edu/collections/search/object/nmah_334663)]&nbsp;:
+  la mite du Mark II, « first actual case of bug being found », et le rappel
+  qu'Edison parlait déjà de bugs dans les années 1870 → [Module 2, Le débogage]({{< ref "/docs/module2/25-debogage" >}})
+- Donald Knuth, *Literate Programming* (The Computer Journal, 1984)
+  [[texte](http://www.literateprogramming.com/knuthweb.pdf)]&nbsp;: expliquer à des
+  humains ce qu'on veut qu'un ordinateur fasse, plutôt que dire à l'ordinateur
+  quoi faire ; l'idée dont le notebook est l'héritier le plus répandu → [Environnements du cours]({{< ref "/docs/environnements" >}})
+- John McCarthy, *History of Lisp* (1979)
+  [[texte](http://jmc.stanford.edu/articles/lisp/lisp.pdf)]&nbsp;: la première
+  démonstration de Lisp en temps partagé en 1960, le premier Lisp interactif de
+  Deutsch en 1963, et l'anecdote du ramasse-miettes qui interrompt la démonstration → [Environnements du cours]({{< ref "/docs/environnements" >}})
+- Revenu Québec, *Calcul des taxes*
+  [[texte](https://www.revenuquebec.ca/fr/entreprises/taxes/tpstvh-et-tvq/perception-de-la-tps-et-de-la-tvq/calcul-des-taxes/)]&nbsp;:
+  la TPS à 5 % et la TVQ à 9,975 %, toutes deux appliquées au prix de vente, la
+  règle que la facture de la section sur le débogage viole → [Module 2, Le débogage]({{< ref "/docs/module2/25-debogage" >}})
 - Edsger Dijkstra, *Go To Statement Considered Harmful* (1968) : plaidoyer pour
   la programmation structurée → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}})
 - Edsger Dijkstra, *On the foolishness of "natural language programming"*

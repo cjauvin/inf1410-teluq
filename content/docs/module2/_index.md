@@ -48,7 +48,9 @@ structures de données permettent de formaliser les contraintes et les règles
 logiques qu'on a en tête. [La concurrence et le parallélisme]({{< relref "/docs/module2/concurrence" >}}) rappellent que ce
 modèle s'exécute sur une machine réelle, qui fait plusieurs choses à la fois,
 et qu'il doit en tenir compte pour rester juste. Les tests vérifient que notre
-compréhension du problème correspond bien au comportement du programme. Le versioning avec git
+compréhension du problème correspond bien au comportement du programme. Le
+débogueur montre le programme en train de se tromper, à l'endroit et à
+l'instant où le modèle et la machine divergent. Le versioning avec git
 préserve l'historique de nos décisions et de leur évolution. La gestion des
 dépendances nous permet d'intégrer le travail et la compréhension des autres
 dans notre propre modèle. Et l'intégration continue automatise la vérification

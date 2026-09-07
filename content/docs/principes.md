@@ -114,6 +114,29 @@ il est le plus pertinent ; les liens ci-dessous pointent vers ces sections.
   celle de Moore, qui a cessé de s'appliquer vers 2004, forçant l'industrie à
   multiplier les coeurs plutôt que les cycles → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/concurrence/10-pourquoi" >}})
 
+## Débogage
+
+- **Un bogue est un corps étranger, pas une faute morale** (la mite du Mark II,
+  1947)&nbsp;: on le cherche comme on cherche un corps étranger, en ouvrant la
+  machine et en regardant dedans → [Module 2, Le débogage]({{< ref "/docs/module2/25-debogage" >}})
+- **La réflexion attentive et quelques print judicieusement placés** (Brian
+  Kernighan, 1979)&nbsp;: le `print` est une sonde légitime. Ses trois limites,
+  deviner où regarder, relancer à chaque question, retirer les sondes ensuite,
+  sont exactement ce qu'un débogueur supprime → [Module 2, Le débogage]({{< ref "/docs/module2/25-debogage" >}})
+- **Le débogueur est un print qu'on n'écrit pas**&nbsp;: posé après coup sur
+  n'importe quelle ligne, il montre toutes les variables à la fois, et la
+  question suivante vient en lisant la réponse à la précédente, sans relancer → [Module 2, Le débogage]({{< ref "/docs/module2/25-debogage" >}})
+- **Un débogueur est une boucle interactive avec un contexte**&nbsp;: l'invite
+  `(Pdb)` est le `>>>` de Python, arrêté à une ligne d'un programme en cours.
+  Un notebook est la même boucle qui n'oublie rien, un point d'arrêt permanent → [Module 2, Le débogage]({{< ref "/docs/module2/25-debogage" >}}),
+  [Environnements du cours]({{< ref "/docs/environnements" >}})
+- **Suivre les valeurs plutôt que relire le code**&nbsp;: quand un total faux
+  sort de quatre fonctions, on entre, on passe, on sort, et la fautive se
+  révèle par ses valeurs, pas par sa lecture → [Module 2, Le débogage]({{< ref "/docs/module2/25-debogage" >}})
+- **Relancer le notebook de zéro avant de croire un résultat**&nbsp;: l'état qui
+  survit aux cellules exécutées dans le désordre produit des résultats que
+  personne ne saura reproduire → [Environnements du cours]({{< ref "/docs/environnements" >}})
+
 ## Principes de systèmes distribués
 
 - **Théorème CAP** (Eric Brewer, 2000) : un système distribué ne peut garantir simultanément que deux des trois propriétés suivantes : cohérence, disponibilité, tolérance aux partitions → [Module 5, Est-ce que ça va tenir la charge ?]({{< ref "/docs/module5/60-scalabilite" >}})

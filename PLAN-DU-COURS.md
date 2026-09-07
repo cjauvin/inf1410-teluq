@@ -168,6 +168,23 @@ ordonnanceur).
 - Mocking : `monkeypatch` (setattr, setenv/delenv), mention de `unittest.mock`
 - Property-based testing (Hypothesis) et lien avec le fuzzing
 
+## Le débogage (complété)
+
+Section courte insérée entre les tests et le versioning (poids 25), née du
+chantier des encarts « Dans VS Code » : le débogage n'avait aucune section.
+- Le bogue a d'abord été un insecte : Edison, la mite du Mark II le 9 septembre
+  1947 (Smithsonian), la photo du journal de bord
+- Le print, ou l'aveu de tout le monde : le palindrome d'Ésope, Kernighan 1979,
+  les trois limites du print, deux blocs exécutables
+- Arrêter le temps : point d'arrêt, pile d'appels, pas à pas, pdb et
+  breakpoint() (PEP 553), une session réelle, GDB et Stallman
+- Le débogueur est une boucle interactive (REPL) arrêtée : ipdb via
+  PYTHONBREAKPOINT, le notebook comme point d'arrêt permanent et son piège
+- Dans VS Code : une facture avec TPS et TVQ (Revenu Québec) et un bogue dans
+  la TVQ, la chasse pas à pas avec touches et boutons, points d'arrêt
+  conditionnels et logpoints, la pile sur factorielle, le notebook dans
+  l'éditeur ; six captures de l'auteur
+
 ## Le versioning avec git (complété)
 - Problème fondamental du changement
 - Histoire du versioning (SCCS → CVS → SVN → Git)
