@@ -1410,7 +1410,7 @@ DAG ne permet donc pas les "circuits".
 {{< applet src="/html/applets/git.html" width="140%" scale="1.0" >}}
 -->
 
-## Dans VS Code
+### Dans VS Code
 
 Tout ce que ce chapitre a fait au terminal, l'éditeur le montre dans un
 panneau, et c'est le dernier des encarts annoncés dans la page des
