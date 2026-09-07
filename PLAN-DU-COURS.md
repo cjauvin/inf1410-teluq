@@ -167,6 +167,9 @@ ordonnanceur).
 - Fixtures : `@pytest.fixture`, scopes, yield/teardown, `conftest.py`
 - Mocking : `monkeypatch` (setattr, setenv/delenv), mention de `unittest.mock`
 - Property-based testing (Hypothesis) et lien avec le fuzzing
+- Encart « Dans VS Code » (septembre 2026) : l'explorateur de tests, la
+  configuration, le lancement, un bogue qu'on provoque soi-même, la couverture
+  et le bouton de débogage ; cinq captures
 
 ## Le débogage (complété)
 
@@ -189,12 +192,18 @@ chantier des encarts « Dans VS Code » : le débogage n'avait aucune section.
 - Problème fondamental du changement
 - Histoire du versioning (SCCS → CVS → SVN → Git)
 - Objets git (blobs, trees, commits), branches, merges, DAG
+- Encart « Dans VS Code » (septembre 2026) : la vue de contrôle de source, la
+  différence côte à côte, l'index et le commit, le Source Control Graph et la
+  Timeline, la branche dans la barre d'état, le conflit et l'éditeur de
+  fusion, GitLens et GitHub Pull Requests ; deux captures
 
 ## La gestion des dépendances (complété)
 - Problème de la réutilisation et de la décomposition
 - Sécurité de la chaîne d'approvisionnement
 - Versionnement sémantique (SemVer)
 - uv comme outil concret (bibliothèques, applications, venv, lock files)
+- Encart « Dans VS Code » (septembre 2026) : la découverte du venv, le cas
+  brisé avec le mauvais interpréteur puis la réparation ; deux captures
 
 ## L'intégration continue - CI (complété)
 - Le problème : vérifications manuelles, "ça marche sur ma machine"

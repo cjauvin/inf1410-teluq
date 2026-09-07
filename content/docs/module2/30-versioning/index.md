@@ -1410,6 +1410,63 @@ DAG ne permet donc pas les "circuits".
 {{< applet src="/html/applets/git.html" width="140%" scale="1.0" >}}
 -->
 
+## Dans VS Code
+
+Tout ce que ce chapitre a fait au terminal, l'éditeur le montre dans un
+panneau, et c'est le dernier des encarts annoncés dans la page des
+[environnements]({{< relref "/docs/environnements" >}}). Ouvrez le dossier
+`mon_premier_depot` dans VS Code, modifiez `toto.txt`, et regardez l'icône de
+la barre d'activité qui ressemble à un graphe à trois noeuds&nbsp;: c'est la vue
+de contrôle de source, et elle porte déjà un badge, le nombre de fichiers
+modifiés. Elle liste, sous « Changes », ce que `git status` listait. Un clic
+sur le fichier ouvre l'éditeur de différences, la ligne ajoutée en vert, les
+lignes retirées en rouge, côte à côte ou l'une sous l'autre selon le réglage,
+ce que `git diff` affichait en texte. Le
+« + » à côté du fichier est `git add`, et le fichier passe sous « Staged
+Changes », l'index de ce chapitre, avec ce raffinement que l'on peut indexer
+une partie seulement des lignes d'un fichier, depuis la vue de différences. La
+boîte de texte en haut reçoit le message, le bouton « Commit » fait `git
+commit`, et rien d'autre&nbsp;: retournez au terminal, `git log` montre le commit,
+avec le même identifiant, parce que c'est le même dépôt et la même commande,
+habillée.
+
+{{< image src="vscode-git-1-commit.webp" alt="VS Code en thème sombre, le dépôt mon_premier_depot : à gauche, la vue de contrôle de source, avec un premier cadre rouge autour de la boîte de message contenant Ajout de VS Code, du bouton Commit et de toto.txt sous Staged Changes, et un second cadre autour du Graph, qui déroule tout l'historique du dépôt, du Premier commit au Merge pull request, avec l'étiquette main ; une flèche rouge désigne l'icône du contrôle de source dans la barre d'activité, avec son badge 1 ; au centre, l'éditeur de différences toto.txt (Index) montre la ligne ajoutée en vert ; dans la barre d'état, main suivi d'un signe plus" title="Le commit dans l'éditeur : le fichier indexé, le message, le bouton, la différence, et l'historique du chapitre dessiné par le dépôt lui-même" loading="lazy" >}}
+
+Les quatre objets de ce chapitre ont aussi leur vue, et elle est déjà dans
+l'image ci-dessus. Sous la liste des changements, le « Source Control Graph »
+dessine l'historique, un noeud par
+commit, une étiquette par branche, `main` et `v2`, et le merge qui les
+réunit, exactement le dessin qu'on a fait à la main plus haut, mais tiré du dépôt lui-même. Dans
+l'explorateur de fichiers, le panneau « Timeline » d'un fichier donne la liste
+des commits qui l'ont touché, ce que `git log -- toto.txt` donnait. Et la
+branche courante est écrite en permanence en bas à gauche, dans la barre
+d'état&nbsp;: un clic dessus ouvre la liste des branches, pour en changer ou en
+créer une, ce que `git switch` faisait.
+
+
+Reste le conflit, celui de `toto.txt` entre `main` et `v2`, que ce chapitre
+a résolu en éditant les marqueurs à la main. Provoquez-en un nouveau du même genre, une branche où l'on change la
+première ligne, la même ligne changée autrement sur `main`, puis le merge,
+depuis l'éditeur ou au terminal, peu importe, et ouvrez `toto.txt`&nbsp;: les marqueurs
+`<<<<<<<`, `=======` et `>>>>>>>` sont là, colorés, et au-dessus de chaque
+conflit, quatre petits liens proposent de garder la version courante, la
+version entrante, les deux, ou de les comparer. Pour un conflit plus long, le
+bouton « Resolve in Merge Editor » ouvre l'**éditeur de fusion à trois
+volets**, les deux versions en haut, le résultat en bas, que la documentation
+de VS Code décrit comme « une vue côte à côte des changements et du résultat
+de la fusion ». Une fois le fichier réparé, il repasse par « + » et « Commit »,
+comme n'importe quel changement, parce qu'un merge réussi n'est qu'un commit
+de plus, celui à deux parents que ce chapitre a montré.
+
+{{< image src="vscode-git-3-conflit.webp" alt="VS Code en thème sombre, le dépôt mon_premier_depot, toto.txt ouvert en plein conflit : la ligne <<<<<<< HEAD (Current Change) surlignée en vert avec, dessous, allo depuis main, puis =======, puis allo depuis la branche conflit surlignée en bleu et >>>>>>> conflit (Incoming Change) ; au-dessus du bloc, les quatre liens Accept Current Change, Accept Incoming Change, Accept Both Changes, Compare Changes ; en bas à droite, le bouton Resolve in Merge Editor ; dans la barre d'état, main suivi d'un point d'exclamation" title="Le conflit dans l'éditeur : les marqueurs colorés, les quatre choix au-dessus du bloc, et l'éditeur de fusion à un clic" loading="lazy" >}}
+
+Deux extensions prolongent ce panneau, et vous les croiserez au module 4.
+GitLens ajoute à chaque ligne le commit qui l'a écrite, son auteur et sa date,
+ce que `git blame` fait au terminal. Et l'extension GitHub Pull Requests
+permet, dit sa documentation, « de créer, réviser et fusionner des pull
+requests » sans quitter l'éditeur, ce qui est l'endroit où git cesse d'être
+l'outil d'un seul programmeur et devient celui d'une équipe.
+
 ## Conclusion
 
 Dans ce chapitre, nous avons exploré les fondements de git : son modèle de
