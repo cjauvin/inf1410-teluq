@@ -380,7 +380,7 @@ permet d'exprimer donc $2^{160}$ valeurs possibles.
 Faites-vous une idée concrète du fonctionnement d'une fonction de hachage à
 l'aide de cette applet interactive :
 
-{{< applet src="/html/applets/hashing.html" width="100%" scale="1.0" >}}
+{{< applet src="/html/applets/hashing.html" width="100%" height="508" scale="1.0" >}}
 
 Finalement, une manière de comprendre le rôle que peut jouer une fonction de
 hachage est en tant qu'une sorte de "signature" : une signature _représente_ une

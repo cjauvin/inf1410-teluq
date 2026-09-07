@@ -18,6 +18,16 @@
   {{- $srcURL = $src | strings.TrimPrefix "/" | relURL -}}
 {{- end -}}
 
+{{/* Le paramètre height mérite d'être renseigné avec la hauteur naturelle de
+     l'applet (mesurée dans le navigateur, à la largeur de l'article). Sans
+     lui, l'iframe fait 150 pixels tant qu'il n'est pas chargé, puis
+     iframe-resizer l'étire d'un coup : tout ce qui suit dans la page descend
+     d'autant, et une ancre visée depuis la table des matières se retrouve
+     décalée après le défilement. Le chargement différé (loading="lazy")
+     aggrave la chose, parce que l'étirement se produit au moment même où le
+     lecteur passe devant. C'est le même piège que pour les images, voir
+     layouts/shortcodes/image.html. */}}
+
 {{/* Flag the page so we load the library once */}}
 {{- .Page.Scratch.Add "needs_iresizer" 1 -}}
 
@@ -27,7 +37,7 @@
     id="{{ $id }}"
     class="applet-iframe"
     width="{{ $width }}"
-    {{- if $height }} height="{{ $height }}"{{ end -}}
+    {{- if $height }} height="{{ $height }}"{{ end }}
     loading="lazy"
     data-iresize="true"
     data-transform-scale="{{ $scale }}"
