@@ -406,7 +406,7 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   - Mise en place : vues (Table, Board, Roadmap), colonnes (Status), ajout In Review, champs (Story Points, Iteration)
   - Product backlog : user stories (format « En tant que... »), labels (story, tech, bug), introduction de l’outil `gh`
   - Cérémonies du sprint : sprint planning (estimation, vélocité, objectif de sprint), daily standup, sprint review, rétrospective
-  - Déroulement d’un sprint : flux des issues (Todo → In Progress → In Review → Done), lien avec branches/PR, automatisation
+  - Déroulement d’un sprint : flux des issues (Todo → In Progress → In Review → Done), lien avec branches/PR, automatisation, mots-clés de fermeture (Fixes #1) qui relient issue, commit et travaux notés
   - Auto-calibration : vélocité mesurée, amélioration continue via les rétrospectives
 
 ### Kanban (complété)

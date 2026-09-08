@@ -342,6 +342,19 @@ lien&nbsp;: on peut configurer le projet pour qu'une issue se déplace
 automatiquement vers *In Review* lorsqu'une pull request liée est ouverte, et
 vers *Done* lorsque la PR est fusionnée.
 
+Le lien entre une pull request et une issue n'a pas besoin d'être fait à la
+main. Il suffit d'écrire, dans la description de la pull request ou dans un
+message de commit, un des **mots-clés de fermeture** que GitHub reconnaît,
+`fixes`, `closes` ou `resolves`, suivi du numéro de l'issue, par exemple
+`Fixes #1`. GitHub relie alors les deux, et ferme l'issue de lui-même au moment
+où la pull request est fusionnée dans la branche principale. La convention vaut
+tout autant pour un bug que pour une fonctionnalité&nbsp;: une issue ouverte
+quand le symptôme apparaît, un commit qui dit `Fixes #12` quand la cause est
+trouvée, et l'histoire complète se lit d'un clic, du rapport à la correction.
+C'est cette chaîne que la page des
+[travaux notés]({{< relref "travaux-notés/index.md" >}}) demande pour les
+problèmes rencontrés en cours de projet.
+
 Pendant ce temps, le reste du sprint avance en parallèle. Voici à quoi pourrait
 ressembler le tableau vers le milieu de la deuxième semaine&nbsp;:
 
