@@ -352,7 +352,7 @@ tout autant pour un bug que pour une fonctionnalité&nbsp;: une issue ouverte
 quand le symptôme apparaît, un commit qui dit `Fixes #12` quand la cause est
 trouvée, et l'histoire complète se lit d'un clic, du rapport à la correction.
 C'est cette chaîne que la page des
-[travaux notés]({{< relref "travaux-notés/index.md" >}}) demande pour les
+[travaux notés]({{< relref "/docs/travaux-notés/index.md" >}}) demande pour les
 problèmes rencontrés en cours de projet.
 
 Pendant ce temps, le reste du sprint avance en parallèle. Voici à quoi pourrait
