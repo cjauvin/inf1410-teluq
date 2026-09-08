@@ -1,6 +1,6 @@
 ---
 title: "Ce qui casse"
-slug: "ce-qui-casse"
+url: /docs/module2/concurrence/ce-qui-casse/
 weight: 30
 ---
 

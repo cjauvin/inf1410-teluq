@@ -1,6 +1,6 @@
 ---
 title: "Desktop, web et mobile"
-slug: "convergences"
+url: /docs/module3/interfaces/convergences/
 weight: 40
 ---
 

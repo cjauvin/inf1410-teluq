@@ -1,7 +1,7 @@
 ---
 title: "La conteneurisation (Docker)"
 weight: 10
-slug: "docker"
+url: /docs/module5/infrastructure/docker/
 ---
 
 # La conteneurisation (Docker)

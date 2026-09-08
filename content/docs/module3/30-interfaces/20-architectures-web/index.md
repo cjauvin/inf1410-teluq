@@ -1,6 +1,6 @@
 ---
 title: "L'architecture des applications web"
-slug: "architectures-web"
+url: /docs/module3/interfaces/architectures-web/
 weight: 20
 ---
 

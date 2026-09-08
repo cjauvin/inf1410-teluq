@@ -1,6 +1,6 @@
 ---
 title: "Les données"
-slug: "données"
+url: /docs/module3/données/
 weight: 40
 bookCollapseSection: true
 ---

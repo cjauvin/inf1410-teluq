@@ -1,7 +1,7 @@
 ---
 title: "L'infrastructure comme code (Terraform)"
 weight: 30
-slug: "iac"
+url: /docs/module5/infrastructure/iac/
 ---
 
 # L'infrastructure comme code (Terraform)

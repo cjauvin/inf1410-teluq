@@ -1,7 +1,7 @@
 ---
 title: "L'infrastructure"
 weight: 10
-slug: "infrastructure"
+url: /docs/module5/infrastructure/
 bookCollapseSection: true
 ---
 

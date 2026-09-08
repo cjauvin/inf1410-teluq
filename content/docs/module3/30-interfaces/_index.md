@@ -1,6 +1,6 @@
 ---
 title: "Les interfaces utilisateur"
-slug: "interfaces"
+url: /docs/module3/interfaces/
 weight: 30
 bookCollapseSection: true
 ---

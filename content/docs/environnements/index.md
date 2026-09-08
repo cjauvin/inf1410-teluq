@@ -456,7 +456,7 @@ les résultats. Le noyau « ne sait rien du document », dit la même page, « i
 reçoit seulement des cellules de code à exécuter quand l'utilisateur les
 lance ». Retenez l'image, des processus qui ne partagent rien et ne se parlent que
 par messages&nbsp;: vous la retrouverez dans le module 2, dans la section sur
-[la concurrence]({{< relref "/docs/module2/concurrence/40-ne-pas-partager" >}}). C'est
+[la concurrence]({{< relref "/docs/module2/15-concurrence/40-ne-pas-partager" >}}). C'est
 ce découpage qui permet d'exécuter du R ou de Julia dans le même notebook, il
 suffit d'un autre noyau, et de faire tourner le noyau sur une machine
 distante pendant que le navigateur reste ici.
@@ -531,7 +531,7 @@ monopole de fait s'est auto-renforcée au fil du temps. Plutôt que de remplacer
 le langage, la communauté a choisi de l'améliorer graduellement (les versions
 modernes d'ECMAScript ont corrigé beaucoup de ses défauts originaux) et de
 construire par-dessus : Node.js (2009) a permis d'utiliser JavaScript côté
-serveur, avec le modèle d'exécution que raconte la section sur [la concurrence]({{< relref "/docs/module2/concurrence/50-ne-jamais-bloquer" >}}), et des frameworks comme React, Vue et Angular en ont fait un outil de
+serveur, avec le modèle d'exécution que raconte la section sur [la concurrence]({{< relref "/docs/module2/15-concurrence/50-ne-jamais-bloquer" >}}), et des frameworks comme React, Vue et Angular en ont fait un outil de
 développement d'interfaces sophistiqué. Aujourd'hui, JavaScript est probablement
 le langage le plus utilisé au monde, et il est difficile de concevoir un
 développeur web qui ne le connaît pas. C'est un triomphe du pragmatisme sur

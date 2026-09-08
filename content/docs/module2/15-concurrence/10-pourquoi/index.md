@@ -1,6 +1,6 @@
 ---
 title: "Pourquoi la concurrence"
-slug: "pourquoi"
+url: /docs/module2/concurrence/pourquoi/
 weight: 10
 ---
 

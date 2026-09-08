@@ -1,6 +1,6 @@
 ---
 title: "Les frameworks JavaScript"
-slug: "frameworks"
+url: /docs/module3/interfaces/frameworks/
 weight: 30
 ---
 

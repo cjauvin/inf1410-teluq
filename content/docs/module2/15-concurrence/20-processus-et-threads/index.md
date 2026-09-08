@@ -1,6 +1,6 @@
 ---
 title: "Processus et threads"
-slug: "processus-threads"
+url: /docs/module2/concurrence/processus-threads/
 weight: 20
 ---
 

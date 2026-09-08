@@ -1,6 +1,6 @@
 ---
 title: "Concurrence et parallélisme"
-slug: "concurrence"
+url: /docs/module2/concurrence/
 weight: 15
 bookCollapseSection: true
 ---

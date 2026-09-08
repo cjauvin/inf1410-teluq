@@ -1,6 +1,6 @@
 ---
 title: "Scrum"
-slug: "scrum"
+url: /docs/module4/agile/scrum/
 weight: 10
 ---
 

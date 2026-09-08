@@ -1,6 +1,6 @@
 ---
 title: "La représentation des données"
-slug: "représentation"
+url: /docs/module3/données/représentation/
 weight: 10
 ---
 

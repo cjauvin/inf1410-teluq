@@ -1,6 +1,6 @@
 ---
 title: "L'agilité"
-slug: "agile"
+url: /docs/module4/agile/
 weight: 20
 bookCollapseSection: true
 ---
