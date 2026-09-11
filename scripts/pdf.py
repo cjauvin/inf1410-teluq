@@ -245,7 +245,14 @@ pre { white-space: pre-wrap; overflow-wrap: anywhere; break-inside: auto; }
 img, svg, figure, label.book-image { break-inside: avoid; }
 label.book-image { display: block; }
 label.book-image input { display: none; }
+/* Le plafond de taille du site (--largeur-plafond, la largeur à laquelle
+   l'image atteint 700 px de haut) n'est appliqué qu'à l'écran. Sur la page,
+   700 px feraient 185 mm, presque toute la hauteur : on reprend le plafond à
+   la moitié, ce qui garde les diagrammes larges en pleine colonne et ramène
+   les portraits et les captures à une taille de figure. */
 img { max-width: 100%; max-height: 220mm; height: auto; object-fit: contain; }
+label.book-image img { max-width: min(100%, calc(var(--largeur-plafond, 100%) * 0.5)); max-height: 120mm; }
+label.book-image { text-align: center; }
 figure.wordcloud-wrap svg, figure.modules-wrap svg { max-width: 100%; height: auto; }
 .book-hint { break-inside: avoid; }
 .print-note { font-size: 0.85em; color: #666; margin-top: -0.6em; }
