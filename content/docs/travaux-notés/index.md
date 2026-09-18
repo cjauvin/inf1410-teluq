@@ -74,7 +74,7 @@ Votre dépôt peut être public ou privé, selon votre préférence. S'il est pr
 
 Les projets de ce cours sont volontairement hétéroclites. Chacun choisit son langage, son hébergement et sa plateforme de blogue, et son dépôt peut être public ou privé. Il n'existe donc aucun endroit unique où le correcteur saurait d'avance aller regarder.
 
-C'est pourquoi **chaque jalon doit être accompagné d'un court document déposé dans le système officiel de remise des travaux de la TÉLUQ**. Ce document ne contient pas le travail lui-même, il dit comment y accéder&nbsp;: l'adresse du dépôt GitHub, celle du blogue, celle de l'application déployée le cas échéant, celle du tableau GitHub Projects, et les liens vers les transcriptions publiées. Un lien par ressource, avec une ligne qui dit ce qu'on y trouve.
+C'est pourquoi **chaque jalon doit être accompagné d'un court document déposé dans l'ENA de la TÉLUQ, dans la section [Évaluations](https://ena.teluq.ca/course/section.php?id=3774) du cours**. Chaque jalon y a sa propre activité de remise, dont le lien direct figure plus bas, en tête de sa description. Ce document ne contient pas le travail lui-même, il dit comment y accéder&nbsp;: l'adresse du dépôt GitHub, celle du blogue, celle de l'application déployée le cas échéant, celle du tableau GitHub Projects, et les liens vers les transcriptions et les vidéos publiées. Un lien par ressource, avec une ligne qui dit ce qu'on y trouve.
 
 C'est ce dépôt officiel qui fait foi de la remise et qui en fixe la date. Votre travail vit sur GitHub et sur le web, mais c'est ce document qui y donne accès, et un jalon dont les ressources ne sont pas atteignables ne peut pas être évalué.
 
@@ -173,7 +173,7 @@ Le projet est évalué à travers quatre jalons et deux entretiens de suivi, ré
 
 ### Jalon 1 — Fondations (10%)
 
-*À remettre après le module 2*
+*À remettre après le module 2, dans [l'activité Jalon 1 de l'ENA](https://ena.teluq.ca/mod/activityswitchboard/view.php?id=17875)*
 
 Ce premier jalon pose les bases de votre projet. Vous devrez avoir clarifié la nature de votre application et établi les fondations techniques et organisationnelles du développement.
 
@@ -193,7 +193,7 @@ Livrables&nbsp;:
 
 ### Jalon 2 — Architecture et données (15%)
 
-*À remettre après le module 3*
+*À remettre après le module 3, dans [l'activité Jalon 2 de l'ENA](https://ena.teluq.ca/mod/activityswitchboard/view.php?id=17877)*
 
 Ce jalon marque le passage d'un prototype initial à une application mieux structurée. Vous devrez avoir réfléchi à l'[architecture]({{< relref "module3/10-architecture/index.md" >}}) de votre système et formalisé votre modèle de données.
 
@@ -205,7 +205,7 @@ Livrables&nbsp;:
 
 ### Entretien mi-parcours (10%)
 
-*Rendez-vous à prendre par vous-même, dans les deux semaines suivant la réception de votre note du jalon 2*
+*Rendez-vous à prendre par vous-même, dans les deux semaines suivant la réception de votre note du jalon 2. L'activité correspondante dans l'ENA&nbsp;: [Entretien mi-parcours](https://ena.teluq.ca/mod/activityswitchboard/view.php?id=17884)*
 
 Il vous revient de fixer cette rencontre, une fois votre note reçue, en passant par le lien de réservation de la [page du professeur]({{< relref "professeur/index.md" >}}). Aucune convocation ne vous sera envoyée.
 
@@ -213,7 +213,7 @@ Cet entretien est une rencontre individuelle (ou par équipe) de 15 à 20 minute
 
 ### Jalon 3 — Développement (15%)
 
-*À remettre après le module 4*
+*À remettre après le module 4, dans [l'activité Jalon 3 de l'ENA](https://ena.teluq.ca/mod/activityswitchboard/view.php?id=17885)*
 
 Ce jalon met l'accent sur l'évolution du projet et la rigueur des pratiques de développement. L'évaluation porte sur la démonstration que les artéfacts du projet ont évolué de manière significative et structurée depuis le jalon 2.
 
@@ -234,7 +234,7 @@ Livrables&nbsp;:
 
 ### Jalon 4 — Livraison finale (25%)
 
-*À remettre après le module 6*
+*À remettre après le module 6, dans [l'activité Jalon 4 de l'ENA](https://ena.teluq.ca/mod/activityswitchboard/view.php?id=17886)*
 
 Ce jalon représente l'aboutissement du projet. Votre application doit être complète, fonctionnelle et déployée automatiquement.
 
@@ -247,7 +247,7 @@ Livrables&nbsp;:
 
 ### Entretien final (25%)
 
-*Rendez-vous à prendre par vous-même, dans les deux semaines suivant la réception de votre note du jalon 4*
+*Rendez-vous à prendre par vous-même, dans les deux semaines suivant la réception de votre note du jalon 4. L'activité correspondante dans l'ENA&nbsp;: [Entretien final](https://ena.teluq.ca/mod/activityswitchboard/view.php?id=17888)*
 
 Comme pour l'entretien de mi-parcours, c'est à vous de le fixer, une fois votre note du jalon 4 reçue, par le même [lien de réservation]({{< relref "professeur/index.md" >}}).
 
