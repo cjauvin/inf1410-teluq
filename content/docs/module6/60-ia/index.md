@@ -993,4 +993,7 @@ décider. À construire la théorie.
 C'est la promesse faite à l'[accueil]({{< relref "/" >}}) de ce cours&nbsp;: un
 pouvoir d'exécution n'est utile qu'à qui a le sens du possible, et c'est ce
 sens que les six modules ont tenté de construire, idée par idée, outil par
-outil, histoire par histoire.
+outil, histoire par histoire. Et c'est le critère de Mitchell Hashimoto, la
+défense au tableau blanc, qui dit à quoi ce sens doit servir en fin de
+compte&nbsp;: pouvoir expliquer et défendre ce qu'on a livré, quelle que soit la
+part qu'un agent y a prise.

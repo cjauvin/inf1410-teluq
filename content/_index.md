@@ -58,6 +58,73 @@ d'idées, d'outils et d'histoires, choisis pour vous donner le meilleur **sens d
 possible** avec le logiciel, celui qui fait la différence entre disposer d'un
 pouvoir et savoir quoi en faire.
 
+## Pourquoi ce cours, au temps de l'IA agentique&nbsp;?
+
+La question mérite d'être posée franchement. Au moment où ce cours est écrit,
+un agent de programmation peut, à partir d'une description en langage naturel,
+produire une application entière, l'organiser, la tester et la déployer, et il
+le fait mieux d'un mois à l'autre. Si la machine écrit le code, à quoi bon
+apprendre le versioning, les tests, l'architecture, les bases de données et
+tout ce qui suit&nbsp;? Ne suffirait-il pas d'apprendre à bien demander&nbsp;? La
+réponse de ce cours tient en un critère, formulé en septembre 2026 par Mitchell
+Hashimoto, cofondateur de HashiCorp, l'entreprise derrière Terraform que vous
+croiserez au [module 5]({{< relref "/docs/module5/10-infrastructure/30-iac/index.md" >}}).
+
+{{< image src="hashimoto-whiteboard-defense.webp" alt="Capture d'écran d'une publication de Mitchell Hashimoto (@mitchellh) sur X, datée du 16 septembre 2026, en thème sombre, qui définit la « whiteboard defense » comme critère d'un usage responsable de l'IA ; 465,9 k vues, 9,1 k mentions j'aime" title="La « défense au tableau blanc », telle que publiée par Mitchell Hashimoto le 16 septembre 2026" loading="lazy" >}}
+
+Traduction&nbsp;:
+
+> La « **défense au tableau blanc** »&nbsp;: je devrais pouvoir vous prendre à
+> part à n'importe quel moment et vous demander d'expliquer n'importe quel
+> système que vous avez livré à des clients. Vous devriez pouvoir expliquer
+> clairement comment il fonctionne et défendre les décisions que vous avez
+> prises. C'est mon critère pour un usage responsable de l'IA.
+>
+> Je n'attends pas une connaissance du code ligne par ligne. Peu m'importe que
+> vous vous souveniez du nom exact d'une fonction ou d'un détail
+> d'implémentation. Vous pourriez même ne pas le savoir. Ça m'est égal.
+>
+> Mais si je demande « pourquoi avoir fait X plutôt que Y&nbsp;? », « que se
+> passe-t-il si cet acteur se comporte de façon malveillante&nbsp;? », « quelle
+> structure de données avez-vous utilisée ici, et pourquoi&nbsp;? » ou « où
+> est-ce que ça casse&nbsp;? », vous devriez pouvoir répondre avec assurance.
+>
+> Pour les preuves de concept, les démos, les expériences, peu importe&nbsp;: je
+> m'en fiche. Générez-en 100 % et n'en comprenez rien. La vitesse avant la
+> qualité, chaque fois, dans ces cas précis.
+>
+> Mais si vous livrez du travail destiné à des clients, vous ne pouvez pas
+> livrer des choses que vous ne comprenez pas, au moins dans les grandes lignes.
+>
+> Mitchell Hashimoto, [sur X](https://x.com/mitchellh/status/2100249348345057389), 16 septembre 2026
+
+Ce critère est celui de ce cours, et il explique son contenu. Chaque question
+de la liste renvoie à un module&nbsp;: « pourquoi X plutôt que Y » est une
+question d'[architecture]({{< relref "/docs/module3/10-architecture/index.md" >}})
+et de décisions documentées, « quelle structure de données et pourquoi » une
+question de [représentation des données]({{< relref "/docs/module3/40-données/10-représentation/index.md" >}}),
+« où est-ce que ça casse » une question de
+[tests]({{< relref "/docs/module2/20-tests/index.md" >}}), de
+[concurrence]({{< relref "/docs/module2/15-concurrence/_index.md" >}}) et de
+[fiabilité]({{< relref "/docs/module5/40-incidents/index.md" >}}), « que se
+passe-t-il si cet acteur est malveillant » une question de
+[sécurité]({{< relref "/docs/module5/50-securite/index.md" >}}). Aucune ne
+demande d'écrire du code, toutes demandent de le comprendre. L'agent qui
+produit une application ne vous dispense pas de pouvoir la défendre, il rend
+cette capacité plus rare, donc plus précieuse, parce qu'il devient facile de
+livrer ce qu'on ne comprend pas. Le sens du possible décrit plus haut est ce qui
+permet de demander la bonne chose&nbsp;; la défense au tableau blanc est ce qui
+permet de répondre de ce qu'on a obtenu.
+
+Ce cours vous fera passer cette défense, pour de vrai. Les
+[entretiens de suivi]({{< relref "/docs/travaux-notés/index.md#lentretien-de-suivi" >}})
+qui ponctuent les travaux notés en sont l'application directe&nbsp;: une
+conversation sur ce que vous avez livré, où l'on vous demande pourquoi,
+comment, et ce qui arriverait si. L'IA y est la bienvenue partout ailleurs,
+dans le code, dans les documents, dans les transcriptions que vous publierez,
+et le cours vous encourage à vous en servir sans retenue. Mais la conversation,
+elle, se tient sans assistance, et c'est elle qui fait la note.
+
 ## Les modules
 
 Le cours est divisé en six modules, qui couvrent les grands domaines du génie
