@@ -70,7 +70,7 @@ réponse de ce cours tient en un critère, formulé en septembre 2026 par Mitche
 Hashimoto, cofondateur de HashiCorp, l'entreprise derrière Terraform que vous
 croiserez au [module 5]({{< relref "/docs/module5/10-infrastructure/30-iac/index.md" >}}).
 
-{{< image src="hashimoto-whiteboard-defense.webp" alt="Capture d'écran d'une publication de Mitchell Hashimoto (@mitchellh) sur X, datée du 16 septembre 2026, en thème sombre, qui définit la « whiteboard defense » comme critère d'un usage responsable de l'IA ; 465,9 k vues, 9,1 k mentions j'aime" title="La « défense au tableau blanc », telle que publiée par Mitchell Hashimoto le 16 septembre 2026" loading="lazy" >}}
+{{< image src="hashimoto-whiteboard-defense.webp" alt="Capture d'écran d'une publication de Mitchell Hashimoto (@mitchellh) sur X, datée du 16 septembre 2026, en thème sombre, qui définit la « whiteboard defense » comme critère d'un usage responsable de l'IA ; 465,9 k vues" title="La « défense au tableau blanc », telle que publiée par Mitchell Hashimoto le 16 septembre 2026" loading="lazy" >}}
 
 Traduction&nbsp;:
 
