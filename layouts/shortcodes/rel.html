@@ -1,0 +1,4 @@
+{{- /* Pour le HTML brut du contenu : href="{{< rel "/telechargements/x.pdf" >}}".
+       Le site est publié dans un sous-dossier ; on retire la barre initiale
+       avant relURL, comme dans le shortcode applet. */ -}}
+{{- (.Get 0) | strings.TrimPrefix "/" | relURL -}}

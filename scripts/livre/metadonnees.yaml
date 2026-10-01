@@ -1,0 +1,17 @@
+# Nom des fichiers produits (sans extension), lu par generer.py
+fichier: "INF1410-genie-logiciel"
+title: "INF1410 : Initiation au génie logiciel"
+author: "Christian Jauvin"
+lang: fr-CA
+documentclass: book
+classoption: [oneside, 11pt]
+geometry: "margin=2.5cm"
+# Polices désignées par fichier (le nom seul n'est pas trouvé sous Ubuntu, en CI)
+mainfont: "texgyrepagella"
+mainfontoptions: [Extension=.otf, UprightFont=*-regular, BoldFont=*-bold, ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
+sansfont: "texgyreheros"
+sansfontoptions: [Extension=.otf, UprightFont=*-regular, BoldFont=*-bold, ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
+mathfont: "texgyrepagella-math.otf"
+monofont: "DejaVuSansMono"
+monofontoptions: [Extension=.ttf, UprightFont=*, BoldFont=*-Bold, ItalicFont=*, BoldItalicFont=*-Bold, Scale=0.85]
+toc-title: "Table des matières"

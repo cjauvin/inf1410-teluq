@@ -11,3 +11,7 @@ notes/
 
 # Journal du serveur de développement local (voir .hugo-serve/supervise.sh)
 .hugo-serve/serveur.log
+
+# Livres PDF et EPUB produits par scripts/livre/generer.py
+build/
+static/telechargements/

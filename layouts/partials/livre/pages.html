@@ -1,0 +1,14 @@
+{{- /* Les sections de premier niveau (les modules) deviennent les parties du livre. */ -}}
+{{- $niveau := .niveau -}}
+{{- range where .section.Pages.ByWeight "Params.livreExclude" "!=" true -}}
+  {{- if .IsSection }}
+<section class="page" data-type="{{ if eq $niveau 0 }}module{{ else }}page{{ end }}" data-url="{{ .RelPermalink }}" data-titre="{{ .Title }}">
+{{ .Content }}
+</section>
+    {{- partial "livre/pages.html" (dict "section" . "niveau" (add $niveau 1)) -}}
+  {{- else }}
+<section class="page" data-type="page" data-url="{{ .RelPermalink }}" data-titre="{{ .Title }}">
+{{ .Content }}
+</section>
+  {{- end -}}
+{{- end -}}

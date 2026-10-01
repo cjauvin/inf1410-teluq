@@ -1,0 +1,13 @@
+body { font-family: serif; line-height: 1.45; }
+h1, h2, h3 { font-family: sans-serif; }
+figure { margin: 1em 0; text-align: center; }
+figure img { max-width: 100%; }
+figcaption { font-size: 0.85em; font-style: italic; margin-top: 0.3em; }
+div.encadre { border: 1px solid #b8a888; background: #f6f1e4; padding: 0.4em 0.9em; margin: 1em 0; border-radius: 4px; }
+div.credit { font-size: 0.75em; text-align: center; color: #5b5249; }
+p.renvoi-en-ligne { border-left: 3px solid #2f6f6a; padding-left: 0.6em; }
+table { border-collapse: collapse; margin: 1em auto; }
+td, th { border: 1px solid #d9cbac; padding: 0.2em 0.5em; }
+pre { font-size: 0.8em; white-space: pre-wrap; }
+div.image-seule { text-align: center; margin: 1em 0; }
+div.image-seule img { max-width: 100%; }

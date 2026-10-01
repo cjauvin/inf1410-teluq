@@ -1,0 +1,16 @@
+{{- /* Le cours entier en une page, pour scripts/livre/generer.py (PDF, EPUB).
+       Chaque page devient une <section> qui porte son adresse et son titre ;
+       l'ordre est celui du menu (poids). Une page peut s'exclure du livre avec
+       livreExclude: true dans son en-tête. */ -}}
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>{{ site.Title }}</title></head>
+<body data-base="{{ site.BaseURL }}" data-rel="{{ relURL "" }}">
+{{- with site.Home }}
+<section class="page" data-type="accueil" data-url="{{ .RelPermalink }}" data-titre="Accueil">
+{{ .Content }}
+</section>
+{{- end }}
+{{- with site.GetPage "/docs" }}{{ partial "livre/pages.html" (dict "section" . "niveau" 0) }}{{ end }}
+</body>
+</html>
