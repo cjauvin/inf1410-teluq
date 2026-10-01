@@ -27,15 +27,25 @@ jobs:
 
       # Les livres PDF et EPUB, à partir de la page /livre/ (scripts/livre/generer.py),
       # écrits dans public/telechargements/ et offerts par la page « Télécharger le cours en livre ».
+      # Les paquets .deb sont gardés en cache : sans lui, l'étape télécharge ~500 Mo à
+      # chaque push, et un miroir Ubuntu lent l'a déjà bloquée 30 minutes.
+      - name: Cache apt packages
+        uses: actions/cache@v4
+        with:
+          path: ~/apt-archives
+          key: apt-livre-v1
+
       - name: Install pandoc and LaTeX
-        # Délai et reprises : un miroir Ubuntu lent a déjà bloqué cette étape 30 minutes
-        timeout-minutes: 10
+        timeout-minutes: 15
         run: |
+          mkdir -p ~/apt-archives/partial
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends -o Acquire::Retries=5 -o Acquire::http::Timeout=20 pandoc librsvg2-bin fonts-dejavu-core \
+          sudo apt-get install -y --no-install-recommends -o Acquire::Retries=5 -o Acquire::http::Timeout=20 \
+            -o Dir::Cache::Archives="$HOME/apt-archives" pandoc librsvg2-bin fonts-dejavu-core \
             texlive-luatex texlive-latex-recommended texlive-latex-extra texlive-pictures \
             texlive-fonts-recommended texlive-lang-french lmodern fonts-texgyre fonts-texgyre-math \
             fonts-wqy-microhei
+          sudo chown -R "$USER" ~/apt-archives
           luaotfload-tool --update || true
 
       - name: Setup uv
