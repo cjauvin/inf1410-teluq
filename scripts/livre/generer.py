@@ -328,7 +328,8 @@ def main():
 
     corps, base, couverture = preparer((site / "livre" / "index.html").read_text(encoding="utf-8"), site, conv)
     aujourdhui = datetime.date.today()
-    date = f"{aujourdhui.day} {MOIS[aujourdhui.month - 1]} {aujourdhui.year}"
+    jour = "1er" if aujourdhui.day == 1 else str(aujourdhui.day)
+    date = f"{jour} {MOIS[aujourdhui.month - 1]} {aujourdhui.year}"
     source = TRAVAIL / "livre.html"
     source.write_text(f"<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"utf-8\"></head>{corps}</html>",
                       encoding="utf-8")
@@ -351,7 +352,7 @@ def main():
     sortie.mkdir(exist_ok=True)
     commun = ["pandoc", str(source), "-f", "html", "--resource-path", f"{site}:{TRAVAIL}",
               "--metadata-file", str(ICI / "metadonnees.yaml"),
-              "-M", f"date=Version générée le {date}",
+              "-M", f"date=Version du {date}",
               "-M", f"site={base}",
               "--lua-filter", str(ICI / "livre.lua"), "--toc", "--toc-depth=2"]
     subprocess.run(commun + ["-t", "epub3", "--mathml", "--split-level=1",
