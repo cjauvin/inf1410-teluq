@@ -109,8 +109,8 @@ et d'implémenter un protocole complexe : quelques lignes de code suffisent pour
 appeler l'API de Stripe. C'est le logiciel comme service au sens le plus
 littéral, et c'est un modèle qui fait directement écho aux APIs que nous avons
 étudiées dans le module 3. Shopify, fondée à Ottawa en 2006 par Tobias Lütke
-(un développeur allemand qui avait d'abord créé le framework Ruby on Rails pour
-ses propres besoins), illustre parfaitement cette convergence : l'entreprise est
+(un développeur allemand, membre de l'équipe principale du framework Ruby on
+Rails), illustre parfaitement cette convergence : l'entreprise est
 à la fois une plateforme SaaS pour les commerçants, un marketplace
 d'applications pour les développeurs tiers, et un fournisseur d'APIs pour
 l'écosystème e-commerce. Son succès en a fait l'une des plus grandes entreprises
