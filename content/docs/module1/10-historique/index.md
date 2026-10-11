@@ -73,10 +73,12 @@ Clojure et dans les fondements de l'intelligence artificielle.
 COBOL (1959) est développé sous l'impulsion de **Grace Hopper**, une pionnière
 de l'informatique qui avait déjà conçu le premier compilateur (A-0, 1952) et
 contribué à populariser l'idée même qu'un programme puisse être écrit dans un
-langage proche de l'anglais plutôt qu'en code machine. Hopper est aussi à
-l'origine du terme « bug » informatique, après avoir trouvé un papillon de nuit
-coincé dans un relais de l'ordinateur Harvard Mark II en 1947. COBOL, son
-héritage le plus durable, ciblait le monde des affaires avec une syntaxe qui se
+langage proche de l'anglais plutôt qu'en code machine. C'est aussi Hopper qui a
+popularisé l'histoire du « premier bogue », un papillon de nuit trouvé en 1947
+dans un relais du Harvard Mark II par l'équipe qui l'exploitait. Le mot lui-même
+est bien plus ancien, comme le raconte la
+[section sur le débogage]({{< relref "/docs/module2/25-debogage/index.md" >}}).
+COBOL, son héritage le plus durable, ciblait le monde des affaires avec une syntaxe qui se
 voulait proche de l'anglais :
 
 ```cobol
@@ -134,7 +136,7 @@ une discipline d'ingénierie rigoureuse, avec des méthodes et des processus,
 plutôt que de rester un artisanat improvisé. C'est le début d'une tension qui ne
 se résoudra jamais complètement : combien de formalisme est « juste assez »?
 
-À la même époque, **Margaret Hamilton** dirige l'équipe responsable du logiciel
+À la même époque, **Margaret Hamilton** (1936-2026) dirige l'équipe responsable du logiciel
 de navigation embarqué du programme Apollo au MIT. C'est un projet d'une
 complexité inédite : le logiciel doit fonctionner sans faille dans un
 environnement où la moindre erreur peut coûter des vies. Hamilton et son équipe
@@ -294,8 +296,8 @@ Ces réflexions sur l'abstraction doivent beaucoup aux travaux de **Barbara
 Liskov**. Dès les années 1970, Liskov développe le langage CLU au MIT, qui
 introduit des concepts comme les types abstraits de données, les itérateurs et
 la gestion d'exceptions. Ces idées se retrouveront plus tard dans Python, Java
-et C++. En 1987, elle formule avec Jeannette Wing ce qui deviendra le **principe
-de substitution de Liskov** : un objet d'un type dérivé doit pouvoir remplacer
+et C++. En 1987, elle formule ce qui deviendra le **principe de substitution de
+Liskov**, qu'elle précisera en 1994 avec Jeannette Wing&nbsp;: un objet d'un type dérivé doit pouvoir remplacer
 un objet du type de base sans altérer le comportement du programme. Ce principe,
 le « L » de l'acronyme SOLID qu'on verra dans un module ultérieur, reste l'une
 des règles les plus fondamentales de la conception orientée objet. Liskov
@@ -374,7 +376,8 @@ contournements de limitations spécifiques à certains langages.
 {{< image src="james-gosling.jpg" alt="James Gosling, créateur de Java" title="" loading="lazy" >}}
 
 En 1991, **Guido van Rossum** publie la première version de **Python**, un
-langage qui prend le contre-pied de la verbosité de Java. La philosophie de
+langage aux antipodes de la verbosité de Java, qu'il précède pourtant de quatre
+ans. La philosophie de
 Python, résumée dans le « Zen of Python », tient en quelques principes : la
 lisibilité compte, il devrait y avoir une façon évidente de faire les choses, et
 le simple vaut mieux que le complexe :
