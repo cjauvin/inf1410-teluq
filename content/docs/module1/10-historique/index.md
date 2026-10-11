@@ -18,8 +18,10 @@ vraiment disparu.
 L'histoire du logiciel commence avec les premiers ordinateurs électroniques des
 années 1940. Des machines comme l'ENIAC (1945) étaient programmées par câblage
 physique : il fallait littéralement brancher et débrancher des connexions pour
-changer le comportement de la machine. Il n'existait pas encore de notion de
-« programme stocké en mémoire », et encore moins de génie logiciel. La
+changer le comportement de la machine. La machine ne stockait pas encore son
+programme en mémoire, une idée que John von Neumann décrivait au même moment, en
+juin 1945, pour son successeur, l'EDVAC. Quant au génie logiciel, il n'en était
+pas encore question. La
 programmation, si on peut l'appeler ainsi, était une affaire de quelques
 spécialistes qui travaillaient seuls, en contact direct avec le matériel.
 
@@ -30,8 +32,8 @@ recrutées parce qu'elles étaient considérées comme « calculatrices » (*com
 le terme désignait alors des personnes, pas des machines). Kay McNulty, Betty
 Jean Jennings, Betty Snyder, Marlyn Meltzer, Frances Bilas et Ruth Lichterman
 ont dû comprendre le fonctionnement interne de la machine à partir de schémas
-électriques, sans documentation ni langage de programmation, et inventer au
-passage les premières techniques de débogage. Leur contribution a été largement
+électriques, sans documentation ni langage de programmation, et apprendre à
+traquer les erreurs jusqu'au tube défaillant. Leur contribution a été largement
 invisibilisée pendant des décennies, la photo célèbre de l'ENIAC étant longtemps
 légendée sans même mentionner leurs noms.
 
@@ -39,7 +41,7 @@ légendée sans même mentionner leurs noms.
 
 Les choses commencent à changer avec l'apparition des premiers langages de
 programmation dans les années 1950. FORTRAN (1957), conçu par John Backus chez
-IBM, est généralement considéré comme le premier langage de haut niveau : il
+IBM, est le premier langage de haut niveau largement adopté : il
 permettait aux scientifiques d'écrire des formules mathématiques de façon
 lisible, plutôt que de manipuler directement les instructions de la machine :
 
@@ -50,9 +52,9 @@ lisible, plutôt que de manipuler directement les instructions de la machine :
       END
 ```
 
-L'indentation à 6 espaces et les majuscules obligatoires sont typiques du
-FORTRAN de l'époque, un langage conçu pour les cartes perforées où les colonnes
-avaient un sens précis.
+L'exemple utilise la syntaxe de FORTRAN 77, plus lisible que celle de 1957, mais
+il garde la mise en page héritée des cartes perforées&nbsp;: le code commence à
+la septième colonne, et tout est en majuscules.
 
 LISP (1958), créé par John McCarthy au MIT, introduisait des concepts
 radicalement différents comme la récursivité et la manipulation de listes, qui
@@ -70,15 +72,16 @@ code et données font de LISP un langage qui ne ressemble à rien d'autre.
 Cinquante ans plus tard, ces mêmes idées se retrouveront dans des langages comme
 Clojure et dans les fondements de l'intelligence artificielle.
 
-COBOL (1959) est développé sous l'impulsion de **Grace Hopper**, une pionnière
-de l'informatique qui avait déjà conçu le premier compilateur (A-0, 1952) et
+COBOL (1959) est conçu par un comité, le CODASYL, en s'inspirant largement de
+FLOW-MATIC, le langage de **Grace Hopper**, une pionnière de l'informatique qui
+avait déjà conçu l'A-0 (1952), souvent présenté comme le premier compilateur, et
 contribué à populariser l'idée même qu'un programme puisse être écrit dans un
 langage proche de l'anglais plutôt qu'en code machine. C'est aussi Hopper qui a
 popularisé l'histoire du « premier bogue », un papillon de nuit trouvé en 1947
 dans un relais du Harvard Mark II par l'équipe qui l'exploitait. Le mot lui-même
 est bien plus ancien, comme le raconte la
 [section sur le débogage]({{< relref "/docs/module2/25-debogage/index.md" >}}).
-COBOL, son héritage le plus durable, ciblait le monde des affaires avec une syntaxe qui se
+COBOL, l'héritage le plus durable de ses idées, ciblait le monde des affaires avec une syntaxe qui se
 voulait proche de l'anglais :
 
 ```cobol
@@ -196,7 +199,8 @@ Les années 70 voient aussi la naissance de **Unix** (1969-1971) chez Bell Labs,
 créé par Ken Thompson et Dennis Ritchie. Unix introduit une philosophie de
 conception qui deviendra extrêmement influente : des programmes simples, qui
 font une seule chose bien, et qui peuvent être combinés entre eux. Le langage
-**C** (1972), créé par Ritchie pour réécrire Unix, incarne cette même
+**C** (1972), créé par Ritchie pour Unix, dont le noyau est réécrit en C dès
+1973, incarne cette même
 philosophie de concision pragmatique :
 
 ```c
@@ -244,7 +248,7 @@ naissance à SQL et aux systèmes de gestion de bases de données relationnelles
 qui dominent encore aujourd'hui. On y reviendra en détail dans un module
 ultérieur.
 
-En 1988, Barry Boehm propose le **modèle en spirale**, une alternative au modèle
+En 1986, Barry Boehm propose le **modèle en spirale**, une alternative au modèle
 en cascade qui intègre explicitement la gestion des risques. Plutôt que de
 progresser linéairement, le développement passe par des cycles répétés de
 planification, analyse de risques, développement et évaluation. L'idée d'itérer
@@ -472,8 +476,8 @@ que le cloud et les outils de collaboration modernes prennent tout leur sens.
 
 {{< image src="faang.webp" alt="Les logos de Facebook, Apple, Amazon, Netflix et Google, réunis sous l'acronyme FAANG" title="Les FAANG" loading="lazy" >}}
 
-En 2006, **Amazon Web Services** (AWS) lance ses premiers services de cloud
-computing, permettant à quiconque de louer de la puissance de calcul et du
+En 2006, **Amazon Web Services** (AWS) lance S3 et EC2, ses premiers grands
+services de cloud computing, permettant à quiconque de louer de la puissance de calcul et du
 stockage à la demande. Le déploiement et la mise à l'échelle deviennent des
 opérations logicielles plutôt que matérielles : un changement fondamental. Deux
 ans plus tard, **GitHub** (2008) transforme la collaboration entre développeurs.
