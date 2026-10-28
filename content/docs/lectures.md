@@ -318,7 +318,7 @@ intégrées dans le cours.)*
   formalisation de l'approche non punitive après les incidents, inspirée de
   l'aviation et de la médecine →
   [Module 5, Que faire quand ça casse ?]({{< ref "/docs/module5/40-incidents" >}})
-- Netflix, *Principles of Chaos Engineering* (2014) : formalisation du chaos
+- Netflix, *Principles of Chaos Engineering* (2015) : formalisation du chaos
   engineering, expériences en production pour tester la résilience →
   [Module 5, Que faire quand ça casse ?]({{< ref "/docs/module5/40-incidents" >}})
 - Eric Brewer, *Towards Robust Distributed Systems* (keynote PODC, 2000) :

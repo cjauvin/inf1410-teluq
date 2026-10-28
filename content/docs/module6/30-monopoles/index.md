@@ -169,8 +169,8 @@ d'autoriser les magasins d'applications alternatifs sur iOS en Europe, une
 concession qu'elle n'avait jamais faite auparavant. Aux États-Unis, l'approche a
 été plus judiciaire : le département de Justice a lancé un procès antitrust
 contre Google en 2020, portant sur ses accords d'exclusivité pour être le moteur
-de recherche par défaut (Google paie environ 26 milliards de dollars par an à
-Apple pour cette position dans Safari). Un juge a statué en 2024 que Google
+de recherche par défaut (Google a payé environ 20 milliards de dollars à Apple
+en 2022 pour cette position dans Safari). Un juge a statué en 2024 que Google
 détenait un monopole illégal dans la recherche, une décision dont les
 conséquences concrètes restent à déterminer.
 

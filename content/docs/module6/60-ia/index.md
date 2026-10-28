@@ -13,8 +13,8 @@ fondamentalement différent est en train de se passer. Depuis 2021, des outils
 capables de générer du code à partir de descriptions en langage naturel ont
 commencé à transformer le quotidien des développeurs. Pas comme une curiosité de
 laboratoire, mais comme un changement concret dans la manière de travailler :
-en 2024, GitHub rapportait que plus de la moitié du code sur sa plateforme était
-écrit avec l'assistance de Copilot. Que l'on soit enthousiaste ou sceptique, il
+en 2023, GitHub rapportait que Copilot écrivait en moyenne 46&nbsp;% du code des
+développeurs qui l'utilisaient. Que l'on soit enthousiaste ou sceptique, il
 est difficile de nier que le développement logiciel est en train de vivre sa
 transformation la plus profonde depuis l'invention des langages de haut niveau.
 Pour comprendre ce qui se passe, il faut d'abord comprendre d'où vient cette

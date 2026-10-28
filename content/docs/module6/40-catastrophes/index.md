@@ -181,7 +181,8 @@ modernisation informatique jamais entrepris par le gouvernement fédéral, le
 programme vise à remplacer les vieux systèmes utilisés pour verser les
 prestations de la Sécurité de la vieillesse, de l'assurance-emploi et du Régime
 de pensions du Canada. Au cœur du projet se trouve Curam, un logiciel commercial
-développé à l'origine par IBM, aujourd'hui propriété de Merative. Le coût estimé
+développé à l'origine par l'entreprise irlandaise Cúram Software, racheté par
+IBM en 2011 et aujourd'hui propriété de Merative. Le coût estimé
 du programme est passé de 1,75 milliard de dollars en 2017 à 6,6 milliards en
 2025, soit presque un quadruplement. Depuis la mise en service du nouveau
 système pour la Sécurité de la vieillesse en mars 2025, des dizaines de

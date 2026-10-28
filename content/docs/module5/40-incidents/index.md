@@ -152,7 +152,7 @@ mieux le découvrir un mardi à 14 h, quand toute l'équipe est disponible, qu'u
 samedi à 3 h du matin. Chaos Monkey a ensuite donné naissance à toute une "armée
 du chaos" chez Netflix : *Chaos Kong* (qui simule la perte d'une région AWS
 entière), *Latency Monkey* (qui injecte des délais réseau), et d'autres. En
-2014, Netflix a publié les *Principles of Chaos Engineering*, un document qui
+2015, Netflix a publié les *Principles of Chaos Engineering*, un document qui
 formalise la discipline autour de quatre principes : formuler une hypothèse sur
 le comportement normal du système, varier les conditions réelles (pas juste en
 staging), minimiser le rayon d'impact de l'expérience, et automatiser les

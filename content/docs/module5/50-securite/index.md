@@ -22,8 +22,9 @@ appliqué. La vulnérabilité en question permettait l'exécution de code arbitr
 à distance, et elle figurait dans le OWASP Top 10, le classement de référence
 des vulnérabilités web les plus courantes. En juin 2019, c'est au Québec que
 l'une des plus grandes fuites de données au Canada a été révélée : un employé du
-Mouvement Desjardins avait exfiltré les données personnelles de 9,7 millions de
-membres, soit la quasi-totalité de la clientèle. Noms, adresses, dates de
+Mouvement Desjardins avait exfiltré les données personnelles de près de 9,7
+millions de personnes, dont la totalité de ses 4,2 millions de membres
+particuliers. Noms, adresses, dates de
 naissance, numéros d'assurance sociale, habitudes transactionnelles.
 Contrairement à Equifax, il ne s'agissait pas d'une faille technique exploitée
 de l'extérieur, mais d'une menace interne : un utilisateur légitime qui avait
@@ -314,7 +315,7 @@ il a exploité l'épuisement d'un mainteneur solitaire.
 
 Face à ces menaces, la première ligne de défense est la vigilance sur les
 dépendances, un sujet que nous avons abordé dans le module 2. Des outils comme
-`pip audit` (pour Python), `npm audit` (pour JavaScript) ou Dependabot (intégré
+`pip-audit` (pour Python), `npm audit` (pour JavaScript) ou Dependabot (intégré
 à GitHub) analysent automatiquement les dépendances d'un projet et signalent
 celles qui contiennent des vulnérabilités connues, référencées dans des bases
 de données publiques comme le CVE (*Common Vulnerabilities and Exposures*).

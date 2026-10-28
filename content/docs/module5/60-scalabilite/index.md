@@ -33,9 +33,9 @@ Plus près de nous, Shopify, l'entreprise d'Ottawa fondée par Tobias Lütke en
 2006, fait face chaque année à un défi de scalabilité extrême : le Black Friday.
 Pendant quelques heures, le trafic sur sa plateforme explose à des niveaux
 plusieurs fois supérieurs à la normale, alors que des milliers de boutiques en
-ligne gèrent simultanément des pics de commandes. En 2023, Shopify a traité
-4,2 milliards de dollars de ventes pendant le weekend du Black Friday/Cyber
-Monday. Cet exploit ne repose pas sur un seul truc magique, mais sur l'ensemble
+ligne gèrent simultanément des pics de commandes. En 2023, les marchands de
+Shopify ont réalisé 9,3 milliards de dollars de ventes pendant le weekend du
+Black Friday/Cyber Monday, avec un pic de 4,2 millions de dollars par minute. Cet exploit ne repose pas sur un seul truc magique, mais sur l'ensemble
 des techniques que nous allons explorer dans cette section : caching agressif,
 load balancing, files d'attente, et une infrastructure capable de s'étirer et de
 se contracter selon la demande.
@@ -243,10 +243,11 @@ on peut simplement la référencer par une URL pointant vers un CDN :
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
 ```
 
-L'avantage est double. D'abord, le fichier est servi depuis un serveur
-géographiquement proche de l'utilisateur. Ensuite, si l'utilisateur a déjà
-visité un autre site qui référençait la même URL, le fichier est peut-être déjà
-dans le cache de son navigateur, ce qui élimine complètement le téléchargement.
+L'avantage principal est que le fichier est servi depuis un serveur
+géographiquement proche de l'utilisateur. On a longtemps invoqué un second
+avantage, la réutilisation d'un fichier déjà mis en cache par un autre site,
+mais les navigateurs partitionnent maintenant leur cache par site, Chrome depuis
+2020, pour qu'un site ne puisse pas deviner ce qu'on a visité ailleurs.
 Des services comme cdnjs, jsDelivr et unpkg se sont spécialisés dans
 l'hébergement de bibliothèques open source sur CDN, servant collectivement des
 milliards de requêtes par jour.

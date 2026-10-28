@@ -144,7 +144,7 @@ aborderons dans la section suivante.
 
 Le génie logiciel est un domaine jeune, mais il a déjà accumulé une "dette
 intellectuelle" fascinante : des idées qui ont été proposées, oubliées, puis
-redécouvertes sous un nouveau nom. Les langages fonctionnels comme Lisp (1958)
+redécouvertes sous un nouveau nom. Des langages pionniers comme Lisp (1958)
 et Smalltalk (1972) contenaient des concepts qui sont revenus en force des
 décennies plus tard : les fonctions de première classe de Lisp se retrouvent
 aujourd'hui dans JavaScript, Python et Rust ; le modèle MVC (Model-View-Controller)
