@@ -553,7 +553,7 @@ dans l'applet, le même hash que celui calculé par git devrait apparaître.
 Ce blob est en fait un fichier, qui est sauvegardé dans la base de données
 spéciale de git (dans le répertoire caché `.git`). Le chemin vers ce fichier (de
 blob) est créé à partir du hash, qui est séparé en deux parties (la première
-correspondant à son suffixe de deux lettres) :
+correspondant à son préfixe de deux caractères) :
 
 ```shell
 $ ll .git/objects/

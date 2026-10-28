@@ -147,9 +147,9 @@ intégrées dans le cours.)*
   fixent le plafond du parallélisme, la part séquentielle d'un programme
   bornant le gain quel que soit le nombre de processeurs → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
 - Gordon Moore, *Cramming More Components onto Integrated Circuits* (1965) [[texte](https://www.cs.utexas.edu/~fussell/courses/cs352h/papers/moore.pdf), [DOI](https://doi.org/10.1109/N-SSC.2006.4785860)]&nbsp;:
-  l'observation, sur deux pages, que le nombre de composants gravés sur une
-  puce double à intervalle régulier. Moore y parle de quantité, jamais de
-  vitesse → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
+  l'observation, en quatre pages, que le nombre de composants gravés sur une
+  puce double à intervalle régulier. La loi qu'on en a tirée porte sur la
+  quantité, et Moore n'y évoque la vitesse qu'en passant → [Module 2, Pourquoi la concurrence]({{< ref "/docs/module2/15-concurrence/10-pourquoi" >}})
 - Robert Dennard et coll., *Design of Ion-Implanted MOSFET's with Very Small
   Physical Dimensions* (1974) [[DOI](https://doi.org/10.1109/JSSC.1974.1050511)]&nbsp;: la loi de proportionnalité qui, en gardant la
   densité thermique constante quand les transistors rétrécissent, a converti la

@@ -165,8 +165,8 @@ de rouler un environnement Linux complet à l'intérieur de Windows : c'est un
 aveu que pour le développement logiciel, l'écosystème Unix est devenu
 incontournable. Microsoft a aussi fait l'acquisition de GitHub en 2018, et
 contribue aujourd'hui activement à plusieurs projets open source, ce qui aurait
-été impensable dans les années 1990, quand l'entreprise qualifiait Linux de
-"cancer".
+été impensable au début des années 2000, quand son PDG Steve Ballmer qualifiait
+Linux de "cancer".
 
 Cette victoire de l'écosystème Unix sur ses concurrents n'était pourtant pas
 évidente au départ. En 1989, Richard Gabriel, un informaticien issu du monde

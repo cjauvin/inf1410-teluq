@@ -23,12 +23,14 @@ nouvelle&nbsp;: *The Free Lunch Is Over*.
 Tout le monde a entendu parler de la **loi de Moore**, et presque tout le monde
 la cite de travers. En avril 1965, Gordon Moore, alors chez Fairchild
 Semiconductor et pas encore cofondateur d'Intel, publie dans la revue
-*Electronics* une observation de deux pages&nbsp;: le nombre de composants qu'on
+*Electronics* une observation de quatre pages&nbsp;: le nombre de composants qu'on
 sait graver sur une puce, à coût égal, double à intervalle régulier. Il parle
 d'un doublement annuel, qu'il révisera en 1975 à deux ans. La formule est
 devenue le raccourci favori de toute l'industrie pour dire que les ordinateurs
-vont toujours plus vite. Or Moore ne parle pas de vitesse. Il parle de
-*quantité*, du nombre de transistors, et de rien d'autre.
+vont toujours plus vite. Or la loi de Moore ne parle pas de vitesse. Elle parle
+de *quantité*, du nombre de transistors. Moore note bien, en passant, que des
+composants plus petits pourront fonctionner plus vite, mais il n'en fait pas une
+loi.
 
 Le lien entre la quantité et la vitesse vient d'une seconde loi, bien moins
 connue, qu'on doit à Robert Dennard, chez IBM, en 1974. La **loi de Dennard**

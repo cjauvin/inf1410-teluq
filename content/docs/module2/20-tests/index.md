@@ -292,8 +292,8 @@ Et le cycle recommence.
 Une question naturelle se pose : comment savoir si nos tests sont suffisants? La
 *couverture de code* (code coverage) est une métrique qui mesure quelle
 proportion du code source est effectivement exécutée par les tests. L'outil de
-référence en Python est **coverage.py**, créé et maintenu par Ned Batchelder
-depuis 2004. L'extension **pytest-cov** est simplement un pont qui permet
+référence en Python est **coverage.py**, écrit à l'origine par Gareth Rees et
+maintenu par Ned Batchelder depuis 2004. L'extension **pytest-cov** est simplement un pont qui permet
 d'utiliser coverage.py directement depuis pytest. On peut l'installer facilement
 avec `uv` en faisant :
 

@@ -131,7 +131,7 @@ transition a entraînée. En fait il est très probable que Python ne passe jama
 à la version 4, étant donné son historique et sa position centrale dans de
 nombreux écosystèmes technologiques (web, IA, calcul scientifique, etc).
 
-La notion de versionnage sémantique est tellement importante et omniprésente
+La notion de numéro de version est tellement importante et omniprésente
 qu'elle a de l'influence à l'extérieur de la sphère du développement logiciel.
 On parlera ainsi de la Playstation 5, de la Mazda 3, etc. Même des choses qui
 pourraient à priori ressembler à du logiciel, comme le [Web
@@ -476,8 +476,8 @@ permettant de reconstruire de manière parfaite et exhaustive le contenu d'un
 venv particulier (c'est une manière de le copier donc, en le reproduisant avec
 une recette). Chaque dépendance y est figée dans le temps, à l'aide
 d'identifiants et de urls non-ambigus, qui permettent de faire en sorte de
-réinstaller exactement le même environnement, dans un endroit différent. Quand
-le projet vient d'être créé, `uv.lock` est vide. Mais dans notre cas, étant
+réinstaller exactement le même environnement, dans un endroit différent. Tant
+qu'aucune dépendance n'a été ajoutée, `uv.lock` ne décrit que le projet lui-même. Mais dans notre cas, étant
 donné que nous avons ajouté `requests` au projet, on peut constater, en
 l'examinant, qu'il contient une série de références précises vers les artefacts
 en ligne des packages correspondant :

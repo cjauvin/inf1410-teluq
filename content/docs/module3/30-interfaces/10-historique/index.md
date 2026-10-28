@@ -22,7 +22,7 @@ Ce modèle d'interaction textuel a donné naissance aux *shells*, dont le Bourne
 
 ## Xerox PARC, Smalltalk et la naissance du GUI
 
-Au début des années 1970, au centre de recherche Xerox PARC en Californie, une équipe dirigée par Alan Kay imagine une vision radicalement différente de l'interaction humain-machine. Plutôt que de taper des commandes textuelles, l'utilisateur manipulerait des objets visuels à l'écran à l'aide d'un dispositif de pointage, la souris, inventée par Douglas Engelbart en 1968. Le Xerox Alto (1973), qui n'a jamais été commercialisé à grande échelle, est le premier ordinateur à intégrer une interface graphique (GUI) avec des fenêtres, des icônes et des menus. La métaphore du bureau (*desktop metaphor*) y prend forme. Les fichiers deviennent des icônes, les dossiers s'ouvrent dans des fenêtres, et la corbeille permet de "jeter" des documents.
+Au début des années 1970, au centre de recherche Xerox PARC en Californie, une équipe dirigée par Alan Kay imagine une vision radicalement différente de l'interaction humain-machine. Plutôt que de taper des commandes textuelles, l'utilisateur manipulerait des objets visuels à l'écran à l'aide d'un dispositif de pointage, la souris, inventée par Douglas Engelbart au milieu des années 1960 et présentée au public lors de sa démonstration de 1968. Le Xerox Alto (1973), qui n'a jamais été commercialisé à grande échelle, est le premier ordinateur à intégrer une interface graphique (GUI) avec des fenêtres, des icônes et des menus. La métaphore du bureau (*desktop metaphor*) y prend forme. Les fichiers deviennent des icônes, les dossiers s'ouvrent dans des fenêtres, et la corbeille permet de "jeter" des documents.
 
 {{< youtube NqKyHEJe9_w >}}
 
