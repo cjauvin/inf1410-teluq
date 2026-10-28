@@ -737,5 +737,5 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   Modifié / Corrigé, mention « Travaux notés » pour ce qui touche l'évaluation
 - Règle pour les inscriptions continues : une exigence ajoutée après
   l'inscription d'un étudiant lui est recommandée, pas imposée
-- Chaque correction renvoie à son « avant et après » sur GitHub
+- Chaque correction a un lien « voir le diff » vers son commit sur GitHub
 - Tenu à jour à chaque push qui compte, comme ce plan
