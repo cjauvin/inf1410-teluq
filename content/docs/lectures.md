@@ -40,6 +40,9 @@ intégrées dans le cours.)*
   catalogue fondateur des patrons de conception → [Module 1, Perspective historique]({{< ref "/docs/module1/10-historique" >}}), [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Martin Kleppmann, *Designing Data-Intensive Applications* (2017) : référence
   moderne sur les systèmes de données → [Module 3, Les données]({{< ref "/docs/module3/40-données" >}})
+- Martin Fowler, *UML Distilled* (1997)&nbsp;: un guide bref de la notation UML,
+  et son billet *UmlMode* (2003) distingue l'esquisse, le plan détaillé et le
+  langage de programmation → [Module 3, Architecture et modularité]({{< ref "/docs/module3/10-architecture" >}})
 - Martin Fowler, *Refactoring: Improving the Design of Existing Code* (1999) :
   formalisation du refactoring comme discipline, mécanisme de remboursement de la
   dette technique →

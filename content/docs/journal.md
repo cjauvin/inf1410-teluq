@@ -36,6 +36,13 @@ de votre inscription qui fait foi.
 
 ## 28 octobre 2026
 
+### Ajouté
+
+- [Architecture et modularité]({{< relref "/docs/module3/10-architecture/index.md#dessiner-une-conception--uml" >}})&nbsp;:
+  une section sur UML, réduite aux deux diagrammes qui ont survécu à l'usage,
+  celui de classes et celui de séquence, écrits en texte avec Mermaid. Les
+  livres PDF et EPUB les reproduisent en images.
+
 ### Corrigé
 
 Vingt-neuf erreurs factuelles, relevées par une vérification systématique des

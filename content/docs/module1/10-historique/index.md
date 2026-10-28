@@ -414,7 +414,10 @@ d'écrire une seule ligne de code. Le problème, c'est que ces modèles
 vieillissent mal. Dès que le code évolue, les diagrammes deviennent obsolètes,
 et personne ne les met à jour. UML reste un outil de communication utile quand
 il est utilisé avec parcimonie, mais son usage systématique est un exemple
-classique de formalisme qui s'éloigne de la réalité du terrain.
+classique de formalisme qui s'éloigne de la réalité du terrain. Le
+[module 3]({{< relref "/docs/module3/10-architecture/index.md#dessiner-une-conception--uml" >}})
+en montre les deux diagrammes qui ont le mieux survécu à l'usage, celui de
+classes et celui de séquence.
 
 En 1999, **Kent Beck** publie *Extreme Programming Explained*, qui prend le
 contre-pied radical de l'approche UML/cascade. L'Extreme Programming (XP) prône

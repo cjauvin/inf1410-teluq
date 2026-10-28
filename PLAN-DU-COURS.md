@@ -244,6 +244,11 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   - Focus sur S (Single Responsibility) et D (Dependency Inversion)
   - Les autres (O, L, I) traités plus brièvement
   - Perspective critique : lien avec YAGNI
+- Dessiner une conception : UML
+  - Les Three Amigos (1994-1995), l'adoption par l'OMG (1997), les trois usages selon Fowler (2003) : seule l'esquisse a survécu
+  - Le diagramme de classes de l'exemple `OrderService` (interface, réalisation, association, multiplicité, dépendance)
+  - Le diagramme de séquence du paiement, avec la carte refusée (lignes de vie, messages, réponses, fragment `alt`)
+  - Diagrammes en texte avec Mermaid (2014), dans git et sur GitHub (2022), PlantUML (2009)
 - Composition over inheritance
   - Exemple Python : héritage vs composition
   - Lien avec le principe d'inversion des dépendances
