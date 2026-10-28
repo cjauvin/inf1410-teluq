@@ -842,7 +842,8 @@ REST en quatre niveaux de maturité →
 <a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/stockage/>Module 3, Les données (stockage)</a></li><li>Gerard Salton, <em>A Theory of Indexing</em> (1975) et le système SMART : père de
 l&rsquo;<em>information retrieval</em>, concepts fondateurs de TF-IDF et de l&rsquo;index inversé →
 <a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/au-del%C3%A0/>Module 3, Les données (au-delà des BD)</a></li><li>Google, <em>Bigtable: A Distributed Storage System for Structured Data</em> (2006) :
-article fondateur du stockage orienté colonnes à grande échelle →
+article fondateur des bases à familles de colonnes, comme Cassandra et
+HBase →
 <a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/stockage/>Module 3, Les données (stockage)</a></li><li>Tomas Mikolov et al., <em>Efficient Estimation of Word Representations in Vector
 Space</em> (2013) : introduction de Word2Vec et des embeddings de mots →
 <a href=https://cjauvin.github.io/inf1410-teluq/docs/module3/donn%C3%A9es/stockage/>Module 3, Les données (stockage)</a>,
@@ -899,8 +900,8 @@ de ce journal ils correspondent.</p><blockquote class="book-hint warning"><p><st
 notés ».</strong> Une exigence ajoutée après votre inscription ne s&rsquo;applique pas à
 vous : elle vous est recommandée, et son absence ne sera pas pénalisée. Une
 exigence retirée ou assouplie s&rsquo;applique à tous. En cas de doute, c&rsquo;est la date
-de votre inscription qui fait foi.</p></blockquote><h2 id=28-octobre-2026>28 octobre 2026<a class=anchor href=#28-octobre-2026>#</a></h2><h3 id=corrigé>Corrigé<a class=anchor href=#corrig%c3%a9>#</a></h3><p>Dix erreurs factuelles, relevées par une vérification systématique des faits à
-leur source. Chaque lien « voir le diff » ouvre sur GitHub la différence exacte
+de votre inscription qui fait foi.</p></blockquote><h2 id=28-octobre-2026>28 octobre 2026<a class=anchor href=#28-octobre-2026>#</a></h2><h3 id=corrigé>Corrigé<a class=anchor href=#corrig%c3%a9>#</a></h3><p>Vingt erreurs factuelles, relevées par une vérification systématique des faits
+à leur source. Chaque lien « voir le diff » ouvre sur GitHub la différence exacte
 entre l&rsquo;ancien texte, en rouge, et le nouveau, en vert, ce que <code>git diff</code>
 affiche au terminal :</p><ul><li><a href=/inf1410-teluq/docs/lectures/>Lectures</a> et
 <a href=/inf1410-teluq/docs/module2/concurrence/pourquoi/>Pourquoi la concurrence</a> :
@@ -923,7 +924,25 @@ la souris a été inventée en 1963-1964, et présentée au public en 1968
 Vue s&rsquo;appuie lui aussi sur un DOM virtuel
 (<a href=https://github.com/cjauvin/inf1410-teluq/commit/cc185a9e55326a5fdfa50a5303bc4b113dfbf4fd#diff-6c83c11b18ac1a4ae6f5030d6135cce8b4548313be554ea05549a82f89e45f01>voir le diff</a>).</li><li><a href=/inf1410-teluq/docs/module3/interfaces/convergences/>Desktop, web et mobile</a> :
 WebAssembly est arrivé dans les navigateurs en 2017, et le W3C l&rsquo;a
-standardisé en 2019 (<a href=https://github.com/cjauvin/inf1410-teluq/commit/cc185a9e55326a5fdfa50a5303bc4b113dfbf4fd#diff-be019d9a8d83474a91675d3050bf821cd479d521563c53fca3a280222b076e94>voir le diff</a>).</li></ul><h2 id=11-octobre-2026>11 octobre 2026<a class=anchor href=#11-octobre-2026>#</a></h2><h3 id=ajouté>Ajouté<a class=anchor href=#ajout%c3%a9>#</a></h3><ul><li><strong>Travaux notés</strong> : <a href=/inf1410-teluq/docs/travaux-not%C3%A9s/#un-projet-qui-survit-au-cours>Un projet qui survit au cours</a>,
+standardisé en 2019 (<a href=https://github.com/cjauvin/inf1410-teluq/commit/cc185a9e55326a5fdfa50a5303bc4b113dfbf4fd#diff-be019d9a8d83474a91675d3050bf821cd479d521563c53fca3a280222b076e94>voir le diff</a>).</li><li><a href=/inf1410-teluq/docs/module3/donn%C3%A9es/stockage/>Les bases de données</a> :
+les migrations de Rails datent de 2005, et sont une contribution de Tobias
+Lütke. Les bases colonnaires analytiques, comme Sybase IQ et C-Store, ne
+sont pas les <em>wide-column stores</em> comme Bigtable, Cassandra et HBase (voir le
+diff : <a href=https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-a71922fff3367cbe2eecf61cdb7ca2c458a727cbc1f94bcc57379ba28da3fc3f>stockage</a>,
+<a href=https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-99db0ec4551f85464c027414dccb1eebfc7341f6d3931187cfed8c32801ab828>lectures</a>).</li><li><a href=/inf1410-teluq/docs/module3/donn%C3%A9es/au-del%C3%A0/>Au-delà des bases de données</a> :
+Git stocke des instantanés, il ne rejoue pas un historique d&rsquo;événements, et
+Amazon QLDB a été fermé en juillet 2025
+(<a href=https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-2af882594e073a8f1b69b0819603516d3d1c63e7e5f24666dac444a13516a088>voir le diff</a>).</li><li><a href=/inf1410-teluq/docs/module5/infrastructure/docker/>La conteneurisation (Docker)</a> :
+le fichier Compose du tutoriel publie maintenant le port 8080 qu&rsquo;utilisent
+les commandes qui suivent (<a href=https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-662b990db7368d1855b1251b4e0dcf6e2645738c54df62bab00eb696c78d9e81>voir le diff</a>).</li><li><a href=/inf1410-teluq/docs/module5/deploiement/>Le déploiement continu</a> :
+le terme « blue-green » vient de Daniel Terhorst-North et Jez Humble, et
+c&rsquo;est leur livre qui l&rsquo;a popularisé (<a href=https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-7114329235778678789bfbc838f1b5737e7240b821b08912c69ba85dc7b29536>voir le diff</a>).</li><li><a href=/inf1410-teluq/docs/module5/observabilite/>L&rsquo;observabilité</a> :
+les ingénieurs de Google à l&rsquo;origine de Prometheus n&rsquo;ont pas fondé
+SoundCloud, ils l&rsquo;ont rejoint, et l&rsquo;intervalle de collecte par défaut de
+Prometheus est d&rsquo;une minute (<a href=https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-4b1fd7d91ea03d6c07781fae15bae7fc7cee97a6d6279bcbd8d05aba10d5c951>voir le diff</a>).</li><li><a href=/inf1410-teluq/docs/module5/incidents/>La fiabilité et les incidents</a> :
+le livre SRE de Google plafonne l&rsquo;astreinte à 25 % et le travail
+opérationnel à 50 %, et John Allspaw n&rsquo;est devenu CTO d&rsquo;Etsy qu&rsquo;en 2015
+(<a href=https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-263a56310a1b1088c7c07fd670a935d93f00f1271ef027d6ff0e72910632abd7>voir le diff</a>).</li></ul><h2 id=11-octobre-2026>11 octobre 2026<a class=anchor href=#11-octobre-2026>#</a></h2><h3 id=ajouté>Ajouté<a class=anchor href=#ajout%c3%a9>#</a></h3><ul><li><strong>Travaux notés</strong> : <a href=/inf1410-teluq/docs/travaux-not%C3%A9s/#un-projet-qui-survit-au-cours>Un projet qui survit au cours</a>,
 une invitation à viser une application réelle, avec de vrais utilisateurs
 ou de vrais clients, et les conditions pour qu&rsquo;elle reste évaluable, dont un
 environnement de démonstration pour les correcteurs.</li></ul><h3 id=modifié>Modifié<a class=anchor href=#modifi%c3%a9>#</a></h3><ul><li><a href=/inf1410-teluq/docs/module1/historique/>Historique du génie logiciel</a> :
@@ -4479,7 +4498,7 @@ les dix chiffres 0 à 9, ainsi que les 6 premières lettres de l&rsquo;alphabet,
 à <code>f</code>) de 40 &ldquo;chiffres&rdquo;. Chaque caractère hexadécimal de cette chaîne étant
 équivalent à 4 bits, nous avons donc un nombre de $40 \times 4 = 160$ bits, qui
 permet d&rsquo;exprimer donc $2^{160}$ valeurs possibles.</p><p>Faites-vous une idée concrète du fonctionnement d&rsquo;une fonction de hachage à
-l&rsquo;aide de cette applet interactive :</p><div class=applet-wrapper style=width:100%><iframe src=/inf1410-teluq/html/applets/hashing.html id=applet-1793202463172509848 class=applet-iframe width=100% height=508 loading=lazy data-iresize=true data-transform-scale=1.0></iframe></div><p>Finalement, une manière de comprendre le rôle que peut jouer une fonction de
+l&rsquo;aide de cette applet interactive :</p><div class=applet-wrapper style=width:100%><iframe src=/inf1410-teluq/html/applets/hashing.html id=applet-1793204996760230909 class=applet-iframe width=100% height=508 loading=lazy data-iresize=true data-transform-scale=1.0></iframe></div><p>Finalement, une manière de comprendre le rôle que peut jouer une fonction de
 hachage est en tant qu&rsquo;une sorte de &ldquo;signature&rdquo; : une signature <em>représente</em> une
 personne ou un document de manière unique, sans aucune ambiguïté possible. Il
 est également possible de se représenter un hash en tant que <em>pointeur</em> vers
@@ -7653,7 +7672,8 @@ colonne, renommer une table, modifier une contrainte, ces opérations doivent
 Nous avons évoqué ce défi brièvement dans la <a href=/inf1410-teluq/docs/module3/donn%C3%A9es/repr%C3%A9sentation/>section sur la représentation des
 données</a>, à propos de l&rsquo;évolution des schémas
 JSON et Protobuf. C&rsquo;est le problème des <strong>migrations de schéma</strong>.</p><p>L&rsquo;idée de gérer les migrations comme du code versionné a été popularisée par
-Ruby on Rails en 2004, avec ActiveRecord Migrations. Plutôt que d&rsquo;appliquer
+Ruby on Rails en 2005, avec les migrations d&rsquo;ActiveRecord, une contribution de
+Tobias Lütke, le cofondateur de Shopify. Plutôt que d&rsquo;appliquer
 manuellement des commandes <code>ALTER TABLE</code> sur chaque environnement, Rails
 proposait d&rsquo;écrire chaque changement de schéma sous forme de fichier numéroté
 (<code>001_create_users.rb</code>, <code>002_add_email_to_users.rb</code>) et d&rsquo;une commande unique
@@ -7718,9 +7738,10 @@ cas d&rsquo;usage.</p><p>En pratique, le mouvement NoSQL a donné naissance à p
 de données, chacune optimisée pour un type de problème particulier :</p><ul><li>Les bases <strong>clé-valeur</strong> (Redis, Memcached) : le modèle le plus simple, un
 dictionnaire distribué. Idéal pour le caching et les sessions.</li><li>Les bases <strong>orientées documents</strong> (MongoDB, CouchDB) : chaque enregistrement est un
 document (typiquement JSON) avec une structure libre. Naturel pour des données
-hétérogènes ou des schémas qui évoluent vite.</li><li>Les bases <strong>orientées colonnes</strong> (Cassandra, HBase) : optimisées pour
-l&rsquo;écriture massive et les requêtes analytiques sur de grands volumes. Inspirées
-de Bigtable de Google (2006).</li><li>Les bases <strong>orientées graphes</strong> (Neo4j, Amazon Neptune) : conçues pour les
+hétérogènes ou des schémas qui évoluent vite.</li><li>Les bases <strong>orientées familles de colonnes</strong> (Cassandra, HBase) :
+optimisées pour l&rsquo;écriture massive sur de grands volumes, et inspirées de
+Bigtable de Google (2006). On les dit souvent « orientées colonnes », mais
+elles ne sont pas des bases colonnaires au sens analytique décrit plus loin.</li><li>Les bases <strong>orientées graphes</strong> (Neo4j, Amazon Neptune) : conçues pour les
 données fortement interconnectées, où les relations entre entités sont aussi
 importantes que les entités elles-mêmes.</li></ul><p>Ce qui est frappant, comme le note Kleppmann, c&rsquo;est que certains de ces modèles
 rappellent des paradigmes qu&rsquo;on croyait dépassés. Les bases orientées documents
@@ -7829,11 +7850,13 @@ des montants par région », le moteur ne lit que les colonnes <code>region</cod
 <code>montant</code>, en ignorant complètement toutes les autres. En plus de réduire les
 lectures disque, ce regroupement permet une compression spectaculaire, car les
 valeurs d&rsquo;une même colonne sont souvent similaires (beaucoup de répétitions dans
-une colonne <code>region</code> ou <code>pays</code>).</p><p>L&rsquo;article fondateur est le papier de Google sur Bigtable (2006), suivi de
-Dremel (2010) qui a inspiré BigQuery. Dans le monde open source, Apache
-Cassandra (2008, initialement développé chez Facebook) et HBase (2007, une
-implémentation open source de Bigtable) ont été les premiers systèmes orientés
-colonnes à grande échelle. Aujourd&rsquo;hui, des moteurs comme ClickHouse, Apache
+une colonne <code>region</code> ou <code>pays</code>).</p><p>Le premier produit commercial marquant est Sybase IQ (1995), puis le projet
+universitaire C-Store (Michael Stonebraker et ses collègues, 2005) relance
+l&rsquo;approche, suivi chez Google par Dremel (2010), qui a inspiré BigQuery. Il ne
+faut pas confondre ces systèmes avec les <em>wide-column stores</em> comme Bigtable
+(Google, 2006), Apache Cassandra (2008, initialement développé chez Facebook) ou
+HBase (2007), qui regroupent les colonnes en familles, mais stockent ensemble
+les colonnes d&rsquo;une même ligne. Aujourd&rsquo;hui, des moteurs comme ClickHouse, Apache
 Parquet (un format de fichier orienté colonnes) et DuckDB rendent cette
 approche accessible même pour des analyses locales.</p><p>Cette distinction OLTP / OLAP a donné naissance à une architecture classique,
 le <em>data warehouse</em> (entrepôt de données). Les données transactionnelles vivent
@@ -8556,9 +8579,9 @@ l&rsquo;historique complet de toutes les opérations, et l&rsquo;état courant s
 rejouant la séquence des transactions. C&rsquo;est le principe de la comptabilité en
 partie double, mais c&rsquo;est aussi celui de l&rsquo;<em>event sourcing</em>, un pattern
 architectural décrit par Martin Fowler où l&rsquo;on stocke les événements plutôt que
-l&rsquo;état courant. Git, d&rsquo;ailleurs, fonctionne exactement sur ce principe : chaque
-commit est un événement immuable, et l&rsquo;état du code à un instant donné se
-reconstitue en rejouant l&rsquo;historique.</p><p>La blockchain pousse cette idée un cran plus loin en la rendant distribuée et
+l&rsquo;état courant. Git, d&rsquo;ailleurs, repose sur une idée voisine : chaque commit est un
+instantané immuable qui pointe vers son parent, et l&rsquo;historique complet est
+conservé plutôt qu&rsquo;écrasé.</p><p>La blockchain pousse cette idée un cran plus loin en la rendant distribuée et
 résistante à la falsification. Les transactions sont regroupées en blocs, chaque
 bloc contenant le hash cryptographique du bloc précédent, formant une chaîne
 dont toute modification rétroactive serait immédiatement détectable. Le livre
@@ -8567,9 +8590,10 @@ possible de maintenir un tel registre sans autorité centrale, en utilisant un
 mécanisme de consensus (<em>proof of work</em>). Au-delà des cryptomonnaies, le concept
 de registre immuable avec vérification cryptographique trouve des applications en
 traçabilité (chaînes d&rsquo;approvisionnement), en audit financier et en
-certification de documents. <a href=https://aws.amazon.com/qldb/>Amazon QLDB</a> offre un
-ledger centralisé (sans consensus distribué) avec vérification cryptographique,
-utile quand on veut l&rsquo;immuabilité sans la complexité d&rsquo;une blockchain.</p><p>En Python, on peut implémenter un mini-ledger avec chaînage cryptographique pour
+certification de documents. Amazon QLDB, un service qu&rsquo;AWS a fermé en juillet
+2025, offrait un ledger centralisé (sans consensus distribué) avec vérification
+cryptographique, utile quand on voulait l&rsquo;immuabilité sans la complexité d&rsquo;une
+blockchain.</p><p>En Python, on peut implémenter un mini-ledger avec chaînage cryptographique pour
 illustrer les principes fondamentaux :</p><div class=pyodide-block id=pyodide-4><textarea id=pyodide-4-code tabindex=-1>import hashlib
 import json
 from datetime import datetime
@@ -10301,7 +10325,7 @@ une valeur à une clé Redis (par exemple <code>/set/123</code>, qui associe <co
 </span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
 </span></span><span style=display:flex><span>      - <span style=color:#ae81ff>.:/app</span>
 </span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>:
-</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;5000:5000&#34;</span>
+</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;8080:5000&#34;</span>
 </span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>:
 </span></span><span style=display:flex><span>      <span style=color:#f92672>FLASK_ENV</span>: <span style=color:#ae81ff>development</span>
 </span></span><span style=display:flex><span>      <span style=color:#f92672>FLASK_APP</span>: <span style=color:#ae81ff>main</span>
@@ -10975,8 +10999,9 @@ principal est le coût : il faut maintenir deux environnements complets, ce qui
 double les ressources nécessaires (au moins temporairement). Dans un
 environnement cloud où les ressources sont élastiques, ce coût est plus facile à
 absorber que dans un datacenter où les serveurs physiques sont fixes. Le terme
-&ldquo;blue-green&rdquo; a été popularisé par Martin Fowler et, de manière indépendante, par
-le livre <em>Continuous Delivery</em> de Humble et Farley.</p><h3 id=canary-deployment>Canary deployment<a class=anchor href=#canary-deployment>#</a></h3><p>Le <em>canary deployment</em> (déploiement canari) est un compromis entre le rolling
+&ldquo;blue-green&rdquo;, trouvé par Daniel Terhorst-North et Jez Humble, a été popularisé
+par le livre <em>Continuous Delivery</em> de Humble et Farley (2010), dont Martin
+Fowler a résumé la section sur cette technique dans un billet de son blogue.</p><h3 id=canary-deployment>Canary deployment<a class=anchor href=#canary-deployment>#</a></h3><p>Le <em>canary deployment</em> (déploiement canari) est un compromis entre le rolling
 update et le blue-green. L&rsquo;idée est de déployer la nouvelle version sur un
 petit sous-ensemble de l&rsquo;infrastructure (par exemple 5% des instances), puis
 d&rsquo;observer son comportement avant de l&rsquo;étendre progressivement. Le nom vient
@@ -11283,12 +11308,12 @@ cloud-native est <strong>Prometheus</strong>. Son histoire est intimement liée 
 Google et de Kubernetes. En interne, Google utilisait un système appelé Borgmon
 pour surveiller les services déployés sur Borg, son orchestrateur de conteneurs
 (l&rsquo;ancêtre de Kubernetes, comme nous l&rsquo;avons vu dans la section sur
-l&rsquo;infrastructure). Quand d&rsquo;anciens ingénieurs de Google ont fondé SoundCloud, ils
-ont voulu recréer un outil similaire pour le monde open source. Le résultat,
+l&rsquo;infrastructure). Chez SoundCloud, d&rsquo;anciens ingénieurs de Google ont voulu
+recréer un outil similaire pour le monde open source. Le résultat,
 Prometheus, a été rendu public en 2012 et est devenu un projet de la Cloud Native
 Computing Foundation (CNCF) en 2016, le deuxième après Kubernetes lui-même.</p><p>Le fonctionnement de Prometheus repose sur un modèle <em>pull</em> : plutôt que les
 applications poussent leurs métriques vers un serveur central, c&rsquo;est Prometheus
-qui interroge périodiquement (par défaut toutes les 15 secondes) un endpoint
+qui interroge périodiquement (typiquement toutes les 15 secondes) un endpoint
 HTTP exposé par chaque application, typiquement <code>/metrics</code>. Cet endpoint
 retourne les métriques dans un format textuel simple. L&rsquo;application n&rsquo;a besoin
 d&rsquo;aucune connaissance de Prometheus : elle expose ses métriques, et c&rsquo;est tout.
@@ -11942,8 +11967,9 @@ devient le premier intervenant. C&rsquo;est un rôle exigeant : l&rsquo;astreint
 d&rsquo;être joignable en tout temps pendant la période de garde (souvent une
 semaine), y compris la nuit et les fins de semaine. Le livre Google SRE insiste
 sur le fait que la charge d&rsquo;astreinte doit rester soutenable : pas plus de 25 %
-du temps d&rsquo;un ingénieur devrait être consacré au travail opérationnel, le reste
-étant dédié à du travail de projet (automatisation, amélioration des outils).
+du temps d&rsquo;un ingénieur devrait être consacré à l&rsquo;astreinte, et au moins la
+moitié de son temps devrait être dédiée à du travail de projet (automatisation,
+amélioration des outils).
 Quand la charge d&rsquo;astreinte dépasse ce seuil, c&rsquo;est un signal que le système a
 des problèmes de fiabilité structurels qu&rsquo;il faut adresser. Pour les incidents
 majeurs, un rôle distinct émerge : l&rsquo;<em>incident commander</em> (IC). L&rsquo;IC ne résout
@@ -11966,8 +11992,9 @@ de récupération n&rsquo;avait jamais été testée en conditions réelles. Pun
 individus n&rsquo;aurait rien changé aux conditions qui ont rendu l&rsquo;erreur possible —
 et aurait eu un effet pervers : dans une culture punitive, les gens cachent
 leurs erreurs au lieu de les signaler, ce qui rend les incidents futurs plus
-probables et plus graves.</p><p>Le postmortem blameless a été popularisé par John Allspaw, alors CTO d&rsquo;Etsy,
-dans un article influent de 2012 intitulé <em>Blameless PostMortems and a Just
+probables et plus graves.</p><p>Le postmortem blameless a été popularisé par John Allspaw, alors responsable
+des opérations techniques d&rsquo;Etsy, dont il deviendra le CTO en 2015, dans un
+article influent de 2012 intitulé <em>Blameless PostMortems and a Just
 Culture</em>. Allspaw s&rsquo;appuyait sur les travaux de Sidney Dekker en sécurité des
 systèmes complexes (<em>The Field Guide to Understanding Human Error</em>, 2006) et sur
 les pratiques de l&rsquo;aviation et de la médecine, deux domaines où l&rsquo;analyse non
