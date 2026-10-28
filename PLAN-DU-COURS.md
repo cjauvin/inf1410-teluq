@@ -726,3 +726,16 @@ Engineer) quelque part dans le cours (probablement module 5 ou module 1)
   - Position de Yoshua Bengio sur les risques de l'IA (2023), parallèle Oppenheimer
   - Retour à Brooks : déplacement de frontière entre complexité accidentelle et essentielle
 - Conclusion du cours : Naur, la valeur du développeur dans la compréhension, pas la production
+
+# Pages transversales
+
+## Journal des modifications (`content/docs/journal.md`, depuis le 28 octobre 2026)
+- Les changements qui comptent pour un lecteur depuis le début de la session
+  (1er septembre 2026) : nouvelles sections, travaux notés, corrections de
+  faits, adresses de pages modifiées
+- Convention *Keep a Changelog* (Olivier Lacan) : entrées datées, Ajouté /
+  Modifié / Corrigé, mention « Travaux notés » pour ce qui touche l'évaluation
+- Règle pour les inscriptions continues : une exigence ajoutée après
+  l'inscription d'un étudiant lui est recommandée, pas imposée
+- Chaque correction renvoie à son « avant et après » sur GitHub
+- Tenu à jour à chaque push qui compte, comme ce plan

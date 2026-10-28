@@ -24,6 +24,8 @@ Voici, en un coup d'oeil, la structure de la session. Chaque étape est détaill
 | Jalon 4, Livraison finale | après le module 6 | 25&nbsp;% |
 | Entretien final | dans les deux semaines suivant le jalon 4 | 25&nbsp;% |
 
+Cette page évolue pendant la session. Les changements qui la touchent sont consignés dans le [journal des modifications]({{< relref "/docs/journal.md" >}}), avec la règle qui s'applique à ceux qui étaient déjà inscrits.
+
 ## Le projet
 
 Vous devrez concevoir et développer une application web de nature transactionnelle, comme un service de réservation, une plateforme communautaire, un outil de gestion, ou tout autre concept qui implique des utilisateurs, des données et des interactions. Votre application devra obligatoirement comporter un mécanisme d'authentification et de création d'usagers, ainsi qu'une base de données relationnelle (SQL) pour la gestion des données. Elle devra également être déployée et accessible en ligne pour les correcteurs, sans qu'ils aient à installer quoi que ce soit sur leur poste.
