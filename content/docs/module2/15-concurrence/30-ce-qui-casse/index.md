@@ -245,10 +245,9 @@ des onze milliards d'ordres elles l'ont été. Un test goûte la soupe une fois.
 Il n'a aucun moyen de savoir qu'une fois sur cent, deux cuisiniers la salent.
 
 L'histoire la plus parlante sur ce point est celle d'Edward Lee, professeur à
-l'Université de Californie à Berkeley, qui y dirige depuis 2000 le projet
-Ptolemy. Ce projet construit
-des logiciels concurrents pour des systèmes embarqués avec une discipline peu
-commune&nbsp;: relecture ligne à ligne par des spécialistes de la concurrence,
+l'Université de Californie à Berkeley, qui y dirige le projet Ptolemy. Au début
+de l'an 2000, son équipe commence Ptolemy II, un environnement de modélisation
+de systèmes concurrents, avec une discipline peu commune&nbsp;: relecture ligne à ligne par des spécialistes de la concurrence,
 tests de non-régression couvrant 100&nbsp;% du code. Le système a tourné quatre
 ans sans le moindre incident. Le 26 avril 2004, il s'est figé. C'était un
 interblocage, exactement celui que vous venez de provoquer en vingt lignes, et

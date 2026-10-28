@@ -29,8 +29,10 @@ L'idée a été formalisée en 1978 par Tony Hoare, que vous avez croisé dans
 *Communicating Sequential Processes*, que le domaine désigne par ses initiales,
 **CSP**. Hoare y décrit des processus qui, chacun, sont de simples programmes
 séquentiels, et qui ne partagent rien&nbsp;: aucune variable, aucune mémoire.
-Leur seul moyen d'interagir est d'envoyer et de recevoir des **messages** sur
-des **canaux** nommés, et l'envoi est lui-même un point de rendez-vous, celui
+Leur seul moyen d'interagir est d'envoyer et de recevoir des **messages**,
+chacun désignant par son nom le processus avec lequel il échange (les
+**canaux** ne s'imposeront que dans les versions ultérieures de CSP), et l'envoi
+est lui-même un point de rendez-vous, celui
 qui envoie attend que l'autre ait reçu. Cette contrainte a une conséquence
 que Hoare a vue avant tout le monde&nbsp;: dans un tel système, une condition de
 course ne peut pas se produire, parce qu'elle ne peut même pas s'écrire. Il n'y

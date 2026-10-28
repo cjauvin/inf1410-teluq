@@ -48,8 +48,9 @@ En réponse, Stallman a lancé en 1983 le projet GNU (un acronyme récursif pour
 "GNU's Not Unix"), avec l'objectif ambitieux de créer un système d'exploitation
 entièrement libre. L'idée n'était pas simplement de produire du logiciel
 gratuit, mais de garantir des libertés fondamentales aux utilisateurs. En 1985,
-Stallman a fondé la Free Software Foundation (FSF) et formalisé sa philosophie
-autour de quatre libertés : la liberté d'exécuter le programme (liberté 0), de
+Stallman a fondé la Free Software Foundation (FSF), et sa philosophie s'est
+formalisée peu à peu autour de ce qu'on appelle aujourd'hui les quatre
+libertés&nbsp;: la liberté d'exécuter le programme (liberté 0), de
 l'étudier et de le modifier en ayant accès au code source (liberté 1), de
 redistribuer des copies (liberté 2), et de distribuer des versions modifiées
 (liberté 3). Stallman insistait sur la distinction : "free as in freedom, not as
@@ -216,7 +217,7 @@ Redis a suivi le même chemin en 2024, menant au fork Valkey. Dans chaque cas, l
 même dilemme : l'entreprise estime que les cloud providers exploitent son travail
 sans réciprocité, tandis que la communauté estime que le changement de licence
 trahit la promesse originale de l'open source. Ext JS (Sencha) avait illustré ce
-type de tension dès le début des années 2010, en passant progressivement d'une
+type de tension dès 2008, en passant progressivement d'une
 licence permissive à un modèle commercial. Ces épisodes montrent que la licence
 n'est pas un détail technique qu'on choisit une fois pour toutes : c'est un
 contrat social qui peut devenir un champ de bataille.
@@ -242,9 +243,8 @@ fonctionnalités premium propriétaires. GitLab, Elastic (avant son changement d
 licence) et Grafana utilisent ce modèle. Enfin, le modèle *SaaS* (Software as a
 Service) consiste à offrir le logiciel open source comme service hébergé : le
 code est ouvert, mais la commodité de ne pas avoir à le déployer et le maintenir
-soi-même a une valeur que les clients sont prêts à payer. C'est le modèle de
-GitHub (avant son rachat par Microsoft), de Automattic (WordPress.com) et de
-nombreuses startups modernes. Nous approfondirons ces modèles économiques dans la
+soi-même a une valeur que les clients sont prêts à payer. C'est le modèle
+d'Automattic (WordPress.com) et de nombreuses startups modernes. Nous approfondirons ces modèles économiques dans la
 section suivante sur l'économie du logiciel.
 
 ## La fragilité cachée de l'open source

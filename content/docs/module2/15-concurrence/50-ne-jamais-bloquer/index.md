@@ -507,9 +507,10 @@ thread qui hache et la boucle se relaient sur un seul coeur, et c'est
 seulement parce que la boucle a très peu à faire qu'elle passe entre les
 gouttes. Avec le processus, 0,11 et 0,90. Le hachage a pris un autre coeur,
 la boucle n'en a rien su, et les 0,07 seconde de plus sont le prix du
-bassin de processus, un interpréteur par coeur à démarrer, dix sur cette
-machine, à sept millisecondes chacun d'après la mesure de la sous-section sur
-les processus. Node dit exactement la même chose de ses threads&nbsp;:
+bassin de processus, qui doit démarrer un interpréteur neuf et lui faire
+réimporter le module. Un seul ici, et non un par coeur, car avec la méthode
+spawn le bassin ne lance ses processus qu'à la demande, et il n'y a qu'une
+tâche. Node dit exactement la même chose de ses threads&nbsp;:
 « utiles pour les opérations JavaScript intensives en calcul », et « peu
 utiles pour le travail intensif en entrées-sorties », où sa boucle fait
 mieux.
