@@ -38,8 +38,8 @@ de votre inscription qui fait foi.
 
 ### Corrigé
 
-Dix erreurs factuelles, relevées par une vérification systématique des faits à
-leur source. Chaque lien « voir le diff » ouvre sur GitHub la différence exacte
+Vingt erreurs factuelles, relevées par une vérification systématique des faits
+à leur source. Chaque lien « voir le diff » ouvre sur GitHub la différence exacte
 entre l'ancien texte, en rouge, et le nouveau, en vert, ce que `git diff`
 affiche au terminal&nbsp;:
 
@@ -73,6 +73,30 @@ affiche au terminal&nbsp;:
 - [Desktop, web et mobile]({{< relref "/docs/module3/30-interfaces/40-convergences/index.md" >}})&nbsp;:
   WebAssembly est arrivé dans les navigateurs en 2017, et le W3C l'a
   standardisé en 2019 ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/cc185a9e55326a5fdfa50a5303bc4b113dfbf4fd#diff-be019d9a8d83474a91675d3050bf821cd479d521563c53fca3a280222b076e94)).
+- [Les bases de données]({{< relref "/docs/module3/40-données/20-stockage/index.md" >}})&nbsp;:
+  les migrations de Rails datent de 2005, et sont une contribution de Tobias
+  Lütke. Les bases colonnaires analytiques, comme Sybase IQ et C-Store, ne
+  sont pas les *wide-column stores* comme Bigtable, Cassandra et HBase (voir le
+  diff&nbsp;: [stockage](https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-a71922fff3367cbe2eecf61cdb7ca2c458a727cbc1f94bcc57379ba28da3fc3f),
+  [lectures](https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-99db0ec4551f85464c027414dccb1eebfc7341f6d3931187cfed8c32801ab828)).
+- [Au-delà des bases de données]({{< relref "/docs/module3/40-données/30-au-delà/index.md" >}})&nbsp;:
+  Git stocke des instantanés, il ne rejoue pas un historique d'événements, et
+  Amazon QLDB a été fermé en juillet 2025
+  ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-2af882594e073a8f1b69b0819603516d3d1c63e7e5f24666dac444a13516a088)).
+- [La conteneurisation (Docker)]({{< relref "/docs/module5/10-infrastructure/10-docker/index.md" >}})&nbsp;:
+  le fichier Compose du tutoriel publie maintenant le port 8080 qu'utilisent
+  les commandes qui suivent ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-662b990db7368d1855b1251b4e0dcf6e2645738c54df62bab00eb696c78d9e81)).
+- [Le déploiement continu]({{< relref "/docs/module5/20-deploiement/index.md" >}})&nbsp;:
+  le terme « blue-green » vient de Daniel Terhorst-North et Jez Humble, et
+  c'est leur livre qui l'a popularisé ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-7114329235778678789bfbc838f1b5737e7240b821b08912c69ba85dc7b29536)).
+- [L'observabilité]({{< relref "/docs/module5/30-observabilite/index.md" >}})&nbsp;:
+  les ingénieurs de Google à l'origine de Prometheus n'ont pas fondé
+  SoundCloud, ils l'ont rejoint, et l'intervalle de collecte par défaut de
+  Prometheus est d'une minute ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-4b1fd7d91ea03d6c07781fae15bae7fc7cee97a6d6279bcbd8d05aba10d5c951)).
+- [La fiabilité et les incidents]({{< relref "/docs/module5/40-incidents/index.md" >}})&nbsp;:
+  le livre SRE de Google plafonne l'astreinte à 25&nbsp;% et le travail
+  opérationnel à 50&nbsp;%, et John Allspaw n'est devenu CTO d'Etsy qu'en 2015
+  ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-263a56310a1b1088c7c07fd670a935d93f00f1271ef027d6ff0e72910632abd7)).
 
 ## 11 octobre 2026
 
