@@ -8,13 +8,10 @@ slug: journal
 
 Ce cours n'est pas figé. Il est corrigé, complété et parfois réorganisé pendant
 la session, et comme les inscriptions sont continues, deux étudiants peuvent
-avoir lu deux versions différentes d'une même page. Cette page rassemble tout ce
-qui change dans ce que vous lisez&nbsp;: les nouvelles sections, les changements
-aux travaux notés, les corrections de faits, les adresses de pages modifiées, et
-jusqu'aux coquilles et aux retouches d'images. Seul l'outillage qui produit le
-site, sans rien changer à ce qu'il affiche, n'y figure pas. Les entrées
-antérieures au 28 octobre 2026, reconstituées après coup, ne retiennent que les
-changements principaux.
+avoir lu deux versions différentes d'une même page. Cette page rassemble les
+changements apportés au cours au fil de la session, comme les nouvelles
+sections, les changements aux travaux notés, les corrections de faits ou les
+adresses de pages modifiées.
 
 La présentation suit la convention
 [*Keep a Changelog*](https://keepachangelog.com/fr/1.1.0/) d'Olivier Lacan,
@@ -43,12 +40,6 @@ de votre inscription qui fait foi.
   une section sur UML, réduite aux deux diagrammes qui ont survécu à l'usage,
   celui de classes et celui de séquence, écrits en texte avec Mermaid. Les
   livres PDF et EPUB les reproduisent en images.
-
-### Modifié
-
-- [Journal des modifications]({{< relref "/docs/journal.md" >}})&nbsp;: la page
-  consigne désormais tout ce qui change dans ce que vous lisez, jusqu'aux
-  coquilles et aux retouches d'images.
 
 ### Corrigé
 
