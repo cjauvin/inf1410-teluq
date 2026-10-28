@@ -38,8 +38,8 @@ de votre inscription qui fait foi.
 
 ### Corrigé
 
-Vingt erreurs factuelles, relevées par une vérification systématique des faits
-à leur source. Chaque lien « voir le diff » ouvre sur GitHub la différence exacte
+Vingt-neuf erreurs factuelles, relevées par une vérification systématique des
+faits à leur source. Chaque lien « voir le diff » ouvre sur GitHub la différence exacte
 entre l'ancien texte, en rouge, et le nouveau, en vert, ce que `git diff`
 affiche au terminal&nbsp;:
 
@@ -97,6 +97,31 @@ affiche au terminal&nbsp;:
   le livre SRE de Google plafonne l'astreinte à 25&nbsp;% et le travail
   opérationnel à 50&nbsp;%, et John Allspaw n'est devenu CTO d'Etsy qu'en 2015
   ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/082e46f88bd4f3f57ae5b59ff394066eb122336a#diff-263a56310a1b1088c7c07fd670a935d93f00f1271ef027d6ff0e72910632abd7)).
+- [La fiabilité et les incidents]({{< relref "/docs/module5/40-incidents/index.md" >}})&nbsp;:
+  Netflix a publié les *Principles of Chaos Engineering* en 2015, pas en 2014
+  (voir le diff&nbsp;: [incidents](https://github.com/cjauvin/inf1410-teluq/commit/b2d7f5096ec391685b1acb963aeafeb7d404512d#diff-263a56310a1b1088c7c07fd670a935d93f00f1271ef027d6ff0e72910632abd7),
+  [lectures](https://github.com/cjauvin/inf1410-teluq/commit/b2d7f5096ec391685b1acb963aeafeb7d404512d#diff-99db0ec4551f85464c027414dccb1eebfc7341f6d3931187cfed8c32801ab828)).
+- [La sécurité]({{< relref "/docs/module5/50-securite/index.md" >}})&nbsp;: la fuite chez
+  Desjardins a touché près de 9,7 millions de personnes, dont ses 4,2 millions
+  de membres particuliers, et l'outil d'audit des dépendances Python s'appelle
+  `pip-audit` ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/b2d7f5096ec391685b1acb963aeafeb7d404512d#diff-81d82940a2114a01ed335681590ab1ef0cdd511d5901f161d4cc741584e0dc51)).
+- [La scalabilité]({{< relref "/docs/module5/60-scalabilite/index.md" >}})&nbsp;: les
+  marchands de Shopify ont vendu pour 9,3 milliards de dollars pendant le
+  weekend du Black Friday 2023, et les navigateurs ne partagent plus leur cache
+  entre les sites ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/b2d7f5096ec391685b1acb963aeafeb7d404512d#diff-f906f962c1f4a34a6b7b4b94ec0a34abbcbbfa53fcb75f7271803e92b437c88f)).
+- [Monopoles et régulation]({{< relref "/docs/module6/30-monopoles/index.md" >}})&nbsp;: Google
+  a payé environ 20 milliards de dollars à Apple en 2022, et non 26 milliards
+  par an ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/b2d7f5096ec391685b1acb963aeafeb7d404512d#diff-43a27119f253f318492f5957275a6fc391beb0d8f71be1348a63d704bb331eff)).
+- [Catastrophes, éthique et responsabilité]({{< relref "/docs/module6/40-catastrophes/index.md" >}})&nbsp;:
+  Curam a été développé par l'entreprise irlandaise Cúram Software, et non par
+  IBM ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/b2d7f5096ec391685b1acb963aeafeb7d404512d#diff-42621d9e9a200e9cda5073b77cd8f34b63c408f494f1a62f48da03ca9d218c88)).
+- [Le métier de développeur]({{< relref "/docs/module6/50-metier/index.md" >}})&nbsp;:
+  Smalltalk est un langage orienté objet, pas un langage fonctionnel
+  ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/b2d7f5096ec391685b1acb963aeafeb7d404512d#diff-42f6ea02531b95348d2ae66709defb8725e84d2985864ca80d1a049edb9bb478)).
+- [Le développement assisté par IA]({{< relref "/docs/module6/60-ia/index.md" >}})&nbsp;:
+  GitHub rapportait en 2023 que Copilot écrivait 46&nbsp;% du code de ses
+  utilisateurs, et non plus de la moitié du code de la plateforme
+  ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/b2d7f5096ec391685b1acb963aeafeb7d404512d#diff-8ee98b94e8e8fa6fc165aab419eb00adc237474796f8972eb13db17dd25b3736)).
 
 ## 11 octobre 2026
 
