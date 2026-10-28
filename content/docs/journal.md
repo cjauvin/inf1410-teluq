@@ -45,7 +45,7 @@ de votre inscription qui fait foi.
 
 ### Corrigé
 
-Vingt-neuf erreurs factuelles, relevées par une vérification systématique des
+Trente-cinq erreurs factuelles, relevées par une vérification systématique des
 faits à leur source. Chaque lien « voir le diff » ouvre sur GitHub la différence exacte
 entre l'ancien texte, en rouge, et le nouveau, en vert, ce que `git diff`
 affiche au terminal&nbsp;:
@@ -58,6 +58,16 @@ affiche au terminal&nbsp;:
 - [Environnements]({{< relref "/docs/environnements/index.md" >}})&nbsp;: Steve
   Ballmer a qualifié Linux de « cancer » en 2001, pas dans les années 1990
   ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/cc185a9e55326a5fdfa50a5303bc4b113dfbf4fd#diff-d6b55cdce6b0b722699bc2666b11fbc671ca2111c934ffc391354a2d659baad6)).
+- [Ce qui casse]({{< relref "/docs/module2/15-concurrence/30-ce-qui-casse/index.md" >}})&nbsp;: le projet
+  Ptolemy d'Edward Lee existe depuis 1993, et c'est Ptolemy II qui commence en
+  2000 ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/e7d857a2be3130812ed4c4d3b3121c9b6cc2bd99#diff-bb551026e378da5b319a377f382aaabde10e8435f6b8adc40a6e94a2e848791d)).
+- [Ne pas partager]({{< relref "/docs/module2/15-concurrence/40-ne-pas-partager/index.md" >}})&nbsp;: dans
+  l'article de Hoare de 1978, les processus se désignent par leur nom, et les
+  canaux ne viennent qu'ensuite ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/e7d857a2be3130812ed4c4d3b3121c9b6cc2bd99#diff-a639373f05f92b24b5f24239248484daf9097ae0b1e68d0cdee89618e6433e64)).
+- [Ne jamais bloquer]({{< relref "/docs/module2/15-concurrence/50-ne-jamais-bloquer/index.md" >}})&nbsp;: le
+  bassin de processus de l'exemple ne lance qu'un interpréteur, pas un par
+  coeur, parce qu'il démarre ses processus à la demande
+  ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/e7d857a2be3130812ed4c4d3b3121c9b6cc2bd99#diff-3c70995dc7891c57f40474caf3a441ed2ac3b75b8f5374401af65b9229bf00b6)).
 - [Les tests]({{< relref "/docs/module2/20-tests/index.md" >}})&nbsp;:
   coverage.py a été écrit par Gareth Rees, Ned Batchelder le maintient depuis
   2004 ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/cc185a9e55326a5fdfa50a5303bc4b113dfbf4fd#diff-01e1d80345def1c8ce7455ef0deb3a0ac028c09c449199ee26e30120e97bcc79)).
@@ -116,6 +126,10 @@ affiche au terminal&nbsp;:
   marchands de Shopify ont vendu pour 9,3 milliards de dollars pendant le
   weekend du Black Friday 2023, et les navigateurs ne partagent plus leur cache
   entre les sites ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/b2d7f5096ec391685b1acb963aeafeb7d404512d#diff-f906f962c1f4a34a6b7b4b94ec0a34abbcbbfa53fcb75f7271803e92b437c88f)).
+- [L'open source]({{< relref "/docs/module6/10-open-source/index.md" >}})&nbsp;: les quatre
+  libertés du logiciel libre se sont formalisées après 1985, la licence d'Ext
+  JS a changé en 2008, et GitHub n'est pas un logiciel open source offert en
+  service ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/e7d857a2be3130812ed4c4d3b3121c9b6cc2bd99#diff-3d8dffcac940283e84b6e8e7da089af98f84d4233e561621262db974fe956c59)).
 - [Monopoles et régulation]({{< relref "/docs/module6/30-monopoles/index.md" >}})&nbsp;: Google
   a payé environ 20 milliards de dollars à Apple en 2022, et non 26 milliards
   par an ([voir le diff](https://github.com/cjauvin/inf1410-teluq/commit/b2d7f5096ec391685b1acb963aeafeb7d404512d#diff-43a27119f253f318492f5957275a6fc391beb0d8f71be1348a63d704bb331eff)).
