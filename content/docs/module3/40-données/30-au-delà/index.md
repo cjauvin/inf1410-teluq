@@ -375,9 +375,9 @@ l'historique complet de toutes les opérations, et l'état courant se déduit en
 rejouant la séquence des transactions. C'est le principe de la comptabilité en
 partie double, mais c'est aussi celui de l'*event sourcing*, un pattern
 architectural décrit par Martin Fowler où l'on stocke les événements plutôt que
-l'état courant. Git, d'ailleurs, fonctionne exactement sur ce principe : chaque
-commit est un événement immuable, et l'état du code à un instant donné se
-reconstitue en rejouant l'historique.
+l'état courant. Git, d'ailleurs, repose sur une idée voisine&nbsp;: chaque commit est un
+instantané immuable qui pointe vers son parent, et l'historique complet est
+conservé plutôt qu'écrasé.
 
 La blockchain pousse cette idée un cran plus loin en la rendant distribuée et
 résistante à la falsification. Les transactions sont regroupées en blocs, chaque
@@ -388,9 +388,10 @@ possible de maintenir un tel registre sans autorité centrale, en utilisant un
 mécanisme de consensus (*proof of work*). Au-delà des cryptomonnaies, le concept
 de registre immuable avec vérification cryptographique trouve des applications en
 traçabilité (chaînes d'approvisionnement), en audit financier et en
-certification de documents. [Amazon QLDB](https://aws.amazon.com/qldb/) offre un
-ledger centralisé (sans consensus distribué) avec vérification cryptographique,
-utile quand on veut l'immuabilité sans la complexité d'une blockchain.
+certification de documents. Amazon QLDB, un service qu'AWS a fermé en juillet
+2025, offrait un ledger centralisé (sans consensus distribué) avec vérification
+cryptographique, utile quand on voulait l'immuabilité sans la complexité d'une
+blockchain.
 
 En Python, on peut implémenter un mini-ledger avec chaînage cryptographique pour
 illustrer les principes fondamentaux :

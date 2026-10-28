@@ -289,7 +289,8 @@ intégrées dans le cours.)*
   l'*information retrieval*, concepts fondateurs de TF-IDF et de l'index inversé →
   [Module 3, Les données (au-delà des BD)]({{< ref "/docs/module3/40-données/30-au-delà" >}})
 - Google, *Bigtable: A Distributed Storage System for Structured Data* (2006) :
-  article fondateur du stockage orienté colonnes à grande échelle →
+  article fondateur des bases à familles de colonnes, comme Cassandra et
+  HBase →
   [Module 3, Les données (stockage)]({{< ref "/docs/module3/40-données/20-stockage" >}})
 - Tomas Mikolov et al., *Efficient Estimation of Word Representations in Vector
   Space* (2013) : introduction de Word2Vec et des embeddings de mots →

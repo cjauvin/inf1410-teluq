@@ -260,14 +260,14 @@ cloud-native est **Prometheus**. Son histoire est intimement liée à celle de
 Google et de Kubernetes. En interne, Google utilisait un système appelé Borgmon
 pour surveiller les services déployés sur Borg, son orchestrateur de conteneurs
 (l'ancêtre de Kubernetes, comme nous l'avons vu dans la section sur
-l'infrastructure). Quand d'anciens ingénieurs de Google ont fondé SoundCloud, ils
-ont voulu recréer un outil similaire pour le monde open source. Le résultat,
+l'infrastructure). Chez SoundCloud, d'anciens ingénieurs de Google ont voulu
+recréer un outil similaire pour le monde open source. Le résultat,
 Prometheus, a été rendu public en 2012 et est devenu un projet de la Cloud Native
 Computing Foundation (CNCF) en 2016, le deuxième après Kubernetes lui-même.
 
 Le fonctionnement de Prometheus repose sur un modèle *pull* : plutôt que les
 applications poussent leurs métriques vers un serveur central, c'est Prometheus
-qui interroge périodiquement (par défaut toutes les 15 secondes) un endpoint
+qui interroge périodiquement (typiquement toutes les 15 secondes) un endpoint
 HTTP exposé par chaque application, typiquement `/metrics`. Cet endpoint
 retourne les métriques dans un format textuel simple. L'application n'a besoin
 d'aucune connaissance de Prometheus : elle expose ses métriques, et c'est tout.

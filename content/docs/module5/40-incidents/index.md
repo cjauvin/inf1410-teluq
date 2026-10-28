@@ -93,8 +93,9 @@ devient le premier intervenant. C'est un rôle exigeant : l'astreinte implique
 d'être joignable en tout temps pendant la période de garde (souvent une
 semaine), y compris la nuit et les fins de semaine. Le livre Google SRE insiste
 sur le fait que la charge d'astreinte doit rester soutenable : pas plus de 25 %
-du temps d'un ingénieur devrait être consacré au travail opérationnel, le reste
-étant dédié à du travail de projet (automatisation, amélioration des outils).
+du temps d'un ingénieur devrait être consacré à l'astreinte, et au moins la
+moitié de son temps devrait être dédiée à du travail de projet (automatisation,
+amélioration des outils).
 Quand la charge d'astreinte dépasse ce seuil, c'est un signal que le système a
 des problèmes de fiabilité structurels qu'il faut adresser. Pour les incidents
 majeurs, un rôle distinct émerge : l'*incident commander* (IC). L'IC ne résout
@@ -123,8 +124,9 @@ et aurait eu un effet pervers : dans une culture punitive, les gens cachent
 leurs erreurs au lieu de les signaler, ce qui rend les incidents futurs plus
 probables et plus graves.
 
-Le postmortem blameless a été popularisé par John Allspaw, alors CTO d'Etsy,
-dans un article influent de 2012 intitulé *Blameless PostMortems and a Just
+Le postmortem blameless a été popularisé par John Allspaw, alors responsable
+des opérations techniques d'Etsy, dont il deviendra le CTO en 2015, dans un
+article influent de 2012 intitulé *Blameless PostMortems and a Just
 Culture*. Allspaw s'appuyait sur les travaux de Sidney Dekker en sécurité des
 systèmes complexes (*The Field Guide to Understanding Human Error*, 2006) et sur
 les pratiques de l'aviation et de la médecine, deux domaines où l'analyse non

@@ -828,7 +828,8 @@ données]({{< relref "10-représentation" >}}), à propos de l'évolution des sc
 JSON et Protobuf. C'est le problème des **migrations de schéma**.
 
 L'idée de gérer les migrations comme du code versionné a été popularisée par
-Ruby on Rails en 2004, avec ActiveRecord Migrations. Plutôt que d'appliquer
+Ruby on Rails en 2005, avec les migrations d'ActiveRecord, une contribution de
+Tobias Lütke, le cofondateur de Shopify. Plutôt que d'appliquer
 manuellement des commandes `ALTER TABLE` sur chaque environnement, Rails
 proposait d'écrire chaque changement de schéma sous forme de fichier numéroté
 (`001_create_users.rb`, `002_add_email_to_users.rb`) et d'une commande unique
@@ -929,9 +930,10 @@ de données, chacune optimisée pour un type de problème particulier&nbsp;:
 - Les bases **orientées documents** (MongoDB, CouchDB)&nbsp;: chaque enregistrement est un
   document (typiquement JSON) avec une structure libre. Naturel pour des données
   hétérogènes ou des schémas qui évoluent vite.
-- Les bases **orientées colonnes** (Cassandra, HBase)&nbsp;: optimisées pour
-  l'écriture massive et les requêtes analytiques sur de grands volumes. Inspirées
-  de Bigtable de Google (2006).
+- Les bases **orientées familles de colonnes** (Cassandra, HBase)&nbsp;:
+  optimisées pour l'écriture massive sur de grands volumes, et inspirées de
+  Bigtable de Google (2006). On les dit souvent « orientées colonnes », mais
+  elles ne sont pas des bases colonnaires au sens analytique décrit plus loin.
 - Les bases **orientées graphes** (Neo4j, Amazon Neptune)&nbsp;: conçues pour les
   données fortement interconnectées, où les relations entre entités sont aussi
   importantes que les entités elles-mêmes.
@@ -1075,11 +1077,13 @@ lectures disque, ce regroupement permet une compression spectaculaire, car les
 valeurs d'une même colonne sont souvent similaires (beaucoup de répétitions dans
 une colonne `region` ou `pays`).
 
-L'article fondateur est le papier de Google sur Bigtable (2006), suivi de
-Dremel (2010) qui a inspiré BigQuery. Dans le monde open source, Apache
-Cassandra (2008, initialement développé chez Facebook) et HBase (2007, une
-implémentation open source de Bigtable) ont été les premiers systèmes orientés
-colonnes à grande échelle. Aujourd'hui, des moteurs comme ClickHouse, Apache
+Le premier produit commercial marquant est Sybase IQ (1995), puis le projet
+universitaire C-Store (Michael Stonebraker et ses collègues, 2005) relance
+l'approche, suivi chez Google par Dremel (2010), qui a inspiré BigQuery. Il ne
+faut pas confondre ces systèmes avec les *wide-column stores* comme Bigtable
+(Google, 2006), Apache Cassandra (2008, initialement développé chez Facebook) ou
+HBase (2007), qui regroupent les colonnes en familles, mais stockent ensemble
+les colonnes d'une même ligne. Aujourd'hui, des moteurs comme ClickHouse, Apache
 Parquet (un format de fichier orienté colonnes) et DuckDB rendent cette
 approche accessible même pour des analyses locales.
 

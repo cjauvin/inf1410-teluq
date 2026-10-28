@@ -297,8 +297,9 @@ principal est le coût : il faut maintenir deux environnements complets, ce qui
 double les ressources nécessaires (au moins temporairement). Dans un
 environnement cloud où les ressources sont élastiques, ce coût est plus facile à
 absorber que dans un datacenter où les serveurs physiques sont fixes. Le terme
-"blue-green" a été popularisé par Martin Fowler et, de manière indépendante, par
-le livre *Continuous Delivery* de Humble et Farley.
+"blue-green", trouvé par Daniel Terhorst-North et Jez Humble, a été popularisé
+par le livre *Continuous Delivery* de Humble et Farley (2010), dont Martin
+Fowler a résumé la section sur cette technique dans un billet de son blogue.
 
 ### Canary deployment
 

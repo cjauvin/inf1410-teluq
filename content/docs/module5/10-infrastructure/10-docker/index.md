@@ -406,7 +406,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - "5000:5000"
+      - "8080:5000"
     environment:
       FLASK_ENV: development
       FLASK_APP: main
