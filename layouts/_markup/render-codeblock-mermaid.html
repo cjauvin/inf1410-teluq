@@ -1,0 +1,40 @@
+{{- /* Remplace le gabarit du thème hugo-book, qui initialise Mermaid avec une
+     palette fixe (theme "default", tirée de assets/mermaid.json). En thème
+     sombre, les flèches et les étiquettes d'un diagramme de classes y
+     devenaient presque invisibles sur le fond foncé.
+
+     Ici, la palette suit le thème affiché : l'attribut data-theme posé par le
+     sélecteur (voir partials/docs/inject/menu-before.html), ou, en mode
+     « auto », la préférence du système. Le texte source de chaque diagramme
+     est gardé dans data-source, pour pouvoir le redessiner quand on bascule de
+     thème ou que la préférence du système change. */ -}}
+<pre class="mermaid" data-source="{{ .Inner }}">{{ .Inner | htmlEscape | safeHTML -}}</pre>
+{{- if not (.Page.Store.Get "mermaid") -}}
+  <script src="{{ "mermaid.min.js" | relURL }}"></script>
+  <script>
+  (function () {
+    var systeme = window.matchMedia("(prefers-color-scheme: dark)");
+    function sombre() {
+      var t = document.documentElement.dataset.theme;
+      return t === "dark" || (t !== "light" && systeme.matches);
+    }
+    var actuel = null;
+    function dessiner() {
+      var palette = sombre() ? "dark" : "default";
+      if (palette === actuel) return;
+      actuel = palette;
+      mermaid.initialize({ startOnLoad: false, theme: palette, flowchart: { useMaxWidth: true } });
+      var blocs = document.querySelectorAll("pre.mermaid");
+      blocs.forEach(function (b) {
+        b.removeAttribute("data-processed");
+        b.textContent = b.dataset.source;
+      });
+      mermaid.run({ nodes: blocs });
+    }
+    document.addEventListener("DOMContentLoaded", dessiner);
+    new MutationObserver(dessiner).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    systeme.addEventListener("change", dessiner);
+  })();
+  </script>
+  {{- .Page.Store.Set "mermaid" true -}}
+{{- end -}}

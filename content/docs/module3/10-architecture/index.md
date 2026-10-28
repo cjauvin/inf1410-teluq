@@ -535,6 +535,183 @@ critère de découpage est "quelle décision pourrait changer". Si la réponse e
 
 {{< image src="solid-vs-yagni.webp" alt="" title="" loading="lazy" >}}
 
+## Dessiner une conception : UML
+
+Au début des années 1990, chaque méthode de conception orientée objet venait
+avec sa propre notation graphique, et elles étaient nombreuses à se faire
+concurrence. Trois d'entre elles dominaient&nbsp;: la méthode de Grady Booch,
+l'OMT (*Object Modeling Technique*) de James Rumbaugh et l'OOSE
+(*Object-Oriented Software Engineering*) d'Ivar Jacobson. Leurs trois auteurs se
+retrouvent chez Rational Software entre 1994 et 1995, ce qui leur vaudra le
+surnom de *Three Amigos*, et ils fusionnent leurs notations en un seul langage,
+l'[UML]({{< relref "/docs/module1/10-historique/index.md" >}}), que l'Object
+Management Group adopte comme standard en novembre 1997. On a vu dans
+l'historique du module 1 ce qui a suivi&nbsp;: UML est devenu l'emblème de
+l'approche « concevoir d'abord, coder ensuite », et des équipes entières ont
+passé des mois à produire des diagrammes que personne ne mettait à jour
+ensuite. Ce n'est pas cet UML-là qu'on va voir ici.
+
+En 2003, Martin Fowler, l'auteur de *UML Distilled*, propose une distinction qui
+aide à comprendre pourquoi UML a autant déçu qu'il a servi. On peut selon lui
+s'en servir de trois façons. Comme **esquisse** (*sketch*), d'abord, pour
+communiquer un aspect d'un système à ses collègues, au tableau blanc ou dans un
+document. Comme **plan détaillé** (*blueprint*), ensuite, un document si complet
+que toutes les décisions de conception y sont prises, et qu'un programmeur
+n'aurait plus qu'à le traduire en code, comme on bâtit un pont à partir des
+plans d'un ingénieur. Comme **langage de programmation**, enfin, où des outils
+compilent les diagrammes en code exécutable. Fowler doutait de ce dernier
+usage, faute d'avoir vu réussir la programmation graphique, plus lente à manier
+que du code. Le plan détaillé, lui, vieillit dès que le code change, on l'a vu.
+Reste l'esquisse, dont Fowler dit que l'essence est la sélectivité&nbsp;: on ne
+dessine pas tout le système, seulement ce qui mérite d'être discuté avant
+d'écrire le code, ou compris après coup. C'est cet usage que la section
+enseigne.
+
+### Le diagramme de classes
+
+Le **diagramme de classes** montre la structure statique d'un programme&nbsp;:
+quelles classes existent, ce qu'elles contiennent, et comment elles dépendent
+les unes des autres. Reprenons l'exemple de
+l'[inversion de dépendance](#d--dependency-inversion-principle) vu plus haut, où
+un `OrderService` reçoit sa passerelle de paiement au lieu de créer lui-même un
+`StripeClient`. Le code Python ne dit nulle part ce qu'est une « passerelle de
+paiement ». C'est n'importe quel objet qui possède une méthode `charge`, et
+cette abstraction n'existe que dans la tête de celui qui a écrit le code. Le
+diagramme, lui, oblige à la nommer, `PaymentGateway`, et à montrer qui en
+dépend et qui la réalise. C'est souvent le premier service que rend une
+esquisse&nbsp;: rendre visible une décision de conception que le code laisse
+implicite.
+
+```mermaid
+classDiagram
+    direction LR
+    class OrderService {
+        +payment_gateway: PaymentGateway
+        +checkout(order: Order)
+    }
+    class PaymentGateway {
+        <<interface>>
+        +charge(amount: float)
+    }
+    class StripeClient {
+        +charge(amount: float)
+    }
+    class PayPalClient {
+        +charge(amount: float)
+    }
+    class FakeGateway {
+        +charges: list
+        +charge(amount: float)
+    }
+    class Order {
+        +total: float
+    }
+    OrderService "1" --> "1" PaymentGateway : paie avec
+    OrderService ..> Order : traite
+    PaymentGateway <|.. StripeClient
+    PaymentGateway <|.. PayPalClient
+    PaymentGateway <|.. FakeGateway
+```
+
+Chaque boîte est une classe, découpée en trois compartiments&nbsp;: son nom, ses
+attributs et ses méthodes, chacun précédé d'un signe de visibilité, `+` pour
+public. La mention `«interface»` au-dessus de `PaymentGateway` est un
+**stéréotype**, qui signale une abstraction sans implémentation, un contrat. Les
+flèches pointillées à triangle creux disent qu'une classe **réalise** cette
+interface, et l'héritage s'écrirait de la même façon, mais en trait plein. La
+flèche pleine qui part d'`OrderService` est une **association**&nbsp;: le service
+garde une référence durable vers sa passerelle, et les **multiplicités**, le
+« 1 » à chaque bout, disent qu'un service a exactement une passerelle. La
+flèche pointillée vers `Order`, enfin, est une simple **dépendance**, plus
+faible&nbsp;: la commande ne fait que passer en paramètre de `checkout`. Il suffit
+alors d'un coup d'oeil pour voir ce que le code de la section précédente disait
+en plusieurs lignes&nbsp;: toutes les flèches convergent vers l'abstraction, et
+`OrderService` ne connaît aucun des trois fournisseurs.
+
+Ce diagramme n'a pas été dessiné à la souris. Il est écrit en texte, dans un
+format appelé **Mermaid**, créé en 2014 par Knut Sveidqvist, et c'est le
+navigateur qui le transforme en image au moment d'afficher la page. Les
+relations, par exemple, s'écrivent ainsi&nbsp;:
+
+```text
+OrderService "1" --> "1" PaymentGateway : paie avec
+OrderService ..> Order : traite
+PaymentGateway <|.. StripeClient
+```
+
+Chaque ligne se lit presque comme le dessin&nbsp;: `-->` est la flèche pleine de
+l'association, `..>` la flèche pointillée de la dépendance, et `<|..` le
+triangle creux de la réalisation, tracé du côté de l'interface.
+
+Ce format change surtout le sort du diagramme. Sa documentation dit d'ailleurs
+que le but principal de Mermaid est d'aider la documentation à rattraper le
+développement, contre ce qu'elle appelle le *doc-rot*, le pourrissement des
+documents que personne ne met à jour. Un diagramme en texte vit dans le dépôt, à
+côté du code qu'il décrit. Il se modifie dans le même commit que ce code, et se
+relit en diff dans une pull request, comme tout le reste. GitHub affiche
+d'ailleurs les diagrammes Mermaid directement dans un fichier Markdown depuis
+février 2022, si bien qu'un `README.md` ou un ADR peut contenir une esquisse qui
+se lit sans aucun outil. C'est la façon la plus simple d'en mettre une dans vos
+[travaux notés]({{< relref "/docs/travaux-notés/index.md" >}}). Mermaid n'est pas
+seul dans ce créneau, et PlantUML, apparu en 2009, fait la même chose depuis
+plus longtemps encore.
+
+### Le diagramme de séquence
+
+Le diagramme de classes montre ce qui existe. Le **diagramme de séquence**
+montre ce qui se passe&nbsp;: qui appelle qui, dans quel ordre, au fil du temps,
+pour un scénario précis. C'est le diagramme qu'on dessine pour expliquer un
+échange entre plusieurs composants, et il prend tout son sens quand ces
+composants sont séparés par un réseau, comme on le verra dans la
+[section sur les APIs]({{< relref "/docs/module3/20-apis/index.md" >}}). Suivons
+le paiement d'une commande, depuis le navigateur jusqu'à Stripe, avec le cas
+que le code de l'inversion de dépendance ne montrait pas&nbsp;: la carte refusée.
+
+```mermaid
+sequenceDiagram
+    participant N as Navigateur
+    participant S as OrderService
+    participant C as StripeClient
+    participant A as API de Stripe
+    N->>S: POST /commandes/42/paiement
+    S->>C: charge(order.total)
+    C->>A: POST /v1/payment_intents
+    alt carte acceptée
+        A-->>C: 200 OK
+        C-->>S: paiement confirmé
+        S-->>N: commande payée
+    else carte refusée
+        A-->>C: 402, card_declined
+        C-->>S: exception CarteRefusee
+        S-->>N: paiement refusé
+    end
+```
+
+Le temps s'écoule de haut en bas. Chaque participant a sa **ligne de vie**, la
+verticale qui descend sous son nom. Une flèche pleine est un **message**, un
+appel qu'un participant fait à un autre, et la flèche pointillée qui revient est
+sa **réponse**. Le cadre `alt` est un **fragment combiné**, qui découpe le
+scénario en alternatives, chacune précédée de sa **garde** entre crochets, ici
+`[carte acceptée]` et `[carte refusée]`. En Mermaid, la flèche pleine s'écrit
+`->>`, la flèche pointillée `-->>`, et l'alternative se referme par `end`. Le
+dessin fait voir deux choses que le code d'`OrderService` ne montrait pas.
+D'abord, le paiement traverse deux frontières réseau, et chacune est un endroit
+où quelque chose peut échouer ou tarder. Ensuite, c'est `StripeClient` qui
+traduit la réponse `402` de Stripe en exception. C'est une décision de
+conception, et c'est elle qui permet à `OrderService` de ne rien savoir de
+Stripe, même quand ça tourne mal.
+
+Ces deux diagrammes ne sont qu'une petite partie d'UML. La norme en définit
+quatorze types, dont le diagramme de cas d'utilisation, le diagramme d'activité
+et le diagramme d'états, et chacun a une notation bien plus riche que ce qu'on
+vient de voir. On a laissé de côté, entre autres, la différence entre agrégation
+et composition, les classes abstraites, et les autres fragments combinés, comme
+`loop` pour une répétition, `opt` pour une étape facultative, ou `par` pour des
+messages simultanés. Pour l'usage qui a survécu, l'esquisse, ces deux
+diagrammes et ces quelques éléments suffisent pourtant la plupart du temps. Le
+but d'une esquisse n'est pas d'être complète, mais d'être utile à une
+conversation sur la conception, et c'est à cette aune qu'il faut la juger.
+
 ## Les design patterns
 
 Le principe de *composition over inheritance* fait partie d'un vocabulaire plus large que le livre *Design Patterns* du Gang of Four (1994) a cherché à codifier. L'idée du livre était de cataloguer des solutions récurrentes à des problèmes de conception courants, et de leur donner des noms. Quand un développeur parle d'un "Observer", d'un "Strategy" ou d'un "Adapter", il invoque un patron reconnu qui évite d'avoir à réexpliquer la structure à chaque fois. C'est la contribution la plus durable du GoF : non pas les 23 patrons eux-mêmes, mais le fait d'avoir établi qu'un vocabulaire partagé de conception est précieux pour la communication en équipe.

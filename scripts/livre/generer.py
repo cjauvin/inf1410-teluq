@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.11"
-# dependencies = ["beautifulsoup4", "pillow"]
+# dependencies = ["beautifulsoup4", "pillow", "playwright"]
 # ///
 """Génère le cours en PDF et en EPUB, à partir de la page /livre/ construite par Hugo.
 
@@ -12,7 +12,7 @@ Le livre suit automatiquement ce qui est en ligne. Les fichiers sont écrits dan
 
 Étapes : la page /livre/ (layouts/livre.html) enchaîne toutes les pages dans
 l'ordre du menu ; ce script la nettoie pour pandoc (figures, encadrés,
-formules, liens internes, SVG insérés dans la page, blocs de code exécutables,
+formules, liens internes, SVG insérés dans la page, diagrammes Mermaid, blocs de code exécutables,
 applets et vidéos remplacées par un renvoi au site), puis pandoc produit l'EPUB directement et le PDF par LuaLaTeX.
 """
 import argparse
@@ -128,6 +128,43 @@ def alleger(site: Path, src: str, conv: Path) -> str:
     return f"conv/{base}.jpg"
 
 
+def rendre_mermaid(sources: list[str], site: Path, conv: Path) -> list[str]:
+    """Les diagrammes Mermaid, que le site dessine dans le navigateur, deviennent des PNG.
+
+    Pandoc ne sait pas exécuter Mermaid. On le fait donc exécuter par Chrome, avec le
+    mermaid.min.js du site, et on photographie chaque diagramme à double résolution,
+    dans la palette claire du site. Un SVG aurait été plus net, mais pour que
+    rsvg-convert, l'outil de pandoc, en lise les étiquettes, il faut demander à
+    Mermaid un texte SVG simple (htmlLabels: false), et il mange alors les espaces
+    des étiquettes (« paie avec » devient « paieavec »).
+
+    Chrome est celui du système : préinstallé sur les machines de GitHub Actions, et
+    présent sur le poste de travail. À défaut, Playwright essaie son propre Chromium.
+    """
+    from playwright.sync_api import sync_playwright
+
+    chemins = []
+    with sync_playwright() as p:
+        try:
+            navigateur = p.chromium.launch(channel="chrome")
+        except Exception:
+            navigateur = p.chromium.launch()
+        page = navigateur.new_page(device_scale_factor=2, viewport={"width": 1100, "height": 900})
+        page.set_content("<!doctype html><html><body style='margin:0;background:white'></body></html>")
+        page.add_script_tag(path=str(site / "mermaid.min.js"))
+        page.evaluate("mermaid.initialize({startOnLoad: false, theme: 'default'})")
+        for i, source in enumerate(sources, 1):
+            page.evaluate("""async ([id, s]) => {
+                const { svg } = await mermaid.render(id, s);
+                document.body.innerHTML = '<div id="cadre" style="display:inline-block;padding:8px">' + svg + '</div>';
+            }""", [f"mermaid-{i}", source])
+            nom = f"mermaid-{i}.png"
+            page.locator("#cadre").screenshot(path=str(conv / nom))
+            chemins.append(f"conv/{nom}")
+        navigateur.close()
+    return chemins
+
+
 def preparer(html: str, site: Path, conv: Path) -> tuple[str, str]:
     # SVG insérés dans la page (illustration, modules, wordcloud) → fichiers, pour pandoc.
     # Fait sur le texte brut : l'analyseur HTML mettrait viewBox et les balises SVG en minuscules.
@@ -149,6 +186,13 @@ def preparer(html: str, site: Path, conv: Path) -> tuple[str, str]:
     sections = corps.find_all("section", class_="page")
     pages = {urllib.parse.unquote(s["data-url"]): ident(s["data-url"]) for s in sections}
     couverture = None
+
+    # diagrammes Mermaid (texte source dans data-source, voir layouts/_markup) → images
+    blocs = corps.find_all("pre", class_="mermaid")
+    if blocs:
+        images = rendre_mermaid([b.get("data-source") or b.get_text() for b in blocs], site, conv)
+        for bloc, image in zip(blocs, images):
+            bloc.replace_with(soup.new_tag("img", attrs={"src": image, "alt": "Diagramme"}))
 
     for tag in corps.find_all(["script", "style", "input"]):
         tag.decompose()
