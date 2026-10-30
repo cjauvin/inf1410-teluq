@@ -27,7 +27,6 @@ BookToC = true
 BookSearch = true
 BookPortableLinks = "warning"
 BookLogo = "images/2gears.png"
-BookFavicon = "images/2gears.png"
 
 # Formulaire de retour anonyme en fin de page (voir
 # layouts/partials/docs/comments.html). Désactivé le 31 août 2026, le temps de

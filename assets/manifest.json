@@ -8,7 +8,7 @@
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "{{ (.Site.Params.BookFavicon | default "favicon.png") | absURL }}",
+      "src": "{{ "images/2gears.png" | absURL }}",
       "sizes": "512x512"
     }
   ]
