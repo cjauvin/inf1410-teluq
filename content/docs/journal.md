@@ -32,6 +32,14 @@ de votre inscription qui fait foi.
 
 {{% /hint %}}
 
+## 29 octobre 2026
+
+### Modifié
+
+- La recherche du site fonctionne autrement. Elle trouve mieux les mots qui
+  contiennent une apostrophe, surligne le terme cherché dans un extrait, et
+  affiche les cinq résultats les plus pertinents.
+
 ## 28 octobre 2026
 
 ### Ajouté
