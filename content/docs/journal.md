@@ -32,6 +32,19 @@ de votre inscription qui fait foi.
 
 {{% /hint %}}
 
+## 14 novembre 2026
+
+### Ajouté
+
+- **Travaux notés**&nbsp;: des précisions, sans exigence nouvelle. [Le projet fil rouge]({{< relref "/docs/travaux-notés/index.md#le-projet-fil-rouge" >}})
+  explique comment lire le cours en fonction de son projet, plutôt que d'un
+  bout à l'autre. Le [jalon 1]({{< relref "/docs/travaux-notés/index.md#jalon-1--fondations-10" >}})
+  donne l'ordre dans lequel aborder ses livrables, de l'idée de projet jusqu'au
+  fichier `ci.yml`, précise le minimum attendu pour les tests et la pipeline,
+  et signale qu'il puise aussi dans les modules 3 et 4. Enfin,
+  [L'intelligence artificielle dans ce cours]({{< relref "/docs/travaux-notés/index.md#lintelligence-artificielle-dans-ce-cours" >}})
+  propose quelques réflexes pour apprendre avec l'IA.
+
 ## 29 octobre 2026
 
 ### Modifié

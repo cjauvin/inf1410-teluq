@@ -7,11 +7,15 @@ weight: 20
 
 ## Le projet fil rouge
 
-Ce cours est structuré autour d'un projet de développement logiciel unique, que vous ferez évoluer d'un bout à l'autre de la session. L'idée est simple : plutôt que de produire des travaux déconnectés les uns des autres, vous allez construire quelque chose de concret, en appliquant progressivement les outils et les pratiques vus dans chaque module. Ce projet est donc à la fois un fil conducteur pédagogique et une occasion de vivre, de l'intérieur, les défis réels du génie logiciel moderne. Il n'est pas attendu de vous que vous maîtrisiez ou utilisiez la totalité des techniques et des outils abordés dans le cours — l'objectif est plutôt que vous fassiez des choix éclairés, et que vous soyez capables de les justifier.
+Ce cours est structuré autour d'un projet de développement logiciel unique, que vous ferez évoluer d'un bout à l'autre de la session. L'idée est simple : plutôt que de produire des travaux déconnectés les uns des autres, vous allez construire quelque chose de concret, en appliquant progressivement les outils et les pratiques vus dans chaque module. Ce projet est donc à la fois un fil conducteur pédagogique et une occasion de vivre, de l'intérieur, les défis réels du génie logiciel moderne. Il n'est pas attendu de vous que vous maîtrisiez ou utilisiez la totalité des techniques et des outils abordés dans le cours. L'objectif est plutôt que vous fassiez des choix éclairés, et que vous soyez capables de les justifier.
 
 {{< image src="ligne-rouge.png" alt="" title="" loading="lazy" >}}
 
 Avant d'entrer dans le détail, une chose mérite d'être dite d'emblée. Cette page est longue parce qu'elle est précise, et une bonne part de ce qu'elle décrit concerne la façon dont votre travail sera évalué. Mais l'évaluation n'est pas le sujet du projet, elle en est la conséquence. Ce qui est réellement attendu de vous, c'est que vous construisiez quelque chose qui vous intéresse, en assumant des choix que vous serez capables de défendre.
+
+Cela a une conséquence directe sur la façon de lire le cours. Ses six modules ne forment pas un programme à terminer avant de commencer à construire. Comme l'annonce la [page d'accueil]({{< relref "/_index.md" >}}), le cours est touffu, et il l'assume&nbsp;: c'est une carte volontairement très large, dans laquelle votre projet trace un chemin. Vous lirez certaines sections en profondeur parce que votre application en a besoin. Vous en survolerez d'autres simplement pour savoir qu'elles existent, et vous reviendrez à certaines quand un problème vous y ramènera. Ce chemin est le vôtre, et il ne ressemblera pas à celui de votre voisin. Les jalons ne fixent que quelques passages obligés, et leurs livrables renvoient aux sections sur lesquelles ils s'appuient. Si un livrable vous paraît opaque, commencez par lire ces sections. Le plus souvent, c'est là que se trouve la réponse, et non ailleurs dans le cours.
+
+{{< image src="chemins.png" alt="Le paysage touffu des six modules, traversé par quatre chemins de couleurs différentes qui partent de la même idée, passent tous par les quatre jalons et se séparent entre eux" title="" loading="lazy" >}}
 
 Voici, en un coup d'oeil, la structure de la session. Chaque étape est détaillée dans la [section sur les jalons](#les-jalons).
 
@@ -121,6 +125,15 @@ Il reste toujours possible, miraculeusement, qu'aucun problème ne survienne pen
 
 L'usage de l'IA est non seulement permis dans ce cours, il est activement encouragé. Savoir formuler de bonnes questions, évaluer les réponses et intégrer les suggestions de l'IA de manière critique fait partie des compétences que tout développeur doit maîtriser aujourd'hui. Ignorer ces outils dans un cours de génie logiciel moderne serait à contre-courant de la réalité du métier.
 
+L'IA est aussi un remarquable outil d'apprentissage, à condition de savoir s'en servir. Une question vague, comme « explique-moi ce qu'est une pipeline CI », produit souvent une réponse juste mais écrasante. Elle suppose un vocabulaire et un contexte que vous n'avez pas encore. C'est exactement ce que décrit la [page d'accueil]({{< relref "/_index.md" >}})&nbsp;: on ne reconnaît pas une bonne réponse dans un domaine où l'on n'a jamais mis les pieds. Quelques réflexes changent tout&nbsp;:
+
+- Donnez d'abord à l'outil la section du cours qui vous occupe, en la copiant ou en lui fournissant son adresse, pour que sa réponse parte du même point que vous.
+- Dites-lui où vous en êtes, ce que vous savez déjà et ce qui vous échappe.
+- Demandez-lui le plus petit exemple qui fonctionne plutôt qu'une explication générale. Exécutez-le vous-même, modifiez-le, cassez-le, jusqu'à pouvoir prédire ce qu'il fera.
+- Si sa réponse vous perd, dites-le-lui. Lui demander de reprendre plus simplement n'a rien de gênant, et c'est souvent la question la plus utile de la conversation.
+
+Le cours vous donne la carte, et l'IA peut vous guider sur le terrain. Mais c'est en exécutant le code que vous saurez si vous avez compris.
+
 Cette ouverture crée cependant un défi d'évaluation réel. Si un outil peut produire du code fonctionnel, des [ADRs]({{< relref "module4/30-gestion-projet/index.md" >}}) convaincants et des réflexions de blogue plausibles, comment distinguer un apprentissage authentique d'une délégation totale ? Ce cours s'attaque à ce problème par trois mécanismes complémentaires.
 
 ### L'entretien de suivi
@@ -185,7 +198,7 @@ Le projet est évalué à travers quatre jalons et deux entretiens de suivi, ré
 
 *À remettre après le module 2, dans [l'activité Jalon 1 de l'ENA](https://ena.teluq.ca/mod/activityswitchboard/view.php?id=17875)*
 
-Ce premier jalon pose les bases de votre projet. Vous devrez avoir clarifié la nature de votre application et établi les fondations techniques et organisationnelles du développement.
+Ce premier jalon pose les bases de votre projet. Vous devrez avoir clarifié la nature de votre application et établi les fondations techniques et organisationnelles du développement. Ce jalon tombe après le module 2, mais il puise aussi ailleurs. Les user stories, les issues et le tableau GitHub Projects sont présentés au module 4, et le choix d'un framework est discuté au module 3. Il faudra donc lire ces sections en avance, au moins en survol. C'est une première occasion de pratiquer la [lecture non linéaire](#le-projet-fil-rouge) décrite au début de cette page.
 
 Livrables&nbsp;:
 - Un dépôt GitHub contenant un `README.md` avec la **vision client** : qui est l'utilisateur, quel problème l'application résout, et quelle est la solution envisagée (environ une page, rédigée du point de vue de l'utilisateur)
@@ -194,6 +207,8 @@ Livrables&nbsp;:
 - Un fichier `.github/workflows/ci.yml` configurant une [pipeline CI]({{< relref "module2/50-ci/index.md" >}}) qui exécute automatiquement la suite de tests à chaque push
 - Un ensemble de **[tests automatisés]({{< relref "module2/20-tests/index.md" >}})** couvrant les fonctionnalités déjà implantées
 - Une première entrée dans votre **blogue technique**, répondant aux questions suivantes&nbsp;: qui sont vos utilisateurs et quel problème résolvez-vous ? Quels sont vos premiers choix techniques (langage, [framework]({{< relref "module3/30-interfaces/30-frameworks/index.md" >}}), hébergement) et quelles alternatives avez-vous considérées ? Qu'est-ce qui est encore incertain à ce stade ?
+
+Ces livrables ne sont pas indépendants, et l'ordre dans lequel on les aborde compte. Tout part de l'idée de projet, d'où découle la vision client. Cette vision oriente le choix d'un langage et d'un framework, qui permet d'écrire un premier bout de code. Ce code peut alors recevoir ses premiers tests, que vous ferez d'abord passer sur votre machine avec un outil comme pytest en Python, ou son équivalent dans votre langage, comme Jest en JavaScript. La section sur [les tests]({{< relref "module2/20-tests/index.md" >}}) montre comment faire. Ce n'est qu'ensuite que le fichier `ci.yml` prend son sens. Il demande simplement à GitHub d'exécuter ces mêmes tests à chaque push, et la section sur [l'intégration continue]({{< relref "module2/50-ci/index.md#exemple-concret" >}}) en montre un exemple complet, à adapter à votre projet. À ce stade, personne ne s'attend à une application avancée. Quelques fonctions réelles, couvertes par deux ou trois tests qui passent, et une pipeline qui les exécute suffisent à poser les fondations que demande ce jalon.
 
 {{% hint warning %}}
 
